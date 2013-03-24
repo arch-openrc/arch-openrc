@@ -1,0 +1,22 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_realpkgname="acpid"
+
+pkgname=openrc4arch-$_realpkgname-plugin
+pkgver=1.1.1
+pkgrel=1
+_ver=20130325
+pkgdesc="OpenRC $_realpkgname init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc4arch-desktop')
+depends=('openrc4arch' "$_realpkgname")
+install=$_realpkgname.install
+source=("http://openrc4arch.site40.net/pool/archlinux/$_realpkgname-$_ver.tar.xz")
+sha256sums=('1092c79a6c03ac3934017d63f82e8e66b3e77fc3e8a22dbe2179e74b683eb1f4')
+
+package() {
+	install -Dm755 $srcdir/$_realpkgname/conf.d/acpid-2.0.16-conf.d "$pkgdir/etc/conf.d/acpid"
+	install -Dm755 $srcdir/$_realpkgname/init.d/acpid-2.0.16-init.d "$pkgdir/etc/init.d/acpid"
+}

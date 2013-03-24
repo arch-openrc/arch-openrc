@@ -1,0 +1,107 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+# Contributor: williamh <williamh@gentoo.org>
+
+_gitname="openrc"
+_suffix='git'
+
+pkgname=openrc4arch-$_suffix
+pkgver=20130320
+pkgrel=1
+pkgdesc="OpenRC universal init system."
+arch=('i686' 'x86_64')
+url="http://www.gentoo.org/proj/en/base/$_gitname/"
+license=('BSD')
+groups=('openrc4arch-base')
+depends=('bash'
+	'coreutils'
+	'glibc'
+	'inetutils'
+	'ncurses'
+	'net-tools'
+	'pam'
+	'psmisc'
+	'sysvinit')
+makedepends=("$_suffix")
+optdepends=('openrc4arch-virtual-syslog'
+	'openrc4arch-virtual-cron')
+provides=('openrc4arch')
+conflicts=('initscripts'
+	"$_gitname"
+	"$_gitname-$_suffix" 
+	'openrc4arch')
+replaces=('openrc4arch')
+backup=('etc/rc.conf'
+	'etc/conf.d/consolefont'
+	'etc/conf.d/keymaps'
+	'etc/conf.d/hwclock'
+	'etc/conf.d/hostname'
+	'etc/conf.d/modules')
+source=('openrc.logrotate')
+sha1sums=('ef1f26020db432f96a1485f72a189b288ef6873b')
+
+_gitroot="git://git.overlays.gentoo.org/proj/$_gitname.git"
+
+build() {
+	cd "$srcdir"
+
+	msg "Connecting to GIT server...."
+
+	if [ -d "$srcdir/$_gitname" ] ; then
+		cd "$_gitname"
+		git pull origin
+		msg "The local files are updated."
+	else
+		git clone "$_gitroot"
+		cd "$_gitname"
+	fi
+
+	msg "GIT checkout done or server timeout"
+}
+
+package() {
+	cd "$srcdir/$_gitname"
+
+	make \
+		SYSCONFDIR='/etc' \
+		OS='Linux' \
+		BRANDING='Arch Linux' \
+		PREFIX='/usr' \
+		LIBEXECDIR='/usr/lib/rc' \
+		MKSELINUX='no' \
+		MKPAM='pam' \
+		MKTERMCAP='ncurses' \
+		MKNET='oldnet' \
+		DESTDIR="$pkgdir" \
+		install
+
+	install -m 644 "$srcdir/$_gitname/support/sysvinit/inittab" "$pkgdir/etc/inittab"
+
+	install -Dm 0644 "$srcdir/$_gitname.logrotate" "$pkgdir/etc/logrotate.d/$_gitname"
+
+	install -m 644 "$srcdir/$_gitname/conf.d/net" "$pkgdir/etc/conf.d/net"
+
+	_create_symlinks
+
+	_set_rc_option '#unicode="NO"' 'unicode="YES"'
+
+	_set_rc_option '#rc_logger="YES"' 'rc_logger="YES"'
+}
+
+_create_symlinks() {
+    mkdir "$pkgdir/sbin"
+      ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
+}
+
+_set_rc_option() {
+	# $1: old option string
+	# $2: new option string
+
+	local file="$pkgdir/etc/rc.conf"
+	local pattern1=$1 pattern2=$2
+	if ! grep -Fxq "$pattern2" "$file"; then
+		msg "set $pattern2"
+		sed -i "s/$pattern1/$pattern2/g" "$file"
+	else
+		msg "$pattern2 already set"
+	fi
+}

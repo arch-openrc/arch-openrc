@@ -1,0 +1,11 @@
+--- openrc-0.11.6/init.d/consolefont.in.o	2012-11-19 04:28:07.000000000 +0100
++++ openrc-0.11.6/init.d/consolefont.in	2012-11-19 04:41:58.307225586 +0100
+@@ -56,7 +56,7 @@
+ 	# Store the last font so we can use it ASAP on boot
+ 	if [ $retval -eq 0 ] && checkpath -W "$RC_LIBEXECDIR"; then
+ 		mkdir -p "$RC_LIBEXECDIR"/console
+-		for font in /usr/share/consolefonts/"$consolefont".*; do
++		for font in /usr/share/kbd/consolefonts/"$consolefont".*; do
+ 			:
+ 		done
+ 		cp "$font" "$RC_LIBEXECDIR"/console

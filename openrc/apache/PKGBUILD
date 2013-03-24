@@ -1,0 +1,28 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_realpkgname="apache"
+
+pkgname=openrc4arch-$_realpkgname-plugin
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC $_realpkgname init script"
+arch=('any')
+url="https://github.com/udeved/openrc4arch-plugins"
+license=('GPL2')
+#groups=('openrc4arch-server')
+depends=('openrc4arch' "$_realpkgname")
+provides=('openrc4arch-web')
+install=$_realpkgname.install
+source=("http://dev.gentoo.org/~patrick/dist/apache/gentoo-apache-2.4.4-20130227.tar.bz2")
+sha256sums=('cf27447dc87b4c145e50a6850245e3ed8d350bc3500bb249035322b23d03ccd2')
+
+package() {
+
+	 install -Dm755 "${srcdir}/gentoo-apache-2.4.4/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+	 
+	 sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "${srcdir}/gentoo-apache-2.4.4/init/apache2.initd"
+	 
+	 install -Dm755 "${srcdir}/gentoo-apache-2.4.4/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+	 
+}
+

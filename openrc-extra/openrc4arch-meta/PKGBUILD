@@ -1,0 +1,155 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgname=('openrc4arch-meta-base'
+	'openrc4arch-meta-desktop'
+	'openrc4arch-meta-misc'
+	'openrc4arch-meta-server')
+pkgbase=openrc4arch-meta
+pkgver=1.1
+pkgrel=3
+groups=('openrc4arch-meta')
+arch=('any')
+url="https://github.com/udeved/openrc4arch-plugins"
+license=('GPL2')
+makedepends=('openrc4arch-acpid-plugin'
+		'openrc4arch-alsa-utils-plugin'
+		'openrc4arch-avahi-plugin'
+		'openrc4arch-bind-plugin'
+		'openrc4arch-bitlbee-plugin'
+		'openrc4arch-bluez-plugin'
+		'openrc4arch-consolekit-plugin'
+		'openrc4arch-cpupower-plugin'
+		'openrc4arch-cups-plugin'
+		'openrc4arch-cryptsetup-plugin'
+		'openrc4arch-cyrus-sasl-plugin'
+		'openrc4arch-dbus-plugin'
+		'openrc4arch-device-mapper-plugin'
+		'openrc4arch-git-plugin'
+		'openrc4arch-glibc-plugin'
+		'openrc4arch-gpm-plugin' 
+		'openrc4arch-hostapd-plugin'
+		'openrc4arch-inetutils-plugin'
+		'openrc4arch-iptables-plugin'
+		'openrc4arch-krb5-plugin'
+		'openrc4arch-laptop-mode-tools-plugin'
+		'openrc4arch-lm_sensors-plugin'
+		'openrc4arch-lvm2-plugin'
+		'openrc4arch-mdadm-plugin'
+		'openrc4arch-netcfg-plugin'
+		'openrc4arch-nfs-utils-plugin'
+		'openrc4arch-openslp-plugin'
+		'openrc4arch-openssh-plugin'
+		'openrc4arch-postfix-plugin'
+		'openrc4arch-privoxy-plugin'
+		'openrc4arch-quota-tools-plugin'
+		'openrc4arch-rpcbind-plugin'
+		'openrc4arch-rsync-plugin'
+		'openrc4arch-rsyslog-plugin'
+		'openrc4arch-samba-plugin'
+		'openrc4arch-squid-plugin'
+		'openrc4arch-subversion-plugin'
+		'openrc4arch-syslog-ng-plugin'
+		'openrc4arch-udev-plugin'
+		'openrc4arch-ufw-plugin'
+		'openrc4arch-wicd-plugin'
+		'openrc4arch-xorg-server-plugin'
+		'openrc4arch-ypbind-mt-plugin'
+		'openrc4arch-virtual-cron'
+		'openrc4arch-virtual-db'
+		'openrc4arch-virtual-dhcp'
+		'openrc4arch-virtual-ftp'
+		'openrc4arch-virtual-proxy'
+		'openrc4arch-virtual-syslog'
+		'openrc4arch-virtual-timed'
+		'openrc4arch-virtual-web'
+		'openrc4arch-virtual-wireless')
+
+package_openrc4arch-meta-base() {
+	pkgdesc="OpenRC meta base package"
+	groups=('openrc4arch-meta-base')
+	depends=('openrc4arch-cryptsetup-plugin'
+		'openrc4arch-device-mapper-plugin'
+		'openrc4arch-virtual-dhcp'
+		'openrc4arch-glibc-plugin'
+		'openrc4arch-inetutils-plugin'
+		'openrc4arch-lvm2-plugin'
+		'openrc4arch-mdadm-plugin'
+		'openrc4arch-udev-plugin'
+		'openrc4arch-virtual-cron'
+		'openrc4arch-virtual-wireless')
+	optdepends=('openrc4arch-virtual-syslog'
+		'openrc4arch-virtual-timed')
+	replaces=('openrc4arch-base')
+	conflicts=('openrc4arch-base')
+}
+
+package_openrc4arch-meta-desktop() {
+	pkgdesc="OpenRC desktop plugins package"
+	groups=('openrc4arch-meta-desktop')
+	depends=('openrc4arch-acpid-plugin'
+		'openrc4arch-avahi-plugin'
+		'openrc4arch-consolekit-plugin'
+		'openrc4arch-dbus-plugin'
+		'openrc4arch-virtual-syslog'
+		'openrc4arch-xorg-server-plugin'
+		'openrc4arch-meta-base')
+	optdepends=('openrc4arch-virtual-timed')
+	replaces=('openrc4arch-desktop')
+	conflicts=('openrc4arch-desktop')
+}
+
+package_openrc4arch-meta-misc() {
+	pkgdesc="OpenRC meta misc package"
+	groups=('openrc4arch-meta-misc')
+	depends=('openrc4arch-alsa-utils-plugin'
+		'openrc4arch-bitlbee-plugin'
+		'openrc4arch-bluez-plugin'
+		'openrc4arch-cpupower-plugin'
+		'openrc4arch-cups-plugin'
+		'openrc4arch-gpm-plugin' 
+		'openrc4arch-hostapd-plugin'
+		'openrc4arch-iptables-plugin'
+		'openrc4arch-laptop-mode-tools-plugin'
+		'openrc4arch-lm_sensors-plugin'
+		'openrc4arch-openslp-plugin'
+		'openrc4arch-openssh-plugin'
+		'openrc4arch-quota-tools-plugin'
+		'openrc4arch-rsync-plugin'
+		'openrc4arch-rsyslog-plugin'
+		'openrc4arch-syslog-ng-plugin'
+		'openrc4arch-ufw-plugin'
+		'openrc4arch-wicd-plugin'
+		'openrc4arch-ypbind-mt-plugin'
+		'openrc4arch-virtual-timed'
+		'openrc4arch-virtual-wireless'
+		'openrc4arch-virtual-cron'
+		'openrc4arch-virtual-dhcp'
+		'openrc4arch-meta-base')
+	optdepends=('openrc4arch-virtual-syslog')
+	replaces=('openrc4arch-misc')
+	conflicts=('openrc4arch-misc')
+}
+
+package_openrc4arch-meta-server() {
+	pkgdesc="OpenRC meta server package"
+	groups=('openrc4arch-meta-server')
+	depends=('openrc4arch-bind-plugin'
+		'openrc4arch-cyrus-sasl-plugin'
+		'openrc4arch-git-plugin'
+		'openrc4arch-krb5-plugin'
+		'openrc4arch-nfs-utils-plugin'
+		'openrc4arch-postfix-plugin'
+		'openrc4arch-rpcbind-plugin'
+		'openrc4arch-samba-plugin'
+		'openrc4arch-subversion-plugin'
+		'openrc4arch-virtual-db'
+		'openrc4arch-virtual-ftp'
+		'openrc4arch-virtual-proxy'
+		'openrc4arch-virtual-web'
+		'openrc4arch-meta-base')
+	optdepends=('openrc4arch-virtual-syslog'
+		'openrc4arch-virtual-timed')
+	replaces=('openrc4arch-server')
+	conflicts=('openrc4arch-server')
+}
+

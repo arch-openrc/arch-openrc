@@ -1,93 +1,61 @@
 #!/bin/bash 
 # Author: udeved@openrc4arch.site40.net
+
 . ./pkg.cfg
 
 
-fix_initd(){
-	# $1: pkgname
-	# $2: file to fix
-	if  [ "$1" == "dbus" ]; then
-		p1='dbus.pid'
-		p2='dbus/pid'
-		if ! grep -Fxq "$p2" "$2"; then
-			sed -i "s|$p1|$p2|g" "$2"
-		else
-			echo "${dist} ready"
-		fi
-		
-	elif [ "$1" == "sysklogd" ]; then
-		p1='/usr/sbin'
-		p2='/sbin'
-		if ! grep -Fxq "$p2" "$2"; then
-			sed -i "s|$p1|$p2|g" "$2"
-		else
-			echo "${dist} ready"
-		fi
 
-	elif [ "$1" == "xorg-server" ]; then
-		p1='/etc/profile.env'
-		p2='/etc/profile'
-		if ! grep -Fxq "$p2" "$2"; then
-			sed -i "s|$p1|$p2|g" "$2"
-		else
-			echo "${dist} ready"
-		fi
-		p1='ROOTPATH'
-		p2='PATH'
-		if ! grep -Fxq "$p2" "$2"; then
-			sed -i "s|$p1|$p2|g" "$2"
-		else
-			echo "${dist} ready"
-		fi
-		
-	elif [ "$1" == "wpa_supplicant" ]; then
-		p1='/usr/sbin/wpa_supplicant'
-		p2='/sbin/wpa_supplicant'
-		if ! grep -Fxq "$p2" "$2"; then
-			sed -i "s|$p1|$p2|g" "$2"
-		else
-			echo "${dist} ready"
-		fi
-		p1='/etc/wpa_supplicant/wpa_supplicant.conf'
-		p2='/etc/wpa_supplicant.conf'
-		if ! grep -Fxq "$p2" "$2"; then
-			sed -i "s|$p1|$p2|g" "$2"
-		else
-			echo "${dist} ready"
-		fi
-		
+fix_file() {
+	# $1: file
+	# $2: pattern1
+	# $3: pattern2
+	echo
+	echo "checking `basename $1` ..."
+	echo
+	if ! grep -Fxq "$3" "$1"; then
+		echo "${dist} FAIL"	
+		echo
+		echo "fixing..."
+		echo "$2 --> $3"
+		sed -i "s|$2|$3|g" "$1"
+		echo "done"
+	else
+		echo "${dist} OK"	
 	fi
 }
 
 mk_dirs() {
-	mkdir -pv "${datadir}/$1"
+	mkdir -p "${datadir}/$1"
 }
 
 mk_pkg() {
 	# $1: cfg file
+	# $2: type
 	while read line; do
 		local OIFS=$IFS
 		local IFS='/'
 		local arr=($line)
 		local dirname=${arr[1]}
 		local filename=${arr[3]}
-		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
-		
-		mk_dirs "$dirname/$2"
-		
-		local t="${datadir}/${dirname}/$2/${filename}"
-		local s="${url}/${line}"
-		
-		if [ ! -f "$t" ]; then
-			echo "downloading $s ..."
-			curl -o "$t" "$s"
-			echo "... finished"
-		fi
-				
-		tar -cvjf "${pkgdir}/${dirname}-${version}.tar.${ext}" -C "${datadir}" ${dirname}
-
 		IFS=$OIFS
-				
+		mk_dirs "$dirname/$2"
+		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+		local file="${datadir}/${dirname}/$2/${filename}"
+		local src="${url}/${line}"
+		if [ ! -f "${file}" ]; then
+			echo ${src}
+			curl -o "${file}" "${src}"
+			echo ${file}
+		fi
+		if [ "$2" = "init.d" ]; then
+			fix_file "${file}" "#!/sbin/runscript" "#!/usr/sbin/runscript" 
+		fi
+		echo
+		echo "archiving ${dirname} ..."
+		echo
+		tar -cvjf "${pkgdir}/${dirname}-${version}.tar.${ext}" -C "${datadir}" ${dirname}
+		echo
+		echo "${dirname}-${version}.tar.${ext} done"
 	done < $1
 }
 

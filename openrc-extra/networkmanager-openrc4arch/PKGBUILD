@@ -1,0 +1,99 @@
+# $Id: PKGBUILD 179641 2013-03-08 23:40:46Z foutrelis $
+# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# Maintainer: Jan de Groot <jgc@archlinxu.org>
+# Contributor: Wael Nasreddine <gandalf@siemens-mobiles.org>
+# Contributor: Tor Krill <tor@krill.nu>
+# Contributor: Will Rea <sillywilly@gmail.com>
+# Contributor: Valentine Sinitsyn <e_val@inbox.ru>
+
+_realname=NetworkManager
+
+pkgname=networkmanager-openrc4arch
+pkgver=0.9.8.0
+pkgrel=1
+pkgdesc="Network Management daemon for consolekit and openrc"
+arch=('i686' 'x86_64')
+license=('GPL')
+url="http://www.gnome.org/projects/$_realname/"
+depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'udev' 'wpa_supplicant' 'ppp' 'dhclient'
+         'libsoup' 'openrc4arch' 'consolekit')
+makedepends=('intltool' 'dhcpcd' 'iptables' 'gobject-introspection' 'gtk-doc')
+optdepends=('modemmanager: for modem management service'
+            'dhcpcd: alternative DHCP client; does not support DHCPv6'
+            'iptables: Connection sharing'
+            'dnsmasq: Connection sharing'
+            'bluez: Bluetooth support'
+            'openresolv: resolvconf support')
+provides=('networkmanager')
+conflicts=('networkmanager')
+options=('!libtool')
+backup=("etc/$_realname/$_realname.conf")
+install=networkmanager.install
+source=("http://ftp.gnome.org/pub/gnome/sources/$_realname/${pkgver:0:3}/$_realname-$pkgver.tar.xz"
+        "$_realname.conf"
+        'disable_set_hostname.patch'
+        'dnsmasq-path.patch'
+        "http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files/10-openrc-status-r3"
+        "http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files/conf.d.$_realname"
+        "http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files/init.d.$_realname"
+        "http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files/nm-system-settings.conf-ifnet")
+sha256sums=('c366bcded6354d8186ad93c05d26d6a20bc550aa0391f974704e7a60e9f6096b'
+            '44b048804c7c0b8b3b0c29b8632b6ad613c397d0a1635ec918e10c0fbcdadf21'
+            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
+            '65124505048cc8396daf0242c9f5d532fa669b4bbca305998c248ab2329490cb'
+            '3ee158de440df6e6a8ddcc7c0622cb94039cffe6b0cc0b88d35a53333d32f73d'
+            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
+            '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
+            '34f53d9ac1ad65eda6942dc3059117f60f6321059ca23f4fbfcc2f2edcae151f')
+            
+build() {
+  cd $_realname-$pkgver
+
+  patch -Np1 -i ../disable_set_hostname.patch
+  patch -Np1 -i ../dnsmasq-path.patch
+  #AUTOPOINT="intltoolize -f -c --automake" autoreconf -fi
+
+  ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --libexecdir=/usr/lib/networkmanager \
+    --without-netconfig \
+    --with-crypto=nss \
+    --with-dhclient=/usr/sbin/dhclient \
+    --with-dhcpcd=/usr/sbin/dhcpcd \
+    --with-iptables=/usr/sbin/iptables \
+    --with-udev-dir=/usr/lib/udev \
+    --with-resolvconf=/usr/sbin/resolvconf \
+    --with-session-tracking=ck \
+    --disable-static \
+    --enable-ifnet \
+    --enable-more-warnings=no \
+    --disable-wimax \
+    --enable-modify-system \
+    --enable-doc
+
+  make
+}
+
+package() {
+	cd $_realname-$pkgver
+	make DESTDIR="$pkgdir" install
+
+	install -m644 "$srcdir/nm-system-settings.conf-ifnet" "$pkgdir/etc/$_realname/$_realname.conf"
+	
+	rm -r "$pkgdir/var/run"
+	
+	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -i "$srcdir/10-openrc-status-r3"
+	
+	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_realname/dispatcher.d/10-openrc-status-r3"
+	
+	install -Dm755 "$srcdir/conf.d.$_realname" "$pkgdir/etc/conf.d/networkmanager"
+	
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/init.d.$_realname"
+	
+	install -Dm755 "$srcdir/init.d.$_realname" "$pkgdir/etc/init.d/networkmanager"
+	
+	#ln -s "$pkgdir/usr/lib/$_pkgname/libnm-settings-plugin-ifnet.so" "$pkgdir/usr/lib/libnm-settings-plugin-ifnet.so"
+}
+

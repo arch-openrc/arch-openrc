@@ -1,0 +1,31 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_realpkgname="cronie"
+
+pkgname=openrc4arch-$_realpkgname-plugin
+pkgver=1.1.0
+pkgrel=1
+pkgdesc="OpenRC $_realpkgname init script"
+arch=('any')
+url="https://github.com/udeved/openrc4arch-plugins"
+license=('GPL2')
+#groups=('openrc4arch-cron')
+depends=('openrc4arch' "$_realpkgname")
+provides=('openrc4arch-cron')
+conflicts=('openrc4arch-dcron-plugin' 'openrc4arch-fcron-plugin')
+install=$_realpkgname.install
+
+_pn='openrc4arch-plugins'
+
+source=("https://github.com/udeved/$_pn/archive/$_pn-$pkgver.tar.gz")
+md5sums=('60db373203db5344c0e15f69eb3e18e8')
+
+package() {
+	cd $srcdir/$_pn-$_pn-$pkgver/$_realpkgname
+	make \
+		SYSCONFDIR='/etc' \
+		PREFIX='/usr' \
+		LIBEXECDIR='/usr/lib/rc' \
+		DESTDIR="$pkgdir" \
+		install
+}

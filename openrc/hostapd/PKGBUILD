@@ -1,0 +1,30 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+# source to be tagged 1.1.1
+
+_realpkgname="hostapd"
+
+pkgname=openrc4arch-$_realpkgname-plugin
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC $_realpkgname init script"
+arch=('any')
+url="https://github.com/udeved/openrc4arch-plugins"
+license=('GPL2')
+groups=('openrc4arch-misc')
+depends=('openrc4arch' "$_realpkgname")
+install=$_realpkgname.install
+
+_pn='openrc4arch-plugins'
+
+source=("https://github.com/udeved/$_pn/archive/$_pn-$pkgver.tar.gz")
+
+package() {
+	cd $srcdir/$_pn-$_pn-$pkgver/$_realpkgname
+	make \
+		SYSCONFDIR='/etc' \
+		PREFIX='/usr' \
+		LIBEXECDIR='/usr/lib/rc' \
+		DESTDIR="$pkgdir" \
+		install
+}

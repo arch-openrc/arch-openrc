@@ -1,0 +1,16 @@
+_service="avahi"
+_rlvl="default"
+
+post_install() {
+	_cmd="rc-update add $_service-dnsconfd $_rlvl"
+	echo "	==> run '$_cmd'"
+}
+
+post_upgrade() {
+	post_install "$1"
+}
+
+post_remove() {
+	_cmd="rc-update del $_service-dnsconfd $_rlvl"
+	echo "	==> run '$_cmd'"
+}
