@@ -1,34 +1,30 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_realpkgname="xorg-server"
+_rn="xorg-server"
+_ver=20130325
 
-pkgname=openrc4arch-$_realpkgname-plugin
-pkgver=1.1.0
+pkgname=openrc4arch-${_rn}-plugin
+pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC $_realpkgname init script"
+pkgdesc="OpenRC ${_rn} init script"
 arch=('any')
-url="https://github.com/udeved/openrc4arch-plugins"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc4arch-desktop')
-depends=('openrc4arch' "$_realpkgname"
+depends=('openrc4arch' "${_rn}"
 	  'openrc4arch-dbus-plugin'
 	  'openrc4arch-udev-plugin')
 optdepends=('openrc4arch-consolekit-plugin')
 backup=('etc/conf.d/xdm')
-install=$_realpkgname.install
-
-_pn='openrc4arch-plugins'
-
-source=("https://github.com/udeved/$_pn/archive/$_pn-$pkgver.tar.gz")
-md5sums=('60db373203db5344c0e15f69eb3e18e8')
-
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz"
+	"http://data.gpo.zugaina.org/gentoo/x11-apps/xinit/files/startDM.sh")
+sha256sums=('bf8544d12c16c9375408726b974c64514b792beeabfb08c5ed1fac1b9b8a27a1'
+            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
+            
 package() {
-	cd $srcdir/$_pn-$_pn-$pkgver/$_realpkgname
-	make \
-		SYSCONFDIR='/etc' \
-		PREFIX='/usr' \
-		LIBEXECDIR='/usr/lib/rc' \
-		DESTDIR="$pkgdir" \
-		install
+	install -Dm755 "$srcdir/${_rn}/conf.d/xdm.confd-4" "$pkgdir/etc/conf.d/xdm"
+	install -Dm755 "$srcdir/${_rn}/init.d/xdm.initd-9" "$pkgdir/etc/init.d/xdm"
+	install -Dm755 "$srcdir/${_rn}/init.d/xdm-setup.initd-1" "$pkgdir/etc/init.d/xdm-setup"
+	install -Dm755 "$srcdir/startDM.sh" "$pkgdir/etc/X11/startDM.sh"
 }
-

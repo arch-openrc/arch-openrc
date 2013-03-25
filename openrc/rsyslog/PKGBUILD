@@ -1,30 +1,27 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_realpkgname="rsyslog"
+_rn="rsyslog"
+_ver=20130325
 
-pkgname=openrc4arch-$_realpkgname-plugin
-pkgver=1.1.0
+pkgname=openrc4arch-${_rn}-plugin
+pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC $_realpkgname init script"
+pkgdesc="OpenRC ${_rn} init script"
 arch=('any')
-url="https://github.com/udeved/openrc4arch-plugins"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
-#groups=('openrc4arch-misc')
-depends=('openrc4arch' "$_realpkgname")
+depends=('openrc4arch' "${_rn}")
 provides=('openrc4arch-syslog')
-install=$_realpkgname.install
-
-_pn='openrc4arch-plugins'
-
-source=("https://github.com/udeved/$_pn/archive/$_pn-$pkgver.tar.gz")
-md5sums=('60db373203db5344c0e15f69eb3e18e8')
+install=${_rn}.install
+source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/app-admin/rsyslog/files/7-stable/rsyslog.confd"
+	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/app-admin/rsyslog/files/7-stable/rsyslog.initd")
 
 package() {
-	cd $srcdir/$_pn-$_pn-$pkgver/$_realpkgname
-	make \
-		SYSCONFDIR='/etc' \
-		PREFIX='/usr' \
-		LIBEXECDIR='/usr/lib/rc' \
-		DESTDIR="$pkgdir" \
-		install
+	install -Dm755 "$srcdir/${_rn}/conf.d/rsyslog.confd" "$pkgdir/etc/conf.d/rsyslog"
+		
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/${_rn}/init.d/rsyslog.initd"
+
+	install -Dm755 "$srcdir/${_rn}/init.d/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog"
 }
+sha256sums=('ff2634927d3208ac2c82d352f0a7dc9fef1d0ee098d18f818d4417ac04516e9c'
+            '7b3b32e89c051566b68c5e5a077cd5960da183e071e411b1248d4e4702a24279')

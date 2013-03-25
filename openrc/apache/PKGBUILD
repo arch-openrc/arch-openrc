@@ -12,7 +12,7 @@ license=('GPL2')
 depends=('openrc4arch' "${_rn}")
 provides=('openrc4arch-web')
 install=${_rn}.install
-source=("http://dev.gentoo.org/~patrick/dist/apache/gentoo-apache-2.4.4-20130227.tar.bz2")
+source=("http://dev.gentoo.org/~patrick/dist/${_rn}/gentoo-${_rn}-2.4.4-20130227.tar.bz2")
 sha256sums=('cf27447dc87b4c145e50a6850245e3ed8d350bc3500bb249035322b23d03ccd2')
 
 package() {

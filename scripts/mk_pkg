@@ -62,7 +62,8 @@ mk_pkg() {
 run(){	
 	mkdir -p $pkgdir
 	mk_pkg "confd.cfg" "conf.d"
-	mk_pkg "initd.cfg" "init.d"		
+	mk_pkg "initd.cfg" "init.d"
+	tar -cvjf "${datadir}-${version}.tar.${ext}"  ${datadir}/${dirname}
 }
 
 run

@@ -1,30 +1,21 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_realpkgname="vsftpd"
+_rn="vsftpd"
+_ver=20130325
 
-pkgname=openrc4arch-$_realpkgname-plugin
-pkgver=1.1.0
+pkgname=openrc4arch-${_rn}-plugin
+pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC $_realpkgname init scripts"
+pkgdesc="OpenRC ${_rn} init scripts"
 arch=('any')
-url="https://github.com/udeved/openrc4arch-plugins"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
-#groups=('openrc4arch-server')
 provides=('openrc4arch-ftp')
-depends=('openrc4arch' "$_realpkgname")
-install=$_realpkgname.install
-
-_pn='openrc4arch-plugins'
-
-source=("https://github.com/udeved/$_pn/archive/$_pn-$pkgver.tar.gz")
-md5sums=('60db373203db5344c0e15f69eb3e18e8')
+depends=('openrc4arch' "${_rn}")
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+sha256sums=('3e55b99d064c964c1294a8b5e1f88641c4a4faad66bd9ed591557ec9f736fd71')
 
 package() {
-	cd $srcdir/$_pn-$_pn-$pkgver/$_realpkgname
-	make \
-		SYSCONFDIR='/etc' \
-		PREFIX='/usr' \
-		LIBEXECDIR='/usr/lib/rc' \
-		DESTDIR="$pkgdir" \
-		install
+	install -Dm755 "$srcdir/${_rn}/init.d/vsftpd.init" "$pkgdir/etc/init.d/vsftpd"
 }

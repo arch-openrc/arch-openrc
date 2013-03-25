@@ -1,30 +1,22 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_realpkgname="squid"
+_rn="squid"
+_ver=20130325
 
-pkgname=openrc4arch-$_realpkgname-plugin
-pkgver=1.1.0
+pkgname=openrc4arch-${_rn}-plugin
+pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC $_realpkgname init script"
+pkgdesc="OpenRC ${_rn} init script"
 arch=('any')
-url="https://github.com/udeved/openrc4arch-plugins"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
-#groups=('openrc4arch-server')
-depends=('openrc4arch' "$_realpkgname")
+depends=('openrc4arch' "${_rn}")
 provides=('openrc4arch-proxy')
-install=$_realpkgname.install
-
-_pn='openrc4arch-plugins'
-
-source=("https://github.com/udeved/$_pn/archive/$_pn-$pkgver.tar.gz")
-md5sums=('60db373203db5344c0e15f69eb3e18e8')
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
 
 package() {
-	cd $srcdir/$_pn-$_pn-$pkgver/$_realpkgname
-	make \
-		SYSCONFDIR='/etc' \
-		PREFIX='/usr' \
-		LIBEXECDIR='/usr/lib/rc' \
-		DESTDIR="$pkgdir" \
-		install
+	install -Dm755 "$srcdir/${_rn}/conf.d/squid.confd-r1" "$pkgdir/etc/conf.d/squid"
+	install -Dm755 "$srcdir/${_rn}/init.d/squid.initd-r3" "$pkgdir/etc/init.d/squid"
 }
+sha256sums=('58f4685fbdc002cb9c397b3dd8f181b0097770541673d2391677b0a2d39a7567')

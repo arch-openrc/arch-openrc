@@ -1,29 +1,28 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_realpkgname="nfs-utils"
+_rn="nfs-utils"
+_ver=20130325
 
-pkgname=openrc4arch-$_realpkgname-plugin
-pkgver=1.1.0
+pkgname=openrc4arch-${_rn}-plugin
+pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC $_realpkgname init script"
+pkgdesc="OpenRC ${_rn} init script"
 arch=('any')
-url="https://github.com/udeved/openrc4arch-plugins"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc4arch-server')
-depends=('openrc4arch' "$_realpkgname" 'openrc4arch-rpcbind-plugin')
-install=$_realpkgname.install
-
-_pn='openrc4arch-plugins'
-
-source=("https://github.com/udeved/$_pn/archive/$_pn-$pkgver.tar.gz")
-md5sums=('60db373203db5344c0e15f69eb3e18e8')
+depends=('openrc4arch' "${_rn}" 'openrc4arch-rpcbind-plugin')
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
 
 package() {
-	cd $srcdir/$_pn-$_pn-$pkgver/$_realpkgname
-	make \
-		SYSCONFDIR='/etc' \
-		PREFIX='/usr' \
-		LIBEXECDIR='/usr/lib/rc' \
-		DESTDIR="$pkgdir" \
-		install
+	install -Dm755 "$srcdir/${_rn}/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
+	install -Dm755 "$srcdir/${_rn}/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
+
+	#install -Dm755 "$srcdir/${_rn}/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
+	#install -Dm755 "$srcdir/${_rn}/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
+	
+	#install -Dm755 "$srcdir/${_rn}/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
+	#install -Dm755 "$srcdir/${_rn}/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
 }
+sha256sums=('830256fb0febf86accb74b8823bf252cc3cffbe6c2dd96e766735b10b0796e5c')

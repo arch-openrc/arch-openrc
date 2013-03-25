@@ -1,29 +1,25 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_realpkgname="lvm2"
+_rn="lvm2"
+_ver=20130325
 
-pkgname=openrc4arch-$_realpkgname-plugin
-pkgver=1.1.0
+pkgname=openrc4arch-${_rn}-plugin
+pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC $_realpkgname init script"
+pkgdesc="OpenRC ${_rn} init script"
 arch=('any')
-url="https://github.com/udeved/openrc4arch-plugins"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc4arch-base')
-depends=('openrc4arch' "$_realpkgname" 'openrc4arch-device-mapper-plugin')
-install=$_realpkgname.install
-
-_pn='openrc4arch-plugins'
-
-source=("https://github.com/udeved/$_pn/archive/$_pn-$pkgver.tar.gz")
-md5sums=('60db373203db5344c0e15f69eb3e18e8')
+depends=('openrc4arch' "${_rn}" 'openrc4arch-device-mapper-plugin')
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
 
 package() {
-	cd $srcdir/$_pn-$_pn-$pkgver/$_realpkgname
-	make \
- 		SYSCONFDIR='/etc' \
- 		PREFIX='/usr' \
- 		LIBEXECDIR='/usr/lib/rc' \
- 		DESTDIR="$pkgdir" \
- 		install
+	install -Dm755 "$srcdir/${_rn}/conf.d/lvm.confd-2.02.28-r2" "$pkgdir/etc/conf.d/lvm"
+	install -Dm755 "$srcdir/${_rn}/init.d/lvm.rc-2.02.95-r2" "$pkgdir/etc/init.d/lvm"
+	
+	install -Dm755 "$srcdir/${_rn}/init.d/device-mapper.rc-2.02.95-r2" "$pkgdir/etc/init.d/device-mapper"
+	install -Dm755 "$srcdir/${_rn}/init.d/dmeventd.initd-2.02.67-r1" "$pkgdir/etc/init.d/dmeventd"
 }
+sha256sums=('e23494a6bae95e80dec9b9c96ffba6deb3e358bf84affba14546899b4b94ed2a')
