@@ -1,9 +1,0 @@
-ToDo:
-# in pkgbuild
-net-fs/samba/files/3.6/samba.confd
-net-fs/samba/files/3.6/samba.initd
-#net-fs/samba/files/4.0/samba4.confd
-#net-fs/samba/files/4.0/samba4.initd-r1
-
-#app-admin/rsyslog/files/7-stable/rsyslog.confd
-#app-admin/rsyslog/files/7-stable/rsyslog.initd

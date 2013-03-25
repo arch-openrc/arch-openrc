@@ -1,0 +1,6 @@
+#!/bin/bash 
+# Author: udeved@openrc4arch.site40.net
+
+. ./functions
+
+main
