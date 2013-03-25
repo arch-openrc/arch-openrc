@@ -50,19 +50,21 @@ mk_pkg() {
 		if [ "$2" = "init.d" ]; then
 			fix_file "${file}" "#!/sbin/runscript" "#!/usr/sbin/runscript" 
 		fi
-		echo
-		echo "archiving ${dirname} ..."
-		echo
-		tar -cvjf "${pkgdir}/${dirname}-${version}.tar.${ext}" -C "${datadir}" ${dirname}
-		echo
-		echo "${dirname}-${version}.tar.${ext} done"
+		#echo
+		#echo "archiving ${dirname} ..."
+		#echo
+		#tar -cvjf "${pkgdir}/${dirname}-${version}.tar.${ext}" -C "${datadir}" ${dirname}
+		#echo
+		#echo "${dirname}-${version}.tar.${ext} done"
 	done < $1
 }
 
 run(){	
-	mkdir -p $pkgdir
+	#mkdir -p $pkgdir
+	
 	mk_pkg "confd.cfg" "conf.d"
 	mk_pkg "initd.cfg" "init.d"
+	
 	tar -cvjf "${datadir}-${version}.tar.${ext}"  ${datadir}/${dirname}
 }
 

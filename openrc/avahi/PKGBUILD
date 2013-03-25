@@ -12,17 +12,13 @@ license=('GPL2')
 groups=('openrc4arch-desktop')
 depends=('openrc4arch' "${_rn}")
 install=${_rn}.install
+source=('avahi-daemon' 'avahi-dnsconfd')
+#http://avahi.org/download/avahi-0.6.31.tar.gz
+sha256sums=('3c6a1419b5459e7ac127a102f053e723735310350d9374982d110d9b7ad040c7'
+            '88e94a74d3f3b18d4338326e3805537a43c91db6332a2d88a61d1d3bbd14e767')
 
-
-
-source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
-http://avahi.org/download/avahi-0.6.31.tar.gz
 package() {
-	cd $srcdir/$_pn-$_pn-$pkgver/${_rn}
-	make \
-		SYSCONFDIR='/etc' \
-		PREFIX='/usr' \
-		LIBEXECDIR='/usr/lib/rc' \
-		DESTDIR="$pkgdir" \
-		install
-}
+	install -Dm755 "${srcdir}/avahi-daemon" "${pkgdir}/etc/init.d/avahi-daemon"
+	install -Dm755 "${srcdir}/avahi-dnsconfd" "${pkgdir}/etc/init.d/avahi-dnsconfd"
+}	
+
