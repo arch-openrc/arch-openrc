@@ -1,18 +1,17 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_realpkgname="apache"
+_rn="apache"
 
-pkgname=openrc4arch-$_realpkgname-plugin
+pkgname=openrc4arch-${_rn}-plugin
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC $_realpkgname init script"
+pkgdesc="OpenRC ${_rn} init script"
 arch=('any')
-url="https://github.com/udeved/openrc4arch-plugins"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
-#groups=('openrc4arch-server')
-depends=('openrc4arch' "$_realpkgname")
+depends=('openrc4arch' "${_rn}")
 provides=('openrc4arch-web')
-install=$_realpkgname.install
+install=${_rn}.install
 source=("http://dev.gentoo.org/~patrick/dist/apache/gentoo-apache-2.4.4-20130227.tar.bz2")
 sha256sums=('cf27447dc87b4c145e50a6850245e3ed8d350bc3500bb249035322b23d03ccd2')
 
