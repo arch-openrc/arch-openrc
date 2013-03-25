@@ -1,0 +1,24 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn="iptables"
+_ver=20130325
+
+pkgname=${_rn}-openrc
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC ${_rn} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-misc')
+depends=('openrc' "${_rn}")
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+
+package() {
+	install -Dm755 "$srcdir/${_rn}/conf.d/iptables-1.4.13.confd" "$pkgdir/etc/conf.d/iptables"
+	install -Dm755 "$srcdir/${_rn}/init.d/iptables-1.4.13-r1.init" "$pkgdir/etc/init.d/iptables"
+	install -Dm755 "$srcdir/${_rn}/conf.d/ip6tables-1.4.13.confd" "$pkgdir/etc/conf.d/ip6tables"
+	install -Dm755 "$srcdir/${_rn}/init.d/iptables-1.4.13-r1.init" "$pkgdir/etc/init.d/ip6tables"
+}
+sha256sums=('5d1bf244e1413b0a1f3cd340bdb5147d4acda242315e1b48b823ca75e2145a4e')

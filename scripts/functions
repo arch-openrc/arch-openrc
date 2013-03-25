@@ -59,8 +59,8 @@ config() {
 				fix $file 'dbus.pid' 'dbus/pid'
 			elif [ $dirname = "bind" ]; then
 				fix $file '/etc/bind/named.conf' '/etc/named.conf'
-			elif [ $dirname = "" ]; then
-				fix $file '' ''
+			elif [ $dirname = "dhcp" ]; then
+				fix $file '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
 			elif [ $dirname = "" ]; then
 				fix $file '' ''	
 			elif [ $dirname = "" ]; then

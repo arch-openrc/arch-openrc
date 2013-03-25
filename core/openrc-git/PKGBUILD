@@ -1,0 +1,84 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+# Contributor: williamh <williamh@gentoo.org>
+
+
+pkgname=openrc-git
+pkgver=20130320
+pkgrel=1
+pkgdesc="OpenRC universal init system."
+arch=('i686' 'x86_64')
+url="http://www.gentoo.org/proj/en/base/openrc/"
+license=('BSD')
+groups=('openrc-base')
+depends=('bash'
+	'coreutils'
+	'glibc'
+	'inetutils'
+	'ncurses'
+	'net-tools'
+	'pam'
+	'psmisc'
+	'sysvinit')
+makedepends=('git')
+optdepends=('openrc-virtual-syslog'
+	'openrc-virtual-cron')
+provides=('openrc')
+conflicts=('initscripts'
+	"openrc"
+	"openrc4arch-git" 
+	'openrc4arch')
+replaces=('openrc' 'openrc4arch')
+backup=('etc/rc.conf'
+	'etc/conf.d/consolefont'
+	'etc/conf.d/keymaps'
+	'etc/conf.d/hwclock'
+	'etc/conf.d/hostname'
+	'etc/conf.d/modules')
+source=('openrc.logrotate')
+sha1sums=('ef1f26020db432f96a1485f72a189b288ef6873b')
+
+_gitname="openrc"
+_gitroot="git://git.overlays.gentoo.org/proj/openrc.git"
+
+build() {
+	cd "$srcdir"
+
+	msg "Connecting to GIT server...."
+
+	if [ -d "$srcdir/$_gitname" ] ; then
+		cd "$_gitname"
+		git pull origin
+		msg "The local files are updated."
+	else
+		git clone "$_gitroot"
+		cd "$_gitname"
+	fi
+
+	msg "GIT checkout done or server timeout"
+}
+
+package() {
+	cd "$srcdir/$_gitname"
+
+	make \
+		SYSCONFDIR='/etc' \
+		OS='Linux' \
+		BRANDING='Arch Linux' \
+		PREFIX='/usr' \
+		LIBEXECDIR='/usr/lib/rc' \
+		MKSELINUX='no' \
+		MKPAM='pam' \
+		MKTERMCAP='ncurses' \
+		MKNET='oldnet' \
+		DESTDIR="$pkgdir" \
+		install
+
+	install -m 644 "$srcdir/$_gitname/support/sysvinit/inittab" "$pkgdir/etc/inittab"
+
+	install -Dm 0644 "$srcdir/$_gitname.logrotate" "$pkgdir/etc/logrotate.d/$_gitname"
+
+	install -m 644 "$srcdir/$_gitname/conf.d/net" "$pkgdir/etc/conf.d/net"
+	
+	mkdir "$pkgdir/sbin"
+    ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
+}

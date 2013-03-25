@@ -1,0 +1,22 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn="bind"
+_ver=20130325
+
+pkgname=${_rn}-openrc
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC ${_rn} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-server')
+depends=('openrc' "${_rn}")
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+sha256sums=('462c5da27265973897580309be1033d931d3e391c5f7e531c89f93a9babc3d5d')
+
+package() {
+	install -Dm755 "$srcdir/${_rn}/conf.d/named.confd-r6" "$pkgdir/etc/conf.d/named"
+	install -Dm755 "$srcdir/${_rn}/init.d/named.init-r12" "$pkgdir/etc/init.d/named"
+}

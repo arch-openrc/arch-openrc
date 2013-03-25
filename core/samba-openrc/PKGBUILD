@@ -1,0 +1,27 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn="samba"
+_ver=20130325
+
+pkgname=${_rn}-openrc
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC ${_rn} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-server')
+depends=('openrc' "${_rn}")
+install=${_rn}.install
+source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.confd"
+	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.initd")
+
+package() {
+	install -Dm755 "$srcdir/${_rn}/conf.d/samba.confd" "$pkgdir/etc/conf.d/samba"
+	
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/${_rn}/init.d/samba.initd"
+	
+	install -Dm755 "$srcdir/${_rn}/init.d/samba.initd" "$pkgdir/etc/init.d/samba"
+}
+sha256sums=('02ab523d695b5ae044b871923ad817f8931a6c20c5bfefad98a4369d7b3742e3'
+            '3eabeabbe203fcdcea37d53048bdbf7e6cfaaf795bef8b98ec37aa572e57d052')

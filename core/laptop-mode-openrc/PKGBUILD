@@ -1,0 +1,21 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn="laptop-mode-tools"
+_ver=20130325
+
+pkgname=${_rn}-openrc
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC ${_rn} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-misc')
+depends=('openrc' "${_rn}" 'hdparm')
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+
+package() {
+	install -Dm755 "$srcdir/${_rn}/init.d/laptop_mode.init-1.4" "$pkgdir/etc/init.d/laptop_mode"
+}
+sha256sums=('495dc44283b269fe33798bf0b4d86e8eba00a0b65162d9c377c12182033e3cc8')

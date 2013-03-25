@@ -1,0 +1,23 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn="udev"
+_pn=udev-init-scripts
+_ver=25
+
+pkgname=${_rn}-openrc
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC ${_rn} init scripts"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-base')
+depends=('openrc' 'systemd')
+install=${_rn}.install
+source=("http://dev.gentoo.org/~williamh/dist/${_pn}-${_ver}.tar.bz2")
+sha256sums=('2210a0c76b1169d136b3f7c8f8c6ca36b4546aea7e88c355c81009cf10fb9bc3')
+
+package() {
+	cd "${srcdir}/${_pn}-${_ver}"
+	make DESTDIR="${pkgdir}" install
+}

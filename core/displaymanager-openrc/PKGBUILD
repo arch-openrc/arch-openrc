@@ -1,0 +1,30 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn="xorg-server"
+_ver=20130325
+
+pkgname=${_rn}-openrc
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC ${_rn} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-desktop')
+depends=('openrc' "${_rn}"
+	  'dbus-openrc'
+	  'udev-openrc')
+optdepends=('consolekit-openrc')
+backup=('etc/conf.d/xdm')
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz"
+	"http://data.gpo.zugaina.org/gentoo/x11-apps/xinit/files/startDM.sh")
+sha256sums=('bf8544d12c16c9375408726b974c64514b792beeabfb08c5ed1fac1b9b8a27a1'
+            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
+            
+package() {
+	install -Dm755 "$srcdir/${_rn}/conf.d/xdm.confd-4" "$pkgdir/etc/conf.d/xdm"
+	install -Dm755 "$srcdir/${_rn}/init.d/xdm.initd-9" "$pkgdir/etc/init.d/xdm"
+	install -Dm755 "$srcdir/${_rn}/init.d/xdm-setup.initd-1" "$pkgdir/etc/init.d/xdm-setup"
+	install -Dm755 "$srcdir/startDM.sh" "$pkgdir/etc/X11/startDM.sh"
+}

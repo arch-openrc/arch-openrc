@@ -1,0 +1,21 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn="glibc"
+_ver=20130325
+
+pkgname=${_rn}-openrc
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC nscd init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-base')
+depends=('openrc' "${_rn}")
+install=${_rn}.install
+source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+
+package() {
+	install -Dm755 "$srcdir/${_rn}/init.d/nscd" "$pkgdir/etc/init.d/nscd"
+}
+sha256sums=('46459185b6d2f4e8d77b23dd4d2a2fab83eda22e2cb70f402773bd75d7629679')
