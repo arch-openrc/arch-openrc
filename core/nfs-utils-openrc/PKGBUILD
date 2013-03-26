@@ -11,7 +11,7 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-server')
-depends=('openrc' "$_rn" 'rpcbind-openrc')
+depends=('openrc' "$_rn" 'rpcbind-openrc' 'device-mapper-openrc')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
