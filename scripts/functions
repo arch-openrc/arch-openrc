@@ -19,25 +19,17 @@ download() {
 	fi
 }
 
-status(){
-	local ret
-	if [ $1 ];then
-		ret="FAIL"
-	else
-		ret="PASS"
-	fi
-	return $ret
-}
-
 fix() {
 	# $1: filename
 	# $2: pattern1
 	# $3: pattern2
 	if grep -q "$2" $1; then
-		echo "FAIL" 
-		echo "fixing `basename $1` ... $3 ..."
+		echo "FAIL" `basename $1` $2
+		echo
+		echo "FIXING ..."
 		sed -i "s|$2|$3|" $1
-		echo "DONE" 
+		echo
+		echo "DONE" `basename $1` $3
 	else
 		echo "PASS" `basename $1` $3
 	fi
@@ -47,35 +39,35 @@ check(){
 	# $1: type
 	# $2: file
 	# $3: dirname
-	if [ "$1" == "init.d" ]; then
+	if [ "$1" = "init.d" ]; then
 		fix $2 '/var/run' '/run'
-		if [ "$3" == "dbus" ]; then
+		if [ "$3" = "dbus" ]; then
 			fix $2 'pidfile /run/dbus.pid' 'pidfile /run/dbus/pid'
-		elif [ "$3" == "bind" ]; then
+		elif [ "$3" = "bind" ]; then
 				fix $2 '/etc/bind/named.conf' '/etc/named.conf'
-		elif [ "$3" == "dhcp" ]; then
+		elif [ "$3" = "dhcp" ]; then
 				fix $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
-		elif [ "$3" == "ufw" ]; then
+		elif [ "$3" = "ufw" ]; then
 				fix $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
-		elif [ "$3" == "xorg-server" ]; then
+		elif [ "$3" = "xorg-server" ]; then
 				fix $2 '/etc/profile.env' '/etc/profile'
 				fix $2 'ROOTPATH' 'PATH'
-		elif [ "$3" == "mysql" ]; then
+		elif [ "$3" = "mysql" ]; then
 				fix $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
-		elif [ "$3" == "ntp" ]; then
+		elif [ "$3" = "ntp" ]; then
 				fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
-		elif [ "$3" == "openntpd" ]; then
+		elif [ "$3" = "openntpd" ]; then
 				fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
 		fi
-		if [ "$pref" == "/usr" ]; then
+		if [ "$pref" = "/usr" ]; then
 			fix $2 '#!/sbin/runscript' "#!$pref/sbin/runscript"
-			if [ "$3" == "lvm2" ]; then
+			if [ "$3" = "lvm2" ]; then
 				fix $2 '/bin/lvm /sbin/lvm' "$pref/bin/lvm $pref/sbin/lvm"	
 				fix $2 ' /sbin/dmsetup ' " $pref/sbin/dmsetup "
 				fix $2 ' /sbin/dmeventd ' " $pref/sbin/dmeventd "	
-			elif [ "$3" == "rpcbind" ]; then
+			elif [ "$3" = "rpcbind" ]; then
 				fix $2 '/sbin/rpcbind' "$pref/bin/rpcbind"
-			elif [ "$3" == "iptables" ]; then
+			elif [ "$3" = "iptables" ]; then
 				fix $2 'iptables_bin="/sbin' 'iptables_bin="/usr/sbin'
 			fi
 		fi
@@ -111,7 +103,7 @@ setdist(){
 }
 
 main(){	
-	config "confd.cfg" "conf.d"
-	config "initd.cfg" "init.d"
+	config "confd.cfg" "conf.d" > confd.log
+	config "initd.cfg" "init.d" > initd.log
 	#tar -cvjf "${datadir}.tar.${ext}"  ${datadir}/${dirname}
 }
