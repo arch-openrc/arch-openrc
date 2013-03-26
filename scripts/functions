@@ -15,7 +15,11 @@ download() {
 	# $1: file
 	# $2: src
 	if [ ! -f "$1" ]; then
+		echo "DOWLOADING" $2
+		echo
 		curl -o "$1" "$2"
+		echo
+		echo "DONE" $1
 	fi
 }
 
@@ -40,9 +44,9 @@ check(){
 	# $2: file
 	# $3: dirname
 	if [ "$1" = "init.d" ]; then
-		fix $2 '/var/run' '/run'
+		#fix $2 '/var/run' '/run'
 		if [ "$3" = "dbus" ]; then
-			fix $2 'pidfile /run/dbus.pid' 'pidfile /run/dbus/pid'
+			fix $2 '/run/dbus.pid' '/run/dbus/pid'
 		elif [ "$3" = "bind" ]; then
 				fix $2 '/etc/bind/named.conf' '/etc/named.conf'
 		elif [ "$3" = "dhcp" ]; then
@@ -103,7 +107,7 @@ setdist(){
 }
 
 main(){	
-	config "confd.cfg" "conf.d" > confd.log
-	config "initd.cfg" "init.d" > initd.log
+	config "confd.cfg" "conf.d"
+	config "initd.cfg" "init.d" #> initd.log
 	#tar -cvjf "${datadir}.tar.${ext}"  ${datadir}/${dirname}
 }
