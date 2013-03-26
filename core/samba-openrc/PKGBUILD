@@ -17,11 +17,11 @@ source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/fi
 	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.initd")
 
 package() {
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/samba.confd" "$pkgdir/etc/conf.d/samba"
+	install -Dm755 "$srcdir/samba.confd" "$pkgdir/etc/conf.d/samba"
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/$_pn-$pkgver/$_rn/init.d/samba.initd"
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/samba.initd"
 	
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/samba.initd" "$pkgdir/etc/init.d/samba"
+	install -Dm755 "$srcdir/samba.initd" "$pkgdir/etc/init.d/samba"
 }
 sha256sums=('02ab523d695b5ae044b871923ad817f8931a6c20c5bfefad98a4369d7b3742e3'
             '3eabeabbe203fcdcea37d53048bdbf7e6cfaaf795bef8b98ec37aa572e57d052')

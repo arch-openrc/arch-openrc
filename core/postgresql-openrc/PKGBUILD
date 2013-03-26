@@ -1,7 +1,7 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="postgresql"
-_ver=20130325
+_rn=postgresql
+_ver=2.4
 
 pkgname=$_rn-openrc
 pkgver=1.1.1
@@ -17,10 +17,9 @@ source=("http://dev.gentoo.org/~titanofold/postgresql-initscript-2.4.tbz2
 ")
 
 package() {
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/postgresql.confd" "$pkgdir/etc/conf.d/postgresql"
+	install -Dm755 "$srcdir/postgresql.confd" "$pkgdir/etc/conf.d/postgresql"
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/postgresql.init"
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/$_pn-$pkgver/$_rn/init.d/postgresql.init"
-	
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/postgresql.init" "$pkgdir/etc/init.d/postgresql"
+	install -Dm755 "$srcdir/postgresql.init" "$pkgdir/etc/init.d/postgresql"
 }
 sha256sums=('4f17a2a26ec078b7f73d2b5fa7338402829fe195676d6c3f2cda6cd75c3d1e23')

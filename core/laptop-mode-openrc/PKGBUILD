@@ -3,7 +3,7 @@
 _pn=openrc-plugins
 _rn=laptop-mode-tools
 
-pkgname=$_rn-openrc
+pkgname=laptop-mode-openrc
 pkgver=1.1.1
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
