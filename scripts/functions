@@ -19,18 +19,67 @@ download() {
 	fi
 }
 
+status(){
+	local ret
+	if [ $1 ];then
+		ret="FAIL"
+	else
+		ret="PASS"
+	fi
+	return $ret
+}
+
 fix() {
 	# $1: filename
 	# $2: pattern1
 	# $3: pattern2
 	if grep -q "$2" $1; then
 		echo "FAIL" 
-		echo "fixing $1 ... $3 ..."
+		echo "fixing `basename $1` ... $3 ..."
 		sed -i "s|$2|$3|" $1
 		echo "DONE" 
 	else
-		echo "PASS" $1 $3
+		echo "PASS" `basename $1` $3
 	fi
+}
+
+check(){
+	# $1: type
+	# $2: file
+	# $3: dirname
+	if [ "$1" == "init.d" ]; then
+		fix $2 '/var/run' '/run'
+		if [ "$3" == "dbus" ]; then
+			fix $2 'pidfile /run/dbus.pid' 'pidfile /run/dbus/pid'
+		elif [ "$3" == "bind" ]; then
+				fix $2 '/etc/bind/named.conf' '/etc/named.conf'
+		elif [ "$3" == "dhcp" ]; then
+				fix $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
+		elif [ "$3" == "ufw" ]; then
+				fix $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
+		elif [ "$3" == "xorg-server" ]; then
+				fix $2 '/etc/profile.env' '/etc/profile'
+				fix $2 'ROOTPATH' 'PATH'
+		elif [ "$3" == "mysql" ]; then
+				fix $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
+		elif [ "$3" == "ntp" ]; then
+				fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
+		elif [ "$3" == "openntpd" ]; then
+				fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+		fi
+		if [ "$pref" == "/usr" ]; then
+			fix $2 '#!/sbin/runscript' "#!$pref/sbin/runscript"
+			if [ "$3" == "lvm2" ]; then
+				fix $2 '/bin/lvm /sbin/lvm' "$pref/bin/lvm $pref/sbin/lvm"	
+				fix $2 ' /sbin/dmsetup ' " $pref/sbin/dmsetup "
+				fix $2 ' /sbin/dmeventd ' " $pref/sbin/dmeventd "	
+			elif [ "$3" == "rpcbind" ]; then
+				fix $2 '/sbin/rpcbind' "$pref/bin/rpcbind"
+			elif [ "$3" == "iptables" ]; then
+				fix $2 'iptables_bin="/sbin' 'iptables_bin="/usr/sbin'
+			fi
+		fi
+	fi	
 }
 
 config() {
@@ -44,94 +93,12 @@ config() {
 		local dirname=${arr[1]}
 		local filename=${arr[3]}
 		IFS=$OIFS
-		
 		mkdirs "$dirname/$2"
-		
 		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
-		
 		local file="${datadir}/${dirname}/$2/${filename}"
 		local src="${url}/${line}"
-		
 		download "${file}" "${src}"
-		
-		if [ "$2" = "init.d" ]; then
-		
-			if [ $pref = "/usr" ]; then
-			
-				fix $file '#!/sbin/runscript' "#!$pref/sbin/runscript"
-				
-				fix $file '/var/run' '/run'
-				
-					if [ "$dirname" == "dbus" ]; then
-						fix $file 'pidfile /run/dbus.pid' 'pidfile /run/dbus/pid'
-					
-					elif [ "$dirname" == "bind" ]; then
-						fix $file '/etc/bind/named.conf' '/etc/named.conf'
-					
-					elif [ "$dirname" == "dhcp" ]; then
-						fix $file '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
-					
-					elif [ "$dirname" == "lvm2" ]; then
-						fix $file '/bin/lvm /sbin/lvm' "$pref/bin/lvm $pref/sbin/lvm"	
-						fix $file ' /sbin/dmsetup ' ' /usr/sbin/dmsetup '
-						fix $file ' /sbin/dmeventd ' ' /usr/sbin/dmeventd '
-					
-					elif [ "$dirname" == "ntp" ]; then
-						fix $file '/usr/sbin/ntpd' '/usr/bin/ntpd'	
-				
-					elif [ "$dirname" == "openntpd" ]; then
-						fix $file '/usr/sbin/ntpd' '/usr/bin/ntpd'
-				
-					elif [ "$dirname" == "rpcbind" ]; then
-						fix $file '/sbin/rpcbind' "$pref/bin/rpcbind"
-						
-					elif [ "$dirname" == "ufw" ]; then
-						fix $file '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
-					
-					elif [ "$dirname" == "xorg-server" ]; then
-						fix $file '/etc/profile.env' '/etc/profile'
-						fix $file 'ROOTPATH' 'PATH'
-				
-					elif [ "$dirname" == "iptables" ]; then
-						fix $file 'iptables_bin="/sbin' 'iptables_bin="/usr/sbin'
-					
-					elif [ "$dirname" == "mysql" ]; then
-						fix $file '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
-				fi
-			else
-				
-				fix $file '/var/run' '/run'
-				
-					if [ $dirname = "dbus" ]; then
-						fix $file 'pidfile /run/dbus.pid' 'pidfile /run/dbus/pid'
-					
-					elif [ $dirname = "bind" ]; then
-						fix $file '/etc/bind/named.conf' '/etc/named.conf'
-					
-					elif [ $dirname = "dhcp" ]; then
-						fix $file '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
-					
-					elif [ $dirname = "ntp" ]; then
-						fix $file '/usr/sbin/ntpd' '/usr/bin/ntpd'	
-				
-					elif [ $dirname = "openntpd" ]; then
-						fix $file '/usr/sbin/ntpd' '/usr/bin/ntpd'
-				
-					elif [ $dirname = "rpcbind" ]; then
-						fix $file '/sbin/rpcbind' "$pref/bin/rpcbind"
-						
-					elif [ $dirname = "ufw" ]; then
-						fix $file '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
-					
-					elif [ $dirname = "xorg-server" ]; then
-						fix $file '/etc/profile.env' '/etc/profile'
-						fix $file 'ROOTPATH' 'PATH'
-					
-					elif [ $dirname = "mysql" ]; then
-						fix $file '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
-					fi
-			fi
-		fi	
+		check "$2" "${file}" "${dirname}"
 	done < $1
 }
 
@@ -146,6 +113,5 @@ setdist(){
 main(){	
 	config "confd.cfg" "conf.d"
 	config "initd.cfg" "init.d"
-	
 	#tar -cvjf "${datadir}.tar.${ext}"  ${datadir}/${dirname}
 }
