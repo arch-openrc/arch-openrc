@@ -14,7 +14,7 @@ pkgver=1.1
 pkgrel=3
 pkgdesc="OpenRC virtual package"
 arch=('any')
-url="https://github.com/udeved/openrc4arch-plugins"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
 makedepends=('openrc-cron'
 	'openrc-db'

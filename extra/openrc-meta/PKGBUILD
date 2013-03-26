@@ -1,15 +1,15 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-pkgname=('meta-base'
-	'meta-desktop'
-	'meta-misc'
-	'meta-server')
+pkgname=('meta-base-openrc'
+	'meta-desktop-openrc'
+	'meta-misc-openrc'
+	'meta-server-openrc')
 pkgbase=openrc4arch-meta
 pkgver=1.1
-pkgrel=3
+pkgrel=4
 groups=('meta')
 arch=('any')
-url="https://github.com/udeved/openrc4archs"
+url="http://openrc4arch.site40.net"
 license=('GPL2')
 makedepends=('acpid-openrc'
 		'alsa-utils-openrc'
@@ -20,7 +20,6 @@ makedepends=('acpid-openrc'
 		'consolekit-openrc'
 		'cpupower-openrc'
 		'cups-openrc'
-		'cryptsetup-openrc'
 		'cyrus-sasl-openrc'
 		'dbus-openrc'
 		'device-mapper-openrc'
@@ -28,7 +27,6 @@ makedepends=('acpid-openrc'
 		'glibc-openrc'
 		'gpm-openrc' 
 		'hostapd-openrc'
-		'inetutils-openrc'
 		'iptables-openrc'
 		'krb5-openrc'
 		'laptop-mode-tools-openrc'
@@ -52,104 +50,101 @@ makedepends=('acpid-openrc'
 		'udev-openrc'
 		'ufw-openrc'
 		'wicd-openrc'
-		'xorg-server'
-		'ypbind-mt'
-		'virtual-cron'
-		'virtual-db'
-		'virtual-dhcp'
-		'virtual-ftp'
-		'virtual-proxy'
-		'virtual-syslog'
-		'virtual-timed'
-		'virtual-web'
-		'virtual-wireless')
+		'displaymanager-openrc'
+		'ypbind-openrc'
+		'virtual-cron-openrc'
+		'virtual-db-openrc'
+		'virtual-dhcp-openrc'
+		'virtual-ftp-openrc'
+		'virtual-proxy-openrc'
+		'virtual-syslog-openrc'
+		'virtual-timed-openrc'
+		'virtual-web-openrc'
+		'virtual-wireless-openrc')
 
 package_openrc4arch-meta-base() {
 	pkgdesc="OpenRC meta base package"
-	groups=('meta-base')
-	depends=('cryptsetup'
-		'device-mapper-openrc'
-		'virtual-dhcp'
-		'glibc'
-		'inetutils'
-		'lvm2'
-		'mdadm'
-		'udev'
-		'virtual-cron'
-		'virtual-wireless')
-	optdepends=('virtual-syslog'
-		'virtual-timed')
-	replaces=('base')
-	conflicts=('base')
+	groups=('meta-base-openrc')
+	depends=('cryptsetup-openrc'
+		'virtual-dhcp-openrc'
+		'glibc-openrc'
+		'lvm2-openrc'
+		'mdadm-openrc'
+		'udev-openrc'
+		'virtual-cron-openrc'
+		'virtual-wireless-openrc')
+	optdepends=('virtual-syslog-openrc'
+		'virtual-timed-openrc')
+	replaces=('openrc-base')
+	conflicts=('openrc-base')
 }
 
 package_openrc4arch-meta-desktop() {
 	pkgdesc="OpenRC desktop plugins package"
-	groups=('meta-desktop')
-	depends=('acpid'
-		'avahi'
-		'consolekit'
-		'dbus'
-		'virtual-syslog'
-		'xorg-server'
-		'meta-base')
-	optdepends=('virtual-timed')
-	replaces=('desktop')
-	conflicts=('desktop')
+	groups=('meta-desktop-openrc')
+	depends=('acpid-openrc'
+		'avahi-openrc'
+		'consolekit-openrc'
+		'dbus-openrc'
+		'virtual-syslog-openrc'
+		'displaymanager-openrc'
+		'meta-base-openrc')
+	optdepends=('virtual-timed-openrc')
+	replaces=('openrc-desktop')
+	conflicts=('openrc-desktop')
 }
 
 package_openrc4arch-meta-misc() {
 	pkgdesc="OpenRC meta misc package"
-	groups=('meta-misc')
-	depends=('alsa-utils'
-		'bitlbee'
-		'bluez'
-		'cpupower'
-		'cups'
-		'gpm' 
-		'hostapd'
-		'iptables'
-		'laptop-mode-tools'
-		'lm_sensors'
-		'openslp'
-		'openssh'
-		'quota-tools'
-		'rsync'
-		'rsyslog'
-		'syslog-ng'
-		'ufw'
-		'wicd'
-		'ypbind-mt'
-		'virtual-timed'
-		'virtual-wireless'
-		'virtual-cron'
-		'virtual-dhcp'
-		'meta-base')
+	groups=('meta-misc-openrc')
+	depends=('alsa-utils-openrc'
+		'bitlbee-openrc'
+		'bluez-openrc'
+		'cups-openrc'
+		'gpm-openrc' 
+		'hostapd-openrc'
+		'iptables-openrc'
+		'laptop-mode-tools-openrc'
+		'lm_sensors-openrc'
+		'openslp-openrc'
+		'openssh-openrc'
+		'quota-tools-openrc'
+		'rsync-openrc'
+		'rsyslog-openrc'
+		'syslog-ng-openrc'
+		'ufw-openrc'
+		'wicd-openrc'
+		'ypbind-openrc'
+		'virtual-timed-openrc'
+		'virtual-wireless-openrc'
+		'virtual-cron-openrc'
+		'virtual-dhcp-openrc'
+		'meta-base-openrc')
 	optdepends=('virtual-syslog')
-	replaces=('misc')
-	conflicts=('misc')
+	replaces=('openrc-misc')
+	conflicts=('openrc-misc')
 }
 
 package_openrc4arch-meta-server() {
 	pkgdesc="OpenRC meta server package"
-	groups=('meta-server')
-	depends=('bind'
-		'cyrus-sasl'
-		'git'
-		'krb5'
-		'nfs-utils'
-		'postfix'
-		'rpcbind'
-		'samba'
-		'subversion'
-		'virtual-db'
-		'virtual-ftp'
-		'virtual-proxy'
-		'virtual-web'
-		'meta-base')
-	optdepends=('virtual-syslog'
-		'virtual-timed')
-	replaces=('server')
-	conflicts=('server')
+	groups=('meta-server-openrc')
+	depends=('bind-openrc'
+		'cyrus-sasl-openrc'
+		'git-openrc'
+		'krb5-openrc'
+		'nfs-utils-openrc'
+		'postfix-openrc'
+		'rpcbind-openrc'
+		'samba-openrc'
+		'subversion-openrc'
+		'virtual-db-openrc'
+		'virtual-ftp-openrc'
+		'virtual-proxy-openrc'
+		'virtual-web-openrc'
+		'meta-base-openrc')
+	optdepends=('virtual-syslog-openrc'
+		'virtual-timed-openrc')
+	replaces=('openrc-server')
+	conflicts=('openrc-server')
 }
 
