@@ -84,16 +84,16 @@ package() {
 	
 	rm -r "$pkgdir/var/run"
 	
-	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -i "$srcdir/10-openrc-status-r3"
+	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -e 's/NetworkManager/networkmanager/' -i "$srcdir/10-openrc-status-r3"
 	
-	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_realname/dispatcher.d/10-openrc-status-r3"
+	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_realname/dispatcher.d/10-openrc-status"
 	
 	install -Dm755 "$srcdir/conf.d.$_realname" "$pkgdir/etc/conf.d/networkmanager"
 	
 	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/init.d.$_realname"
 	
 	install -Dm755 "$srcdir/init.d.$_realname" "$pkgdir/etc/init.d/networkmanager"
-	
-	#ln -s "$pkgdir/usr/lib/$_pkgname/libnm-settings-plugin-ifnet.so" "$pkgdir/usr/lib/libnm-settings-plugin-ifnet.so"
+# 	
+# 	ln -s "$pkgdir/usr/lib/$_pkgname/libnm-settings-plugin-ifnet.so" "$pkgdir/usr/lib/libnm-settings-plugin-ifnet.so"
 }
 
