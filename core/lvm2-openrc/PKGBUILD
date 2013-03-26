@@ -1,25 +1,25 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="lvm2"
-_ver=20130325
+_pn=openrc-plugins
+_rn=lvm2
 
-pkgname=${_rn}-openrc
+pkgname=$_rn-openrc
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC ${_rn} init script"
+pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-base')
-depends=('openrc' "${_rn}")
-install=${_rn}.install
-source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+depends=('openrc' "$_rn")
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/${_rn}/conf.d/lvm.confd-2.02.28-r2" "$pkgdir/etc/conf.d/lvm"
-	install -Dm755 "$srcdir/${_rn}/init.d/lvm.rc-2.02.95-r2" "$pkgdir/etc/init.d/lvm"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/lvm.confd-2.02.28-r2" "$pkgdir/etc/conf.d/lvm"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/lvm.rc-2.02.95-r2" "$pkgdir/etc/init.d/lvm"
 	
-	install -Dm755 "$srcdir/${_rn}/init.d/device-mapper.rc-2.02.95-r2" "$pkgdir/etc/init.d/device-mapper"
-	install -Dm755 "$srcdir/${_rn}/init.d/dmeventd.initd-2.02.67-r1" "$pkgdir/etc/init.d/dmeventd"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/device-mapper.rc-2.02.95-r2" "$pkgdir/etc/init.d/device-mapper"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/dmeventd.initd-2.02.67-r1" "$pkgdir/etc/init.d/dmeventd"
 }
-sha256sums=('e23494a6bae95e80dec9b9c96ffba6deb3e358bf84affba14546899b4b94ed2a')
+sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')

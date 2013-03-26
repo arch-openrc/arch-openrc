@@ -1,22 +1,22 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="cryptsetup"
-_ver=20130325
+_pn=openrc-plugins
+_rn=cryptsetup
 
-pkgname=${_rn}-openrc
+pkgname=$_rn-openrc
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC ${_rn} init script"
+pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-base')
-depends=('openrc' "${_rn}")
-install=${_rn}.install
-source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+depends=('openrc' "$_rn")
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/${_rn}/conf.d/1.0.6-dmcrypt.confd" "$pkgdir/etc/conf.d/dmcrypt"
-	install -Dm755 "$srcdir/${_rn}/init.d/1.5.1-dmcrypt.rc" "$pkgdir/etc/init.d/dmcrypt"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/1.0.6-dmcrypt.confd" "$pkgdir/etc/conf.d/dmcrypt"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/1.5.1-dmcrypt.rc" "$pkgdir/etc/init.d/dmcrypt"
 }
-sha256sums=('409747dafb54db433e38409d265d2e036b5c49f580778d1ff7001b5e3fc73ef0')
+sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')

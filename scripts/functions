@@ -1,9 +1,10 @@
 #!/bin/bash 
 # Author: udeved@openrc4arch.site40.net
 
-datadir="data"
-ext="xz"
 version="1.1.1" #"$(date +%Y%m%d)"
+datadir="openrc-plugins-$version"
+ext="xz"
+pref="/usr"
 
 mkdirs() {
 	mkdir -p "${datadir}/$1"
@@ -52,31 +53,60 @@ config() {
 		download "${file}" "${src}"
 		
 		if [ "$2" = "init.d" ]; then
+		
+			if [ $pref = "/usr" ]; then
 			
-			fix $file '#!/sbin/runscript' '#!/usr/sbin/runscript'
-			fix $file '/var/run' '/run'
-			if [ $dirname = "dbus" ]; then
-				fix $file 'dbus.pid' 'dbus/pid'
-			elif [ $dirname = "bind" ]; then
-				fix $file '/etc/bind/named.conf' '/etc/named.conf'
-			elif [ $dirname = "dhcp" ]; then
-				fix $file '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
-			elif [ $dirname = "" ]; then
-				fix $file '' ''	
-			elif [ $dirname = "" ]; then
-				fix $file '' ''	
+				fix $file '#!/sbin/runscript' "#!$pref/sbin/runscript"
+				fix $file '/var/run' '/run'
 				
+					if [ $dirname = "dbus" ]; then
+						fix $file 'pidfile /run/dbus.pid' 'pidfile /run/dbus/pid'
+					
+					elif [ $dirname = "bind" ]; then
+						fix $file '/etc/bind/named.conf' '/etc/named.conf'
+					
+					elif [ $dirname = "dhcp" ]; then
+						fix $file '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
+					
+					elif [ $dirname = "lvm2" ]; then
+						fix $file '/bin/lvm /sbin/lvm' "$pref/bin/lvm $pref/sbin/lvm"	
+						fix $file ' /sbin/dmsetup ' ' /usr/sbin/dmsetup '
+						fix $file ' /sbin/dmeventd ' ' /usr/sbin/dmeventd '
+					
+					elif [ $dirname = "ntp" ]; then
+						fix $file '/usr/sbin/ntpd' '/usr/bin/ntpd'	
+				
+					elif [ $dirname = "openntpd" ]; then
+						fix $file '/usr/sbin/ntpd' '/usr/bin/ntpd'
+				
+					elif [ $dirname = "rpcbind" ]; then
+						fix $file '/sbin/rpcbind' "$pref/bin/rpcbind"
+						
+					elif [ $dirname = "ufw" ]; then
+						fix $file '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
+					
+					elif [ $dirname = "xorg-server" ]; then
+						fix $file '/etc/profile.env' '/etc/profile'
+						fix $file 'ROOTPATH' 'PATH'
+				
+					elif [ $dirname = "iptables" ]; then
+						fix $file 'iptables_bin="/sbin' 'iptables_bin="/usr/sbin'
+					
+					elif [ $dirname = "mysql" ]; then
+						fix $file '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
+				fi
+			else
+				echo "foo"
 			fi
 		fi
-		
 		#tar -cvjf "${pkgdir}/${dirname}-${version}.tar.${ext}" -C "${datadir}" ${dirname}
 	done < $1
 }
 
 main(){	
 	
-	config "confd.cfg" "conf.d"
-	config "initd.cfg" "init.d"
+	#config "confd.cfg" "conf.d"
+	#config "initd.cfg" "init.d"
 	
-	#tar -cvjf "${datadir}-${version}.tar.${ext}"  ${datadir}/${dirname}
+	tar -cvjf "${datadir}.tar.${ext}"  ${datadir}/${dirname}
 }

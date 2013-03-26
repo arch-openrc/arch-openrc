@@ -1,0 +1,155 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgname=('meta-base'
+	'meta-desktop'
+	'meta-misc'
+	'meta-server')
+pkgbase=openrc4arch-meta
+pkgver=1.1
+pkgrel=3
+groups=('meta')
+arch=('any')
+url="https://github.com/udeved/openrc4archs"
+license=('GPL2')
+makedepends=('acpid-openrc'
+		'alsa-utils-openrc'
+		'avahi-openrc'
+		'bind-openrc'
+		'bitlbee-openrc'
+		'bluez-openrc'
+		'consolekit-openrc'
+		'cpupower-openrc'
+		'cups-openrc'
+		'cryptsetup-openrc'
+		'cyrus-sasl-openrc'
+		'dbus-openrc'
+		'device-mapper-openrc'
+		'git-openrc'
+		'glibc-openrc'
+		'gpm-openrc' 
+		'hostapd-openrc'
+		'inetutils-openrc'
+		'iptables-openrc'
+		'krb5-openrc'
+		'laptop-mode-tools-openrc'
+		'lm_sensors-openrc'
+		'lvm2-openrc'
+		'mdadm-openrc'
+		'netcfg-openrc'
+		'nfs-utils-openrc'
+		'openslp-openrc'
+		'openssh-openrc'
+		'postfix-openrc'
+		'privoxy-openrc'
+		'quota-tools-openrc'
+		'rpcbind-openrc'
+		'rsync-openrc'
+		'rsyslog-openrc'
+		'samba-openrc'
+		'squid-openrc'
+		'subversion-openrc'
+		'syslog-ng-openrc'
+		'udev-openrc'
+		'ufw-openrc'
+		'wicd-openrc'
+		'xorg-server'
+		'ypbind-mt'
+		'virtual-cron'
+		'virtual-db'
+		'virtual-dhcp'
+		'virtual-ftp'
+		'virtual-proxy'
+		'virtual-syslog'
+		'virtual-timed'
+		'virtual-web'
+		'virtual-wireless')
+
+package_openrc4arch-meta-base() {
+	pkgdesc="OpenRC meta base package"
+	groups=('meta-base')
+	depends=('cryptsetup'
+		'device-mapper-openrc'
+		'virtual-dhcp'
+		'glibc'
+		'inetutils'
+		'lvm2'
+		'mdadm'
+		'udev'
+		'virtual-cron'
+		'virtual-wireless')
+	optdepends=('virtual-syslog'
+		'virtual-timed')
+	replaces=('base')
+	conflicts=('base')
+}
+
+package_openrc4arch-meta-desktop() {
+	pkgdesc="OpenRC desktop plugins package"
+	groups=('meta-desktop')
+	depends=('acpid'
+		'avahi'
+		'consolekit'
+		'dbus'
+		'virtual-syslog'
+		'xorg-server'
+		'meta-base')
+	optdepends=('virtual-timed')
+	replaces=('desktop')
+	conflicts=('desktop')
+}
+
+package_openrc4arch-meta-misc() {
+	pkgdesc="OpenRC meta misc package"
+	groups=('meta-misc')
+	depends=('alsa-utils'
+		'bitlbee'
+		'bluez'
+		'cpupower'
+		'cups'
+		'gpm' 
+		'hostapd'
+		'iptables'
+		'laptop-mode-tools'
+		'lm_sensors'
+		'openslp'
+		'openssh'
+		'quota-tools'
+		'rsync'
+		'rsyslog'
+		'syslog-ng'
+		'ufw'
+		'wicd'
+		'ypbind-mt'
+		'virtual-timed'
+		'virtual-wireless'
+		'virtual-cron'
+		'virtual-dhcp'
+		'meta-base')
+	optdepends=('virtual-syslog')
+	replaces=('misc')
+	conflicts=('misc')
+}
+
+package_openrc4arch-meta-server() {
+	pkgdesc="OpenRC meta server package"
+	groups=('meta-server')
+	depends=('bind'
+		'cyrus-sasl'
+		'git'
+		'krb5'
+		'nfs-utils'
+		'postfix'
+		'rpcbind'
+		'samba'
+		'subversion'
+		'virtual-db'
+		'virtual-ftp'
+		'virtual-proxy'
+		'virtual-web'
+		'meta-base')
+	optdepends=('virtual-syslog'
+		'virtual-timed')
+	replaces=('server')
+	conflicts=('server')
+}
+

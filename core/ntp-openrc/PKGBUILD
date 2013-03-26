@@ -1,26 +1,26 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="ntp"
-_ver=20130325
+_pn=openrc-plugins
+_rn=ntp
 
-pkgname=${_rn}-openrc
+pkgname=$_rn-openrc
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC ${_rn} init script"
+pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-depends=('openrc' "${_rn}")
+depends=('openrc' "$_rn")
 provides=('openrc-timed')
 conflicts=('openntpd-openrc')
-install=${_rn}.install
-source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/${_rn}/conf.d/ntpd.confd" "$pkgdir/etc/conf.d/ntpd"
-	install -Dm755 "$srcdir/${_rn}/init.d/ntpd.rc" "$pkgdir/etc/init.d/ntpd"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/ntpd.confd" "$pkgdir/etc/conf.d/ntpd"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/ntpd.rc" "$pkgdir/etc/init.d/ntpd"
 	
-	install -Dm755 "$srcdir/${_rn}/conf.d/ntp-client.confd" "$pkgdir/etc/conf.d/ntp-client"
-	install -Dm755 "$srcdir/${_rn}/init.d/ntp-client.rc" "$pkgdir/etc/init.d/ntp-client"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/ntp-client.confd" "$pkgdir/etc/conf.d/ntp-client"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/ntp-client.rc" "$pkgdir/etc/init.d/ntp-client"
 }
-sha256sums=('a2699b0b7bcd74f8675c0eebe327fd4aa236f3e527e203db5cbc2b17218d29e5')
+sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')

@@ -1,22 +1,22 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="ypbind-mt"
-_ver=20130325
+_pn=openrc-plugins
+_rn=ypbind
 
-pkgname=${_rn}-openrc
+pkgname=$_rn-openrc
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC ${_rn} init script"
+pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-misc')
-depends=('openrc' "${_rn}" 'rpcbind-openrc')
-install=${_rn}.install
-source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
-sha256sums=('85da45ec412938e391afc015032245ced3f98ae9ebecd885069199308c5fc034')
+depends=('openrc' "$_rn-mt" 'rpcbind-openrc')
+install=$_rn-mt.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/${_rn}/conf.d/ypbind.confd-r1" "$pkgdir/etc/conf.d/ypbind"
-	install -Dm755 "$srcdir/${_rn}/init.d/ypbind.initd" "$pkgdir/etc/init.d/ypbind"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/ypbind.confd-r1" "$pkgdir/etc/conf.d/ypbind"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/ypbind.initd" "$pkgdir/etc/init.d/ypbind"
 }
+sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')

@@ -1,21 +1,21 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="virtualbox-guest-utils"
-_ver=20130325
+_pn=openrc-plugins
+_rn=virtualbox-guest-additions
 
 pkgname=vbox-guest-openrc
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC ${_rn} init script"
+pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-vbox')
-depends=('openrc' "${_rn}")
-install=${_rn}.install
-source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
-sha256sums=('85da45ec412938e391afc015032245ced3f98ae9ebecd885069199308c5fc034')
+depends=('openrc' 'virtualbox-guest-utils')
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/${_rn}/init.d/virtualbox-guest-additions-8.initd" "$pkgdir/etc/init.d/vboxservice"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/virtualbox-guest-additions-8.initd" "$pkgdir/etc/init.d/vboxservice"
 }
+sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')

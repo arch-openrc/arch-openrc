@@ -8,7 +8,7 @@
 
 _realname=NetworkManager
 
-pkgname=networkmanager-openrc4arch
+pkgname=networkmanager-openrc
 pkgver=0.9.8.0
 pkgrel=1
 pkgdesc="Network Management daemon for consolekit and openrc"
@@ -16,7 +16,7 @@ arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/$_realname/"
 depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'udev' 'wpa_supplicant' 'ppp' 'dhclient'
-         'libsoup' 'openrc4arch' 'consolekit')
+         'libsoup' 'openrc' 'consolekit')
 makedepends=('intltool' 'dhcpcd' 'iptables' 'gobject-introspection' 'gtk-doc')
 optdepends=('modemmanager: for modem management service'
             'dhcpcd: alternative DHCP client; does not support DHCPv6'
@@ -25,7 +25,7 @@ optdepends=('modemmanager: for modem management service'
             'bluez: Bluetooth support'
             'openresolv: resolvconf support')
 provides=('networkmanager')
-conflicts=('networkmanager')
+conflicts=('networkmanager' 'networkmanager-openrc4arch')
 options=('!libtool')
 backup=("etc/$_realname/$_realname.conf")
 install=networkmanager.install

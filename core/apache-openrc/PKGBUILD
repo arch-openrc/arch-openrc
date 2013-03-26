@@ -2,17 +2,17 @@
 
 _rn="apache"
 
-pkgname=${_rn}-openrc
+pkgname=$_rn-openrc
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC ${_rn} init script"
+pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-depends=('openrc' "${_rn}")
+depends=('openrc' "$_rn")
 provides=('openrc-web')
-install=${_rn}.install
-source=("http://dev.gentoo.org/~patrick/dist/${_rn}/gentoo-${_rn}-2.4.4-20130227.tar.bz2")
+install=$_rn.install
+source=("http://dev.gentoo.org/~patrick/dist/$_rn/gentoo-$_rn-2.4.4-20130227.tar.bz2")
 sha256sums=('cf27447dc87b4c145e50a6850245e3ed8d350bc3500bb249035322b23d03ccd2')
 
 package() {

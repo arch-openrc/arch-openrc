@@ -1,23 +1,23 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="openntpd"
-_ver=20130325
+_pn=openrc-plugins
+_rn=openntpd
 
-pkgname=${_rn}-openrc
+pkgname=$_rn-openrc
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC ${_rn} init script"
+pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-depends=('openrc' "${_rn}")
+depends=('openrc' "$_rn")
 provides=('openrc-timed')
 conflicts=('ntp-openrc')
-install=${_rn}.install
-source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/${_rn}/conf.d/openntpd.conf.d-3.9_p1-r4" "$pkgdir/etc/conf.d/openntpd"
-	install -Dm755 "$srcdir/${_rn}/init.d/openntpd.init.d-3.9_p1-r4" "$pkgdir/etc/init.d/openntpd"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/openntpd.conf.d-3.9_p1-r4" "$pkgdir/etc/conf.d/openntpd"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/openntpd.init.d-3.9_p1-r4" "$pkgdir/etc/init.d/openntpd"
 }
-sha256sums=('770c719cc1d92c3ef082dcea93c55b8888208beb26d7ac309c92453c5257a255')
+sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')

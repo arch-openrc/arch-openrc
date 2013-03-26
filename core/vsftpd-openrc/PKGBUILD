@@ -1,21 +1,21 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="vsftpd"
-_ver=20130325
+_pn=openrc-plugins
+_rn=vsftpd
 
-pkgname=${_rn}-openrc
+pkgname=$_rn-openrc
 pkgver=1.1.1
 pkgrel=1
-pkgdesc="OpenRC ${_rn} init scripts"
+pkgdesc="OpenRC $_rn init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 provides=('openrc-ftp')
-depends=('openrc' "${_rn}")
-install=${_rn}.install
-source=("http://openrc4arch.site40.net/pool/archlinux/${_rn}-${_ver}.tar.xz")
-sha256sums=('3e55b99d064c964c1294a8b5e1f88641c4a4faad66bd9ed591557ec9f736fd71')
+depends=('openrc' "$_rn")
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/${_rn}/init.d/vsftpd.init" "$pkgdir/etc/init.d/vsftpd"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/vsftpd.init" "$pkgdir/etc/init.d/vsftpd"
 }
+sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')
