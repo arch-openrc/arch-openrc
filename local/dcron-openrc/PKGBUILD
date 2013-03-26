@@ -20,4 +20,4 @@ package() {
 	install -Dm755 "$srcdir/${_rn}/conf.d/dcron.confd-4.4" "$pkgdir/etc/conf.d/${_rn}"
 	install -Dm755 "$srcdir/${_rn}/init.d/dcron.init-4.5" "$pkgdir/etc/init.d/${_rn}"
 }
-sha256sums=('862ef00a9f85742a41c106e7316a3005eb5095108027a3b90e8a7448cf0c1ec0')
+sha256sums=('85da45ec412938e391afc015032245ced3f98ae9ebecd885069199308c5fc034')

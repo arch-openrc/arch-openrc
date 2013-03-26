@@ -1,0 +1,22 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_pn=openrc-plugins
+_rn=pure-ftpd
+
+pkgname=${_rn}-openrc
+pkgver=1.1.1
+pkgrel=1
+pkgdesc="OpenRC ${_rn} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+provides=('openrc-ftp')
+depends=('openrc' "${_rn}")
+install=${_rn}.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
+
+package() {
+	install -Dm755 "$srcdir/$_pn-$_$pkgver/$_rn/conf.d/pure-ftpd.conf_d-3" "$pkgdir/etc/conf.d/pure-ftpd"
+	install -Dm755 "$srcdir/$_pn-$_$pkgver/$_rn/init.d/pure-ftpd.rc11" "$pkgdir/etc/init.d/pure-ftpd"
+}
+sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')
