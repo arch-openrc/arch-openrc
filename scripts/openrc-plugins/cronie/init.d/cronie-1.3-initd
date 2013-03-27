@@ -5,7 +5,7 @@
 
 command="/usr/sbin/crond"
 command_args="${CRONDARGS}"
-pidfile="/var/run/crond.pid"
+pidfile="/run/crond.pid"
 
 depend() {
 	use clock logger

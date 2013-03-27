@@ -11,7 +11,7 @@ start() {
 	ebegin "Starting mdadm monitor"
 	mdadm --monitor --scan \
 		--daemonise \
-		--pid-file /var/run/mdadm.pid \
+		--pid-file /run/mdadm.pid \
 		${MDADM_OPTS}
 	eend $?
 }
@@ -19,8 +19,8 @@ start() {
 stop() {
 	local ret
 	ebegin "Stopping mdadm monitor"
-	start-stop-daemon --stop --pidfile /var/run/mdadm.pid
+	start-stop-daemon --stop --pidfile /run/mdadm.pid
 	ret=$?
-	rm -f /var/run/mdadm.pid
+	rm -f /run/mdadm.pid
 	eend ${ret}
 }

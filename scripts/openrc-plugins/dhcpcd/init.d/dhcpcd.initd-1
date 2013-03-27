@@ -3,7 +3,7 @@
 # All rights reserved. Released under the 2-clause BSD license.
 
 command=/sbin/dhcpcd
-pidfile=/var/run/dhcpcd.pid
+pidfile=/run/dhcpcd.pid
 command_args=-q
 name="DHCP Client Daemon"
 

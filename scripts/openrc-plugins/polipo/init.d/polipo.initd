@@ -42,13 +42,13 @@ start() {
 
 	ebegin "Starting Polipo HTTP proxy"
 	start-stop-daemon --start --user polipo \
-		--background --pidfile /var/run/polipo.pid --make-pidfile \
+		--background --pidfile /run/polipo.pid --make-pidfile \
 			--exec /usr/bin/polipo
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping Polipo HTTP proxy"
-	start-stop-daemon --stop --pidfile /var/run/polipo.pid
+	start-stop-daemon --stop --pidfile /run/polipo.pid
 	eend $?
 }

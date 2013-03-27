@@ -14,7 +14,7 @@ command_args="
 	${APPEND}
 "
 
-pidfile=/var/run/gpm.pid
+pidfile=/run/gpm.pid
 
 depend() {
 	need localmount

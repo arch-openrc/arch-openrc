@@ -8,7 +8,7 @@ extra_started_commands="reload"
 
 SSHD_CONFDIR=${SSHD_CONFDIR:-/etc/ssh}
 SSHD_CONFIG=${SSHD_CONFIG:-${SSHD_CONFDIR}/sshd_config}
-SSHD_PIDFILE=${SSHD_PIDFILE:-/var/run/${SVCNAME}.pid}
+SSHD_PIDFILE=${SSHD_PIDFILE:-/run/${SVCNAME}.pid}
 SSHD_BINARY=${SSHD_BINARY:-/usr/sbin/sshd}
 
 depend() {
@@ -49,7 +49,7 @@ checkconfig() {
 
 	gen_keys || return 1
 
-	[ "${SSHD_PIDFILE}" != "/var/run/sshd.pid" ] \
+	[ "${SSHD_PIDFILE}" != "/run/sshd.pid" ] \
 		&& SSHD_OPTS="${SSHD_OPTS} -o PidFile=${SSHD_PIDFILE}"
 	[ "${SSHD_CONFDIR}" != "/etc/ssh" ] \
 		&& SSHD_OPTS="${SSHD_OPTS} -f ${SSHD_CONFDIR}/sshd_config"

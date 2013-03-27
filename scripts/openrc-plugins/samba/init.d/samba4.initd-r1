@@ -34,7 +34,7 @@ signal_do() {
 }
 
 mkdir_sambadirs() {
-        [ -d /var/run/samba ] || mkdir -p /var/run/samba
+        [ -d /run/samba ] || mkdir -p /run/samba
 }
 
 start() {

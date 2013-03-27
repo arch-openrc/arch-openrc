@@ -69,16 +69,16 @@ setup_dm() {
 	case "${MY_XDM}" in
 		kdm|kde)
 			EXE=/usr/bin/kdm
-			PIDFILE=/var/run/kdm.pid
+			PIDFILE=/run/kdm.pid
 			;;
 		entrance*)
 			EXE=/usr/sbin/entrance
-			PIDFILE=/var/run/entrance.pid
+			PIDFILE=/run/entrance.pid
 			;;
 		gdm|gnome)
 			EXE=/usr/bin/gdm
 			[ "${RC_UNAME}" != "Linux" ] && NAME=gdm-binary
-			PIDFILE=/var/run/gdm.pid
+			PIDFILE=/run/gdm.pid
 			;;
 		wdm)
 			EXE=/usr/bin/wdm
@@ -86,22 +86,22 @@ setup_dm() {
 			;;
 		gpe)
 			EXE=/usr/bin/gpe-dm
-			PIDFILE=/var/run/gpe-dm.pid
+			PIDFILE=/run/gpe-dm.pid
 			;;
 		lxdm)
 			EXE=/usr/sbin/lxdm-binary
-			PIDFILE=/var/run/lxdm.pid
+			PIDFILE=/run/lxdm.pid
 			START_STOP_ARGS="--background"
 			;;
 		lightdm)
 			EXE=/usr/sbin/lightdm
-			PIDFILE=/var/run/lightdm.pid
+			PIDFILE=/run/lightdm.pid
 			START_STOP_ARGS="--background"
 			;;
 		*)
 			# first find out if there is such executable
 			EXE="$(command -v ${MY_XDM} 2>/dev/null)"
-			PIDFILE="/var/run/${MY_XDM}.pid"
+			PIDFILE="/run/${MY_XDM}.pid"
 
 			# warn user that he is doing sick things if the exe was not found
 			if [ -z "${EXE}" ]; then
@@ -113,7 +113,7 @@ setup_dm() {
 
 	if ! [ -x "${EXE}" ]; then
 		EXE=/usr/bin/xdm
-		PIDFILE=/var/run/xdm.pid
+		PIDFILE=/run/xdm.pid
 		if ! [ -x "/usr/bin/xdm" ]; then
 			echo "ERROR: Please set your DISPLAYMANAGER variable in /etc/conf.d/xdm,"
 			echo "	or install x11-apps/xdm package"

@@ -5,7 +5,7 @@
 # $Header: /var/cvsroot/gentoo-x86/net-im/bitlbee/files/bitlbee.initd,v 1.4 2013/01/08 14:25:21 cedk Exp $
 
 DAEMON=/usr/sbin/bitlbee
-PIDFILE=/var/run/bitlbee/bitlbee.pid
+PIDFILE=/run/bitlbee/bitlbee.pid
 
 depend() {
 	need logger net

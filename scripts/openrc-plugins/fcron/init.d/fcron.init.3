@@ -34,7 +34,7 @@ depend() {
 
 command="/usr/libexec/fcron"
 command_args="-c $(configfile)"
-pidfile=$(getconfig pidfile /var/run/fcron.pid)
+pidfile=$(getconfig pidfile /run/fcron.pid)
 fcrontabs=$(getconfig fcrontabs /var/spool/fcron)
 
 extra_started_commands="reload"

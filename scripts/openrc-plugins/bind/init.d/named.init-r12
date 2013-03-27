@@ -67,14 +67,14 @@ _get_pidfile() {
 	# as suggested in bug #107724, bug 335398#c17
 	[ -n "${PIDFILE}" ] || PIDFILE=${CHROOT}$(\
 			/usr/sbin/named-checkconf -p ${CHROOT:+-t} ${CHROOT} ${NAMED_CONF#${CHROOT}} | grep 'pid-file' | cut -d\" -f2)
-	[ -z "${PIDFILE}" ] && PIDFILE=${CHROOT}/var/run/named/named.pid
+	[ -z "${PIDFILE}" ] && PIDFILE=${CHROOT}/run/named/named.pid
 }
 
 check_chroot() {
 	if [ -n "${CHROOT}" ]; then
 		[ ! -d "${CHROOT}" ] && return 1
 		[ ! -d "${CHROOT}/dev" ] || [ ! -d "${CHROOT}/etc" ] || [ ! -d "${CHROOT}/var" ] && return 1
-		[ ! -d "${CHROOT}/var/run" ] || [ ! -d "${CHROOT}/var/log" ] && return 1
+		[ ! -d "${CHROOT}/run" ] || [ ! -d "${CHROOT}/var/log" ] && return 1
 		[ ! -d "${CHROOT}/etc/bind" ] || [ ! -d "${CHROOT}/var/bind" ] && return 1
 		[ ! -d "${CHROOT}/var/log/named" ] && return 1
 		[ ! -c "${CHROOT}/dev/null" ] || [ ! -c "${CHROOT}/dev/zero" ] && return 1
@@ -156,7 +156,7 @@ start() {
 
 	checkconfig || { eend 1; return 1; }
 
-	# create piddir (usually /var/run/named) if necessary, bug 334535
+	# create piddir (usually /run/named) if necessary, bug 334535
 	_get_pidfile
 	piddir="${PIDFILE%/*}"
 	checkpath -q -d -o root:named -m 0770 "${piddir}" || {

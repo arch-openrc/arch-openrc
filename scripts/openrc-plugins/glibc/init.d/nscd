@@ -8,15 +8,15 @@ depend() {
 }
 
 checkconfig() {
-	if [ ! -d /var/run/nscd ] ; then
-		mkdir -p /var/run/nscd
-		chmod 755 /var/run/nscd
+	if [ ! -d /run/nscd ] ; then
+		mkdir -p /run/nscd
+		chmod 755 /run/nscd
 	fi
-	if [ -z "${NSCD_PERMS_OK}" ] && [ "$(stat -c %a /var/run/nscd)" != "755" ] ; then
+	if [ -z "${NSCD_PERMS_OK}" ] && [ "$(stat -c %a /run/nscd)" != "755" ] ; then
 		echo ""
 		ewarn "nscd run dir is not world readable, you should reset the perms:"
-		ewarn "chmod 755 /var/run/nscd"
-		ewarn "chmod a+rw /var/run/nscd/socket"
+		ewarn "chmod 755 /run/nscd"
+		ewarn "chmod a+rw /run/nscd/socket"
 		echo ""
 		ewarn "To disable this warning, set 'NSCD_PERMS_OK' in /etc/conf.d/nscd"
 		echo ""

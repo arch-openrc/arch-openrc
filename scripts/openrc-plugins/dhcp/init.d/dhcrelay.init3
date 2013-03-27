@@ -14,7 +14,7 @@ start() {
 		return 1
 	fi
 
-	checkpath -d /var/run/dhcp
+	checkpath -d /run/dhcp
 
 	local iface_opts
 	if [ -n "${IFACE}" ] ; then
@@ -29,6 +29,6 @@ start() {
 
 stop() {
 	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --pidfile /var/run/dhcp/${SVCNAME}.pid
+	start-stop-daemon --stop --pidfile /run/dhcp/${SVCNAME}.pid
 	eend $?
 }

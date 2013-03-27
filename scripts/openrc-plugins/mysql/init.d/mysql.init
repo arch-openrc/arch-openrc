@@ -32,6 +32,6 @@ start() {
 stop () {
 	ebegin "Stopping mysqld"
 	start-stop-daemon --stop --quiet \
-		--pidfile=/var/run/mysqld/mysqld.pid --retry 20
+		--pidfile=/run/mysqld/mysqld.pid --retry 20
 	eend $?
 }

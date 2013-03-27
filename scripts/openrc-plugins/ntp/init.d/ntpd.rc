@@ -22,15 +22,15 @@ start() {
 
 	ebegin "Starting ntpd"
 	start-stop-daemon --start --exec /usr/bin/ntpd \
-	    --pidfile /var/run/ntpd.pid \
-	    -- -p /var/run/ntpd.pid ${NTPD_OPTS}
+	    --pidfile /run/ntpd.pid \
+	    -- -p /run/ntpd.pid ${NTPD_OPTS}
 	eend $? "Failed to start ntpd"
 }
 
 stop() {
 	ebegin "Stopping ntpd"
 	start-stop-daemon --stop \
-		--pidfile /var/run/ntpd.pid \
+		--pidfile /run/ntpd.pid \
 		--exec /usr/bin/ntpd
 	eend $? "Failed to stop ntpd"
 }

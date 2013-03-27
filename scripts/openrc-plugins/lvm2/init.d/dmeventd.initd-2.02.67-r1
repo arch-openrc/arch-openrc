@@ -11,13 +11,13 @@ depend() {
 
 start() {
 	ebegin "Starting dmeventd"
-	start-stop-daemon --start --exec /usr/sbin/dmeventd --pidfile /var/run/dmeventd.pid
+	start-stop-daemon --start --exec /usr/sbin/dmeventd --pidfile /run/dmeventd.pid
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping dmeventd"
-	start-stop-daemon --stop --exec /usr/sbin/dmeventd --pidfile /var/run/dmeventd.pid
+	start-stop-daemon --stop --exec /usr/sbin/dmeventd --pidfile /run/dmeventd.pid
 	eend $?
 }
 

@@ -24,15 +24,15 @@ start() {
 	ebegin "Starting laptop_mode"
 	# bug #342049 fix
 	# check if dir exists and creates if it doesn't
-	checkpath -q -d -m 755 /var/run/laptop-mode-tools
-	touch /var/run/laptop-mode-tools/enabled
+	checkpath -q -d -m 755 /run/laptop-mode-tools
+	touch /run/laptop-mode-tools/enabled
 	/usr/sbin/laptop_mode auto >/dev/null
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping laptop_mode"
-	rm -f /var/run/laptop-mode-tools/enabled
+	rm -f /run/laptop-mode-tools/enabled
 	/usr/sbin/laptop_mode stop >/dev/null
 	eend $?
 }
@@ -45,7 +45,7 @@ reload() {
 
 	ebegin "Reloading laptop_mode"
 	/usr/sbin/laptop_mode stop >/dev/null
-	rm -f /var/run/laptop-mode-tools/*
+	rm -f /run/laptop-mode-tools/*
 	/usr/sbin/laptop_mode auto force >/dev/null
 	eend $?
 }

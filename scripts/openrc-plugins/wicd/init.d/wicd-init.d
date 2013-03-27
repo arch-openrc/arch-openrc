@@ -5,7 +5,7 @@
 opts="start stop restart"
 
 WICD_DAEMON=/usr/sbin/wicd
-WICD_PIDFILE=/var/run/wicd/wicd.pid
+WICD_PIDFILE=/run/wicd/wicd.pid
 
 depend() {
 	need dbus

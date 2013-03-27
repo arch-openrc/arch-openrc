@@ -6,7 +6,7 @@
 [ -e /etc/conf.d/nfs ] && . /etc/conf.d/nfs
 
 rpc_bin=/sbin/rpc.statd
-rpc_pid=/var/run/rpc.statd.pid
+rpc_pid=/run/rpc.statd.pid
 
 depend() {
 	use ypbind net
@@ -28,6 +28,6 @@ start() {
 
 stop() {
 	ebegin "Stopping NFS statd"
-	start-stop-daemon --stop --exec ${rpc_bin} --pidfile /var/run/rpc.statd.pid
+	start-stop-daemon --stop --exec ${rpc_bin} --pidfile /run/rpc.statd.pid
 	eend $?
 }

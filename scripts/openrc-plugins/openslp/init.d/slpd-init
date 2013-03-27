@@ -78,12 +78,12 @@ checkconfig() {
 start() {
 	checkconfig || return 1
 	ebegin "Starting slpd"
-	start-stop-daemon --start --quiet --exec /usr/sbin/slpd --pidfile /var/run/slpd.pid
+	start-stop-daemon --start --quiet --exec /usr/sbin/slpd --pidfile /run/slpd.pid
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping slpd"
-	start-stop-daemon --stop --quiet --pidfile /var/run/slpd.pid
+	start-stop-daemon --stop --quiet --pidfile /run/slpd.pid
 	eend $?
 }
