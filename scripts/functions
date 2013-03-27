@@ -27,11 +27,11 @@ fix() {
 	# $1: filename
 	# $2: pattern1
 	# $3: pattern2
-	if grep -q "$2" $1; then
+	if ! grep -Fq "$3" $1; then
 		echo "FAIL" `basename $1` $2
 		echo
 		echo "FIXING ..."
-		sed -i "s|$2|$3|" $1
+		sed  -e "s|$2|$3|" -i $1
 		echo
 		echo "DONE" `basename $1` $3
 	else
@@ -44,44 +44,95 @@ check(){
 	# $2: file
 	# $3: dirname
 	if [ "$1" = "init.d" ]; then
-		#fix $2 '/var/run' '/run'
+		
+		fix $2 '/var/run' '/run'
+		
 		if [ "$3" = "dbus" ]; then
-			fix $2 '/run/dbus.pid' '/run/dbus/pid'
+		
+			fix $2 'dbus.pid' 'dbus/pid'
+		
 		elif [ "$3" = "bind" ]; then
-				fix $2 '/etc/bind/named.conf' '/etc/named.conf'
+			
+			fix $2 '/etc/bind/named.conf' '/etc/named.conf'
+		
 		elif [ "$3" = "dhcp" ]; then
+			
+			if [ `basename $2 | grep "dhcpd"` ];then
+			
 				fix $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
+			
+			fi
+		
 		elif [ "$3" = "ufw" ]; then
-				fix $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
+			
+			fix $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
+		
 		elif [ "$3" = "xorg-server" ]; then
+		
+			if [ `basename $2 | grep "xdm.initd"` ];then
 				fix $2 '/etc/profile.env' '/etc/profile'
 				fix $2 'ROOTPATH' 'PATH'
+			fi
+		
 		elif [ "$3" = "mysql" ]; then
-				fix $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
+			
+			fix $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
+		
 		elif [ "$3" = "ntp" ]; then
+			
+			if [ `basename $2 | grep "ntpd"` ];then
 				fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
+			fi
+			
 		elif [ "$3" = "openntpd" ]; then
-				fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+			
+			fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+		
 		fi
-		if [ "$pref" = "/usr" ]; then
-			fix $2 '#!/sbin/runscript' "#!$pref/sbin/runscript"
+		
+		if [ "$pre" = "/usr" ]; then
+			
+			fix $2 '#!/sbin/runscript' "#!$pre/sbin/runscript"
+			
 			if [ "$3" = "lvm2" ]; then
-				fix $2 '/bin/lvm /sbin/lvm' "$pref/bin/lvm $pref/sbin/lvm"	
-				fix $2 ' /sbin/dmsetup ' " $pref/sbin/dmsetup "
-				fix $2 ' /sbin/dmeventd ' " $pref/sbin/dmeventd "	
+				
+				if [ `basename $2 | grep "lvm"` ];then
+					fix $2 '/bin/lvm /sbin/lvm' "$pre/bin/lvm $pre/sbin/lvm"
+				fi
+				
+				if [ `basename $2 | grep "device-mapper"` ];then
+					fix $2 '/sbin/dmsetup' "$pre/sbin/dmsetup"
+				fi
+				
+				if [ `basename $2 | grep "dmeventd"` ];then				
+					fix $2 '/sbin/dmeventd' "$pre/sbin/dmeventd"
+				fi
+				
 			elif [ "$3" = "rpcbind" ]; then
-				fix $2 '/sbin/rpcbind' "$pref/bin/rpcbind"
+				
+				fix $2 '/sbin/rpcbind' "$pre/bin/rpcbind"
+			
 			elif [ "$3" = "iptables" ]; then
-				fix $2 'iptables_bin="/sbin' 'iptables_bin="/usr/sbin'
+			
+				fix $2 '"/sbin' '"/usr/sbin'
+			
 			fi
 		fi
 	fi	
 }
 
+setdist(){
+	if [ "$DISTRIB_DESCRIPTION" == "Arch Linux" ];then
+		pre="/usr"
+	else
+		pre=""
+	fi
+}
+
 config() {
 	# $1: cfg file
 	# $2: type
-	setdist
+	
 	while read line; do
 		local OIFS=$IFS
 		local IFS='/'
@@ -98,16 +149,9 @@ config() {
 	done < $1
 }
 
-setdist(){
-	if [ "$DISTRIB_DESCRIPTION" == "Arch Linux" ];then
-		pref="/usr"
-	else
-		pref=""
-	fi
-}
-
 main(){	
-	config "confd.cfg" "conf.d"
-	config "initd.cfg" "init.d" #> initd.log
-	#tar -cvjf "${datadir}.tar.${ext}"  ${datadir}/${dirname}
+	setdist
+	config "confd.list" "conf.d"
+	config "initd.list" "init.d"
+	tar -cvjf "${datadir}.tar.${ext}"  ${datadir}/${dirname}
 }

@@ -21,5 +21,5 @@ package() {
 	install -Dm755 "$srcdir/90-consolekit-3" "$pkgdir/etc/X11/xinit/xinitrc.d/90-consolekit"
 }
 
-sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716'
+sha256sums=('6bf73dc52a79200e95883491e60b227d02a7cd030f3f532374037c65d2a3d48d'
             '91e0900995f7db536220065959d236fb75ec2c77096981a142e2e948518d9761')

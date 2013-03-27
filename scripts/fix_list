@@ -1,7 +1,0 @@
-==bind==
-NAMED_CONF=${CHROOT}/etc/bind/named.conf
-
-==cups==
-
-
-

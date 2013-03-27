@@ -1,7 +1,7 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
 _pn=openrc-plugins
-_rn=bitlbee
+_rn=dcron
 
 pkgname=$_rn-openrc
 pkgver=1.1.1
@@ -10,13 +10,14 @@ pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-misc')
 depends=('openrc' "$_rn")
+provides=('openrc-cron')
+conflicts=('cronie-openrc' 'fcron-openrc')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/bitlbee.confd" "$pkgdir/etc/conf.d/bitlbee"
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/bitlbee.initd" "$pkgdir/etc/init.d/bitlbee"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/dcron.confd-4.4" "$pkgdir/etc/conf.d/$_rn"
+	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/dcron.init-4.5" "$pkgdir/etc/init.d/$_rn"
 }
 sha256sums=('6bf73dc52a79200e95883491e60b227d02a7cd030f3f532374037c65d2a3d48d')

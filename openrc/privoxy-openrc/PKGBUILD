@@ -18,4 +18,4 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 package() {
 	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/privoxy.initd" "$pkgdir/etc/init.d/privoxy"
 }
-sha256sums=('3887e0a3dceae9bff4f1ccb180d76391d0420fd711e2607d4cabaafe57ddc716')
+sha256sums=('6bf73dc52a79200e95883491e60b227d02a7cd030f3f532374037c65d2a3d48d')
