@@ -68,3 +68,5 @@ net-ftp/pure-ftpd/files/pure-ftpd.rc11
 sys-process/dcron/files/dcron.init-4.5
 app-admin/sysklogd/files/sysklogd.rc7
 net-nds/openldap/files/slapd-initd-2.4.28-r1
+app-admin/rsyslog/files/7-stable/rsyslog.initd
+net-fs/samba/files/4.0/samba4.initd-r1

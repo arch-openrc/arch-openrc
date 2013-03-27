@@ -35,3 +35,5 @@ net-ftp/pure-ftpd/files/pure-ftpd.conf_d-3
 sys-process/dcron/files/dcron.confd-4.4
 app-admin/sysklogd/files/sysklogd.confd
 net-nds/openldap/files/slapd-confd-2.4.28-r1
+app-admin/rsyslog/files/7-stable/rsyslog.confd
+net-fs/samba/files/4.0/samba4.confd
