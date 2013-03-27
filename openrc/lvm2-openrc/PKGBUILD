@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=lvm2
 
 pkgname=$_rn-openrc
-pkgver=1.1.1
+pkgver=0.1
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -16,10 +16,10 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/conf.d/lvm.confd-2.02.28-r2" "$pkgdir/etc/conf.d/lvm"
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/lvm.rc-2.02.95-r2" "$pkgdir/etc/init.d/lvm"
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/lvm.confd-2.02.28-r2" "$pkgdir/etc/conf.d/lvm"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lvm.rc-2.02.95-r2" "$pkgdir/etc/init.d/lvm"
 	
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/device-mapper.rc-2.02.95-r2" "$pkgdir/etc/init.d/device-mapper"
-	install -Dm755 "$srcdir/$_pn-$pkgver/$_rn/init.d/dmeventd.initd-2.02.67-r1" "$pkgdir/etc/init.d/dmeventd"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/device-mapper.rc-2.02.95-r2" "$pkgdir/etc/init.d/device-mapper"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/dmeventd.initd-2.02.67-r1" "$pkgdir/etc/init.d/dmeventd"
 }
-sha256sums=('6bf73dc52a79200e95883491e60b227d02a7cd030f3f532374037c65d2a3d48d')
+sha256sums=('4bd600d77e344a604c9ff751613a31bf65395c6cc0a97083a76d19b3b8cdb39a')

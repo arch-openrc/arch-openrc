@@ -3,7 +3,7 @@
 _rn="apache"
 
 pkgname=$_rn-openrc
-pkgver=1.1.1
+pkgver=0.1
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -17,11 +17,13 @@ sha256sums=('cf27447dc87b4c145e50a6850245e3ed8d350bc3500bb249035322b23d03ccd2')
 
 package() {
 
-	 install -Dm755 "${srcdir}/gentoo-apache-2.4.4/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
-	 
-	 sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "${srcdir}/gentoo-apache-2.4.4/init/apache2.initd"
-	 
-	 install -Dm755 "${srcdir}/gentoo-apache-2.4.4/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+	install -Dm755 "${srcdir}/gentoo-apache-2.4.4/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+	
+	install -Dm755 "${srcdir}/gentoo-apache-2.4.4/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+		 
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -e 's|apache2|httpd|' -i "$pkgdir/etc/init.d/httpd" 
+			
+	sed -e 's|apache2|httpd|' -i "$pkgdir/etc/init.d/httpd"
 	 
 }
 

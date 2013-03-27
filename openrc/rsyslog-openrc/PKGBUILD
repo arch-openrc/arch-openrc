@@ -4,7 +4,7 @@ _rn="rsyslog"
 _ver=20130325
 
 pkgname=$_rn-openrc
-pkgver=1.1.1
+pkgver=0.1
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -17,11 +17,13 @@ source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/app-admin/rsysl
 	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/app-admin/rsyslog/files/7-stable/rsyslog.initd")
 
 package() {
+	
 	install -Dm755 "$srcdir/rsyslog.confd" "$pkgdir/etc/conf.d/rsyslog"
+	
+	install -Dm755 "$srcdir/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog"
 		
 	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/rsyslog.initd"
-
-	install -Dm755 "$srcdir/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog"
+		
 }
 sha256sums=('ff2634927d3208ac2c82d352f0a7dc9fef1d0ee098d18f818d4417ac04516e9c'
             '7b3b32e89c051566b68c5e5a077cd5960da183e071e411b1248d4e4702a24279')

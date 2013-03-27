@@ -1,7 +1,7 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
 _pn=openrc-plugins
-_rn=rsync
+_rn=openldap
 
 pkgname=$_rn-openrc
 pkgver=0.1
@@ -10,13 +10,12 @@ pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-misc')
 depends=('openrc' "$_rn")
+provides=('openrc-server')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/rsyncd.conf.d" "$pkgdir/etc/conf.d/rsyncd"
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rsyncd.init.d-r1" "$pkgdir/etc/init.d/rsyncd"
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/slapd-confd-2.4.28-r1" "$pkgdir/etc/conf.d/slapd"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/slapd-initd-2.4.28-r1" "$pkgdir/etc/init.d/slapd"
 }
-sha256sums=('4bd600d77e344a604c9ff751613a31bf65395c6cc0a97083a76d19b3b8cdb39a')

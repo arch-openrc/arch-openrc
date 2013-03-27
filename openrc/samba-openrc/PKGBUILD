@@ -4,7 +4,7 @@ _rn="samba"
 _ver=20130325
 
 pkgname=$_rn-openrc
-pkgver=1.1.1
+pkgver=0.1
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -13,15 +13,19 @@ license=('GPL2')
 groups=('openrc-server')
 depends=('openrc' "$_rn")
 install=$_rn.install
-source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.confd"
-	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.initd")
-
+#source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.confd"
+#	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.initd")
+source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/4.0/samba4.confd"
+		"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/4.0/samba4.initd-r1")
+		
 package() {
+	
 	install -Dm755 "$srcdir/samba.confd" "$pkgdir/etc/conf.d/samba"
+
+	install -Dm755 "$srcdir/samba.initd-r1" "$pkgdir/etc/init.d/samba"
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/samba.initd"
-	
-	install -Dm755 "$srcdir/samba.initd" "$pkgdir/etc/init.d/samba"
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$pkgdir/etc/init.d/samba"
+		
 }
-sha256sums=('02ab523d695b5ae044b871923ad817f8931a6c20c5bfefad98a4369d7b3742e3'
-            '3eabeabbe203fcdcea37d53048bdbf7e6cfaaf795bef8b98ec37aa572e57d052')
+sha256sums=('53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
+            '4d00243dbd85ee81e2e989f1ac8035c1c1b9379133584291b959bb7bc45fe780')
