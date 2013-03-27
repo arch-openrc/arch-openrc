@@ -1,7 +1,6 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="samba"
-_ver=20130325
+_rn=samba
 
 pkgname=$_rn-openrc
 pkgver=0.1
@@ -13,19 +12,12 @@ license=('GPL2')
 groups=('openrc-server')
 depends=('openrc' "$_rn")
 install=$_rn.install
-#source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.confd"
-#	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/3.6/samba.initd")
-source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/4.0/samba4.confd"
-		"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-fs/samba/files/4.0/samba4.initd-r1")
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 		
 package() {
 	
-	install -Dm755 "$srcdir/samba.confd" "$pkgdir/etc/conf.d/samba"
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/samba4.confd" "$pkgdir/etc/conf.d/samba"
 
-	install -Dm755 "$srcdir/samba.initd-r1" "$pkgdir/etc/init.d/samba"
-	
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$pkgdir/etc/init.d/samba"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/samba4.initd-r1" "$pkgdir/etc/init.d/samba"
 		
 }
-sha256sums=('53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
-            '4d00243dbd85ee81e2e989f1ac8035c1c1b9379133584291b959bb7bc45fe780')

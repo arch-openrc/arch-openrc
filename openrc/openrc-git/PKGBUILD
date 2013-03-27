@@ -20,14 +20,15 @@ depends=('bash'
 	'psmisc'
 	'sysvinit')
 makedepends=('git')
-optdepends=('openrc-virtual-syslog'
-	'openrc-virtual-cron')
+#optdepends=('openrc-virtual-syslog'
+#	'openrc-virtual-cron')
+optdepends=('udev-openrc')
 provides=('openrc')
 conflicts=('initscripts'
 	"openrc"
 	"openrc4arch-git" 
 	'openrc4arch')
-replaces=('openrc' 'openrc4arch')
+replaces=('openrc')
 backup=('etc/rc.conf'
 	'etc/conf.d/consolefont'
 	'etc/conf.d/keymaps'

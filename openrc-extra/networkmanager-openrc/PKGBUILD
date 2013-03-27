@@ -19,7 +19,7 @@ depends=('dbus-glib'
 		'iproute2'
 		'libnl'
 		'nss'
-		'polkit'
+		'polkit-consolekit'
 		'udev'
 		'wpa_supplicant'
 		'ppp' 'dhclient'
@@ -33,7 +33,7 @@ optdepends=('modemmanager: for modem management service'
             'bluez: Bluetooth support'
             'openresolv: resolvconf support')
 provides=('networkmanager')
-conflicts=('networkmanager' 'networkmanager-openrc4arch')
+conflicts=('networkmanager')
 options=('!libtool')
 backup=("etc/$_rn/$_rn.conf")
 install=networkmanager.install
@@ -89,14 +89,14 @@ package() {
 	
 	rm -r "$pkgdir/var/run"
 	
-	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -e 's/NetworkManager/networkmanager/' -i "$srcdir/10-openrc-status-r3"
+	install -Dm755 "$srcdir/conf.d.$_rn" "$pkgdir/etc/conf.d/networkmanager"
+	
+	install -Dm755 "$srcdir/init.d.$_rn" "$pkgdir/etc/init.d/networkmanager"
 	
 	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
 	
-	install -Dm755 "$srcdir/conf.d.$_rn" "$pkgdir/etc/conf.d/networkmanager"
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$pkgdir/etc/init.d/networkmanager"
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$srcdir/init.d.$_rn"
-	
-	install -Dm755 "$srcdir/init.d.$_rn" "$pkgdir/etc/init.d/networkmanager"
+	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -e 's/NetworkManager/networkmanager/' -i "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
 }
 
