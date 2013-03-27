@@ -37,3 +37,4 @@ app-admin/sysklogd/files/sysklogd.confd
 net-nds/openldap/files/slapd-confd-2.4.28-r1
 app-admin/rsyslog/files/7-stable/rsyslog.confd
 net-fs/samba/files/4.0/samba4.confd
+net-fs/samba/files/3.6/samba.confd

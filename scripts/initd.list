@@ -70,3 +70,4 @@ app-admin/sysklogd/files/sysklogd.rc7
 net-nds/openldap/files/slapd-initd-2.4.28-r1
 app-admin/rsyslog/files/7-stable/rsyslog.initd
 net-fs/samba/files/4.0/samba4.initd-r1
+net-fs/samba/files/3.6/samba.initd
