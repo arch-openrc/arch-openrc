@@ -30,14 +30,14 @@ start() {
 	checkconfig || return 1
 
 	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --exec /usr/sbin/hostapd \
+	start-stop-daemon --start --exec /usr/bin/hostapd \
 		-- -B ${OPTIONS} ${CONFIGS}
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --exec /usr/sbin/hostapd
+	start-stop-daemon --stop --exec /usr/bin/hostapd
 	eend $?
 }
 
@@ -45,6 +45,6 @@ reload() {
 	checkconfig || return 1
 
 	ebegin "Reloading ${SVCNAME} configuration"
-	kill -HUP $(pidof /usr/sbin/hostapd) > /dev/null 2>&1
+	kill -HUP $(pidof /usr/bin/hostapd) > /dev/null 2>&1
 	eend $?
 }
