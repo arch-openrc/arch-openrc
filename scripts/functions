@@ -18,12 +18,9 @@ get_file() {
 	# $1: file
 	# $2: src
 	if [ ! -f "$1" ]; then
-		echo "DOWLOADING" $2
-		echo
-		curl -o "$1" "$2"
-		echo
-		echo "DONE" $1
-		echo
+		echo "DOWLOADING" $2; echo
+		curl -o "$1" "$2"; echo
+		echo "DONE" $1; echo
 	fi
 }
 
