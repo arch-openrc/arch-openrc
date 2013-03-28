@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=wicd
 
 pkgname=$_rn-openrc
-pkgver=0.1
+pkgver=0.2
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -14,7 +14,7 @@ groups=('openrc-misc')
 depends=('openrc' "$_rn")
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
-sha256sums=('6b3e30f17b2701be93d659221e10f6d66b6ef733b4e7dd5f5ffc5299b1b248a3')
+sha256sums=('e9acd161c1085abab1a881e74a48810f28befafc6872a39dda4fd914d863df74')
 
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/wicd-init.d" "$pkgdir/etc/init.d/wicd"
