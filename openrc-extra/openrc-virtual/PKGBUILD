@@ -1,80 +1,22 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-pkgname=('openrc-virtual-cron'
-	'openrc-virtual-db'
-	'openrc-virtual-dhcp'
-	'openrc-virtual-ftp'
-	'openrc-virtual-proxy'
-	'openrc-virtual-syslog'
-	'openrc-virtual-timed'
-	'openrc-virtual-web'
-	'openrc-virtual-wireless')
-pkgbase=openrc4arch-virtual
-pkgver=1.1
-pkgrel=3
-pkgdesc="OpenRC virtual package"
+pkgbase=virtual-openrc
+pkgname=('virtual-cron-openrc' 'virtual-timed-openrc')
+pkgver=0.1
+pkgrel=1
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-makedepends=('openrc-cron'
-	'openrc-db'
-	'openrc-ftp'
-	'openrc-proxy'
-	'openrc-syslog'
-	'openrc-timed'
-	'openrc-web'
-	'openrc-wireless')
+makedepends=('openrc-cron' 'openrc-timed')
 
-package_openrc4arch-virtual-cron() {
+package_virtual-cron-openrc() {
+	pkgdesc="OpenRC crond virtual package"
 	groups=('openrc-base')
 	depends=('openrc-cron')
-	replaces=('openrc-cron')
 }
 
-package_openrc4arch-virtual-db() {
-	groups=('openrc-server')
-	depends=('openrc-db')
-	replaces=('openrc-db')
-}
-
-package_openrc4arch-virtual-dhcp() {
-	groups=('openrc-misc')
-	depends=('openrc-dhcp')
-	replaces=('openrc-dhcp')
-}
-
-package_openrc4arch-virtual-ftp() {
-	groups=('openrc-server')
-	depends=('openrc-ftp')
-	replaces=('openrc-ftp')
-}
-
-package_openrc4arch-virtual-proxy() {
-	groups=('openrc-server')
-	depends=('openrc-proxy')
-	replaces=('openrc-proxy')
-}
-
-package_openrc4arch-virtual-syslog() {
-	groups=('openrc-misc')
-	depends=('openrc-syslog')
-	replaces=('openrc-syslog')
-}
-
-package_openrc4arch-virtual-timed() {
+package_virtual-timed-openrc() {
+	pkgdesc="OpenRC ntpd virtual package"
 	groups=('openrc-misc')
 	depends=('openrc-timed')
-	replaces=('openrc-timed')
-}
-
-package_openrc4arch-virtual-web() {
-	groups=('openrc-server')
-	depends=('openrc-web')
-	replaces=('openrc-web')
-}
-
-package_openrc4arch-virtual-wireless() {
-	groups=('openrc-base')
-	depends=('openrc-wireless')
-	replaces=('openrc-wireless')
 }
