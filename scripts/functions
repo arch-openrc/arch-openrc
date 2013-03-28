@@ -4,7 +4,7 @@
 
 . /etc/lsb-release
 
-VER=0.1 #"$(date +%Y%m%d)"
+VER=0.2 #"$(date +%Y%m%d)"
 PKGNAME='openrc-plugins'
 DATADIR="${PKGNAME}"
 EXT="xz"
@@ -105,6 +105,16 @@ check(){
 		elif [ "$3" = "openntpd" ]; then
 			
 			mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+			
+		elif [ "$3" = "virtualbox-guest-additions" ]; then
+			
+			mk_str $2 'vboxguest-service' 'VBoxService'
+			
+			mk_str $2 '/usr/sbin/VBoxService' '/usr/bin/VBoxService'
+			
+		elif [ "$3" = "hostapd" ]; then
+			
+			mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'	
 		
 		fi
 		
@@ -179,5 +189,5 @@ main(){
 	set_dist
 	setup "confd.list" "conf.d"
 	setup "initd.list" "init.d"
-	tar -cvjf "${DATADIR}-${VER}.tar.${EXT}"  ${DATADIR}/${dirname}
+	#tar -cvjf "${DATADIR}-${VER}.tar.${EXT}"  ${DATADIR}/${dirname}
 }
