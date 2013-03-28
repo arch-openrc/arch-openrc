@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/ufw.confd" "$pkgdir/etc/conf.d/ufw"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/ufw-2.initd" "$pkgdir/etc/init.d/ufw"
 }
-sha256sums=('4bd600d77e344a604c9ff751613a31bf65395c6cc0a97083a76d19b3b8cdb39a')
+sha256sums=('6b3e30f17b2701be93d659221e10f6d66b6ef733b4e7dd5f5ffc5299b1b248a3')

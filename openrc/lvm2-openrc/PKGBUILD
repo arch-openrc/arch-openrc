@@ -22,4 +22,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/device-mapper.rc-2.02.95-r2" "$pkgdir/etc/init.d/device-mapper"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/dmeventd.initd-2.02.67-r1" "$pkgdir/etc/init.d/dmeventd"
 }
-sha256sums=('4bd600d77e344a604c9ff751613a31bf65395c6cc0a97083a76d19b3b8cdb39a')
+sha256sums=('6b3e30f17b2701be93d659221e10f6d66b6ef733b4e7dd5f5ffc5299b1b248a3')

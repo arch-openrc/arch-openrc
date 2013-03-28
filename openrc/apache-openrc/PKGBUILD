@@ -1,6 +1,8 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn="apache"
+_rn=apache
+_rnv=2.4.4
+_rel=20130227
 
 pkgname=$_rn-openrc
 pkgver=0.1
@@ -12,14 +14,14 @@ license=('GPL2')
 depends=('openrc' "$_rn")
 provides=('openrc-web')
 install=$_rn.install
-source=("http://dev.gentoo.org/~patrick/dist/$_rn/gentoo-$_rn-2.4.4-20130227.tar.bz2")
+source=("http://dev.gentoo.org/~patrick/dist/$_rn/gentoo-$_rn-$_rnv-$_rel.tar.bz2")
 sha256sums=('cf27447dc87b4c145e50a6850245e3ed8d350bc3500bb249035322b23d03ccd2')
 
 package() {
 
-	install -Dm755 "${srcdir}/gentoo-apache-2.4.4/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+	install -Dm755 "${srcdir}/gentoo-apache-$_rnv/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
 	
-	install -Dm755 "${srcdir}/gentoo-apache-2.4.4/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+	install -Dm755 "${srcdir}/gentoo-apache-$_rnv/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
 		 
 	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -e 's|apache2|httpd|' -i "$pkgdir/etc/init.d/httpd" 
 			

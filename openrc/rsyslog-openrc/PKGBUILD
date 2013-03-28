@@ -21,3 +21,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog"
 		
 }
+sha256sums=('6b3e30f17b2701be93d659221e10f6d66b6ef733b4e7dd5f5ffc5299b1b248a3')
