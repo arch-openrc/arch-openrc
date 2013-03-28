@@ -1,0 +1,57 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+# Contributor: williamh <williamh@gentoo.org>
+
+pkgname=openrc
+pkgver=0.12.0
+pkgrel=1
+pkgdesc="OpenRC universal init system."
+arch=('i686' 'x86_64')
+url="http://www.gentoo.org/proj/en/base/openrc/"
+license=('BSD')
+groups=('openrc-base')
+depends=('bash'
+		'coreutils'
+		'glibc'
+		'inetutils'
+		'ncurses'
+		'net-tools'
+		'pam'
+		'psmisc'
+		'sysvinit')
+optdepends=('udev-openrc')
+conflicts=('initscripts' 'openrc-git')
+backup=('etc/rc.conf'
+		'etc/inittab'
+		'etc/conf.d/consolefont'
+		'etc/conf.d/keymaps'
+		'etc/conf.d/hwclock'
+		'etc/conf.d/hostname'
+		'etc/conf.d/modules')
+source=("http://dev.gentoo.org/~williamh/dist/$pkgname-$pkgver.tar.bz2"
+		'openrc.logrotate')
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+
+	make \
+		SYSCONFDIR='/etc' \
+		OS='Linux' \
+		BRANDING='Arch Linux' \
+		PREFIX='/usr' \
+		LIBEXECDIR='/usr/lib/rc' \
+		MKSELINUX='no' \
+		MKPAM='pam' \
+		MKTERMCAP='ncurses' \
+		MKNET='oldnet' \
+		DESTDIR="$pkgdir" \
+		install
+
+	install -m 644 "$srcdir/$pkgname-$pkgver/support/sysvinit/inittab" "$pkgdir/etc/inittab"
+
+	install -Dm 0644 "$srcdir/$pkgname.logrotate" "$pkgdir/etc/logrotate.d/$pkgname"
+
+	install -m 644 "$srcdir/$pkgname-$pkgver/conf.d/net" "$pkgdir/etc/conf.d/net"
+	
+	mkdir "$pkgdir/sbin"
+	ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
+}
