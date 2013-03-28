@@ -1,4 +1,4 @@
-_service="iptables-openrc"
+_service="iptables"
 _rlvl="default"
 
 post_install() {

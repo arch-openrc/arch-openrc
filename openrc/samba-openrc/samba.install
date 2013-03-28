@@ -1,4 +1,4 @@
-_service="samba-openrc"
+_service="samba"
 _rlvl="default"
 
 post_install() {

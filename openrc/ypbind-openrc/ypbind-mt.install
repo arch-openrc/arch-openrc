@@ -1,4 +1,4 @@
-_service="ypbind-openrc"
+_service="ypbind"
 _rlvl="default"
 
 post_install() {

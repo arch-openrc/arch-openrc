@@ -1,4 +1,4 @@
-_service="gpm-openrc"
+_service="gpm"
 _rlvl="default"
 
 post_install() {

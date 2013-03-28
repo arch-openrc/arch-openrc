@@ -1,4 +1,4 @@
-_service="postgresql-openrc"
+_service="postgresql"
 _rlvl="default"
 
 post_install() {

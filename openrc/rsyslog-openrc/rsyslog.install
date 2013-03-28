@@ -1,4 +1,4 @@
-_service="rsyslog-openrc"
+_service="rsyslog"
 _rlvl="default"
 
 post_install() {

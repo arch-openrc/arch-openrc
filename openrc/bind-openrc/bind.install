@@ -1,4 +1,4 @@
-_service="named-openrc"
+_service="named"
 _rlvl="default"
 
 post_install() {
