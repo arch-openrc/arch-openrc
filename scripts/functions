@@ -1,5 +1,6 @@
 #!/bin/bash 
-# Author: udeved@openrc4arch.site40.net
+# Copyright 2013 udeved@openrc4arch.site40.net
+# Distributed under the terms of the GNU General Public License v2
 
 . /etc/lsb-release
 
@@ -13,7 +14,7 @@ mkdirs() {
 	mkdir -p "${DATADIR}/$1"
 }
 
-download() {
+get_file() {
 	# $1: file
 	# $2: src
 	if [ ! -f "$1" ]; then
@@ -26,35 +27,32 @@ download() {
 	fi
 }
 
-fix() {
+mk_str() {
 	# $1: filename
 	# $2: pattern1
 	# $3: pattern2
 	if ! grep -Fq "$3" $1; then
-		echo "FAIL" `basename $1` $2
-		echo
-		echo "FIXING ..."
+		echo "FAIL" `basename $1` "DETECTED:" $2; echo
+		echo "FIXING ..."; echo
 		sed  -e "s|$2|$3|g" -i $1
-		echo
-		echo "DONE" `basename $1` $3
+		echo "DONE" `basename $1` "FIXED:" $3; echo
 	else
-		echo "PASS" `basename $1` $3
+		echo "PASS" `basename $1` "TEST:" $3; echo
 	fi
+		
 }
 
-fix_run(){
+rm_str(){
 	# $1: filename
 	# $2: pattern1
 	# $3: pattern2
 	if  grep -Fq "$2" "$1"; then 
-		echo "FAIL" `basename $1` $2
-		echo
-		echo "FIXING ..."
+		echo "FAIL" `basename $1` "DETECTED:" $2; echo
+		echo "FIXING ... "; echo
 		sed  -e "s|$2|$3|g" -i $1
-		echo
-		echo "DONE" `basename $1` $3
+		echo "DONE" `basename $1` "FIXED:" $3; echo
 	else
-		echo "PASS" `basename $1` $3
+		echo "PASS" `basename $1` "TEST:" $3; echo
 	fi
 
 }
@@ -65,76 +63,76 @@ check(){
 	# $3: dirname
 	if [ "$1" = "init.d" ]; then
 		
-		fix_run "$2" '/var/run' '/run'
+		rm_str "$2" '/var/run' '/run'
 		
 		if [ "$3" = "dbus" ]; then
 		
-			fix $2 'dbus.pid' 'dbus/pid'
+			mk_str $2 'dbus.pid' 'dbus/pid'
 		
 		elif [ "$3" = "bind" ]; then
 			
-			fix $2 '/etc/bind/named.conf' '/etc/named.conf'
+			mk_str $2 '/etc/bind/named.conf' '/etc/named.conf'
 		
 		elif [ "$3" = "dhcp" ]; then
 			
 			if [ `basename $2 | grep "dhcpd"` ];then
 			
-				fix $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
+				mk_str $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
 			
 			fi
 		
 		elif [ "$3" = "ufw" ]; then
 			
-			fix $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
+			mk_str $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
 		
 		elif [ "$3" = "xorg-server" ]; then
 		
 			if [ `basename $2 | grep "xdm.initd"` ];then
-				fix $2 '/etc/profile.env' '/etc/profile'
-				fix $2 'ROOTPATH' 'PATH'
+				rm_str $2 '/etc/profile.env' '/etc/profile'
+				mk_str $2 'ROOTPATH' 'PATH'
 			fi
 		
 		elif [ "$3" = "mysql" ]; then
 			
-			fix $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
+			mk_str $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
 		
 		elif [ "$3" = "ntp" ]; then
 			
 			if [ `basename $2 | grep "ntpd"` ];then
-				fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
+				mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
 			fi
 			
 		elif [ "$3" = "openntpd" ]; then
 			
-			fix $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+			mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
 		
 		fi
 		
 		if [ "${PRE}" = "/usr" ]; then
 			
-			fix $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
+			mk_str $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
 			
 			if [ "$3" = "lvm2" ]; then
 				
 				if [ `basename $2 | grep "lvm"` ];then
-					fix $2 '/bin/lvm /sbin/lvm' "${PRE}/bin/lvm ${PRE}/sbin/lvm"
-				fi
-				
-				if [ `basename $2 | grep "device-mapper"` ];then
-					fix $2 '/sbin/dmsetup' "${PRE}/sbin/dmsetup"
-				fi
-				
-				if [ `basename $2 | grep "dmeventd"` ];then				
-					fix $2 '/sbin/dmeventd' "${PRE}/sbin/dmeventd"
+					
+					mk_str $2 '/bin/lvm /sbin/lvm' "${PRE}/bin/lvm ${PRE}/sbin/lvm"
+								
+				elif [ `basename $2 | grep "device-mapper"` ];then
+					
+					mk_str $2 '/sbin/dmsetup' "${PRE}/sbin/dmsetup"
+								
+				elif [ `basename $2 | grep "dmeventd"` ];then				
+					mk_str $2 '/sbin/dmeventd' "${PRE}/sbin/dmeventd"
 				fi
 				
 			elif [ "$3" = "rpcbind" ]; then
 				
-				fix $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"
+				mk_str $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"
 			
 			elif [ "$3" = "iptables" ]; then
 			
-				fix $2 '"/sbin' '"/usr/sbin'
+				mk_str $2 '/sbin/$' '/usr/sbin/$'
 			
 			fi
 		fi
@@ -143,7 +141,7 @@ check(){
 	fi	
 }
 
-setdist(){
+set_dist(){
 	if [ "$DISTRIB_DESCRIPTION" = "Arch Linux" ];then
 		PRE="/usr"
 	else
@@ -151,7 +149,7 @@ setdist(){
 	fi
 }
 
-config() {
+setup() {
 	# $1: cfg file
 	# $2: type
 	
@@ -172,14 +170,14 @@ config() {
 		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 		local file="${DATADIR}/${dirname}/$2/${filename}"
 		local src="${url}/${line}"
-		download "${file}" "${src}"
+		get_file "${file}" "${src}"
 		check "$2" "${file}" "${dirname}"
 	done < $1
 }
 
 main(){	
-	setdist
-	config "confd.list" "conf.d"
-	config "initd.list" "init.d"
-	#tar -cvjf "${DATADIR}-${VER}.tar.${EXT}"  ${DATADIR}/${dirname}
+	set_dist
+	setup "confd.list" "conf.d"
+	setup "initd.list" "init.d"
+	tar -cvjf "${DATADIR}-${VER}.tar.${EXT}"  ${DATADIR}/${dirname}
 }
