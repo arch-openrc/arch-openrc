@@ -1,0 +1,25 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn=inetutils
+
+pkgname=$_rn-openrc
+pkgver=0.2
+pkgrel=1
+pkgdesc="OpenRC ftpd init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-base')
+depends=('openrc' "$_rn")
+install=$_rn.install
+source=("$_rn.confd" "$_rn.initd")
+
+package() {
+
+	install -Dm755 "${srcdir}/$_rn.confd" "${pkgdir}/etc/init.d/ftpd"
+	
+	install -Dm755 "${srcdir}/$_rn.initd" "${pkgdir}/etc/init.d/ftpd"
+	
+}	
+sha256sums=('59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
+            '0384e9eb3f9ad15709fbfd259b7cc3657a66d820663aa68ea3af523d5d7d0ece')
