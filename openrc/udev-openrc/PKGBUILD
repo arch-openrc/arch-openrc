@@ -4,7 +4,7 @@ _pn=udev-init-scripts
 
 pkgname=udev-openrc
 pkgver=25
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC udev init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
