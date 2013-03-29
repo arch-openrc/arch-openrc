@@ -1,4 +1,4 @@
-pkgbuilds
+OpenRC pkgbuilds
 =========
 
 ####Groups:####
@@ -17,9 +17,9 @@ pkgbuilds
 * openrc4arch-virtual-cron
 * openrc4arch-virtual-timed
 
-####Conflicting /etc/conf.d/*:####
+####ToDo####
 
-##ToDo##
+* rename conflicting /etc/conf.d/*
 
 * named-openrc
 * gpm-openrc
