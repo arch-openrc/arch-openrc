@@ -2,16 +2,19 @@
 # Copyright 2013 udeved@openrc4arch.site40.net
 # Distributed under the terms of the GNU General Public License v2
 
-. /etc/lsb-release
+if [[ -e '/etc/lsb-release' ]];then
+	. /etc/lsb-release
+else
+	DISTRIB_ID="unknown"
+fi
 
-VER=0.2 #"$(date +%Y%m%d)"
+VER=0.2
 PKGNAME='openrc-plugins'
-DATADIR="${PKGNAME}"
 EXT="xz"
 PRE=""
 
 mkdirs() {
-	mkdir -p "${DATADIR}/$1"
+	mkdir -p "${PKGNAME}/$1"
 }
 
 get_file() {
@@ -149,7 +152,7 @@ check(){
 }
 
 set_dist(){
-	if [ "$DISTRIB_DESCRIPTION" = "Arch Linux" ];then
+	if [ "$DISTRIB_ID" = "arch" ];then
 		PRE="/usr"
 	else
 		PRE=""
@@ -175,7 +178,7 @@ setup() {
 		IFS=$OIFS
 		mkdirs "$dirname/$2"
 		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
-		local file="${DATADIR}/${dirname}/$2/${filename}"
+		local file="${PKGNAME}/${dirname}/$2/${filename}"
 		local src="${url}/${line}"
 		get_file "${file}" "${src}"
 		check "$2" "${file}" "${dirname}"
@@ -186,5 +189,5 @@ main(){
 	set_dist
 	setup "confd.list" "conf.d"
 	setup "initd.list" "init.d"
-	#tar -cvjf "${DATADIR}-${VER}.tar.${EXT}"  ${DATADIR}/${dirname}
+	#tar -cvjf "${PKGNAME}-${VER}.tar.${EXT}"  ${PKGNAME}/${dirname}
 }
