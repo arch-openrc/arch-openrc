@@ -1,5 +1,6 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
+_pn=openrc-plugins
 _rn=rsyslog
 
 pkgname=$_rn-openrc
