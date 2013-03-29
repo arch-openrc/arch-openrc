@@ -8,7 +8,7 @@ else
 	DISTRIB_ID="unknown"
 fi
 
-VER=0.2
+VER=0.3
 PKGNAME='openrc-plugins'
 EXT="xz"
 PRE=""
@@ -185,9 +185,12 @@ setup() {
 	done < $1
 }
 
+archive(){
+	tar -cvjf "${PKGNAME}-${VER}.tar.${EXT}"  ${PKGNAME}
+}
+
 main(){	
 	set_dist
 	setup "confd.list" "conf.d"
 	setup "initd.list" "init.d"
-	#tar -cvjf "${PKGNAME}-${VER}.tar.${EXT}"  ${PKGNAME}/${dirname}
 }

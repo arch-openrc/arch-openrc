@@ -4,4 +4,5 @@
 
 . ./functions
 
-main
+#main
+archive
