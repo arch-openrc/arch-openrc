@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=consolekit
 
 pkgname=$_rn-openrc
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -21,5 +21,5 @@ package() {
 	install -Dm755 "$srcdir/90-consolekit-3" "$pkgdir/etc/X11/xinit/xinitrc.d/90-consolekit"
 }
 
-sha256sums=('e9acd161c1085abab1a881e74a48810f28befafc6872a39dda4fd914d863df74'
+sha256sums=('e4f4dca5ea147bf3611f3489c2bf5c604144e79163d37134334f85f3ea1a35cf'
             '91e0900995f7db536220065959d236fb75ec2c77096981a142e2e948518d9761')

@@ -4,18 +4,17 @@ _pn=openrc-plugins
 _rn=wpa_supplicant
 
 pkgname=$_rn-openrc
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 depends=('openrc' "$_rn")
-groups=('openrc-misc')
-conflicts=('netcfg-openrc')
+groups=('openrc-wireless')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
-sha256sums=('e9acd161c1085abab1a881e74a48810f28befafc6872a39dda4fd914d863df74')
+sha256sums=('e4f4dca5ea147bf3611f3489c2bf5c604144e79163d37134334f85f3ea1a35cf')
 
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/wpa_supplicant-conf.d" "$pkgdir/etc/conf.d/wpa_supplicant"

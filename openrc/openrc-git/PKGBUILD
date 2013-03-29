@@ -20,7 +20,7 @@ depends=('bash'
 	'psmisc'
 	'sysvinit')
 makedepends=('git')
-#optdepends=('udev-openrc')
+optdepends=('udev-openrc')
 provides=('openrc')
 conflicts=('initscripts' "openrc")
 replaces=('openrc')
