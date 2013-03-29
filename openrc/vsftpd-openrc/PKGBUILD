@@ -5,12 +5,12 @@ _rn=vsftpd
 
 pkgname=$_rn-openrc
 pkgver=0.3
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-misc')
+groups=('openrc-server')
 depends=('openrc' "$_rn")
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")

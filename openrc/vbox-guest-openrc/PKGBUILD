@@ -5,12 +5,12 @@ _rn=virtualbox-guest-additions
 
 pkgname=vbox-guest-openrc
 pkgver=0.3
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-vbox')
+groups=('openrc-misc')
 depends=('openrc' 'virtualbox-guest-utils')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
