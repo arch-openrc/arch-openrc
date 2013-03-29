@@ -16,9 +16,9 @@ depends=('bash'
 		'ncurses'
 		'net-tools'
 		'pam'
-		'psmisc'
-		'sysvinit')
-optdepends=('udev-openrc')
+		'perl'
+		'psmisc')
+provides=('init-backend')
 conflicts=('initscripts' 'openrc-git')
 backup=('etc/rc.conf'
 		'etc/inittab'
@@ -52,6 +52,6 @@ package() {
 
 	install -m 644 "$srcdir/$pkgname-$pkgver/conf.d/net" "$pkgdir/etc/conf.d/net"
 	
-	mkdir "$pkgdir/sbin"
+	install -dm755 "$pkgdir/sbin"
 	ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
 }

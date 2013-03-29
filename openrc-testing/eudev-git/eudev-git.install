@@ -1,3 +1,13 @@
+_service="udev"
+_rlvl="sysinit"
+
+post_install() {
+	_cmd="rc-update add $_service $_rlvl"
+	$_cmd
+	_cmd="rc-update add $_service-mount $_rlvl"
+	$_cmd
+}
+
 # arg 1:  the new package version
 # arg 2:  the old package version
 
@@ -63,4 +73,14 @@ post_upgrade() {
     echo " * if your kernel does not provide /dev/loop-control, you need to manually"
     echo "   load the 'loop' module before using losetup"
   fi
+  
+  post_install "$1"
+
+}
+
+post_remove() {
+	_cmd="rc-update del $_service $_rlvl"
+	$_cmd
+	_cmd="rc-update del $_service-mount $_rlvl"
+	$_cmd
 }

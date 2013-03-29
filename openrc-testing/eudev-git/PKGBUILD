@@ -1,5 +1,6 @@
 # Maintainer: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
+
 pkgname='eudev-git'
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 pkgver=20130209
@@ -12,7 +13,7 @@ groups=('base')
 arch=('i686' 'x86_64')
 url="https://github.com/gentoo/eudev"
 license=('GPL')
-depends=('util-linux' 'glib2' 'kmod' 'hwids' 'bash' 'acl')
+depends=('util-linux' 'glib2' 'kmod' 'hwids' 'bash' 'acl' 'udev-openrc')
 makedepends=('git' 'gobject-introspection' 'gperf' 'libxslt' 'docbook-xsl')
 options=(!makeflags !libtool)
 install="${pkgname}.install"

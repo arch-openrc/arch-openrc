@@ -20,7 +20,7 @@ depends=('bash'
 	'psmisc'
 	'sysvinit')
 makedepends=('git')
-optdepends=('udev-openrc')
+#optdepends=('udev-openrc')
 provides=('openrc')
 conflicts=('initscripts' "openrc")
 replaces=('openrc')
@@ -75,6 +75,6 @@ package() {
 
 	install -m 644 "$srcdir/$_gitname/conf.d/net" "$pkgdir/etc/conf.d/net"
 	
-	mkdir "$pkgdir/sbin"
+	install -dm755 "$pkgdir/sbin"
     ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
 }
