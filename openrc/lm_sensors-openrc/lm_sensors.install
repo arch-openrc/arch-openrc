@@ -1,19 +1,19 @@
-_service[0]=lm_sensors
-_service[1]=fancontrol
+svc[0]=lm_sensors
+svc[1]=fancontrol
 if [ -f '/etc/conf.d/sensord-rc' ]; then
-	_service[2]="sensord-rc"
+	svc[2]="sensord-rc"
 else
-	_service[2]="sensord"
+	svc[2]="sensord"
 fi
 
-_rlvl=("boot" "default")
+rlvl=("boot" "default")
 
 post_install() {
-	_cmd="rc-update add ${_service[0]} ${_rlvl[0]}"
+	_cmd="rc-update add ${svc[0]} ${rlvl[0]}"
 	echo "	==> run '$_cmd'"
-	_cmd="rc-update add ${_service[1]} ${_rlvl[1]}"
+	_cmd="rc-update add ${svc[1]} ${rlvl[1]}"
 	echo "	==> run '$_cmd'"
-	_cmd="rc-update add ${_service[2]} ${_rlvl[1]}"
+	_cmd="rc-update add ${svc[2]} ${rlvl[1]}"
 	echo "	==> run '$_cmd'"
 }
 
@@ -22,10 +22,10 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del ${_service[0]} ${_rlvl[0]}"
+	_cmd="rc-update del ${svc[0]} ${rlvl[0]}"
 	echo "	==> run '$_cmd'"
-	_cmd="rc-update del ${_service[1]} ${_rlvl[1]}"
+	_cmd="rc-update del ${svc[1]} ${rlvl[1]}"
 	echo "	==> run '$_cmd'"
-	_cmd="rc-update del ${_service[2]} ${_rlvl[1]}"
+	_cmd="rc-update del ${svc[2]} ${rlvl[1]}"
 	echo "	==> run '$_cmd'"
 }

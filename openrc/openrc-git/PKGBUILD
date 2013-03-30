@@ -3,7 +3,7 @@
 
 
 pkgname=openrc-git
-pkgver=20130327
+pkgver=20130330
 pkgrel=1
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
@@ -11,25 +11,25 @@ url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD')
 groups=('openrc-base')
 depends=('bash'
-	'coreutils'
-	'glibc'
-	'inetutils'
-	'ncurses'
-	'net-tools'
-	'pam'
-	'psmisc'
-	'sysvinit')
+		'coreutils'
+		'glibc'
+		'inetutils'
+		'ncurses'
+		'net-tools'
+		'pam'
+		'psmisc'
+		'sysvinit')
 makedepends=('git')
 optdepends=('udev-openrc')
 provides=('openrc')
 conflicts=('initscripts' "openrc")
 replaces=('openrc')
 backup=('etc/rc.conf'
-	'etc/conf.d/consolefont'
-	'etc/conf.d/keymaps'
-	'etc/conf.d/hwclock'
-	'etc/conf.d/hostname'
-	'etc/conf.d/modules')
+		'etc/conf.d/consolefont'
+		'etc/conf.d/keymaps'
+		'etc/conf.d/hwclock'
+		'etc/conf.d/hostname'
+		'etc/conf.d/modules')
 source=('openrc.logrotate')
 sha1sums=('ef1f26020db432f96a1485f72a189b288ef6873b')
 

@@ -1,12 +1,12 @@
-_service="polipo"
-_rlvl="default"
+svc="polipo"
+rlvl="default"
 
 post_install() {
-	_usr=$_service
-	_grp=$_service
+	_usr=$svc
+	_grp=$svc
 	echo "	==>  requires $_usr user"
 	echo "	==>  requires $_grp group"
-	_cmd="rc-update add $_service $_rlvl"
+	_cmd="rc-update add $svc $rlvl"
 	echo "	==> run '$_cmd'"
 }
 
@@ -15,6 +15,6 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del $_service $_rlvl"
+	_cmd="rc-update del $svc $rlvl"
 	echo "	==> run '$_cmd'"
 }

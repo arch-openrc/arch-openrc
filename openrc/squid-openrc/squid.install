@@ -1,13 +1,13 @@
 if [ -f '/etc/conf.d/squid-rc' ];then
-	_service="squid-rc"
+	svc="squid-rc"
 else
-	_service="squid"
+	svc="squid"
 fi
 
-_rlvl="default"
+rlvl="default"
 
 post_install() {
-	_cmd="rc-update add $_service $_rlvl"
+	_cmd="rc-update add $svc $rlvl"
 	echo "	==> run '$_cmd'"
 }
 
@@ -16,6 +16,6 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del $_service $_rlvl"
+	_cmd="rc-update del $svc $rlvl"
 	echo "	==> run '$_cmd'"
 }

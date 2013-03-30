@@ -4,8 +4,8 @@ _pn=openrc-plugins
 _rn=mdadm
 
 pkgname=$_rn-openrc
-pkgver=0.3
-pkgrel=2
+pkgver=0.4
+pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -22,4 +22,4 @@ package() {
 	#install -Dm755 "$srcdir/$_rn/conf.d/mdraid.confd" "$pkgdir/etc/conf.d/mdraid"
 	#install -Dm755 "$srcdir/$_rn/init.d/mdraid.rc" "$pkgdir/etc/init.d/mdraid"
 }
-sha256sums=('e4f4dca5ea147bf3611f3489c2bf5c604144e79163d37134334f85f3ea1a35cf')
+sha256sums=('69abf8eb52d83a7e5476ff4abc5113287668b2b6b4ec52e5dfee29bc59a6b3b8')

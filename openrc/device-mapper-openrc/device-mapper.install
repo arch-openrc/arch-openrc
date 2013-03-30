@@ -1,10 +1,10 @@
-_service=('device-mapper' 'dmeventd')
-_rlvl="boot"
+svc=('device-mapper' 'dmeventd')
+rlvl="boot"
 
 post_install() {
-	_cmd="rc-update add ${_service[0]} $_rlvl"
+	_cmd="rc-update add ${svc[0]} $rlvl"
 	echo "	==> run '$_cmd'"
-	_cmd="rc-update add ${_service[1]} $_rlvl"
+	_cmd="rc-update add ${svc[1]} $rlvl"
 	echo "	==> run '$_cmd'"	
 }
 
@@ -13,8 +13,8 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del ${_service[0]} $_rlvl"
+	_cmd="rc-update del ${svc[0]} $rlvl"
 	echo "	==> run '$_cmd'"
-	_cmd="rc-update del ${_service[1]} $_rlvl"
+	_cmd="rc-update del ${svc[1]} $rlvl"
 	echo "	==> run '$_cmd'"	
 }

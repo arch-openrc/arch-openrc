@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=dcron
 
 pkgname=$_rn-openrc
-pkgver=0.3
+pkgver=0.4
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -20,4 +20,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/dcron.confd-4.4" "$pkgdir/etc/conf.d/$_rn"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/dcron.init-4.5" "$pkgdir/etc/init.d/$_rn"
 }
-sha256sums=('e4f4dca5ea147bf3611f3489c2bf5c604144e79163d37134334f85f3ea1a35cf')
+sha256sums=('69abf8eb52d83a7e5476ff4abc5113287668b2b6b4ec52e5dfee29bc59a6b3b8')

@@ -1,5 +1,5 @@
-_service="postgresql"
-_rlvl="default"
+svc="postgresql"
+rlvl="default"
 
 post_install() {
 	datadir="/var/lib/data"
@@ -9,7 +9,7 @@ post_install() {
 	echo "	==> requires $_grp group"
 	echo "	==> requires datadir $datadir"
 	echo "	==> run as user $_usr: 'initdb -D $datadir'"
-	_cmd="rc-update add $_service $_rlvl"
+	_cmd="rc-update add $svc $rlvl"
 	echo "	==> run '$_cmd'"
 }
 
@@ -18,6 +18,6 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del $_service $_rlvl"
+	_cmd="rc-update del $svc $rlvl"
 	echo "	==> run '$_cmd'"
 }

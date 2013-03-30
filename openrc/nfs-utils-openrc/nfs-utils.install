@@ -1,16 +1,16 @@
 if [ -f '/etc/conf.d/nfs-rc' ];then
-	_service[0]="nfs-rc"
+	svc[0]="nfs-rc"
 else
-	_service[0]="nfs"
+	svc[0]="nfs"
 fi
-_service[1]="nfsmount"
+svc[1]="nfsmount"
 
-_rlvl="default"
+rlvl="default"
 
 post_install() {
-	_cmd="rc-update add ${_service[0]} $_rlvl"
+	_cmd="rc-update add ${svc[0]} $rlvl"
 	echo "	==> run '$_cmd'"
-	_cmd="rc-update add ${_service[1]} $_rlvl"
+	_cmd="rc-update add ${svc[1]} $rlvl"
 	echo "	==> run '$_cmd'"
 }
 
@@ -19,8 +19,8 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del ${_service[0]} $_rlvl"
+	_cmd="rc-update del ${svc[0]} $rlvl"
 	echo "	==> run '$_cmd'"
-	_cmd="rc-update del ${_service[1]} $_rlvl"
+	_cmd="rc-update del ${svc[1]} $rlvl"
 	echo "	==> run '$_cmd'"
 }
