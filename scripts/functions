@@ -136,7 +136,7 @@ check(){
 			elif [ "$3" = "iptables" ]; then
 			
 				mk_str $2 '/sbin/$' '/usr/sbin/$'
-			
+						
 			fi
 		fi
 	#else

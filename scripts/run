@@ -10,7 +10,7 @@ else
 	DISTRIB_ID="unknown"
 fi
 
-VER=0.3
+VER=0.4
 PKGNAME='openrc-plugins'
 EXT="xz"
 PRE=""
@@ -19,7 +19,8 @@ main(){
 	set_dist
 	setup "confd.list" "conf.d"
 	setup "initd.list" "init.d"
-	#archive
+	echo "$PKGNAME-$VER" > $PKGNAME/version
+	archive
 }
 
 main
