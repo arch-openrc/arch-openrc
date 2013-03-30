@@ -10,7 +10,7 @@ _rn=NetworkManager
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.0
-pkgrel=3
+pkgrel=1
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
