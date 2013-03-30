@@ -1,5 +1,11 @@
-_service="rsyslog"
-_rlvl="default"
+if [];then
+	_service="rsyslog-rc"
+	_rlvl="default"
+else
+	_service="rsyslog"
+	_rlvl="default"
+fi
+
 
 post_install() {
 	_cmd="rc-update add $_service $_rlvl"

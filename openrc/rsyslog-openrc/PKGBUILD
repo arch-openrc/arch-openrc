@@ -5,7 +5,7 @@ _rn=rsyslog
 
 pkgname=$_rn-openrc
 pkgver=0.3
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -16,10 +16,16 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
+	if [ -f '/etc/init.d/rsyslog' ];then
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/rsyslog.confd" "$pkgdir/etc/conf.d/rsyslog-rc"
 	
-	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/rsyslog.confd" "$pkgdir/etc/conf.d/rsyslog"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog-rc"
+	else
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/rsyslog.confd" "$pkgdir/etc/conf.d/rsyslog"
 	
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog"
+	fi
+
 		
 }
 sha256sums=('e4f4dca5ea147bf3611f3489c2bf5c604144e79163d37134334f85f3ea1a35cf')
