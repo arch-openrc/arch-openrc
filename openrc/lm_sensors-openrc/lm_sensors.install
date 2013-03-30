@@ -1,8 +1,19 @@
-_service="lm_sensors"
-_rlvl="boot"
+_service[0]=lm_sensors
+_service[1]=fancontrol
+if [ -f '/etc/conf.d/sensord-rc' ]; then
+	_service[2]="sensord-rc"
+else
+	_service[2]="sensord"
+fi
+
+_rlvl=("boot" "default")
 
 post_install() {
-	_cmd="rc-update add $_service $_rlvl"
+	_cmd="rc-update add ${_service[0]} ${_rlvl[0]}"
+	echo "	==> run '$_cmd'"
+	_cmd="rc-update add ${_service[1]} ${_rlvl[1]}"
+	echo "	==> run '$_cmd'"
+	_cmd="rc-update add ${_service[2]} ${_rlvl[1]}"
 	echo "	==> run '$_cmd'"
 }
 
@@ -11,6 +22,10 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del $_service $_rlvl"
+	_cmd="rc-update del ${_service[0]} ${_rlvl[0]}"
+	echo "	==> run '$_cmd'"
+	_cmd="rc-update del ${_service[1]} ${_rlvl[1]}"
+	echo "	==> run '$_cmd'"
+	_cmd="rc-update del ${_service[2]} ${_rlvl[1]}"
 	echo "	==> run '$_cmd'"
 }

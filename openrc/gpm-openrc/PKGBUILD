@@ -5,7 +5,7 @@ _rn=gpm
 
 pkgname=$_rn-openrc
 pkgver=0.3
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -16,7 +16,13 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/gpm.conf.d" "$pkgdir/etc/conf.d/gpm"
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/gpm.rc6-2" "$pkgdir/etc/init.d/gpm"
+	if [ -f '/etc/conf.d/gpm' ];then
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/gpm.conf.d" "$pkgdir/etc/conf.d/gpm-rc"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/gpm.rc6-2" "$pkgdir/etc/init.d/gpm-rc"
+	else
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/gpm.conf.d" "$pkgdir/etc/conf.d/gpm"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/gpm.rc6-2" "$pkgdir/etc/init.d/gpm"
+	fi
+	
 }
 sha256sums=('e4f4dca5ea147bf3611f3489c2bf5c604144e79163d37134334f85f3ea1a35cf')

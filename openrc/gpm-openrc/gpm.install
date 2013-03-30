@@ -1,5 +1,11 @@
-_service="gpm"
-_rlvl="default"
+if [ -f '/etc/gpm-rc' ]
+	_service="gpm-rc"
+	_rlvl="default"
+else
+	_service="gpm"
+	_rlvl="default"
+fi
+
 
 post_install() {
 	_cmd="rc-update add $_service $_rlvl"
