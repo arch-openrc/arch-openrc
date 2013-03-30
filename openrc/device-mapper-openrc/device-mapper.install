@@ -1,9 +1,11 @@
-_service="lvm2"
-_rlvl="default"
+_service=('device-mapper' 'dmeventd')
+_rlvl="boot"
 
 post_install() {
-	_cmd="rc-update add $_service $_rlvl"
+	_cmd="rc-update add ${_service[0]} $_rlvl"
 	echo "	==> run '$_cmd'"
+	_cmd="rc-update add ${_service[1]} $_rlvl"
+	echo "	==> run '$_cmd'"	
 }
 
 post_upgrade() {
@@ -11,6 +13,8 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del $_service $_rlvl"
+	_cmd="rc-update del ${_service[0]} $_rlvl"
 	echo "	==> run '$_cmd'"
+	_cmd="rc-update del ${_service[1]} $_rlvl"
+	echo "	==> run '$_cmd'"	
 }
