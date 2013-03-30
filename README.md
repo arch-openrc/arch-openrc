@@ -40,7 +40,6 @@ OpenRC pkgbuilds
 
 - hostapd-openrc *done*
 
-*remove checks after arch removed orphaned files from packages*
+- inetutils-openrc *done*
 
-/etc/init.d/device-mapper existiert in 'device-mapper-openrc' und 'lvm2-openrc'
-/etc/init.d/dmeventd existiert in 'device-mapper-openrc' und 'lvm2-openrc'
+*remove checks after arch removed orphaned files from packages*
