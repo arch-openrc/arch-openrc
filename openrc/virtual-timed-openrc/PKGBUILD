@@ -1,0 +1,12 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgname=virtual-timed-openrc
+pkgver=0.1
+pkgrel=1	
+pkgdesc="OpenRC ntpd virtual package"
+groups=('openrc-misc')
+depends=('openrc-timed')
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+

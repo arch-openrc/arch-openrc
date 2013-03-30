@@ -1,0 +1,11 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgname=virtual-cron-openrc
+pkgver=0.1
+pkgrel=1	
+pkgdesc="OpenRC crond virtual package"
+groups=('openrc-base')
+depends=('openrc-cron')
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
