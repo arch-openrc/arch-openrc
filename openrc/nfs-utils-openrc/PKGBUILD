@@ -5,7 +5,7 @@ _rn=nfs-utils
 
 pkgname=$_rn-openrc
 pkgver=0.3
-pkgrel=2
+pkgrel=3
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -24,10 +24,16 @@ package() {
 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
 	fi
 
-	#install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
-	#install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfsmount.initd" "$pkgdir/etc/init.d/nfsmount"
+
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.gssd.initd" "$pkgdir/etc/init.d/rpc.gssd"
 	
-	#install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
-	#install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.idmapd.initd" "$pkgdir/etc/init.d/rpc.idmapd"
+
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.pipefs.initd" "$pkgdir/etc/init.d/rpc.pipefs"
+
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.statd.initd" "$pkgdir/etc/init.d/rpc.statd"
+
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.svcgssd.initd" "$pkgdir/etc/init.d/rpc.svcgssd"
 }
 sha256sums=('e4f4dca5ea147bf3611f3489c2bf5c604144e79163d37134334f85f3ea1a35cf')
