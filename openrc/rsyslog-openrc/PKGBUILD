@@ -16,7 +16,7 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	if [ -f '/etc/init.d/rsyslog' ];then
+	if [ -f '/etc/conf.d/rsyslog' ];then
 		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/rsyslog.confd" "$pkgdir/etc/conf.d/rsyslog-rc"
 	
 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog-rc"

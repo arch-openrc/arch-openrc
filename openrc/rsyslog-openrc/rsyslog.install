@@ -1,4 +1,4 @@
-if [];then
+if [ -f '/etc/conf.d/rsyslog-rc' ];then
 	_service="rsyslog-rc"
 	_rlvl="default"
 else
