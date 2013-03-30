@@ -1,10 +1,10 @@
 if [ -f '/etc/gpm-rc' ]
 	_service="gpm-rc"
-	_rlvl="default"
 else
 	_service="gpm"
-	_rlvl="default"
 fi
+
+_rlvl="default"
 
 
 post_install() {
