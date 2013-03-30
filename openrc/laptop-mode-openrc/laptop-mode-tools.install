@@ -1,4 +1,4 @@
-_service="laptop-mode"
+_service="laptop_mode"
 _rlvl="default"
 
 post_install() {

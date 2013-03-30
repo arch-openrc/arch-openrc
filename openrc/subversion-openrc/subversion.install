@@ -7,9 +7,9 @@ fi
 _rlvl="default"
 
 post_install() {
-	_usr="svn"
-	_grp="svnusers"
- 	_rootdir="/srv/svn"
+	local _usr="svn"
+	local _grp="svnusers"
+ 	local _rootdir="/srv/svn"
 	echo "	==>  requires $_usr user"
 	echo "	==>  requires $_grp group"
 	echo "	==>  requires svn root $_rootdir "

@@ -1,4 +1,4 @@
-if [ -f '/etc/gpm-rc' ]
+if [ -f '/etc/gpm-rc' ];then
 	_service="gpm-rc"
 else
 	_service="gpm"
