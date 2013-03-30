@@ -18,11 +18,14 @@ OpenRC pkgbuilds
 
 * rename conflicting /etc/conf.d/*
 
-* named-openrc
-* gpm-openrc
-* ftpd-openrc
-* iptables-openrc
-* nfs-openrc
-* rsyslog-openrc
-* squid-openrc
-* ypbind-openrc
+- gpm-openrc
+- lm_sensors-openrc
+- rsyslog-openrc
+- bind-openrc
+- iptables-openrc
+- nfs-utils-openrc
+- openssh-openrc
+- squid-openrc
+- subversion-openrc
+- ypbind-openrc
+- hostapd-openrc
