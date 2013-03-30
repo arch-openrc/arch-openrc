@@ -1,0 +1,22 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_pn=openrc-plugins
+_rn=xinetd
+
+pkgname=$_rn-openrc
+pkgver=0.3
+pkgrel=1
+pkgdesc="OpenRC $_rn init scripts"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "$_rn")
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
+
+package() {
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/xinetd.confd" "$pkgdir/etc/conf.d/xinetd"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/xinetd.rc6" "$pkgdir/etc/init.d/xinetd"
+}
+sha256sums=('e4f4dca5ea147bf3611f3489c2bf5c604144e79163d37134334f85f3ea1a35cf')
