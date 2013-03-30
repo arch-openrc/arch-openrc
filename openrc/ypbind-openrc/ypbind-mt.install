@@ -1,4 +1,9 @@
-_service="ypbind"
+if [ -f '/etc/conf.d/ypbind-rc' ];then
+	_service="ypbind-rc"
+else
+	_service="ypbind"
+fi
+
 _rlvl="default"
 
 post_install() {

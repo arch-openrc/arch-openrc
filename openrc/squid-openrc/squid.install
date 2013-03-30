@@ -1,4 +1,9 @@
-_service="squid"
+if [ -f '/etc/conf.d/squid-rc' ];then
+	_service="squid-rc"
+else
+	_service="squid"
+fi
+
 _rlvl="default"
 
 post_install() {

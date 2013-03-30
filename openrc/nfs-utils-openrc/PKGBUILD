@@ -5,7 +5,7 @@ _rn=nfs-utils
 
 pkgname=$_rn-openrc
 pkgver=0.3
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -16,8 +16,13 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
+	if [ -f '/etc/conf.d/nfs' ]; then
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs-rc"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs-rc"
+	else
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
+	fi
 
 	#install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
 	#install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"

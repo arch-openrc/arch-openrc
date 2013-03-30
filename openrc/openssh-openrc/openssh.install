@@ -1,4 +1,9 @@
-_service="sshd"
+if [ -f '/etc/conf.d/sshd-rc' ];then
+	_service="sshd-rc"
+else
+	_service="sshd"
+fi
+
 _rlvl="default"
 
 post_install() {

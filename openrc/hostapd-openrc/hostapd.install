@@ -1,4 +1,9 @@
-_service="hostapd"
+if [ -f '/etc/conf.d/hostapd-rc' ];then
+	_service="hostapd-rc"
+else
+	_service="hostapd"
+fi
+
 _rlvl="default"
 
 post_install() {

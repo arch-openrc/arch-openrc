@@ -1,4 +1,9 @@
-_service="named"
+if [ -f '/etc/conf.d/named-rc' ];then
+	_service="named-rc"
+else
+	_service="named"
+fi
+
 _rlvl="default"
 
 post_install() {
@@ -14,3 +19,4 @@ post_remove() {
 	_cmd="rc-update del $_service $_rlvl"
 	echo "	==> run '$_cmd'"
 }
+init.d

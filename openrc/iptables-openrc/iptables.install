@@ -1,4 +1,9 @@
-_service="iptables"
+if [ -f '/etc/conf.d/iptables-rc' ];then
+	_service="iptables-rc"
+else
+	_service="iptables"
+fi
+
 _rlvl="default"
 
 post_install() {

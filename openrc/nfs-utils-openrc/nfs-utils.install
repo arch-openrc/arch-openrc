@@ -1,4 +1,9 @@
-_service="nfs"
+if [ -f '/etc/conf.d/nfs-rc' ];then
+	_service="nfs-rc"
+else
+	_service="nfs"
+fi
+
 _rlvl="default"
 
 post_install() {
