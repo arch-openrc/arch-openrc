@@ -1,4 +1,9 @@
-_service="ftpd"
+if [ -f '/etc/conf.d/ftpd-rc' ];then
+	_service="ftpd-rc"
+else
+	_service="ftpd"
+fi
+
 _rlvl="default"
 
 post_install() {
