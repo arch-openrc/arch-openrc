@@ -10,12 +10,12 @@ _rn=NetworkManager
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/$_rn/"
-groups=('openrc-misc')
+groups=('openrc-net')
 depends=('dbus-glib'
 		'iproute2'
 		'libnl'

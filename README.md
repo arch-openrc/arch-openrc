@@ -3,19 +3,16 @@ OpenRC pkgbuilds
 
 ####Groups:####
 
-* openrc4arch-base
-* openrc4arch-desktop
-* openrc4arch-misc
-* openrc4arch-server
-* openrc-wireless
-* openrc-fs
-* openrc-netfs
-* openrc-vbox
+* openrc-base
+* openrc-desktop
+* openrc-misc
+* openrc-mobile
+* openrc-net
 
 ####Virtual packages:####
 
-* openrc4arch-virtual-cron
-* openrc4arch-virtual-timed
+* virtual-cron-openrc
+* virtual-timed-openrc
 
 ####ToDo####
 

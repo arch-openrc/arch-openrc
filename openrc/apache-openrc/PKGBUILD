@@ -6,13 +6,13 @@ _rel=20130227
 
 pkgname=$_rn-openrc
 pkgver=0.3
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 depends=('openrc' "$_rn")
-groups=('openrc-server')
+groups=('openrc-net')
 install=$_rn.install
 source=("http://dev.gentoo.org/~patrick/dist/$_rn/gentoo-$_rn-$_rnv-$_rel.tar.bz2")
 sha256sums=('cf27447dc87b4c145e50a6850245e3ed8d350bc3500bb249035322b23d03ccd2')

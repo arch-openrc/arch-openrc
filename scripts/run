@@ -4,5 +4,22 @@
 
 . ./functions
 
-#main
-archive
+if [[ -e '/etc/lsb-release' ]];then
+	. /etc/lsb-release
+else
+	DISTRIB_ID="unknown"
+fi
+
+VER=0.3
+PKGNAME='openrc-plugins'
+EXT="xz"
+PRE=""
+
+main(){	
+	set_dist
+	setup "confd.list" "conf.d"
+	setup "initd.list" "init.d"
+	#archive
+}
+
+main

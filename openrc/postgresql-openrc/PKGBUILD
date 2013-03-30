@@ -5,13 +5,13 @@ _ver=2.4
 
 pkgname=$_rn-openrc
 pkgver=0.3
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 depends=('openrc' "$_rn")
-groups=('openrc-server')
+groups=('openrc-net')
 install=$_rn.install
 source=("http://dev.gentoo.org/~titanofold/postgresql-initscript-$_ver.tbz2
 ")

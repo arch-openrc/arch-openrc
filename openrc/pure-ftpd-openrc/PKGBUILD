@@ -5,12 +5,12 @@ _rn=pure-ftpd
 
 pkgname=$_rn-openrc
 pkgver=0.3
-pkgrel=2
+pkgrel=3
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-server')
+groups=('openrc-net')
 depends=('openrc' "$_rn")
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
