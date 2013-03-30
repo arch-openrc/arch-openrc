@@ -72,3 +72,4 @@ sys-process/fcron/files/fcron.init.3
 www-servers/lighttpd/files/lighttpd.initd
 x11-base/xorg-server/files/xdm-setup.initd-1
 x11-base/xorg-server/files/xdm.initd-9
+sys-apps/xinetd/files/xinetd.rc6
