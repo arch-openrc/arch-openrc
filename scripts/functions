@@ -2,11 +2,11 @@
 # Copyright 2013 udeved@openrc4arch.site40.net
 # Distributed under the terms of the GNU General Public License v2
 
-archive(){
+mk_tar(){
 	tar -cvjf "${PKGNAME}-${VER}.tar.${EXT}" ${PKGNAME}
 }
 
-mkdirs() {
+mk_dirs() {
 	mkdir -p "${PKGNAME}/$1"
 }
 
@@ -55,92 +55,67 @@ check(){
 	# $2: file
 	# $3: dirname
 	if [ "$1" = "init.d" ]; then
-		
 		rm_str "$2" '/var/run' '/run'
-		
-		if [ "$3" = "dbus" ]; then
-		
-			mk_str $2 'dbus.pid' 'dbus/pid'
-		
-		elif [ "$3" = "bind" ]; then
-			
-			mk_str $2 '/etc/bind/named.conf' '/etc/named.conf'
-		
-		elif [ "$3" = "dhcp" ]; then
-			
-			if [ `basename $2 | grep "dhcpd"` ];then
-			
-				mk_str $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
-			
-			fi
-		
-		elif [ "$3" = "ufw" ]; then
-			
-			mk_str $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
-		
-		elif [ "$3" = "xorg-server" ]; then
-		
-			if [ `basename $2 | grep "xdm.initd"` ];then
-				rm_str $2 '/etc/profile.env' '/etc/profile'
-				mk_str $2 'ROOTPATH' 'PATH'
-			fi
-		
-		elif [ "$3" = "mysql" ]; then
-			
-			mk_str $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
-		
-		elif [ "$3" = "ntp" ]; then
-			
-			if [ `basename $2 | grep "ntpd"` ];then
-				mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
-			fi
-			
-		elif [ "$3" = "openntpd" ]; then
-			
-			mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
-			
-		elif [ "$3" = "virtualbox-guest-additions" ]; then
-			
-			mk_str $2 'vboxguest-service' 'VBoxService'
-			
-			mk_str $2 '/usr/sbin/VBoxService' '/usr/bin/VBoxService'
-			
-		elif [ "$3" = "hostapd" ]; then
-			
-			mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'	
-		
-		fi
-		
-		if [ "${PRE}" = "/usr" ]; then
-			
-			mk_str $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
-			
-			if [ "$3" = "lvm2" ]; then
-				
-				if [ `basename $2 | grep "lvm"` ];then
-					
-					mk_str $2 '/bin/lvm /sbin/lvm' "${PRE}/bin/lvm ${PRE}/sbin/lvm"
-								
-				elif [ `basename $2 | grep "device-mapper"` ];then
-					
-					mk_str $2 '/sbin/dmsetup' "${PRE}/sbin/dmsetup"
-								
-				elif [ `basename $2 | grep "dmeventd"` ];then				
-					mk_str $2 '/sbin/dmeventd' "${PRE}/sbin/dmeventd"
+		case $3 in
+			"dbus")
+				mk_str $2 'dbus.pid' 'dbus/pid'
+				;;
+			"bind")
+				mk_str $2 '/etc/bind/named.conf' '/etc/named.conf'
+				;;
+			"dhcp")
+				if [ `basename $2 | grep "dhcpd"` ];then
+					mk_str $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
 				fi
-				
-			elif [ "$3" = "rpcbind" ]; then
-				
-				mk_str $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"
-			
-			elif [ "$3" = "iptables" ]; then
-			
-				mk_str $2 '/sbin/$' '/usr/sbin/$'
-						
-			fi
+				;;
+			"ufw")	
+				mk_str $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
+				;;
+			"xorg-server")
+				if [ `basename $2 | grep "xdm.initd"` ];then
+					rm_str $2 '/etc/profile.env' '/etc/profile'
+					mk_str $2 'ROOTPATH' 'PATH'
+				fi
+				;;
+			"mysql")
+				mk_str $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
+				;;	
+			"ntp")
+				if [ `basename $2 | grep "ntpd"` ];then
+					mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
+				fi
+				;;	
+			"openntpd")
+				mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+				;;		
+			"virtualbox-guest-additions")
+				mk_str $2 'vboxguest-service' 'VBoxService'
+				mk_str $2 '/usr/sbin/VBoxService' '/usr/bin/VBoxService'
+				;;		
+			"hostapd")
+				mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'
+				;;
+		esac	
+		if [ "${PRE}" = "/usr" ]; then
+			mk_str $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
+			case $3 in
+				"lvm2")
+					if [ `basename $2 | grep "lvm"` ];then
+						mk_str $2 '/bin/lvm /sbin/lvm' "${PRE}/bin/lvm ${PRE}/sbin/lvm"			
+					elif [ `basename $2 | grep "device-mapper"` ];then
+						mk_str $2 '/sbin/dmsetup' "${PRE}/sbin/dmsetup"		
+					elif [ `basename $2 | grep "dmeventd"` ];then				
+						mk_str $2 '/sbin/dmeventd' "${PRE}/sbin/dmeventd"
+					fi
+				;;
+				"rpcbind")
+					mk_str $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"
+				;;
+				"iptables")
+					mk_str $2 '/sbin/$' '/usr/sbin/$'
+				;;
+			esac
 		fi
-	#else
-		
 	fi	
 }
 
@@ -150,6 +125,8 @@ set_dist(){
 	else
 		PRE=""
 	fi
+	echo "$PKGNAME-$VER
+${DISTRIB_ID} linux" > $PKGNAME/version
 }
 
 setup() {
@@ -169,7 +146,7 @@ setup() {
 		fi
 		IFS=$OIFS
 		
-		mkdirs "$dirname/$2"
+		mk_dirs "$dirname/$2"
 		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 		local file="${PKGNAME}/${dirname}/$2/${filename}"
 		local src="${url}/${line}"

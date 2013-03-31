@@ -19,8 +19,7 @@ main(){
 	set_dist
 	setup "confd.list" "conf.d"
 	setup "initd.list" "init.d"
-	echo "$PKGNAME-$VER" > $PKGNAME/version
-	archive
+	mk_tar
 }
 
 main
