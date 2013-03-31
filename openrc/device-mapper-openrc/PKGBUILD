@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=device-mapper
 
 pkgname=$_rn-openrc
-pkgver=0.4
+pkgver=0.6
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/lvm2/init.d/device-mapper.rc-2.02.95-r2" "$pkgdir/etc/init.d/device-mapper"
 	install -Dm755 "$srcdir/$_pn/lvm2/init.d/dmeventd.initd-2.02.67-r1" "$pkgdir/etc/init.d/dmeventd"
 }
-sha256sums=('69abf8eb52d83a7e5476ff4abc5113287668b2b6b4ec52e5dfee29bc59a6b3b8')
+sha256sums=('4f5374769b3bae2f0fd272dbe75a646b75a9ab515a4a2ad83269134831e5050b')

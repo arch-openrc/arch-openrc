@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=cryptsetup
 
 pkgname=$_rn-openrc
-pkgver=0.4
+pkgver=0.6
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/1.0.6-dmcrypt.confd" "$pkgdir/etc/conf.d/dmcrypt"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/1.5.1-dmcrypt.rc" "$pkgdir/etc/init.d/dmcrypt"
 }
-sha256sums=('69abf8eb52d83a7e5476ff4abc5113287668b2b6b4ec52e5dfee29bc59a6b3b8')
+sha256sums=('4f5374769b3bae2f0fd272dbe75a646b75a9ab515a4a2ad83269134831e5050b')

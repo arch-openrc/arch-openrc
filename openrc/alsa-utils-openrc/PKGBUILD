@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=alsa-utils
 
 pkgname=$_rn-openrc
-pkgver=0.4
+pkgver=0.6
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/alsasound.confd-r4" "$pkgdir/etc/conf.d/alsasound"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/alsasound.initd-r5" "$pkgdir/etc/init.d/alsasound"
 }
-sha256sums=('69abf8eb52d83a7e5476ff4abc5113287668b2b6b4ec52e5dfee29bc59a6b3b8')
+sha256sums=('4f5374769b3bae2f0fd272dbe75a646b75a9ab515a4a2ad83269134831e5050b')

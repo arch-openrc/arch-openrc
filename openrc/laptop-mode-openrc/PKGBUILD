@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=laptop-mode-tools
 
 pkgname=laptop-mode-openrc
-pkgver=0.4
+pkgver=0.6
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -18,4 +18,4 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/laptop_mode.init-1.4" "$pkgdir/etc/init.d/laptop_mode"
 }
-sha256sums=('69abf8eb52d83a7e5476ff4abc5113287668b2b6b4ec52e5dfee29bc59a6b3b8')
+sha256sums=('4f5374769b3bae2f0fd272dbe75a646b75a9ab515a4a2ad83269134831e5050b')
