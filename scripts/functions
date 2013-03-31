@@ -95,6 +95,18 @@ check(){
 			"hostapd")
 				mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'
 				;;
+ 			"cups")
+ 				mk_str "$2" 'use net' 'use net dbus avahi-daemon'
+ 				mk_str "$2" 'lp:lpadmin' 'daemon:sys'
+ 				sed -i 5d $2
+ 				;;
+ 			"openldap")
+ 				mk_str "$2" '/usr/lib/openldap/slapd' '/usr/lib/slapd'
+ 				;;
+ 			"subversion")
+ 				mk_str "$2" 'apache' 'http'
+ 				mk_str "$2" '/var/svn' '/srv/svn'
+ 				;;		
 		esac	
 		if [ "${PRE}" = "/usr" ]; then
 			mk_str $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
@@ -114,8 +126,22 @@ check(){
 				"iptables")
 					mk_str $2 '/sbin/$' '/usr/sbin/$'
 				;;
+				"nfs-utils")
+					if [ `basename $2 | grep "statd"` ];then
+						mk_str $2 '/sbin/rpc.statd' "${PRE}/sbin/rpc.statd"
+					fi
+				;;
 			esac
 		fi
+	else
+		case $3 in
+			"git")
+				mk_str $2 '/var/git' '/srv/git'
+				;;
+			"subversion")
+				mk_str $2 '/var/svn' '/srv/svn'
+				;;
+		esac
 	fi	
 }
 
@@ -145,7 +171,6 @@ setup() {
 			filename=${arr[3]}
 		fi
 		IFS=$OIFS
-		
 		mk_dirs "$dirname/$2"
 		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 		local file="${PKGNAME}/${dirname}/$2/${filename}"
