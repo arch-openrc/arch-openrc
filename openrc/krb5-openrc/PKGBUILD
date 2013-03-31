@@ -16,8 +16,8 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/$_pn/mit-$_rn/init.d/mit-krb5kadmind.initd-r1" "$pkgdir/etc/init.d/krb5kadmind"
-	install -Dm755 "$srcdir/$_pn/mit-$_rn/init.d/mit-krb5kdc.initd-r1" "$pkgdir/etc/init.d/krb5kdc"
-	install -Dm755 "$srcdir/$_pn/mit-$_rn/init.d/mit-krb5kpropd.initd-r1" "$pkgdir/etc/init.d/krb5kpropd"
+	install -Dm755 "$srcdir/$_pn/mit-$_rn/init.d/mit-krb5kadmind.initd-r1" "$pkgdir/etc/init.d/mit-krb5kadmind"
+	install -Dm755 "$srcdir/$_pn/mit-$_rn/init.d/mit-krb5kdc.initd-r1" "$pkgdir/etc/init.d/mit-krb5kdc"
+	install -Dm755 "$srcdir/$_pn/mit-$_rn/init.d/mit-krb5kpropd.initd-r1" "$pkgdir/etc/init.d/mit-krb5kpropd"
 }
 sha256sums=('69abf8eb52d83a7e5476ff4abc5113287668b2b6b4ec52e5dfee29bc59a6b3b8')
