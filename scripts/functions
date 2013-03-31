@@ -59,54 +59,61 @@ check(){
 		case $3 in
 			"dbus")
 				mk_str $2 'dbus.pid' 'dbus/pid'
-				;;
+			;;
 			"bind")
 				mk_str $2 '/etc/bind/named.conf' '/etc/named.conf'
-				;;
+			;;
 			"dhcp")
 				if [ `basename $2 | grep "dhcpd"` ];then
 					mk_str $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}'
 				fi
-				;;
+			;;
 			"ufw")	
 				mk_str $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
-				;;
+			;;
 			"xorg-server")
 				if [ `basename $2 | grep "xdm.initd"` ];then
 					rm_str $2 '/etc/profile.env' '/etc/profile'
 					mk_str $2 'ROOTPATH' 'PATH'
 				fi
-				;;
+			;;
 			"mysql")
 				mk_str $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
-				;;	
+			;;	
 			"ntp")
 				if [ `basename $2 | grep "ntpd"` ];then
 					mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
 				fi
-				;;	
+			;;	
 			"openntpd")
 				mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
-				;;		
+			;;		
 			"virtualbox-guest-additions")
 				mk_str $2 'vboxguest-service' 'VBoxService'
 				mk_str $2 '/usr/sbin/VBoxService' '/usr/bin/VBoxService'
-				;;		
+			;;		
 			"hostapd")
 				mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'
-				;;
+			;;
  			"cups")
  				mk_str "$2" 'use net' 'use net dbus avahi-daemon'
  				mk_str "$2" 'lp:lpadmin' 'daemon:sys'
  				sed -i 5d $2
- 				;;
+ 			;;
  			"openldap")
  				mk_str "$2" '/usr/lib/openldap/slapd' '/usr/lib/slapd'
- 				;;
+ 			;;
  			"subversion")
  				mk_str "$2" 'apache' 'http'
  				mk_str "$2" '/var/svn' '/srv/svn'
- 				;;		
+ 			;;		
+ 			"mit-krb5")
+ 				if [ `basename $2 | grep "krb5kadmind"` ];then
+					rm_str $2 'mit-krb5kdc' "krb5kdc"				
+				elif [ `basename $2 | grep "krb5kpropd"` ];then				
+					mk_str $2 'mit-krb5kdc mit-krb5kadmind' "krb5kdc krb5kadmind"
+				fi
+ 			;;		
 		esac	
 		if [ "${PRE}" = "/usr" ]; then
 			mk_str $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
@@ -116,7 +123,7 @@ check(){
 						mk_str $2 '/bin/lvm /sbin/lvm' "${PRE}/bin/lvm ${PRE}/sbin/lvm"			
 					elif [ `basename $2 | grep "device-mapper"` ];then
 						mk_str $2 '/sbin/dmsetup' "${PRE}/sbin/dmsetup"		
-					elif [ `basename $2 | grep "dmeventd"` ];then				
+					elif [ `basename $2 | grep "dmeventd"` ];then	
 						mk_str $2 '/sbin/dmeventd' "${PRE}/sbin/dmeventd"
 					fi
 				;;
@@ -137,10 +144,10 @@ check(){
 		case $3 in
 			"git")
 				mk_str $2 '/var/git' '/srv/git'
-				;;
+			;;
 			"subversion")
 				mk_str $2 '/var/svn' '/srv/svn'
-				;;
+			;;
 		esac
 	fi	
 }

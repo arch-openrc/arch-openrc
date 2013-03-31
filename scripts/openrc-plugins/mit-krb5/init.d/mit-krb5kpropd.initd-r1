@@ -8,7 +8,7 @@ daemon="MIT Kerberos 5 kpropd"
 exec="/usr/sbin/kpropd"
 
 depend() {
-	use net mit-krb5kdc mit-krb5kadmind
+	use net krb5kdc krb5kadmind
 }
 
 start() {

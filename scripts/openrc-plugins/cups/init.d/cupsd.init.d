@@ -2,7 +2,6 @@
 
 depend() {
 	use net dbus avahi-daemon
-	before nfs
 	after logger
 }
 

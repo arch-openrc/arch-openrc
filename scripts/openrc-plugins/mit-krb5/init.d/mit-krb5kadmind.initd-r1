@@ -8,7 +8,7 @@ daemon="MIT Kerberos 5 Admin daemon"
 exec="/usr/sbin/kadmind"
 
 depend() {
-	need mit-krb5kdc
+	need krb5kdc
 	use net
 }
 
