@@ -5,7 +5,7 @@
 
 [ -e /etc/conf.d/nfs ] && . /etc/conf.d/nfs
 
-rpc_bin=/sbin/rpc.statd
+rpc_bin=/usr/sbin/rpc.statd
 rpc_pid=/run/rpc.statd.pid
 
 depend() {

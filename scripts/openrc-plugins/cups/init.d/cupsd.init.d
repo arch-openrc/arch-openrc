@@ -1,16 +1,9 @@
 #!/usr/sbin/runscript
 
 depend() {
-	use net
-	@neededservices@
-	before nfs
-	after logger
-}
-
-start() {
-	ebegin "Starting cupsd"
+	use net dbus avahi-daemon dbus
 	checkpath -q -d -m 0755 -o root:lp /run/cups
-	checkpath -q -d -m 0511 -o lp:lpadmin /run/cups/certs
+	checkpath -q -d -m 0511 -o daemon:sys /run/cups/certs
 	start-stop-daemon --start --quiet --exec /usr/sbin/cupsd
 	eend $?
 }

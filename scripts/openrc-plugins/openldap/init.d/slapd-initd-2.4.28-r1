@@ -21,7 +21,7 @@ start() {
 	fi
 	ebegin "Starting ldap-server"
 	[ -n "$KRB5_KTNAME" ] && export KRB5_KTNAME
-	eval start-stop-daemon --start --pidfile /run/openldap/${SVCNAME}.pid --exec /usr/lib/openldap/slapd -- -u ldap -g ldap "${OPTS}"
+	eval start-stop-daemon --start --pidfile /run/openldap/${SVCNAME}.pid --exec /usr/lib/slapd -- -u ldap -g ldap "${OPTS}"
 	eend $?
 }
 
