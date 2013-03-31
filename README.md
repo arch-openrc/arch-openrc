@@ -16,30 +16,4 @@ OpenRC pkgbuilds
 
 ####ToDo####
 
-*rename conflicting /etc/conf.d/* *
-
-- gpm-openrc *done*
-
-- lm_sensors-openrc *done*
-
-- rsyslog-openrc *done*
-
-- bind-openrc *done*
-
-- iptables-openrc *done*
-
-- nfs-utils-openrc *done*
-
-- openssh-openrc *done*
-
-- squid-openrc *done*
-
-- subversion-openrc *done*
-
-- ypbind-openrc *done*
-
-- hostapd-openrc *done*
-
-- inetutils-openrc *done*
-
 *remove checks after arch removed orphaned files from packages*
