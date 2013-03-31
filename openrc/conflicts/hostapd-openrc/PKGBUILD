@@ -1,0 +1,28 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_pn=openrc-plugins
+_rn=hostapd
+
+pkgname=$_rn-openrc
+pkgver=0.6
+pkgrel=1
+pkgdesc="OpenRC $_rn init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-mobile')
+depends=('openrc' "$_rn")
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
+
+package() {
+	if [ -f '/etc/conf.d/hostapd' ]; then
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/hostapd-conf.d" "$pkgdir/etc/conf.d/hostapd-rc"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/hostapd-init.d" "$pkgdir/etc/init.d/hostapd-rc"
+	else
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/hostapd-conf.d" "$pkgdir/etc/conf.d/hostapd"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/hostapd-init.d" "$pkgdir/etc/init.d/hostapd"
+	fi
+
+}
+sha256sums=('4f5374769b3bae2f0fd272dbe75a646b75a9ab515a4a2ad83269134831e5050b')

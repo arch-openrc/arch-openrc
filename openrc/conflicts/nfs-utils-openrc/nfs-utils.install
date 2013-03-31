@@ -1,0 +1,26 @@
+if [ -f '/etc/conf.d/nfs-rc' ];then
+	svc[0]="nfs-rc"
+else
+	svc[0]="nfs"
+fi
+svc[1]="nfsmount"
+
+rlvl="default"
+
+post_install() {
+	_cmd="rc-update add ${svc[0]} $rlvl"
+	echo "	==> run '$_cmd'"
+	_cmd="rc-update add ${svc[1]} $rlvl"
+	echo "	==> run '$_cmd'"
+}
+
+post_upgrade() {
+	post_install "$1"
+}
+
+post_remove() {
+	_cmd="rc-update del ${svc[0]} $rlvl"
+	echo "	==> run '$_cmd'"
+	_cmd="rc-update del ${svc[1]} $rlvl"
+	echo "	==> run '$_cmd'"
+}
