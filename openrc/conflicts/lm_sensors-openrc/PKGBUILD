@@ -16,13 +16,13 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	if [ -f '/etc/conf.d/sensord' ];then
-		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/sensord-conf.d" "$pkgdir/etc/conf.d/sensord-rc"
-		install -Dm755 "$srcdir/$_pn/$_rn/init.d/sensord-4-init.d" "$pkgdir/etc/init.d/sensord-rc"
-	else
+# 	if [ -f '/etc/conf.d/sensord' ];then
+# 		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/sensord-conf.d" "$pkgdir/etc/conf.d/sensord-rc"
+# 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/sensord-4-init.d" "$pkgdir/etc/init.d/sensord-rc"
+# 	else
 		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/sensord-conf.d" "$pkgdir/etc/conf.d/sensord"
 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/sensord-4-init.d" "$pkgdir/etc/init.d/sensord"
-	fi
+	#fi
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/fancontrol-init.d-2" "$pkgdir/etc/init.d/fancontrol"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lm_sensors-3-init.d" "$pkgdir/etc/init.d/lm_sensors"
 }

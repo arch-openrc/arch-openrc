@@ -16,13 +16,13 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	if [ -f '/etc/conf.d/iptables' ]; then
-		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/iptables-1.4.13.confd" "$pkgdir/etc/conf.d/iptables-rc"
-		install -Dm755 "$srcdir/$_pn/$_rn/init.d/iptables-1.4.13-r1.init" "$pkgdir/etc/init.d/iptables-rc"
-	else
+# 	if [ -f '/etc/conf.d/iptables' ]; then
+# 		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/iptables-1.4.13.confd" "$pkgdir/etc/conf.d/iptables-rc"
+# 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/iptables-1.4.13-r1.init" "$pkgdir/etc/init.d/iptables-rc"
+# 	else
 		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/iptables-1.4.13.confd" "$pkgdir/etc/conf.d/iptables"
 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/iptables-1.4.13-r1.init" "$pkgdir/etc/init.d/iptables"
-	fi
+	#fi
 
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/ip6tables-1.4.13.confd" "$pkgdir/etc/conf.d/ip6tables"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/iptables-1.4.13-r1.init" "$pkgdir/etc/init.d/ip6tables"
