@@ -9,7 +9,7 @@ extra_commands="configtest"
 
 depend() {
 	need net
-	use logger dns #@slapd@
+	use logger dns ldap slapd
 }
 
 get_var() {

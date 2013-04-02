@@ -5,7 +5,7 @@
 
 depend() {
 	need net
-	use logger #@slapd@
+	use logger ldap slapd
 }
 
 start() {
