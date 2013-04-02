@@ -15,7 +15,7 @@ PKGNAME='openrc-plugins'
 EXT="xz"
 
 main(){	
-	set_dist
+	set_prefix
 	setup "confd.list" "conf.d"
 	setup "initd.list" "init.d"
 	mk_tar

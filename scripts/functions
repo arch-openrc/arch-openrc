@@ -10,14 +10,14 @@ mk_dirs() {
 	mkdir -p "${PKGNAME}/$1"
 }
 
-set_dist(){
+set_prefix(){
 	if [ "$DISTRIB_ID" = "arch" ];then
 		PRE="/usr"
 	else
 		PRE=""
 	fi
-	echo "$PKGNAME-$VER
-${DISTRIB_ID} linux" > $PKGNAME/version
+	echo "${PKGNAME}-${VER}
+${DISTRIB_ID} linux" > ${PKGNAME}/version
 }
 
 get_file() {
@@ -62,12 +62,12 @@ rm_str(){
 
 is_prefix(){
 	local ret
-	if [ $DISTRIB_ID = "arch" ];then
+	if [ ${DISTRIB_ID} = "arch" ];then
 		PRE='/usr'
 		ret=1
 	else
 		PRE=0
-		ret=$PRE
+		ret=${PRE}
 	fi
 	return $ret
 }
@@ -196,7 +196,6 @@ check(){
 setup() {
 	# $1: cfg file
 	# $2: type
-	
 	while read line; do
 		local OIFS=$IFS
 		local IFS='/'
@@ -209,7 +208,7 @@ setup() {
 			filename=${arr[3]}
 		fi
 		IFS=$OIFS
-		mk_dirs "$dirname/$2"
+		mk_dirs "${dirname}/$2"
 		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 		local file="${PKGNAME}/${dirname}/$2/${filename}"
 		local src="${url}/${line}"
