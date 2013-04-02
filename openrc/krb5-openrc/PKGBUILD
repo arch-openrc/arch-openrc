@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=krb5
 
 pkgname=$_rn-openrc
-pkgver=0.6
+pkgver=0.7
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -20,4 +20,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/mit-$_rn/init.d/mit-krb5kdc.initd-r1" "$pkgdir/etc/init.d/krb5kdc"
 	install -Dm755 "$srcdir/$_pn/mit-$_rn/init.d/mit-krb5kpropd.initd-r1" "$pkgdir/etc/init.d/krb5kpropd"
 }
-sha256sums=('4f5374769b3bae2f0fd272dbe75a646b75a9ab515a4a2ad83269134831e5050b')
+sha256sums=('0f1b2dbd2dd81c6ae53e3e118b113c7905a50eeb3ac373ff2956baeeb423d3bc')
