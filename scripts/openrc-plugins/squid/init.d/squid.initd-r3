@@ -45,7 +45,7 @@ checkconfig() {
 			local ORIG_UMASK=$(umask)
 			umask 027
 
-			if ! (mkdir -p ${x%/*} && chown squid ${x%/*}) ; then
+			if ! (mkdir -p ${x%/*} && chown proxy ${x%/*}) ; then
 				eend 1
 				return 1
 			fi
