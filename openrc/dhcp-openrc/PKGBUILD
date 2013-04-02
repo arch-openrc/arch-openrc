@@ -17,8 +17,12 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/dhcpd.conf2" "$pkgdir/etc/conf.d/dhcpd"
-	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/dhcrelay6.conf" "$pkgdir/etc/conf.d/dhcrelay"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/dhcpd.init5" "$pkgdir/etc/init.d/dhcpd"
+	
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/dhcrelay6.conf" "$pkgdir/etc/conf.d/dhcrelay"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/dhcrelay.init3" "$pkgdir/etc/init.d/dhcrelay"
+	
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/dhcrelay6.conf" "$pkgdir/etc/conf.d/dhcrelay6"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/dhcrelay.init3" "$pkgdir/etc/init.d/dhcrelay6"
 }
 sha256sums=('4f5374769b3bae2f0fd272dbe75a646b75a9ab515a4a2ad83269134831e5050b')
