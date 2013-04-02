@@ -1,7 +1,9 @@
 #!/usr/sbin/runscript
 
 depend() {
-	use net dbus avahi-daemon
+	use net
+	need dbus avahi-daemon
+	before nfs
 	after logger
 }
 
