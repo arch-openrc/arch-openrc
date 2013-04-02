@@ -10,16 +10,15 @@ else
 	DISTRIB_ID="unknown"
 fi
 
-VER=0.6
+VER=0.7
 PKGNAME='openrc-plugins'
 EXT="xz"
-PRE=""
 
 main(){	
 	set_dist
 	setup "confd.list" "conf.d"
 	setup "initd.list" "init.d"
-	mk_tar
+	#mk_tar
 }
 
 main
