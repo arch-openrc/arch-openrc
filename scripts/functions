@@ -166,8 +166,7 @@ check(){
 					mk_str $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"
 				;;
 				"iptables")
-				local tmp='"/usr/sbin'
-					mk_str $2 '"/sbin' "$tmp"
+					mk_str $2 '"/sbin' '"/usr/sbin'
 				;;
 				"nfs-utils")
 					if [ `basename $2 | grep "statd"` ];then
