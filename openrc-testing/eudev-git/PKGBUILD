@@ -55,8 +55,8 @@ build() {
 			--libdir=/usr/lib \
 			--libexecdir=/usr/lib \
 			--enable-libkmod \
-			--enable-kmod \
 			--enable-modules \
+			--with-modprobe=/sbin/modprobe \
 			--enable-split-usr \
 			--enable-keymap \
 			--with-firmware-path=/usr/lib/firmware/updates:/lib/firmware/updates:/usr/lib/firmware:/lib/firmware \
