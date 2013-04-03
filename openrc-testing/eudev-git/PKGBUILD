@@ -48,6 +48,7 @@ build() {
   ./autogen.sh
   ./configure  \
 			--prefix=/usr \
+			--exec-prefix=/usr \
 			--sysconfdir=/etc \
 			--libdir=/usr/lib \
 			--libexecdir=/usr/lib \
@@ -85,12 +86,10 @@ package() {
   rm -f "${pkgdir}/usr/lib/udev/rules.d/80-net-name-slot.rules"
   install -Dm644 "${srcdir}/80-net-name-slot.rules" "${pkgdir}/etc/udev/rules.d/80-net-name-slot.rules"
   
-  #rm -f $pkgdir/etc/udev/hwdb.d/*.hwdb
+  rm -f $pkgdir/etc/udev/hwdb.d/*.hwdb
   
   install -d "$pkgdir/sbin"
   ln -s /usr/sbin/udevadm "$pkgdir/sbin/udevadm"
-
-  # udevd is no longer udevd because systemd. why isn't udevadm now udevctl?
   ln -s /usr/sbin/udevd "$pkgdir/sbin/udevd"
   
 }
