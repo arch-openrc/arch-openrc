@@ -9,11 +9,6 @@ OpenRC pkgbuilds
 * openrc-mobile
 * openrc-net
 
-####Virtual packages:####
-
-* virtual-cron-openrc
-* virtual-timed-openrc
-
 ####ToDo####
 
 *remove checks after arch removed orphaned files from packages*
