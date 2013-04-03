@@ -3,7 +3,7 @@
 
 pkgname='eudev-git'
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
-pkgver=20130209
+pkgver=20130403
 pkgrel=1
 _udevver=196
 provides=("udev=${_udevver}" "systemd=${_udevver}" "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
@@ -23,9 +23,7 @@ source=('initcpio_hooks'
         'initcpio_install'
 	'80-net-name-slot.rules')
 options=(!makeflags !libtool)
-md5sums=('e99e9189aa2f6084ac28b8ddf605aeb8'
-         '65093268d376f57a02a74350c4000e89'
-         '372d60f89f626629005bb755be259a20')
+
 _gitroot=('git://github.com/gentoo/eudev.git')
 _gitname=('eudev')
          
@@ -48,25 +46,25 @@ build() {
   
   msg2 "Configuring sources..."
   ./autogen.sh
-  ./configure --prefix=/usr \
-			--with-rootprefix=/usr \
-			--with-rootlibdir=/usr/lib \
+  ./configure  \
+			--prefix=/usr \
 			--sysconfdir=/etc \
 			--libdir=/usr/lib \
 			--libexecdir=/usr/lib \
 			--enable-libkmod \
 			--enable-modules \
-			--with-modprobe=/sbin/modprobe \
 			--enable-split-usr \
 			--enable-keymap \
-			--with-firmware-path=/usr/lib/firmware/updates:/lib/firmware/updates:/usr/lib/firmware:/lib/firmware \
 			--enable-gudev \
-			--enable-introspection
+			--enable-introspection \
+			--with-modprobe=/sbin/modprobe \
+			--with-rootprefix=/usr \
+			--with-firmware-path=/usr/lib/firmware/updates:/lib/firmware/updates:/usr/lib/firmware:/lib/firmware
 
   msg2 "Compiling..."
   make
 }
- #             --bindir=/usr/sbin \
+ #            --bindir=/usr/sbin \--with-rootprefix=/usr \
 
 package() {
   cd "${srcdir}/${_gitname}"
@@ -97,3 +95,6 @@ package() {
   
 }
 
+sha256sums=('892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
+            '1f39e84acf7a4af51207fa41956ff8603c48a711723ca3e5693ec079a2aff59a'
+            '90328b323ea8c51b8091f402e8937a1a2e85bb8f7e8cb61a716121982492720e')
