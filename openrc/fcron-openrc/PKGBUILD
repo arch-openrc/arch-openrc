@@ -12,7 +12,7 @@ url="http://openrc4arch.site40.net"
 license=('GPL2')
 depends=('openrc' "$_rn")
 provides=('openrc-cron')
-conflicts=('cronie-openrc' 'dcron-openrc')
+conflicts=('openrc-cron')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 

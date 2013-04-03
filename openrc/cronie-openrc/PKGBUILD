@@ -10,9 +10,10 @@ pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
+groups=('openrc-base')
 depends=('openrc' "$_rn")
 provides=('openrc-cron')
-conflicts=('dcron-openrc' 'fcron-openrc')
+conflicts=('openrc-cron')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
