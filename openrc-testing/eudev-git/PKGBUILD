@@ -54,7 +54,10 @@ build() {
 			--libdir=/usr/lib \
 			--libexecdir=/usr/lib \
 			--enable-libkmod \
+			--enable-kmod \
 			--enable-modules \
+			--enable-split-usr \
+			--enable-keymap \
 			--with-firmware-path=/usr/lib/firmware/updates:/lib/firmware/updates:/usr/lib/firmware:/lib/firmware \
 			--enable-gudev \
 			--enable-introspection
@@ -82,6 +85,8 @@ package() {
   # Make new interface naming policy disabled by default
   rm -f "${pkgdir}/usr/lib/udev/rules.d/80-net-name-slot.rules"
   install -Dm644 "${srcdir}/80-net-name-slot.rules" "${pkgdir}/etc/udev/rules.d/80-net-name-slot.rules"
+  
+  #rm -f $pkgdir/etc/udev/hwdb.d/*.hwdb
   
   install -d "$pkgdir/sbin"
   ln -s /usr/sbin/udevadm "$pkgdir/sbin/udevadm"
