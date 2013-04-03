@@ -48,18 +48,21 @@ build() {
   msg2 "Configuring sources..."
   ./autogen.sh
   ./configure --prefix=/usr \
-              --with-rootprefix=/usr \
-              --sysconfdir=/etc \
-              --bindir=/usr/sbin \
-              --libdir=/usr/lib \
-              --with-firmware-path=/usr/lib/firmware/updates:/lib/firmware/updates:/usr/lib/firmware:/lib/firmware \
-              --enable-gudev \
-              --enable-introspection
+			--with-rootprefix=/usr \
+			--with-rootlibdir=/usr/lib \
+			--sysconfdir=/etc \
+			--libdir=/usr/lib \
+			--libexecdir=/usr/lib \
+			--enable-libkmod \
+			--enable-modules \
+			--with-firmware-path=/usr/lib/firmware/updates:/lib/firmware/updates:/usr/lib/firmware:/lib/firmware \
+			--enable-gudev \
+			--enable-introspection
 
   msg2 "Compiling..."
   make
 }
-
+ #             --bindir=/usr/sbin \
 
 package() {
   cd "${srcdir}/${_gitname}"
@@ -79,5 +82,12 @@ package() {
   # Make new interface naming policy disabled by default
   rm -f "${pkgdir}/usr/lib/udev/rules.d/80-net-name-slot.rules"
   install -Dm644 "${srcdir}/80-net-name-slot.rules" "${pkgdir}/etc/udev/rules.d/80-net-name-slot.rules"
+  
+  install -d "$pkgdir/sbin"
+  ln -s /usr/sbin/udevadm "$pkgdir/sbin/udevadm"
+
+  # udevd is no longer udevd because systemd. why isn't udevadm now udevctl?
+  ln -s /usr/sbin/udevd "$pkgdir/sbin/udevd"
+  
 }
 
