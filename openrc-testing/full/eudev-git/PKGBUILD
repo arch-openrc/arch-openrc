@@ -3,7 +3,7 @@
 
 pkgname='eudev-git'
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
-pkgver=20130403
+pkgver=20130404
 pkgrel=1
 _udevver=196
 provides=("udev=${_udevver}" "systemd=${_udevver}" "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
@@ -86,11 +86,11 @@ package() {
   rm -f "${pkgdir}/usr/lib/udev/rules.d/80-net-name-slot.rules"
   install -Dm644 "${srcdir}/80-net-name-slot.rules" "${pkgdir}/etc/udev/rules.d/80-net-name-slot.rules"
   
-  rm -f $pkgdir/etc/udev/hwdb.d/*.hwdb
+ # rm -f $pkgdir/etc/udev/hwdb.d/*.hwdb
   
-  install -d "$pkgdir/sbin"
-  ln -s /usr/sbin/udevadm "$pkgdir/sbin/udevadm"
-  ln -s /usr/sbin/udevd "$pkgdir/sbin/udevd"
+   install -d "$pkgdir/sbin"
+   ln -s /usr/bin/udevadm "$pkgdir/sbin/udevadm"
+   ln -s /usr/sbin/udevd "$pkgdir/sbin/udevd"
 #   udevadm hwdb --update --root="${ROOT%/}"
 }
 
