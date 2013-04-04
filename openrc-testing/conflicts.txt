@@ -1,0 +1,11 @@
+bind
+gpm
+hostapd
+inetutils
+iptables
+nfs-utils
+openssh
+rsyslog
+squid
+subversion
+ypbind

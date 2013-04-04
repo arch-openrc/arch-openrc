@@ -91,7 +91,7 @@ package() {
   install -d "$pkgdir/sbin"
   ln -s /usr/sbin/udevadm "$pkgdir/sbin/udevadm"
   ln -s /usr/sbin/udevd "$pkgdir/sbin/udevd"
-  
+#   udevadm hwdb --update --root="${ROOT%/}"
 }
 
 sha256sums=('892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
