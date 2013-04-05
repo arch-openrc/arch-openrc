@@ -29,25 +29,25 @@ _gitroot=('git://github.com/gentoo/eudev.git')
 _gitname=('eudev')
          
 build() {
-  if [ -d "${_gitname}" ] ; then
-    cd "${srcdir}/${_gitname}"
-    msg2 "Updating local tree..."
-    git pull origin master
-  else
-    cd "${srcdir}"
-    msg2 "Cloning initial copy of ${_gitname}..."
-    git clone --depth=1 "${_gitroot}" "${_gitname}"
-    cd "${srcdir}/${_gitname}"
-  fi
+	if [ -d "${_gitname}" ] ; then
+		cd "${srcdir}/${_gitname}"
+		msg2 "Updating local tree..."
+		git pull origin master
+	else
+		cd "${srcdir}"
+		msg2 "Cloning initial copy of ${_gitname}..."
+		git clone --depth=1 "${_gitroot}" "${_gitname}"
+		cd "${srcdir}/${_gitname}"
+	fi
   
-  if [ -f "Makefile" ];then
-    msg2 "Cleaning up..."
-    make clean
-  fi
+	if [ -f "Makefile" ];then
+		msg2 "Cleaning up..."
+		make clean
+	fi
   
-  msg2 "Configuring sources..."
-  ./autogen.sh
-  ./configure  \
+	msg2 "Configuring sources..."
+	./autogen.sh
+	./configure  \
 			--prefix=/usr \
 			--sysconfdir=/etc \
 			--libdir=/usr/lib \
@@ -64,27 +64,27 @@ build() {
 }
 
 package() {
-  cd "${srcdir}/${_gitname}"
-  make DESTDIR="${pkgdir}" install
+	cd "${srcdir}/${_gitname}"
+	make DESTDIR="${pkgdir}" install
 
-  # install the mkinitpcio hook
-  install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
-  install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
+	# install the mkinitpcio hook
+	install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
+	install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
 
-  # Replace dialout/tape/cdrom group in rules with uucp/storage/optical group
-  for i in "${pkgdir}/usr/lib/udev/rules.d/"*.rules; do
-    sed -i -e 's#GROUP="dialout"#GROUP="uucp"#g;
+	# Replace dialout/tape/cdrom group in rules with uucp/storage/optical group
+	for i in "${pkgdir}/usr/lib/udev/rules.d/"*.rules; do
+		sed -i -e 's#GROUP="dialout"#GROUP="uucp"#g;
                s#GROUP="tape"#GROUP="storage"#g;
                s#GROUP="cdrom"#GROUP="optical"#g' "${i}"
-  done
+	done
 
-  # Make new interface naming policy disabled by default
-  rm -f "${pkgdir}/usr/lib/udev/rules.d/80-net-name-slot.rules"
-  install -Dm644 "${srcdir}/80-net-name-slot.rules" "${pkgdir}/etc/udev/rules.d/80-net-name-slot.rules"
+	# Make new interface naming policy disabled by default
+	rm -f "${pkgdir}/usr/lib/udev/rules.d/80-net-name-slot.rules"
+	install -Dm644 "${srcdir}/80-net-name-slot.rules" "${pkgdir}/etc/udev/rules.d/80-net-name-slot.rules"
   
-   install -d "$pkgdir/sbin"
-   ln -s /usr/bin/udevadm "$pkgdir/sbin/udevadm"
-
+	install -d "$pkgdir/sbin"
+	ln -s /usr/bin/udevadm "$pkgdir/sbin/udevadm"
+	ln -s /usr/sbin/udevd "$pkgdir/sbin/udevd"
 }
 
 sha256sums=('892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
