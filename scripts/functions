@@ -66,8 +66,8 @@ is_prefix(){
 		PRE='/usr'
 		ret=1
 	else
-		PRE=0
-		ret=${PRE}
+		PRE=''
+		ret=0
 	fi
 	return $ret
 }
