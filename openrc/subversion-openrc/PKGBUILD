@@ -16,12 +16,7 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-# 	if [ -f '/etc/conf.d/svnserve' ]; then
-# 		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/svnserve.confd" "$pkgdir/etc/conf.d/svnserve-rc"
-# 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/svnserve.initd2" "$pkgdir/etc/init.d/svnserve-rc"
-# 	else
 		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/svnserve.confd" "$pkgdir/etc/conf.d/svnserve"
 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/svnserve.initd2" "$pkgdir/etc/init.d/svnserve"
-	#fi
 }
 sha256sums=('0f1b2dbd2dd81c6ae53e3e118b113c7905a50eeb3ac373ff2956baeeb423d3bc')
