@@ -1,15 +1,16 @@
-# Maintainer: Alexey D. <lq07829icatm@rambler.ru>
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+# Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
 pkgname='eudev-git'
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
-pkgver=20130404
+pkgver=20130405
 pkgrel=1
-_udevver=196
+_udevver=200
 provides=("udev=${_udevver}" "systemd=${_udevver}" "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
 replaces=('udev' 'systemd' 'libsystemd' 'systemd-tools')
 conflicts=('udev' 'systemd' 'libsystemd' 'systemd-tools')
-groups=('base')
+#groups=('base')
 arch=('i686' 'x86_64')
 url="https://github.com/gentoo/eudev"
 license=('GPL')
@@ -48,24 +49,19 @@ build() {
   ./autogen.sh
   ./configure  \
 			--prefix=/usr \
-			--exec-prefix=/usr \
 			--sysconfdir=/etc \
 			--libdir=/usr/lib \
-			--libexecdir=/usr/lib \
 			--enable-libkmod \
 			--enable-modules \
-			--enable-split-usr \
 			--enable-keymap \
 			--enable-gudev \
 			--enable-introspection \
-			--with-modprobe=/sbin/modprobe \
 			--with-rootprefix=/usr \
 			--with-firmware-path=/usr/lib/firmware/updates:/lib/firmware/updates:/usr/lib/firmware:/lib/firmware
 
   msg2 "Compiling..."
   make
 }
- #            --bindir=/usr/sbin \--with-rootprefix=/usr \
 
 package() {
   cd "${srcdir}/${_gitname}"
@@ -86,12 +82,9 @@ package() {
   rm -f "${pkgdir}/usr/lib/udev/rules.d/80-net-name-slot.rules"
   install -Dm644 "${srcdir}/80-net-name-slot.rules" "${pkgdir}/etc/udev/rules.d/80-net-name-slot.rules"
   
- # rm -f $pkgdir/etc/udev/hwdb.d/*.hwdb
-  
    install -d "$pkgdir/sbin"
    ln -s /usr/bin/udevadm "$pkgdir/sbin/udevadm"
-   ln -s /usr/sbin/udevd "$pkgdir/sbin/udevd"
-#   udevadm hwdb --update --root="${ROOT%/}"
+
 }
 
 sha256sums=('892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
