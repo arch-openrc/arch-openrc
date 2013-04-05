@@ -2,64 +2,64 @@
 # Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
-pkgname='eudev-git'
-pkgdesc="The userspace dev tools (udev) forked by Gentoo"
-pkgver=20130405
-pkgrel=1
 _udevver=200
-provides=("udev=${_udevver}" "systemd=${_udevver}" "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
-replaces=('udev' 'systemd' 'libsystemd' 'systemd-tools')
-conflicts=('udev' 'systemd' 'libsystemd' 'systemd-tools')
-#groups=('base')
+
+pkgname='eudev-git'
+pkgver=20130406
+pkgrel=1
+pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
 url="https://github.com/gentoo/eudev"
 license=('GPL')
+#groups=('base')
 depends=('util-linux' 'glib2' 'kmod' 'hwids' 'bash' 'acl')
-optdepends=('udev-openrc')
 makedepends=('git' 'gobject-introspection' 'gperf' 'libxslt' 'docbook-xsl')
-options=(!makeflags !libtool)
-install="${pkgname}.install"
+optdepends=('cryptsetup: required for encrypted block devices'
+			'quota-tools: kernel-level quota management'
+			'udev-openrc: OpenRC udev init scripts')
+provides=("udev=${_udevver}" "systemd=${_udevver}" "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
+conflicts=('udev' 'systemd' 'libsystemd' 'systemd-tools')
+#replaces=('udev' 'systemd' 'libsystemd' 'systemd-tools')
 backup=('etc/udev/udev.conf' 'etc/udev/rules.d/80-net-name-slot.rules')
-source=('initcpio_hooks'
-        'initcpio_install'
-	'80-net-name-slot.rules')
-options=(!makeflags !libtool)
+options=('!libtool')
+install=${pkgname}.install
+source=('initcpio_hooks' 'initcpio_install' '80-net-name-slot.rules')
 
 _gitroot=('git://github.com/gentoo/eudev.git')
 _gitname=('eudev')
          
 build() {
-	if [ -d "${_gitname}" ] ; then
-		cd "${srcdir}/${_gitname}"
-		msg2 "Updating local tree..."
-		git pull origin master
+
+	cd "$srcdir"
+	msg "Connecting to GIT server...."
+
+	if [[ -d "$_gitname" ]]; then
+		cd "$_gitname" && git pull origin
+		msg "The local files are updated."
 	else
-		cd "${srcdir}"
-		msg2 "Cloning initial copy of ${_gitname}..."
-		git clone --depth=1 "${_gitroot}" "${_gitname}"
-		cd "${srcdir}/${_gitname}"
+		git clone "$_gitroot" "$_gitname"
 	fi
-  
-	if [ -f "Makefile" ];then
-		msg2 "Cleaning up..."
-		make clean
-	fi
-  
-	msg2 "Configuring sources..."
+
+	msg "GIT checkout done or server timeout"
+	msg "Starting build..."
+
 	./autogen.sh
 	./configure  \
 			--prefix=/usr \
 			--sysconfdir=/etc \
 			--libdir=/usr/lib \
+			--localstatedir=/var \
+			--enable-static \
 			--enable-libkmod \
 			--enable-modules \
 			--enable-keymap \
 			--enable-gudev \
+			--enable-split-usr \
 			--enable-introspection \
 			--with-rootprefix=/usr \
-			--with-firmware-path=/usr/lib/firmware/updates:/lib/firmware/updates:/usr/lib/firmware:/lib/firmware
+			--with-firmware-path="/usr/lib/firmware/updates:/usr/lib/firmware"
 
-  msg2 "Compiling..."
+  msg "Compiling..."
   make
 }
 
@@ -67,18 +67,15 @@ package() {
 	cd "${srcdir}/${_gitname}"
 	make DESTDIR="${pkgdir}" install
 
-	# install the mkinitpcio hook
 	install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
 	install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
 
-	# Replace dialout/tape/cdrom group in rules with uucp/storage/optical group
 	for i in "${pkgdir}/usr/lib/udev/rules.d/"*.rules; do
 		sed -i -e 's#GROUP="dialout"#GROUP="uucp"#g;
                s#GROUP="tape"#GROUP="storage"#g;
                s#GROUP="cdrom"#GROUP="optical"#g' "${i}"
 	done
 
-	# Make new interface naming policy disabled by default
 	rm -f "${pkgdir}/usr/lib/udev/rules.d/80-net-name-slot.rules"
 	install -Dm644 "${srcdir}/80-net-name-slot.rules" "${pkgdir}/etc/udev/rules.d/80-net-name-slot.rules"
   
