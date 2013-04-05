@@ -17,13 +17,13 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 		
 package() {
 	
-# 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/samba4.confd" "$pkgdir/etc/conf.d/samba"
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/samba4.confd" "$pkgdir/etc/conf.d/samba"
+
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/samba4.initd-r1" "$pkgdir/etc/init.d/samba"
+
+# 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/samba.confd" "$pkgdir/etc/conf.d/samba"
 # 
-# 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/samba4.initd-r1" "$pkgdir/etc/init.d/samba"
+# 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/samba.initd" "$pkgdir/etc/init.d/samba"
 
-	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/samba.confd" "$pkgdir/etc/conf.d/samba"
-
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/samba.initd" "$pkgdir/etc/init.d/samba"
-		
 }
 sha256sums=('0f1b2dbd2dd81c6ae53e3e118b113c7905a50eeb3ac373ff2956baeeb423d3bc')
