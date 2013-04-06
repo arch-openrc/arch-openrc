@@ -42,7 +42,9 @@ build() {
 
 	msg "GIT checkout done or server timeout"
 	msg "Starting build..."
-
+	
+	cd "${srcdir}/${_gitname}"
+	
 	./autogen.sh
 	./configure  \
 			--prefix=/usr \
