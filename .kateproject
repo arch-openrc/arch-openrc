@@ -1,0 +1,3 @@
+{
+      "name": "pkgbuilds", "files": [ { "directory": "", "filters": ["*.*", "*", ".kateproject"], "recursive": 1 } ]
+}
