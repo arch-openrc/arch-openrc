@@ -22,11 +22,15 @@ md5sums=('06e0d3b72e566ac277fc35c8206d2a28'
 build() {
   cd "$srcdir/polkit-$pkgver"
 
-  ./configure --prefix=/usr --sysconfdir=/etc \
-      --localstatedir=/var --libexecdir=/usr/lib/polkit-1 \
-      --with-systemdsystemunitdir=/usr/lib/systemd/system \
-      --enable-libsystemd-login=no \
-      --disable-static --enable-gtk-doc
+  ./configure \
+			--prefix=/usr \
+			--sysconfdir=/etc \
+			--localstatedir=/var \
+			--libexecdir=/usr/lib/polkit-1 \
+			--with-systemdsystemunitdir=/usr/lib/systemd/system \
+			--enable-libsystemd-login=no \
+			--disable-static \
+			--enable-gtk-doc
   make
 }
 
