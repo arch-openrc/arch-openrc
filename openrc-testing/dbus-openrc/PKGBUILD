@@ -55,3 +55,6 @@ package(){
 
 	install -Dm644 COPYING "$pkgdir/usr/share/licenses/dbus/COPYING"
 }
+sha256sums=('fc1370ef38abeeb13f55c905ec002e60705fb0bfde3b8d21c8d6eb8056c11bac'
+            '0f1b2dbd2dd81c6ae53e3e118b113c7905a50eeb3ac373ff2956baeeb423d3bc'
+            '24785097abec61b8f2b8f9532e83e3f49855f505555d1a0cbbab99beb254460c')
