@@ -16,7 +16,7 @@ license=('GPL' 'BSD')
 depends=('glibc' 'bash' 'openrc')
 provides=('logger')
 backup=('etc/syslog.conf' 'etc/logrotate.d/syslog')
-source=(http://www.infodrom.org/projects/sysklogd/download/${_rn}-${pkgver}.tar.gz{,.asc}
+source=("http://www.infodrom.org/projects/sysklogd/download/${_rn}-${pkgver}.tar.gz"
         'sysklogd-1.4.1-caen-owl-syslogd-bind.diff'
         'sysklogd-1.4.1-caen-owl-syslogd-drop-root.diff'
         'sysklogd-1.4.1-caen-owl-klogd-drop-root.diff'
@@ -54,7 +54,6 @@ package() {
   
 }
 sha256sums=('6169b8e91d29288e90404f01462b69e7f2afb1161aa419826fe4736c7f9eb773'
-            'SKIP'
             'db2f7a8cac6d21dbba72c38a08248b6aa21e32be5e5d1640c48074efe6b1a3ab'
             '0f08fecee20d69021dce3b9dc2b901c4509f9501f804f0fd88445e7751d9a16a'
             'c79edeb73f16abe0d54ce9ac582bb0796c07c2541963c742f4dd0b3c1b8d40bc'
