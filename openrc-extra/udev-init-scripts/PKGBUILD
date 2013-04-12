@@ -1,0 +1,28 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_pn=udev-init-scripts
+
+pkgname=${_pn}
+pkgver=25
+pkgrel=1
+pkgdesc="OpenRC udev init scripts"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-base')
+depends=('udev' 'openrc')
+install=udev.install
+source=("http://dev.gentoo.org/~williamh/dist/$_pn-$pkgver.tar.bz2")
+sha256sums=('2210a0c76b1169d136b3f7c8f8c6ca36b4546aea7e88c355c81009cf10fb9bc3')
+
+package() {
+	
+	cd "${srcdir}/${_pn}-${pkgver}"
+		
+	make DESTDIR="${pkgdir}" install
+	
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -e 's|/sbin/udevd|/usr/sbin/udevd|g' -i "$pkgdir/etc/init.d/udev"
+		
+	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$pkgdir/etc/init.d/udev-mount"
+	
+}
