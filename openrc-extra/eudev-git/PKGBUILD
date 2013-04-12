@@ -5,7 +5,7 @@
 _udevver=200
 
 pkgname='eudev-git'
-pkgver=20130406
+pkgver=20130412
 pkgrel=1
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
@@ -16,7 +16,7 @@ depends=('util-linux' 'glib2' 'kmod' 'hwids' 'bash' 'acl')
 makedepends=('git' 'gobject-introspection' 'gperf' 'libxslt' 'docbook-xsl')
 optdepends=('cryptsetup: required for encrypted block devices'
 			'quota-tools: kernel-level quota management'
-			'udev-openrc: OpenRC udev init scripts')
+			'udev-init-scripts: OpenRC udev init scripts')
 provides=("udev=${_udevver}" "systemd=${_udevver}" "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
 conflicts=('udev' 'systemd' 'libsystemd' 'systemd-tools')
 #replaces=('udev' 'systemd' 'libsystemd' 'systemd-tools')
