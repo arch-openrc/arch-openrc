@@ -1,0 +1,59 @@
+# $Id: PKGBUILD 179615 2013-03-08 18:57:03Z dreisner $
+# Maintainer: Dave Reisner <dreisner@archlinux.org>
+# Contributor: Eric Bélanger <eric@archlinux.org>
+# Contributor: Aaron Griffin <aaron@archlinux.org>
+
+_pn=openrc-plugins
+_ver=0.7
+_rn=syslog-ng
+
+pkgname=$_rn-openrc
+pkgver=3.4.1
+pkgrel=1
+pkgdesc="Next-generation syslogd with advanced networking and filtering capabilities and openrc support"
+arch=('i686' 'x86_64')
+license=('GPL2')
+url="http://www.balabit.com/network-security/syslog-ng/"
+groups=('openrc-misc')
+depends=('awk' 'eventlog' 'glib2' 'libcap' 'openssl' 'systemd')
+makedepends=('flex' 'pkg-config' 'python2')
+optdepends=('logrotate: for rotating log files')
+provides=('syslog-ng')
+conflicts=('syslog-ng')
+options=('!libtool')
+backup=('etc/syslog-ng/modules.conf'
+        'etc/syslog-ng/scl.conf'
+        'etc/syslog-ng/syslog-ng.conf'
+        'etc/logrotate.d/syslog-ng')
+install=$_rn.install
+source=("http://www.balabit.com/downloads/files/syslog-ng/sources/$pkgver/source/${_rn}_$pkgver.tar.gz"
+		"http://openrc4arch.site40.net/pool/archlinux/$_pn-$_ver.tar.xz"
+		'syslog-ng.logrotate'
+        'syslog-ng.conf')
+
+build() {
+	cd "$_rn-$pkgver"
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc/syslog-ng \
+		--libexecdir=/usr/lib \
+		--localstatedir=/var/lib/syslog-ng \
+		--datadir=/usr/share/syslog-ng \
+		--with-pidfile-dir=/run \
+		--disable-spoof-source \
+		--enable-ipv6 \
+		--disable-systemd
+	make
+}
+
+package() {
+	make -C "$_rn-$pkgver" DESTDIR="$pkgdir" install
+
+	install -dm755 "$pkgdir/var/lib/syslog-ng" "$pkgdir/etc/syslog-ng/patterndb.d"
+	install -Dm644 "$srcdir/syslog-ng.conf" "$pkgdir/etc/syslog-ng/syslog-ng.conf"
+	install -Dm644 "$srcdir/syslog-ng.logrotate" "$pkgdir/etc/logrotate.d/syslog-ng"
+  
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/syslog-ng.confd" "$pkgdir/etc/conf.d/syslog-ng"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/syslog-ng.rc6.3" "$pkgdir/etc/init.d/syslog-ng"
+}
