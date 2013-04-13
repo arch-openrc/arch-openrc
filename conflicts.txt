@@ -1,5 +1,4 @@
 bind
-gpm
 hostapd
 inetutils
 iptables
@@ -8,4 +7,3 @@ openssh
 subversion
 rsyslog
 squid
-ypbind
