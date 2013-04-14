@@ -3,7 +3,7 @@
 _rn=inetutils
 
 pkgname=$_rn-openrc
-pkgver=0.7
+pkgver=0.8
 pkgrel=1
 pkgdesc="OpenRC ftpd init script"
 arch=('any')
