@@ -19,7 +19,7 @@ depends=('bash' 'openrc')
 provides=('cron' 'openrc-cron')
 conflicts=('cron' 'openrc-cron')
 optdepends=('smtp-server: sending cron job output via email')
-install=$pkgname.install
+install=$_rn.install
 source=("http://www.jimpryor.net/linux/releases/${_rn}-${pkgver}.tar.gz"
 		"$_url/pool/archlinux/$_pn-$_pver.tar.xz")
 

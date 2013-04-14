@@ -1,0 +1,65 @@
+svc="syslog-ng"
+rlvl="default"
+_p1='/run/systemd/journal/syslog'
+_p2='/dev/log'
+_file="/etc/$svc/$svc.conf"
+
+post_install() {
+echo " ==> checking $_file for $_p2"
+if ! grep -Fxq "$_p2" "$_file"; then
+sed -i "s|$_p1|$_p2|g" $_file
+echo " ==> set $_p2: $_file"
+else
+echo " ==> already set $_p2: $_file"
+fi
+_cmd="rc-update add $svc $rlvl"
+echo " ==> run '$_cmd'"
+}
+post_upgrade() {
+post_install "$1"
+}
+
+post_remove() {
+file="/etc/syslog-ng/syslog-ng.conf"
+echo " ==> checking $_file for $_p1"
+if ! grep -Fxq "$_p2" "$_file"; then
+sed -i "s|$_p2|$_p1|g" $_file
+echo " ==> set $_p1: $_file"
+else
+echo " ==> already set $_p1: $_file"
+fi
+_cmd="rc-update del $svc $rlvl"
+echo " ==> run '$_cmd'"
+}svc="syslog-ng"
+rlvl="default"
+_p1='/run/systemd/journal/syslog'
+_p2='/dev/log'
+_file="/etc/$svc/$svc.conf"
+
+post_install() {
+echo " ==> checking $_file for $_p2"
+if ! grep -Fxq "$_p2" "$_file"; then
+sed -i "s|$_p1|$_p2|g" $_file
+echo " ==> set $_p2: $_file"
+else
+echo " ==> already set $_p2: $_file"
+fi
+_cmd="rc-update add $svc $rlvl"
+echo " ==> run '$_cmd'"
+}
+post_upgrade() {
+post_install "$1"
+}
+
+post_remove() {
+file="/etc/syslog-ng/syslog-ng.conf"
+echo " ==> checking $_file for $_p1"
+if ! grep -Fxq "$_p2" "$_file"; then
+sed -i "s|$_p2|$_p1|g" $_file
+echo " ==> set $_p1: $_file"
+else
+echo " ==> already set $_p1: $_file"
+fi
+_cmd="rc-update del $svc $rlvl"
+echo " ==> run '$_cmd'"
+} 

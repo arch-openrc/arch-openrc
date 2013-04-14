@@ -8,7 +8,7 @@ pkgdesc="PolyciKit with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('LGPL')
 url="http://www.freedesktop.org/wiki/Software/polkit"
-depends=('glib2' 'pam' 'expat' 'js' 'consolekit')
+depends=('glib2' 'pam' 'expat' 'js185' 'consolekit')
 makedepends=('intltool' 'gtk-doc' 'gobject-introspection')
 provides=('polkit')
 conflicts=('polkit')
@@ -27,8 +27,6 @@ build() {
 			--sysconfdir=/etc \
 			--localstatedir=/var \
 			--libexecdir=/usr/lib/polkit-1 \
-			--with-systemdsystemunitdir=/usr/lib/systemd/system \
-			--enable-libsystemd-login=no \
 			--disable-static \
 			--enable-gtk-doc
   make
