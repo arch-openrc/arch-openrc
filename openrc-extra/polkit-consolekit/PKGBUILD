@@ -8,14 +8,14 @@ pkgdesc="PolyciKit with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('LGPL')
 url="http://www.freedesktop.org/wiki/Software/polkit"
-depends=('glib2' 'pam' 'expat' 'js185' 'consolekit')
+depends=('glib2' 'pam' 'expat' 'js185')
 makedepends=('intltool' 'gtk-doc' 'gobject-introspection')
 provides=('polkit')
 conflicts=('polkit')
 options=('!libtool')
 install=polkit.install
-source=(http://www.freedesktop.org/software/polkit/releases/polkit-$pkgver.tar.gz \
-        polkit.pam)
+source=("http://www.freedesktop.org/software/polkit/releases/polkit-$pkgver.tar.gz"
+		'polkit.pam')
 md5sums=('06e0d3b72e566ac277fc35c8206d2a28'
          '6564f95878297b954f0572bc1610dd15')
 

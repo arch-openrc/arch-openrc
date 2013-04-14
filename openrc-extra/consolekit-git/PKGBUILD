@@ -53,7 +53,6 @@ build() {
 		--enable-pam-module \
 		--with-pam-module-dir=/usr/lib/security \
 		--enable-docbook-docs \
-		--with-dbus-services=/usr/share/dbus-1/services \
 		--enable-udev-acl
   make
 }
