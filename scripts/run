@@ -10,7 +10,7 @@ else
 	DISTRIB_ID="unknown"
 fi
 
-VER=0.7
+VER=0.8
 PKGNAME='openrc-plugins'
 EXT="xz"
 

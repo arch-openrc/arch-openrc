@@ -161,6 +161,10 @@ check(){
 					if [ `basename $2 | grep "dmeventd"` ];then	
 						mk_str $2 '/sbin/dmeventd' "${PRE}/sbin/dmeventd"
 					fi
+					if [ `basename $2 | grep "lvm-monitoring"` ];then	
+						mk_str $2 '/sbin/vgchange' "${PRE}/sbin/vgchange" && \
+						mk_str $2 '/sbin/vgs' "${PRE}/sbin/vgs"
+					fi
 				;;
 				"rpcbind")
 					mk_str $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"

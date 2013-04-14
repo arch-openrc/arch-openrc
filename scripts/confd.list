@@ -40,3 +40,4 @@ www-servers/lighttpd/files/lighttpd.confd
 x11-base/xorg-server/files/xdm.confd-4
 sys-apps/xinetd/files/xinetd.confd
 net-misc/dhcp/files/dhcrelay.conf
+sys-fs/lvm2/files/device-mapper.conf-1.02.22-r3
