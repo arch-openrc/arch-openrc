@@ -18,6 +18,6 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/lvm.confd-2.02.28-r2" "$pkgdir/etc/conf.d/lvm"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lvm.rc-2.02.95-r2" "$pkgdir/etc/init.d/lvm"
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lvm-monitoring.initd-2.02.67-r1" "$pkgdir/etc/init.d/lvm-monitoring"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lvm-monitoring.initd-2.02.67-r2" "$pkgdir/etc/init.d/lvm-monitoring"
 }
 sha256sums=('ff3bc32edc3e522f5788a7f0ca293c4d63d649156b0ce166d59633cc784acf7e')
