@@ -3,9 +3,8 @@
 # Contributor: Paul Mattal <paul.archlinux.org>
 
 _pn=openrc-plugins
-_pver=0.7
-_url="http://openrc4arch.site40.net"
 _rn=dcron
+_pv=0.8
 
 pkgname=${_rn}-openrc
 pkgver=4.5
@@ -21,7 +20,7 @@ conflicts=('cron' 'openrc-cron')
 optdepends=('smtp-server: sending cron job output via email')
 install=$_rn.install
 source=("http://www.jimpryor.net/linux/releases/${_rn}-${pkgver}.tar.gz"
-		"$_url/pool/archlinux/$_pn-$_pver.tar.xz")
+		"http://openrc4arch.site40.net/pool/archlinux/$_pn-$_pv.tar.xz")
 
 
 build() {
@@ -56,4 +55,4 @@ package() {
 	
 }
 sha256sums=('9e50edb6f5bd8153b16bad05087d985e5153ce45cc01ae77e7f842213fb4a824'
-            '0f1b2dbd2dd81c6ae53e3e118b113c7905a50eeb3ac373ff2956baeeb423d3bc')
+            'ff3bc32edc3e522f5788a7f0ca293c4d63d649156b0ce166d59633cc784acf7e')

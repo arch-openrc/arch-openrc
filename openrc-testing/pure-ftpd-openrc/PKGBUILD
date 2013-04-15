@@ -5,9 +5,8 @@
 # Contributor: udeved <udeved@openrc4arch.site40.net>
 
 _pn=openrc-plugins
-_pver=0.7
-_url='http://openrc4arch.site40.net'
 _rn=pure-ftpd
+_pv=0.8
 
 pkgname=$_rn-openrc
 pkgver=1.0.36
@@ -20,7 +19,7 @@ depends=('openssl' 'libmysqlclient' 'openrc')
 backup=('etc/pure-ftpd.conf')
 install=$_rn.install
 source=("ftp://pureftpd.org/pub/${_rn}/releases/${_rn}-${pkgver}.tar.bz2"
-		"$_url/pool/archlinux/$_pn-$_pver.tar.xz")
+		"http://openrc4arch.site40.net/pool/archlinux/$_pn-$_pv.tar.xz")
 
 build() {
 	cd ${srcdir}/${_rn}-${pkgver}
@@ -47,4 +46,4 @@ package() {
 	install -Dm644 COPYING ${pkgdir}/usr/share/licenses/${_rn}/LICENSE
 }
 sha256sums=('16e3cff004c80d752ff85e8a011a523867c7f2ab99af0f9c170891118e0fcc6b'
-            '0f1b2dbd2dd81c6ae53e3e118b113c7905a50eeb3ac373ff2956baeeb423d3bc')
+            'ff3bc32edc3e522f5788a7f0ca293c4d63d649156b0ce166d59633cc784acf7e')
