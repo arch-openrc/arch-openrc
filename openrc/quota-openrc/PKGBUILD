@@ -11,7 +11,7 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-misc')
-depends=('openrc' "$_rn-tools")
+depends=('openrc' "$_rn-tools" 'rpcbind-openrc')
 install=$_rn-tools.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
@@ -19,6 +19,6 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/quota.confd" "$pkgdir/etc/conf.d/quota"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/quota.rc7" "$pkgdir/etc/init.d/quota"
 	
-	#install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.rquotad.initd" "$pkgdir/etc/init.d/rpc.rquotad"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.rquotad.initd" "$pkgdir/etc/init.d/rpc.rquotad"
 }
 sha256sums=('ff3bc32edc3e522f5788a7f0ca293c4d63d649156b0ce166d59633cc784acf7e')
