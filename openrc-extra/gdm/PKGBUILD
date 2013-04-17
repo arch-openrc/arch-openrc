@@ -1,0 +1,65 @@
+# $Id: PKGBUILD 178235 2013-02-18 16:38:26Z jgc $
+# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# Maintainer: Jan de Groot <jgc@archlinux.org>
+
+pkgname=gdm
+pkgver=3.6.2
+pkgrel=1
+pkgdesc="Gnome Display Manager"
+arch=(i686 x86_64)
+license=(GPL)
+url="http://www.gnome.org"
+backup=(etc/pam.d/gdm-autologin etc/pam.d/gdm-fingerprint etc/pam.d/gdm-launch-environment
+        etc/pam.d/gdm-password etc/pam.d/gdm-smartcard etc/gdm/custom.conf)
+groups=(gnome)
+options=('!libtool')
+depends=(libcanberra gnome-session gnome-settings-daemon metacity upower accountsservice systemd
+         xorg-xrdb nss polkit-gnome xorg-server gnome-icon-theme)
+makedepends=(itstool intltool gnome-doc-utils gobject-introspection)
+optdepends=('gnome-shell: new login interface'
+            'fprintd: fingerprint authentication')
+install=gdm.install
+source=(http://ftp.gnome.org/pub/gnome/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz
+        fix_external_program_directories.patch
+        git-fixes.patch
+        maintain-FamilyLocal-cookie.patch)
+sha256sums=('fbf41bd68299eccdcf456c0869771999f75d3d9bf0f57ce1038db08b54e8cbb9'
+            'a878680734e35c1d66252cbcfe678c3961b5ff0fa16302f8796a5e7e65ffe4a2'
+            '1f21838553e4b0eec12465019f11ae3166b502566b3dbefbf0cb6573d77f8031'
+            '59e9c1fb86e39672b61a30dd75b16f6bea6293d23356422624f445966ddeb1ed')
+
+build() {
+  cd "$pkgname-$pkgver"
+  patch -Np1 -i "$srcdir/fix_external_program_directories.patch"
+
+  patch -Np1 -i "$srcdir/git-fixes.patch"
+  patch -Np1 -i "$srcdir/maintain-FamilyLocal-cookie.patch"
+
+  ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib/gdm \
+    --localstatedir=/var \
+    --disable-static \
+    --disable-schemas-compile \
+    --with-at-spi-registryd-directory=/usr/lib/at-spi2-core \
+    --with-check-accelerated-directory=/usr/lib/gnome-session \
+    --with-authentication-agent-directory=/usr/lib/polkit-gnome \
+    --without-tcp-wrappers \
+    --with-console-kit \
+    --without-systemd \
+    --with-default-pam-config=exherbo
+
+  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0 /g' -e 's/    if test "$export_dynamic" = yes && test -n "$export_dynamic_flag_spec"; then/      func_append compile_command " -Wl,-O1,--as-needed"\n      func_append finalize_command " -Wl,-O1,--as-needed"\n\0/' libtool
+
+  make -j1 # race condition building gdm-client.c, does not wait for gdm-client-glue.h
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  make DESTDIR="$pkgdir" install
+
+  chmod 1770 "$pkgdir/var/log/gdm"
+  chmod 700 "$pkgdir/var/lib/gdm/.config/dconf"
+  rm -r "$pkgdir/var/run" "$pkgdir/var/gdm"
+}
