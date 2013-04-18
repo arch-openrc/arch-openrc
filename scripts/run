@@ -2,7 +2,7 @@
 # Copyright 2013 udeved@openrc4arch.site40.net
 # Distributed under the terms of the GNU General Public License v2
 
-. ./functions
+. ./setup
 
 if [[ -e '/etc/lsb-release' ]];then
 	. /etc/lsb-release
@@ -10,7 +10,7 @@ else
 	DISTRIB_ID="unknown"
 fi
 
-VER=0.8
+VER=0.8.1
 PKGNAME='openrc-plugins'
 EXT="xz"
 
