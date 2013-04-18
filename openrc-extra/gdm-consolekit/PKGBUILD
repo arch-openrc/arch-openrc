@@ -2,7 +2,9 @@
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 # Maintainer: Jan de Groot <jgc@archlinux.org>
 
-pkgname=gdm
+_pn=gdm
+
+pkgname=gdm-consolekit
 pkgver=3.6.2
 pkgrel=1
 pkgdesc="Gnome Display Manager"
@@ -13,13 +15,15 @@ backup=(etc/pam.d/gdm-autologin etc/pam.d/gdm-fingerprint etc/pam.d/gdm-launch-e
         etc/pam.d/gdm-password etc/pam.d/gdm-smartcard etc/gdm/custom.conf)
 groups=(gnome)
 options=('!libtool')
-depends=(libcanberra gnome-session gnome-settings-daemon metacity upower accountsservice systemd
+depends=(libcanberra gnome-session gnome-settings-daemon metacity upower accountsservice consolekit udev
          xorg-xrdb nss polkit-gnome xorg-server gnome-icon-theme)
 makedepends=(itstool intltool gnome-doc-utils gobject-introspection)
 optdepends=('gnome-shell: new login interface'
             'fprintd: fingerprint authentication')
+provides=('gdm')
+conflicts=('gdm')
 install=gdm.install
-source=(http://ftp.gnome.org/pub/gnome/sources/$pkgname/${pkgver%.*}/$pkgname-$pkgver.tar.xz
+source=(http://ftp.gnome.org/pub/gnome/sources/$_pn/${pkgver%.*}/$_pn-$pkgver.tar.xz
         fix_external_program_directories.patch
         git-fixes.patch
         maintain-FamilyLocal-cookie.patch)
@@ -29,7 +33,7 @@ sha256sums=('fbf41bd68299eccdcf456c0869771999f75d3d9bf0f57ce1038db08b54e8cbb9'
             '59e9c1fb86e39672b61a30dd75b16f6bea6293d23356422624f445966ddeb1ed')
 
 build() {
-  cd "$pkgname-$pkgver"
+  cd "$_pn-$pkgver"
   patch -Np1 -i "$srcdir/fix_external_program_directories.patch"
 
   patch -Np1 -i "$srcdir/git-fixes.patch"
@@ -56,7 +60,7 @@ build() {
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "$_pn-$pkgver"
   make DESTDIR="$pkgdir" install
 
   chmod 1770 "$pkgdir/var/log/gdm"
