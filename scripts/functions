@@ -2,6 +2,74 @@
 # Copyright 2013 udeved@openrc4arch.site40.net
 # Distributed under the terms of the GNU General Public License v2
 
+is_prefix(){
+	local ret
+	if [ ${PRE} = "/usr" ];then
+		ret=1
+	else
+		ret=0
+	fi
+	return $ret
+}
+
+mk_tar(){
+	tar -cvjf "${PKGNAME}-${VER}.tar.${EXT}" ${PKGNAME}
+}
+
+mk_dirs() {
+	mkdir -p "${PKGNAME}/$1"
+}
+
+set_prefix(){
+	if [ "$DISTRIB_ID" = "arch" ];then
+		PRE="/usr"
+	else
+		PRE=""
+	fi
+	echo "${PKGNAME}-${VER}
+${DISTRIB_ID} linux" > ${PKGNAME}/version
+}
+
+get_file() {
+	# $1: file
+	# $2: src
+	if [ ! -f "$1" ]; then
+		echo "DOWLOADING" $2; echo
+		curl -o "$1" "$2"; echo
+		echo "DONE" $1; echo
+	fi
+}
+
+mk_str() {
+	# $1: filename
+	# $2: pattern1
+	# $3: pattern2
+	if ! grep -Fq "$3" $1; then
+		echo "FAIL" `basename $1` "DETECTED:" $2; echo
+		echo "FIXING ..."; echo
+		sed  -e "s|$2|$3|g" -i $1
+		echo "DONE" `basename $1` "FIXED:" $3; echo
+	else
+		echo "PASS" `basename $1` "TEST:" $3; echo
+	fi
+		
+}
+
+rm_str(){
+	# $1: filename
+	# $2: pattern1
+	# $3: pattern2
+	if  grep -Fq "$2" "$1"; then 
+		echo "FAIL" `basename $1` "DETECTED:" $2; echo
+		echo "FIXING ... "; echo
+		sed  -e "s|$2|$3|g" -i $1
+		echo "DONE" `basename $1` "FIXED:" $3; echo
+	else
+		echo "PASS" `basename $1` "TEST:" $3; echo
+	fi
+
+}
+
 check(){
 	# $1: type
 	# $2: file
@@ -79,7 +147,7 @@ check(){
  				mk_str "$2" 'chown squid' 'chown proxy'
  			;;
 		esac	
-		if [ "${PRE}" = "/usr" ]; then
+		if [ is_prefix ]; then
 			mk_str $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
 			case $3 in
 				"lvm2")
@@ -109,6 +177,12 @@ check(){
 					fi
 				;;
 			esac
+		else
+			case $3 in
+				"rpcbind")
+					mk_str $2 '/sbin/rpcbind' '/bin/rpcbind'
+				;;
+			esac
 		fi
 	else
 		case $3 in
@@ -125,4 +199,28 @@ check(){
 			;;
 		esac
 	fi	
+}
+
+setup() {
+	# $1: cfg file
+	# $2: type
+	while read line; do
+		local OIFS=$IFS
+		local IFS='/'
+		local arr=($line)
+		local dirname=${arr[1]}
+		local filename
+		if [ ${#arr[@]} == 5 ]; then
+			filename=${arr[4]}
+		else
+			filename=${arr[3]}
+		fi
+		IFS=$OIFS
+		mk_dirs "${dirname}/$2"
+		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+		local file="${PKGNAME}/${dirname}/$2/${filename}"
+		local src="${url}/${line}"
+		get_file "${file}" "${src}"
+		check "$2" "${file}" "${dirname}"
+	done < $1
 }

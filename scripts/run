@@ -2,13 +2,13 @@
 # Copyright 2013 udeved@openrc4arch.site40.net
 # Distributed under the terms of the GNU General Public License v2
 
-. ./setup
-
 if [[ -e '/etc/lsb-release' ]];then
 	. /etc/lsb-release
 else
 	DISTRIB_ID="unknown"
 fi
+
+. ./functions
 
 VER=0.8.1
 PKGNAME='openrc-plugins'
