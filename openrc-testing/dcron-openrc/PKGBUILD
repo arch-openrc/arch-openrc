@@ -4,7 +4,7 @@
 
 _pn=openrc-plugins
 _rn=dcron
-_pv=0.8
+_pv=0.8.2
 
 pkgname=${_rn}-openrc
 pkgver=4.5
@@ -55,4 +55,4 @@ package() {
 	
 }
 sha256sums=('9e50edb6f5bd8153b16bad05087d985e5153ce45cc01ae77e7f842213fb4a824'
-            'ff3bc32edc3e522f5788a7f0ca293c4d63d649156b0ce166d59633cc784acf7e')
+            '504f8ac9e162fa6182cb2e64f14074ecaed23c41ef7e31b33318d73f17ce8dc6')

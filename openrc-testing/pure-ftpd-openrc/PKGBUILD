@@ -6,7 +6,7 @@
 
 _pn=openrc-plugins
 _rn=pure-ftpd
-_pv=0.8
+_pv=0.8.2
 
 pkgname=$_rn-openrc
 pkgver=1.0.36
@@ -46,4 +46,4 @@ package() {
 	install -Dm644 COPYING ${pkgdir}/usr/share/licenses/${_rn}/LICENSE
 }
 sha256sums=('16e3cff004c80d752ff85e8a011a523867c7f2ab99af0f9c170891118e0fcc6b'
-            'ff3bc32edc3e522f5788a7f0ca293c4d63d649156b0ce166d59633cc784acf7e')
+            '504f8ac9e162fa6182cb2e64f14074ecaed23c41ef7e31b33318d73f17ce8dc6')
