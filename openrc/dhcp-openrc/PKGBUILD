@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=dhcp
 
 pkgname=$_rn-openrc
-pkgver=0.8
+pkgver=0.8.2
 pkgrel=1
 pkgdesc="OpenRC $_rn server and dhcrelay init script"
 arch=('any')
@@ -25,4 +25,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/dhcrelay6.conf" "$pkgdir/etc/conf.d/dhcrelay6"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/dhcrelay.init3" "$pkgdir/etc/init.d/dhcrelay6"
 }
-sha256sums=('ff3bc32edc3e522f5788a7f0ca293c4d63d649156b0ce166d59633cc784acf7e')
+sha256sums=('504f8ac9e162fa6182cb2e64f14074ecaed23c41ef7e31b33318d73f17ce8dc6')
