@@ -5,7 +5,7 @@ _pv=2.4.4
 _rel=20130227
 
 pkgname=$_rn-openrc
-pkgver=0.8.2
+pkgver=0.8.3
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
