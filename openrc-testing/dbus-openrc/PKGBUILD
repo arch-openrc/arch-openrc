@@ -5,7 +5,7 @@
 #
 _pn=openrc-plugins
 _rn=dbus
-_pv=0.8.2
+_pv=0.8.3
 
 pkgname=dbus-openrc
 pkgver=1.6.8
@@ -64,5 +64,5 @@ package(){
 	install -Dm644 COPYING "$pkgdir/usr/share/licenses/dbus/COPYING"
 }
 sha256sums=('fc1370ef38abeeb13f55c905ec002e60705fb0bfde3b8d21c8d6eb8056c11bac'
-            '504f8ac9e162fa6182cb2e64f14074ecaed23c41ef7e31b33318d73f17ce8dc6'
+            '076eba167d318ae9d4652fea87e6620ead22a301170e8f47e34821330f118a73'
             '24785097abec61b8f2b8f9532e83e3f49855f505555d1a0cbbab99beb254460c')
