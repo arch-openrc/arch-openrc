@@ -23,5 +23,5 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/xdm-setup.initd-1" "$pkgdir/etc/init.d/xdm-setup"
 	install -Dm755 "$srcdir/startDM.sh" "$pkgdir/etc/X11/startDM.sh"
 }
-sha256sums=('076eba167d318ae9d4652fea87e6620ead22a301170e8f47e34821330f118a73'
+sha256sums=('c7ff0733317acc7051d093b63db3f30d0e0a380d8b0f4398f8a3740ea4ed1361'
             'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')

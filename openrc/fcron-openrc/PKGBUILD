@@ -19,4 +19,4 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/fcron.init.3" "$pkgdir/etc/init.d/$_rn"
 }
-sha256sums=('076eba167d318ae9d4652fea87e6620ead22a301170e8f47e34821330f118a73')
+sha256sums=('c7ff0733317acc7051d093b63db3f30d0e0a380d8b0f4398f8a3740ea4ed1361')

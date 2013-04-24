@@ -58,6 +58,6 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/syslog-ng.rc6.3" "$pkgdir/etc/init.d/syslog-ng"
 }
 sha256sums=('ca5613a808ea92cb72669d8e1c141bf86405e0d94f913c4db3ab9e2c37612986'
-            '076eba167d318ae9d4652fea87e6620ead22a301170e8f47e34821330f118a73'
+            'c7ff0733317acc7051d093b63db3f30d0e0a380d8b0f4398f8a3740ea4ed1361'
             '93c935eca56854011ea9e353b7a1da662ad40b2e8452954c5b4b5a1d5b2d5317'
             '0be3d8b5b5de79392a67ed6a074e562b542beab117cd608529a6a56af678b6f8')
