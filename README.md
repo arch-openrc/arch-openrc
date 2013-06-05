@@ -11,4 +11,8 @@ OpenRC pkgbuilds
 
 ####ToDo####
 
-*remove checks after arch removed orphaned files from packages*
+conflicts:
+
+nfs-utils-openrc: /etc/conf.d/nfs 
+samba-openrc: /etc/conf.d/samba
+subversion-openrc: /etc/conf.d/svnserve
