@@ -3,11 +3,11 @@
 pkgbase=sysvinit
 pkgname=('sysvinit-tools' 'sysvinit')
 pkgver=2.88
-pkgrel=10
+pkgrel=12
 arch=('i686' 'x86_64')
 url="http://savannah.nongnu.org/projects/sysvinit"
 license=('GPL')
-#depends=('util-linux' 'coreutils' 'glibc' 'awk')
+depends=('util-linux' 'coreutils' 'glibc' 'awk')
 source=(http://download.savannah.gnu.org/releases/sysvinit/${pkgbase}-${pkgver}dsf.tar.bz2
         "0001-simplify-writelog.patch"
         "0002-remove-ansi-escape-codes-from-log-file.patch")
@@ -27,10 +27,6 @@ build() {
 
 package_sysvinit-tools() {
 	pkgdesc="Linux System V Init Tools"
-	
-	# new
-	#groups=('base')
-	#depends=('sysv-base' 'util-linux' 'coreutils' 'glibc' 'awk')
 	depends=('util-linux' 'coreutils' 'glibc' 'awk')
 	
 	cd "${srcdir}/${pkgbase}-${pkgver}dsf"
@@ -58,10 +54,7 @@ package_sysvinit-tools() {
 
 package_sysvinit() {
 	pkgdesc="Linux System V Init"
-		
 	depends=('sysvinit-tools')
-	# new
-	#provides=('sysv-base')
 	
 	install=sysvinit.install
 

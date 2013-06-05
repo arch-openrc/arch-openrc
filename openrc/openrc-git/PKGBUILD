@@ -3,7 +3,7 @@
 
 
 pkgname=openrc-git
-pkgver=20130412
+pkgver=20130604
 pkgrel=1
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
@@ -60,8 +60,7 @@ package() {
 		SYSCONFDIR='/etc' \
 		OS='Linux' \
 		BRANDING='Arch Linux' \
-		PREFIX='/usr' \
-		LIBEXECDIR='/usr/lib/rc' \
+		LIBEXECDIR='/lib/rc' \
 		MKSELINUX='no' \
 		MKPAM='pam' \
 		MKTERMCAP='ncurses' \
@@ -75,6 +74,6 @@ package() {
 
 	install -m 644 "$srcdir/$_gitname/conf.d/net" "$pkgdir/etc/conf.d/net"
 	
-	install -dm755 "$pkgdir/sbin"
-    ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
+	#install -dm755 "$pkgdir/sbin"
+    #ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
 }
