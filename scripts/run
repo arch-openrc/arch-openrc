@@ -16,9 +16,9 @@ EXT="xz"
 
 main(){	
 	set_version
-	#setup "confd.list" "conf.d"
-	#setup "initd.list" "init.d"
-	#mk_tar
+	setup "confd.list" "conf.d"
+	setup "initd.list" "init.d"
+	mk_tar
 }
 
 main
