@@ -82,29 +82,30 @@ check(){
 			;;
 			"xorg-server")
 				if [ `basename $2 | grep "xdm.initd"` ];then
-					rm_str $2 '/etc/profile.env' '/etc/profile' \
-					&& mk_str $2 '/usr/bin/gdm' '/usr/sbin/gdm' && \
+					rm_str $2 '/etc/profile.env' '/etc/profile' && \
+					#&& mk_str $2 '/usr/bin/gdm' '/usr/sbin/gdm' && \
 					rm_str $2 '{ROOTPATH}' '{PATH}'
 				fi
 			;;
 			"mysql")
 				mk_str $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
 			;;	
-			"ntp")
-				if [ `basename $2 | grep "ntpd"` ];then
-					mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
-				fi
-			;;	
-			"openntpd")
-				mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
-			;;		
+# 			"ntp")
+# 				if [ `basename $2 | grep "ntpd"` ];then
+# 					mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
+# 				fi
+# 			;;	
+# 			"openntpd")
+# 				mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+# 			;;		
 			"virtualbox-guest-additions")
-				mk_str $2 'vboxguest-service' 'VBoxService' && \
-				mk_str $2 '/usr/sbin/VBoxService' '/usr/bin/VBoxService'
+				mk_str $2 'vboxguest-service' 'VBoxService' 
+				#&& \
+				#mk_str $2 '/usr/sbin/VBoxService' '/usr/bin/VBoxService'
 			;;		
-			"hostapd")
-				mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'
-			;;
+# 			"hostapd")
+# 				mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'
+# 			;;
  			"cups")
  				mk_str "$2" '@neededservices@' 'need dbus avahi-daemon' && \
  				mk_str "$2" 'lp:lpadmin' 'daemon:sys'
@@ -131,9 +132,9 @@ check(){
  			"squid")
  				mk_str "$2" 'chown squid' 'chown proxy'
  			;;
- 			"rpcbind")
-					mk_str $2 '/sbin/rpcbind' '/bin/rpcbind'
-			;;
+#  			"rpcbind")
+# 					mk_str $2 '/sbin/rpcbind' '/bin/rpcbind'
+# 			;;
 		esac	
 	else
 		case $3 in
