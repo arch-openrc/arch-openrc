@@ -3,7 +3,7 @@
 
 
 pkgname=openrc-git
-pkgver=20130604
+pkgver=20130605
 pkgrel=1
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
@@ -73,7 +73,5 @@ package() {
 	install -Dm 0644 "$srcdir/$_gitname.logrotate" "$pkgdir/etc/logrotate.d/$_gitname"
 
 	install -m 644 "$srcdir/$_gitname/conf.d/net" "$pkgdir/etc/conf.d/net"
-	
-	#install -dm755 "$pkgdir/sbin"
-    #ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
+
 }
