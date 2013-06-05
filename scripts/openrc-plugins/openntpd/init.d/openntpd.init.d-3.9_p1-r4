@@ -4,7 +4,7 @@
 # $Header: /var/cvsroot/gentoo-x86/net-misc/openntpd/files/openntpd.init.d-3.9_p1-r4,v 1.1 2011/08/13 15:38:31 nelchael Exp $
 
 name="OpenNTPD"
-command="/usr/bin/ntpd"
+command="/usr/sbin/ntpd"
 command_args="${NTPD_OPTS}"
 
 depend() {

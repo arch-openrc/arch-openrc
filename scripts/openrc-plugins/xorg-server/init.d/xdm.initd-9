@@ -76,7 +76,7 @@ setup_dm() {
 			PIDFILE=/run/entrance.pid
 			;;
 		gdm|gnome)
-			EXE=/usr/sbin/gdm
+			EXE=/usr/bin/gdm
 			[ "${RC_UNAME}" != "Linux" ] && NAME=gdm-binary
 			PIDFILE=/run/gdm.pid
 			;;
