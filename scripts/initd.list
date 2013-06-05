@@ -1,6 +1,6 @@
 app-admin/rsyslog/files/7-stable/rsyslog.initd
 app-admin/sysklogd/files/sysklogd.rc7
-app-admin/syslog-ng/files/syslog-ng.rc6.3
+app-admin/syslog-ng/files/syslog-ng.rc6.3.3
 app-crypt/mit-krb5/files/mit-krb5kadmind.initd-r1
 app-crypt/mit-krb5/files/mit-krb5kdc.initd-r1
 app-crypt/mit-krb5/files/mit-krb5kpropd.initd-r1
