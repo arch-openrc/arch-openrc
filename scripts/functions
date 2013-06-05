@@ -2,15 +2,15 @@
 # Copyright 2013 udeved@openrc4arch.site40.net
 # Distributed under the terms of the GNU General Public License v2
 
-is_prefix(){
-	local ret
-	if [ ${PRE} = "/usr" ];then
-		ret=1
-	else
-		ret=0
-	fi
-	return $ret
-}
+# is_prefix(){
+# 	local ret
+# 	if [ ${PRE} = "/usr" ];then
+# 		ret=1
+# 	else
+# 		ret=0
+# 	fi
+# 	return $ret
+# }
 
 mk_tar(){
 	tar -cvjf "${PKGNAME}-${VER}.tar.${EXT}" ${PKGNAME}
@@ -20,14 +20,19 @@ mk_dirs() {
 	mkdir -p "${PKGNAME}/$1"
 }
 
-set_prefix(){
-	if [ "$DISTRIB_ID" = "arch" ];then
-		PRE="/usr"
-	else
-		PRE=""
-	fi
-	echo "${PKGNAME}-${VER}
-${DISTRIB_ID} linux" > ${PKGNAME}/version
+# set_prefix(){
+# 	if [ "$DISTRIB_ID" = "arch" ];then
+# 		PRE="/usr"
+# 	else
+# 		PRE=""
+# 	fi
+# 	echo "${PKGNAME}-${VER}
+# ${DISTRIB_ID} linux" > ${PKGNAME}/version
+# }
+
+set_version(){
+echo "${PKGNAME}-${VER}
+ ${DISTRIB_ID} linux" > ${PKGNAME}/version
 }
 
 get_file() {
@@ -146,44 +151,47 @@ check(){
  			"squid")
  				mk_str "$2" 'chown squid' 'chown proxy'
  			;;
-		esac	
-		if [ is_prefix ]; then
-			mk_str $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
-			case $3 in
-				"lvm2")
-					if [ `basename $2 | grep "lvm"` ];then
-						rm_str $2 '/bin/lvm /sbin/lvm' "${PRE}/bin/lvm ${PRE}/sbin/lvm"			
-					fi
-					if [ `basename $2 | grep "device-mapper"` ];then
-						mk_str $2 '/sbin/dmsetup' "${PRE}/sbin/dmsetup"		
-					fi
-					if [ `basename $2 | grep "dmeventd"` ];then	
-						mk_str $2 '/sbin/dmeventd' "${PRE}/sbin/dmeventd"
-					fi
-					if [ `basename $2 | grep "lvm-monitoring"` ];then	
-						mk_str $2 '/sbin/vgchange' "${PRE}/sbin/vgchange" && \
-						mk_str $2 '/sbin/vgs' "${PRE}/sbin/vgs"
-					fi
-				;;
-				"rpcbind")
-					mk_str $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"
-				;;
-				"iptables")
-					mk_str $2 '"/sbin' '"/usr/sbin'
-				;;
-				"nfs-utils")
-					if [ `basename $2 | grep "statd"` ];then
-						mk_str $2 '/sbin/rpc.statd' "${PRE}/sbin/rpc.statd"
-					fi
-				;;
-			esac
-		else
-			case $3 in
-				"rpcbind")
+ 			"rpcbind")
 					mk_str $2 '/sbin/rpcbind' '/bin/rpcbind'
-				;;
-			esac
-		fi
+			;;
+		esac	
+		#if [ is_prefix ]; then
+			#mk_str $2 '#!/sbin/runscript' "#!${PRE}/sbin/runscript"
+# 			case $3 in
+# 				"lvm2")
+# 					if [ `basename $2 | grep "lvm"` ];then
+# 						rm_str $2 '/bin/lvm /sbin/lvm' "${PRE}/bin/lvm ${PRE}/sbin/lvm"			
+# 					fi
+# 					if [ `basename $2 | grep "device-mapper"` ];then
+# 						mk_str $2 '/sbin/dmsetup' "${PRE}/sbin/dmsetup"		
+# 					fi
+# 					if [ `basename $2 | grep "dmeventd"` ];then	
+# 						mk_str $2 '/sbin/dmeventd' "${PRE}/sbin/dmeventd"
+# 					fi
+# 					if [ `basename $2 | grep "lvm-monitoring"` ];then	
+# 						mk_str $2 '/sbin/vgchange' "${PRE}/sbin/vgchange" && \
+# 						mk_str $2 '/sbin/vgs' "${PRE}/sbin/vgs"
+# 					fi
+# 				;;
+# 				"rpcbind")
+# 					mk_str $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"
+# 				;;
+# 				"iptables")
+# 					mk_str $2 '"/sbin' '"/usr/sbin'
+# 				;;
+# 				"nfs-utils")
+# 					if [ `basename $2 | grep "statd"` ];then
+# 						mk_str $2 '/sbin/rpc.statd' "${PRE}/sbin/rpc.statd"
+# 					fi
+# 				;;
+# 			esac
+# 		else
+# 			case $3 in
+# 				"rpcbind")
+# 					mk_str $2 '/sbin/rpcbind' '/bin/rpcbind'
+# 				;;
+# 			esac
+		#fi
 	else
 		case $3 in
 			"git")
