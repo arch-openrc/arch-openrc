@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=ufw
 
 pkgname=$_rn-openrc
-pkgver=0.8.3
+pkgver=0.9.0
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/ufw.confd" "$pkgdir/etc/conf.d/ufw"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/ufw-2.initd" "$pkgdir/etc/init.d/ufw"
 }
-sha256sums=('c7ff0733317acc7051d093b63db3f30d0e0a380d8b0f4398f8a3740ea4ed1361')
+sha256sums=('619f07a5361953fda330fdc9e73925cce5c53f5b4cc271d0e24e947ffa797863')

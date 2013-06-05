@@ -4,7 +4,7 @@ _pn=udev-init-scripts
 
 pkgname=${_pn}
 pkgver=25
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC udev init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -21,8 +21,8 @@ package() {
 		
 	make DESTDIR="${pkgdir}" install
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -e 's|/sbin/udevd|/usr/sbin/udevd|g' -i "$pkgdir/etc/init.d/udev"
+	#sed -e 's|/sbin/udevd|/usr/sbin/udevd|g' -i "$pkgdir/etc/init.d/udev"
 		
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$pkgdir/etc/init.d/udev-mount"
+	#sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$pkgdir/etc/init.d/udev-mount"
 	
 }

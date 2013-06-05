@@ -4,7 +4,7 @@ _rn=avahi
 _pv=0.6.31
 
 pkgname=$_rn-openrc
-pkgver=0.8.3
+pkgver=0.9.0
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -19,9 +19,9 @@ package() {
 	install -Dm755 "${srcdir}/$_rn-$_pv/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
 	install -Dm755 "${srcdir}/$_rn-$_pv/initscript/gentoo/avahi-dnsconfd.in" "${pkgdir}/etc/init.d/avahi-dnsconfd"
 	
-	sed -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/sbin|' -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "${pkgdir}/etc/init.d/avahi-daemon"
+	sed -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/sbin|' -i "${pkgdir}/etc/init.d/avahi-daemon"
 
-	sed -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/sbin|' -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "${pkgdir}/etc/init.d/avahi-dnsconfd"
+	sed -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/sbin|' -i "${pkgdir}/etc/init.d/avahi-dnsconfd"
 	
 }
 sha256sums=('8372719b24e2dd75de6f59bb1315e600db4fd092805bd1201ed0cb651a2dab48')
