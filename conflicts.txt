@@ -1,9 +1,0 @@
-bind
-hostapd
-inetutils
-iptables
-nfs-utils
-openssh
-subversion
-rsyslog
-squid

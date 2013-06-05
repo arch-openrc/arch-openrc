@@ -4,8 +4,8 @@
 
 pkgname=kdebase-workspace-consolekit
 _pkgname=kde-workspace
-pkgver=4.10.3
-pkgrel=2
+pkgver=4.10.4
+pkgrel=1
 pkgdesc="Provides the consolkit enabled interface and basic tools for the KDE workspace"
 arch=('i686' 'x86_64')
 url='https://projects.kde.org/projects/kde/kde-workspace'
@@ -77,7 +77,8 @@ package() {
       "${pkgdir}"/usr/lib/systemd/system/kdm.service
     install -Dm644 "${srcdir}"/kdm.logrotate "${pkgdir}"/etc/logrotate.d/kdm
 }
-sha256sums=('d870db2f39dcec6d4c11ccaef53d24978c1249a9426814414a90456d9cfce49d'
+
+sha256sums=('55b9c79829fbbe781653951eb0b94dcfbb21fa46102c0c15db40521c143f22d1'
             '812111f166fdf9ab7ef9400c4414cbe26fac5210f2292399d4446fe6e89eea54'
             '3ca72a5f34d29747d12b9b41888d0e369956ba383478850c578e3aa109444214'
             '0a985e3b699578de3e22b25ee72abe4e24ca8730e4afb37dfeed367823bdb0d5'
