@@ -1,8 +1,6 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_pn=udev-init-scripts
-
-pkgname=${_pn}
+pkgname=udev-init-scripts
 pkgver=26
 pkgrel=2
 pkgdesc="udev startup scripts for openrc"
@@ -13,11 +11,11 @@ groups=('openrc-base')
 depends=('udev' 'openrc')
 makedepends=('pkg-config')
 install=udev.install
-source=("http://dev.gentoo.org/~williamh/dist/$_pn-$pkgver.tar.bz2")
+source=("http://dev.gentoo.org/~williamh/dist/$pkgname-$pkgver.tar.bz2")
 
 package() {
 	
-	cd "${srcdir}/${_pn}-${pkgver}"
+	cd "${srcdir}/${pkgname}-${pkgver}"
 		
 	make DESTDIR="${pkgdir}" install
 }
