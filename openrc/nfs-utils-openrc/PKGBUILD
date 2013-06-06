@@ -5,7 +5,7 @@ _rn=nfs-utils
 
 pkgname=$_rn-openrc
 pkgver=0.9.0
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -16,7 +16,11 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-
+	
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs-rc"
+	
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
+	
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfsmount.initd" "$pkgdir/etc/init.d/nfsmount"
 
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.gssd.initd" "$pkgdir/etc/init.d/rpc.gssd"
@@ -28,24 +32,16 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.statd.initd" "$pkgdir/etc/init.d/rpc.statd"
 
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rpc.svcgssd.initd" "$pkgdir/etc/init.d/rpc.svcgssd"
-	
-# 	if [ -f '/etc/conf.d/nfs' ]; then
-# 		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs-rc"
-# 		install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs-rc"
-# 		
-# 		sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|' $pkgdir/etc/init.d/nfsmount
-# 		
-# 		sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|' $pkgdir/etc/init.d/rpc.gssd
-# 		
-# 		sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|' $pkgdir/etc/init.d/rpc.idmapd
-# 		
-# 		sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|' $pkgdir/etc/init.d/rpc.statd
-# 		
-# 		sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|' $pkgdir/etc/init.d/rpc.svcgssd
-# 	else
-		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/nfs.confd" "$pkgdir/etc/conf.d/nfs"
-		install -Dm755 "$srcdir/$_pn/$_rn/init.d/nfs.initd" "$pkgdir/etc/init.d/nfs"
-	#fi
+		
+	sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' $pkgdir/etc/init.d/nfsmount
+		
+	sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' $pkgdir/etc/init.d/rpc.gssd
+		
+	sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' $pkgdir/etc/init.d/rpc.idmapd
+		
+	sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' $pkgdir/etc/init.d/rpc.statd
+		
+	sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' $pkgdir/etc/init.d/rpc.svcgssd
 
 }
 sha256sums=('619f07a5361953fda330fdc9e73925cce5c53f5b4cc271d0e24e947ffa797863')
