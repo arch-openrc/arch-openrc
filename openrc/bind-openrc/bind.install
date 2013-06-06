@@ -1,9 +1,4 @@
-if [ -f '/etc/conf.d/named-rc' ];then
-	svc="named-rc"
-else
-	svc="named"
-fi
-
+svc="named"
 rlvl="default"
 
 post_install() {

@@ -1,9 +1,4 @@
-if [ -f '/etc/conf.d/squid-rc' ];then
-	svc="squid-rc"
-else
-	svc="squid"
-fi
-
+svc="squid"
 rlvl="default"
 
 post_install() {

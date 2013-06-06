@@ -1,12 +1,5 @@
-svc[0]=lm_sensors
-svc[1]=fancontrol
-if [ -f '/etc/conf.d/sensord-rc' ]; then
-	svc[2]="sensord-rc"
-else
-	svc[2]="sensord"
-fi
-
-rlvl=("boot" "default")
+svc=('lm_sensors' 'fancontrol' 'sensord')
+rlvl=('boot' 'default')
 
 post_install() {
 	_cmd="rc-update add ${svc[0]} ${rlvl[0]}"

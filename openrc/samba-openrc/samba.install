@@ -1,4 +1,4 @@
-svc="samba"
+svc="samba-rc"
 rlvl="default"
 
 post_install() {

@@ -1,9 +1,4 @@
-if [ -f '/etc/conf.d/sshd-rc' ];then
-	svc="sshd-rc"
-else
-	svc="sshd"
-fi
-
+svc="sshd"
 rlvl="default"
 
 post_install() {

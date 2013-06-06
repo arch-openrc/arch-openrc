@@ -1,9 +1,4 @@
-if [ -f '/etc/conf.d/svnserve-rc' ];then
-	svc="svnserve-rc"
-else
-	svc="svnserve"
-fi
-
+svc="svnserve-rc"
 rlvl="default"
 
 post_install() {

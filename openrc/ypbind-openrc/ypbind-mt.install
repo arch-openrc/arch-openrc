@@ -1,9 +1,4 @@
-if [ -f '/etc/conf.d/ypbind-rc' ];then
-	svc="ypbind-rc"
-else
-	svc="ypbind"
-fi
-
+svc="ypbind"
 rlvl="default"
 
 post_install() {

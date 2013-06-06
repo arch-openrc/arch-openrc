@@ -1,10 +1,4 @@
-if [ -f '/etc/conf.d/nfs-rc' ];then
-	svc[0]="nfs-rc"
-else
-	svc[0]="nfs"
-fi
-svc[1]="nfsmount"
-
+svc=('nfs' 'nfsmount')
 rlvl="default"
 
 post_install() {

@@ -1,9 +1,4 @@
-if [ -f '/etc/conf.d/iptables-rc' ];then
-	svc="iptables-rc"
-else
-	svc="iptables"
-fi
-
+svc="iptables"
 rlvl="default"
 
 post_install() {

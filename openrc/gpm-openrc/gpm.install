@@ -1,11 +1,5 @@
-if [ -f '/etc/gpm-rc' ];then
-	svc="gpm-rc"
-else
-	svc="gpm"
-fi
-
+svc="gpm"
 rlvl="default"
-
 
 post_install() {
 	_cmd="rc-update add $svc $rlvl"

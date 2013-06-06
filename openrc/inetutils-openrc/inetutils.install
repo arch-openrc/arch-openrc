@@ -1,9 +1,4 @@
-if [ -f '/etc/conf.d/ftpd-rc' ];then
-	svc="ftpd-rc"
-else
-	svc="ftpd"
-fi
-
+svc="ftpd"
 rlvl="default"
 
 post_install() {

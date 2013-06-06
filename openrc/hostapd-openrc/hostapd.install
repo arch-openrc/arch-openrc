@@ -1,9 +1,4 @@
-if [ -f '/etc/conf.d/hostapd-rc' ];then
-	svc="hostapd-rc"
-else
-	svc="hostapd"
-fi
-
+svc="hostapd"
 rlvl="default"
 
 post_install() {
