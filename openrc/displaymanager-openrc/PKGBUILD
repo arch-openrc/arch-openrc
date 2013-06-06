@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=xorg-server
 
 pkgname=displaymanager-openrc
-pkgver=0.9.0
+pkgver=0.9.1
 pkgrel=1
 pkgdesc="OpenRC displaymanager init script"
 arch=('any')
@@ -23,5 +23,5 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/xdm-setup.initd-1" "$pkgdir/etc/init.d/xdm-setup"
 	install -Dm755 "$srcdir/startDM.sh" "$pkgdir/etc/X11/startDM.sh"
 }
-sha256sums=('619f07a5361953fda330fdc9e73925cce5c53f5b4cc271d0e24e947ffa797863'
+sha256sums=('ba40b5eab937f8d17f3c4252988f7502e30df37191ee243353872eb58f8bed5a'
             'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')

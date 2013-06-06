@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=glibc
 
 pkgname=$_rn-openrc
-pkgver=0.9.0
+pkgver=0.9.1
 pkgrel=1
 pkgdesc="OpenRC nscd init script"
 arch=('any')
@@ -18,4 +18,4 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/nscd" "$pkgdir/etc/init.d/nscd"
 }
-sha256sums=('619f07a5361953fda330fdc9e73925cce5c53f5b4cc271d0e24e947ffa797863')
+sha256sums=('ba40b5eab937f8d17f3c4252988f7502e30df37191ee243353872eb58f8bed5a')
