@@ -13,6 +13,6 @@ OpenRC pkgbuilds
 
 conflicts:
 
-nfs-utils-openrc: /etc/conf.d/nfs 
-samba-openrc: /etc/conf.d/samba
-subversion-openrc: /etc/conf.d/svnserve
+* nfs-utils-openrc: /etc/conf.d/nfs DONE
+* samba-openrc: /etc/conf.d/samba DONE
+* subversion-openrc: /etc/conf.d/svnserve DONE
