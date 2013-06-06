@@ -4,7 +4,7 @@ _pn=udev-init-scripts
 
 pkgname=${_pn}
 pkgver=26
-pkgrel=1
+pkgrel=2
 pkgdesc="udev startup scripts for openrc"
 arch=('any')
 url="http://www.gentoo.org"
@@ -20,10 +20,5 @@ package() {
 	cd "${srcdir}/${_pn}-${pkgver}"
 		
 	make DESTDIR="${pkgdir}" install
-	
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -e 's|/sbin/udevd|/usr/sbin/udevd|g' -i "$pkgdir/etc/init.d/udev"
-		
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$pkgdir/etc/init.d/udev-mount"
-	
 }
 sha256sums=('eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203')
