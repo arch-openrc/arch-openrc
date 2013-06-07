@@ -9,30 +9,22 @@
 _rn=NetworkManager
 
 pkgname=networkmanager-openrc
-pkgver=0.9.8.0
-pkgrel=2
+pkgver=0.9.8.2
+pkgrel=1
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/$_rn/"
 groups=('openrc-net')
-depends=('dbus-glib'
-		'iproute2'
-		'libnl'
-		'nss'
-		'polkit-consolekit'
-		'udev'
-		'wpa_supplicant'
-		'ppp' 'dhclient'
-        'libsoup' 'openrc'
-        'consolekit')
-makedepends=('intltool' 'dhcpcd' 'iptables' 'gobject-introspection' 'gtk-doc')
-optdepends=('modemmanager: for modem management service'
-            'dhcpcd: alternative DHCP client; does not support DHCPv6'
-            'iptables: Connection sharing'
+depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'udev' 'wpa_supplicant' 'dhcp-client'
+         'libsoup' 'systemd' 'modemmanager')
+makedepends=('intltool' 'dhcpcd' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' 'git')
+optdepends=('dhclient: DHCPv6 support'
             'dnsmasq: Connection sharing'
-            'bluez: Bluetooth support'
-            'openresolv: resolvconf support')
+            'bluez4: Bluetooth support'
+            'openresolv: resolvconf support'
+            'ppp: Dialup connection support')
+options=('!libtool')
 provides=('networkmanager')
 conflicts=('networkmanager')
 options=('!libtool')
@@ -44,21 +36,16 @@ source=("http://ftp.gnome.org/pub/gnome/sources/$_rn/${pkgver:0:3}/$_rn-$pkgver.
         "$_my_url/conf.d.$_rn"
         "$_my_url/init.d.$_rn"
         "$_my_url/nm-system-settings.conf-ifnet"
-        'disable_set_hostname.patch'
-        'dnsmasq-path.patch')
-sha256sums=('c366bcded6354d8186ad93c05d26d6a20bc550aa0391f974704e7a60e9f6096b'
-            '3ee158de440df6e6a8ddcc7c0622cb94039cffe6b0cc0b88d35a53333d32f73d'
-            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
-            '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
-            '34f53d9ac1ad65eda6942dc3059117f60f6321059ca23f4fbfcc2f2edcae151f'
-            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
-            '65124505048cc8396daf0242c9f5d532fa669b4bbca305998c248ab2329490cb')
+        'disable_set_hostname.patch')
+
+prepare() {
+  cd $_rn-$pkgver
+  patch -Np1 -i ../disable_set_hostname.patch
+}            
+            
+            
 build() {
   cd $_rn-$pkgver
-
-  patch -Np1 -i ../disable_set_hostname.patch
-  patch -Np1 -i ../dnsmasq-path.patch
-  #AUTOPOINT="intltoolize -f -c --automake" autoreconf -fi
 
   ./configure \
     --prefix=/usr \
@@ -97,8 +84,12 @@ package() {
 	
 	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/sbin/runscript|' -i "$pkgdir/etc/init.d/networkmanager"
-	
 	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -e 's/NetworkManager/networkmanager/' -i "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
 }
 
+sha256sums=('5c0b2f71b2f61e0dfbe95cebad83001758db252d5cdf5b6f7ceebac9c6bd7ead'
+            '3ee158de440df6e6a8ddcc7c0622cb94039cffe6b0cc0b88d35a53333d32f73d'
+            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
+            '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
+            '34f53d9ac1ad65eda6942dc3059117f60f6321059ca23f4fbfcc2f2edcae151f'
+            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460')
