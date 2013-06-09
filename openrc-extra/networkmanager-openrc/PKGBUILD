@@ -10,13 +10,13 @@ _rn=NetworkManager
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/$_rn/"
 groups=('openrc-net')
-depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'udev' 'wpa_supplicant' 'dhcp-client'
+depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit-consolekit' 'udev' 'wpa_supplicant' 'dhcp-client'
          'libsoup' 'systemd' 'modemmanager')
 makedepends=('intltool' 'dhcpcd' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' 'git')
 optdepends=('dhclient: DHCPv6 support'
@@ -54,11 +54,11 @@ build() {
     --libexecdir=/usr/lib/networkmanager \
     --without-netconfig \
     --with-crypto=nss \
-    --with-dhclient=/usr/sbin/dhclient \
-    --with-dhcpcd=/usr/sbin/dhcpcd \
-    --with-iptables=/usr/sbin/iptables \
+    --with-dhclient=/usr/bin/dhclient \
+    --with-dhcpcd=/usr/bin/dhcpcd \
+    --with-iptables=/usr/bin/iptables \
     --with-udev-dir=/usr/lib/udev \
-    --with-resolvconf=/usr/sbin/resolvconf \
+    --with-resolvconf=/usr/bin/resolvconf \
     --with-session-tracking=ck \
     --disable-static \
     --enable-ifnet \
@@ -85,6 +85,8 @@ package() {
 	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
 	
 	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -e 's/NetworkManager/networkmanager/' -i "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
+	
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "$pkgdir/etc/init.d/networkmanager"
 }
 
 sha256sums=('5c0b2f71b2f61e0dfbe95cebad83001758db252d5cdf5b6f7ceebac9c6bd7ead'
