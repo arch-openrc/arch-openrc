@@ -61,7 +61,7 @@ package() {
 		OS='Linux' \
 		BRANDING='Arch Linux' \
 		PREFIX='/usr' \
-		LIBEXECDIR='/lib/rc' \
+		LIBEXECDIR='/usr/lib/rc' \
 		SBINDIR='/usr/bin' \
 		MKSELINUX='no' \
 		MKPAM='pam' \
