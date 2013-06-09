@@ -3,7 +3,7 @@
 
 
 pkgname=openrc-git
-pkgver=20130605
+pkgver=20130610
 pkgrel=1
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
@@ -20,9 +20,9 @@ depends=('bash'
 		'psmisc'
 		'sysvinit')
 makedepends=('git')
-optdepends=('udev-init-scripts')
+optdepends=('udev-init-scripts: udev openrc support')
 provides=('openrc')
-conflicts=('initscripts' "openrc")
+conflicts=('initscripts' 'openrc')
 replaces=('openrc')
 backup=('etc/rc.conf'
 		'etc/conf.d/consolefont'
@@ -60,7 +60,9 @@ package() {
 		SYSCONFDIR='/etc' \
 		OS='Linux' \
 		BRANDING='Arch Linux' \
+		PREFIX='/usr' \
 		LIBEXECDIR='/lib/rc' \
+		SBINDIR='/usr/bin' \
 		MKSELINUX='no' \
 		MKPAM='pam' \
 		MKTERMCAP='ncurses' \
