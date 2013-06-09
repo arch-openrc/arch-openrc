@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2011 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-proxy/polipo/files/polipo.initd,v 1.6 2011/12/31 21:11:37 idl0r Exp $

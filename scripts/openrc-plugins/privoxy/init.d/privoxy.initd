@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-proxy/privoxy/files/privoxy.initd,v 1.2 2007/11/14 05:14:56 mrness Exp $
@@ -17,7 +17,7 @@ start() {
 	fi
 
 	ebegin "Starting privoxy"
-	start-stop-daemon --start --quiet --exec /usr/sbin/privoxy --pidfile "${PIDFILE}" \
+	start-stop-daemon --start --quiet --exec /usr/bin/privoxy --pidfile "${PIDFILE}" \
 		-- --pidfile "${PIDFILE}" --user privoxy.privoxy "${CONFFILE}" #2>/dev/null
 	eend $?
 }

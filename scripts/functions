@@ -1,28 +1,56 @@
-#!/bin/bash 
+#!/bin/bash
 # Copyright 2013 udeved@openrc4arch.site40.net
 # Distributed under the terms of the GNU General Public License v2
 
+is_prefix(){
+
+	local ret
+	
+	if [ ${PRE} = "/usr" ];then
+		ret=1
+	else
+		ret=0
+	fi
+	return $ret
+	
+}
+
 mk_tar(){
+
 	tar -cvjf "${PKGNAME}-${VER}.tar.${EXT}" ${PKGNAME}
+	
 }
 
 mk_dirs() {
+
 	mkdir -p "${PKGNAME}/$1"
+	
+}
+
+set_prefix(){
+
+	if [ "$DISTRIB_ID" = "arch" ];then
+		PRE="/usr"
+	else
+		PRE=""
+	fi
 }
 
 set_version(){
-echo "${PKGNAME}-${VER}
-${DISTRIB_ID} linux" > ${PKGNAME}/version
+
+	echo "${PKGNAME}-${VER}
+	${DISTRIB_ID} linux" > ${PKGNAME}/version
+	
 }
 
 get_file() {
-	# $1: local filename
-	# $2: remote src
-	#if [ ! -f "$1" ]; then
-		echo "DOWLOADING" $2; echo
-		curl -o "$1" "$2"; echo
-		echo "DONE" $1; echo
-	#fi
+	# $1: file
+	# $2: src
+	if [ ! -f "$1" ]; then
+	echo "DOWLOADING" $2; echo
+	curl -o "$1" "$2"; echo
+	echo "DONE" $1; echo
+	fi
 }
 
 mk_str() {
@@ -32,22 +60,22 @@ mk_str() {
 	if ! grep -Fq "$3" $1; then
 		echo "FAIL" `basename $1` "DETECTED:" $2; echo
 		echo "FIXING ..."; echo
-		sed  -e "s|$2|$3|g" -i $1
+		sed -e "s|$2|$3|g" -i $1
 		echo "DONE" `basename $1` "FIXED:" $3; echo
 	else
 		echo "PASS" `basename $1` "TEST:" $3; echo
 	fi
-		
+	
 }
 
 rm_str(){
 	# $1: filename
 	# $2: pattern1
 	# $3: pattern2
-	if  grep -Fq "$2" "$1"; then 
+	if grep -Fq "$2" "$1"; then
 		echo "FAIL" `basename $1` "DETECTED:" $2; echo
 		echo "FIXING ... "; echo
-		sed  -e "s|$2|$3|g" -i $1
+		sed -e "s|$2|$3|g" -i $1
 		echo "DONE" `basename $1` "FIXED:" $3; echo
 	else
 		echo "PASS" `basename $1` "TEST:" $3; echo
@@ -60,113 +88,273 @@ check(){
 	# $2: file
 	# $3: dirname
 	if [ $1 = "init.d" ]; then
+	
 		rm_str "$2" '/var/run' '/run'
-		case $3 in
-			"dbus")
-				mk_str $2 'dbus.pid' 'dbus/pid'
-			;;
-			"bind")
-				mk_str $2 '/etc/bind/named.conf' '/etc/named.conf'
-			;;
-			"dhcp")
-				if [ `basename $2 | grep "dhcpd"` ];then
-					mk_str $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}' && \
-					mk_str $2 '#@slapd@' 'ldap slapd'
-				fi
- 				if [ `basename $2 | grep "dhcrelay"` ];then
- 					mk_str $2 '#@slapd@' 'ldap slapd'
- 				fi
-			;;
- 			"ufw")	
-				mk_str $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
-			;;
-			"xorg-server")
-				if [ `basename $2 | grep "xdm.initd"` ];then
-					rm_str $2 '/etc/profile.env' '/etc/profile' && \
-					#&& mk_str $2 '/usr/bin/gdm' '/usr/sbin/gdm' && \
-					rm_str $2 '{ROOTPATH}' '{PATH}'
-				fi
-			;;
-			"mysql")
-				mk_str $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
-			;;	
-# 			"ntp")
-# 				if [ `basename $2 | grep "ntpd"` ];then
-# 					mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'	
-# 				fi
-# 			;;	
-# 			"openntpd")
-# 				mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
-# 			;;		
-			"virtualbox-guest-additions")
-				mk_str $2 'vboxguest-service' 'VBoxService' 
-				#&& \
-				#mk_str $2 '/usr/sbin/VBoxService' '/usr/bin/VBoxService'
-			;;		
-# 			"hostapd")
-# 				mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'
-# 			;;
- 			"cups")
- 				mk_str "$2" '@neededservices@' 'need dbus avahi-daemon' && \
- 				mk_str "$2" 'lp:lpadmin' 'daemon:sys'
- 			;;
- 			"openldap")
- 				mk_str "$2" '/usr/lib/openldap/slapd' '/usr/lib/slapd'
- 			;;
- 			"subversion")
- 				mk_str "$2" 'apache' 'http' && \
- 				mk_str "$2" '/var/svn' '/srv/svn'
- 			;;		
- 			"mit-krb5")
- 				if [ `basename $2 | grep "krb5kadmind"` ];then
-					rm_str $2 'mit-krb5kdc' "krb5kdc"				
-				fi
-				if [ `basename $2 | grep "krb5kpropd"` ];then				
-					mk_str $2 'mit-krb5kdc mit-krb5kadmind' "krb5kdc krb5kadmind"
-				fi
- 			;;
- 			"vsftpd")
- 				mk_str "$2" '/etc/vsftpd/${VSFTPD_NAME}.conf' '/etc/${VSFTPD_NAME}.conf' && \
- 				mk_str $2 '/etc/vsftpd/vsftpd.conf' '/etc/vsftpd.conf'
- 			;;
- 			"squid")
- 				mk_str "$2" 'chown squid' 'chown proxy'
- 			;;
-#  			"rpcbind")
+	
+		if [ is_prefix ]; then
+
+			mk_str $2 '#!/sbin/runscript' "#!${PRE}/bin/runscript"
+		
+			case $3 in
+
+				"lvm2")
+
+					if [ `basename $2 | grep "lvm"` ];then
+
+						rm_str $2 '/bin/lvm /sbin/lvm' "${PRE}/bin/lvm ${PRE}/bin/lvm"
+
+					fi
+
+					if [ `basename $2 | grep "device-mapper"` ];then
+
+						mk_str $2 '/sbin/dmsetup' "${PRE}/bin/dmsetup"
+
+					fi
+
+					if [ `basename $2 | grep "dmeventd"` ];then
+
+						mk_str $2 '/sbin/dmeventd' "${PRE}/bin/dmeventd"
+
+					fi
+
+					if [ `basename $2 | grep "lvm-monitoring"` ];then
+
+						mk_str $2 '/sbin/vgchange' "${PRE}/bin/vgchange" && \
+						mk_str $2 '/sbin/vgs' "${PRE}/bin/vgs"
+
+					fi
+
+				;;
+
+				"rpcbind")
+
+					mk_str $2 '/sbin/rpcbind' "${PRE}/bin/rpcbind"
+
+				;;
+
+				"iptables")
+
+					mk_str $2 '"/sbin' '"/usr/bin'
+
+				;;
+
+				"nfs-utils")
+
+					if [ `basename $2 | grep "statd"` ];then
+
+						mk_str $2 '/sbin/rpc.statd' "${PRE}/bin/rpc.statd"
+
+					fi
+
+				;;
+
+			esac
+			
+			rm_str $2 '/usr/sbin' '/usr/bin' 
+
+# 		else
+# 
+# 			case $3 in
+# 
+# 				"rpcbind")
+# 
 # 					mk_str $2 '/sbin/rpcbind' '/bin/rpcbind'
-# 			;;
-		esac	
-	else
+# 
+# 				;;
+# 
+# 			esac
+
+		fi
+		
+		
 		case $3 in
-			"git")
-				mk_str $2 '/var/git' '/srv/git'
+
+			"dbus")
+
+				mk_str $2 'dbus.pid' 'dbus/pid'
+
 			;;
-			"subversion")
-				mk_str $2 '/var/svn' '/srv/svn'
+
+			"bind")
+
+				mk_str $2 '/etc/bind/named.conf' '/etc/named.conf'
+
 			;;
+
 			"dhcp")
-				if [ `basename $2 | grep "dhcpd.conf"` ];then
-					mk_str $2 '/etc/dhcp/dhcpd.conf' '/etc/dhcpd.conf'
-				fi	
+
+				if [ `basename $2 | grep "dhcpd"` ];then
+
+					mk_str $2 '/etc/dhcp/${SVCNAME}' '/etc/${SVCNAME}' && \
+
+					mk_str $2 '#@slapd@' 'ldap slapd'
+
+				fi
+
+				if [ `basename $2 | grep "dhcrelay"` ];then
+
+					mk_str $2 '#@slapd@' 'ldap slapd'
+
+				fi
+
 			;;
+
+			"ufw")
+
+				mk_str $2 '/usr/share/ufw/ufw-init-functions' '/usr/lib/ufw/ufw-init-functions'
+
+			;;
+
+			"xorg-server")
+
+				if [ `basename $2 | grep "xdm.initd"` ];then
+
+					rm_str $2 '/etc/profile.env' '/etc/profile' \
+					&& rm_str $2 '{ROOTPATH}' '{PATH}'
+
+				fi
+
+			;;
+
+			"mysql")
+
+				mk_str $2 '/usr/bin/safe_mysqld' '/usr/bin/mysqld_safe'
+
+			;;
+
+			"ntp")
+
+				if [ `basename $2 | grep "ntpd"` ];then
+
+					mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+
+				fi
+
+			;;
+
+			"openntpd")
+
+				mk_str $2 '/usr/sbin/ntpd' '/usr/bin/ntpd'
+
+			;;
+
+			"virtualbox-guest-additions")
+
+				mk_str $2 'vboxguest-service' 'VBoxService' && \
+
+				mk_str $2 '/usr/sbin/VBoxService' '/usr/bin/VBoxService'
+
+			;;
+
+			"hostapd")
+
+				mk_str $2 '/usr/sbin/hostapd' '/usr/bin/hostapd'
+
+			;;
+
+			"cups")
+
+				mk_str "$2" '@neededservices@' 'need dbus avahi-daemon' && \
+				mk_str "$2" 'lp:lpadmin' 'daemon:sys'
+
+			;;
+
+			"openldap")
+
+				mk_str "$2" '/usr/lib/openldap/slapd' '/usr/lib/slapd'
+
+			;;
+
+			"subversion")
+
+				mk_str "$2" 'apache' 'http' && \
+				mk_str "$2" '/var/svn' '/srv/svn'
+
+			;;
+
+			"mit-krb5")
+
+				if [ `basename $2 | grep "krb5kadmind"` ];then
+
+					rm_str $2 'mit-krb5kdc' "krb5kdc"
+
+				fi
+
+				if [ `basename $2 | grep "krb5kpropd"` ];then
+
+					mk_str $2 'mit-krb5kdc mit-krb5kadmind' "krb5kdc krb5kadmind"
+
+				fi
+
+			;;
+
+			"vsftpd")
+
+				mk_str "$2" '/etc/vsftpd/${VSFTPD_NAME}.conf' '/etc/${VSFTPD_NAME}.conf' && \
+				mk_str $2 '/etc/vsftpd/vsftpd.conf' '/etc/vsftpd.conf'
+
+			;;
+
+			"squid")
+
+				mk_str "$2" 'chown squid' 'chown proxy'
+
+			;;
+
 		esac
-	fi	
+
+	else
+
+		case $3 in
+
+			"git")
+
+				mk_str $2 '/var/git' '/srv/git'
+
+			;;
+
+			"subversion")
+
+				mk_str $2 '/var/svn' '/srv/svn'
+
+			;;
+
+			"dhcp")
+
+				if [ `basename $2 | grep "dhcpd.conf"` ];then
+
+					mk_str $2 '/etc/dhcp/dhcpd.conf' '/etc/dhcpd.conf'
+
+				fi
+
+			;;
+
+		esac
+
+	fi
 }
 
 setup() {
 	# $1: cfg file
 	# $2: type
 	while read line; do
+	
 		local OIFS=$IFS
 		local IFS='/'
 		local arr=($line)
 		local dirname=${arr[1]}
 		local filename
+		
 		if [ ${#arr[@]} == 5 ]; then
+		
 			filename=${arr[4]}
+			
 		else
+		
 			filename=${arr[3]}
+			
 		fi
+		
 		IFS=$OIFS
 		mk_dirs "${dirname}/$2"
 		local url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
@@ -174,5 +362,6 @@ setup() {
 		local src="${url}/${line}"
 		get_file "${file}" "${src}"
 		check "$2" "${file}" "${dirname}"
+		
 	done < $1
 }

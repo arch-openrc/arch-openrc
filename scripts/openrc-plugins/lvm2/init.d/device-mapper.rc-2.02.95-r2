@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-fs/lvm2/files/device-mapper.rc-2.02.95-r2,v 1.2 2013/04/09 11:00:26 ssuominen Exp $
@@ -31,7 +31,7 @@ get_new_dm_volumes() {
 		# If it exists, skip it
 		dmvolume_exists "${volume%:}" && continue
 		# Assemble the command to run to create volume
-		echo "echo ${params} | /sbin/dmsetup create ${volume%:}"
+		echo "echo ${params} | /usr/bin/dmsetup create ${volume%:}"
 	done
 
 	return 0
@@ -45,7 +45,7 @@ dmvolume_exists() {
 
 	[ -z "${volume}" ] && return 1
 
-	/sbin/dmsetup ls 2>/dev/null | \
+	/usr/bin/dmsetup ls 2>/dev/null | \
 	while read line ; do
 		for x in ${line} ; do
 			# the following conditonal return only breaks out
@@ -71,7 +71,7 @@ dmvolume_exists() {
 is_empty_dm_volume() {
 	local table volume=$1
 
-	set -- $(/sbin/dmsetup table 2>/dev/null | grep -e "^${volume}:")
+	set -- $(/usr/bin/dmsetup table 2>/dev/null | grep -e "^${volume}:")
 	[ "${volume}" = "$1" -a -z "$2" ]
 }
 
@@ -85,7 +85,7 @@ start() {
 
 	local x volume
 	
-	if [ -x /sbin/dmsetup -a -c /dev/mapper/control -a -f /etc/dmtab ] ; then
+	if [ -x /usr/bin/dmsetup -a -c /dev/mapper/control -a -f /etc/dmtab ] ; then
 		[ -n "$(get_new_dm_volumes)" ] && \
 			einfo " Setting up device-mapper volumes:"
 	
@@ -101,7 +101,7 @@ start() {
 				# dmsetup still adds an empty volume in some cases,
 				#  so lets remove it
 				is_empty_dm_volume "${volume}" && \
-					/sbin/dmsetup remove "${volume}" 2>/dev/null
+					/usr/bin/dmsetup remove "${volume}" 2>/dev/null
 			else
 				eend 0
 			fi

@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/mail-mta/postfix/files/postfix.rc6.2.7,v 1.2 2012/03/07 10:27:37 eras Exp $
@@ -39,20 +39,20 @@ start() {
 		eend 1 "${CONF_DIR} does not exist"
 		return 1
 	fi
-	/usr/sbin/postfix ${CONF_PARAM} start >/dev/null 2>&1
+	/usr/bin/postfix ${CONF_PARAM} start >/dev/null 2>&1
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping postfix ${CONF_MESSAGE}"
-	/usr/sbin/postfix ${CONF_PARAM} stop >/dev/null 2>&1
+	/usr/bin/postfix ${CONF_PARAM} stop >/dev/null 2>&1
 	eend
 }
 
 status() {
 	local _retval
 	einfon ""
-	/usr/sbin/postfix ${CONF_PARAM} status
+	/usr/bin/postfix ${CONF_PARAM} status
 	_retval=$?
 	if [ x${_retval} = 'x0' ]; then
 		mark_service_started "${SVCNAME}"
@@ -65,7 +65,7 @@ status() {
 
 reload() {
 	ebegin "Reloading postfix ${CONF_MESSAGE}"
-	/usr/sbin/postfix ${CONF_PARAM} reload >/dev/null 2>&1
+	/usr/bin/postfix ${CONF_PARAM} reload >/dev/null 2>&1
 	eend $?
 }
 
@@ -75,12 +75,12 @@ abort() {
 	if service_started "${SVCNAME}"; then
 		mark_service_stopped "${SVCNAME}"
 	fi
-	/usr/sbin/postfix ${CONF_PARAM} abort >/dev/null 2>&1
+	/usr/bin/postfix ${CONF_PARAM} abort >/dev/null 2>&1
 	eend $?
 }
 
 flush() {
 	ebegin "Flushing postfix ${CONF_MESSAGE}"
-	/usr/sbin/postfix ${CONF_PARAM} flush >/dev/null 2>&1
+	/usr/bin/postfix ${CONF_PARAM} flush >/dev/null 2>&1
 	eend $?
 }

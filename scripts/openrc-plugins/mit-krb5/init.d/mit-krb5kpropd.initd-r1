@@ -1,11 +1,11 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 
 #---------------------------------------------------------------------------
 # This script starts/stops the MIT Kerberos 5 kpropd
 #---------------------------------------------------------------------------
 
 daemon="MIT Kerberos 5 kpropd"
-exec="/usr/sbin/kpropd"
+exec="/usr/bin/kpropd"
 
 depend() {
 	use net krb5kdc krb5kadmind

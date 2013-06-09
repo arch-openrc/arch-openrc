@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-ftp/pure-ftpd/files/pure-ftpd.rc11,v 1.4 2012/03/29 11:33:22 polynomial-c Exp $
@@ -6,8 +6,8 @@
 ftpd_pidfile="/run/pure-ftpd.pid"
 script_pidfile="/run/pure-uploadscript.pid"
 ftpd_rundir="/var/lib/run/pure-ftpd"
-daemon="/usr/sbin/pure-ftpd"
-script_daemon="/usr/sbin/pure-uploadscript"
+daemon="/usr/bin/pure-ftpd"
+script_daemon="/usr/bin/pure-uploadscript"
 
 depend() {
 	need net
@@ -42,7 +42,7 @@ start() {
 
 	ebegin "Starting Pure-FTPd"
 	start-stop-daemon --start --quiet --pidfile ${ftpd_pidfile} \
-		--make-pidfile --background --exec /usr/sbin/pure-ftpd ${WAIT} \
+		--make-pidfile --background --exec /usr/bin/pure-ftpd ${WAIT} \
 		-- $(echo ${FTPD_CONFIG} | sed 's@\([[:space:]]\+\|^\)-B\([[:space:]]\+\|$\)@\1@g')
 	result=$?
 	if [ $result -ne 0 ] ; then

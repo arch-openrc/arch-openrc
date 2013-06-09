@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-dns/bind/files/named.init-r12,v 1.1 2012/08/24 19:01:09 idl0r Exp $
@@ -66,7 +66,7 @@ _umount() {
 _get_pidfile() {
 	# as suggested in bug #107724, bug 335398#c17
 	[ -n "${PIDFILE}" ] || PIDFILE=${CHROOT}$(\
-			/usr/sbin/named-checkconf -p ${CHROOT:+-t} ${CHROOT} ${NAMED_CONF#${CHROOT}} | grep 'pid-file' | cut -d\" -f2)
+			/usr/bin/named-checkconf -p ${CHROOT:+-t} ${CHROOT} ${NAMED_CONF#${CHROOT}} | grep 'pid-file' | cut -d\" -f2)
 	[ -z "${PIDFILE}" ] && PIDFILE=${CHROOT}/run/named/named.pid
 }
 
@@ -100,7 +100,7 @@ checkconfig() {
 		return 1
 	fi
 
-	/usr/sbin/named-checkconf ${CHROOT:+-t} ${CHROOT} ${NAMED_CONF#${CHROOT}} || {
+	/usr/bin/named-checkconf ${CHROOT:+-t} ${CHROOT} ${NAMED_CONF#${CHROOT}} || {
 		eerror "named-checkconf failed! Please fix your config first."
 		return 1
 	}
@@ -111,7 +111,7 @@ checkconfig() {
 
 checkzones() {
 	ebegin "Checking named configuration and zones"
-	/usr/sbin/named-checkconf -z -j ${CHROOT:+-t} ${CHROOT} ${NAMED_CONF#${CHROOT}}
+	/usr/bin/named-checkconf -z -j ${CHROOT:+-t} ${CHROOT} ${NAMED_CONF#${CHROOT}}
 	eend $?
 }
 
@@ -171,7 +171,7 @@ start() {
 
 	start-stop-daemon --start --pidfile ${PIDFILE} \
 		--nicelevel ${NAMED_NICELEVEL:-0} \
-		--exec /usr/sbin/named \
+		--exec /usr/bin/named \
 		-- -u named ${CPU} ${OPTIONS} ${CHROOT:+-t} ${CHROOT}
 	eend $?
 }
@@ -198,7 +198,7 @@ stop() {
 	# -R 10, bug 335398
 	_get_pidfile
 	start-stop-daemon --stop --retry 10 --pidfile $PIDFILE \
-		--exec /usr/sbin/named
+		--exec /usr/bin/named
 
 	if [ -n "${CHROOT}" ] && [ "${CHROOT_NOMOUNT:-0}" -eq 0 ]; then
 		ebegin "Umounting chroot dirs"

@@ -1,11 +1,11 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 
 #---------------------------------------------------------------------------
 # This script starts/stops the MIT Kerberos 5 KDC
 #---------------------------------------------------------------------------
 
 daemon="MIT Kerberos 5 KDC"
-exec="/usr/sbin/krb5kdc"
+exec="/usr/bin/krb5kdc"
 
 depend() {
 	use net

@@ -1,8 +1,8 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright (c) 2009 Roy Marples <roy@marples.name>
 # All rights reserved. Released under the 2-clause BSD license.
 
-command=/usr/sbin/wpa_supplicant
+command=/usr/bin/wpa_supplicant
 : ${wpa_supplicant_conf:=/etc/wpa_supplicant/wpa_supplicant.conf}
 wpa_supplicant_if=${wpa_supplicant_if:+-i}$wpa_supplicant_if
 command_args="$wpa_supplicant_args -B -c$wpa_supplicant_conf $wpa_supplicant_if"

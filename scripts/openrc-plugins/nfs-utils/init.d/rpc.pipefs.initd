@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-fs/nfs-utils/files/rpc.pipefs.initd,v 1.2 2011/06/19 23:04:36 vapier Exp $

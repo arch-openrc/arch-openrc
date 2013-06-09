@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
 # $Header: /var/cvsroot/gentoo-x86/net-ftp/vsftpd/files/vsftpd.init,v 1.8 2013/04/20 16:51:02 hwoarang Exp $
@@ -12,7 +12,7 @@ else
     VSFTPD_CONF_DEFAULT="/etc/vsftpd.conf"
 fi
 VSFTPD_CONF=${VSFTPD_CONF:-${VSFTPD_CONF_DEFAULT}}
-VSFTPD_EXEC=${VSFTPD_EXEC:-/usr/sbin/vsftpd}
+VSFTPD_EXEC=${VSFTPD_EXEC:-/usr/bin/vsftpd}
 
 depend() {
 	need net

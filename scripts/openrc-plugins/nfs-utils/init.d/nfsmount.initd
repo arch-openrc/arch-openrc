@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-fs/nfs-utils/files/nfsmount.initd,v 1.15 2013/03/24 20:29:48 vapier Exp $
@@ -25,9 +25,9 @@ depend() {
 }
 
 start() {
-	if [ -x /usr/sbin/sm-notify ] ; then
+	if [ -x /usr/bin/sm-notify ] ; then
 		ebegin "Starting NFS sm-notify"
-		/usr/sbin/sm-notify ${OPTS_SMNOTIFY}
+		/usr/bin/sm-notify ${OPTS_SMNOTIFY}
 		eend $?
 	fi
 

@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-nds/ypbind/files/ypbind.initd,v 1.6 2009/02/24 17:25:01 drizzt Exp $
@@ -13,7 +13,7 @@ start() {
 	if [ -n "${YPBIND_OPTS}" ]; then
 		YOPTS="-- ${YPBIND_OPTS}"
 	fi
-	start-stop-daemon --start --quiet --exec /usr/sbin/ypbind ${YOPTS}
+	start-stop-daemon --start --quiet --exec /usr/bin/ypbind ${YOPTS}
 	local ret=$?
 	if [ $ret -eq 0 ] ; then
 		notfound=1
@@ -34,7 +34,7 @@ start() {
 
 stop() {
 	ebegin "Stopping ypbind"
-	start-stop-daemon --stop --quiet --exec /usr/sbin/ypbind
+	start-stop-daemon --stop --quiet --exec /usr/bin/ypbind
 	eend $?
 	# Remove binding files, if ypbind "forgets" it
 	rm -f /var/yp/binding/*

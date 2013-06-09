@@ -1,11 +1,11 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 
 #---------------------------------------------------------------------------
 # This script starts/stops the MIT Kerberos 5 Admin daemon
 #---------------------------------------------------------------------------
 
 daemon="MIT Kerberos 5 Admin daemon"
-exec="/usr/sbin/kadmind"
+exec="/usr/bin/kadmind"
 
 depend() {
 	need krb5kdc

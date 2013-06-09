@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/xinetd/files/xinetd.rc6,v 1.24 2011/10/11 01:26:08 vapier Exp $
@@ -11,7 +11,7 @@ depend() {
 
 start() {
 	ebegin "Starting xinetd"
-	start-stop-daemon --start --exec /usr/sbin/xinetd -- \
+	start-stop-daemon --start --exec /usr/bin/xinetd -- \
 		-pidfile /run/xinetd.pid ${XINETD_OPTS}
 	eend $?
 }

@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
 # $Header: /var/cvsroot/gentoo-x86/x11-base/xorg-server/files/xdm.initd-9,v 1.1 2012/11/11 01:49:30 chithanh Exp $
@@ -72,7 +72,7 @@ setup_dm() {
 			PIDFILE=/run/kdm.pid
 			;;
 		entrance*)
-			EXE=/usr/sbin/entrance
+			EXE=/usr/bin/entrance
 			PIDFILE=/run/entrance.pid
 			;;
 		gdm|gnome)
@@ -89,12 +89,12 @@ setup_dm() {
 			PIDFILE=/run/gpe-dm.pid
 			;;
 		lxdm)
-			EXE=/usr/sbin/lxdm-binary
+			EXE=/usr/bin/lxdm-binary
 			PIDFILE=/run/lxdm.pid
 			START_STOP_ARGS="--background"
 			;;
 		lightdm)
-			EXE=/usr/sbin/lightdm
+			EXE=/usr/bin/lightdm
 			PIDFILE=/run/lightdm.pid
 			START_STOP_ARGS="--background"
 			;;

@@ -10,11 +10,12 @@ fi
 
 . ./functions
 
-VER=0.9.1
+VER=0.9.2
 PKGNAME='openrc-plugins'
 EXT="xz"
 
 main(){	
+	set_prefix
 	setup "confd.list" "conf.d"
 	setup "initd.list" "init.d"
 	set_version

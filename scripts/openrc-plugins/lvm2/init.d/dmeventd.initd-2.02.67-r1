@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-fs/lvm2/files/dmeventd.initd-2.02.67-r1,v 1.2 2013/04/09 11:00:26 ssuominen Exp $
@@ -11,13 +11,13 @@ depend() {
 
 start() {
 	ebegin "Starting dmeventd"
-	start-stop-daemon --start --exec /sbin/dmeventd --pidfile /run/dmeventd.pid
+	start-stop-daemon --start --exec /usr/bin/dmeventd --pidfile /run/dmeventd.pid
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping dmeventd"
-	start-stop-daemon --stop --exec /sbin/dmeventd --pidfile /run/dmeventd.pid
+	start-stop-daemon --stop --exec /usr/bin/dmeventd --pidfile /run/dmeventd.pid
 	eend $?
 }
 

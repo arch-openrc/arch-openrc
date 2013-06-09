@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-fs/nfs-utils/files/nfs.initd,v 1.27 2013/03/24 19:37:22 vapier Exp $
@@ -10,10 +10,10 @@ extra_started_commands="reload"
 restarting=no
 
 # The binary locations
-exportfs=/usr/sbin/exportfs
-  mountd=/usr/sbin/rpc.mountd
-    nfsd=/usr/sbin/rpc.nfsd
-smnotify=/usr/sbin/sm-notify
+exportfs=/usr/bin/exportfs
+  mountd=/usr/bin/rpc.mountd
+    nfsd=/usr/bin/rpc.nfsd
+smnotify=/usr/bin/sm-notify
 
 depend() {
 	local myneed=""

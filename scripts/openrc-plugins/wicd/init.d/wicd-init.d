@@ -1,10 +1,10 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 opts="start stop restart"
 
-WICD_DAEMON=/usr/sbin/wicd
+WICD_DAEMON=/usr/bin/wicd
 WICD_PIDFILE=/run/wicd/wicd.pid
 
 depend() {

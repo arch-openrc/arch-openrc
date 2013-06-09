@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/dhcp/files/dhcpd.init5,v 1.2 2012/11/11 21:42:02 vapier Exp $
@@ -86,7 +86,7 @@ start() {
 	local pidfile="$(get_var pid-file-name /run/dhcp/${SVCNAME}.pid)"
 
 	ebegin "Starting ${chroot:+chrooted }${SVCNAME}"
-	start-stop-daemon --start --exec /usr/sbin/dhcpd \
+	start-stop-daemon --start --exec /usr/bin/dhcpd \
 		--pidfile "${chroot}/${pidfile}" \
 		-- ${DHCPD_OPTS} -q -pf "${pidfile}" -lf "${leasefile}" \
 		-user dhcp -group dhcp \
@@ -100,7 +100,7 @@ stop() {
 	local chroot="$(get_options chroot)"
 
 	ebegin "Stopping ${chroot:+chrooted }${SVCNAME}"
-	start-stop-daemon --stop --exec /usr/sbin/dhcpd \
+	start-stop-daemon --stop --exec /usr/bin/dhcpd \
 		--pidfile "${chroot}/$(get_options pidfile)"
 	res=$?
 

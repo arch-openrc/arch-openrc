@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-fs/lvm2/files/lvm-monitoring.initd-2.02.67-r2,v 1.4 2013/04/09 11:00:26 ssuominen Exp $
@@ -12,8 +12,8 @@ depend() {
 	need lvm dmeventd
 }
 
-VGCHANGE=/sbin/vgchange
-VGS=/sbin/vgs
+VGCHANGE=/usr/bin/vgchange
+VGS=/usr/bin/vgs
 
 start() {
 	ret=0
