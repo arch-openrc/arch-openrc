@@ -4,7 +4,7 @@
 # Contributor: onestep_ua <onestep@ukr.net>
 
 pkgname=consolekit-git
-pkgver=20130605
+pkgver=20130610
 pkgrel=1
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
@@ -48,6 +48,7 @@ build() {
   ./autogen.sh  \
 		--prefix=/usr \
 		--sysconfdir=/etc \
+		--sbindir=/usr/bin \
 		--localstatedir=/var \
 		--libexecdir=/usr/lib/ConsoleKit \
 		--enable-pam-module \

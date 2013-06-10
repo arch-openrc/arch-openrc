@@ -52,6 +52,7 @@ build() {
     --sysconfdir=/etc \
     --localstatedir=/var \
     --libexecdir=/usr/lib/networkmanager \
+    --sbindir=/usr/bin \
     --without-netconfig \
     --with-crypto=nss \
     --with-dhclient=/usr/bin/dhclient \
@@ -86,7 +87,7 @@ package() {
 	
 	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -e 's/NetworkManager/networkmanager/' -i "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "$pkgdir/etc/init.d/networkmanager"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "$pkgdir/etc/init.d/networkmanager"
 }
 
 sha256sums=('5c0b2f71b2f61e0dfbe95cebad83001758db252d5cdf5b6f7ceebac9c6bd7ead'
