@@ -28,6 +28,8 @@ package(){
  	rm ${pkgdir}/sbin/{bootlogd,fstab-decode,killall5,sulogin}
 	rm ${pkgdir}/usr/share/man/man8/{bootlogd,fstab-decode,killall5,pidof,sulogin}.8
 	
+	rm -r ${pkgdir}/usr/include
+	
 	rm ${pkgdir}/usr/bin/{last,lastb,mesg,utmpdump,wall}
 	rm -r ${pkgdir}/usr/share/man/man1
  	
