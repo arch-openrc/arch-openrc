@@ -16,15 +16,6 @@ sha1sums=('f2ca149df1314a91f3007cccd7a0aa47d990de26'
           '326112c8a9bd24cb45bd4bb2f958a25f0ac4773d'
           'bbecfa7dfa45ac7c37ed8ac59fb53f6a85064b32')
 
-# prepare(){
-#   cd "${srcdir}/sysvinit-${pkgver}dsf"
-# 
-#   # FS#30005
-#   patch -p1 -d "src" -i "${srcdir}/0001-simplify-writelog.patch"
-#   patch -p1 -d "src" -i "${srcdir}/0002-remove-ansi-escape-codes-from-log-file.patch"
-#   
-# }
-          
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}dsf"
 	make 
