@@ -39,6 +39,7 @@ package() {
 		BRANDING='Arch Linux' \
 		PREFIX='/usr' \
 		LIBEXECDIR='/usr/lib/rc' \
+		SBINDIR='/usr/bin' \
 		MKSELINUX='no' \
 		MKPAM='pam' \
 		MKTERMCAP='ncurses' \
@@ -51,7 +52,5 @@ package() {
 	install -Dm 0644 "$srcdir/$pkgname.logrotate" "$pkgdir/etc/logrotate.d/$pkgname"
 
 	install -m 644 "$srcdir/$pkgname-$pkgver/conf.d/net" "$pkgdir/etc/conf.d/net"
-	
-	install -dm755 "$pkgdir/sbin"
-	ln -s "/usr/sbin/rc" "$pkgdir/sbin/rc"
+
 }

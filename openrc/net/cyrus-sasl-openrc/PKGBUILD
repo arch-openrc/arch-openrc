@@ -1,21 +1,22 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
 _pn=openrc-plugins
-_rn=mysql
+_rn=cyrus-sasl
 
 pkgname=$_rn-openrc
 pkgver=0.9.2
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-depends=('openrc' "$_rn")
 groups=('openrc-net')
+depends=('openrc' "$_rn")
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/mysql.init" "$pkgdir/etc/init.d/mysql"
+	#install -Dm755 "$srcdir/$_pn/$_rn/init.d/pwcheck.rc6" "$pkgdir/etc/init.d/pwcheck"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/saslauthd2.rc6" "$pkgdir/etc/init.d/saslauthd"
 }
 sha256sums=('7f798793e431ab873f9677dc30560251d23aeb812da941f8c034ba6bddc3c0c7')
