@@ -44,8 +44,8 @@ package(){
 	rm ${pkgdir}/usr/bin/{last,lastb,mesg,utmpdump,wall}
 	rm -r ${pkgdir}/usr/share/man/man1
  	
- 	mv sbin/* usr/bin/
-	rm -r sbin
-	rm -r bin
+ 	mv ${pkgdir}/sbin/* ${pkgdir}/usr/bin/
+	rm -r ${pkgdir}/sbin
+	rm -r ${pkgdir}/bin
 
 }
