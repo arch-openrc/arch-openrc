@@ -1,0 +1,49 @@
+# Maintainer: tuxce <tuxce.net@gmail.com>
+# Contributor: Tom Newsom <Jeepster@gmx.co.uk>
+# Contributor: BlueRaven <blue@ravenconsulting.it>
+# Contributor: dorphell <dorphell@archlinux.org>
+# Contributor: udeved <udeved@openrc4arch.site40.net>
+
+_pn=openrc-plugins
+_rn=pure-ftpd
+_pv=0.9.1
+
+pkgname=$_rn-openrc
+pkgver=1.0.36
+pkgrel=1
+pkgdesc="A fast, production quality, standards-conformant FTP server for openrc"
+arch=('i686' 'x86_64')
+url="http://www.pureftpd.org/"
+license=('custom')
+depends=('openssl' 'libmysqlclient' 'openrc')
+backup=('etc/pure-ftpd.conf')
+install=$_rn.install
+source=("ftp://pureftpd.org/pub/${_rn}/releases/${_rn}-${pkgver}.tar.bz2"
+		"http://openrc4arch.site40.net/pool/archlinux/$_pn-$_pv.tar.xz")
+
+build() {
+	cd ${srcdir}/${_rn}-${pkgver}
+	./configure --prefix=/usr \
+	   --with-puredb \
+	   --with-ftpwho \
+	   --with-altlog \
+	   --with-tls    \
+	   --with-mysql
+	make
+}
+
+package() {
+	cd ${srcdir}/${_rn}-${pkgver}
+	make DESTDIR=${pkgdir} install
+	
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/pure-ftpd.conf_d-3" "$pkgdir/etc/conf.d/pure-ftpd"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/pure-ftpd.rc11" "$pkgdir/etc/init.d/pure-ftpd"
+	
+	install -Dm644 configuration-file/pure-ftpd.conf ${pkgdir}/etc/pure-ftpd.conf
+	install -Dm755 configuration-file/pure-config.pl ${pkgdir}/usr/sbin/pure-config.pl
+
+	#install license
+	install -Dm644 COPYING ${pkgdir}/usr/share/licenses/${_rn}/LICENSE
+}
+sha256sums=('16e3cff004c80d752ff85e8a011a523867c7f2ab99af0f9c170891118e0fcc6b'
+            '7f798793e431ab873f9677dc30560251d23aeb812da941f8c034ba6bddc3c0c7')

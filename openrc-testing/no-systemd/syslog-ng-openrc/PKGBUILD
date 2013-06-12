@@ -1,0 +1,63 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+# Contributor: Dave Reisner <dreisner@archlinux.org>
+# Contributor: Eric Bélanger <eric@archlinux.org>
+# Contributor: Aaron Griffin <aaron@archlinux.org>
+
+_pn=openrc-plugins
+_rn=syslog-ng
+_pv=0.9.1
+
+pkgname=$_rn-openrc
+pkgver=3.4.1
+pkgrel=1
+pkgdesc="Next-generation syslogd with advanced networking and filtering capabilities and openrc support"
+arch=('i686' 'x86_64')
+license=('GPL2')
+url="http://www.balabit.com/network-security/syslog-ng/"
+groups=('openrc-misc')
+depends=('awk' 'eventlog' 'glib2' 'libcap' 'openssl' 'systemd')
+makedepends=('flex' 'pkg-config' 'python2')
+optdepends=('logrotate: for rotating log files')
+provides=('syslog-ng')
+conflicts=('syslog-ng')
+options=('!libtool')
+backup=('etc/syslog-ng/modules.conf'
+        'etc/syslog-ng/scl.conf'
+        'etc/syslog-ng/syslog-ng.conf'
+        'etc/logrotate.d/syslog-ng')
+install=$_rn.install
+source=("http://www.balabit.com/downloads/files/syslog-ng/sources/$pkgver/source/${_rn}_$pkgver.tar.gz"
+		"http://openrc4arch.site40.net/pool/archlinux/$_pn-$_pv.tar.xz"
+		'syslog-ng.logrotate'
+        'syslog-ng.conf')
+
+build() {
+	cd "$_rn-$pkgver"
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc/syslog-ng \
+		--libexecdir=/usr/lib \
+		--localstatedir=/var/lib/syslog-ng \
+		--datadir=/usr/share/syslog-ng \
+		--with-pidfile-dir=/run \
+		--disable-spoof-source \
+		--enable-ipv6 \
+		--disable-systemd
+	make
+}
+
+package() {
+	make -C "$_rn-$pkgver" DESTDIR="$pkgdir" install
+
+	install -dm755 "$pkgdir/var/lib/syslog-ng" "$pkgdir/etc/syslog-ng/patterndb.d"
+	install -Dm644 "$srcdir/syslog-ng.conf" "$pkgdir/etc/syslog-ng/syslog-ng.conf"
+	install -Dm644 "$srcdir/syslog-ng.logrotate" "$pkgdir/etc/logrotate.d/syslog-ng"
+  
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/syslog-ng.confd" "$pkgdir/etc/conf.d/syslog-ng"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/syslog-ng.rc6.3" "$pkgdir/etc/init.d/syslog-ng"
+}
+sha256sums=('ca5613a808ea92cb72669d8e1c141bf86405e0d94f913c4db3ab9e2c37612986'
+            '7f798793e431ab873f9677dc30560251d23aeb812da941f8c034ba6bddc3c0c7'
+            '93c935eca56854011ea9e353b7a1da662ad40b2e8452954c5b4b5a1d5b2d5317'
+            '0be3d8b5b5de79392a67ed6a074e562b542beab117cd608529a6a56af678b6f8')
