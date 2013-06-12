@@ -5,13 +5,13 @@ _rn=xorg-server
 
 pkgname=displaymanager-openrc
 pkgver=0.9.2
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC displaymanager init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-desktop')
-depends=('openrc' "$_rn")
+depends=('openrc' "$_rn" 'udev-init-scripts')
 backup=('etc/conf.d/xdm')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz"
