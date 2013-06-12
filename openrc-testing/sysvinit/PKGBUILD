@@ -1,0 +1,50 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgname=sysvinit
+pkgver=2.88
+pkgrel=13
+pkgdesc="Linux System V Init"
+arch=('i686' 'x86_64')
+url="http://savannah.nongnu.org/projects/sysvinit"
+license=('GPL')
+depends=('util-linux' 'coreutils' 'glibc' 'awk' 'sysvinit-tools')
+source=(http://download.savannah.gnu.org/releases/sysvinit/${pkgname}-${pkgver}dsf.tar.bz2
+        "0001-simplify-writelog.patch"
+        "0002-remove-ansi-escape-codes-from-log-file.patch")
+sha1sums=('f2ca149df1314a91f3007cccd7a0aa47d990de26'
+          '326112c8a9bd24cb45bd4bb2f958a25f0ac4773d'
+          'bbecfa7dfa45ac7c37ed8ac59fb53f6a85064b32')
+
+prepare(){
+  cd "${srcdir}/sysvinit-${pkgver}dsf"
+
+  # FS#30005
+  patch -p1 -d "src" -i "${srcdir}/0001-simplify-writelog.patch"
+  patch -p1 -d "src" -i "${srcdir}/0002-remove-ansi-escape-codes-from-log-file.patch"
+  
+}
+          
+build() {
+	cd "${srcdir}/${pkgbase}-${pkgver}dsf"
+	make 
+}
+
+package(){
+ 	cd "${srcdir}/${pkgbase}-${pkgver}dsf"
+ 	make ROOT="${pkgdir}" install
+
+ 	cd ${pkgdir}
+ 	
+ 	rm ${pkgdir}/bin/{pidof,mountpoint}
+ 	
+ 	rm ${pkgdir}/sbin/{bootlogd,fstab-decode,killall5,sulogin}
+	rm ${pkgdir}/usr/share/man/man8/{bootlogd,fstab-decode,killall5,pidof,sulogin}.8
+	
+	rm ${pkgdir}/usr/bin/{last,lastb,mesg,utmpdump,wall}
+	rm -r ${pkgdir}/usr/share/man/man1 #/{last,lastb,mesg,utmpdump,wall}.1
+ 	
+ 	mv sbin/* usr/bin/
+	rm -r sbin
+	rm -r bin
+
+}
