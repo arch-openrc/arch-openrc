@@ -10,7 +10,7 @@ _rn=NetworkManager
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.2
-pkgrel=4
+pkgrel=5
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -85,7 +85,7 @@ package() {
 	
 	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
 	
-	sed -e 's/@EPREFIX@//' -e 's/@EPREFIX@//' -e 's/NetworkManager/networkmanager/' -i "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
+	sed -e 's|@EPREFIX@/sbin|/bin|' -e 's|@EPREFIX@/usr/sbin|/usr/bin|' -e 's/NetworkManager/networkmanager/g' -e 's|#!/bin/sh|#!/usr/bin/sh|' -i "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
 	
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "$pkgdir/etc/init.d/networkmanager"
 }
