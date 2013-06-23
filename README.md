@@ -8,11 +8,6 @@ OpenRC pkgbuilds
 * openrc-misc
 * openrc-mobile
 * openrc-net
-
-####ToDo####
-
-conflicts:
-
-* nfs-utils-openrc: /etc/conf.d/nfs DONE
-* samba-openrc: /etc/conf.d/samba DONE
-* subversion-openrc: /etc/conf.d/svnserve DONE
+* openrc-db
+* openrc-fs
+* openrc-vcs
