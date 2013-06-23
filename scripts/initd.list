@@ -75,3 +75,5 @@ x11-base/xorg-server/files/xdm.initd-9
 sys-apps/xinetd/files/xinetd.rc6
 sys-fs/lvm2/files/lvm-monitoring.initd-2.02.67-r2
 sys-power/cpupower/files/init.d-r1
+x11-drivers/ati-drivers/files/atieventsd.init
+x11-drivers/nvidia-drivers/files/nvidia-smi.init

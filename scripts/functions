@@ -148,21 +148,17 @@ check(){
 
 				;;
 
+				"nvidia-drivers")
+					mk_str $2 '/opt/bin/nvidia-smi' "${PRE}/bin/nvidia-smi"
+				;;
+				
+				"ati-drivers")
+					mk_str $2 '/opt/sbin/atieventsd' "${PRE}/bin/atieventsd"
+				;;
+				
 			esac
 			
 			rm_str $2 '/usr/sbin' '/usr/bin' 
-
-# 		else
-# 
-# 			case $3 in
-# 
-# 				"rpcbind")
-# 
-# 					mk_str $2 '/sbin/rpcbind' '/bin/rpcbind'
-# 
-# 				;;
-# 
-# 			esac
 
 		fi
 		
