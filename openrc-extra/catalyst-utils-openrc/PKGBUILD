@@ -15,7 +15,7 @@ install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/atieventsd.init" "$pkgdir/etc/init.d/atieventsd"
+	install -Dm755 "$srcdir/$_pn/ati-drivers/init.d/atieventsd.init" "$pkgdir/etc/init.d/atieventsd"
 }
 sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510')
             

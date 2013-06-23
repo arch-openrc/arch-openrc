@@ -18,13 +18,13 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz"
 		"$_my_url/nvidia.udev-rule")
 
 package() {
-	install -Dm755 "$srcdir/$_pn/$_rn/init.d/nvidia-smi.init" "$pkgdir/etc/init.d/nvidia-smi"
+	install -Dm755 "$srcdir/$_pn/nvidia-drivers/init.d/nvidia-smi.init" "$pkgdir/etc/init.d/nvidia-smi"
 	
 	install -Dm755 "$srcdir/nvidia-udev.sh" "$pkgdir/usr/lib/udev/nvidia-udev.sh"
 	
 	install -Dm755 "$srcdir/nvidia.udev-rule" "$pkgdir/usr/lib/udev/rules.d/99-nvidia.rules"
 	
-	sed -e 's|#!/bin/sh|#!/usr/bin/sh|' -e 's|/opt/bin/nvidia-smi|/usr/bin/nvidia-smi|g' -i "$pkgdir/etc/init.d/nvidia-udev.sh"
+	sed -e 's|#!/bin/sh|#!/usr/bin/sh|' -e 's|/opt/bin/nvidia-smi|/usr/bin/nvidia-smi|g' -i "$pkgdir/usr/lib/udev/nvidia-udev.sh"
 
 }
 sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510'
