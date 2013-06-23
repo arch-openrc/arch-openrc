@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=fcron
 
 pkgname=$_rn-openrc
-pkgver=0.9.2
+pkgver=0.9.3
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -19,4 +19,4 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/fcron.init.3" "$pkgdir/etc/init.d/$_rn"
 }
-sha256sums=('7f798793e431ab873f9677dc30560251d23aeb812da941f8c034ba6bddc3c0c7')
+sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510')
