@@ -1,4 +1,4 @@
-svc="cronie"
+svc="nvidia-smi"
 rlvl="default"
 
 post_install() {
