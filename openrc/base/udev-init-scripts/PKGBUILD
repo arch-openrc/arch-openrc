@@ -1,25 +1,26 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
 pkgname=udev-init-scripts
-pkgver=25
-pkgrel=4
-pkgdesc="OpenRC udev init scripts"
+pkgver=26
+pkgrel=1
+pkgdesc="udev startup scripts for openrc"
 arch=('any')
-url="http://openrc4arch.site40.net"
+url="http://www.gentoo.org"
 license=('GPL2')
-groups=('openrc-base' 'openrc-fs')
+groups=('openrc-base')
 depends=('udev' 'openrc')
+makedepends=('pkg-config')
 install=udev.install
 source=("http://dev.gentoo.org/~williamh/dist/$pkgname-$pkgver.tar.bz2")
-sha256sums=('2210a0c76b1169d136b3f7c8f8c6ca36b4546aea7e88c355c81009cf10fb9bc3')
 
 package() {
 	
 	cd "${srcdir}/${pkgname}-${pkgver}"
+		
 	make DESTDIR="${pkgdir}" install
-
+	
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin/udevd|/usr/bin/udevd|g' -i "$pkgdir/etc/init.d/udev"
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "$pkgdir/etc/init.d/udev-mount"
-	
 }
+sha256sums=('eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203')
