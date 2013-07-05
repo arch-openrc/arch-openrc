@@ -15,11 +15,11 @@ arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
 license=('GPL')
 groups=('openrc-desktop')
-depends=('polkit-consolekit' 'zlib' 'libx11' 'dbus-glib')
+depends=('polkit-consolekit' 'zlib' 'libx11' 'dbus-glib' 'dbus-openrc')
 makedepends=('git' 'pkgconfig' 'xmlto' 'docbook-xsl')
 replaces=('consolekit' 'consolekit-git')
 provides=('consolekit')
-conflicts=('consolekit')
+conflicts=('consolekit' 'consolekit-openrc')
 install=$_rn.install
 options=(!libtool)
 source=('pam-foreground-compat.ck'
@@ -84,5 +84,5 @@ package() {
 sha256sums=('351b71189ff51e396746625e121b34be2d1ba22714277720550dda09471bfcf1'
             '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
-            '5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510'
+            'a66d44c1c1befff0d6355af6254ef968fcda337e0e23b18a51ecd1ed73f763ce'
             '91e0900995f7db536220065959d236fb75ec2c77096981a142e2e948518d9761')
