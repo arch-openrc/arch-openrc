@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/xinetd.confd" "$pkgdir/etc/conf.d/xinetd"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/xinetd.rc6" "$pkgdir/etc/init.d/xinetd"
 }
-sha256sums=('a66d44c1c1befff0d6355af6254ef968fcda337e0e23b18a51ecd1ed73f763ce')
+sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')')

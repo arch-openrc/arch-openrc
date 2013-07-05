@@ -24,5 +24,5 @@ package() {
 	
 	sed -e 's|/etc/vsftpd/vsftpd.conf|/etc/vsftpd.conf|g' -i "$pkgdir/usr/lib/vsftpd-checkconfig.sh"
 }
-sha256sums=('a66d44c1c1befff0d6355af6254ef968fcda337e0e23b18a51ecd1ed73f763ce'
+sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')'
             '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda')

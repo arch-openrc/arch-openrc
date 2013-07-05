@@ -45,4 +45,4 @@ package() {
 	sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' $pkgdir/etc/init.d/rpc.svcgssd
 
 }
-sha256sums=('a66d44c1c1befff0d6355af6254ef968fcda337e0e23b18a51ecd1ed73f763ce')
+sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')')

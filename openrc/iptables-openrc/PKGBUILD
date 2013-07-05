@@ -27,4 +27,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/ip6tables-1.4.13.confd" "$pkgdir/etc/conf.d/ip6tables"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/iptables-1.4.13-r1.init" "$pkgdir/etc/init.d/ip6tables"
 }
-sha256sums=('a66d44c1c1befff0d6355af6254ef968fcda337e0e23b18a51ecd1ed73f763ce')
+sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')')
