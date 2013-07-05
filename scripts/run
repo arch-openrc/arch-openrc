@@ -10,7 +10,7 @@ fi
 
 . ./functions
 
-VER=0.9.3
+VER=0.9.4
 PKGNAME='openrc-plugins'
 EXT="xz"
 
