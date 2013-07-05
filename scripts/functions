@@ -96,7 +96,11 @@ check(){
 			mk_str $2 '#!/sbin/runscript' "#!${PRE}/bin/runscript"
 		
 			case $3 in
-
+			
+				"cryptsetup")
+					mk_str $2 '/sbin/splash-functions.sh' "${PRE}/bin/splash-functions.sh"
+				;;
+					
 				"lvm2")
 
 					if [ `basename $2 | grep "lvm"` ];then
