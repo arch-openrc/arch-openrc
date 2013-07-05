@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/bitlbee.confd" "$pkgdir/etc/conf.d/bitlbee"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/bitlbee.initd" "$pkgdir/etc/init.d/bitlbee"
 }
-sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')')
+sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')

@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/alsasound.confd-r4" "$pkgdir/etc/conf.d/alsasound"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/alsasound.initd-r5" "$pkgdir/etc/init.d/alsasound"
 }
-sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')')
+sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')

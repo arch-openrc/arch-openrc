@@ -22,4 +22,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/fancontrol-init.d-2" "$pkgdir/etc/init.d/fancontrol"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lm_sensors-3-init.d" "$pkgdir/etc/init.d/lm_sensors"
 }
-sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')')
+sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')

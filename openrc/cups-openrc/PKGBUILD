@@ -19,4 +19,4 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/cupsd.init.d" "$pkgdir/etc/init.d/cupsd"
 }
-sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')')
+sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')

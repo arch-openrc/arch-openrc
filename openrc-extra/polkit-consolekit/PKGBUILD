@@ -16,8 +16,6 @@ options=('!libtool')
 install=polkit.install
 source=("http://www.freedesktop.org/software/polkit/releases/polkit-$pkgver.tar.gz"
 		'polkit.pam')
-md5sums=('06e0d3b72e566ac277fc35c8206d2a28'
-         '6564f95878297b954f0572bc1610dd15')
 
 build() {
   cd "$srcdir/polkit-$pkgver"
@@ -43,3 +41,5 @@ package() {
 
   install -m644 "$srcdir/polkit.pam" "$pkgdir/etc/pam.d/polkit-1"
 }
+sha256sums=('8e5c5044bb968643b7fa379f287fb10582615df760ad2f1cb84be6e19fafe6e8'
+            'a35af3210bff1a8f2c04add47ed131a17df9eafbbc6f1671f97021be3ab1ff34')
