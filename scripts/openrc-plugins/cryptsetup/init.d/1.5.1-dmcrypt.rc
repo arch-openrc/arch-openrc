@@ -14,8 +14,8 @@ execute_hook="dm_crypt_execute_dmcrypt"
 conf_file="/etc/conf.d/${SVCNAME}"
 
 # Get splash helpers if available.
-if [ -e /sbin/splash-functions.sh ] ; then
-	. /sbin/splash-functions.sh
+if [ -e /usr/bin/splash-functions.sh ] ; then
+	. /usr/bin/splash-functions.sh
 fi
 
 # Setup mappings for an individual target/swap
