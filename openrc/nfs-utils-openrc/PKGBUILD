@@ -12,7 +12,7 @@ url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-fs')
 depends=('openrc' "$_rn" 'rpcbind-openrc' 'device-mapper-openrc')
-optdepends=('ypbind-mt' 'quota-tools')
+optdepends=('ypbind-mt' 'quota-tools' 'bind-openrc')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 

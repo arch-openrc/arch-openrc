@@ -11,8 +11,8 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-fs')
-depends=('openrc' "$_rn-tools")
-optdepends=('rpcbind-openrc')
+depends=('openrc' "$_rn-tools" 'rpcbind-openrc')
+optdepends=('ypbind-openrc')
 install=$_rn-tools.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
