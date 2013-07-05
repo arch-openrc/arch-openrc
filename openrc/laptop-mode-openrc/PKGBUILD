@@ -1,0 +1,21 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_pn=openrc-plugins
+_rn=laptop-mode-tools
+
+pkgname=laptop-mode-openrc
+pkgver=0.9.3
+pkgrel=1
+pkgdesc="OpenRC $_rn init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-mobile')
+depends=('openrc' "$_rn" 'hdparm')
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
+
+package() {
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/laptop_mode.init-1.4" "$pkgdir/etc/init.d/laptop_mode"
+}
+sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510')

@@ -1,0 +1,17 @@
+svc="xdm"
+rlvl="default"
+
+post_install() {
+	_cmd="rc-update add $svc $rlvl"
+	echo "	==> Edit /etc/conf.d/xdm to set DM."
+	echo "	==> run '$_cmd'"
+}
+
+post_upgrade() {
+	post_install "$1"
+}
+
+post_remove() {
+	_cmd="rc-update del $svc $rlvl"
+	echo "	==> run '$_cmd'"
+}

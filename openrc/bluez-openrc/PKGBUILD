@@ -1,0 +1,23 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_pn=openrc-plugins
+_rn=bluez
+
+pkgname=$_rn-openrc
+pkgver=0.9.3
+pkgrel=1
+pkgdesc="OpenRC $_rn init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-mobile')
+depends=('openrc' "$_rn" 'dbus-openrc')
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
+
+package() {
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/rfcomm-conf.d" "$pkgdir/etc/conf.d/rfcomm"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/rfcomm-init.d" "$pkgdir/etc/init.d/rfcomm"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/bluetooth-init.d-r2" "$pkgdir/etc/init.d/bluetooth"
+}
+sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510')

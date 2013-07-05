@@ -1,0 +1,30 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_rn=postgresql
+_pv=2.4
+
+pkgname=$_rn-openrc
+pkgver=0.9.3
+pkgrel=1
+pkgdesc="OpenRC $_rn init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+depends=('openrc' "$_rn")
+groups=('openrc-db')
+install=$_rn.install
+source=("http://dev.gentoo.org/~titanofold/postgresql-initscript-$_pv.tbz2
+")
+
+package() {
+	
+	install -Dm755 "$srcdir/postgresql.confd" "$pkgdir/etc/conf.d/postgresql"
+
+	install -Dm755 "$srcdir/postgresql.init" "$pkgdir/etc/init.d/postgresql"
+	
+	sed -e 's|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|' -e 's|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|' -i "$pkgdir/etc/conf.d/postgresql"
+	
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/lib/postgresql-@SLOT@/bin/pg_ctl|/usr/bin/pg_ctl|' -e 's|/usr/lib/postgresql-@SLOT@/bin/postgres|/usr/bin/postgres|' -i "$pkgdir/etc/init.d/postgresql"
+		
+}
+sha256sums=('4f17a2a26ec078b7f73d2b5fa7338402829fe195676d6c3f2cda6cd75c3d1e23')

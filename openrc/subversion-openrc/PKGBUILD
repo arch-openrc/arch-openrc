@@ -1,0 +1,22 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_pn=openrc-plugins
+_rn=subversion
+
+pkgname=$_rn-openrc
+pkgver=0.9.3
+pkgrel=1
+pkgdesc="OpenRC $_rn init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-vcs')
+depends=('openrc' "$_rn")
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
+
+package() {
+		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/svnserve.confd" "$pkgdir/etc/conf.d/svnserve-rc"
+		install -Dm755 "$srcdir/$_pn/$_rn/init.d/svnserve.initd2" "$pkgdir/etc/init.d/svnserve-rc"
+}
+sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510')

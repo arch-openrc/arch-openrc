@@ -1,0 +1,23 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_pn=openrc-plugins
+_rn=lvm2
+
+pkgname=$_rn-openrc
+pkgver=0.9.3
+pkgrel=1
+pkgdesc="OpenRC $_rn init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-base' 'openrc-fs')
+depends=('openrc' "$_rn" 'device-mapper-openrc')
+install=$_rn.install
+source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
+
+package() {
+	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/lvm.confd-2.02.28-r2" "$pkgdir/etc/conf.d/lvm"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lvm.rc-2.02.95-r2" "$pkgdir/etc/init.d/lvm"
+	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lvm-monitoring.initd-2.02.67-r2" "$pkgdir/etc/init.d/lvm-monitoring"
+}
+sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510')
