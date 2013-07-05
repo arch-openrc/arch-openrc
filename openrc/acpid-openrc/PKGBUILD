@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=acpid
 
 pkgname=$_rn-openrc
-pkgver=0.9.3
+pkgver=0.9.4
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -19,4 +19,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/conf.d/acpid-2.0.16-conf.d" "$pkgdir/etc/conf.d/$_rn"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/acpid-2.0.16-init.d" "$pkgdir/etc/init.d/$_rn"
 }
-sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510')
+sha256sums=('a66d44c1c1befff0d6355af6254ef968fcda337e0e23b18a51ecd1ed73f763ce')

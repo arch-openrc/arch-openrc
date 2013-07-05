@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=vsftpd
 
 pkgname=$_rn-openrc
-pkgver=0.9.3
+pkgver=0.9.4
 pkgrel=1
 pkgdesc="OpenRC $_rn init scripts"
 arch=('any')
@@ -23,5 +23,5 @@ package() {
 	
 	sed -e 's|/etc/vsftpd/vsftpd.conf|/etc/vsftpd.conf|g' -i "$pkgdir/usr/lib/vsftpd-checkconfig.sh"
 }
-sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510'
+sha256sums=('a66d44c1c1befff0d6355af6254ef968fcda337e0e23b18a51ecd1ed73f763ce'
             '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda')

@@ -4,7 +4,7 @@ _pn=openrc-plugins
 _rn=nfs-utils
 
 pkgname=$_rn-openrc
-pkgver=0.9.3
+pkgver=0.9.4
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -12,6 +12,7 @@ url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-fs')
 depends=('openrc' "$_rn" 'rpcbind-openrc' 'device-mapper-openrc')
+optdepends=('ypbind-mt' 'quota-tools')
 install=$_rn.install
 source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
@@ -44,4 +45,4 @@ package() {
 	sed -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' $pkgdir/etc/init.d/rpc.svcgssd
 
 }
-sha256sums=('5450ee90b46ac8104bf2ee2680b976c9eaa4f7b401b0b05c6ef6aebebba35510')
+sha256sums=('a66d44c1c1befff0d6355af6254ef968fcda337e0e23b18a51ecd1ed73f763ce')
