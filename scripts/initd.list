@@ -77,3 +77,6 @@ sys-fs/lvm2/files/lvm-monitoring.initd-2.02.67-r2
 sys-power/cpupower/files/init.d-r1
 x11-drivers/ati-drivers/files/atieventsd.init
 x11-drivers/nvidia-drivers/files/nvidia-smi.init
+net-nds/ypserv/files/rpc.ypxfrd-2.23
+net-nds/ypserv/files/rpc.yppasswdd-r1
+net-nds/ypserv/files/ypserv

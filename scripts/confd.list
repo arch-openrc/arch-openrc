@@ -42,3 +42,6 @@ sys-apps/xinetd/files/xinetd.confd
 net-misc/dhcp/files/dhcrelay.conf
 sys-fs/lvm2/files/device-mapper.conf-1.02.22-r3
 sys-power/cpupower/files/conf.d-r1
+net-nds/ypserv/files/rpc.yppasswdd.confd
+net-nds/ypserv/files/rpc.ypxfrd.confd
+net-nds/ypserv/files/ypserv.confd
