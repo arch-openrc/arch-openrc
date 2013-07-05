@@ -5,11 +5,11 @@
 
 _pn=openrc-plugins
 _rn=consolekit
-_pv=0.9.3
+_pv=0.9.4
 
 pkgname=consolekit-openrc-git
 pkgver=20130705
-pkgrel=1
+pkgrel=2
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
@@ -18,7 +18,7 @@ groups=('openrc-desktop')
 depends=('polkit-consolekit' 'zlib' 'libx11' 'dbus-glib' 'dbus-openrc')
 makedepends=('git' 'pkgconfig' 'xmlto' 'docbook-xsl')
 replaces=('consolekit' 'consolekit-git')
-provides=('consolekit')
+provides=('consolekit' 'consolekit-openrc')
 conflicts=('consolekit' 'consolekit-openrc')
 install=$_rn.install
 options=(!libtool)
@@ -81,6 +81,7 @@ package() {
   
   
 }
+
 sha256sums=('351b71189ff51e396746625e121b34be2d1ba22714277720550dda09471bfcf1'
             '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
