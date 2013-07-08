@@ -5,7 +5,7 @@ _rn=catalyst-utils
 
 pkgname=$_rn-openrc
 pkgver=0.9.4
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC $_rn atieventsd init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -16,6 +16,10 @@ source=("$url/pool/archlinux/$_pn-$pkgver.tar.xz")
 
 package() {
 	install -Dm755 "$srcdir/$_pn/ati-drivers/init.d/atieventsd.init" "$pkgdir/etc/init.d/atieventsd"
+	
+	echo '${ATIEVENTSDOPTS}=""' > "$srcdir/atieventsd.conf"
+	install -Dm755 "$srcdir/atieventsd.conf" "$pkgdir/etc/conf.d/atieventsd"
+
 }
 sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')
             
