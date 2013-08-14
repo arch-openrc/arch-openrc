@@ -20,7 +20,7 @@ depends=('bash'
 		'pam'
 		'perl'
 		'psmisc')
-optdepends=('udev-init-scripts: udev openrc support'
+optdepends=('udev-init-scripts: udev startup scripts for openrc'
 			'netifrc: Gentoo Network Interface Management Scripts')
 provides=('openrc')
 conflicts=('initscripts' 'openrc')
