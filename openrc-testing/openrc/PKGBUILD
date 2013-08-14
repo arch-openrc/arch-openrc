@@ -18,8 +18,8 @@ depends=('bash'
 		'ncurses'
 		'net-tools'
 		'pam'
-		'perl'
-		'psmisc')
+		'psmisc'
+		'sysvinit')
 optdepends=('udev-init-scripts: udev startup scripts for openrc'
 			'netifrc: Gentoo Network Interface Management Scripts')
 provides=('openrc')
