@@ -10,10 +10,14 @@ post_install() {
 
 post_upgrade() {
 	post_install "$1"
-	echo "The loopback interface has been moved to netifrc package,"
-	echo "If you have services which do not start because of this,"
-	echo "They can be fixed by adding rc_need=\"!net\""
-	echo "to the /etc/conf.d/<servicename> file."
+	cat <<MSG
+	ATTENTION:
+	The loopback interface has been moved to netifrc package. 
+	If you have services which do not start because of this,
+	they can be fixed by adding rc_need=\"!net\""
+	to the /etc/conf.d/<servicename> file.
+MSG
+	true
 }
 
 post_remove() {
