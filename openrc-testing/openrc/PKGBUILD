@@ -2,7 +2,7 @@
 # Contributor: williamh <williamh@gentoo.org>
 
 pkgname=openrc
-pkgver=0.12.0
+pkgver=0.12
 pkgrel=1
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
@@ -27,11 +27,14 @@ backup=('etc/rc.conf'
 		'etc/conf.d/hwclock'
 		'etc/conf.d/hostname'
 		'etc/conf.d/modules')
-source=("http://dev.gentoo.org/~williamh/dist/$pkgname-$pkgver.tar.bz2"
+source=("http://dev.gentoo.org/~williamh/dist/${pkgname}-${pkgver}.tar.bz2"
 		'openrc.logrotate')
-
+		
+sha256sums=('e07f46682b2623cdd47655cf6a2e54ab13f1b46bd83159bb9e36bfa1ee27142c'
+            '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c')
+            
 package() {
-	cd "$srcdir/$pkgname-$pkgver"
+	cd "${srcdir}/${pkgname}-${pkgver}"
 
 	make \
 		SYSCONFDIR='/etc' \
@@ -47,10 +50,8 @@ package() {
 		DESTDIR="$pkgdir" \
 		install
 
-	install -m 644 "$srcdir/$pkgname-$pkgver/support/sysvinit/inittab" "$pkgdir/etc/inittab"
+	install -m 644 "${srcdir}/${pkgname}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
 
-	install -Dm 0644 "$srcdir/$pkgname.logrotate" "$pkgdir/etc/logrotate.d/$pkgname"
-
-	install -m 644 "$srcdir/$pkgname-$pkgver/conf.d/net" "$pkgdir/etc/conf.d/net"
+	install -Dm 0644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgdir}"
 
 }
