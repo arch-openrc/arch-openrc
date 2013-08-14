@@ -1,6 +1,8 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 # Contributor: williamh <williamh@gentoo.org>
 
+_gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86")
+
 pkgname=openrc
 pkgver=0.12
 pkgrel=1
@@ -18,8 +20,10 @@ depends=('bash'
 		'pam'
 		'perl'
 		'psmisc')
-provides=('init-backend')
-conflicts=('initscripts' 'openrc-git')
+optdepends=('udev-init-scripts: udev openrc support'
+			'netifrc: Gentoo Network Interface Management Scripts')
+provides=('openrc')
+conflicts=('initscripts' 'openrc')
 backup=('etc/rc.conf'
 		'etc/inittab'
 		'etc/conf.d/consolefont'
@@ -28,8 +32,8 @@ backup=('etc/rc.conf'
 		'etc/conf.d/hostname'
 		'etc/conf.d/modules')
 source=("http://dev.gentoo.org/~williamh/dist/${pkgname}-${pkgver}.tar.bz2"
-		'openrc.logrotate')
-		
+		"${_gentoo_uri}/sys-apps/${pkgname}/files/${pkgname}.logrotate")
+
 sha256sums=('e07f46682b2623cdd47655cf6a2e54ab13f1b46bd83159bb9e36bfa1ee27142c'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c')
             
@@ -47,7 +51,7 @@ package() {
 		MKPAM='pam' \
 		MKTERMCAP='ncurses' \
 		MKNET='oldnet' \
-		DESTDIR="$pkgdir" \
+		DESTDIR="${pkgdir}" \
 		install
 
 	install -m 644 "${srcdir}/${pkgname}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
