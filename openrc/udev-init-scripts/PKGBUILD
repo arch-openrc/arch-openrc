@@ -11,7 +11,7 @@ groups=('openrc-base')
 depends=('udev' 'openrc')
 makedepends=('pkg-config')
 install=udev.install
-source=("http://dev.gentoo.org/~williamh/dist/$pkgname-$pkgver.tar.bz2")
+source=("http://dev.gentoo.org/~williamh/dist/${pkgname}-${pkgver}.tar.bz2")
 
 package() {
 	
@@ -19,8 +19,8 @@ package() {
 		
 	make DESTDIR="${pkgdir}" install
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin/udevd|/usr/bin/udevd|g' -i "$pkgdir/etc/init.d/udev"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin/udevd|/usr/bin/udevd|g' -i "${pkgdir}/etc/init.d/udev"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "$pkgdir/etc/init.d/udev-mount"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/udev-mount"
 }
 sha256sums=('eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203')

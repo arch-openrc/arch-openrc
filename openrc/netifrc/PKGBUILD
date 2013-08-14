@@ -14,9 +14,8 @@ source=("http://dev.gentoo.org/~williamh/dist/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('65eb507bda9ed51fdac2dcf70de3428229758257039ea4ce8360edb0903e39e9')
 
 prepare(){
-
 	sed -i 's:0444:0644:' ${srcdir}/${pkgname}-${pkgver}/mk/sys.mk
-	sed -i "/^DIR/s:/${pkgname}:/${pkgname}-${pkgver}:" $srcdir/${pkgname}-${pkgver}/doc/Makefile
+	sed -i "/^DIR/s:/${pkgname}:/${pkgname}-${pkgver}:" ${srcdir}/${pkgname}-${pkgver}/doc/Makefile
 }
 
 package() {
@@ -32,6 +31,6 @@ package() {
 		DESTDIR="${pkgdir}" \
 		install
 		
-		install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "$pkgdir/etc/conf.d/net"
+		install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
 
 }

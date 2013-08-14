@@ -31,6 +31,7 @@ backup=('etc/rc.conf'
 		'etc/conf.d/hwclock'
 		'etc/conf.d/hostname'
 		'etc/conf.d/modules')
+install=openrc.install
 source=("http://dev.gentoo.org/~williamh/dist/${pkgname}-${pkgver}.tar.bz2"
 		"${_gentoo_uri}/sys-apps/${pkgname}/files/${pkgname}.logrotate")
 
