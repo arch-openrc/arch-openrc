@@ -30,8 +30,9 @@ backup=('etc/rc.conf'
 		'etc/conf.d/hwclock'
 		'etc/conf.d/hostname'
 		'etc/conf.d/modules')
-source=('openrc.logrotate')
-sha1sums=('ef1f26020db432f96a1485f72a189b288ef6873b')
+source=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-apps/openrc/files/openrc.logrotate")
+
+sha256sums=('0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c')
 
 _gitname="openrc"
 _gitroot="git://git.overlays.gentoo.org/proj/openrc.git"
