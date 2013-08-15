@@ -23,7 +23,7 @@ depends=('bash'
 optdepends=('udev-init-scripts: udev startup scripts for openrc'
 			'netifrc: Gentoo Network Interface Management Scripts')
 provides=('openrc')
-conflicts=('initscripts' 'openrc')
+conflicts=('initscripts')
 backup=('etc/rc.conf'
 		'etc/inittab'
 		'etc/conf.d/consolefont'

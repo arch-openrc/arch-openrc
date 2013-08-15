@@ -53,7 +53,6 @@ sys-apps/dbus/files/dbus.initd
 sys-apps/lm_sensors/files/fancontrol-init.d-2
 sys-apps/lm_sensors/files/lm_sensors-3-init.d
 sys-apps/lm_sensors/files/sensord-4-init.d
-sys-auth/consolekit/files/consolekit-0.2.rc
 sys-fs/cryptsetup/files/1.5.1-dmcrypt.rc
 sys-fs/lvm2/files/device-mapper.rc-2.02.95-r2
 sys-fs/lvm2/files/dmeventd.initd-2.02.67-r1

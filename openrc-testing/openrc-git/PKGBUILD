@@ -3,7 +3,7 @@
 
 
 pkgname=openrc-git
-pkgver=20130705
+pkgver=20130814
 pkgrel=1
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
