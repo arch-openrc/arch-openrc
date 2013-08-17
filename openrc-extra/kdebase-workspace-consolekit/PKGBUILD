@@ -4,8 +4,8 @@
 
 pkgname=kdebase-workspace-consolekit
 _pkgname=kde-workspace
-pkgver=4.10.5
-pkgrel=2
+pkgver=4.11.0
+pkgrel=1
 pkgdesc="Provides the consolkit enabled interface and basic tools for the KDE workspace"
 arch=('i686' 'x86_64')
 url='https://projects.kde.org/projects/kde/kde-workspace'
@@ -79,6 +79,15 @@ package() {
 }
 
 sha256sums=('a346420258f96475b47a7e3a78945fc38c10d4732b01d8fc371d11dcad56e875'
+            '812111f166fdf9ab7ef9400c4414cbe26fac5210f2292399d4446fe6e89eea54'
+            '3ca72a5f34d29747d12b9b41888d0e369956ba383478850c578e3aa109444214'
+            '0a985e3b699578de3e22b25ee72abe4e24ca8730e4afb37dfeed367823bdb0d5'
+            'b932b7761651df48746b7e5e178fd4c7d322e9f6c41dcf2ec2c51f91a6440d85'
+            '6fdf115bd6b6cf15dddbe3e0eab00fb62a296d5292759f1a09dcb865a357c220'
+            'a4c05882dd3a340960dec495cb2fd19cf2523d14a7add5b77af0f98cdff4c394'
+            'e5329c87f14ce04f80291f1f7a2be47994f3d54425b572c308b38e2718390959'
+            'df7fe57d73c5a017fed698976b00e6488b8c2f555ff9411e55c015cbcef3312b')
+sha256sums=('7eff30dc9bc1b042bb63c9f74265266e6f60d5a24e035da3f6b2a1f637b7b671'
             '812111f166fdf9ab7ef9400c4414cbe26fac5210f2292399d4446fe6e89eea54'
             '3ca72a5f34d29747d12b9b41888d0e369956ba383478850c578e3aa109444214'
             '0a985e3b699578de3e22b25ee72abe4e24ca8730e4afb37dfeed367823bdb0d5'
