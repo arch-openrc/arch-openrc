@@ -4,7 +4,7 @@
 # Contributor: dorphell <dorphell@archlinux.org>
 # Contributor: udeved <udeved@openrc4arch.site40.net>
 
-_pn=openrc-plugins
+_pn=openrc-init-scripts
 _rn=pure-ftpd
 _pv=0.9.1
 
@@ -46,4 +46,4 @@ package() {
 	install -Dm644 COPYING ${pkgdir}/usr/share/licenses/${_rn}/LICENSE
 }
 sha256sums=('16e3cff004c80d752ff85e8a011a523867c7f2ab99af0f9c170891118e0fcc6b'
-            '40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')
+            '6f5a4b729200226363325d207d475216db4eb8d6e29075a170f5fc7a52943255')

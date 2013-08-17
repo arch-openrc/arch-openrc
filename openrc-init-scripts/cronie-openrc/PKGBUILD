@@ -1,10 +1,10 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_pn=openrc-plugins
+_pn=openrc-init-scripts
 _rn=cronie
 
 pkgname=$_rn-openrc
-pkgver=0.9.4
+pkgver=20130817
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
@@ -23,4 +23,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/anacron-1.0-initd" "$pkgdir/etc/init.d/anacron"
 	
 }
-sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6')
+sha256sums=('6f5a4b729200226363325d207d475216db4eb8d6e29075a170f5fc7a52943255')

@@ -3,7 +3,7 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: onestep_ua <onestep@ukr.net>
 
-_pn=openrc-plugins
+_pn=openrc-init-scripts
 _rn=consolekit
 _pv=0.9.4
 
@@ -85,5 +85,5 @@ package() {
 sha256sums=('351b71189ff51e396746625e121b34be2d1ba22714277720550dda09471bfcf1'
             '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
-            '40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6'
+            '6f5a4b729200226363325d207d475216db4eb8d6e29075a170f5fc7a52943255'
             '91e0900995f7db536220065959d236fb75ec2c77096981a142e2e948518d9761')

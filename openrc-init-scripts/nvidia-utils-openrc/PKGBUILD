@@ -1,10 +1,10 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_pn=openrc-plugins
+_pn=openrc-init-scripts
 _rn=nvidia-utils
 
 pkgname=$_rn-openrc
-pkgver=0.9.4
+pkgver=20130817
 pkgrel=1
 pkgdesc="OpenRC $_rn no xorg init script"
 arch=('any')
@@ -27,7 +27,7 @@ package() {
 	sed -e 's|#!/bin/sh|#!/usr/bin/sh|' -e 's|/opt/bin/nvidia-smi|/usr/bin/nvidia-smi|g' -i "$pkgdir/usr/lib/udev/nvidia-udev.sh"
 
 }
-sha256sums=('40fb88a39a857ebb281f78ea1f000eaeb823886a0dc8da6e15d1083e00ccfdd6'
+sha256sums=('6f5a4b729200226363325d207d475216db4eb8d6e29075a170f5fc7a52943255'
             '120c0af2b64fbcbd7032217a78eec8b104874c1ca68726367bce22c57944e07e'
             '37b152a5055a16d1947171567178e2841679ddf03dba9d48e7d30f1e3b469ac6')
             
