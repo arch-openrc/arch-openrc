@@ -20,4 +20,4 @@ package() {
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lvm.rc-2.02.95-r2" "$pkgdir/etc/init.d/lvm"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/lvm-monitoring.initd-2.02.67-r2" "$pkgdir/etc/init.d/lvm-monitoring"
 }
-sha256sums=('6f5a4b729200226363325d207d475216db4eb8d6e29075a170f5fc7a52943255')
+sha256sums=('63753e41de7d728bf80c1b84e994b19e3a3669c161a1b801c8caba2f9a8a1e2b')

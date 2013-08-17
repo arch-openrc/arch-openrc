@@ -19,4 +19,4 @@ package() {
 	#install -Dm755 "$srcdir/$_pn/$_rn/init.d/pwcheck.rc6" "$pkgdir/etc/init.d/pwcheck"
 	install -Dm755 "$srcdir/$_pn/$_rn/init.d/saslauthd2.rc6" "$pkgdir/etc/init.d/saslauthd"
 }
-sha256sums=('6f5a4b729200226363325d207d475216db4eb8d6e29075a170f5fc7a52943255')
+sha256sums=('63753e41de7d728bf80c1b84e994b19e3a3669c161a1b801c8caba2f9a8a1e2b')
