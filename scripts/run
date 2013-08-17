@@ -10,8 +10,8 @@ fi
 
 . ./functions
 
-VER=0.9.4
-PKGNAME='openrc-plugins'
+VER=$(date +"%Y%m%d") #0.9.4
+PKGNAME="openrc-init-scripts"
 EXT="xz"
 
 main(){	

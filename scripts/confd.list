@@ -9,7 +9,6 @@ net-firewall/iptables/files/ip6tables-1.4.13.confd
 net-firewall/iptables/files/iptables-1.4.13.confd
 net-firewall/ufw/files/ufw.confd
 net-fs/nfs-utils/files/nfs.confd
-net-fs/samba/files/3.6/samba.confd
 net-fs/samba/files/4.0/samba4.confd
 net-ftp/pure-ftpd/files/pure-ftpd.conf_d-3
 net-im/bitlbee/files/bitlbee.confd

@@ -18,7 +18,7 @@ is_prefix(){
 mk_tar(){
 
 	tar -cvjf "${PKGNAME}-${VER}.tar.${EXT}" ${PKGNAME}
-	
+
 }
 
 mk_dirs() {

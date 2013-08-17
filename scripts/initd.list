@@ -23,7 +23,6 @@ net-fs/nfs-utils/files/rpc.idmapd.initd
 net-fs/nfs-utils/files/rpc.pipefs.initd
 net-fs/nfs-utils/files/rpc.statd.initd
 net-fs/nfs-utils/files/rpc.svcgssd.initd
-net-fs/samba/files/3.6/samba.initd
 net-fs/samba/files/4.0/samba4.initd-r1
 net-ftp/pure-ftpd/files/pure-ftpd.rc11
 net-ftp/vsftpd/files/vsftpd.init
