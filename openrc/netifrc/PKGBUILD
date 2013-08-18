@@ -3,9 +3,9 @@
 
 pkgname=netifrc
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Gentoo Network Interface Management Scripts"
-arch=('i686' 'x86_64')
+arch=('any')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD')
 depends=('openrc>=0.12')
