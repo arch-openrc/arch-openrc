@@ -19,12 +19,14 @@ provides=('consolekit')
 conflicts=('consolekit')
 install=consolekit.install
 options=(!libtool)
+
 source=("http://www.freedesktop.org/software/ConsoleKit/dist/ConsoleKit-$pkgver.tar.xz"
 		"$_gentoo_uri/consolekit-0.2.rc"
 		"$_gentoo_uri/90-consolekit-3"
 		"$_gentoo_uri/pam-foreground-compat.ck"
 		"$_gentoo_uri/consolekit-udev-acl-install_to_usr.patch"
-		"$_gentoo_uri/consolekit-0.4.5-polkit-automagic.patch"		"$_gentoo_uri/consolekit-cleanup_console_tags.patch"
+		"$_gentoo_uri/consolekit-0.4.5-polkit-automagic.patch"
+		"$_gentoo_uri/consolekit-cleanup_console_tags.patch"
 		'consolekit.logrotate'
 		'consolekit.tmpfiles.conf')
 		
