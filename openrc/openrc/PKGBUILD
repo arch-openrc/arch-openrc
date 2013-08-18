@@ -5,7 +5,7 @@ _gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86")
 
 pkgname=openrc
 pkgver=0.12
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -57,6 +57,8 @@ package() {
 
 	install -m 644 "${srcdir}/${pkgname}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
 
+	sed -e 's|/sbin/|/usr/bin/|g' -i "${pkgdir}/etc/inittab"
+	
 	install -Dm 0644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgdir}"
 
 }
