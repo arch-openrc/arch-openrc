@@ -2,10 +2,10 @@
 # Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
-_udevver=200
+_udevver=206
 
 pkgname='eudev-git'
-pkgver=20130414
+pkgver=20130818
 pkgrel=1
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
