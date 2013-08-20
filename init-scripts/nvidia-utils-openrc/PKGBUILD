@@ -1,0 +1,36 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="nvidia-drivers"
+_cat="x11-drivers"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=nvidia-utils-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC nvidia-utils no xorg init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+depends=('openrc' "nvidia-utils" 'udev-init-scripts')
+install=nvidia-utils.install
+
+source=("${_gentoo_uri}/nvidia-udev.sh"
+		"${_gentoo_uri}/nvidia.udev-rule")
+
+package() {
+	install -Dm755 "$srcdir/$_pn/nvidia-drivers/init.d/nvidia-smi.init" "$pkgdir/etc/init.d/nvidia-smi"
+	
+	install -Dm755 "$srcdir/nvidia-udev.sh" "$pkgdir/usr/lib/udev/nvidia-udev.sh"
+	
+	install -Dm755 "$srcdir/nvidia.udev-rule" "$pkgdir/usr/lib/udev/rules.d/99-nvidia.rules"
+	
+	_fix_init "$pkgdir/etc/init.d/nvidia-smi"
+	_fix_init "$pkgdir/usr/lib/udev/nvidia-udev.sh"
+
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|#!/bin/sh|#!/usr/bin/sh|' -e 's|/opt/bin/nvidia-smi|/usr/bin/nvidia-smi|g' -i $1
+	
+}        

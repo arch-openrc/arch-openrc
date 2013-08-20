@@ -1,0 +1,32 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="subversion"
+_cat="dev-vcs"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-vcs')
+depends=('openrc' "${_name}")
+install=${_name}.install
+source=("${_gentoo_uri}/svnserve.confd"
+		"${_gentoo_uri}/svnserve.initd2")
+		
+package() {
+		install -Dm755 "$srcdir/svnserve.confd" "$pkgdir/etc/conf.d/svnserve-rc"
+		install -Dm755 "$srcdir/svnserve.initd2" "$pkgdir/etc/init.d/svnserve-rc"
+		
+		_fix_init "$pkgdir/etc/conf.d/svnserve-rc"
+		_fix_init "$pkgdir/etc/init.d/svnserve-rc"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/var/svn|/srv/svn|g' -i $1
+	
+}

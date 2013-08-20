@@ -1,0 +1,33 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="bind"
+_cat="net-dns"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "${_name}")
+install=${_name}.install
+source=("${_gentoo_uri}/named.confd-r6"
+		"${_gentoo_uri}/named.init-r12")
+sha256sums=('704ac6954b2bad5d0bab19281dc703e86d9b4fe94d63dd00be1e525a3e64c492'
+            '953e066b5d77f59917db59365cd2103c5bec19889775bd3f6437b946c9d6d936')
+
+package() {
+		install -Dm755 "$srcdir/named.confd-r6" "$pkgdir/etc/conf.d/named"
+		install -Dm755 "$srcdir/named.init-r12" "$pkgdir/etc/init.d/named"
+		
+		_fix_init "$pkgdir/etc/init.d/named"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/etc/bind/named.conf|/etc/named.conf|g' -e 's|/usr/sbin|/usr/bin|g' -e 's|var/run|/run|g' -i $1
+	
+}

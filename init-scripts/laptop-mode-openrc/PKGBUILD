@@ -1,0 +1,31 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="laptop-mode-tools"
+_cat="app-laptop"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=laptop-mode-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-mobile')
+depends=('openrc' "${_name}" 'hdparm')
+optdepends=('acpid-openrc')
+install=${_name}.install
+source=("${_gentoo_uri}/laptop_mode.init-1.4")
+sha256sums=('90a18e5c7e4d0b264bb51deb7b92ff25b508a3ddd75dd6c849fdc48c07ce4fda')
+
+package() {
+	install -Dm755 "$srcdir/laptop_mode.init-1.4" "$pkgdir/etc/init.d/laptop_mode"
+	
+	_fix_init "$pkgdir/etc/init.d/laptop_mode"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+	
+}

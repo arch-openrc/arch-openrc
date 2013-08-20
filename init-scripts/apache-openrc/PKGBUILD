@@ -1,0 +1,36 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_dev="~kensington"
+_gentoo_uri="http://dev.gentoo.org/${_dev}/dist"
+_name=apache
+_ver=2.4.4
+_rel=20130801
+
+pkgname=${_name}-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+depends=('openrc' "${_name}")
+groups=('openrc-net')
+install=${_name}.install
+source=("${_gentoo_uri}/${_name}/gentoo-${_name}-${_ver}-${_rel}.tar.bz2")
+sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf')
+
+package() {
+
+	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+	
+	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+		 
+	_fix_init "$pkgdir/etc/init.d/httpd"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|apache2|httpd|g' -e 's|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g' -i $1
+
+}
+

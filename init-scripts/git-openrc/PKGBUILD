@@ -1,0 +1,40 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="git"
+_cat="dev-vcs"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-vcs')
+depends=('openrc' "${_name}")
+install=${_name}.install
+source=("${_gentoo_uri}/git-daemon.confd"
+		"${_gentoo_uri}/git-daemon.initd")
+sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
+            '48e7e1228c9811079dce8fecc560000cf645de5b4bb697f8f8ad3f906906330b')
+
+package() {
+	install -Dm755 "$srcdir/git-daemon.confd" "$pkgdir/etc/conf.d/git-daemon"
+	install -Dm755 "$srcdir/git-daemon.initd" "$pkgdir/etc/init.d/git-daemon"
+
+	_fix_conf "$pkgdir/etc/conf.d/git-daemon"
+	_fix_init "$pkgdir/etc/init.d/git-daemon"
+}
+
+_fix_conf(){
+
+	sed -e 's|/var/git|/srv/git|' -i $1
+	
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+	
+}

@@ -1,0 +1,33 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="ati-drivers"
+_cat="x11-drivers"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=catalyst-utils-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC catalyst-utils noX init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+depends=('openrc' 'catalyst-utils' 'udev-init-scripts' 'acpid-openrc')
+install=catalyst-utils.install
+source=("${_gentoo_uri}/atieventsd.init")
+sha256sums=('20010ebc5cb286149f3c4c9c099b6470463ccdb8fd47cea054b783dc2ad1fff3')
+
+package() {
+	install -Dm755 "$srcdir/atieventsd.init" "$pkgdir/etc/init.d/atieventsd"
+	
+	echo '${ATIEVENTSDOPTS}=""' > "$srcdir/atieventsd.conf"
+	install -Dm755 "$srcdir/atieventsd.conf" "$pkgdir/etc/conf.d/atieventsd"
+
+	_fix_init "$pkgdir/etc/conf.d/atieventsd"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/opt/sbin|/usr/bin|g' -i $1
+	
+}
+

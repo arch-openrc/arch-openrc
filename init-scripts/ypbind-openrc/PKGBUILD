@@ -1,0 +1,34 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="ypbind"
+_cat="net-nds"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "${_name}-mt" 'rpcbind-openrc')
+optdepends=('ypserv-openrc')
+install=${_name}-mt.install
+source=("${_gentoo_uri}/ypbind.confd-r1"
+		"${_gentoo_uri}/ypbind.initd")
+sha256sums=('79f6c6ed4875f00fe702f69e9a6180a032d5a47f3e58e892e6ba0e2746b6fec8'
+            '3cdd6872fae15dc8533b3f75ac36ad59ffb946a3f1b445d688629c621cebbe34')
+
+package() {
+		install -Dm755 "$srcdir/ypbind.confd-r1" "$pkgdir/etc/conf.d/ypbind"
+		install -Dm755 "$srcdir/ypbind.initd" "$pkgdir/etc/init.d/ypbind"
+		
+		_fix_init "$pkgdir/etc/init.d/ypbind"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+	
+}

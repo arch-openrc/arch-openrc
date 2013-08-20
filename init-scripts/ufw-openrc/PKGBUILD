@@ -1,0 +1,33 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="ufw"
+_cat="net-firewall"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "${_name}")
+install=${_name}.install
+source=("${_gentoo_uri}/ufw.confd"
+		"${_gentoo_uri}/ufw-2.initd")
+sha256sums=('069aa7382b40aecebf26ef53f3f4c49890314e0357925c84b3c15f1d0b913be0'
+            '657b5305923b2a5de9eb96931aaaa28d6e997ace6c40793d905887798094258c')
+		
+package() {
+	install -Dm755 "$srcdir/ufw.confd" "$pkgdir/etc/conf.d/ufw"
+	install -Dm755 "$srcdir/ufw-2.initd" "$pkgdir/etc/init.d/ufw"
+	
+	_fix_init "$pkgdir/etc/init.d/ufw"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g' -i $1
+	
+}

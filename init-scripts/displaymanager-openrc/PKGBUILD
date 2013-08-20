@@ -1,0 +1,41 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="xorg-server"
+_cat="x11-base"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=displaymanager-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC displaymanager init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-desktop')
+depends=('openrc' 'xorg-server' 'udev-init-scripts')
+optdepends=('consolekit-openrc' 'dbus-openrc')
+backup=('etc/conf.d/xdm')
+install=xorg-server.install
+source=("${_gentoo_uri}/xdm.confd-4"
+		"${_gentoo_uri}/xdm.initd-9"
+		"${_gentoo_uri}/xdm-setup.initd-1"
+		"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/x11-apps/xinit/files/startDM.sh")
+sha256sums=('9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
+            '96b1fe826db2b46b08e055d57bffd9405616b7980d9e40e95f19e52bc49eef3f'
+            '942ce5e8d1a0770543b683dcc388bae7619a24eb9741c1cd678ed3df97c01406'
+            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
+	
+package() {
+	install -Dm755 "$srcdir/xdm.confd-4" "$pkgdir/etc/conf.d/xdm"
+	install -Dm755 "$srcdir/xdm.initd-9" "$pkgdir/etc/init.d/xdm"
+	install -Dm755 "$srcdir/xdm-setup.initd-1" "$pkgdir/etc/init.d/xdm-setup"
+	install -Dm755 "$srcdir/startDM.sh" "$pkgdir/etc/X11/startDM.sh"
+	
+	_fix_init "$pkgdir/etc/init.d/xdm"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/profile.env|/etc/profile|g'  -e 's|{ROOTPATH}|{PATH}|g' -i $1
+	
+}

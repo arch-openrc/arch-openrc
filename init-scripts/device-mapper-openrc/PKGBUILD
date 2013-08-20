@@ -1,0 +1,40 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="lvm2"
+_cat="sys-fs"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=device-mapper-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC device-mapper init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-base')
+depends=('openrc' 'device-mapper' 'udev-init-scripts')
+install=device-mapper.install
+source=("${_gentoo_uri}/device-mapper.conf-1.02.22-r3"
+		"${_gentoo_uri}/device-mapper.rc-2.02.95-r2"
+		"${_gentoo_uri}/dmeventd.initd-2.02.67-r1")
+sha256sums=('57777904f12a35617e5a4193c964ebb32396452487fd02353e71e16e7b46bc22'
+            'e0bff689040746480e2479d1ad57adb5ab23cc0415ab9a8356503aed7a14c658'
+            'dbf81d357446fa555bcd75939af6d5982c10a8235800ddc299d2673b2c694d39')
+
+package() {
+
+	install -Dm755 "$srcdir/device-mapper.conf-1.02.22-r3" "$pkgdir/etc/conf.d/device-mapper"
+	install -Dm755 "$srcdir/device-mapper.rc-2.02.95-r2" "$pkgdir/etc/init.d/device-mapper"
+	
+	install -Dm755 "$srcdir/dmeventd.initd-2.02.67-r1" "$pkgdir/etc/init.d/dmeventd"
+	
+	_fix_init "$pkgdir/etc/init.d/device-mapper"
+	_fix_init "$pkgdir/etc/init.d/dmeventd"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -i $1
+	
+}
+

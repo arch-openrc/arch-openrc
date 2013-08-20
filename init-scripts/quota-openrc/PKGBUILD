@@ -1,0 +1,39 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="quota"
+_cat="sys-fs"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-fs')
+depends=('openrc' "${_name}-tools" 'rpcbind-openrc')
+optdepends=('ypbind-openrc')
+install=${_name}-tools.install
+source=("${_gentoo_uri}/quota.confd"
+		"${_gentoo_uri}/quota.rc7"
+		"${_gentoo_uri}/rpc.rquotad.initd")
+sha256sums=('00d1dfb3b893db5d6a213a4edda622c7d64dcafa40b3019f15e070c164286632'
+            '00ce705b49aaa356d9d9f0be3b80a3fe2810471cbe02fd0edc66349f3ca281de'
+            'c3896303d6cfebf314a3f6b8aeed0f6cb6ae421c4c0923b0121c76b3251314e5')
+
+package() {
+	install -Dm755 "$srcdir/quota.confd" "$pkgdir/etc/conf.d/quota"
+	install -Dm755 "$srcdir/quota.rc7" "$pkgdir/etc/init.d/quota"
+	
+	install -Dm755 "$srcdir/rpc.rquotad.initd" "$pkgdir/etc/init.d/rpc.rquotad"
+
+	_fix_init "$pkgdir/etc/init.d/quota"
+	_fix_init "$pkgdir/etc/init.d/rpc.rquotad"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+	
+}

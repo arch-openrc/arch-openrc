@@ -1,0 +1,33 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="xinetd"
+_cat="sys-apps"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130820
+pkgrel=1
+pkgdesc="OpenRC ${_name} init scripts"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "${_name}")
+install=${_name}.install
+source=("${_gentoo_uri}/xinetd.confd"
+		"${_gentoo_uri}/xinetd.rc6")
+sha256sums=('e401e2cf7c0180a170d3dc3e91d7e98002bae7b013df72813b7bcf89b864fb3a'
+            '6aeb4ec9b8ccc062b5ee8c609830c05cee3ed790fa90d7b2d8cf82a09e317c5c')
+		
+package() {
+	install -Dm755 "$srcdir/xinetd.confd" "$pkgdir/etc/conf.d/xinetd"
+	install -Dm755 "$srcdir/xinetd.rc6" "$pkgdir/etc/init.d/xinetd"
+	
+	_fix_init "$pkgdir/etc/init.d/xinetd"
+}
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+	
+}
