@@ -23,7 +23,9 @@ package() {
 	install -Dm755 "$srcdir/bitlbee.confd" "$pkgdir/etc/conf.d/bitlbee"
 	install -Dm755 "$srcdir/bitlbee.initd" "$pkgdir/etc/init.d/bitlbee"
 	
+	_fix_init "$pkgdir/etc/conf.d/bitlbee"
 	_fix_init "$pkgdir/etc/init.d/bitlbee"
+
 }
 
 _fix_init(){

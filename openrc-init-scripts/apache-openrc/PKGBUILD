@@ -30,7 +30,7 @@ package() {
 
 _fix_init(){
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|apache2|httpd|g' -e 's|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g' -i $1
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|apache2|httpd|g' -e 's|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g' -i $1
 
 }
 

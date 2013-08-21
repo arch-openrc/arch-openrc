@@ -32,6 +32,8 @@ package() {
 	install -Dm755 "$srcdir/startDM.sh" "$pkgdir/etc/X11/startDM.sh"
 	
 	_fix_init "$pkgdir/etc/init.d/xdm"
+	_fix_init "$pkgdir/etc/init.d/xdm-setup"
+
 }
 
 _fix_init(){
