@@ -4,7 +4,7 @@ _name=avahi
 _ver=0.6.31
 
 pkgname=${_name}-openrc
-pkgver=20130820
+pkgver=20130821
 pkgrel=1
 pkgdesc="OpenRC ${_name} init script"
 arch=('any')

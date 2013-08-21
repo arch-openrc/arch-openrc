@@ -5,7 +5,7 @@ _cat="sys-process"
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
 
 pkgname=${_name}-openrc
-pkgver=20130820
+pkgver=20130821
 pkgrel=1
 pkgdesc="OpenRC ${_name} init script"
 arch=('any')

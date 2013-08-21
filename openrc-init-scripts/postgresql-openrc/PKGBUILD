@@ -4,7 +4,7 @@ _rn=postgresql
 _pv=2.4
 
 pkgname=$_rn-openrc
-pkgver=20130817
+pkgver=20130821
 pkgrel=1
 pkgdesc="OpenRC $_rn init script"
 arch=('any')
