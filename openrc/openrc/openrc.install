@@ -2,6 +2,11 @@ _service="udev"
 _rlvl="sysinit"
 
 post_install() {
+	_cmd="rc-update add $_service $_rlvl"
+	$_cmd
+	_cmd="rc-update add $_service-mount $_rlvl"
+	$_cmd
+	echo
 cat <<MSG
 	ATTENTION:
 	The loopback interface has been moved to netifrc package. 
@@ -11,10 +16,7 @@ cat <<MSG
 MSG
 	true
 	
-	_cmd="rc-update add $_service $_rlvl"
-	$_cmd
-	_cmd="rc-update add $_service-mount $_rlvl"
-	$_cmd
+
 }
 
 post_upgrade() {
