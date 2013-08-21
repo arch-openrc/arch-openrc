@@ -15,6 +15,10 @@ depends=('openrc' "${_name}" 'dbus-openrc')
 install=${_name}.install
 source=("http://avahi.org/download/${_name}-${_ver}.tar.gz")
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
 	install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-dnsconfd.in" "${pkgdir}/etc/init.d/avahi-dnsconfd"

@@ -17,6 +17,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/dhcpcd.initd")
 sha256sums=('72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/dhcpcd.initd" "$pkgdir/etc/init.d/dhcpcd"
 	

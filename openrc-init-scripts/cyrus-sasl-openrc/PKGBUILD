@@ -17,6 +17,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/saslauthd2.rc7")
 sha256sums=('a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	#install -Dm755 "$srcdir/pwcheck.rc6" "$pkgdir/etc/init.d/pwcheck"
 	install -Dm755 "$srcdir/saslauthd2.rc7" "$pkgdir/etc/init.d/saslauthd"

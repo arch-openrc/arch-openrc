@@ -21,6 +21,10 @@ sha256sums=('3e55c79f19aaa6ef6b64a621c03dbb2eac3ad923916dc803f4c1bfe48ce89fbb'
             '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
             '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/mit-krb5kadmind.initd-r1" "$pkgdir/etc/init.d/krb5kadmind"
 	install -Dm755 "$srcdir/mit-krb5kdc.initd-r1" "$pkgdir/etc/init.d/krb5kdc"

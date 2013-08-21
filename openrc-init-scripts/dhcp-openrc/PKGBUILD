@@ -26,6 +26,10 @@ sha256sums=('e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
             '099f668e1ad42ed9446b15675032a1186715d1fe9e4a1b24dfb787e68495d2b6'
             '204aaf81d51dc119cee1d1ff3ae3dd50af666af2f8b2a363fd1bf442d4dcee00')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/dhcpd.conf2" "$pkgdir/etc/conf.d/dhcpd"
 	install -Dm755 "$srcdir/dhcpd.init5" "$pkgdir/etc/init.d/dhcpd"

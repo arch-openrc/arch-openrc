@@ -17,6 +17,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/privoxy.initd")
 sha256sums=('224496b498b4f692ae3316a95b5c7c8b6230dcd5fee0ca163956a7acde243de9')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/privoxy.initd" "$pkgdir/etc/init.d/privoxy"
 	

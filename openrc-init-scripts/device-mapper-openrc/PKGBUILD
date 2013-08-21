@@ -21,6 +21,10 @@ sha256sums=('57777904f12a35617e5a4193c964ebb32396452487fd02353e71e16e7b46bc22'
             'e0bff689040746480e2479d1ad57adb5ab23cc0415ab9a8356503aed7a14c658'
             'dbf81d357446fa555bcd75939af6d5982c10a8235800ddc299d2673b2c694d39')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 
 	install -Dm755 "$srcdir/device-mapper.conf-1.02.22-r3" "$pkgdir/etc/conf.d/device-mapper"

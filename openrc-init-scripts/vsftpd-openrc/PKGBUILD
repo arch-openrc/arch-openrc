@@ -20,6 +20,10 @@ source=("${_gentoo_uri}/vsftpd.init"
 sha256sums=('e6cf3df546aae57bb10e2b4282a9ccd79741473ef9dbdbd7628a16c84622da06'
             '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/vsftpd.init" "$pkgdir/etc/init.d/vsftpd"
 	

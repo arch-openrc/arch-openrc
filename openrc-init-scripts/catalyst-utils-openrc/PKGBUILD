@@ -16,13 +16,17 @@ install=catalyst-utils.install
 source=("${_gentoo_uri}/atieventsd.init")
 sha256sums=('20010ebc5cb286149f3c4c9c099b6470463ccdb8fd47cea054b783dc2ad1fff3')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/atieventsd.init" "$pkgdir/etc/init.d/atieventsd"
 	
 	echo '${ATIEVENTSDOPTS}=""' > "$srcdir/atieventsd.conf"
 	install -Dm755 "$srcdir/atieventsd.conf" "$pkgdir/etc/conf.d/atieventsd"
 
-	_fix_init "$pkgdir/etc/conf.d/atieventsd"
+	_fix_init "$pkgdir/etc/init.d/atieventsd"
 }
 
 _fix_init(){

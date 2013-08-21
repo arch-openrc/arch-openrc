@@ -20,6 +20,10 @@ source=("${_gentoo_uri}/lighttpd.confd"
 sha256sums=('bb6e6721f33e6582a91025f3500e159a599fb856d699e9394093e1018c7925e0'
             'b1515472c32927039b38f6c3a797cbc54a5a300b5d6fa54df9550174afa2b7f8')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/lighttpd.confd" "$pkgdir/etc/conf.d/lighttpd"
 	install -Dm755 "$srcdir/lighttpd.initd" "$pkgdir/etc/init.d/lighttpd"

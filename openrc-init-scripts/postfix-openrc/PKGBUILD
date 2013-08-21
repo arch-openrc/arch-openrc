@@ -18,6 +18,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/postfix.rc6.2.7")
 sha256sums=('51f4bffa535d891f94d4a20ca2a4a42cc99189f3de78cee1c8d235e4a9d1721d')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/postfix.rc6.2.7" "$pkgdir/etc/init.d/postfix"
 	

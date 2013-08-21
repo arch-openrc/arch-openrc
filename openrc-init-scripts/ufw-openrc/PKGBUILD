@@ -18,6 +18,10 @@ source=("${_gentoo_uri}/ufw.confd"
 		"${_gentoo_uri}/ufw-2.initd")
 sha256sums=('069aa7382b40aecebf26ef53f3f4c49890314e0357925c84b3c15f1d0b913be0'
             '657b5305923b2a5de9eb96931aaaa28d6e997ace6c40793d905887798094258c')
+
+pkgver() {
+  date +%Y%m%d
+}
 		
 package() {
 	install -Dm755 "$srcdir/ufw.confd" "$pkgdir/etc/conf.d/ufw"

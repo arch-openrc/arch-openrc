@@ -17,6 +17,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/polipo.initd")
 sha256sums=('438b8a9cfccf1ea14314f38e6821454b6da9ae20ea12bf311ad9fa89816cd702')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/polipo.initd" "$pkgdir/etc/init.d/polipo"
 	

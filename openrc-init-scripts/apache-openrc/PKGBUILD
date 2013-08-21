@@ -19,6 +19,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/${_name}/gentoo-${_name}-${_ver}-${_rel}.tar.bz2")
 sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 
 	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"

@@ -20,6 +20,10 @@ source=("${_gentoo_uri}/rfcomm-conf.d"
 sha256sums=('672498957049fd301f9c9c1dc9fa49430e5e6d3c3f1f3cdce80df3af7d425d08'
             '4430703a9bec9a9482416b2d24aa47492264768a0b61356b361bbc8b1229a83e'
             'cd8cc3763601470328709c961b0c68a311f6d4af302d46a880fb855ed9d04efe')
+
+pkgver() {
+  date +%Y%m%d
+}
 		
 package() {
 	install -Dm755 "$srcdir/rfcomm-conf.d" "$pkgdir/etc/conf.d/rfcomm"

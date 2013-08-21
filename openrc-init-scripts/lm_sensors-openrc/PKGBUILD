@@ -22,6 +22,10 @@ sha256sums=('02230edf5efbb0a4de3840cd76f9ebf431c57a246fa7388e9dbeb0fe26fe7b8d'
             'e75915a13d3c5eb405e2809186a6ab396b2e0180c3efc94e663f9eb4e276e8ef'
             '36d489296c31736f8015b0ce27052b3f1555b7fe6335120c0477b044b8e4fb8d'
             '9b018f9f7a0975988387858823fe59a5cd8af6413d8c3170db0e24aac6021ec3')
+
+pkgver() {
+  date +%Y%m%d
+}
 		
 package() {
 	install -Dm755 "$srcdir/sensord-conf.d" "$pkgdir/etc/conf.d/sensord"

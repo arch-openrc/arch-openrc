@@ -17,6 +17,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/wicd-init.d")
 sha256sums=('5546deda3d5fa8f6ee1125922f1217182b24d68a22f5a1212509bb13bf0156e2')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/wicd-init.d" "$pkgdir/etc/init.d/wicd"
 	

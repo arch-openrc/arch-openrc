@@ -20,6 +20,10 @@ source=("${_gentoo_uri}/iptables-1.4.13.confd"
 sha256sums=('7e2341211ca14997b7a8a1f930f94db855291af597c568f680f80031c20d45b6'
             '2938fe4206514d9868047bd8f888a699fa2097ca69edab176453436d4259abaa'
             '13047698e03079b754957e1e548ce7505dfb2c73c9a31f87e061140603ab0e44')
+
+pkgver() {
+  date +%Y%m%d
+}
 		
 package() {
 	install -Dm755 "$srcdir/iptables-1.4.13.confd" "$pkgdir/etc/conf.d/iptables"

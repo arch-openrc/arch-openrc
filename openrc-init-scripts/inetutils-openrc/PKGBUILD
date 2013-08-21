@@ -16,7 +16,19 @@ source=("${_name}.confd" "${_name}.initd")
 sha256sums=('59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
             '0384e9eb3f9ad15709fbfd259b7cc3657a66d820663aa68ea3af523d5d7d0ece')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 		install -Dm755 "${srcdir}/${_name}.confd" "${pkgdir}/etc/init.d/ftpd"
 		install -Dm755 "${srcdir}/${_name}.initd" "${pkgdir}/etc/init.d/ftpd"
+		
+		_fix_init "${pkgdir}/etc/init.d/ftpd"
 }	
+
+_fix_init(){
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -i $1
+	
+}

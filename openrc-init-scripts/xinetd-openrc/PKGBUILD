@@ -18,6 +18,10 @@ source=("${_gentoo_uri}/xinetd.confd"
 		"${_gentoo_uri}/xinetd.rc6")
 sha256sums=('e401e2cf7c0180a170d3dc3e91d7e98002bae7b013df72813b7bcf89b864fb3a'
             '6aeb4ec9b8ccc062b5ee8c609830c05cee3ed790fa90d7b2d8cf82a09e317c5c')
+
+pkgver() {
+  date +%Y%m%d
+}
 		
 package() {
 	install -Dm755 "$srcdir/xinetd.confd" "$pkgdir/etc/conf.d/xinetd"

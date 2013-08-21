@@ -27,6 +27,10 @@ sha256sums=('e46afe737bfc57aa31be1a441615fcc112e1ebf41d631c1929e00b81baca119d'
             '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
             '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 
 		install -Dm755 "$srcdir/rpc.yppasswdd.confd" "$pkgdir/etc/conf.d/rpc.yppasswdd"

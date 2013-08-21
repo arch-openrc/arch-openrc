@@ -19,6 +19,10 @@ source=("${_gentoo_uri}/hostapd-conf.d"
 sha256sums=('916f4b14095ee4ec8a510391c883e9f01868e18d79a3d5cbeb13a104a793d45d'
             'a220058841e66a11603df8e968ccc68945f01e1d11c1ae498922d0e01f6fa804')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 		install -Dm755 "$srcdir/hostapd-conf.d" "$pkgdir/etc/conf.d/hostapd"
 		install -Dm755 "$srcdir/hostapd-init.d" "$pkgdir/etc/init.d/hostapd"

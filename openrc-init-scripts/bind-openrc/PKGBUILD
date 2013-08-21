@@ -19,6 +19,10 @@ source=("${_gentoo_uri}/named.confd-r6"
 sha256sums=('704ac6954b2bad5d0bab19281dc703e86d9b4fe94d63dd00be1e525a3e64c492'
             '953e066b5d77f59917db59365cd2103c5bec19889775bd3f6437b946c9d6d936')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 		install -Dm755 "$srcdir/named.confd-r6" "$pkgdir/etc/conf.d/named"
 		install -Dm755 "$srcdir/named.init-r12" "$pkgdir/etc/init.d/named"

@@ -18,6 +18,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/nscd")
 sha256sums=('6165db3a2fcb251d4f3655c0461e018ce9c92a37f7f22a8fd2b75178b5435bc8')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/nscd" "$pkgdir/etc/init.d/nscd"
 	

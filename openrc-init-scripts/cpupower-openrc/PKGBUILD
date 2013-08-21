@@ -19,6 +19,10 @@ source=("${_gentoo_uri}/conf.d-r1"
 sha256sums=('44acd2dcd2193a160e0f4e05b571ba51215f60d8efa9ef801661ef2ba23a2e97'
             'dd96e2a69a0f702f7fecf8c2d83c73060822b65387589d370efcd86871d70c74')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/conf.d-r1" "$pkgdir/etc/conf.d/${_name}"
 	install -Dm755 "$srcdir/init.d-r1" "$pkgdir/etc/init.d/${_name}"

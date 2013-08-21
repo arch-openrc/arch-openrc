@@ -18,6 +18,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/cupsd.init.d-r1")
 sha256sums=('239f9831ba2a9df36d334037307cdc11cfa6476a11cbf6668db4ffb4096a248d')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/cupsd.init.d-r1" "$pkgdir/etc/init.d/cupsd"
 	

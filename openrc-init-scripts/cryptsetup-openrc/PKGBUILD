@@ -19,6 +19,10 @@ source=("${_gentoo_uri}/1.0.6-dmcrypt.confd"
 sha256sums=('0c30e081c0b8f879964ae49735f10b05a1d92f4f481042851958860945e13271'
             '02faf27470ea0e50b764c923786724847e77dfdf9680a50cc202546cad2bf02f')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/1.0.6-dmcrypt.confd" "$pkgdir/etc/conf.d/dmcrypt"
 	install -Dm755 "$srcdir/1.5.1-dmcrypt.rc" "$pkgdir/etc/init.d/dmcrypt"

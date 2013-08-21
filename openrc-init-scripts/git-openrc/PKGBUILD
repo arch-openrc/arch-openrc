@@ -19,6 +19,10 @@ source=("${_gentoo_uri}/git-daemon.confd"
 sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '48e7e1228c9811079dce8fecc560000cf645de5b4bb697f8f8ad3f906906330b')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/git-daemon.confd" "$pkgdir/etc/conf.d/git-daemon"
 	install -Dm755 "$srcdir/git-daemon.initd" "$pkgdir/etc/init.d/git-daemon"

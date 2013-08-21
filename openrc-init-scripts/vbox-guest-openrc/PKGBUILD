@@ -17,6 +17,10 @@ install=${_name}.install
 source=("${_gentoo_uri}/virtualbox-guest-additions-8.initd")
 sha256sums=('605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/virtualbox-guest-additions-8.initd" "$pkgdir/etc/init.d/vboxservice"
 	

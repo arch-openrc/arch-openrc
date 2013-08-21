@@ -26,6 +26,10 @@ sha256sums=('a3bc17ee0f7d41102d6c33e4281e22d312a42cc2ffd8848b08e9cd78d63f2d05'
             'e8d5883461f4297c052e3b39814b663965ed3a756c4234675f4a9b62349eca13'
             'bdd70612cf0654460aa4cfa59bcaaf6d636d240a3fead8b243c86e5cbe640ab9')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/ntpd.confd" "$pkgdir/etc/conf.d/ntpd"
 	install -Dm755 "$srcdir/ntpd.rc" "$pkgdir/etc/init.d/ntpd"

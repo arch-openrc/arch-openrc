@@ -19,6 +19,10 @@ source=("${_gentoo_uri}/slapd-confd-2.4.28-r1"
 sha256sums=('5bca003ec3b67c7c78519aede1d82002579006ccfecce8f87b559df719f82e92'
             '1fc515a6816b8a750db513df0b3b9bf8dd8bd4c4e9051205521acadfdebeae0f')
 
+pkgver() {
+  date +%Y%m%d
+}
+
 package() {
 	install -Dm755 "$srcdir/slapd-confd-2.4.28-r1" "$pkgdir/etc/conf.d/slapd"
 	install -Dm755 "$srcdir/slapd-initd-2.4.28-r1" "$pkgdir/etc/init.d/slapd"
