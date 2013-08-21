@@ -20,8 +20,8 @@ sha256sums=('73e7483fdc4b12ab4225a4cb13bbe7da71b07b9e69b17e3a6a4c63cb5e2287c8'
             'e692e7b97efdd79f6e92fbdaed60f7a71bfd23a82c5561b160b88a7aa50c8461')
 
 package() {
-		install -Dm755 "$srcdir/$_pn/$_rn/conf.d/gpm.conf.d" "$pkgdir/etc/conf.d/gpm"
-		install -Dm755 "$srcdir/$_pn/$_rn/init.d/gpm.rc6-2" "$pkgdir/etc/init.d/gpm"
+		install -Dm755 "$srcdir/gpm.conf.d" "$pkgdir/etc/conf.d/gpm"
+		install -Dm755 "$srcdir/gpm.rc6-2" "$pkgdir/etc/init.d/gpm"
 
 		_fix_init "$pkgdir/etc/init.d/gpm"
 }

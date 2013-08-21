@@ -1,19 +1,21 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_rn=postgresql
-_pv=2.4
+_dev="~titanofold"
+_gentoo_uri="http://dev.gentoo.org/${_dev}"
+_name=postgresql
+_ver=2.4
 
-pkgname=$_rn-openrc
+pkgname=${_name}-openrc
 pkgver=20130821
 pkgrel=1
-pkgdesc="OpenRC $_rn init script"
+pkgdesc="OpenRC ${_name} init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-depends=('openrc' "$_rn")
+depends=('openrc' "${_name}")
 groups=('openrc-db')
-install=$_rn.install
-source=("http://dev.gentoo.org/~titanofold/postgresql-initscript-$_pv.tbz2
+install=${_name}.install
+source=("http://dev.gentoo.org/~titanofold/${_name}-initscript-${_ver}.tbz2
 ")
 
 package() {

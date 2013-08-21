@@ -16,6 +16,7 @@ optdepends=('bind-openrc')
 groups=('openrc-db')
 install=${_name}.install
 source=("${_gentoo_uri}/mysql.init")
+sha256sums=('2d7faf6d88fd13e5c10368a20074fdb59554635f8b1fd17e088d82208e611c12')
 
 package() {
 	install -Dm755 "$srcdir/mysql.init" "$pkgdir/etc/init.d/mysql"

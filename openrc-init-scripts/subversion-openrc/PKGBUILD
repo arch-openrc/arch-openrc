@@ -30,3 +30,5 @@ _fix_init(){
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/var/svn|/srv/svn|g' -i $1
 	
 }
+sha256sums=('45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
+            '8f123253c3bfb9bbe87210a9e1facc7f52df371747dbc188396740a5cf4fa713')
