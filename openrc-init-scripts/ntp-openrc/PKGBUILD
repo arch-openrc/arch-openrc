@@ -5,7 +5,7 @@ _cat="net-misc"
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
 
 pkgname=${_name}-openrc
-pkgver=20130821
+pkgver=20130822
 pkgrel=1
 pkgdesc="OpenRC ${_name} init script"
 arch=('any')
@@ -20,11 +20,9 @@ install=${_name}.install
 source=("${_gentoo_uri}/ntpd.confd"
 		"${_gentoo_uri}/ntpd.rc"
 		"${_gentoo_uri}/ntp-client.confd"
-		"${_gentoo_uri}/ntp-client.rc")
-sha256sums=('a3bc17ee0f7d41102d6c33e4281e22d312a42cc2ffd8848b08e9cd78d63f2d05'
-            'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
-            'e8d5883461f4297c052e3b39814b663965ed3a756c4234675f4a9b62349eca13'
-            'bdd70612cf0654460aa4cfa59bcaaf6d636d240a3fead8b243c86e5cbe640ab9')
+		"${_gentoo_uri}/ntp-client.rc"
+		"${_gentoo_uri}/sntp.rc"
+		"${_gentoo_uri}/sntp.confd")
 
 pkgver() {
   date +%Y%m%d
@@ -37,8 +35,13 @@ package() {
 	install -Dm755 "$srcdir/ntp-client.confd" "$pkgdir/etc/conf.d/ntp-client"
 	install -Dm755 "$srcdir/ntp-client.rc" "$pkgdir/etc/init.d/ntp-client"
 	
+	install -Dm755 "$srcdir/sntp.confd" "$pkgdir/etc/conf.d/sntp"
+	install -Dm755 "$srcdir/sntp.rc" "$pkgdir/etc/init.d/sntp"
+	
 	_fix_init "$pkgdir/etc/init.d/ntpd"
-	_fix_init "$pkgdir/etc/init.d/ntp-client"
+	_fix_init "$pkgdir/etc/init.d/ntp-client"	
+	_fix_init "$pkgdir/etc/init.d/sntp"
+
 }
 
 _fix_init(){
@@ -46,3 +49,9 @@ _fix_init(){
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g'  -e 's|/var/run|/run|g' -i $1
 	
 }
+sha256sums=('a3bc17ee0f7d41102d6c33e4281e22d312a42cc2ffd8848b08e9cd78d63f2d05'
+            'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
+            'e8d5883461f4297c052e3b39814b663965ed3a756c4234675f4a9b62349eca13'
+            'bdd70612cf0654460aa4cfa59bcaaf6d636d240a3fead8b243c86e5cbe640ab9'
+            '8fbd405ad951e7ad046e4408abb98f4066077113187198767d52f28d7228bae4'
+            '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684')
