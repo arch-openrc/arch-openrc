@@ -23,9 +23,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/nscd" "$pkgdir/etc/init.d/nscd"
+	install -Dm755 "${srcdir}/nscd" "${pkgdir}/etc/init.d/nscd"
 	
-	_fix_init "$pkgdir/etc/init.d/nscd"
+	_fix_init "${pkgdir}/etc/init.d/nscd"
 }
 
 _fix_init(){

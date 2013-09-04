@@ -22,9 +22,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/dbus.initd" "$pkgdir/etc/init.d/dbus"
+	install -Dm755 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
 	
-	_fix_init "$pkgdir/etc/init.d/dbus"
+	_fix_init "${pkgdir}/etc/init.d/dbus"
 }
 
 _fix_init(){

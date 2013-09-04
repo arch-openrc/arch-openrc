@@ -24,10 +24,10 @@ pkgver() {
 }
 		
 package() {
-	install -Dm755 "$srcdir/ufw.confd" "$pkgdir/etc/conf.d/ufw"
-	install -Dm755 "$srcdir/ufw-2.initd" "$pkgdir/etc/init.d/ufw"
+	install -Dm755 "${srcdir}/ufw.confd" "${pkgdir}/etc/conf.d/ufw"
+	install -Dm755 "${srcdir}/ufw-2.initd" "${pkgdir}/etc/init.d/ufw"
 	
-	_fix_init "$pkgdir/etc/init.d/ufw"
+	_fix_init "${pkgdir}/etc/init.d/ufw"
 }
 
 _fix_init(){

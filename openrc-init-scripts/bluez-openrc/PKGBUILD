@@ -26,12 +26,12 @@ pkgver() {
 }
 		
 package() {
-	install -Dm755 "$srcdir/rfcomm-conf.d" "$pkgdir/etc/conf.d/rfcomm"
-	install -Dm755 "$srcdir/rfcomm-init.d" "$pkgdir/etc/init.d/rfcomm"
-	install -Dm755 "$srcdir/bluetooth-init.d-r2" "$pkgdir/etc/init.d/bluetooth"
+	install -Dm755 "${srcdir}/rfcomm-conf.d" "${pkgdir}/etc/conf.d/rfcomm"
+	install -Dm755 "${srcdir}/rfcomm-init.d" "${pkgdir}/etc/init.d/rfcomm"
+	install -Dm755 "${srcdir}/bluetooth-init.d-r2" "${pkgdir}/etc/init.d/bluetooth"
 	
-	_fix_init "$pkgdir/etc/init.d/rfcomm"
-	_fix_init "$pkgdir/etc/init.d/bluetooth"
+	_fix_init "${pkgdir}/etc/init.d/rfcomm"
+	_fix_init "${pkgdir}/etc/init.d/bluetooth"
 
 }
 

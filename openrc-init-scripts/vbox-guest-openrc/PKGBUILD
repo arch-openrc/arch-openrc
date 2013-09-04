@@ -22,9 +22,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/virtualbox-guest-additions-8.initd" "$pkgdir/etc/init.d/vboxservice"
+	install -Dm755 "${srcdir}/virtualbox-guest-additions-8.initd" "${pkgdir}/etc/init.d/vboxservice"
 	
-	_fix_init "$pkgdir/etc/init.d/vboxservice"
+	_fix_init "${pkgdir}/etc/init.d/vboxservice"
 }
 
 _fix_init(){

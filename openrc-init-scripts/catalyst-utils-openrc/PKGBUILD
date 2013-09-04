@@ -21,12 +21,12 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/atieventsd.init" "$pkgdir/etc/init.d/atieventsd"
+	install -Dm755 "${srcdir}/atieventsd.init" "${pkgdir}/etc/init.d/atieventsd"
 	
-	echo '${ATIEVENTSDOPTS}=""' > "$srcdir/atieventsd.conf"
-	install -Dm755 "$srcdir/atieventsd.conf" "$pkgdir/etc/conf.d/atieventsd"
+	echo 'ATIEVENTSDOPTS=""' > "${srcdir}/atieventsd.conf"
+	install -Dm755 "${srcdir}/atieventsd.conf" "${pkgdir}/etc/conf.d/atieventsd"
 
-	_fix_init "$pkgdir/etc/init.d/atieventsd"
+	_fix_init "${pkgdir}/etc/init.d/atieventsd"
 }
 
 _fix_init(){

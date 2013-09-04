@@ -31,19 +31,19 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/dhcpd.conf2" "$pkgdir/etc/conf.d/dhcpd"
-	install -Dm755 "$srcdir/dhcpd.init5" "$pkgdir/etc/init.d/dhcpd"
+	install -Dm755 "${srcdir}/dhcpd.conf2" "${pkgdir}/etc/conf.d/dhcpd"
+	install -Dm755 "${srcdir}/dhcpd.init5" "${pkgdir}/etc/init.d/dhcpd"
 	
-	install -Dm755 "$srcdir/dhcrelay.conf" "$pkgdir/etc/conf.d/dhcrelay"
-	install -Dm755 "$srcdir/dhcrelay.init3" "$pkgdir/etc/init.d/dhcrelay"
+	install -Dm755 "${srcdir}/dhcrelay.conf" "${pkgdir}/etc/conf.d/dhcrelay"
+	install -Dm755 "${srcdir}/dhcrelay.init3" "${pkgdir}/etc/init.d/dhcrelay"
 	
-	install -Dm755 "$srcdir/dhcrelay6.conf" "$pkgdir/etc/conf.d/dhcrelay6"
-	install -Dm755 "$srcdir/dhcrelay.init3" "$pkgdir/etc/init.d/dhcrelay6"
+	install -Dm755 "${srcdir}/dhcrelay6.conf" "${pkgdir}/etc/conf.d/dhcrelay6"
+	install -Dm755 "${srcdir}/dhcrelay.init3" "${pkgdir}/etc/init.d/dhcrelay6"
 	
-	_fix_init "$pkgdir/etc/init.d/dhcpd"
-	_fix_init "$pkgdir/etc/init.d/dhcrelay"
-	_fix_init "$pkgdir/etc/init.d/dhcrelay6"
-	_fix_init "$pkgdir/etc/conf.d/dhcpd"
+	_fix_init "${pkgdir}/etc/init.d/dhcpd"
+	_fix_init "${pkgdir}/etc/init.d/dhcrelay"
+	_fix_init "${pkgdir}/etc/init.d/dhcrelay6"
+	_fix_init "${pkgdir}/etc/conf.d/dhcpd"
 }
 
 _fix_init(){

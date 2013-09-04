@@ -24,10 +24,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/alsasound.confd-r4" "$pkgdir/etc/conf.d/alsasound"
-	install -Dm755 "$srcdir/alsasound.initd-r5" "$pkgdir/etc/init.d/alsasound"
+	install -Dm755 "${srcdir}/alsasound.confd-r4" "${pkgdir}/etc/conf.d/alsasound"
+	install -Dm755 "${srcdir}/alsasound.initd-r5" "${pkgdir}/etc/init.d/alsasound"
 	
-	_fix_init $pkgdir/etc/init.d/alsasound
+	_fix_init ${pkgdir}/etc/init.d/alsasound
 }
 
 _fix_init(){

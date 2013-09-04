@@ -30,13 +30,13 @@ pkgver() {
 }
 	
 package() {
-	install -Dm755 "$srcdir/xdm.confd-4" "$pkgdir/etc/conf.d/xdm"
-	install -Dm755 "$srcdir/xdm.initd-9" "$pkgdir/etc/init.d/xdm"
-	install -Dm755 "$srcdir/xdm-setup.initd-1" "$pkgdir/etc/init.d/xdm-setup"
-	install -Dm755 "$srcdir/startDM.sh" "$pkgdir/etc/X11/startDM.sh"
+	install -Dm755 "${srcdir}/xdm.confd-4" "${pkgdir}/etc/conf.d/xdm"
+	install -Dm755 "${srcdir}/xdm.initd-9" "${pkgdir}/etc/init.d/xdm"
+	install -Dm755 "${srcdir}/xdm-setup.initd-1" "${pkgdir}/etc/init.d/xdm-setup"
+	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
 	
-	_fix_init "$pkgdir/etc/init.d/xdm"
-	_fix_init "$pkgdir/etc/init.d/xdm-setup"
+	_fix_init "${pkgdir}/etc/init.d/xdm"
+	_fix_init "${pkgdir}/etc/init.d/xdm-setup"
 
 }
 

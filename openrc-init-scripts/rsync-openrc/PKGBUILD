@@ -24,10 +24,10 @@ pkgver() {
 }
 		
 package() {
-	install -Dm755 "$srcdir/rsyncd.conf.d" "$pkgdir/etc/conf.d/rsyncd"
-	install -Dm755 "$srcdir/rsyncd.init.d-r1" "$pkgdir/etc/init.d/rsyncd"
+	install -Dm755 "${srcdir}/rsyncd.conf.d" "${pkgdir}/etc/conf.d/rsyncd"
+	install -Dm755 "${srcdir}/rsyncd.init.d-r1" "${pkgdir}/etc/init.d/rsyncd"
 	
-	_fix_init "$pkgdir/etc/init.d/rsyncd"
+	_fix_init "${pkgdir}/etc/init.d/rsyncd"
 }
 
 _fix_init(){

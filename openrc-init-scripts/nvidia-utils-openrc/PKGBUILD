@@ -26,14 +26,14 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/nvidia-smi.init" "$pkgdir/etc/init.d/nvidia-smi"
+	install -Dm755 "${srcdir}/nvidia-smi.init" "${pkgdir}/etc/init.d/nvidia-smi"
 	
-	install -Dm755 "$srcdir/nvidia-udev.sh" "$pkgdir/usr/lib/udev/nvidia-udev.sh"
+	install -Dm755 "${srcdir}/nvidia-udev.sh" "${pkgdir}/usr/lib/udev/nvidia-udev.sh"
 	
-	install -Dm755 "$srcdir/nvidia.udev-rule" "$pkgdir/usr/lib/udev/rules.d/99-nvidia.rules"
+	install -Dm755 "${srcdir}/nvidia.udev-rule" "${pkgdir}/usr/lib/udev/rules.d/99-nvidia.rules"
 	
-	_fix_init "$pkgdir/etc/init.d/nvidia-smi"
-	_fix_init "$pkgdir/usr/lib/udev/nvidia-udev.sh"
+	_fix_init "${pkgdir}/etc/init.d/nvidia-smi"
+	_fix_init "${pkgdir}/usr/lib/udev/nvidia-udev.sh"
 
 }
 

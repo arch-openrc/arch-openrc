@@ -22,9 +22,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/privoxy.initd" "$pkgdir/etc/init.d/privoxy"
+	install -Dm755 "${srcdir}/privoxy.initd" "${pkgdir}/etc/init.d/privoxy"
 	
-	_fix_init "$pkgdir/etc/init.d/privoxy"
+	_fix_init "${pkgdir}/etc/init.d/privoxy"
 }
 
 _fix_init(){

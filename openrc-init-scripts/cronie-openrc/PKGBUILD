@@ -26,11 +26,11 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/cronie-1.3-initd" "$pkgdir/etc/init.d/${_name}"
-	install -Dm755 "$srcdir/anacron-1.0-initd" "$pkgdir/etc/init.d/anacron"
+	install -Dm755 "${srcdir}/cronie-1.3-initd" "${pkgdir}/etc/init.d/${_name}"
+	install -Dm755 "${srcdir}/anacron-1.0-initd" "${pkgdir}/etc/init.d/anacron"
 	
-	_fix_init "$pkgdir/etc/init.d/${_name}"
-	_fix_init "$pkgdir/etc/init.d/anacron"
+	_fix_init "${pkgdir}/etc/init.d/${_name}"
+	_fix_init "${pkgdir}/etc/init.d/anacron"
 
 }
 

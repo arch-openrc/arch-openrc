@@ -33,18 +33,18 @@ pkgver() {
 
 package() {
 
-		install -Dm755 "$srcdir/rpc.yppasswdd.confd" "$pkgdir/etc/conf.d/rpc.yppasswdd"
-		install -Dm755 "$srcdir/rpc.yppasswdd-r1" "$pkgdir/etc/init.d/rpc.yppasswdd"
+		install -Dm755 "${srcdir}/rpc.yppasswdd.confd" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
+		install -Dm755 "${srcdir}/rpc.yppasswdd-r1" "${pkgdir}/etc/init.d/rpc.yppasswdd"
 		
-		install -Dm755 "$srcdir/rpc.ypxfrd.confd" "$pkgdir/etc/conf.d/rpc.ypxfrd"
-		install -Dm755 "$srcdir/rpc.ypxfrd-2.23" "$pkgdir/etc/init.d/rpc.ypxfrd"
+		install -Dm755 "${srcdir}/rpc.ypxfrd.confd" "${pkgdir}/etc/conf.d/rpc.ypxfrd"
+		install -Dm755 "${srcdir}/rpc.ypxfrd-2.23" "${pkgdir}/etc/init.d/rpc.ypxfrd"
 		
-		install -Dm755 "$srcdir/ypserv.confd" "$pkgdir/etc/conf.d/ypserv.confd"	
-		install -Dm755 "$srcdir/ypserv" "$pkgdir/etc/init.d/ypserv"
+		install -Dm755 "${srcdir}/ypserv.confd" "${pkgdir}/etc/conf.d/ypserv.confd"	
+		install -Dm755 "${srcdir}/ypserv" "${pkgdir}/etc/init.d/ypserv"
 		
-		_fix_init "$pkgdir/etc/init.d/ypserv"
-		_fix_init "$pkgdir/etc/init.d/rpc.yppasswdd"
-		_fix_init "$pkgdir/etc/init.d/rpc.ypxfrd"
+		_fix_init "${pkgdir}/etc/init.d/ypserv"
+		_fix_init "${pkgdir}/etc/init.d/rpc.yppasswdd"
+		_fix_init "${pkgdir}/etc/init.d/rpc.ypxfrd"
 }
 
 _fix_init(){

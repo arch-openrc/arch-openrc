@@ -23,10 +23,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/acpid-2.0.16-conf.d" "$pkgdir/etc/conf.d/${_name}"
-	install -Dm755 "$srcdir/acpid-2.0.16-init.d" "$pkgdir/etc/init.d/${_name}"
+	install -Dm755 "${srcdir}/acpid-2.0.16-conf.d" "${pkgdir}/etc/conf.d/${_name}"
+	install -Dm755 "${srcdir}/acpid-2.0.16-init.d" "${pkgdir}/etc/init.d/${_name}"
 	
-	_fix_init $pkgdir/etc/init.d/${_name}
+	_fix_init ${pkgdir}/etc/init.d/${_name}
 }
 
 _fix_init(){

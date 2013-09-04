@@ -24,13 +24,13 @@ pkgver() {
 
 package() {
 	
-	install -Dm755 "$srcdir/postgresql.confd" "$pkgdir/etc/conf.d/postgresql"
+	install -Dm755 "${srcdir}/postgresql.confd" "${pkgdir}/etc/conf.d/postgresql"
 
-	install -Dm755 "$srcdir/postgresql.init" "$pkgdir/etc/init.d/postgresql"
+	install -Dm755 "${srcdir}/postgresql.init" "${pkgdir}/etc/init.d/postgresql"
 	
-	sed -e 's|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|' -e 's|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|' -i "$pkgdir/etc/conf.d/postgresql"
+	sed -e 's|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|' -e 's|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|' -i "${pkgdir}/etc/conf.d/postgresql"
 	
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/lib/postgresql-@SLOT@/bin/pg_ctl|/usr/bin/pg_ctl|' -e 's|/usr/lib/postgresql-@SLOT@/bin/postgres|/usr/bin/postgres|' -i "$pkgdir/etc/init.d/postgresql"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/lib/postgresql-@SLOT@/bin/pg_ctl|/usr/bin/pg_ctl|' -e 's|/usr/lib/postgresql-@SLOT@/bin/postgres|/usr/bin/postgres|' -i "${pkgdir}/etc/init.d/postgresql"
 		
 }
 sha256sums=('4f17a2a26ec078b7f73d2b5fa7338402829fe195676d6c3f2cda6cd75c3d1e23')

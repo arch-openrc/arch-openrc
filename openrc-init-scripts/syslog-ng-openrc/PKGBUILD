@@ -24,10 +24,10 @@ pkgver() {
 }
 		
 package() {
-	install -Dm755 "$srcdir/syslog-ng.confd" "$pkgdir/etc/conf.d/syslog-ng"
-	install -Dm755 "$srcdir/syslog-ng.rc6.3.3" "$pkgdir/etc/init.d/syslog-ng"
+	install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
+	install -Dm755 "${srcdir}/syslog-ng.rc6.3.3" "${pkgdir}/etc/init.d/syslog-ng"
 	
-	_fix_init "$pkgdir/etc/init.d/syslog-ng"
+	_fix_init "${pkgdir}/etc/init.d/syslog-ng"
 }
 
 _fix_init(){

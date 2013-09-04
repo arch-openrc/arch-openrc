@@ -22,10 +22,10 @@ pkgver() {
 }
 
 package() {
-	#install -Dm755 "$srcdir/pwcheck.rc6" "$pkgdir/etc/init.d/pwcheck"
-	install -Dm755 "$srcdir/saslauthd2.rc7" "$pkgdir/etc/init.d/saslauthd"
+	#install -Dm755 "${srcdir}/pwcheck.rc6" "${pkgdir}/etc/init.d/pwcheck"
+	install -Dm755 "${srcdir}/saslauthd2.rc7" "${pkgdir}/etc/init.d/saslauthd"
 	
-	_fix_init "$pkgdir/etc/init.d/saslauthd"
+	_fix_init "${pkgdir}/etc/init.d/saslauthd"
 }
 
 _fix_init(){

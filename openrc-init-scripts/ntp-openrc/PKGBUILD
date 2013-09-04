@@ -29,18 +29,18 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/ntpd.confd" "$pkgdir/etc/conf.d/ntpd"
-	install -Dm755 "$srcdir/ntpd.rc" "$pkgdir/etc/init.d/ntpd"
+	install -Dm755 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"
+	install -Dm755 "${srcdir}/ntpd.rc" "${pkgdir}/etc/init.d/ntpd"
 	
-	install -Dm755 "$srcdir/ntp-client.confd" "$pkgdir/etc/conf.d/ntp-client"
-	install -Dm755 "$srcdir/ntp-client.rc" "$pkgdir/etc/init.d/ntp-client"
+	install -Dm755 "${srcdir}/ntp-client.confd" "${pkgdir}/etc/conf.d/ntp-client"
+	install -Dm755 "${srcdir}/ntp-client.rc" "${pkgdir}/etc/init.d/ntp-client"
 	
-	install -Dm755 "$srcdir/sntp.confd" "$pkgdir/etc/conf.d/sntp"
-	install -Dm755 "$srcdir/sntp.rc" "$pkgdir/etc/init.d/sntp"
+	install -Dm755 "${srcdir}/sntp.confd" "${pkgdir}/etc/conf.d/sntp"
+	install -Dm755 "${srcdir}/sntp.rc" "${pkgdir}/etc/init.d/sntp"
 	
-	_fix_init "$pkgdir/etc/init.d/ntpd"
-	_fix_init "$pkgdir/etc/init.d/ntp-client"	
-	_fix_init "$pkgdir/etc/init.d/sntp"
+	_fix_init "${pkgdir}/etc/init.d/ntpd"
+	_fix_init "${pkgdir}/etc/init.d/ntp-client"	
+	_fix_init "${pkgdir}/etc/init.d/sntp"
 
 }
 

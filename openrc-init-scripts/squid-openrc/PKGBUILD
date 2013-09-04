@@ -25,10 +25,10 @@ pkgver() {
 }
 		
 package() {
-		install -Dm755 "$srcdir/squid.confd-r1" "$pkgdir/etc/conf.d/squid"
-		install -Dm755 "$srcdir/squid.initd-r3" "$pkgdir/etc/init.d/squid"
+		install -Dm755 "${srcdir}/squid.confd-r1" "${pkgdir}/etc/conf.d/squid"
+		install -Dm755 "${srcdir}/squid.initd-r3" "${pkgdir}/etc/init.d/squid"
 		
-		_fix_init "$pkgdir/etc/init.d/squid"
+		_fix_init "${pkgdir}/etc/init.d/squid"
 }
 
 _fix_init(){

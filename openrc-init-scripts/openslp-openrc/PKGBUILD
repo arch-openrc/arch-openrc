@@ -22,9 +22,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/slpd-init" "$pkgdir/etc/init.d/slpd"
+	install -Dm755 "${srcdir}/slpd-init" "${pkgdir}/etc/init.d/slpd"
 	
-	_fix_init "$pkgdir/etc/init.d/slpd"
+	_fix_init "${pkgdir}/etc/init.d/slpd"
 }
 
 _fix_init(){

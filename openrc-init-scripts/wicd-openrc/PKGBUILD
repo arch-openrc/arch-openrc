@@ -22,9 +22,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/wicd-init.d" "$pkgdir/etc/init.d/wicd"
+	install -Dm755 "${srcdir}/wicd-init.d" "${pkgdir}/etc/init.d/wicd"
 	
-	_fix_init "$pkgdir/etc/init.d/wicd"
+	_fix_init "${pkgdir}/etc/init.d/wicd"
 }
 
 _fix_init(){

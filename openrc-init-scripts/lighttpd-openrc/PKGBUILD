@@ -25,10 +25,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/lighttpd.confd" "$pkgdir/etc/conf.d/lighttpd"
-	install -Dm755 "$srcdir/lighttpd.initd" "$pkgdir/etc/init.d/lighttpd"
+	install -Dm755 "${srcdir}/lighttpd.confd" "${pkgdir}/etc/conf.d/lighttpd"
+	install -Dm755 "${srcdir}/lighttpd.initd" "${pkgdir}/etc/init.d/lighttpd"
 	
-	_fix_init "$pkgdir/etc/init.d/lighttpd"
+	_fix_init "${pkgdir}/etc/init.d/lighttpd"
 }
 
 _fix_init(){

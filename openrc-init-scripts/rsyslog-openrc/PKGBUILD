@@ -24,11 +24,11 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/rsyslog.confd" "$pkgdir/etc/conf.d/rsyslog"
+	install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
 	
-	install -Dm755 "$srcdir/rsyslog.initd" "$pkgdir/etc/init.d/rsyslog"
+	install -Dm755 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
 
-	_fix_init "$pkgdir/etc/init.d/rsyslog"
+	_fix_init "${pkgdir}/etc/init.d/rsyslog"
 }
 
 _fix_init(){

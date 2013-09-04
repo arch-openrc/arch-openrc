@@ -23,9 +23,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/mysql.init" "$pkgdir/etc/init.d/mysql"
+	install -Dm755 "${srcdir}/mysql.init" "${pkgdir}/etc/init.d/mysql"
 	
-	_fix_init "$pkgdir/etc/init.d/mysql"
+	_fix_init "${pkgdir}/etc/init.d/mysql"
 }
 
 _fix_init(){

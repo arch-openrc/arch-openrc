@@ -22,11 +22,11 @@ pkgver() {
 }
 		
 package() {
-		install -Dm755 "$srcdir/svnserve.confd" "$pkgdir/etc/conf.d/svnserve-rc"
-		install -Dm755 "$srcdir/svnserve.initd2" "$pkgdir/etc/init.d/svnserve-rc"
+		install -Dm755 "${srcdir}/svnserve.confd" "${pkgdir}/etc/conf.d/svnserve-rc"
+		install -Dm755 "${srcdir}/svnserve.initd2" "${pkgdir}/etc/init.d/svnserve-rc"
 		
-		_fix_init "$pkgdir/etc/conf.d/svnserve-rc"
-		_fix_init "$pkgdir/etc/init.d/svnserve-rc"
+		_fix_init "${pkgdir}/etc/conf.d/svnserve-rc"
+		_fix_init "${pkgdir}/etc/init.d/svnserve-rc"
 }
 
 _fix_init(){

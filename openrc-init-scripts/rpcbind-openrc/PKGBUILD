@@ -24,10 +24,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/rpcbind.confd" "$pkgdir/etc/conf.d/rpcbind"
-	install -Dm755 "$srcdir/rpcbind.initd" "$pkgdir/etc/init.d/rpcbind"
+	install -Dm755 "${srcdir}/rpcbind.confd" "${pkgdir}/etc/conf.d/rpcbind"
+	install -Dm755 "${srcdir}/rpcbind.initd" "${pkgdir}/etc/init.d/rpcbind"
 	
-	_fix_init "$pkgdir/etc/init.d/rpcbind"
+	_fix_init "${pkgdir}/etc/init.d/rpcbind"
 }
 
 _fix_init(){

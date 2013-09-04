@@ -23,9 +23,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/fcron.init.3" "$pkgdir/etc/init.d/${_name}"
+	install -Dm755 "${srcdir}/fcron.init.3" "${pkgdir}/etc/init.d/${_name}"
 	
-	_fix_init "$pkgdir/etc/init.d/${_name}"
+	_fix_init "${pkgdir}/etc/init.d/${_name}"
 }
 
 _fix_init(){

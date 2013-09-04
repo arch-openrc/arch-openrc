@@ -24,10 +24,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/slapd-confd-2.4.28-r1" "$pkgdir/etc/conf.d/slapd"
-	install -Dm755 "$srcdir/slapd-initd-2.4.28-r1" "$pkgdir/etc/init.d/slapd"
+	install -Dm755 "${srcdir}/slapd-confd-2.4.28-r1" "${pkgdir}/etc/conf.d/slapd"
+	install -Dm755 "${srcdir}/slapd-initd-2.4.28-r1" "${pkgdir}/etc/init.d/slapd"
 	
-	_fix_init "$pkgdir/etc/init.d/slapd"
+	_fix_init "${pkgdir}/etc/init.d/slapd"
 }
 
 _fix_init(){

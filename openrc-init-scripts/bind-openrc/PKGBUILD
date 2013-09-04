@@ -24,10 +24,10 @@ pkgver() {
 }
 
 package() {
-		install -Dm755 "$srcdir/named.confd-r6" "$pkgdir/etc/conf.d/named"
-		install -Dm755 "$srcdir/named.init-r12" "$pkgdir/etc/init.d/named"
+		install -Dm755 "${srcdir}/named.confd-r6" "${pkgdir}/etc/conf.d/named"
+		install -Dm755 "${srcdir}/named.init-r12" "${pkgdir}/etc/init.d/named"
 		
-		_fix_init "$pkgdir/etc/init.d/named"
+		_fix_init "${pkgdir}/etc/init.d/named"
 }
 
 _fix_init(){

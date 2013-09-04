@@ -22,9 +22,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/polipo.initd" "$pkgdir/etc/init.d/polipo"
+	install -Dm755 "${srcdir}/polipo.initd" "${pkgdir}/etc/init.d/polipo"
 	
-	_fix_init "$pkgdir/etc/init.d/polipo"
+	_fix_init "${pkgdir}/etc/init.d/polipo"
 }
 
 _fix_init(){

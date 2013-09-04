@@ -24,10 +24,10 @@ pkgver() {
 }
 		
 package() {
-	install -Dm755 "$srcdir/xinetd.confd" "$pkgdir/etc/conf.d/xinetd"
-	install -Dm755 "$srcdir/xinetd.rc6" "$pkgdir/etc/init.d/xinetd"
+	install -Dm755 "${srcdir}/xinetd.confd" "${pkgdir}/etc/conf.d/xinetd"
+	install -Dm755 "${srcdir}/xinetd.rc6" "${pkgdir}/etc/init.d/xinetd"
 	
-	_fix_init "$pkgdir/etc/init.d/xinetd"
+	_fix_init "${pkgdir}/etc/init.d/xinetd"
 }
 
 _fix_init(){

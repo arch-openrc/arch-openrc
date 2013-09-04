@@ -25,13 +25,13 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/mdadm.confd" "$pkgdir/etc/conf.d/mdadm"
-	install -Dm755 "$srcdir/mdadm.rc" "$pkgdir/etc/init.d/mdadm"
+	install -Dm755 "${srcdir}/mdadm.confd" "${pkgdir}/etc/conf.d/mdadm"
+	install -Dm755 "${srcdir}/mdadm.rc" "${pkgdir}/etc/init.d/mdadm"
 	
-	#install -Dm755 "$srcdir/mdraid.confd" "$pkgdir/etc/conf.d/mdraid"
-	#install -Dm755 "$srcdir/mdraid.rc" "$pkgdir/etc/init.d/mdraid"
+	#install -Dm755 "${srcdir}/mdraid.confd" "${pkgdir}/etc/conf.d/mdraid"
+	#install -Dm755 "${srcdir}/mdraid.rc" "${pkgdir}/etc/init.d/mdraid"
 	
-	_fix_init "$pkgdir/etc/init.d/mdadm"
+	_fix_init "${pkgdir}/etc/init.d/mdadm"
 }
 
 _fix_init(){

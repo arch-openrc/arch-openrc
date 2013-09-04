@@ -24,10 +24,10 @@ pkgver() {
 }
 
 package() {
-		install -Dm755 "$srcdir/hostapd-conf.d" "$pkgdir/etc/conf.d/hostapd"
-		install -Dm755 "$srcdir/hostapd-init.d" "$pkgdir/etc/init.d/hostapd"
+		install -Dm755 "${srcdir}/hostapd-conf.d" "${pkgdir}/etc/conf.d/hostapd"
+		install -Dm755 "${srcdir}/hostapd-init.d" "${pkgdir}/etc/init.d/hostapd"
 		
-		_fix_init "$pkgdir/etc/init.d/hostapd"
+		_fix_init "${pkgdir}/etc/init.d/hostapd"
 
 }
 

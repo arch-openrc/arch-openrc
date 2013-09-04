@@ -24,10 +24,10 @@ pkgver() {
 }
 
 package() {
-		install -Dm755 "$srcdir/gpm.conf.d" "$pkgdir/etc/conf.d/gpm"
-		install -Dm755 "$srcdir/gpm.rc6-2" "$pkgdir/etc/init.d/gpm"
+		install -Dm755 "${srcdir}/gpm.conf.d" "${pkgdir}/etc/conf.d/gpm"
+		install -Dm755 "${srcdir}/gpm.rc6-2" "${pkgdir}/etc/init.d/gpm"
 
-		_fix_init "$pkgdir/etc/init.d/gpm"
+		_fix_init "${pkgdir}/etc/init.d/gpm"
 }
 
 _fix_init(){

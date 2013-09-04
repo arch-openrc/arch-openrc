@@ -25,10 +25,10 @@ pkgver() {
 }
 
 package() {
-		install -Dm755 "$srcdir/ypbind.confd-r1" "$pkgdir/etc/conf.d/ypbind"
-		install -Dm755 "$srcdir/ypbind.initd" "$pkgdir/etc/init.d/ypbind"
+		install -Dm755 "${srcdir}/ypbind.confd-r1" "${pkgdir}/etc/conf.d/ypbind"
+		install -Dm755 "${srcdir}/ypbind.initd" "${pkgdir}/etc/init.d/ypbind"
 		
-		_fix_init "$pkgdir/etc/init.d/ypbind"
+		_fix_init "${pkgdir}/etc/init.d/ypbind"
 }
 
 _fix_init(){

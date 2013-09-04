@@ -25,12 +25,12 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/vsftpd.init" "$pkgdir/etc/init.d/vsftpd"
+	install -Dm755 "${srcdir}/vsftpd.init" "${pkgdir}/etc/init.d/vsftpd"
 	
-	install -Dm755 "$srcdir/vsftpd-checkconfig.sh" "$pkgdir/usr/lib/vsftpd-checkconfig.sh"
+	install -Dm755 "${srcdir}/vsftpd-checkconfig.sh" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 	
-	_fix_init "$pkgdir/etc/init.d/vsftpd"
-	_fix_init "$pkgdir/usr/lib/vsftpd-checkconfig.sh"
+	_fix_init "${pkgdir}/etc/init.d/vsftpd"
+	_fix_init "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 }
 
 _fix_init(){

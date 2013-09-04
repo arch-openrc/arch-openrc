@@ -23,9 +23,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/cupsd.init.d-r1" "$pkgdir/etc/init.d/cupsd"
+	install -Dm755 "${srcdir}/cupsd.init.d-r1" "${pkgdir}/etc/init.d/cupsd"
 	
-	_fix_init "$pkgdir/etc/init.d/cupsd"
+	_fix_init "${pkgdir}/etc/init.d/cupsd"
 }
 
 _fix_init(){

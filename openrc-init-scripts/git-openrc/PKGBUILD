@@ -24,11 +24,11 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/git-daemon.confd" "$pkgdir/etc/conf.d/git-daemon"
-	install -Dm755 "$srcdir/git-daemon.initd" "$pkgdir/etc/init.d/git-daemon"
+	install -Dm755 "${srcdir}/git-daemon.confd" "${pkgdir}/etc/conf.d/git-daemon"
+	install -Dm755 "${srcdir}/git-daemon.initd" "${pkgdir}/etc/init.d/git-daemon"
 
-	_fix_conf "$pkgdir/etc/conf.d/git-daemon"
-	_fix_init "$pkgdir/etc/init.d/git-daemon"
+	_fix_conf "${pkgdir}/etc/conf.d/git-daemon"
+	_fix_init "${pkgdir}/etc/init.d/git-daemon"
 }
 
 _fix_conf(){

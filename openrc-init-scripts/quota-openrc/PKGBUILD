@@ -27,13 +27,13 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/quota.confd" "$pkgdir/etc/conf.d/quota"
-	install -Dm755 "$srcdir/quota.rc7" "$pkgdir/etc/init.d/quota"
+	install -Dm755 "${srcdir}/quota.confd" "${pkgdir}/etc/conf.d/quota"
+	install -Dm755 "${srcdir}/quota.rc7" "${pkgdir}/etc/init.d/quota"
 	
-	install -Dm755 "$srcdir/rpc.rquotad.initd" "$pkgdir/etc/init.d/rpc.rquotad"
+	install -Dm755 "${srcdir}/rpc.rquotad.initd" "${pkgdir}/etc/init.d/rpc.rquotad"
 
-	_fix_init "$pkgdir/etc/init.d/quota"
-	_fix_init "$pkgdir/etc/init.d/rpc.rquotad"
+	_fix_init "${pkgdir}/etc/init.d/quota"
+	_fix_init "${pkgdir}/etc/init.d/rpc.rquotad"
 }
 
 _fix_init(){

@@ -24,10 +24,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/conf.d-r1" "$pkgdir/etc/conf.d/${_name}"
-	install -Dm755 "$srcdir/init.d-r1" "$pkgdir/etc/init.d/${_name}"
+	install -Dm755 "${srcdir}/conf.d-r1" "${pkgdir}/etc/conf.d/${_name}"
+	install -Dm755 "${srcdir}/init.d-r1" "${pkgdir}/etc/init.d/${_name}"
 	
-	_fix_init "$pkgdir/etc/init.d/${_name}"
+	_fix_init "${pkgdir}/etc/init.d/${_name}"
 }
 
 _fix_init(){

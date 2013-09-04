@@ -22,9 +22,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/dhcpcd.initd" "$pkgdir/etc/init.d/dhcpcd"
+	install -Dm755 "${srcdir}/dhcpcd.initd" "${pkgdir}/etc/init.d/dhcpcd"
 	
-	_fix_init "$pkgdir/etc/init.d/dhcpcd"
+	_fix_init "${pkgdir}/etc/init.d/dhcpcd"
 }
 
 _fix_init(){

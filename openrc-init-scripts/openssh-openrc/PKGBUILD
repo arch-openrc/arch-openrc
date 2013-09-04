@@ -25,11 +25,11 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/sshd.confd" "$pkgdir/etc/conf.d/sshd"
-	install -Dm755 "$srcdir/sshd.rc6.4" "$pkgdir/etc/init.d/sshd"
+	install -Dm755 "${srcdir}/sshd.confd" "${pkgdir}/etc/conf.d/sshd"
+	install -Dm755 "${srcdir}/sshd.rc6.4" "${pkgdir}/etc/init.d/sshd"
 		
-	_fix_init "$pkgdir/etc/conf.d/sshd"
-	_fix_init "$pkgdir/etc/init.d/sshd"
+	_fix_init "${pkgdir}/etc/conf.d/sshd"
+	_fix_init "${pkgdir}/etc/init.d/sshd"
 }
 
 _fix_init(){

@@ -23,9 +23,9 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/postfix.rc6.2.7" "$pkgdir/etc/init.d/postfix"
+	install -Dm755 "${srcdir}/postfix.rc6.2.7" "${pkgdir}/etc/init.d/postfix"
 	
-	_fix_init "$pkgdir/etc/init.d/postfix"
+	_fix_init "${pkgdir}/etc/init.d/postfix"
 }
 
 _fix_init(){

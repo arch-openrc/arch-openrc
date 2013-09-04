@@ -24,10 +24,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "$srcdir/1.0.6-dmcrypt.confd" "$pkgdir/etc/conf.d/dmcrypt"
-	install -Dm755 "$srcdir/1.5.1-dmcrypt.rc" "$pkgdir/etc/init.d/dmcrypt"
+	install -Dm755 "${srcdir}/1.0.6-dmcrypt.confd" "${pkgdir}/etc/conf.d/dmcrypt"
+	install -Dm755 "${srcdir}/1.5.1-dmcrypt.rc" "${pkgdir}/etc/init.d/dmcrypt"
 	
-	_fix_init "$pkgdir/etc/init.d/dmcrypt"
+	_fix_init "${pkgdir}/etc/init.d/dmcrypt"
 }
 
 _fix_init(){
