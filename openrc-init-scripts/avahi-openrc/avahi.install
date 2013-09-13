@@ -1,11 +1,11 @@
 svc[0]="avahi-dnsconfd"
 svc[1]="avahi-daemon"
 
-rlvl="default"
+_rlvl="default"
 
 post_install() {
-	_cmd="rc-update add ${svc[0]} $rlvl"
-	echo "	==> run '$_cmd'"
+	_cmd="rc-update add ${svc[0]} ${_rlvl}"
+	echo "	==> run '${_cmd}'"
 }
 
 post_upgrade() {
@@ -13,6 +13,6 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del ${svc[0]} $rlvl"
-	echo "	==> run '$_cmd'"
+	_cmd="rc-update del ${svc[0]} ${_rlvl}"
+	echo "	==> run '${_cmd}'"
 }

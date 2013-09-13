@@ -1,18 +1,18 @@
-svc="lighttpd"
-rlvl="default"
+_svc="lighttpd"
+_rlvl="default"
 
 post_install() {
 	conf1='server.pid-file = "/run/lighttpd.pid"'
 	conf2='server.bind = "localhost"'
 	file="/etc/lighttpd/lighttpd.conf"
-	_usr=$svc
-	_grp=$svc
+	_usr=${_svc}
+	_grp=${_svc}
 	echo "	==>  requires $_usr user"
 	echo "	==>  requires $_grp group"
 	echo "	==>  $file requires $conf1"
 	echo "	==>  $file requires $conf2(or any binding interface)"
-	_cmd="rc-update add $svc $rlvl"
-	echo "	==> run '$_cmd'"
+	_cmd="rc-update add ${_svc} ${_rlvl}"
+	echo "	==> run '${_cmd}'"
 }
 
 post_upgrade() {
@@ -20,6 +20,6 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del $svc $rlvl"
-	echo "	==> run '$_cmd'"
+	_cmd="rc-update del ${_svc} ${_rlvl}"
+	echo "	==> run '${_cmd}'"
 }

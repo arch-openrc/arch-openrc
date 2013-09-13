@@ -1,5 +1,5 @@
-svc="svnserve-rc"
-rlvl="default"
+_svc="svnserve-rc"
+_rlvl="default"
 
 post_install() {
 	local _usr="svn"
@@ -8,8 +8,8 @@ post_install() {
 	echo "	==>  requires $_usr user"
 	echo "	==>  requires $_grp group"
 	echo "	==>  requires svn root $_rootdir "
-	_cmd="rc-update add $svc $rlvl"
-	echo "	==> run '$_cmd'"
+	_cmd="rc-update add ${_svc} ${_rlvl}"
+	echo "	==> run '${_cmd}'"
 }
 
 post_upgrade() {
@@ -17,6 +17,6 @@ post_upgrade() {
 }
 
 pre_remove() {
-	_cmd="rc-update del $svc $rlvl"
-	echo "	==> run '$_cmd'"
+	_cmd="rc-update del ${_svc} ${_rlvl}"
+	echo "	==> run '${_cmd}'"
 }

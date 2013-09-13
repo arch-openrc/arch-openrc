@@ -1,8 +1,8 @@
-svc="syslog-ng"
-rlvl="default"
+_svc="syslog-ng"
+_rlvl="default"
 # _p1='/run/systemd/journal/syslog'
 # _p2='/dev/log'
-# _file="/etc/$svc/$svc.conf"
+# _file="/etc/${_svc}/${_svc}.conf"
 
 post_install() {
 # echo " ==> checking $_file for $_p2"
@@ -12,8 +12,8 @@ post_install() {
 # else
 # echo " ==> already set $_p2: $_file"
 # fi
-_cmd="rc-update add $svc $rlvl"
-echo " ==> run '$_cmd'"
+_cmd="rc-update add ${_svc} ${_rlvl}"
+echo " ==> run '${_cmd}'"
 }
 post_upgrade() {
 post_install "$1"
@@ -28,6 +28,6 @@ post_remove() {
 # else
 # echo " ==> already set $_p1: $_file"
 # fi
-_cmd="rc-update del $svc $rlvl"
-echo " ==> run '$_cmd'"
+_cmd="rc-update del ${_svc} ${_rlvl}"
+echo " ==> run '${_cmd}'"
 }
