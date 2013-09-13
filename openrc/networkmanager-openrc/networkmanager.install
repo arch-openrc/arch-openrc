@@ -1,9 +1,9 @@
-svc="networkmanager"
-rlvl="default"
+_svc="networkmanager"
+_rlvl="default"
 
 post_install() {
-	_cmd="rc-update add $svc $rlvl"
-	echo "	==> run '$_cmd'"
+	_cmd="rc-update add ${_svc} ${_rlvl}"
+	echo "	==> run '${_cmd}'"
 }
 
 post_upgrade() {
@@ -14,10 +14,10 @@ ATTENTION:
   by /etc/NetworkManager/NetworkManager.conf. Make sure you move
   any custom settings to the new config file.
 MSG
-  true	
+  true
 }
 
 post_remove() {
-	_cmd="rc-update del $svc $rlvl"
-	echo "	==> run '$_cmd'"
+	_cmd="rc-update del ${_svc} ${_rlvl}"
+	echo "	==> run '${_cmd}'"
 }

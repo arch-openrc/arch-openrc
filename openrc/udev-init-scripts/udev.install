@@ -1,11 +1,11 @@
-svc="udev"
-rlvl="sysinit"
+_svc="udev"
+_rlvl="sysinit"
 
 post_install() {
-	_cmd="rc-update add $svc $rlvl"
-	$_cmd
-	_cmd="rc-update add $svc-mount $rlvl"
-	$_cmd
+	_cmd="rc-update add ${_svc} ${_rlvl}"
+	${_cmd}
+	_cmd="rc-update add ${_svc}-mount ${_rlvl}"
+	${_cmd}
 	rc-update -u
 }
 
@@ -14,9 +14,9 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del $svc $rlvl"
-	$_cmd
-	_cmd="rc-update del $svc-mount $rlvl"
-	$_cmd
+	_cmd="rc-update del ${_svc} ${_rlvl}"
+	${_cmd}
+	_cmd="rc-update del ${_svc}-mount ${_rlvl}"
+	${_cmd}
 	rc-update -u
 }
