@@ -16,7 +16,7 @@ depends=('openrc' "${_name}")
 optdepends=('bind-openrc')
 install=${_name}.install
 source=("${_gentoo_uri}/mdadm.confd"
-		"${_gentoo_uri}/mdadm.rc")
+	"${_gentoo_uri}/mdadm.rc")
 sha256sums=('ec55674955af7a31da51b8b72b599e8519809287dad796a9b16155bcba471b79'
             '3073b14619cb7b2c99c33f2d6cfd1e59ce5557899bffebaa65fa52f3caffadc7')
 
@@ -25,17 +25,13 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/mdadm.confd" "${pkgdir}/etc/conf.d/mdadm"
-	install -Dm755 "${srcdir}/mdadm.rc" "${pkgdir}/etc/init.d/mdadm"
-	
-	#install -Dm755 "${srcdir}/mdraid.confd" "${pkgdir}/etc/conf.d/mdraid"
-	#install -Dm755 "${srcdir}/mdraid.rc" "${pkgdir}/etc/init.d/mdraid"
-	
-	_fix_init "${pkgdir}/etc/init.d/mdadm"
+  install -Dm755 "${srcdir}/mdadm.confd" "${pkgdir}/etc/conf.d/mdadm"
+  install -Dm755 "${srcdir}/mdadm.rc" "${pkgdir}/etc/init.d/mdadm"
+  #install -Dm755 "${srcdir}/mdraid.confd" "${pkgdir}/etc/conf.d/mdraid"
+  #install -Dm755 "${srcdir}/mdraid.rc" "${pkgdir}/etc/init.d/mdraid"
+  _fix_init "${pkgdir}/etc/init.d/mdadm"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/var/run|/run|g' -i $1
 }

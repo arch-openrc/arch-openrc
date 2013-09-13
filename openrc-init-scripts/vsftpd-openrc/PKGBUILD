@@ -16,7 +16,7 @@ depends=('openrc' "${_name}")
 optdepends=('bind-openrc')
 install=${_name}.install
 source=("${_gentoo_uri}/vsftpd.init"
-		"${_gentoo_uri}/vsftpd-checkconfig.sh")
+	"${_gentoo_uri}/vsftpd-checkconfig.sh")
 sha256sums=('e6cf3df546aae57bb10e2b4282a9ccd79741473ef9dbdbd7628a16c84622da06'
             '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda')
 
@@ -25,16 +25,12 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/vsftpd.init" "${pkgdir}/etc/init.d/vsftpd"
-	
-	install -Dm755 "${srcdir}/vsftpd-checkconfig.sh" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
-	
-	_fix_init "${pkgdir}/etc/init.d/vsftpd"
-	_fix_init "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+  install -Dm755 "${srcdir}/vsftpd.init" "${pkgdir}/etc/init.d/vsftpd"
+  install -Dm755 "${srcdir}/vsftpd-checkconfig.sh" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+  _fix_init "${pkgdir}/etc/init.d/vsftpd"
+  _fix_init "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/vsftpd/|/etc/|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/vsftpd/|/etc/|g' -i $1
 }

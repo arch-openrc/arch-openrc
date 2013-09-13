@@ -7,7 +7,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_
 pkgname=catalyst-utils-openrc
 pkgver=20130821
 pkgrel=1
-pkgdesc="OpenRC catalyst-utils noX init script"
+pkgdesc="OpenRC atieventsd init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
@@ -21,17 +21,13 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/atieventsd.init" "${pkgdir}/etc/init.d/atieventsd"
-	
-	echo 'ATIEVENTSDOPTS=""' > "${srcdir}/atieventsd.conf"
-	install -Dm755 "${srcdir}/atieventsd.conf" "${pkgdir}/etc/conf.d/atieventsd"
-
-	_fix_init "${pkgdir}/etc/init.d/atieventsd"
+  install -Dm755 "${srcdir}/atieventsd.init" "${pkgdir}/etc/init.d/atieventsd"
+  echo 'ATIEVENTSDOPTS=""' > "${srcdir}/atieventsd.conf"
+  install -Dm755 "${srcdir}/atieventsd.conf" "${pkgdir}/etc/conf.d/atieventsd"
+  _fix_init "${pkgdir}/etc/init.d/atieventsd"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/opt/sbin|/usr/bin|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/opt/sbin|/usr/bin|g' -i $1
 }
 

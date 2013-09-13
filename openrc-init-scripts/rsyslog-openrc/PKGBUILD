@@ -15,7 +15,7 @@ depends=('openrc' "${_name}")
 groups=('openrc-misc')
 install=${_name}.install
 source=("${_gentoo_uri}/rsyslog.confd"
-		"${_gentoo_uri}/rsyslog.initd")
+	"${_gentoo_uri}/rsyslog.initd")
 sha256sums=('ff2634927d3208ac2c82d352f0a7dc9fef1d0ee098d18f818d4417ac04516e9c'
             '7b3b32e89c051566b68c5e5a077cd5960da183e071e411b1248d4e4702a24279')
 
@@ -24,15 +24,11 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
-	
-	install -Dm755 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
-
-	_fix_init "${pkgdir}/etc/init.d/rsyslog"
+  install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
+  install -Dm755 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
+  _fix_init "${pkgdir}/etc/init.d/rsyslog"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1	
 }

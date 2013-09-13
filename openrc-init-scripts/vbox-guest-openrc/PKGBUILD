@@ -22,13 +22,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/virtualbox-guest-additions-8.initd" "${pkgdir}/etc/init.d/vboxservice"
-	
-	_fix_init "${pkgdir}/etc/init.d/vboxservice"
+  install -Dm755 "${srcdir}/virtualbox-guest-additions-8.initd" "${pkgdir}/etc/init.d/vboxservice"
+  _fix_init "${pkgdir}/etc/init.d/vboxservice"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|vboxguest-service|VBoxService|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|vboxguest-service|VBoxService|g' -i $1
 }

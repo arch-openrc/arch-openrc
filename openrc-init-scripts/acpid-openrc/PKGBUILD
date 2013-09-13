@@ -15,23 +15,21 @@ groups=('openrc-desktop')
 depends=('openrc' "${_name}")
 install=${_name}.install
 source=("${_gentoo_uri}/acpid-2.0.16-conf.d"
-		"${_gentoo_uri}/acpid-2.0.16-init.d")
+	"${_gentoo_uri}/acpid-2.0.16-init.d")
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d')
+
 pkgver() {
   date +%Y%m%d
 }
 
 package() {
-	install -Dm755 "${srcdir}/acpid-2.0.16-conf.d" "${pkgdir}/etc/conf.d/${_name}"
-	install -Dm755 "${srcdir}/acpid-2.0.16-init.d" "${pkgdir}/etc/init.d/${_name}"
-	
-	_fix_init ${pkgdir}/etc/init.d/${_name}
+  install -Dm755 "${srcdir}/acpid-2.0.16-conf.d" "${pkgdir}/etc/conf.d/${_name}"
+  install -Dm755 "${srcdir}/acpid-2.0.16-init.d" "${pkgdir}/etc/init.d/${_name}"
+  _fix_init ${pkgdir}/etc/init.d/${_name}
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/acpid|/usr/bin/acpid|' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/acpid|/usr/bin/acpid|' -i $1
 }
 

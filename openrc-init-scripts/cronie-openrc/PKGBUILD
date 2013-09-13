@@ -17,7 +17,7 @@ provides=('openrc-cron')
 conflicts=('openrc-cron')
 install=${_name}.install
 source=("${_gentoo_uri}/cronie-1.3-initd"
-		"${_gentoo_uri}/anacron-1.0-initd")
+	"${_gentoo_uri}/anacron-1.0-initd")
 sha256sums=('0954be9e1e1c34d2f963cc60828b63711a2949bfe91f65620caf9c80256383f2'
             '862c85322f3644997ca5432180e0ef0a4fb36467a44b350dc955365f314b2fbe')
 
@@ -26,18 +26,13 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/cronie-1.3-initd" "${pkgdir}/etc/init.d/${_name}"
-	install -Dm755 "${srcdir}/anacron-1.0-initd" "${pkgdir}/etc/init.d/anacron"
-	
-	_fix_init "${pkgdir}/etc/init.d/${_name}"
-	_fix_init "${pkgdir}/etc/init.d/anacron"
-
+  install -Dm755 "${srcdir}/cronie-1.3-initd" "${pkgdir}/etc/init.d/${_name}"
+  install -Dm755 "${srcdir}/anacron-1.0-initd" "${pkgdir}/etc/init.d/anacron"
+  _fix_init "${pkgdir}/etc/init.d/${_name}"
+  _fix_init "${pkgdir}/etc/init.d/anacron"
 }
 
-
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }
 

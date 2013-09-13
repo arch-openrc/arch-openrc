@@ -23,13 +23,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/fcron.init.3" "${pkgdir}/etc/init.d/${_name}"
-	
-	_fix_init "${pkgdir}/etc/init.d/${_name}"
+  install -Dm755 "${srcdir}/fcron.init.3" "${pkgdir}/etc/init.d/${_name}"
+  _fix_init "${pkgdir}/etc/init.d/${_name}"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/libexec|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/libexec|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

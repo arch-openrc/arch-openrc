@@ -13,10 +13,9 @@ url="http://openrc4arch.site40.net"
 license=('GPL2')
 depends=('openrc' "nvidia-utils" 'udev-init-scripts')
 install=nvidia-utils.install
-
 source=("${_gentoo_uri}/nvidia-udev.sh"
-		"${_gentoo_uri}/nvidia.udev-rule"
-		"${_gentoo_uri}/nvidia-smi.init")
+	"${_gentoo_uri}/nvidia.udev-rule"
+	"${_gentoo_uri}/nvidia-smi.init")
 sha256sums=('120c0af2b64fbcbd7032217a78eec8b104874c1ca68726367bce22c57944e07e'
             '37b152a5055a16d1947171567178e2841679ddf03dba9d48e7d30f1e3b469ac6'
             'c996033b81cc1512d8370d62575a0ea0c694f6e1b91cc948b4529625130601a7')
@@ -26,20 +25,15 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/nvidia-smi.init" "${pkgdir}/etc/init.d/nvidia-smi"
-	
-	install -Dm755 "${srcdir}/nvidia-udev.sh" "${pkgdir}/usr/lib/udev/nvidia-udev.sh"
-	
-	install -Dm755 "${srcdir}/nvidia.udev-rule" "${pkgdir}/usr/lib/udev/rules.d/99-nvidia.rules"
-	
-	_fix_init "${pkgdir}/etc/init.d/nvidia-smi"
-	_fix_init "${pkgdir}/usr/lib/udev/nvidia-udev.sh"
+  install -Dm755 "${srcdir}/nvidia-smi.init" "${pkgdir}/etc/init.d/nvidia-smi"
+  install -Dm755 "${srcdir}/nvidia-udev.sh" "${pkgdir}/usr/lib/udev/nvidia-udev.sh"
+  install -Dm755 "${srcdir}/nvidia.udev-rule" "${pkgdir}/usr/lib/udev/rules.d/99-nvidia.rules"
+  _fix_init "${pkgdir}/etc/init.d/nvidia-smi"
+  _fix_init "${pkgdir}/usr/lib/udev/nvidia-udev.sh"
 
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|#!/bin/sh|#!/usr/bin/sh|' -e 's|/opt/bin/nvidia-smi|/usr/bin/nvidia-smi|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|#!/bin/sh|#!/usr/bin/sh|' -e 's|/opt/bin/nvidia-smi|/usr/bin/nvidia-smi|g' -i $1	
 }        
 

@@ -22,14 +22,11 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
-	
-	_fix_init "${pkgdir}/etc/init.d/dbus"
+  install -Dm755 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
+  _fix_init "${pkgdir}/etc/init.d/dbus"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|dbus.pid|dbus/pid|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|dbus.pid|dbus/pid|g' -e 's|/var/run|/run|g' -i $1
 }
 

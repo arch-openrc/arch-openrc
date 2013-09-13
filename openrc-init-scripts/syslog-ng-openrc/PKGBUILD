@@ -15,23 +15,20 @@ depends=('openrc' "${_name}")
 groups=('openrc-misc')
 install=${_name}.install
 source=("${_gentoo_uri}/syslog-ng.confd"
-		"${_gentoo_uri}/syslog-ng.rc6.3.3")
+	"${_gentoo_uri}/syslog-ng.rc6.3.3")
 sha256sums=('8319ca8e39a5dab5ddc82eede088e1f58ff25deef330804648000359cb736a3f'
             '19bbd35abc9f54ce368e1ccf46b6e4af6eec304906e432bb9968d50a01d18284')
 
 pkgver() {
   date +%Y%m%d
 }
-		
+
 package() {
-	install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
-	install -Dm755 "${srcdir}/syslog-ng.rc6.3.3" "${pkgdir}/etc/init.d/syslog-ng"
-	
-	_fix_init "${pkgdir}/etc/init.d/syslog-ng"
+  install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
+  install -Dm755 "${srcdir}/syslog-ng.rc6.3.3" "${pkgdir}/etc/init.d/syslog-ng"
+  _fix_init "${pkgdir}/etc/init.d/syslog-ng"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

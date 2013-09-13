@@ -15,8 +15,8 @@ groups=('openrc-net')
 depends=('openrc' "${_name}")
 install=${_name}.install
 source=("${_gentoo_uri}/iptables-1.4.13.confd"
-		"${_gentoo_uri}/ip6tables-1.4.13.confd"
-		"${_gentoo_uri}/iptables-1.4.13-r1.init")
+	"${_gentoo_uri}/ip6tables-1.4.13.confd"
+	"${_gentoo_uri}/iptables-1.4.13-r1.init")
 sha256sums=('7e2341211ca14997b7a8a1f930f94db855291af597c568f680f80031c20d45b6'
             '2938fe4206514d9868047bd8f888a699fa2097ca69edab176453436d4259abaa'
             '13047698e03079b754957e1e548ce7505dfb2c73c9a31f87e061140603ab0e44')
@@ -24,20 +24,17 @@ sha256sums=('7e2341211ca14997b7a8a1f930f94db855291af597c568f680f80031c20d45b6'
 pkgver() {
   date +%Y%m%d
 }
-		
+
 package() {
-	install -Dm755 "${srcdir}/iptables-1.4.13.confd" "${pkgdir}/etc/conf.d/iptables"
-	install -Dm755 "${srcdir}/iptables-1.4.13-r1.init" "${pkgdir}/etc/init.d/iptables"
-	
-	install -Dm755 "${srcdir}/ip6tables-1.4.13.confd" "${pkgdir}/etc/conf.d/ip6tables"
-	install -Dm755 "${srcdir}/iptables-1.4.13-r1.init" "${pkgdir}/etc/init.d/ip6tables"
-		
-	_fix_init "${pkgdir}/etc/init.d/iptables"
-	_fix_init "${pkgdir}/etc/init.d/ip6tables"
+  install -Dm755 "${srcdir}/iptables-1.4.13.confd" "${pkgdir}/etc/conf.d/iptables"
+  install -Dm755 "${srcdir}/iptables-1.4.13-r1.init" "${pkgdir}/etc/init.d/iptables"
+  install -Dm755 "${srcdir}/ip6tables-1.4.13.confd" "${pkgdir}/etc/conf.d/ip6tables"
+  install -Dm755 "${srcdir}/iptables-1.4.13-r1.init" "${pkgdir}/etc/init.d/ip6tables"	
+  _fix_init "${pkgdir}/etc/init.d/iptables"
+  _fix_init "${pkgdir}/etc/init.d/ip6tables"
+  
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

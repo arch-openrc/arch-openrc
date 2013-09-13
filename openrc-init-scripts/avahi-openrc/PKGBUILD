@@ -14,26 +14,21 @@ groups=('openrc-desktop')
 depends=('openrc' "${_name}" 'dbus-openrc')
 install=${_name}.install
 source=("http://avahi.org/download/${_name}-${_ver}.tar.gz")
+sha256sums=('8372719b24e2dd75de6f59bb1315e600db4fd092805bd1201ed0cb651a2dab48')
 
 pkgver() {
   date +%Y%m%d
 }
 
 package() {
-	install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
-	install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-dnsconfd.in" "${pkgdir}/etc/init.d/avahi-dnsconfd"
-	
-	_fix_init "${pkgdir}/etc/init.d/avahi-daemon"
-
-	_fix_init "${pkgdir}/etc/init.d/avahi-dnsconfd"
-	
+  install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
+  install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-dnsconfd.in" "${pkgdir}/etc/init.d/avahi-dnsconfd"
+  _fix_init "${pkgdir}/etc/init.d/avahi-daemon"
+  _fix_init "${pkgdir}/etc/init.d/avahi-dnsconfd"
 }
 
 
 _fix_init(){
-	
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/bin|' -i $1
-		
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/bin|' -i $1
 }
 
-sha256sums=('8372719b24e2dd75de6f59bb1315e600db4fd092805bd1201ed0cb651a2dab48')

@@ -22,13 +22,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/privoxy.initd" "${pkgdir}/etc/init.d/privoxy"
-	
-	_fix_init "${pkgdir}/etc/init.d/privoxy"
+  install -Dm755 "${srcdir}/privoxy.initd" "${pkgdir}/etc/init.d/privoxy"
+  _fix_init "${pkgdir}/etc/init.d/privoxy"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

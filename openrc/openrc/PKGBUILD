@@ -5,60 +5,43 @@ _gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86")
 
 pkgname=openrc
 pkgver=0.12
-pkgrel=2
+pkgrel=3
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD')
 groups=('openrc-base')
-depends=('bash'
-		'coreutils'
-		'glibc'
-		'inetutils'
-		'ncurses'
-		'net-tools'
-		'pam'
-		'psmisc'
-		'sysvinit')
+depends=('bash' 'coreutils' 'glibc' 'inetutils' 'ncurses'
+	'net-tools' 'pam' 'psmisc' 'sysvinit')
 optdepends=('udev-init-scripts: udev startup scripts for openrc'
-			'netifrc: Gentoo Network Interface Management Scripts')
+	    'netifrc: Gentoo Network Interface Management Scripts')
 provides=('openrc')
 conflicts=('initscripts')
-backup=('etc/rc.conf'
-		'etc/inittab'
-		'etc/conf.d/consolefont'
-		'etc/conf.d/keymaps'
-		'etc/conf.d/hwclock'
-		'etc/conf.d/hostname'
-		'etc/conf.d/modules')
+backup=('etc/rc.conf' 'etc/inittab' 'etc/conf.d/consolefont' 'etc/conf.d/keymaps'
+	'etc/conf.d/hwclock' 'etc/conf.d/hostname' 'etc/conf.d/modules')
 install=openrc.install
 source=("http://dev.gentoo.org/~williamh/dist/${pkgname}-${pkgver}.tar.bz2"
-		"${_gentoo_uri}/sys-apps/${pkgname}/files/${pkgname}.logrotate")
-
+	"${_gentoo_uri}/sys-apps/${pkgname}/files/${pkgname}.logrotate")
 sha256sums=('e07f46682b2623cdd47655cf6a2e54ab13f1b46bd83159bb9e36bfa1ee27142c'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c')
-            
+
 package() {
-	cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  make \
+	SYSCONFDIR='/etc' \
+	OS='Linux' \
+	BRANDING='Arch Linux' \
+	PREFIX='/usr' \
+	LIBEXECDIR='/usr/lib/rc' \
+	SBINDIR='/usr/bin' \
+	MKSELINUX='no' \
+	MKPAM='pam' \
+	MKTERMCAP='ncurses' \
+	MKNET='oldnet' \
+	DESTDIR="${pkgdir}" \
+      install
 
-	make \
-		SYSCONFDIR='/etc' \
-		OS='Linux' \
-		BRANDING='Arch Linux' \
-		PREFIX='/usr' \
-		LIBEXECDIR='/usr/lib/rc' \
-		SBINDIR='/usr/bin' \
-		MKSELINUX='no' \
-		MKPAM='pam' \
-		MKTERMCAP='ncurses' \
-		MKNET='oldnet' \
-		DESTDIR="${pkgdir}" \
-		install
-
-	install -m 644 "${srcdir}/${pkgname}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
-
-	sed -e 's|/sbin/|/usr/bin/|g' -i "${pkgdir}/etc/inittab"
-	
-	install -Dm 0644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgdir}"
-
+  install -m 644 "${srcdir}/${pkgname}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
+  sed -e 's|/sbin/|/usr/bin/|g' -i "${pkgdir}/etc/inittab"
+  install -Dm 0644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgdir}"
 }

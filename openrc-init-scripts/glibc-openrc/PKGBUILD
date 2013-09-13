@@ -23,13 +23,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/nscd" "${pkgdir}/etc/init.d/nscd"
-	
-	_fix_init "${pkgdir}/etc/init.d/nscd"
+  install -Dm755 "${srcdir}/nscd" "${pkgdir}/etc/init.d/nscd"
+  _fix_init "${pkgdir}/etc/init.d/nscd"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

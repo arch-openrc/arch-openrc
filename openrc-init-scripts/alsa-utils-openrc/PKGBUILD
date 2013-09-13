@@ -15,7 +15,7 @@ groups=('openrc-desktop')
 depends=('openrc' "${_name}")
 install=${_name}.install
 source=("${_gentoo_uri}/alsasound.confd-r4"
-		"${_gentoo_uri}/alsasound.initd-r5")
+	"${_gentoo_uri}/alsasound.initd-r5")
 sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             'daf46bbc4156a82e0c6c7135ee94b31a3dfb6d366fcf3f45e8c842d1348601be')
 
@@ -24,15 +24,12 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/alsasound.confd-r4" "${pkgdir}/etc/conf.d/alsasound"
-	install -Dm755 "${srcdir}/alsasound.initd-r5" "${pkgdir}/etc/init.d/alsasound"
-	
-	_fix_init ${pkgdir}/etc/init.d/alsasound
+  install -Dm755 "${srcdir}/alsasound.confd-r4" "${pkgdir}/etc/conf.d/alsasound"
+  install -Dm755 "${srcdir}/alsasound.initd-r5" "${pkgdir}/etc/init.d/alsasound"
+  _fix_init ${pkgdir}/etc/init.d/alsasound
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i $1
 }
 

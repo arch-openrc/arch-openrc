@@ -15,11 +15,11 @@ groups=('openrc-net')
 depends=('openrc' "${_name}" 'rpcbind-openrc')
 install=${_name}.install
 source=("${_gentoo_uri}/rpc.yppasswdd.confd"
-		"${_gentoo_uri}/rpc.yppasswdd-r1"
-		"${_gentoo_uri}/rpc.ypxfrd.confd"
-		"${_gentoo_uri}/rpc.ypxfrd-2.23"
-		"${_gentoo_uri}/ypserv.confd"
-		"${_gentoo_uri}/ypserv")
+	"${_gentoo_uri}/rpc.yppasswdd-r1"
+	"${_gentoo_uri}/rpc.ypxfrd.confd"
+	"${_gentoo_uri}/rpc.ypxfrd-2.23"
+	"${_gentoo_uri}/ypserv.confd"
+	"${_gentoo_uri}/ypserv")
 sha256sums=('e46afe737bfc57aa31be1a441615fcc112e1ebf41d631c1929e00b81baca119d'
             'e827778b8a8e6984b637c745c315a2e02ebc46af752651b7a70626ba545a84b6'
             'bd1f245a362f85319e83965e8b825e66e686a4a0bf185ab8ec51fd335bc873c2'
@@ -32,23 +32,17 @@ pkgver() {
 }
 
 package() {
-
-		install -Dm755 "${srcdir}/rpc.yppasswdd.confd" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
-		install -Dm755 "${srcdir}/rpc.yppasswdd-r1" "${pkgdir}/etc/init.d/rpc.yppasswdd"
-		
-		install -Dm755 "${srcdir}/rpc.ypxfrd.confd" "${pkgdir}/etc/conf.d/rpc.ypxfrd"
-		install -Dm755 "${srcdir}/rpc.ypxfrd-2.23" "${pkgdir}/etc/init.d/rpc.ypxfrd"
-		
-		install -Dm755 "${srcdir}/ypserv.confd" "${pkgdir}/etc/conf.d/ypserv.confd"	
-		install -Dm755 "${srcdir}/ypserv" "${pkgdir}/etc/init.d/ypserv"
-		
-		_fix_init "${pkgdir}/etc/init.d/ypserv"
-		_fix_init "${pkgdir}/etc/init.d/rpc.yppasswdd"
-		_fix_init "${pkgdir}/etc/init.d/rpc.ypxfrd"
+  install -Dm755 "${srcdir}/rpc.yppasswdd.confd" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
+  install -Dm755 "${srcdir}/rpc.yppasswdd-r1" "${pkgdir}/etc/init.d/rpc.yppasswdd"	
+  install -Dm755 "${srcdir}/rpc.ypxfrd.confd" "${pkgdir}/etc/conf.d/rpc.ypxfrd"
+  install -Dm755 "${srcdir}/rpc.ypxfrd-2.23" "${pkgdir}/etc/init.d/rpc.ypxfrd"	
+  install -Dm755 "${srcdir}/ypserv.confd" "${pkgdir}/etc/conf.d/ypserv.confd"	
+  install -Dm755 "${srcdir}/ypserv" "${pkgdir}/etc/init.d/ypserv"	
+  _fix_init "${pkgdir}/etc/init.d/ypserv"
+  _fix_init "${pkgdir}/etc/init.d/rpc.yppasswdd"
+  _fix_init "${pkgdir}/etc/init.d/rpc.ypxfrd"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

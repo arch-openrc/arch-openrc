@@ -15,7 +15,7 @@ groups=('openrc-base' 'openrc-fs')
 depends=('openrc' "${_name}" 'device-mapper-openrc')
 install=${_name}.install
 source=("${_gentoo_uri}/1.0.6-dmcrypt.confd"
-		"${_gentoo_uri}/1.5.1-dmcrypt.rc")
+	"${_gentoo_uri}/1.5.1-dmcrypt.rc")
 sha256sums=('0c30e081c0b8f879964ae49735f10b05a1d92f4f481042851958860945e13271'
             '02faf27470ea0e50b764c923786724847e77dfdf9680a50cc202546cad2bf02f')
 
@@ -24,14 +24,11 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/1.0.6-dmcrypt.confd" "${pkgdir}/etc/conf.d/dmcrypt"
-	install -Dm755 "${srcdir}/1.5.1-dmcrypt.rc" "${pkgdir}/etc/init.d/dmcrypt"
-	
-	_fix_init "${pkgdir}/etc/init.d/dmcrypt"
+  install -Dm755 "${srcdir}/1.0.6-dmcrypt.confd" "${pkgdir}/etc/conf.d/dmcrypt"
+  install -Dm755 "${srcdir}/1.5.1-dmcrypt.rc" "${pkgdir}/etc/init.d/dmcrypt"
+  _fix_init "${pkgdir}/etc/init.d/dmcrypt"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

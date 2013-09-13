@@ -22,13 +22,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/dhcpcd.initd" "${pkgdir}/etc/init.d/dhcpcd"
-	
-	_fix_init "${pkgdir}/etc/init.d/dhcpcd"
+  install -Dm755 "${srcdir}/dhcpcd.initd" "${pkgdir}/etc/init.d/dhcpcd"
+  _fix_init "${pkgdir}/etc/init.d/dhcpcd"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

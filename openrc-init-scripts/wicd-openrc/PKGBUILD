@@ -22,13 +22,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/wicd-init.d" "${pkgdir}/etc/init.d/wicd"
-	
-	_fix_init "${pkgdir}/etc/init.d/wicd"
+  install -Dm755 "${srcdir}/wicd-init.d" "${pkgdir}/etc/init.d/wicd"
+  _fix_init "${pkgdir}/etc/init.d/wicd"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

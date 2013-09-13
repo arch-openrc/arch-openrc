@@ -23,13 +23,10 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/mysql.init" "${pkgdir}/etc/init.d/mysql"
-	
-	_fix_init "${pkgdir}/etc/init.d/mysql"
+  install -Dm755 "${srcdir}/mysql.init" "${pkgdir}/etc/init.d/mysql"
+  _fix_init "${pkgdir}/etc/init.d/mysql"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/bin/safe_mysqld|/usr/bin/mysqld_safe|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/bin/safe_mysqld|/usr/bin/mysqld_safe|g' -i $1
 }

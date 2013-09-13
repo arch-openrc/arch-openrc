@@ -15,7 +15,7 @@ depends=('openrc' "${_name}")
 groups=('openrc-mobile')
 install=${_name}.install
 source=("${_gentoo_uri}/wpa_supplicant-conf.d"
-		"${_gentoo_uri}/wpa_supplicant-init.d")
+	"${_gentoo_uri}/wpa_supplicant-init.d")
 sha256sums=('61ec59007f66ac5bacc0aa095d1f2ccbc977a687038e161a463d1727223d5a90'
             '62a3655ea88b3dfff5243666a4e90d3f0eef6370a7889affb849e178ba4a82b0')
 
@@ -24,15 +24,11 @@ pkgver() {
 }
 
 package() {
-	install -Dm755 "${srcdir}/wpa_supplicant-conf.d" "${pkgdir}/etc/conf.d/wpa_supplicant"
-	install -Dm755 "${srcdir}/wpa_supplicant-init.d" "${pkgdir}/etc/init.d/wpa_supplicant"
-	
-	_fix_init "${pkgdir}/etc/init.d/wpa_supplicant"
-	
+  install -Dm755 "${srcdir}/wpa_supplicant-conf.d" "${pkgdir}/etc/conf.d/wpa_supplicant"
+  install -Dm755 "${srcdir}/wpa_supplicant-init.d" "${pkgdir}/etc/init.d/wpa_supplicant"
+  _fix_init "${pkgdir}/etc/init.d/wpa_supplicant"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

@@ -24,17 +24,12 @@ pkgver() {
 }
 
 package() {
-
-	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
-	
-	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
-		 
-	_fix_init "${pkgdir}/etc/init.d/httpd"
+  install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+  install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+  _fix_init "${pkgdir}/etc/init.d/httpd"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|apache2|httpd|g' -e 's|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g' -i $1
-
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|apache2|httpd|g' -e 's|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g' -i $1
 }
 

@@ -16,19 +16,21 @@ options=('!libtool')
 install=polkit.install
 source=("http://www.freedesktop.org/software/polkit/releases/polkit-$pkgver.tar.gz"
 		'polkit.pam')
+sha256sums=('02ae544547211b687818c97bcbf19bf6b8b5be7fda93000525a8765c7bed1ea1'
+            'a35af3210bff1a8f2c04add47ed131a17df9eafbbc6f1671f97021be3ab1ff34')
 
 build() {
   cd "$srcdir/polkit-$pkgver"
 
   ./configure \
-			--prefix=/usr \
-			--sysconfdir=/etc \
-			--localstatedir=/var \
-			--libexecdir=/usr/lib/polkit-1 \
-			--disable-static \
-			--with-systemdsystemunitdir=/usr/lib/systemd/system \
-			--enable-libsystemd-login=no \
-			--enable-gtk-doc
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --libexecdir=/usr/lib/polkit-1 \
+    --disable-static \
+    --with-systemdsystemunitdir=/usr/lib/systemd/system \
+    --enable-libsystemd-login=no \
+    --enable-gtk-doc
   make
 }
 
@@ -41,5 +43,4 @@ package() {
 
   install -m644 "$srcdir/polkit.pam" "$pkgdir/etc/pam.d/polkit-1"
 }
-sha256sums=('02ae544547211b687818c97bcbf19bf6b8b5be7fda93000525a8765c7bed1ea1'
-            'a35af3210bff1a8f2c04add47ed131a17df9eafbbc6f1671f97021be3ab1ff34')
+

@@ -15,7 +15,7 @@ groups=('openrc-net')
 depends=('openrc' "${_name}")
 install=${_name}.install
 source=("${_gentoo_uri}/rpcbind.confd"
-		"${_gentoo_uri}/rpcbind.initd")
+	"${_gentoo_uri}/rpcbind.initd")
 sha256sums=('38bb95aefc38d843d0890d9c15affd28f19f2133c17f463396c62970e7e2dffc'
             '6561ae40c5899a9f7a12f1f0867bec47d47c7cc3c583574ffcecbbf6f8d8afbb')
 
@@ -26,12 +26,9 @@ pkgver() {
 package() {
 	install -Dm755 "${srcdir}/rpcbind.confd" "${pkgdir}/etc/conf.d/rpcbind"
 	install -Dm755 "${srcdir}/rpcbind.initd" "${pkgdir}/etc/init.d/rpcbind"
-	
 	_fix_init "${pkgdir}/etc/init.d/rpcbind"
 }
 
 _fix_init(){
-
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
 }

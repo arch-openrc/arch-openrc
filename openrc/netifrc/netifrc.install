@@ -1,5 +1,5 @@
-svc="udev"
-rlvl="sysinit"
+svc="net.lo"
+rlvl="boot"
 
 post_install() {
 	_cmd="rc-update add $svc $rlvl"

@@ -3,34 +3,34 @@
 
 pkgname=netifrc
 pkgver=0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Gentoo Network Interface Management Scripts"
 arch=('any')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD')
 depends=('openrc>=0.12')
+install=${pkgname}.install
 source=("http://dev.gentoo.org/~williamh/dist/${pkgname}-${pkgver}.tar.bz2")
-
 sha256sums=('65eb507bda9ed51fdac2dcf70de3428229758257039ea4ce8360edb0903e39e9')
 
 prepare(){
-	sed -i 's:0444:0644:' ${srcdir}/${pkgname}-${pkgver}/mk/sys.mk
-	sed -i "/^DIR/s:/${pkgname}:/${pkgname}-${pkgver}:" ${srcdir}/${pkgname}-${pkgver}/doc/Makefile
+  sed -i 's:0444:0644:' ${srcdir}/${pkgname}-${pkgver}/mk/sys.mk
+  sed -i "/^DIR/s:/${pkgname}:/${pkgname}-${pkgver}:" ${srcdir}/${pkgname}-${pkgver}/doc/Makefile
 }
 
 package() {
-	cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname}-${pkgver}"
 
-	make \
-		SYSCONFDIR='/etc' \
-		OS='Linux' \
-		BRANDING='Arch Linux' \
-		PREFIX='/usr' \
-		SBINDIR='/usr/bin' \
-		LIBEXECDIR="/usr/lib/netifrc" \
-		DESTDIR="${pkgdir}" \
-		install
+  make \
+	SYSCONFDIR='/etc' \
+	OS='Linux' \
+	BRANDING='Arch Linux' \
+	PREFIX='/usr' \
+	SBINDIR='/usr/bin' \
+	LIBEXECDIR="/usr/lib/netifrc" \
+	DESTDIR="${pkgdir}" \
+      install
 		
-		install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
+  install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
 
 }

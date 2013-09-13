@@ -21,14 +21,11 @@ pkgver() {
 }
 
 package() {
-		install -Dm755 "${srcdir}/${_name}.confd" "${pkgdir}/etc/init.d/ftpd"
-		install -Dm755 "${srcdir}/${_name}.initd" "${pkgdir}/etc/init.d/ftpd"
-		
-		_fix_init "${pkgdir}/etc/init.d/ftpd"
+  install -Dm755 "${srcdir}/${_name}.confd" "${pkgdir}/etc/init.d/ftpd"
+  install -Dm755 "${srcdir}/${_name}.initd" "${pkgdir}/etc/init.d/ftpd"	
+  _fix_init "${pkgdir}/etc/init.d/ftpd"
 }	
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -i $1
 }

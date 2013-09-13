@@ -15,9 +15,9 @@ groups=('openrc-misc')
 depends=('openrc' "${_name}")
 install=${_name}.install
 source=("${_gentoo_uri}/sensord-conf.d"
-		"${_gentoo_uri}/sensord-4-init.d"
-		"${_gentoo_uri}/fancontrol-init.d-2"
-		"${_gentoo_uri}/lm_sensors-3-init.d")
+	"${_gentoo_uri}/sensord-4-init.d"
+	"${_gentoo_uri}/fancontrol-init.d-2"
+	"${_gentoo_uri}/lm_sensors-3-init.d")
 sha256sums=('02230edf5efbb0a4de3840cd76f9ebf431c57a246fa7388e9dbeb0fe26fe7b8d'
             'e75915a13d3c5eb405e2809186a6ab396b2e0180c3efc94e663f9eb4e276e8ef'
             '36d489296c31736f8015b0ce27052b3f1555b7fe6335120c0477b044b8e4fb8d'
@@ -26,22 +26,18 @@ sha256sums=('02230edf5efbb0a4de3840cd76f9ebf431c57a246fa7388e9dbeb0fe26fe7b8d'
 pkgver() {
   date +%Y%m%d
 }
-		
+
 package() {
-	install -Dm755 "${srcdir}/sensord-conf.d" "${pkgdir}/etc/conf.d/sensord"
-	install -Dm755 "${srcdir}/sensord-4-init.d" "${pkgdir}/etc/init.d/sensord"
-	
-	install -Dm755 "${srcdir}/fancontrol-init.d-2" "${pkgdir}/etc/init.d/fancontrol"
-	install -Dm755 "${srcdir}/lm_sensors-3-init.d" "${pkgdir}/etc/init.d/lm_sensors"
-	
-	_fix_init "${pkgdir}/etc/init.d/sensord"	
-	_fix_init "${pkgdir}/etc/init.d/fancontrol"	
-	_fix_init "${pkgdir}/etc/init.d/lm_sensors"
+  install -Dm755 "${srcdir}/sensord-conf.d" "${pkgdir}/etc/conf.d/sensord"
+  install -Dm755 "${srcdir}/sensord-4-init.d" "${pkgdir}/etc/init.d/sensord"
+  install -Dm755 "${srcdir}/fancontrol-init.d-2" "${pkgdir}/etc/init.d/fancontrol"
+  install -Dm755 "${srcdir}/lm_sensors-3-init.d" "${pkgdir}/etc/init.d/lm_sensors"
+  _fix_init "${pkgdir}/etc/init.d/sensord"	
+  _fix_init "${pkgdir}/etc/init.d/fancontrol"	
+  _fix_init "${pkgdir}/etc/init.d/lm_sensors"
 
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }

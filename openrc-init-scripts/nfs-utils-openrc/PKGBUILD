@@ -16,13 +16,13 @@ depends=('openrc' "${_name}" 'rpcbind-openrc' 'device-mapper-openrc')
 optdepends=('ypbind-mt' 'quota-tools' 'bind-openrc')
 install=${_name}.install
 source=("${_gentoo_uri}/nfs.confd"
-		"${_gentoo_uri}/nfs.initd"
-		"${_gentoo_uri}/nfsmount.initd"
-		"${_gentoo_uri}/rpc.gssd.initd"
-		"${_gentoo_uri}/rpc.idmapd.initd"
-		"${_gentoo_uri}/rpc.pipefs.initd"
-		"${_gentoo_uri}/rpc.statd.initd"
-		"${_gentoo_uri}/rpc.svcgssd.initd")
+	"${_gentoo_uri}/nfs.initd"
+	"${_gentoo_uri}/nfsmount.initd"
+	"${_gentoo_uri}/rpc.gssd.initd"
+	"${_gentoo_uri}/rpc.idmapd.initd"
+	"${_gentoo_uri}/rpc.pipefs.initd"
+	"${_gentoo_uri}/rpc.statd.initd"
+	"${_gentoo_uri}/rpc.svcgssd.initd")
 sha256sums=('22bba4ee5d58bae422650875c7c8a797a52fc121ddd02d48297c075b8a35401e'
             '8df22f253770a24c6a53ce332d821ab680d0ede18d0e968c1c5d8b3796cb74be'
             'b57637c7eb8e40b5cc1655e8afa69dc0aaecbd3186bdca3301586d1e9b797357'
@@ -35,30 +35,25 @@ sha256sums=('22bba4ee5d58bae422650875c7c8a797a52fc121ddd02d48297c075b8a35401e'
 pkgver() {
   date +%Y%m%d
 }
-		
-package() {
-	
-	install -Dm755 "${srcdir}/nfs.confd" "${pkgdir}/etc/conf.d/nfs-rc"
-	install -Dm755 "${srcdir}/nfs.initd" "${pkgdir}/etc/init.d/nfs"
-	install -Dm755 "${srcdir}/nfsmount.initd" "${pkgdir}/etc/init.d/nfsmount"
-	install -Dm755 "${srcdir}/rpc.gssd.initd" "${pkgdir}/etc/init.d/rpc.gssd"
-	install -Dm755 "${srcdir}/rpc.idmapd.initd" "${pkgdir}/etc/init.d/rpc.idmapd"
-	install -Dm755 "${srcdir}/rpc.pipefs.initd" "${pkgdir}/etc/init.d/rpc.pipefs"
-	install -Dm755 "${srcdir}/rpc.statd.initd" "${pkgdir}/etc/init.d/rpc.statd"
-	install -Dm755 "${srcdir}/rpc.svcgssd.initd" "${pkgdir}/etc/init.d/rpc.svcgssd"
-	
-	_fix_init "${pkgdir}/etc/init.d/nfs"
-	_fix_init "${pkgdir}/etc/init.d/nfsmount"
-	_fix_init "${pkgdir}/etc/init.d/rpc.gssd"
-	_fix_init "${pkgdir}/etc/init.d/rpc.idmapd"
-	_fix_init "${pkgdir}/etc/init.d/rpc.pipefs"
-	_fix_init "${pkgdir}/etc/init.d/rpc.statd"
-	_fix_init "${pkgdir}/etc/init.d/rpc.svcgssd"
 
+package() {
+  install -Dm755 "${srcdir}/nfs.confd" "${pkgdir}/etc/conf.d/nfs-rc"
+  install -Dm755 "${srcdir}/nfs.initd" "${pkgdir}/etc/init.d/nfs"
+  install -Dm755 "${srcdir}/nfsmount.initd" "${pkgdir}/etc/init.d/nfsmount"
+  install -Dm755 "${srcdir}/rpc.gssd.initd" "${pkgdir}/etc/init.d/rpc.gssd"
+  install -Dm755 "${srcdir}/rpc.idmapd.initd" "${pkgdir}/etc/init.d/rpc.idmapd"
+  install -Dm755 "${srcdir}/rpc.pipefs.initd" "${pkgdir}/etc/init.d/rpc.pipefs"
+  install -Dm755 "${srcdir}/rpc.statd.initd" "${pkgdir}/etc/init.d/rpc.statd"
+  install -Dm755 "${srcdir}/rpc.svcgssd.initd" "${pkgdir}/etc/init.d/rpc.svcgssd"
+  _fix_init "${pkgdir}/etc/init.d/nfs"
+  _fix_init "${pkgdir}/etc/init.d/nfsmount"
+  _fix_init "${pkgdir}/etc/init.d/rpc.gssd"
+  _fix_init "${pkgdir}/etc/init.d/rpc.idmapd"
+  _fix_init "${pkgdir}/etc/init.d/rpc.pipefs"
+  _fix_init "${pkgdir}/etc/init.d/rpc.statd"
+  _fix_init "${pkgdir}/etc/init.d/rpc.svcgssd"
 }
 
 _fix_init(){
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i $1
-	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i $1
 }
