@@ -3,12 +3,13 @@
 
 pkgname=netifrc
 pkgver=0.1
-pkgrel=3
+pkgrel=4
 pkgdesc="Gentoo Network Interface Management Scripts"
 arch=('any')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD')
 depends=('openrc>=0.12')
+backup=('etc/conf.d/net')
 install=${pkgname}.install
 source=("http://dev.gentoo.org/~williamh/dist/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('65eb507bda9ed51fdac2dcf70de3428229758257039ea4ce8360edb0903e39e9')
@@ -30,7 +31,7 @@ package() {
 	LIBEXECDIR="/usr/lib/netifrc" \
 	DESTDIR="${pkgdir}" \
       install
-		
+
   install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
 
 }

@@ -2,11 +2,11 @@ _svc=('lm_sensors' 'fancontrol' 'sensord')
 _rlvl=('boot' 'default')
 
 post_install() {
-	_cmd="rc-update add ${svc[0]} ${rlvl[0]}"
+	_cmd="rc-update add ${_svc[0]} ${_rlvl[0]}"
 	echo "	==> run '${_cmd}'"
-	_cmd="rc-update add ${svc[1]} ${rlvl[1]}"
+	_cmd="rc-update add ${_svc[1]} ${_rlvl[1]}"
 	echo "	==> run '${_cmd}'"
-	_cmd="rc-update add ${svc[2]} ${rlvl[1]}"
+	_cmd="rc-update add ${_svc[2]} ${_rlvl[1]}"
 	echo "	==> run '${_cmd}'"
 }
 
@@ -15,10 +15,10 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del ${svc[0]} ${rlvl[0]}"
+	_cmd="rc-update del ${_svc[0]} ${_rlvl[0]}"
 	echo "	==> run '${_cmd}'"
-	_cmd="rc-update del ${svc[1]} ${rlvl[1]}"
+	_cmd="rc-update del ${_svc[1]} ${_rlvl[1]}"
 	echo "	==> run '${_cmd}'"
-	_cmd="rc-update del ${svc[2]} ${rlvl[1]}"
+	_cmd="rc-update del ${_svc[2]} ${_rlvl[1]}"
 	echo "	==> run '${_cmd}'"
 }
