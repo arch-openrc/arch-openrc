@@ -4,7 +4,7 @@
 
 pkgname=kdebase-workspace-consolekit
 _pkgname=kde-workspace
-pkgver=4.11.1
+pkgver=4.11.2
 pkgrel=1
 pkgdesc="Provides the consolkit enabled interface and basic tools for the KDE workspace"
 arch=('i686' 'x86_64')
@@ -30,15 +30,6 @@ backup=('usr/share/config/kdm/kdmrc')
 source=("http://download.kde.org/stable/${pkgver}/src/${_pkgname}-${pkgver}.tar.xz"
         'kde.pam' 'kde-np.pam' 'kscreensaver.pam' 'kdm.service' 'kdm.logrotate'
         'etc-scripts.patch' 'terminate-server.patch' 'kdm-xinitrd.patch')
-sha256sums=('78a157b09412de8067998268b0543f90c8120c3968a197d1ddd183eae6b5ff6e'
-            '812111f166fdf9ab7ef9400c4414cbe26fac5210f2292399d4446fe6e89eea54'
-            '3ca72a5f34d29747d12b9b41888d0e369956ba383478850c578e3aa109444214'
-            '0a985e3b699578de3e22b25ee72abe4e24ca8730e4afb37dfeed367823bdb0d5'
-            'b932b7761651df48746b7e5e178fd4c7d322e9f6c41dcf2ec2c51f91a6440d85'
-            '6fdf115bd6b6cf15dddbe3e0eab00fb62a296d5292759f1a09dcb865a357c220'
-            'a4c05882dd3a340960dec495cb2fd19cf2523d14a7add5b77af0f98cdff4c394'
-            'e5329c87f14ce04f80291f1f7a2be47994f3d54425b572c308b38e2718390959'
-            'df7fe57d73c5a017fed698976b00e6488b8c2f555ff9411e55c015cbcef3312b')
 
 prepare() {
   mkdir build
@@ -82,3 +73,12 @@ package() {
   install -Dm644 "${srcdir}"/kdm.logrotate "${pkgdir}"/etc/logrotate.d/kdm
 }
 
+sha256sums=('260e46f30b8faaa1ad834d9fa69465ab1f565cb18a174bd814327083bb28d917'
+            '812111f166fdf9ab7ef9400c4414cbe26fac5210f2292399d4446fe6e89eea54'
+            '3ca72a5f34d29747d12b9b41888d0e369956ba383478850c578e3aa109444214'
+            '0a985e3b699578de3e22b25ee72abe4e24ca8730e4afb37dfeed367823bdb0d5'
+            'b932b7761651df48746b7e5e178fd4c7d322e9f6c41dcf2ec2c51f91a6440d85'
+            '6fdf115bd6b6cf15dddbe3e0eab00fb62a296d5292759f1a09dcb865a357c220'
+            'a4c05882dd3a340960dec495cb2fd19cf2523d14a7add5b77af0f98cdff4c394'
+            'e5329c87f14ce04f80291f1f7a2be47994f3d54425b572c308b38e2718390959'
+            'df7fe57d73c5a017fed698976b00e6488b8c2f555ff9411e55c015cbcef3312b')
