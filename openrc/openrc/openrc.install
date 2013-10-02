@@ -1,7 +1,9 @@
 post_install() {
+  rc-update -u
+  echo
 cat <<MSG
 	ATTENTION:
-	The loopback interface has been moved to netifrc package. 
+	The loopback interface has been moved to netifrc package.
 	If you have services which do not start because of this,
 	they can be fixed by adding rc_need=\"!net\""
 	to the /etc/conf.d/<servicename> file.
