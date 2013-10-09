@@ -32,5 +32,5 @@ package() {
 }
 
 _fix_init(){
-  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/vsftpd/|/etc/|g' -i $1
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/vsftpd/|/etc/|g' -e 's|/usr/libexec/|/usr/lib/|g' -i $1
 }
