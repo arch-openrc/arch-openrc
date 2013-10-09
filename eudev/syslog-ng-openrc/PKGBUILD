@@ -63,6 +63,7 @@ package() {
 _fix_init(){
   sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }
+
 sha256sums=('a691df5c6dc480fa8aa8fba0e8afd7364370c35a265973eaf1cb0dcf1ddab7f5'
             '0be3d8b5b5de79392a67ed6a074e562b542beab117cd608529a6a56af678b6f8'
             '93c935eca56854011ea9e353b7a1da662ad40b2e8452954c5b4b5a1d5b2d5317'
