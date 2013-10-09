@@ -89,3 +89,9 @@ package() {
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "$pkgdir/etc/init.d/networkmanager"
 }
 
+sha256sums=('2289800de66fd7f8c141e029923beb39f43952e442b3cb864e3bf73b26c0c369'
+            '3ee158de440df6e6a8ddcc7c0622cb94039cffe6b0cc0b88d35a53333d32f73d'
+            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
+            '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
+            '34f53d9ac1ad65eda6942dc3059117f60f6321059ca23f4fbfcc2f2edcae151f'
+            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460')
