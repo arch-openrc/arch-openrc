@@ -1,7 +1,16 @@
 # arg 1:  the new package version
 # arg 2:  the old package version
+_svc="udev-postmount"
+_rlvl="default"
+post_install() {
+	_cmd="rc-update add ${_svc} ${_rlvl}"
+	${_cmd}
+	rc-update -u
+}
 
 post_upgrade() {
+  post_install "$1"
+
   if [ "$(vercmp $2 181-3)" -lt 0 ]; then
     echo "udev changes:"
     if [ "$(vercmp $2 168)" -lt 0 ]; then
@@ -59,8 +68,14 @@ post_upgrade() {
       echo " * /etc/udev/rules.d/80-net-name-slot.rules"
       echo
       echo " * See http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames"
-    fi 
+    fi
     echo " * if your kernel does not provide /dev/loop-control, you need to manually"
     echo "   load the 'loop' module before using losetup"
   fi
+}
+
+post_remove() {
+	_cmd="rc-update del ${_svc} ${_rlvl}"
+	${_cmd}
+	rc-update -u
 }
