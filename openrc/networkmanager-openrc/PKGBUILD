@@ -6,7 +6,8 @@
 # Contributor: Will Rea <sillywilly@gmail.com>
 # Contributor: Valentine Sinitsyn <e_val@inbox.ru>
 
-_rn=NetworkManager
+_name=NetworkManager
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files"
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.6
@@ -14,7 +15,7 @@ pkgrel=1
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
-url="http://www.gnome.org/projects/$_rn/"
+url="http://www.gnome.org/projects/${_name}/"
 groups=('openrc-misc')
 depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'consolekit' 'udev' 'wpa_supplicant' 'dhcp-client'
          'libsoup' 'modemmanager')
@@ -28,23 +29,22 @@ options=('!libtool')
 provides=('networkmanager')
 conflicts=('networkmanager')
 options=('!libtool')
-backup=("etc/$_rn/$_rn.conf")
+backup=("etc/${_name}/${_name}.conf")
 install=networkmanager.install
-_my_url="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files"
-source=("http://ftp.gnome.org/pub/gnome/sources/$_rn/${pkgver:0:3}/$_rn-$pkgver.tar.xz"
-        "$_my_url/10-openrc-status-r3"
-        "$_my_url/conf.d.$_rn"
-        "$_my_url/init.d.$_rn"
-        "$_my_url/nm-system-settings.conf-ifnet"
+source=("http://ftp.gnome.org/pub/gnome/sources/${_name}/${pkgver:0:3}/${_name}-${pkgver}.tar.xz"
+        "${_gentoo_uri}/10-openrc-status-r4"
+        "${_gentoo_uri}/conf.d.${_name}"
+        "${_gentoo_uri}/init.d.${_name}"
+        "${_gentoo_uri}/nm-system-settings.conf-ifnet"
         'disable_set_hostname.patch')
 
 prepare() {
-  cd $_rn-$pkgver
+  cd ${_name}-${pkgver}
   patch -Np1 -i ../disable_set_hostname.patch
 }
 
 build() {
-  cd $_rn-$pkgver
+  cd ${_name}-${pkgver}
 
   ./configure \
     --prefix=/usr \
@@ -71,26 +71,26 @@ build() {
 }
 
 package() {
-	cd $_rn-$pkgver
+	cd ${_name}-${pkgver}
 	make DESTDIR="$pkgdir" install
 
-	install -m644 "$srcdir/nm-system-settings.conf-ifnet" "$pkgdir/etc/$_rn/$_rn.conf"
+	install -m644 "${srcdir}/nm-system-settings.conf-ifnet" "$pkgdir/etc/${_name}/${_name}.conf"
 
 	rm -r "$pkgdir/var/run"
 
-	install -Dm755 "$srcdir/conf.d.$_rn" "$pkgdir/etc/conf.d/networkmanager"
+	install -Dm755 "${srcdir}/conf.d.${_name}" "$pkgdir/etc/conf.d/networkmanager"
 
-	install -Dm755 "$srcdir/init.d.$_rn" "$pkgdir/etc/init.d/networkmanager"
+	install -Dm755 "${srcdir}/init.d.${_name}" "$pkgdir/etc/init.d/networkmanager"
 
-	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
+	install -Dm755 "${srcdir}/10-openrc-status-r4" "$pkgdir/etc/${_name}/dispatcher.d/10-openrc-status"
 
-	sed -e 's|@EPREFIX@/sbin|/bin|' -e 's|@EPREFIX@/usr/sbin|/usr/bin|' -e 's/NetworkManager/networkmanager/g' -e 's|#!/bin/sh|#!/usr/bin/sh|' -i "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
+	sed -e 's|@EPREFIX@/sbin|/bin|' -e 's|@EPREFIX@/usr/sbin|/usr/bin|' -e 's/NetworkManager/networkmanager/g' -e 's|#!/bin/sh|#!/usr/bin/sh|' -i "$pkgdir/etc/${_name}/dispatcher.d/10-openrc-status"
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "$pkgdir/etc/init.d/networkmanager"
 }
 
 sha256sums=('2289800de66fd7f8c141e029923beb39f43952e442b3cb864e3bf73b26c0c369'
-            '3ee158de440df6e6a8ddcc7c0622cb94039cffe6b0cc0b88d35a53333d32f73d'
+            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
             '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
             '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
             '34f53d9ac1ad65eda6942dc3059117f60f6321059ca23f4fbfcc2f2edcae151f'
