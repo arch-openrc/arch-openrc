@@ -21,11 +21,11 @@ optdepends=('libx11: dbus-launch support')
 provides=('dbus-core' 'dbus')
 conflicts=('dbus')
 #replaces=('dbus-core')
+install=${_name}.install
 options=(!libtool)
 source=("http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz"
 	"${_gentoo_uri}/dbus.initd"
-        '30-dbus'
-        'systemd-user-session.patch')
+        '30-dbus')
 
 build() {
   cd dbus-$pkgver
@@ -46,8 +46,6 @@ build() {
     --disable-asserts \
     --disable-systemd
 
-  patch -p1 < "$srcdir/systemd-user-session.patch"
-
   make
 }
 
@@ -57,7 +55,7 @@ package(){
 
   rm -rf "$pkgdir/var/run"
 
-  install -Dm755 ../30-dbus "$pkgdir/etc/X11/xinit/xinitrc.d/30-dbus"
+  install -Dm755 ${srcdir}/30-dbus "$pkgdir/etc/X11/xinit/xinitrc.d/30-dbus"
 
   install -Dm644 COPYING "$pkgdir/usr/share/licenses/dbus/COPYING"
 
@@ -70,5 +68,4 @@ _fix_init(){
 }
 sha256sums=('5676011d5714682062c4cb0cdd3365c15025809bc26ddbec3e4edeea7867f56c'
             '98e37b8b6ed25004e48c5855d74c9361eea06d3fee13cefcc0ed10ccf452aa01'
-            'a1c324ae758046f0c3ef46db02ab873d35adeaab9980c2e0ee293accb89d0d2c'
-            '160f054bbb6bb38588b89d8f39a6bc51043d404888b6f28610e80bf82324edce')
+            'a1c324ae758046f0c3ef46db02ab873d35adeaab9980c2e0ee293accb89d0d2c')
