@@ -9,8 +9,8 @@
 _rn=NetworkManager
 
 pkgname=networkmanager-openrc
-pkgver=0.9.8.2
-pkgrel=6
+pkgver=0.9.8.6
+pkgrel=1
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -21,7 +21,7 @@ depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'consolekit' 'udev' 'wpa_
 makedepends=('intltool' 'dhcpcd' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' 'git')
 optdepends=('dhclient: DHCPv6 support'
             'dnsmasq: Connection sharing'
-            'bluez4: Bluetooth support'
+            'bluez: Bluetooth support'
             'openresolv: resolvconf support'
             'ppp: Dialup connection support')
 options=('!libtool')
@@ -41,9 +41,8 @@ source=("http://ftp.gnome.org/pub/gnome/sources/$_rn/${pkgver:0:3}/$_rn-$pkgver.
 prepare() {
   cd $_rn-$pkgver
   patch -Np1 -i ../disable_set_hostname.patch
-}            
-            
-            
+}
+
 build() {
   cd $_rn-$pkgver
 
@@ -76,23 +75,17 @@ package() {
 	make DESTDIR="$pkgdir" install
 
 	install -m644 "$srcdir/nm-system-settings.conf-ifnet" "$pkgdir/etc/$_rn/$_rn.conf"
-	
+
 	rm -r "$pkgdir/var/run"
-	
+
 	install -Dm755 "$srcdir/conf.d.$_rn" "$pkgdir/etc/conf.d/networkmanager"
-	
+
 	install -Dm755 "$srcdir/init.d.$_rn" "$pkgdir/etc/init.d/networkmanager"
-	
+
 	install -Dm755 "$srcdir/10-openrc-status-r3" "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
-	
+
 	sed -e 's|@EPREFIX@/sbin|/bin|' -e 's|@EPREFIX@/usr/sbin|/usr/bin|' -e 's/NetworkManager/networkmanager/g' -e 's|#!/bin/sh|#!/usr/bin/sh|' -i "$pkgdir/etc/$_rn/dispatcher.d/10-openrc-status"
-	
+
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "$pkgdir/etc/init.d/networkmanager"
 }
 
-sha256sums=('5c0b2f71b2f61e0dfbe95cebad83001758db252d5cdf5b6f7ceebac9c6bd7ead'
-            '3ee158de440df6e6a8ddcc7c0622cb94039cffe6b0cc0b88d35a53333d32f73d'
-            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
-            '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
-            '34f53d9ac1ad65eda6942dc3059117f60f6321059ca23f4fbfcc2f2edcae151f'
-            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460')
