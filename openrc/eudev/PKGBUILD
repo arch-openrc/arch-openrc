@@ -57,7 +57,7 @@ package() {
   install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
   install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
 
-  install -Dm644 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
+  install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
   _fix_init "${pkgdir}/etc/init.d/udev-postmount"
 }
 

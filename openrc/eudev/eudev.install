@@ -1,10 +1,8 @@
-# arg 1:  the new package version
-# arg 2:  the old package version
 _svc="udev-postmount"
 _rlvl="default"
+
 post_install() {
-	_cmd="rc-update add ${_svc} ${_rlvl}"
-	${_cmd}
+	rc-update add ${_svc} ${_rlvl}
 	rc-update -u
 }
 
@@ -75,7 +73,6 @@ post_upgrade() {
 }
 
 post_remove() {
-	_cmd="rc-update del ${_svc} ${_rlvl}"
-	${_cmd}
+	rc-update del ${_svc} ${_rlvl}
 	rc-update -u
 }
