@@ -1,6 +1,6 @@
-# $Id: PKGBUILD 179641 2013-03-08 23:40:46Z foutrelis $
-# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
-# Maintainer: Jan de Groot <jgc@archlinxu.org>
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+# Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# Contributor: Jan de Groot <jgc@archlinxu.org>
 # Contributor: Wael Nasreddine <gandalf@siemens-mobiles.org>
 # Contributor: Tor Krill <tor@krill.nu>
 # Contributor: Will Rea <sillywilly@gmail.com>
@@ -40,7 +40,7 @@ source=("http://ftp.gnome.org/pub/gnome/sources/${_name}/${pkgver:0:3}/${_name}-
 
 prepare() {
   cd ${_name}-${pkgver}
-  patch -Np1 -i ../disable_set_hostname.patch
+  patch -Np1 -i ${srcdir}/disable_set_hostname.patch
 }
 
 build() {
@@ -72,21 +72,21 @@ build() {
 
 package() {
 	cd ${_name}-${pkgver}
-	make DESTDIR="$pkgdir" install
+	make DESTDIR="${pkgdir}" install
 
-	install -m644 "${srcdir}/nm-system-settings.conf-ifnet" "$pkgdir/etc/${_name}/${_name}.conf"
+	install -m644 "${srcdir}/nm-system-settings.conf-ifnet" "${pkgdir}/etc/${_name}/${_name}.conf"
 
-	rm -r "$pkgdir/var/run"
+	rm -r "${pkgdir}/var/run"
 
-	install -Dm755 "${srcdir}/conf.d.${_name}" "$pkgdir/etc/conf.d/networkmanager"
+	install -Dm755 "${srcdir}/conf.d.${_name}" "${pkgdir}/etc/conf.d/networkmanager"
 
-	install -Dm755 "${srcdir}/init.d.${_name}" "$pkgdir/etc/init.d/networkmanager"
+	install -Dm755 "${srcdir}/init.d.${_name}" "${pkgdir}/etc/init.d/networkmanager"
 
-	install -Dm755 "${srcdir}/10-openrc-status-r4" "$pkgdir/etc/${_name}/dispatcher.d/10-openrc-status"
+	install -Dm755 "${srcdir}/10-openrc-status-r4" "${pkgdir}/etc/${_name}/dispatcher.d/10-openrc-status"
 
-	sed -e 's|@EPREFIX@/sbin|/bin|' -e 's|@EPREFIX@/usr/sbin|/usr/bin|' -e 's/NetworkManager/networkmanager/g' -e 's|#!/bin/sh|#!/usr/bin/sh|' -i "$pkgdir/etc/${_name}/dispatcher.d/10-openrc-status"
+	sed -e 's|@EPREFIX@/sbin|/bin|' -e 's|@EPREFIX@/usr/sbin|/usr/bin|' -e 's/NetworkManager/networkmanager/g' -e 's|#!/bin/sh|#!/usr/bin/sh|' -i "${pkgdir}/etc/${_name}/dispatcher.d/10-openrc-status"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "$pkgdir/etc/init.d/networkmanager"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "${pkgdir}/etc/init.d/networkmanager"
 }
 
 sha256sums=('2289800de66fd7f8c141e029923beb39f43952e442b3cb864e3bf73b26c0c369'
