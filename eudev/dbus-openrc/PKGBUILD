@@ -18,7 +18,7 @@ groups=('openrc-desktop')
 depends=('expat' 'coreutils' 'filesystem' 'openrc')
 makedepends=('libx11' 'udev')
 optdepends=('libx11: dbus-launch support')
-provides=('dbus-core')
+provides=('dbus-core' 'dbus')
 conflicts=('dbus')
 #replaces=('dbus-core')
 options=(!libtool)
@@ -43,9 +43,8 @@ build() {
     --disable-verbose-mode \
     --disable-static \
     --disable-tests  \
-    --disable-asserts
-    #--with-systemdsystemunitdir=/usr/lib/systemd/system \
-    #--enable-systemd
+    --disable-asserts \
+    --disable-systemd
 
   patch -p1 < "$srcdir/systemd-user-session.patch"
 
