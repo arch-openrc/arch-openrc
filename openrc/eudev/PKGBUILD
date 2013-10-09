@@ -9,19 +9,23 @@ pkgdesc="The userspace dev tools (udev) forked by Gentoo with openrc support"
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
 license=('GPL')
-groups=('base')
+#groups=('openrc-base')
 depends=('acl' 'bash' 'glib2' 'hwids' 'kmod' 'udev-init-scripts' 'util-linux')
 makedepends=('docbook-xsl' 'gobject-introspection' 'gperf' 'libxslt')
 _udevver=208
 provides=("udev=${_udevver}" "systemd=${_udevver}" "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
 conflicts=('udev' 'systemd' 'libsystemd' 'systemd-tools')
-#backup=('etc/udev/udev.conf' 'etc/udev/rules.d/80-net-name-slot.rules')
+backup=('etc/udev/udev.conf')
 install=${pkgname}.install
 options=(!makeflags !libtool)
 source=("${url}/${pkgname}-${pkgver}.tar.gz"
 	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-fs/eudev/files/udev-postmount"
         'initcpio_hooks'
         'initcpio_install')
+sha256sums=('6f1f0b15971a53c7070a44c902c7c1303f952927aa6370dbdf4d84d8bc09fac2'
+            '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb'
+            '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
+            '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
@@ -58,9 +62,6 @@ package() {
 }
 
 _fix_init() {
-    sed -e 's|#!/usr/bin/runscript|#!/usr/bin/runscript|' -i $1
+    sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i $1
 }
-sha256sums=('6f1f0b15971a53c7070a44c902c7c1303f952927aa6370dbdf4d84d8bc09fac2'
-            '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb'
-            '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
-            '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390')
+
