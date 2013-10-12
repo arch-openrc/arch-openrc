@@ -10,7 +10,7 @@ _name=NetworkManager
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files"
 
 pkgname=networkmanager-openrc
-pkgver=0.9.8.6
+pkgver=0.9.8.8
 pkgrel=1
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
@@ -88,8 +88,7 @@ package() {
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "${pkgdir}/etc/init.d/networkmanager"
 }
-
-sha256sums=('2289800de66fd7f8c141e029923beb39f43952e442b3cb864e3bf73b26c0c369'
+sha256sums=('8a0a3de9cd2897f778193aa5f04c8a6f6f87fe07f7a088aab26d2b35baa17a55'
             'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
             '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
             '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
