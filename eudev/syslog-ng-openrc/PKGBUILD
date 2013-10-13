@@ -9,10 +9,11 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_
 
 pkgname=syslog-ng-openrc
 pkgver=3.4.3
-pkgrel=1
+pkgrel=2
 pkgdesc="Next-generation syslogd with advanced networking and filtering capabilities"
 arch=('i686' 'x86_64')
 license=('GPL2')
+groups=('openrc-misc')
 url="http://www.balabit.com/network-security/syslog-ng/"
 depends=('awk' 'eventlog' 'glib2' 'libcap' 'openrc' 'openssl' 'udev')
 makedepends=('flex' 'pkg-config' 'python2')
