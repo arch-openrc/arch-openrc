@@ -4,12 +4,12 @@
 
 pkgname='eudev'
 pkgver=1.3
-pkgrel=1
+pkgrel=2
 pkgdesc="The userspace dev tools (udev) forked by Gentoo with openrc support"
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
 license=('GPL')
-#groups=('openrc-base')
+groups=('openrc-base')
 depends=('acl' 'bash' 'glib2' 'hwids' 'kmod' 'udev-init-scripts' 'util-linux')
 makedepends=('docbook-xsl' 'gobject-introspection' 'gperf' 'libxslt')
 _udevver=208
@@ -19,7 +19,7 @@ backup=('etc/udev/udev.conf')
 install=${pkgname}.install
 options=(!makeflags !libtool)
 source=("${url}/${pkgname}-${pkgver}.tar.gz"
-	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-fs/eudev/files/udev-postmount"
+	"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-fs/${pkgname}/files/udev-postmount"
         'initcpio_hooks'
         'initcpio_install')
 sha256sums=('6f1f0b15971a53c7070a44c902c7c1303f952927aa6370dbdf4d84d8bc09fac2'
