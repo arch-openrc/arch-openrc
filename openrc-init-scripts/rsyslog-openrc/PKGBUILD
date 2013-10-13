@@ -12,7 +12,7 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 depends=('openrc' "${_name}")
-groups=('openrc-misc')
+#groups=('openrc-misc')
 install=${_name}.install
 source=("${_gentoo_uri}/rsyslog.confd"
 	"${_gentoo_uri}/rsyslog.initd")
@@ -30,5 +30,5 @@ package() {
 }
 
 _fix_init(){
-  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1	
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
 }
