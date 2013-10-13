@@ -13,7 +13,7 @@ arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
 license=('GPL')
 groups=('openrc-desktop')
-depends=('polkit' 'zlib' 'libx11' 'dbus-glib' 'dbus-openrc')
+depends=('polkit-consolekit' 'zlib' 'libx11' 'dbus-glib' 'dbus-openrc' 'udev')
 makedepends=('pkgconfig' 'xmlto' 'docbook-xsl')
 provides=('consolekit')
 conflicts=('consolekit')
@@ -55,6 +55,7 @@ prepare(){
     --enable-pam-module \
     --with-pam-module-dir=/usr/lib/security \
     --enable-docbook-docs \
+    --with-dbus-services=/usr/share/dbus-1/services \
     --enable-udev-acl
   make
 }
