@@ -4,13 +4,13 @@
 
 pkgname='eudev'
 pkgver=1.3
-pkgrel=2
+pkgrel=3
 pkgdesc="The userspace dev tools (udev) forked by Gentoo with openrc support"
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
 license=('GPL')
 groups=('openrc-base')
-depends=('acl' 'bash' 'glib2' 'hwids' 'kmod' 'udev-init-scripts' 'util-linux')
+depends=('acl' 'bash' 'glib2' 'hwids' 'kbd' 'kmod' 'udev-init-scripts' 'util-linux')
 makedepends=('docbook-xsl' 'gobject-introspection' 'gperf' 'libxslt')
 _udevver=208
 provides=("udev=${_udevver}" "systemd=${_udevver}" "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
