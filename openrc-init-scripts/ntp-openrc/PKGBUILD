@@ -11,7 +11,7 @@ pkgdesc="OpenRC ${_name} init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-desktop')
+groups=('openrc-net')
 depends=('openrc' "${_name}")
 optdepends=('bind-openrc')
 provides=('openrc-timed')
@@ -42,7 +42,7 @@ package() {
   install -Dm755 "${srcdir}/sntp.confd" "${pkgdir}/etc/conf.d/sntp"
   install -Dm755 "${srcdir}/sntp.rc" "${pkgdir}/etc/init.d/sntp"
   _fix_init "${pkgdir}/etc/init.d/ntpd"
-  _fix_init "${pkgdir}/etc/init.d/ntp-client"	
+  _fix_init "${pkgdir}/etc/init.d/ntp-client"
   _fix_init "${pkgdir}/etc/init.d/sntp"
 }
 
