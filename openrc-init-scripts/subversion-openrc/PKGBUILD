@@ -11,7 +11,7 @@ pkgdesc="OpenRC ${_name} init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-vcs')
+groups=('openrc-dev')
 depends=('openrc' "${_name}")
 install=${_name}.install
 source=("${_gentoo_uri}/svnserve.confd"
@@ -25,7 +25,7 @@ pkgver() {
 
 package() {
   install -Dm755 "${srcdir}/svnserve.confd" "${pkgdir}/etc/conf.d/svnserve-rc"
-  install -Dm755 "${srcdir}/svnserve.initd2" "${pkgdir}/etc/init.d/svnserve-rc"	
+  install -Dm755 "${srcdir}/svnserve.initd2" "${pkgdir}/etc/init.d/svnserve-rc"
   _fix_init "${pkgdir}/etc/conf.d/svnserve-rc"
   _fix_init "${pkgdir}/etc/init.d/svnserve-rc"
 }
