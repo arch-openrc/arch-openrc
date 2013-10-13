@@ -2,23 +2,24 @@
 
 pkgname=sysvinit
 pkgver=2.88
-pkgrel=14
+pkgrel=15
 pkgdesc="Linux System V Init"
 arch=('i686' 'x86_64')
 url="http://savannah.nongnu.org/projects/sysvinit"
 license=('GPL')
 depends=('util-linux' 'coreutils' 'glibc' 'awk' 'sysvinit-tools')
+conflicts=('systemd-sysvcompat')
 install=${pkgname}.install
 source=("http://download.savannah.gnu.org/releases/${pkgname}/${pkgname}-${pkgver}dsf.tar.bz2"
-		"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-apps/sysvinit/files/reboot.sh" 
+		"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-apps/sysvinit/files/reboot.sh"
 		"http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-apps/sysvinit/files/shutdown.sh")
 sha256sums=('60bbc8c1e1792056e23761d22960b30bb13eccc2cabff8c7310a01f4d5df1519'
             '967fa572014ac6dd69f5e7e24d5250abad9c20c644563b927b295778608cafef'
             '2cc84a5194a949f16a82c6215459f4bf6d8156e50d8d9130d310f085bb208d4c')
-            
+
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}dsf"
-	make 
+	make
 }
 
 package(){
@@ -26,24 +27,24 @@ package(){
  	make ROOT="${pkgdir}" install
 
  	cd ${pkgdir}
- 	
+
  	rm ${pkgdir}/bin/{pidof,mountpoint}
- 	
+
  	rm ${pkgdir}/sbin/{bootlogd,fstab-decode,killall5,sulogin}
 	rm ${pkgdir}/usr/share/man/man8/{bootlogd,fstab-decode,killall5,pidof,sulogin}.8
-	
+
 	rm -r ${pkgdir}/usr/include
-	
+
 	rm ${pkgdir}/usr/bin/{last,lastb,mesg,utmpdump,wall}
 	rm -r ${pkgdir}/usr/share/man/man1
- 	
+
  	mv ${pkgdir}/sbin/* ${pkgdir}/usr/bin/
 	rm -r ${pkgdir}/sbin
 	rm -r ${pkgdir}/bin
-	
+
 	install -Dm755 ${srcdir}/reboot.sh ${pkgdir}/etc/init.d/reboot.sh
 	install -Dm755 ${srcdir}/shutdown.sh ${pkgdir}/etc/init.d/shutdown.sh
-	
+
 	sed -e 's|/sbin/reboot|/usr/bin/reboot|g' -i ${pkgdir}/etc/init.d/reboot.sh
 	sed -e 's|/sbin/halt|/usr/bin/halt|g' -i ${pkgdir}/etc/init.d/shutdown.sh
 

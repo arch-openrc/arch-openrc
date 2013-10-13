@@ -4,7 +4,7 @@
 _gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86")
 
 pkgname=openrc
-pkgver=0.12.1
+pkgver=0.12.2
 pkgrel=1
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
@@ -14,7 +14,9 @@ groups=('openrc-base')
 depends=('bash' 'coreutils' 'glibc' 'inetutils' 'ncurses'
 	'net-tools' 'pam' 'psmisc' 'sysvinit')
 optdepends=('udev-init-scripts: udev startup scripts for openrc'
-	    'netifrc: Gentoo Network Interface Management Scripts')
+	    'netifrc: Gentoo Network Interface Management Scripts'
+	    'networkmanager-openrc: Networkmanager with openrc support'
+	    'dhcpcd-openrc: dhcpcd initscript')
 provides=('openrc')
 conflicts=('initscripts')
 backup=('etc/rc.conf' 'etc/inittab' 'etc/conf.d/consolefont' 'etc/conf.d/keymaps'
@@ -41,7 +43,7 @@ package() {
 
   install -m 644 "${srcdir}/${pkgname}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
   sed -e 's|/sbin/|/usr/bin/|g' -i "${pkgdir}/etc/inittab"
-  install -Dm 0644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgdir}"
+  install -Dm 0644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgname}"
 }
-sha256sums=('1f23b3fcc34b8e3fa987166c1b4968d3d92825541e5bd2fa65c178470a371e2f'
+sha256sums=('514b86b52bc468a1ad083fbe084c029e923d3e93467fdd212ab0891682d5b2b9'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c')

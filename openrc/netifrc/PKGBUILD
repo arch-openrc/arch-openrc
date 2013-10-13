@@ -3,11 +3,12 @@
 
 pkgname=netifrc
 pkgver=0.1
-pkgrel=4
+pkgrel=5
 pkgdesc="Gentoo Network Interface Management Scripts"
 arch=('any')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD')
+groups=('openrc-base')
 depends=('openrc>=0.12')
 backup=('etc/conf.d/net')
 install=${pkgname}.install
@@ -28,7 +29,7 @@ package() {
 	BRANDING='Arch Linux' \
 	PREFIX='/usr' \
 	SBINDIR='/usr/bin' \
-	LIBEXECDIR="/usr/lib/netifrc" \
+	LIBEXECDIR="/usr/lib/${pkgname}" \
 	DESTDIR="${pkgdir}" \
       install
 
