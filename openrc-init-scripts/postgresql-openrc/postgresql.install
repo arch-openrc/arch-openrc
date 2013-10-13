@@ -2,13 +2,13 @@ _svc="postgresql"
 _rlvl="default"
 
 post_install() {
-	datadir="/var/lib/data"
-	_usr="postgres"
-	_grp=$_usr
-	echo "	==> requires $_usr user"
-	echo "	==> requires $_grp group"
-	echo "	==> requires datadir $datadir"
-	echo "	==> run as user $_usr: 'initdb -D $datadir'"
+# 	local datadir="/var/lib/data"
+# 	local _usr="postgres"
+# 	local _grp=$_usr
+# 	echo "	==> requires $_usr user"
+# 	echo "	==> requires $_grp group"
+# 	echo "	==> requires datadir $datadir"
+# 	echo "	==> run as user $_usr: 'initdb -D $datadir'"
 	_cmd="rc-update add ${_svc} ${_rlvl}"
 	echo "	==> run '${_cmd}'"
 }
