@@ -8,6 +8,5 @@ OpenRC pkgbuilds
 * openrc-misc
 * openrc-mobile
 * openrc-net
-* openrc-db
+* openrc-dev
 * openrc-fs
-* openrc-vcs
