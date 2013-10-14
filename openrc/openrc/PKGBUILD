@@ -5,14 +5,13 @@ _gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86")
 
 pkgname=openrc
 pkgver=0.12.2
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD')
 groups=('openrc-base')
-depends=('bash' 'coreutils' 'glibc' 'inetutils' 'ncurses'
-	'net-tools' 'pam' 'psmisc' 'sysvinit')
+depends=('inetutils' 'net-tools' 'psmisc' 'sysvinit' 'pkg-config')
 optdepends=('udev-init-scripts: udev startup scripts for openrc'
 	    'netifrc: Gentoo Network Interface Management Scripts'
 	    'networkmanager-openrc: Networkmanager with openrc support'
