@@ -1,4 +1,4 @@
-_svc="ntpd"
+_svc="slapd"
 _rlvl="default"
 
 post_install() {
