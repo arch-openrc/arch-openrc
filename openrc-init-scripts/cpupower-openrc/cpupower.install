@@ -1,4 +1,4 @@
-_svc="acpid"
+_svc="cpupower"
 _rlvl="default"
 
 post_install() {
