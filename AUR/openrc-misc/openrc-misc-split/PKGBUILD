@@ -24,6 +24,13 @@ source=("${_gentoo_uri}/sys-process/fcron/files/fcron.init.3"
 	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/rsyslog.initd"
 	"${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd")
 
+sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
+            '1980b5dadcd9478e653ef05c099ef45caacfdf12a73a3745b39322f75773a738'
+            'e0b5a15eab16e378b78d8ee5fa6e2eba630b5e55e864075d3e86fb89f9ea4e71'
+            'ff2634927d3208ac2c82d352f0a7dc9fef1d0ee098d18f818d4417ac04516e9c'
+            '7b3b32e89c051566b68c5e5a077cd5960da183e071e411b1248d4e4702a24279'
+            '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac')
+
 pkgver() {
   date +%Y%m%d
 }
