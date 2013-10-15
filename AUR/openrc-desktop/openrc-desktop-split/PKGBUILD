@@ -1,16 +1,16 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-pkgbase=desktop
-pkgname=desktop
+pkgbase=openrc-desktop
+pkgname=openrc-desktop
 true && pkgname=('acpid-openrc' 'dbus-openrc' 'displaymanager-openrc')
-pkgver=20131015
+pkgver=20131016
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-desktop')
-makedepends=('dbus' 'acpid' 'xorg-server')
+makedepends=('acpid' 'dbus' 'xorg-server')
 conflicts=('openrc-arch-services-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
