@@ -13,7 +13,6 @@ url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-fs')
 depends=('openrc' "${_name}")
-optdepends=('samba-openrc')
 install=${_name}.install
 source=("${_gentoo_uri}/samba4.confd"
 	"${_gentoo_uri}/samba4.initd-r1")
