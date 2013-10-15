@@ -1,8 +1,8 @@
-#!/sbin/runscript
+#!/usr/bin/runscript
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-FTPD_BINARY="/sbin/ftpd"
+FTPD_BINARY="/usr/bin/ftpd"
 FTPD_PIDFILE="/run/ftpd.pid"
 
 depend() {
@@ -24,4 +24,4 @@ stop() {
         --pidfile "${FTPD_PIDFILE}" --quiet
     eend $?
 }
- 
+
