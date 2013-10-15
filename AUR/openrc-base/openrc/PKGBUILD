@@ -4,13 +4,15 @@
 _src_uri="http://dev.gentoo.org/~williamh/dist"
 _cat="sys-apps"
 _name="openrc"
-_gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files")
+_gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86")
 _udev="udev-init-scripts"
-_ver=26
+_uver=26
+_net="netifrc"
+_nver=0.1
 
 pkgname=${_name}
 pkgver=0.12.2
-pkgrel=4
+pkgrel=100
 pkgdesc="OpenRC universal init system."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -27,8 +29,10 @@ backup=('etc/rc.conf' 'etc/inittab' 'etc/conf.d/consolefont' 'etc/conf.d/keymaps
 	'etc/conf.d/hwclock' 'etc/conf.d/hostname' 'etc/conf.d/modules')
 install=${pkgname}.install
 source=("${_src_uri}/${pkgname}-${pkgver}.tar.bz2"
-	"${_src_uri}/${_udev}-${_ver}.tar.bz2"
-	"${_gentoo_uri}/${pkgname}.logrotate")
+	"${_src_uri}/${_udev}-${_uver}.tar.bz2"
+	"${_gentoo_uri}/${_cat}/${_name}/files/${pkgname}.logrotate"
+	"${_gentoo_uri}/${_cat}/kmod/files/kmod-static-nodes"
+	"${_src_uri}/${_net}-${_nver}.tar.bz2")
 
 package() {
   cd "${srcdir}/${pkgname}-${pkgver}"
@@ -50,15 +54,35 @@ package() {
   sed -e 's|/sbin/|/usr/bin/|g' -i "${pkgdir}/etc/inittab"
   install -Dm 0644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgname}"
 
-  cd "${srcdir}/${_udev}-${_ver}"
+  cd "${srcdir}/${_udev}-${_uver}"
   make DESTDIR="${pkgdir}" install
   sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin/udevd|/usr/bin/udevd|g' -i "${pkgdir}/etc/init.d/udev"
   sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/udev-mount"
 
+
+  install -Dm755 "${srcdir}/kmod-static-nodes" "${pkgdir}/etc/init.d/kmod-static-nodes"
+
   ln -sf "/etc/init.d/udev" "${pkgdir}/etc/runlevels/sysinit/udev"
   ln -sf "/etc/init.d/udev-mount" "${pkgdir}/etc/runlevels/sysinit/udev-mount"
-}
+  ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
 
+  # experimental netifrc merge
+  cd "${srcdir}/${_net}-${_nver}"
+  make \
+	SYSCONFDIR='/etc' \
+	OS='Linux' \
+	BRANDING='Arch Linux' \
+	PREFIX='/usr' \
+	SBINDIR='/usr/bin' \
+	LIBEXECDIR="/usr/lib/${_net}" \
+	DESTDIR="${pkgdir}" \
+      install
+
+    install -Dm 644 "${srcdir}/${_net}-${_nver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
+    ln -sf "/etc/init.d/net.lo" "${pkgdir}/etc/runlevels/boot/net.lo"
+}
 sha256sums=('514b86b52bc468a1ad083fbe084c029e923d3e93467fdd212ab0891682d5b2b9'
             'eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203'
-            '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c')
+            '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
+            '078b07581e63b5113cef9e85da7d5b53e1fbad91d793f7fa8b7188b364689b0e'
+            '65eb507bda9ed51fdac2dcf70de3428229758257039ea4ce8360edb0903e39e9')
