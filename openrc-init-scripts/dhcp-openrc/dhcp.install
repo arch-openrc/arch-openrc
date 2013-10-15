@@ -2,10 +2,10 @@ _svc="dhcpd"
 _rlvl="default"
 
 post_install() {
-	_usr="dhcp"
-	_grp="dhcp"
-	echo "	==>  requires $_usr user"
-	echo "	==>  requires $_grp group"
+# 	_usr="dhcp"
+# 	_grp="dhcp"
+# 	echo "	==>  requires $_usr user"
+# 	echo "	==>  requires $_grp group"
 	_cmd="rc-update add ${_svc} ${_rlvl}"
 	echo "	==> run '${_cmd}'"
 }
