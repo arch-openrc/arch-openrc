@@ -1,0 +1,104 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgbase=openrc-mobile
+pkgname=openrc-mobile
+true && pkgname=('bluez-openrc' 'connman-openrc' 'hostapd-openrc' 'laptop-mode-tools-openrc' 'wpa_supplicant-openrc')
+pkgver=20131016
+pkgrel=1
+pkgdesc="OpenRC init scripts"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-mobile')
+makedepends=('bluez' 'connman' 'hostapd' 'laptop-mode-tools' 'wpa_supplicant')
+conflicts=('openrc-arch-services-git')
+
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+
+source=("${_gentoo_uri}/net-wireless/bluez/files/rfcomm-conf.d"
+	"${_gentoo_uri}/net-wireless/bluez/files/rfcomm-init.d"
+	"${_gentoo_uri}/net-wireless/bluez/files/bluetooth-init.d-r2"
+	"${_gentoo_uri}/net-misc/connman/files/connman.confd"
+	"${_gentoo_uri}/net-misc/connman/files/connman.initd2"
+	"${_gentoo_uri}/net-wireless/hostapd/files/hostapd-conf.d"
+	"${_gentoo_uri}/net-wireless/hostapd/files/hostapd-init.d"
+	"${_gentoo_uri}/app-laptop/laptop-mode-tools/files/laptop_mode.init-1.4"
+	"${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_supplicant-conf.d"
+	"${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_supplicant-init.d")
+
+sha256sums=('672498957049fd301f9c9c1dc9fa49430e5e6d3c3f1f3cdce80df3af7d425d08'
+            '4430703a9bec9a9482416b2d24aa47492264768a0b61356b361bbc8b1229a83e'
+            'cd8cc3763601470328709c961b0c68a311f6d4af302d46a880fb855ed9d04efe'
+            '767a160c1b3392f0a12d3908a937548a2f604a9a121e744c309ee6f478420b02'
+            'f0a561f124cac3791fba6ee7ef5bc3ea46bd7535edf9e864689b0d9cfa65d332'
+            '916f4b14095ee4ec8a510391c883e9f01868e18d79a3d5cbeb13a104a793d45d'
+            'a220058841e66a11603df8e968ccc68945f01e1d11c1ae498922d0e01f6fa804'
+            '90a18e5c7e4d0b264bb51deb7b92ff25b508a3ddd75dd6c849fdc48c07ce4fda'
+            '61ec59007f66ac5bacc0aa095d1f2ccbc977a687038e161a463d1727223d5a90'
+            '62a3655ea88b3dfff5243666a4e90d3f0eef6370a7889affb849e178ba4a82b0')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package_bluez-openrc() {
+	true
+	pkgdesc="OpenRC bluez init script"
+	depends=('openrc' 'bluez' 'dbus-openrc')
+	install=bluez.install
+
+	install -Dm755 "${srcdir}/rfcomm-conf.d" "${pkgdir}/etc/conf.d/rfcomm"
+	install -Dm755 "${srcdir}/rfcomm-init.d" "${pkgdir}/etc/init.d/rfcomm"
+	install -Dm755 "${srcdir}/bluetooth-init.d-r2" "${pkgdir}/etc/init.d/bluetooth"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/rfcomm"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/bluetooth"
+}
+
+package_connman-openrc() {
+	true
+	pkgdesc="OpenRC connman init script"
+	depends=('openrc' 'connman')
+	install=connman.install
+
+	install -Dm755 "${srcdir}/connman.confd" "${pkgdir}/etc/conf.d/connman"
+	install -Dm755 "${srcdir}/connman.initd2" "${pkgdir}/etc/init.d/connman"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/connman"
+}
+
+package_hostapd-openrc() {
+	true
+	pkgdesc="OpenRC hostapd init script"
+	depends=('openrc' 'hostapd')
+	install=hostapd.install
+
+	install -Dm755 "${srcdir}/hostapd-conf.d" "${pkgdir}/etc/conf.d/hostapd"
+	install -Dm755 "${srcdir}/hostapd-init.d" "${pkgdir}/etc/init.d/hostapd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/hostapd"
+}
+
+package_laptop-mode-tools-openrc() {
+	true
+	pkgdesc="OpenRC laptop-mode-tools init script"
+	depends=('openrc' 'laptop-mode-tools' 'hdparm')
+	optdepends=('acpid-openrc')
+	install=laptop-mode-tools.install
+
+	install -Dm755 "${srcdir}/laptop_mode.init-1.4" "${pkgdir}/etc/init.d/laptop_mode"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/laptop_mode"
+}
+
+package_wpa_supplicant-openrc() {
+	true
+	pkgdesc="OpenRC wpa_supplicant init script"
+	depends=('openrc' 'wpa_supplicant')
+	install=wpa_supplicant.install
+
+	install -Dm755 "${srcdir}/wpa_supplicant-conf.d" "${pkgdir}/etc/conf.d/wpa_supplicant"
+	install -Dm755 "${srcdir}/wpa_supplicant-init.d" "${pkgdir}/etc/init.d/wpa_supplicant"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/wpa_supplicant"
+}
