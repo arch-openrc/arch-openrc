@@ -1,0 +1,39 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="mysql-init-scripts"
+_cat="dev-db"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=mysql-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name}"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-dev')
+depends=('openrc' 'mysql')
+optdepends=('bind-openrc')
+#backup=('etc/mysql/my.cnf')
+install=mysql.install
+source=("${_gentoo_uri}/mysql-5.1.53-conf.d"
+	"${_gentoo_uri}/mysql-5.1.67-init.d")
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/mysql-5.1.53-conf.d" "${pkgdir}/etc/conf.d/mysql"
+  install -Dm755 "${srcdir}/mysql-5.1.67-init.d" "${pkgdir}/etc/init.d/mysql"
+
+
+  _fix_init "${pkgdir}/etc/init.d/mysql"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin/mysqld|/bin/mysqld|g' -i $1
+}
+
+sha256sums=('45da613841969adf564f9f2f08257f749539651ee2fae85266f59fdd7a6f8123'
+            'a08df7aa811607f45a40ee1a4aa56eff569568f9bc69f2f76192cc15e55f21b0')

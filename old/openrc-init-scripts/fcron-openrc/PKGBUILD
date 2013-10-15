@@ -1,0 +1,32 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="fcron"
+_cat="sys-process"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+depends=('openrc' "${_name}")
+provides=('openrc-cron')
+conflicts=('openrc-cron')
+install=${_name}.install
+source=("${_gentoo_uri}/fcron.init.3")
+sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/fcron.init.3" "${pkgdir}/etc/init.d/${_name}"
+  _fix_init "${pkgdir}/etc/init.d/${_name}"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/libexec|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+}

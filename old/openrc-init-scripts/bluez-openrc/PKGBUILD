@@ -1,0 +1,38 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="bluez"
+_cat="net-wireless"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-mobile')
+depends=('openrc' "${_name}" 'dbus-openrc')
+install=${_name}.install
+source=("${_gentoo_uri}/rfcomm-conf.d"
+	"${_gentoo_uri}/rfcomm-init.d"
+	"${_gentoo_uri}/bluetooth-init.d-r2")
+sha256sums=('672498957049fd301f9c9c1dc9fa49430e5e6d3c3f1f3cdce80df3af7d425d08'
+            '4430703a9bec9a9482416b2d24aa47492264768a0b61356b361bbc8b1229a83e'
+            'cd8cc3763601470328709c961b0c68a311f6d4af302d46a880fb855ed9d04efe')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/rfcomm-conf.d" "${pkgdir}/etc/conf.d/rfcomm"
+  install -Dm755 "${srcdir}/rfcomm-init.d" "${pkgdir}/etc/init.d/rfcomm"
+  install -Dm755 "${srcdir}/bluetooth-init.d-r2" "${pkgdir}/etc/init.d/bluetooth"
+  _fix_init "${pkgdir}/etc/init.d/rfcomm"
+  _fix_init "${pkgdir}/etc/init.d/bluetooth"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i $1
+}

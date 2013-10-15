@@ -1,0 +1,32 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="cups"
+_cat="net-print"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "${_name}" 'dbus-openrc')
+optdepends=('avahi-openrc')
+install=${_name}.install
+source=("${_gentoo_uri}/cupsd.init.d-r1")
+sha256sums=('239f9831ba2a9df36d334037307cdc11cfa6476a11cbf6668db4ffb4096a248d')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/cupsd.init.d-r1" "${pkgdir}/etc/init.d/cupsd"
+  _fix_init "${pkgdir}/etc/init.d/cupsd"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|lp:lpadmin|daemon:sys|' -e 's|@neededservices@|need dbus avahi-daemon|' -i $1
+}

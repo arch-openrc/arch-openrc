@@ -1,0 +1,39 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="mit-krb5"
+_cat="app-crypt"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=krb5-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC krb5 init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' 'krb5')
+install=krb5.install
+source=("${_gentoo_uri}/mit-krb5kadmind.initd-r1"
+	"${_gentoo_uri}/mit-krb5kdc.initd-r1"
+	"${_gentoo_uri}/mit-krb5kdc.initd-r1")
+sha256sums=('3e55c79f19aaa6ef6b64a621c03dbb2eac3ad923916dc803f4c1bfe48ce89fbb'
+            '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
+            '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/mit-krb5kadmind.initd-r1" "${pkgdir}/etc/init.d/krb5kadmind"
+  install -Dm755 "${srcdir}/mit-krb5kdc.initd-r1" "${pkgdir}/etc/init.d/krb5kdc"
+  install -Dm755 "${srcdir}/mit-krb5kdc.initd-r1" "${pkgdir}/etc/init.d/krb5kpropd"
+  _fix_init "${pkgdir}/etc/init.d/krb5kadmind"
+  _fix_init "${pkgdir}/etc/init.d/krb5kdc"
+  _fix_init "${pkgdir}/etc/init.d/krb5kpropd"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|mit-krb5kdc|krb5kdc|g' -e 's|mit-krb5kdc mit-krb5kadmind|krb5kdc krb5kadmind|g' -i $1
+}

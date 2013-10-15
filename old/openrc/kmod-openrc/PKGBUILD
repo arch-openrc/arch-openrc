@@ -1,0 +1,31 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="kmod"
+_cat="sys-apps"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20131014
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('BSD')
+groups=('openrc-base')
+depends=('openrc' "${_name}")
+install=${_name}.install
+source=("${_gentoo_uri}/kmod-static-nodes")
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/kmod-static-nodes" "${pkgdir}/etc/init.d/kmod-static-nodes"
+  _fix_init "${pkgdir}/etc/init.d/kmod-static-nodes"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i $1
+}
+sha256sums=('078b07581e63b5113cef9e85da7d5b53e1fbad91d793f7fa8b7188b364689b0e')

@@ -1,0 +1,64 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+# Contributor: williamh <williamh@gentoo.org>
+
+_src_uri="http://dev.gentoo.org/~williamh/dist"
+_cat="sys-apps"
+_name="openrc"
+_gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files")
+_udev="udev-init-scripts"
+_ver=26
+
+pkgname=${_name}
+pkgver=0.12.2
+pkgrel=4
+pkgdesc="OpenRC universal init system."
+arch=('i686' 'x86_64')
+url="http://www.gentoo.org/proj/en/base/openrc/"
+license=('BSD')
+groups=('openrc-base')
+depends=('inetutils' 'net-tools' 'pkg-config' 'psmisc' 'sysvinit' 'udev')
+optdepends=('netifrc: Gentoo Network Interface Management Scripts'
+	    'networkmanager-openrc: Networkmanager with openrc support'
+	    'dhcpcd-openrc: dhcpcd initscript')
+provides=('openrc')
+conflicts=('initscripts' "${_udev}")
+replaces=("${_udev}")
+backup=('etc/rc.conf' 'etc/inittab' 'etc/conf.d/consolefont' 'etc/conf.d/keymaps'
+	'etc/conf.d/hwclock' 'etc/conf.d/hostname' 'etc/conf.d/modules')
+install=${pkgname}.install
+source=("${_src_uri}/${pkgname}-${pkgver}.tar.bz2"
+	"${_src_uri}/${_udev}-${_ver}.tar.bz2"
+	"${_gentoo_uri}/${pkgname}.logrotate")
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  make \
+	SYSCONFDIR='/etc' \
+	OS='Linux' \
+	BRANDING='Arch Linux' \
+	PREFIX='/usr' \
+	LIBEXECDIR='/usr/lib/rc' \
+	SBINDIR='/usr/bin' \
+	MKSELINUX='no' \
+	MKPAM='pam' \
+	MKTERMCAP='ncurses' \
+	MKNET='oldnet' \
+	DESTDIR="${pkgdir}" \
+      install
+
+  install -m 644 "${srcdir}/${pkgname}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
+  sed -e 's|/sbin/|/usr/bin/|g' -i "${pkgdir}/etc/inittab"
+  install -Dm 0644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgname}"
+
+  cd "${srcdir}/${_udev}-${_ver}"
+  make DESTDIR="${pkgdir}" install
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin/udevd|/usr/bin/udevd|g' -i "${pkgdir}/etc/init.d/udev"
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/udev-mount"
+
+  ln -sf "/etc/init.d/udev" "${pkgdir}/etc/runlevels/sysinit/udev"
+  ln -sf "/etc/init.d/udev-mount" "${pkgdir}/etc/runlevels/sysinit/udev-mount"
+}
+
+sha256sums=('514b86b52bc468a1ad083fbe084c029e923d3e93467fdd212ab0891682d5b2b9'
+            'eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203'
+            '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c')

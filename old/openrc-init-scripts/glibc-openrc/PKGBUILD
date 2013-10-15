@@ -1,0 +1,32 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="glibc"
+_cat="sys-libs"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC nscd init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "${_name}")
+optdepends=('openldap-openrc' 'bind-openrc')
+install=${_name}.install
+source=("${_gentoo_uri}/nscd")
+sha256sums=('6165db3a2fcb251d4f3655c0461e018ce9c92a37f7f22a8fd2b75178b5435bc8')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/nscd" "${pkgdir}/etc/init.d/nscd"
+  _fix_init "${pkgdir}/etc/init.d/nscd"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+}

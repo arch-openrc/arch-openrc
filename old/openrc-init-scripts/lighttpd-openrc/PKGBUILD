@@ -1,0 +1,35 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="lighttpd"
+_cat="www-servers"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+depends=('openrc' "${_name}")
+optdepends=('mysql-openrc' 'openldap-openrc' 'bind-openrc')
+groups=('openrc-net')
+install=${_name}.install
+source=("${_gentoo_uri}/lighttpd.confd"
+	"${_gentoo_uri}/lighttpd.initd")
+sha256sums=('bb6e6721f33e6582a91025f3500e159a599fb856d699e9394093e1018c7925e0'
+            'b1515472c32927039b38f6c3a797cbc54a5a300b5d6fa54df9550174afa2b7f8')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/lighttpd.confd" "${pkgdir}/etc/conf.d/lighttpd"
+  install -Dm755 "${srcdir}/lighttpd.initd" "${pkgdir}/etc/init.d/lighttpd"
+  _fix_init "${pkgdir}/etc/init.d/lighttpd"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+}

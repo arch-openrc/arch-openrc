@@ -1,0 +1,35 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="alsa-utils"
+_cat="media-sound"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-misc')
+depends=('openrc' "${_name}")
+install=${_name}.install
+source=("${_gentoo_uri}/alsasound.confd-r4"
+	"${_gentoo_uri}/alsasound.initd-r5")
+sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
+            'daf46bbc4156a82e0c6c7135ee94b31a3dfb6d366fcf3f45e8c842d1348601be')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/alsasound.confd-r4" "${pkgdir}/etc/conf.d/alsasound"
+  install -Dm755 "${srcdir}/alsasound.initd-r5" "${pkgdir}/etc/init.d/alsasound"
+  _fix_init ${pkgdir}/etc/init.d/alsasound
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i $1
+}
+

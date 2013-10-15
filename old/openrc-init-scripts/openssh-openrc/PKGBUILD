@@ -1,0 +1,36 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="openssh"
+_cat="net-misc"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "${_name}")
+optdepends=('bind-openrc')
+install=${_name}.install
+source=("${_gentoo_uri}/sshd.confd"
+	"${_gentoo_uri}/sshd.rc6.4")
+sha256sums=('29c6d57ac3ec6018cadc6ba6cd9b90c9ed46e20049b970fdcc68ee2481a2ee41'
+            '97221a017d8ee9de996277c5a794d973a0b5e8180c29c97b3652bd1984a7b5d0')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/sshd.confd" "${pkgdir}/etc/conf.d/sshd"
+  install -Dm755 "${srcdir}/sshd.rc6.4" "${pkgdir}/etc/init.d/sshd"	
+  _fix_init "${pkgdir}/etc/conf.d/sshd"
+  _fix_init "${pkgdir}/etc/init.d/sshd"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+}

@@ -1,0 +1,35 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="openntpd"
+_cat="net-misc"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+depends=('openrc' "${_name}")
+provides=('openrc-timed')
+conflicts=('openrc-timed')
+install=${_name}.install
+source=("${_gentoo_uri}/openntpd.conf.d-3.9_p1-r4"
+	"${_gentoo_uri}/openntpd.init.d-20080406-r2")
+sha256sums=('1980b5dadcd9478e653ef05c099ef45caacfdf12a73a3745b39322f75773a738'
+            'e0b5a15eab16e378b78d8ee5fa6e2eba630b5e55e864075d3e86fb89f9ea4e71')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/openntpd.conf.d-3.9_p1-r4" "${pkgdir}/etc/conf.d/openntpd"
+  install -Dm755 "${srcdir}/openntpd.init.d-20080406-r2" "${pkgdir}/etc/init.d/openntpd"
+  _fix_init "${pkgdir}/etc/init.d/openntpd"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+}

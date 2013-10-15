@@ -1,0 +1,34 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+_name="rsync"
+_cat="net-misc"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
+
+pkgname=${_name}-openrc
+pkgver=20130821
+pkgrel=1
+pkgdesc="OpenRC ${_name} init script"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-net')
+depends=('openrc' "${_name}")
+install=${_name}.install
+source=("${_gentoo_uri}/rsyncd.conf.d"
+	"${_gentoo_uri}/rsyncd.init.d-r1")
+sha256sums=('de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
+            'baff64277f9aa62cf1eeed2284bb08c4f3078a8e6e7604e4fec228ca5fa9dd82')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+  install -Dm755 "${srcdir}/rsyncd.conf.d" "${pkgdir}/etc/conf.d/rsyncd"
+  install -Dm755 "${srcdir}/rsyncd.init.d-r1" "${pkgdir}/etc/init.d/rsyncd"
+  _fix_init "${pkgdir}/etc/init.d/rsyncd"
+}
+
+_fix_init(){
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i $1
+}
