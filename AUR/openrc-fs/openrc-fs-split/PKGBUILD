@@ -1,0 +1,77 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgbase=fs
+pkgname=fs
+true && pkgname=('acpid-openrc' 'dbus-openrc' 'displaymanager-openrc')
+pkgver=20131015
+pkgrel=1
+pkgdesc="OpenRC init scripts"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-desktop')
+makedepends=('dbus' 'acpid' 'xorg-server')
+conflicts=('openrc-arch-services-git')
+
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+
+source=("${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
+	"${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-init.d"
+	"${_gentoo_uri}/sys-apps/dbus/files/dbus.initd"
+	"${_gentoo_uri}/xorg-server/x11-base/files/xdm.confd-4"
+	"${_gentoo_uri}/xorg-server/x11-base/files/xdm.initd-9"
+	"${_gentoo_uri}/xorg-server/x11-base/files/xdm-setup.initd-1"
+	"${_gentoo_uri}/x11-apps/xinit/files/startDM.sh")
+
+sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
+            '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
+            '98e37b8b6ed25004e48c5855d74c9361eea06d3fee13cefcc0ed10ccf452aa01'
+            '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
+            '96b1fe826db2b46b08e055d57bffd9405616b7980d9e40e95f19e52bc49eef3f'
+            '942ce5e8d1a0770543b683dcc388bae7619a24eb9741c1cd678ed3df97c01406'
+            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package_acpid-openrc() {
+	true
+	pkgdesc="OpenRC acpid init script"
+	depends=('openrc' 'acpid')
+	install=acpid.install
+
+	install -Dm755 "${srcdir}/acpid-2.0.16-conf.d" "${pkgdir}/etc/conf.d/acpid"
+	install -Dm755 "${srcdir}/acpid-2.0.16-init.d" "${pkgdir}/etc/init.d/acpid"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|' -i "${pkgdir}/etc/init.d/acpid"
+}
+
+package_dbus-openrc() {
+	true
+	pkgdesc="OpenRC dbus init script"
+	depends=('openrc' 'dbus')
+	install=dbus.install
+
+	install -Dm755 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|dbus.pid|dbus/pid|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/dbus"
+}
+
+package_displaymanager-openrc() {
+	true
+	pkgdesc="OpenRC dm init script"
+	depends=('openrc' 'xorg-server')
+	optdepends=('consolekit-openrc' 'dbus-openrc')
+	backup=('etc/conf.d/xdm')
+	install=displaymanager.install
+
+	install -Dm755 "${srcdir}/xdm.confd-4" "${pkgdir}/etc/conf.d/xdm"
+	install -Dm755 "${srcdir}/xdm.initd-9" "${pkgdir}/etc/init.d/xdm"
+	install -Dm755 "${srcdir}/xdm-setup.initd-1" "${pkgdir}/etc/init.d/xdm-setup"
+	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
+
+	 sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/profile.env|/etc/profile|g' -e 's|{ROOTPATH}|{PATH}|g' -i "${pkgdir}/etc/init.d/xdm"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/xdm-setup"
+}
