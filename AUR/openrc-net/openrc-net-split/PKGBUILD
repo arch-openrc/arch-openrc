@@ -1,77 +1,558 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-pkgbase=desktop
-pkgname=desktop
-true && pkgname=('acpid-openrc' 'dbus-openrc' 'displaymanager-openrc')
-pkgver=20131015
+_apver=2.4.4
+_aprel=20130801
+
+_avaver=0.6.31
+
+
+pkgbase=openrc-net
+pkgname=openrc-net
+true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc' 'bitlbee-openrc'
+		'cups-openrc' 'dhcp-openrc' 'dhcpcd-openrc' 'glibc-openrc'
+		'inetutils-openrc' 'iptables-openrc' 'krb5-openrc'
+		'lighttpd-openrc' 'ntp-openrc' 'openldap-openrc'
+		'openslp-openrc' 'openssh-openrc' 'polipo-openrc'
+		'postfix-openrc' 'privoxy-openrc' 'rpcbind-openrc' 'rsync-openrc'
+		'squid-openrc' 'transmission-openrc' 'ufw-openrc'
+		'vsftpd-openrc' 'wicd-openrc' 'xinetd-openrc'
+		'ypbind-mt-openrc' 'ypserv-openrc')
+pkgver=20131016
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-desktop')
-makedepends=('dbus' 'acpid' 'xorg-server')
+groups=('openrc-net')
+makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'cups' 'dhcp' 'dhcpcd'
+	    'glibc' 'inetutils' 'iptables' 'krb5' 'lighttpd' 'ntp'
+	    'openldap' 'openslp' 'openssh' 'polipo' 'postfix' 'privoxy'
+	    'rpcbind' 'rsync' 'squid' 'transmission' 'ufw' 'vsftpd'
+	    'wicd' 'xinetd' 'ypbind-mt' 'ypserv')
 conflicts=('openrc-arch-services-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+_dev_uri="http://dev.gentoo.org/~kensington/dist/apache"
 
-source=("${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
-	"${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-init.d"
-	"${_gentoo_uri}/sys-apps/dbus/files/dbus.initd"
-	"${_gentoo_uri}/xorg-server/x11-base/files/xdm.confd-4"
-	"${_gentoo_uri}/xorg-server/x11-base/files/xdm.initd-9"
-	"${_gentoo_uri}/xorg-server/x11-base/files/xdm-setup.initd-1"
-	"${_gentoo_uri}/x11-apps/xinit/files/startDM.sh")
+source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
+	"http://avahi.org/download/avahi-${_avaver}.tar.gz"
+	"${_gentoo_uri}/net-dns/bind/files/named.confd-r6"
+	"${_gentoo_uri}/net-dns/bind/files/named.init-r12"
+	"${_gentoo_uri}/net-im/bitlbee/files/bitlbee.confd"
+	"${_gentoo_uri}/net-im/bitlbee/files/bitlbee.initd"
+	"${_gentoo_uri}/net-print/cups/files/cupsd.init.d-r1"
+	"${_gentoo_uri}/net-misc/dhcp/files/dhcpd.conf2"
+	"${_gentoo_uri}/net-misc/dhcp/files/dhcpd.init5"
+	"${_gentoo_uri}/net-misc/dhcp/files/dhcrelay.conf"
+	"${_gentoo_uri}/net-misc/dhcp/files/dhcrelay6.conf"
+	"${_gentoo_uri}/net-misc/dhcp/files/dhcrelay.init3"
+	"${_gentoo_uri}/net-misc/dhcpcd/files/dhcpcd.initd"
+	"${_gentoo_uri}/sys-libs/glibc/files/nscd"
+	'inetutils.confd'
+	'inetutils.initd'
+	"${_gentoo_uri}/net-firewall/iptables/files/iptables-1.4.13.confd"
+	"${_gentoo_uri}/net-firewall/iptables/files/ip6tables-1.4.13.confd"
+	"${_gentoo_uri}/net-firewall/iptables/files/iptables-1.4.13-r1.init"
+	"${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kadmind.initd-r1"
+	"${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kdc.initd-r1"
+	"${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kdc.initd-r1"
+	"${_gentoo_uri}/www-servers/lighttpd/files/lighttpd.confd"
+	"${_gentoo_uri}/www-servers/lighttpd/files/lighttpd.initd"
+	"${_gentoo_uri}/net-misc/ntp/files/ntpd.confd"
+	"${_gentoo_uri}/net-misc/ntp/files/ntpd.rc"
+	"${_gentoo_uri}/net-misc/ntp/files/ntp-client.confd"
+	"${_gentoo_uri}/net-misc/ntp/files/ntp-client.rc"
+	"${_gentoo_uri}/net-misc/ntp/files/sntp.rc"
+	"${_gentoo_uri}/net-misc/ntp/files/sntp.confd"
+	"${_gentoo_uri}/net-nds/openldap/files/slapd-confd-2.4.28-r1"
+	"${_gentoo_uri}/net-nds/openldap/files/slapd-initd-2.4.28-r1"
+	"${_gentoo_uri}/net-libs/openslp/files/slpd-init"
+	"${_gentoo_uri}/net-misc/openssh/files/sshd.confd"
+	"${_gentoo_uri}/net-misc/openssh/files/sshd.rc6.4"
+	"${_gentoo_uri}/net-proxy/polipo/files/polipo.initd"
+	"${_gentoo_uri}/mail-mta/postfix/files/postfix.rc6.2.7"
+	"${_gentoo_uri}/net-proxy/privoxy/files/privoxy.initd"
+	"${_gentoo_uri}/net-nds/rpcbind/files/rpcbind.confd"
+	"${_gentoo_uri}/net-nds/rpcbind/files/rpcbind.initd"
+	"${_gentoo_uri}/net-misc/rsync/files/rsyncd.conf.d"
+	"${_gentoo_uri}/net-misc/rsync/files/rsyncd.init.d-r1"
+	"${_gentoo_uri}/net-proxy/squid/files/squid.confd-r1"
+	"${_gentoo_uri}/net-proxy/squid/files/squid.initd-r3"
+	"${_gentoo_uri}/net-p2p/transmission/files/transmission-daemon.confd.4"
+	"${_gentoo_uri}/net-p2p/transmission/files/transmission-daemon.initd.9"
+	"${_gentoo_uri}/net-firewall/ufw/files/ufw.confd"
+	"${_gentoo_uri}/net-firewall/ufw/files/ufw-2.initd"
+	"${_gentoo_uri}/net-ftp/vsftpd/files/vsftpd.init"
+	"${_gentoo_uri}/net-ftp/vsftpd/files/vsftpd-checkconfig.sh"
+	"${_gentoo_uri}/net-misc/wicd/files/wicd-init.d"
+	"${_gentoo_uri}/sys-apps/xinetd/files/xinetd.confd"
+	"${_gentoo_uri}/sys-apps/xinetd/files/xinetd.rc6"
+	"${_gentoo_uri}/net-nds/ypbind/files/ypbind.confd-r1"
+	"${_gentoo_uri}/net-nds/ypbind/files/ypbind.initd"
+	"${_gentoo_uri}/net-nds/ypserv/files/rpc.yppasswdd.confd"
+	"${_gentoo_uri}/net-nds/ypserv/files/rpc.yppasswdd-r1"
+	"${_gentoo_uri}/net-nds/ypserv/files/rpc.ypxfrd.confd"
+	"${_gentoo_uri}/net-nds/ypserv/files/rpc.ypxfrd-2.23"
+	"${_gentoo_uri}/net-nds/ypserv/files/ypserv.confd"
+	"${_gentoo_uri}/net-nds/ypserv/files/ypserv")
 
-sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
-            '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
-            '98e37b8b6ed25004e48c5855d74c9361eea06d3fee13cefcc0ed10ccf452aa01'
-            '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
-            '96b1fe826db2b46b08e055d57bffd9405616b7980d9e40e95f19e52bc49eef3f'
-            '942ce5e8d1a0770543b683dcc388bae7619a24eb9741c1cd678ed3df97c01406'
-            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
-
+sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
+            '8372719b24e2dd75de6f59bb1315e600db4fd092805bd1201ed0cb651a2dab48'
+            '704ac6954b2bad5d0bab19281dc703e86d9b4fe94d63dd00be1e525a3e64c492'
+            '953e066b5d77f59917db59365cd2103c5bec19889775bd3f6437b946c9d6d936'
+            '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
+            '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
+            '239f9831ba2a9df36d334037307cdc11cfa6476a11cbf6668db4ffb4096a248d'
+            'e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
+            '049a231908dc2c5f82446712d71d5e75d430bd043b53eead1529f2d81e1595ab'
+            '409b895ed489e75c1a08f72961b45d641b93fd9357f528abc78b1fd036b7f730'
+            '099f668e1ad42ed9446b15675032a1186715d1fe9e4a1b24dfb787e68495d2b6'
+            '204aaf81d51dc119cee1d1ff3ae3dd50af666af2f8b2a363fd1bf442d4dcee00'
+            '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
+            '6165db3a2fcb251d4f3655c0461e018ce9c92a37f7f22a8fd2b75178b5435bc8'
+            '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
+            '055b63d6703cac6ed92a8e015377b5977acc7964f1bfcf7d683b92c53e521d7c'
+            '7e2341211ca14997b7a8a1f930f94db855291af597c568f680f80031c20d45b6'
+            '2938fe4206514d9868047bd8f888a699fa2097ca69edab176453436d4259abaa'
+            '13047698e03079b754957e1e548ce7505dfb2c73c9a31f87e061140603ab0e44'
+            '3e55c79f19aaa6ef6b64a621c03dbb2eac3ad923916dc803f4c1bfe48ce89fbb'
+            '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
+            '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
+            'bb6e6721f33e6582a91025f3500e159a599fb856d699e9394093e1018c7925e0'
+            'b1515472c32927039b38f6c3a797cbc54a5a300b5d6fa54df9550174afa2b7f8'
+            'a3bc17ee0f7d41102d6c33e4281e22d312a42cc2ffd8848b08e9cd78d63f2d05'
+            'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
+            'e8d5883461f4297c052e3b39814b663965ed3a756c4234675f4a9b62349eca13'
+            'bdd70612cf0654460aa4cfa59bcaaf6d636d240a3fead8b243c86e5cbe640ab9'
+            '8fbd405ad951e7ad046e4408abb98f4066077113187198767d52f28d7228bae4'
+            '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
+            '5bca003ec3b67c7c78519aede1d82002579006ccfecce8f87b559df719f82e92'
+            '1fc515a6816b8a750db513df0b3b9bf8dd8bd4c4e9051205521acadfdebeae0f'
+            '7f228796e020c0779c52683f684197d50662ae890b1ae193ffa9acf157ccd143'
+            '29c6d57ac3ec6018cadc6ba6cd9b90c9ed46e20049b970fdcc68ee2481a2ee41'
+            '97221a017d8ee9de996277c5a794d973a0b5e8180c29c97b3652bd1984a7b5d0'
+            '438b8a9cfccf1ea14314f38e6821454b6da9ae20ea12bf311ad9fa89816cd702'
+            '51f4bffa535d891f94d4a20ca2a4a42cc99189f3de78cee1c8d235e4a9d1721d'
+            '224496b498b4f692ae3316a95b5c7c8b6230dcd5fee0ca163956a7acde243de9'
+            '38bb95aefc38d843d0890d9c15affd28f19f2133c17f463396c62970e7e2dffc'
+            '6561ae40c5899a9f7a12f1f0867bec47d47c7cc3c583574ffcecbbf6f8d8afbb'
+            'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
+            'baff64277f9aa62cf1eeed2284bb08c4f3078a8e6e7604e4fec228ca5fa9dd82'
+            '214a184495a3384eb452caef435256043bc51e35140a61b1f5fdff32603c8f7e'
+            '9b16b1ab2d3d3411dfcd8ac76b13a0889503ca78e3c6123814801af7577537f3'
+            '249689688aad23d0d27ccdd08a0907fd85058d6a52ccd3467f756b07f5d059ee'
+            '06d047b47befe6aaf1b1542fdd50e84ea38e0fef004b5095f6096f33fa1901a3'
+            '069aa7382b40aecebf26ef53f3f4c49890314e0357925c84b3c15f1d0b913be0'
+            '657b5305923b2a5de9eb96931aaaa28d6e997ace6c40793d905887798094258c'
+            'e6cf3df546aae57bb10e2b4282a9ccd79741473ef9dbdbd7628a16c84622da06'
+            '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda'
+            '5546deda3d5fa8f6ee1125922f1217182b24d68a22f5a1212509bb13bf0156e2'
+            'e401e2cf7c0180a170d3dc3e91d7e98002bae7b013df72813b7bcf89b864fb3a'
+            '6aeb4ec9b8ccc062b5ee8c609830c05cee3ed790fa90d7b2d8cf82a09e317c5c'
+            '79f6c6ed4875f00fe702f69e9a6180a032d5a47f3e58e892e6ba0e2746b6fec8'
+            '3cdd6872fae15dc8533b3f75ac36ad59ffb946a3f1b445d688629c621cebbe34'
+            'e46afe737bfc57aa31be1a441615fcc112e1ebf41d631c1929e00b81baca119d'
+            'e827778b8a8e6984b637c745c315a2e02ebc46af752651b7a70626ba545a84b6'
+            'bd1f245a362f85319e83965e8b825e66e686a4a0bf185ab8ec51fd335bc873c2'
+            'a6445dd607093fdafb013e5896f60d78223549b38c96300fe239bcf5dbf2a8de'
+            '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
+            '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b')
+            
 pkgver() {
   date +%Y%m%d
 }
 
-package_acpid-openrc() {
+package_apache-openrc() {
 	true
-	pkgdesc="OpenRC acpid init script"
-	depends=('openrc' 'acpid')
-	install=acpid.install
+	pkgdesc="OpenRC apache init script"
+	depends=('openrc' 'apache')
+	install=apache.install
 
-	install -Dm755 "${srcdir}/acpid-2.0.16-conf.d" "${pkgdir}/etc/conf.d/acpid"
-	install -Dm755 "${srcdir}/acpid-2.0.16-init.d" "${pkgdir}/etc/init.d/acpid"
+	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|' -i "${pkgdir}/etc/init.d/acpid"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|apache2|httpd|g' -e 's|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g' -i "${pkgdir}/etc/init.d/httpd"
 }
 
-package_dbus-openrc() {
+package_avahi-openrc() {
 	true
-	pkgdesc="OpenRC dbus init script"
-	depends=('openrc' 'dbus')
-	install=dbus.install
+	pkgdesc="OpenRC avahi init script"
+	depends=('openrc' 'avahi' 'dbus-openrc')
+	install=avahi.install
 
-	install -Dm755 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
+	install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
+	install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-dnsconfd.in" "${pkgdir}/etc/init.d/avahi-dnsconfd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|dbus.pid|dbus/pid|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/dbus"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/bin|' -i "${pkgdir}/etc/init.d/avahi-daemon"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/bin|' -i "${pkgdir}/etc/init.d/avahi-dnsconfd"
 }
 
-package_displaymanager-openrc() {
+package_bind-openrc() {
 	true
-	pkgdesc="OpenRC dm init script"
-	depends=('openrc' 'xorg-server')
-	optdepends=('consolekit-openrc' 'dbus-openrc')
-	backup=('etc/conf.d/xdm')
-	install=displaymanager.install
+	pkgdesc="OpenRC bind init script"
+	depends=('openrc' 'bind')
+	install=bind.install
 
-	install -Dm755 "${srcdir}/xdm.confd-4" "${pkgdir}/etc/conf.d/xdm"
-	install -Dm755 "${srcdir}/xdm.initd-9" "${pkgdir}/etc/init.d/xdm"
-	install -Dm755 "${srcdir}/xdm-setup.initd-1" "${pkgdir}/etc/init.d/xdm-setup"
-	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
+	install -Dm755 "${srcdir}/named.confd-r6" "${pkgdir}/etc/conf.d/named"
+	install -Dm755 "${srcdir}/named.init-r12" "${pkgdir}/etc/init.d/named"
 
-	 sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/profile.env|/etc/profile|g' -e 's|{ROOTPATH}|{PATH}|g' -i "${pkgdir}/etc/init.d/xdm"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/etc/bind/named.conf|/etc/named.conf|g' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/named"
+}
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/xdm-setup"
+package_bitlbee-openrc() {
+	true
+	pkgdesc="OpenRC bitlbee init script"
+	depends=('openrc' 'bitlbee')
+	install=bitlbee.install
+
+	install -Dm755 "${srcdir}/bitlbee.confd" "${pkgdir}/etc/conf.d/bitlbee"
+	install -Dm755 "${srcdir}/bitlbee.initd" "${pkgdir}/etc/init.d/bitlbee"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/conf.d/bitlbee"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/bitlbee"
+}
+
+package_cups-openrc() {
+	true
+	pkgdesc="OpenRC cups init script"
+	depends=('openrc' 'cups' 'dbus-openrc')
+	optdepends=('avahi-openrc')
+	install=cups.install
+
+	install -Dm755 "${srcdir}/cupsd.init.d-r1" "${pkgdir}/etc/init.d/cupsd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|lp:lpadmin|daemon:sys|' -e 's|@neededservices@|need dbus avahi-daemon|' -i "${pkgdir}/etc/init.d/cupsd"
+
+}
+
+package_dhcp-openrc() {
+	true
+	pkgdesc="OpenRC dhcp init script"
+	depends=('openrc' 'dhcp')
+	optdepends=('openldap-openrc' 'bind-openrc')
+	install=dhcp.install
+
+	install -Dm755 "${srcdir}/dhcpd.conf2" "${pkgdir}/etc/conf.d/dhcpd"
+	install -Dm755 "${srcdir}/dhcpd.init5" "${pkgdir}/etc/init.d/dhcpd"
+	install -Dm755 "${srcdir}/dhcrelay.conf" "${pkgdir}/etc/conf.d/dhcrelay"
+	install -Dm755 "${srcdir}/dhcrelay.init3" "${pkgdir}/etc/init.d/dhcrelay"
+	install -Dm755 "${srcdir}/dhcrelay6.conf" "${pkgdir}/etc/conf.d/dhcrelay6"
+	install -Dm755 "${srcdir}/dhcrelay.init3" "${pkgdir}/etc/init.d/dhcrelay6"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/dhcp|/etc|g' -e 's|#@slapd@|ldap slapd|' -i "${pkgdir}/etc/init.d/dhcpd"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/dhcp|/etc|g' -e 's|#@slapd@|ldap slapd|' -i "${pkgdir}/etc/init.d/dhcrelay"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/dhcp|/etc|g' -e 's|#@slapd@|ldap slapd|' -i "${pkgdir}/etc/init.d/dhcrelay6"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/dhcp|/etc|g' -e 's|#@slapd@|ldap slapd|' -i "${pkgdir}/etc/conf.d/dhcpd"
+}
+
+package_dhcpcd-openrc() {
+	true
+	pkgdesc="OpenRC dhcpcd init script"
+	depends=('openrc' 'dhcpcd')
+	install=dhcpcd.install
+
+	install -Dm755 "${srcdir}/dhcpcd.initd" "${pkgdir}/etc/init.d/dhcpcd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/dhcpcd"
+}
+
+package_glibc-openrc() {
+	true
+	pkgdesc="OpenRC nscd init script"
+	depends=('openrc' 'glibc')
+	optdepends=('openldap-openrc' 'bind-openrc')
+	install=glibc.install
+
+	install -Dm755 "${srcdir}/nscd" "${pkgdir}/etc/init.d/nscd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/nscd"
+}
+
+package_inetutils-openrc() {
+	true
+	pkgdesc="OpenRC ftpd init script"
+	depends=('openrc' 'inetutils')
+	install=inetutils.install
+
+	install -Dm755 "${srcdir}/${_name}.confd" "${pkgdir}/etc/init.d/ftpd"
+	install -Dm755 "${srcdir}/${_name}.initd" "${pkgdir}/etc/init.d/ftpd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/ftpd"
+}
+
+package_iptables-openrc() {
+	true
+	pkgdesc="OpenRC iptables init script"
+	depends=('openrc' 'iptables')
+	install=iptables.install
+
+	install -Dm755 "${srcdir}/iptables-1.4.13.confd" "${pkgdir}/etc/conf.d/iptables"
+	install -Dm755 "${srcdir}/iptables-1.4.13-r1.init" "${pkgdir}/etc/init.d/iptables"
+	install -Dm755 "${srcdir}/ip6tables-1.4.13.confd" "${pkgdir}/etc/conf.d/ip6tables"
+	install -Dm755 "${srcdir}/iptables-1.4.13-r1.init" "${pkgdir}/etc/init.d/ip6tables"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/iptables"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ip6tables"
+}
+
+package_krb5-openrc() {
+	true
+	pkgdesc="OpenRC krb5 init script"
+	depends=('openrc' 'krb5')
+	install=krb5.install
+
+	install -Dm755 "${srcdir}/mit-krb5kadmind.initd-r1" "${pkgdir}/etc/init.d/krb5kadmind"
+	install -Dm755 "${srcdir}/mit-krb5kdc.initd-r1" "${pkgdir}/etc/init.d/krb5kdc"
+	install -Dm755 "${srcdir}/mit-krb5kdc.initd-r1" "${pkgdir}/etc/init.d/krb5kpropd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|mit-krb5kdc|krb5kdc|g' -e 's|mit-krb5kdc mit-krb5kadmind|krb5kdc krb5kadmind|g' -i "${pkgdir}/etc/init.d/krb5kadmind"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|mit-krb5kdc|krb5kdc|g' -e 's|mit-krb5kdc mit-krb5kadmind|krb5kdc krb5kadmind|g' -i "${pkgdir}/etc/init.d/krb5kdc"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|mit-krb5kdc|krb5kdc|g' -e 's|mit-krb5kdc mit-krb5kadmind|krb5kdc krb5kadmind|g' -i "${pkgdir}/etc/init.d/krb5kpropd"
+}
+
+package_lighttpd-openrc() {
+	true
+	pkgdesc="OpenRC lighttpd init script"
+	depends=('openrc' 'lighttpd')
+	install=lighttpd.install
+
+	install -Dm755 "${srcdir}/lighttpd.confd" "${pkgdir}/etc/conf.d/lighttpd"
+	install -Dm755 "${srcdir}/lighttpd.initd" "${pkgdir}/etc/init.d/lighttpd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/lighttpd"
+}
+
+package_ntp-openrc() {
+	true
+	pkgdesc="OpenRC ntp init script"
+	depends=('openrc' 'ntp')
+	optdepends=('bind-openrc')
+	provides=('openrc-timed')
+	conflicts=('openrc-timed')
+	install=ntp.install
+
+	install -Dm755 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"
+	install -Dm755 "${srcdir}/ntpd.rc" "${pkgdir}/etc/init.d/ntpd"
+	install -Dm755 "${srcdir}/ntp-client.confd" "${pkgdir}/etc/conf.d/ntp-client"
+	install -Dm755 "${srcdir}/ntp-client.rc" "${pkgdir}/etc/init.d/ntp-client"
+	install -Dm755 "${srcdir}/sntp.confd" "${pkgdir}/etc/conf.d/sntp"
+	install -Dm755 "${srcdir}/sntp.rc" "${pkgdir}/etc/init.d/sntp"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g'  -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ntpd"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g'  -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ntp-client"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g'  -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/sntp"
+}
+
+package_openldap-openrc() {
+	true
+	pkgdesc="OpenRC openldap init script"
+	depends=('openrc' 'openldap')
+	install=openldap.install
+
+	install -Dm755 "${srcdir}/slapd-confd-2.4.28-r1" "${pkgdir}/etc/conf.d/slapd"
+	install -Dm755 "${srcdir}/slapd-initd-2.4.28-r1" "${pkgdir}/etc/init.d/slapd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/usr/lib/openldap/slapd|/usr/lib/slapd|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/slapd"
+
+}
+
+package_openslp-openrc() {
+	true
+	pkgdesc="OpenRC openslp init script"
+	depends=('openrc' 'openslp')
+	install=openslp.install
+
+	install -Dm755 "${srcdir}/slpd-init" "${pkgdir}/etc/init.d/slpd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/slpd"
+
+}
+
+package_openssh-openrc() {
+	true
+	pkgdesc="OpenRC openssh init script"
+	depends=('openrc' 'openssh')
+	optdepends=('bind-openrc')
+	install=openssh.install
+
+	install -Dm755 "${srcdir}/sshd.confd" "${pkgdir}/etc/conf.d/sshd"
+	install -Dm755 "${srcdir}/sshd.rc6.4" "${pkgdir}/etc/init.d/sshd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/conf.d/sshd"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/sshd"
+
+}
+
+package_polipo-openrc() {
+	true
+	pkgdesc="OpenRC polipo init script"
+	depends=('openrc' 'polipo')
+	install=polipo.install
+
+	install -Dm755 "${srcdir}/polipo.initd" "${pkgdir}/etc/init.d/polipo"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/polipo"
+
+}
+
+package_postfix-openrc() {
+	true
+	pkgdesc="OpenRC postfix init script"
+	depends=('openrc' 'postfix')
+	optdepends=('bind-openrc' 'ypbind-openrc' 'cyrus-sasl-openrc')
+	install=postfix.install
+
+	install -Dm755 "${srcdir}/postfix.rc6.2.7" "${pkgdir}/etc/init.d/postfix"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/postfix"
+}
+
+package_privoxy-openrc() {
+	true
+	pkgdesc="OpenRC privoxy init script"
+	depends=('openrc' 'privoxy')
+	install=privoxy.install
+
+	install -Dm755 "${srcdir}/privoxy.initd" "${pkgdir}/etc/init.d/privoxy"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/privoxy"
+
+}
+
+package_rpcbind-openrc() {
+	true
+	pkgdesc="OpenRC rpcbind init script"
+	depends=('openrc' 'rpcbind')
+	install=rpcbind.install
+
+	install -Dm755 "${srcdir}/rpcbind.confd" "${pkgdir}/etc/conf.d/rpcbind"
+	install -Dm755 "${srcdir}/rpcbind.initd" "${pkgdir}/etc/init.d/rpcbind"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpcbind"
+
+}
+
+package_rsync-openrc() {
+	true
+	pkgdesc="OpenRC rsync init script"
+	depends=('openrc' 'rsync')
+	install=rsync.install
+
+	install -Dm755 "${srcdir}/rsyncd.conf.d" "${pkgdir}/etc/conf.d/rsyncd"
+	install -Dm755 "${srcdir}/rsyncd.init.d-r1" "${pkgdir}/etc/init.d/rsyncd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rsyncd"
+
+}
+
+package_squid-openrc() {
+	true
+	pkgdesc="OpenRC squid init script"
+	depends=('openrc' 'squid')
+	optdepends=('bind-openrc')
+	install=squid.install
+
+	install -Dm755 "${srcdir}/squid.confd-r1" "${pkgdir}/etc/conf.d/squid"
+	install -Dm755 "${srcdir}/squid.initd-r3" "${pkgdir}/etc/init.d/squid"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|chown squid|chown proxy|g' -i "${pkgdir}/etc/init.d/squid"
+
+}
+
+package_transmission-openrc() {
+	true
+	pkgdesc="OpenRC transmission init script"
+	depends=('openrc' 'transmission')
+	install=transmission.install
+
+	install -Dm755 "${srcdir}/transmission-daemon.confd.4" "${pkgdir}/etc/conf.d/transmission-daemon"
+	install -Dm755 "${srcdir}/transmission-daemon.initd.9" "${pkgdir}/etc/init.d/transmission-daemon"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/transmission-daemon"
+
+}
+
+package_ufw-openrc() {
+	true
+	pkgdesc="OpenRC ufw init script"
+	depends=('openrc' 'ufw')
+	install=ufw.install
+
+	install -Dm755 "${srcdir}/ufw.confd" "${pkgdir}/etc/conf.d/ufw"
+	install -Dm755 "${srcdir}/ufw-2.initd" "${pkgdir}/etc/init.d/ufw"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g' -i "${pkgdir}/etc/init.d/ufw"
+
+}
+
+package_vsftpd-openrc() {
+	true
+	pkgdesc="OpenRC vsftpd init script"
+	depends=('openrc' 'vsftpd')
+	optdepends=('bind-openrc')
+	install=vsftpd.install
+
+	install -Dm755 "${srcdir}/vsftpd.init" "${pkgdir}/etc/init.d/vsftpd"
+	install -Dm755 "${srcdir}/vsftpd-checkconfig.sh" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/vsftpd/|/etc/|g' -e 's|/usr/libexec/|/usr/lib/|g' -i "${pkgdir}/etc/init.d/vsftpd"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/vsftpd/|/etc/|g' -e 's|/usr/libexec/|/usr/lib/|g' -i "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+
+}
+
+package_wicd-openrc() {
+	true
+	pkgdesc="OpenRC wicd init script"
+	depends=('openrc' 'wicd')
+	install=wicd.install
+
+	install -Dm755 "${srcdir}/wicd-init.d" "${pkgdir}/etc/init.d/wicd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/wicd"
+}
+
+package_xinetd-openrc() {
+	true
+	pkgdesc="OpenRC xinetd init script"
+	depends=('openrc' 'xinetd')
+	install=xinetd.install
+
+	install -Dm755 "${srcdir}/xinetd.confd" "${pkgdir}/etc/conf.d/xinetd"
+	install -Dm755 "${srcdir}/xinetd.rc6" "${pkgdir}/etc/init.d/xinetd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/xinetd"
+
+}
+
+package_ypbind-mt-openrc() {
+	true
+	pkgdesc="OpenRC ypbind-mt init script"
+	depends=('openrc' 'ypbind-mt' 'rpcbind-openrc')
+	optdepends=('ypserv-openrc')
+	install=ypbind-mt.install
+
+	install -Dm755 "${srcdir}/ypbind.confd-r1" "${pkgdir}/etc/conf.d/ypbind"
+	install -Dm755 "${srcdir}/ypbind.initd" "${pkgdir}/etc/init.d/ypbind"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ypbind"
+
+}
+
+package_ypserv-openrc() {
+	true
+	pkgdesc="OpenRC ypserv init script"
+	depends=('openrc' 'ypserv')
+	install=ypserv.install
+
+	install -Dm755 "${srcdir}/rpc.yppasswdd.confd" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
+	install -Dm755 "${srcdir}/rpc.yppasswdd-r1" "${pkgdir}/etc/init.d/rpc.yppasswdd"
+	install -Dm755 "${srcdir}/rpc.ypxfrd.confd" "${pkgdir}/etc/conf.d/rpc.ypxfrd"
+	install -Dm755 "${srcdir}/rpc.ypxfrd-2.23" "${pkgdir}/etc/init.d/rpc.ypxfrd"
+	install -Dm755 "${srcdir}/ypserv.confd" "${pkgdir}/etc/conf.d/ypserv.confd"
+	install -Dm755 "${srcdir}/ypserv" "${pkgdir}/etc/init.d/ypserv"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ypserv"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpc.yppasswdd"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpc.ypxfrd"
+
 }
