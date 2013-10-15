@@ -11,13 +11,13 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/ne
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.8
-pkgrel=2
+pkgrel=3
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/${_name}/"
 groups=('openrc-net')
-depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'consolekit' 'udev' 'wpa_supplicant' 'dhcp-client'
+depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit-consolekit' 'consolekit' 'udev' 'wpa_supplicant' 'dhcp-client'
          'libsoup' 'modemmanager')
 makedepends=('intltool' 'dhcpcd' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' 'git')
 optdepends=('dhclient: DHCPv6 support'
@@ -86,7 +86,7 @@ package() {
 
 	sed -e 's|@EPREFIX@/sbin|/bin|' -e 's|@EPREFIX@/usr/sbin|/usr/bin|' -e 's/NetworkManager/networkmanager/g' -e 's|#!/bin/sh|#!/usr/bin/sh|' -i "${pkgdir}/etc/${_name}/dispatcher.d/10-openrc-status"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin/NetworkManager|/usr/bin/NetworkManager|g' -i "${pkgdir}/etc/init.d/networkmanager"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/networkmanager"
 }
 sha256sums=('8a0a3de9cd2897f778193aa5f04c8a6f6f87fe07f7a088aab26d2b35baa17a55'
             'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'

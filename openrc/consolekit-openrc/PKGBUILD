@@ -7,7 +7,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-auth/co
 
 pkgname=consolekit-openrc
 pkgver=0.4.6
-pkgrel=2
+pkgrel=3
 pkgdesc="A framework for defining and tracking users, login sessions, and seats with openrc support"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
@@ -41,11 +41,13 @@ sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
 
 prepare(){
   cd "$srcdir/ConsoleKit-$pkgver"
-
   patch -p0 -i "$srcdir/consolekit-udev-acl-install_to_usr.patch"
   patch -p0 -i "$srcdir/consolekit-0.4.5-polkit-automagic.patch"
   patch -p0 -i "$srcdir/consolekit-cleanup_console_tags.patch"
+}
 
+build(){
+  cd "$srcdir/ConsoleKit-$pkgver"
   ./configure  \
     --prefix=/usr \
     --sysconfdir=/etc \
