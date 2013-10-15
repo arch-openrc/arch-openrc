@@ -11,7 +11,7 @@ pkgdesc="OpenRC nvidia-utils no xorg init script"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-depends=('openrc' "nvidia-utils" 'udev-init-scripts')
+depends=('openrc' "nvidia-utils")
 install=nvidia-utils.install
 source=("${_gentoo_uri}/nvidia-udev.sh"
 	"${_gentoo_uri}/nvidia.udev-rule"
@@ -34,6 +34,6 @@ package() {
 }
 
 _fix_init(){
-  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|#!/bin/sh|#!/usr/bin/sh|' -e 's|/opt/bin/nvidia-smi|/usr/bin/nvidia-smi|g' -i $1	
-}        
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|#!/bin/sh|#!/usr/bin/sh|' -e 's|/opt/bin/nvidia-smi|/usr/bin/nvidia-smi|g' -i $1
+}
 

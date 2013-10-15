@@ -12,7 +12,7 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-fs')
-depends=('openrc' 'device-mapper' 'udev-init-scripts')
+depends=('openrc' 'device-mapper')
 install=device-mapper.install
 source=("${_gentoo_uri}/device-mapper.conf-1.02.22-r3"
 	"${_gentoo_uri}/device-mapper.rc-2.02.95-r2"
