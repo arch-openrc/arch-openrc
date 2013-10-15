@@ -2,32 +2,31 @@
 # Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
-_cat="sys-apps"
-_name="eudev"
-_gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files")
 
 _udevver=208
 
-pkgname=${_name}
+pkgbase=eudev
+pkgname=eudev
+true && pkgname=('eudev' 'eudev-openrc')
 pkgver=1.3
-pkgrel=3
+pkgrel=4
 pkgdesc="The userspace dev tools (udev) forked by Gentoo with openrc support"
 arch=('i686' 'x86_64')
-url="http://dev.gentoo.org/~blueness/eudev"
 license=('GPL')
-depends=('glib2' 'hwids' 'kbd' 'kmod' 'util-linux')
-makedepends=('intltool' 'gobject-introspection' 'gperf' 'gtk-doc'
-	    'linux-api-headers' 'pkg-config')
-optdepends=('eudev-openrc: openrc eudev-postmount script')
-provides=("udev=${_udevver}" "systemd=${_udevver}"
-	  "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
-conflicts=('systemd' 'libsystemd' 'systemd-tools')
-backup=('etc/udev/udev.conf')
-#install=${pkgname}.install
-options=(!makeflags !libtool)
+makedepends=('gobject-introspection' 'gperf' 'gtk-doc' 'intltool')
+url="http://dev.gentoo.org/~blueness/eudev"
+
+_gentoo_uri=("http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86")
+
 source=("${url}/${pkgname}-${pkgver}.tar.gz"
+	"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount"
         'initcpio_hooks'
         'initcpio_install')
+
+sha256sums=('6f1f0b15971a53c7070a44c902c7c1303f952927aa6370dbdf4d84d8bc09fac2'
+            '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb'
+            '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
+            '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
@@ -46,20 +45,41 @@ build() {
   make
 }
 
-package() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
-  make DESTDIR="${pkgdir}" install
+package_eudev() {
+	true
+	depends=('glib2' 'hwids' 'kbd' 'kmod' 'util-linux')
+	optdepends=('eudev-openrc: openrc eudev-postmount script')
+	provides=("udev=${_udevver}" "systemd=${_udevver}"
+		  "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
+	conflicts=('systemd' 'libsystemd' 'systemd-tools')
+	backup=('etc/udev/udev.conf')
+	options=(!makeflags !libtool)
 
-  for i in "${pkgdir}/usr/lib/udev/rules.d/"*.rules; do
-    sed -i -e 's#GROUP="dialout"#GROUP="uucp"#g;
-               s#GROUP="tape"#GROUP="storage"#g;
-               s#GROUP="cdrom"#GROUP="optical"#g' "${i}"
-  done
+	cd "${srcdir}/${pkgname}-${pkgver}"
+	make DESTDIR="${pkgdir}" install
 
-  install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
-  install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
+	for i in "${pkgdir}/usr/lib/udev/rules.d/"*.rules; do
+	    sed -i -e 's#GROUP="dialout"#GROUP="uucp"#g;
+		      s#GROUP="tape"#GROUP="storage"#g;
+		      s#GROUP="cdrom"#GROUP="optical"#g' "${i}"
+	done
+
+	install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
+	install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
 }
 
-sha256sums=('6f1f0b15971a53c7070a44c902c7c1303f952927aa6370dbdf4d84d8bc09fac2'
-            '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
-            '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390')
+package_eudev-openrc(){
+	true
+	pkgver=20131016
+	pkgrel=1
+	pkgdesc="OpenRC eudev postmount script"
+	arch=('any')
+	url="http://openrc4arch.site40.net"
+	groups=('openrc-base')
+	depends=('openrc' 'eudev')
+	install=eudev.install
+
+	install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/udev-postmount"
+
+}

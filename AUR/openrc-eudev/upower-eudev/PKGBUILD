@@ -4,7 +4,7 @@
 pkgname=upower-eudev
 pkgver=0.9.21
 pkgrel=3
-pkgdesc="Abstraction for enumerating power devices, listening to device events and querying history and statistics"
+pkgdesc="Abstraction for enumerating power devices, listening to device events and querying history and statistics without systemd support"
 arch=('i686' 'x86_64')
 url="http://upower.freedesktop.org"
 license=('GPL')

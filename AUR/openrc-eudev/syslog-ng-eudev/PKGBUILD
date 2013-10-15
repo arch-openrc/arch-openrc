@@ -10,7 +10,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_
 pkgname=syslog-ng-openrc
 pkgver=3.4.3
 pkgrel=2
-pkgdesc="Next-generation syslogd with advanced networking and filtering capabilities"
+pkgdesc="Next-generation syslogd with advanced networking and filtering capabilities with openrc support and disabled systemd"
 arch=('i686' 'x86_64')
 license=('GPL2')
 groups=('openrc-misc')
@@ -19,7 +19,7 @@ depends=('awk' 'eventlog' 'glib2' 'libcap' 'openrc' 'openssl' 'udev')
 makedepends=('flex' 'pkg-config' 'python2')
 optdepends=('logrotate: for rotating log files')
 provides=('syslog-ng')
-conflicts=('syslog-ng')
+conflicts=('syslog-ng' 'syslog-ng-openrc')
 options=('!libtool')
 backup=('etc/syslog-ng/scl.conf'
         'etc/syslog-ng/syslog-ng.conf'
