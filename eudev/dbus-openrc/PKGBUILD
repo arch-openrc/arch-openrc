@@ -8,7 +8,7 @@ _cat="sys-apps"
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
 
 pkgname=dbus-openrc
-pkgver=1.6.14
+pkgver=1.6.16
 pkgrel=1
 pkgdesc="Freedesktop.org message bus system with openrc support"
 url="http://www.freedesktop.org/Software/dbus"
@@ -66,6 +66,6 @@ package(){
 _fix_init(){
   sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|dbus.pid|dbus/pid|g' -e 's|/var/run|/run|g' -i $1
 }
-sha256sums=('5676011d5714682062c4cb0cdd3365c15025809bc26ddbec3e4edeea7867f56c'
+sha256sums=('463f42873aafcde733de3105e6d166709a42bc961fb4e3ef27657dfd55813573'
             '98e37b8b6ed25004e48c5855d74c9361eea06d3fee13cefcc0ed10ccf452aa01'
             'a1c324ae758046f0c3ef46db02ab873d35adeaab9980c2e0ee293accb89d0d2c')
