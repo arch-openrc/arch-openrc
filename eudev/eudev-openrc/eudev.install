@@ -1,9 +1,8 @@
-_svc="udev"
-_rlvl="sysinit"
+_svc="udev-postmount"
+_rlvl="default"
 
 post_install() {
   rc-update add ${_svc} ${_rlvl}
-  rc-update add ${_svc}-mount ${_rlvl}
   rc-update -u
 }
 
@@ -13,6 +12,5 @@ post_upgrade() {
 
 post_remove() {
   rc-update del ${_svc} ${_rlvl}
-  rc-update del ${_svc}-mount ${_rlvl}
   rc-update -u
 }
