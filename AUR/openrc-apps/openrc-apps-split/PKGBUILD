@@ -1,0 +1,130 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgbase=openrc-apps
+pkgname=openrc-apps
+true && pkgname=('alsa-utils-openrc' 'cpupower-openrc' 'cronie-openrc' 'gpm-openrc' 'lm_sensors-openrc' 'sane-openrc' 'syslog-ng-openrc')
+pkgver=20131016
+pkgrel=1
+pkgdesc="OpenRC init scripts"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+groups=('openrc-apps')
+makedepends=('alsa-utils' 'cpupower' 'cronie' 'gpm' 'lm_sensors' 'sane' 'syslog-ng')
+conflicts=('openrc-arch-services-git')
+
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+
+source=("${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.confd-r4"
+	"${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.initd-r5"
+	"${_gentoo_uri}/sys-power/cpupower/files/conf.d-r2"
+	"${_gentoo_uri}/sys-power/cpupower/files/init.d-r2"
+	"${_gentoo_uri}/sys-process/cronie/files/cronie-1.3-initd"
+	"${_gentoo_uri}/sys-process/cronie/files/anacron-1.0-initd"
+	"${_gentoo_uri}/sys-libs/gpm/files/gpm.conf.d"
+	"${_gentoo_uri}/sys-libs/gpm/files/gpm.rc6-2"
+	"${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-conf.d"
+	"${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-4-init.d"
+	"${_gentoo_uri}/sys-apps/lm_sensors/files/fancontrol-init.d-2"
+	"${_gentoo_uri}/sys-apps/lm_sensors/files/lm_sensors-3-init.d"
+	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
+	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.initd"
+	"${_gentoo_uri}/app-admin/syslog-ng/files/syslog-ng.confd"
+	"${_gentoo_uri}/app-admin/syslog-ng/files/syslog-ng.rc6.3.3")
+
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package_alsa-utils-openrc() {
+	true
+	pkgdesc="OpenRC alsa-utils init script"
+	depends=('openrc' 'alsa-utils')
+	install=alsa-utils.install
+
+	install -Dm755 "${srcdir}/alsasound.confd-r4" "${pkgdir}/etc/conf.d/alsasound"
+	install -Dm755 "${srcdir}/alsasound.initd-r5" "${pkgdir}/etc/init.d/alsasound"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/alsasound"
+}
+
+package_cpupower-openrc() {
+	true
+	pkgdesc="OpenRC cpupower init script"
+	depends=('openrc' 'cpupower')
+	install=cpupower.install
+
+	install -Dm755 "${srcdir}/conf.d-r2" "${pkgdir}/etc/conf.d/cpupower"
+	install -Dm755 "${srcdir}/init.d-r2" "${pkgdir}/etc/init.d/cpupower"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/cpupower"
+}
+
+package_cronie-openrc() {
+	true
+	pkgdesc="OpenRC cronie init script"
+	depends=('openrc' 'cronie')
+	provides=('openrc-cron')
+	conflicts=('openrc-cron')
+	install=cronie.install
+
+	install -Dm755 "${srcdir}/cronie-1.3-initd" "${pkgdir}/etc/init.d/cronie"
+	install -Dm755 "${srcdir}/anacron-1.0-initd" "${pkgdir}/etc/init.d/anacron"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/cronie"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/anacron"
+}
+
+package_gpm-openrc() {
+	true
+	pkgdesc="OpenRC gpm init script"
+	depends=('openrc' 'gpm')
+	install=gpm.install
+
+	install -Dm755 "${srcdir}/gpm.conf.d" "${pkgdir}/etc/conf.d/gpm"
+	install -Dm755 "${srcdir}/gpm.rc6-2" "${pkgdir}/etc/init.d/gpm"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/gpm"
+}
+
+package_lm_sensors-openrc() {
+	true
+	pkgdesc="OpenRC lm_sensors init script"
+	depends=('openrc' 'lm_sensors')
+	install=ln_sensors.install
+
+	install -Dm755 "${srcdir}/sensord-conf.d" "${pkgdir}/etc/conf.d/sensord"
+	install -Dm755 "${srcdir}/sensord-4-init.d" "${pkgdir}/etc/init.d/sensord"
+	install -Dm755 "${srcdir}/fancontrol-init.d-2" "${pkgdir}/etc/init.d/fancontrol"
+	install -Dm755 "${srcdir}/lm_sensors-3-init.d" "${pkgdir}/etc/init.d/lm_sensors"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/sensord
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/fancontrol
+        sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/lm_sensors
+}
+
+package_sane-openrc() {
+	true
+	pkgdesc="OpenRC sane init script"
+	depends=('openrc' 'sane')
+	install=sane.install
+
+	install -Dm755 "${srcdir}/saned.confd" "${pkgdir}/etc/conf.d/saned"
+	install -Dm755 "${srcdir}/saned.initd" "${pkgdir}/etc/init.d/saned"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/var/run|/run|' -e 's|/usr/sbin|/usr/bin|' -i ${pkgdir}/etc/init.d/saned
+}
+
+package_syslog-ng-openrc() {
+	true
+	pkgdesc="OpenRC syslog-ng init script"
+	depends=('openrc' 'syslog-ng')
+	install=syslog-ng.install
+
+	install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
+	install -Dm755 "${srcdir}/syslog-ng.rc6.3.3" "${pkgdir}/etc/init.d/syslog-ng"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/syslog-ng
+}
