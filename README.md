@@ -5,7 +5,7 @@ OpenRC pkgbuilds
 
 * openrc-base
 * openrc-desktop
-* openrc-misc
+* openrc-apps
 * openrc-mobile
 * openrc-net
 * openrc-dev
