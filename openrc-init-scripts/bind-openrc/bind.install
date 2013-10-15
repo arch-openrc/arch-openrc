@@ -14,4 +14,3 @@ post_remove() {
 	_cmd="rc-update del ${_svc} ${_rlvl}"
 	echo "	==> run '${_cmd}'"
 }
-init.d
