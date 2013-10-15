@@ -32,6 +32,22 @@ source=("${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.confd-r4"
 	"${_gentoo_uri}/app-admin/syslog-ng/files/syslog-ng.confd"
 	"${_gentoo_uri}/app-admin/syslog-ng/files/syslog-ng.rc6.3.3")
 
+sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
+            'daf46bbc4156a82e0c6c7135ee94b31a3dfb6d366fcf3f45e8c842d1348601be'
+            '9ab6f022d2b2948660decf5e383984e6ddb9e9e5e6e2761c3031378ddd87e947'
+            '8d8e45f112ea86fb686f66ca16c25f6d1b0e06c62b0fd2ce2ed39b455a1d8a3c'
+            '0954be9e1e1c34d2f963cc60828b63711a2949bfe91f65620caf9c80256383f2'
+            '862c85322f3644997ca5432180e0ef0a4fb36467a44b350dc955365f314b2fbe'
+            '73e7483fdc4b12ab4225a4cb13bbe7da71b07b9e69b17e3a6a4c63cb5e2287c8'
+            'e692e7b97efdd79f6e92fbdaed60f7a71bfd23a82c5561b160b88a7aa50c8461'
+            '02230edf5efbb0a4de3840cd76f9ebf431c57a246fa7388e9dbeb0fe26fe7b8d'
+            'e75915a13d3c5eb405e2809186a6ab396b2e0180c3efc94e663f9eb4e276e8ef'
+            '36d489296c31736f8015b0ce27052b3f1555b7fe6335120c0477b044b8e4fb8d'
+            '9b018f9f7a0975988387858823fe59a5cd8af6413d8c3170db0e24aac6021ec3'
+            '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
+            '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
+            '8319ca8e39a5dab5ddc82eede088e1f58ff25deef330804648000359cb736a3f'
+            '19bbd35abc9f54ce368e1ccf46b6e4af6eec304906e432bb9968d50a01d18284')
 
 pkgver() {
   date +%Y%m%d
