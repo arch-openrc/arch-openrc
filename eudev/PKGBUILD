@@ -47,7 +47,7 @@ build() {
 package_eudev() {
 	true
 	depends=('glib2' 'hwids' 'kbd' 'kmod' 'util-linux')
-	optdepends=('eudev-openrc: openrc eudev-postmount script')
+	optdepends=('eudev-openrc: eudev-postmount script')
 	provides=("udev=${_udevver}" "systemd=${_udevver}"
 		  "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
 	conflicts=('systemd' 'libsystemd' 'systemd-tools')
@@ -74,8 +74,8 @@ package_eudev-openrc(){
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
 	url="http://openrc4arch.site40.net"
-	groups=('openrc-base')
-	depends=('openrc' 'eudev')
+	groups=('openrc')
+	depends=('openrc-base' 'eudev')
 	install=eudev.install
 
 	install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
