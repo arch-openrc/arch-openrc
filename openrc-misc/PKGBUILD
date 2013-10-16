@@ -56,6 +56,10 @@ pkgver() {
   date +%Y%m%d
 }
 
+_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_runpath='s|/var/run|/run|g'
+_binpath='s|/usr/sbin|/usr/bin|g'
+
 package_alsa-utils-openrc() {
 	true
 	pkgdesc="OpenRC alsa-utils init script"
@@ -65,7 +69,7 @@ package_alsa-utils-openrc() {
 	install -Dm755 "${srcdir}/alsasound.confd-r4" "${pkgdir}/etc/conf.d/alsasound"
 	install -Dm755 "${srcdir}/alsasound.initd-r5" "${pkgdir}/etc/init.d/alsasound"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/alsasound"
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/alsasound"
 }
 
 package_displaymanager-openrc() {
@@ -81,9 +85,10 @@ package_displaymanager-openrc() {
 	install -Dm755 "${srcdir}/xdm-setup.initd-1" "${pkgdir}/etc/init.d/xdm-setup"
 	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
 
-	 sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/profile.env|/etc/profile|g' -e 's|{ROOTPATH}|{PATH}|g' -i "${pkgdir}/etc/init.d/xdm"
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/xdm-setup"
+	local _p1='s|/etc/profile.env|/etc/profile|g' \
+	_p2='s|{ROOTPATH}|{PATH}|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/xdm"
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/xdm-setup"
 }
 
 package_fcron-openrc() {
@@ -96,7 +101,8 @@ package_fcron-openrc() {
 
 	install -Dm755 "${srcdir}/fcron.init.3" "${pkgdir}/etc/init.d/fcron"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/libexec|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/fcron"
+	local _p1='s|/usr/libexec|/usr/bin|g'
+	sed -e "${_shebang}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/fcron"
 
 }
 
@@ -109,7 +115,7 @@ package_gpm-openrc() {
 	install -Dm755 "${srcdir}/gpm.conf.d" "${pkgdir}/etc/conf.d/gpm"
 	install -Dm755 "${srcdir}/gpm.rc6-2" "${pkgdir}/etc/init.d/gpm"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/gpm"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/gpm"
 }
 
 package_openntpd-openrc() {
@@ -123,7 +129,7 @@ package_openntpd-openrc() {
 	install -Dm755 "${srcdir}/openntpd.conf.d-3.9_p1-r4" "${pkgdir}/etc/conf.d/openntpd"
 	install -Dm755 "${srcdir}/openntpd.init.d-20080406-r2" "${pkgdir}/etc/init.d/openntpd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/openntpd"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/openntpd"
 }
 
 package_rsyslog-openrc() {
@@ -135,7 +141,7 @@ package_rsyslog-openrc() {
 	install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
 	install -Dm755 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rsyslog"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/rsyslog"
 
 }
 
@@ -148,7 +154,7 @@ package_sane-openrc() {
 	install -Dm755 "${srcdir}/saned.confd" "${pkgdir}/etc/conf.d/saned"
 	install -Dm755 "${srcdir}/saned.initd" "${pkgdir}/etc/init.d/saned"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/var/run|/run|' -e 's|/usr/sbin|/usr/bin|' -i ${pkgdir}/etc/init.d/saned
+	sed -e "${_shebang}" -e "${_runpath}" -e "${_binpath}" -i ${pkgdir}/etc/init.d/saned
 }
 
 package_vbox-guest-openrc() {
@@ -159,6 +165,7 @@ package_vbox-guest-openrc() {
 
 	install -Dm755 "${srcdir}/virtualbox-guest-additions-8.initd" "${pkgdir}/etc/init.d/vboxservice"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|vboxguest-service|VBoxService|g' -i "${pkgdir}/etc/init.d/vboxservice"
+	local _p1='s|vboxguest-service|VBoxService|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/vboxservice"
 
 }

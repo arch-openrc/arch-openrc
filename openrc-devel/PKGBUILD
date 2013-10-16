@@ -39,6 +39,10 @@ pkgver() {
   date +%Y%m%d
 }
 
+_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_runpath='s|/var/run|/run|g'
+_binpath='s|/usr/sbin|/usr/bin|g'
+
 package_cyrus-sasl-openrc() {
 	true
 	pkgdesc="OpenRC cyrus-sasl init script"
@@ -47,7 +51,7 @@ package_cyrus-sasl-openrc() {
 
 	install -Dm755 "${srcdir}/saslauthd2.rc7" "${pkgdir}/etc/init.d/saslauthd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i ${pkgdir}/etc/init.d/saslauthd
+	sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/saslauthd"
 
 }
 
@@ -60,8 +64,9 @@ package_git-openrc() {
 	install -Dm755 "${srcdir}/git-daemon.confd" "${pkgdir}/etc/conf.d/git-daemon"
 	install -Dm755 "${srcdir}/git-daemon.initd" "${pkgdir}/etc/init.d/git-daemon"
 
-	sed -e 's|/var/git|/srv/git|' -i ${pkgdir}/etc/conf.d/git-daemon
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/git-daemon
+	local _p1='s|/var/git|/srv/git|'
+	sed -e "${_p1}" -i "${pkgdir}/etc/conf.d/git-daemon"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/git-daemon"
 }
 
 package_mysql-openrc() {
@@ -74,7 +79,8 @@ package_mysql-openrc() {
 	install -Dm755 "${srcdir}/mysql-5.1.53-conf.d" "${pkgdir}/etc/conf.d/mysql"
 	install -Dm755 "${srcdir}/mysql-5.1.67-init.d" "${pkgdir}/etc/init.d/mysql"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin/mysqld|/bin/mysqld|g' -i ${pkgdir}/etc/init.d/mysql
+	local _p1='s|/sbin/mysqld|/usr/bin/mysqld|g'
+	sed -e "${_shebang}" -e "${_p1}" -i "${pkgdir}/etc/init.d/mysql"
 }
 
 package_postgresql-openrc() {
@@ -86,9 +92,12 @@ package_postgresql-openrc() {
 	install -Dm755 "${srcdir}/postgresql.confd" "${pkgdir}/etc/conf.d/postgresql"
 	install -Dm755 "${srcdir}/postgresql.init" "${pkgdir}/etc/init.d/postgresql"
 
-	sed -e 's|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|' -e 's|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|' -i "${pkgdir}/etc/conf.d/postgresql"
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/lib/postgresql-@SLOT@/bin/pg_ctl|/usr/bin/pg_ctl|' -e 's|/usr/lib/postgresql-@SLOT@/bin/postgres|/usr/bin/postgres|' -i "${pkgdir}/etc/init.d/postgresql"
+	local _p1='s|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|' \
+	_p2='s|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|' \
+	_p3='s|/usr/lib/postgresql-@SLOT@/bin/pg_ctl|/usr/bin/pg_ctl|' \
+	_p4='s|/usr/lib/postgresql-@SLOT@/bin/postgres|/usr/bin/postgres|'
+	sed -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/conf.d/postgresql"
+	sed -e "${_shebang}" -e "${_p3}" -e "${_p4}" -i "${pkgdir}/etc/init.d/postgresql"
 }
 
 package_subversion-openrc() {
@@ -100,7 +109,7 @@ package_subversion-openrc() {
 	install -Dm755 "${srcdir}/svnserve.confd" "${pkgdir}/etc/conf.d/svnserve-rc"
 	install -Dm755 "${srcdir}/svnserve.initd2" "${pkgdir}/etc/init.d/svnserve-rc"
 
-	sed -e 's|/var/svn|/srv/svn|g' -i ${pkgdir}/etc/conf.d/svnserve-rc
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/var/svn|/srv/svn|g' -i ${pkgdir}/etc/init.d/svnserve-rc
+	local _p1='s|/var/svn|/srv/svn|g'
+	sed -e "${_p1}" -i ${pkgdir}/etc/conf.d/svnserve-rc
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/svnserve-rc"
 }

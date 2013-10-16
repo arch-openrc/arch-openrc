@@ -41,6 +41,11 @@ pkgver() {
   date +%Y%m%d
 }
 
+_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_runpath='s|/var/run|/run|g'
+_binpath='s|/usr/sbin|/usr/bin|g'
+_binpath2='s|/sbin|/usr/bin|g'
+
 package_bluez-openrc() {
 	true
 	pkgdesc="OpenRC bluez init script"
@@ -51,8 +56,9 @@ package_bluez-openrc() {
 	install -Dm755 "${srcdir}/rfcomm-init.d" "${pkgdir}/etc/init.d/rfcomm"
 	install -Dm755 "${srcdir}/bluetooth-init.d-r2" "${pkgdir}/etc/init.d/bluetooth"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/rfcomm"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/bluetooth"
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -i $f
+	done
 }
 
 package_connman-openrc() {
@@ -64,7 +70,7 @@ package_connman-openrc() {
 	install -Dm755 "${srcdir}/connman.confd" "${pkgdir}/etc/conf.d/connman"
 	install -Dm755 "${srcdir}/connman.initd2" "${pkgdir}/etc/init.d/connman"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/connman"
+	sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/connman"
 }
 
 package_hostapd-openrc() {
@@ -76,7 +82,7 @@ package_hostapd-openrc() {
 	install -Dm755 "${srcdir}/hostapd-conf.d" "${pkgdir}/etc/conf.d/hostapd"
 	install -Dm755 "${srcdir}/hostapd-init.d" "${pkgdir}/etc/init.d/hostapd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/hostapd"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/hostapd"
 }
 
 package_laptop-mode-tools-openrc() {
@@ -88,7 +94,7 @@ package_laptop-mode-tools-openrc() {
 
 	install -Dm755 "${srcdir}/laptop_mode.init-1.4" "${pkgdir}/etc/init.d/laptop_mode"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/laptop_mode"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/laptop_mode"
 }
 
 package_wpa_supplicant-openrc() {
@@ -100,5 +106,5 @@ package_wpa_supplicant-openrc() {
 	install -Dm755 "${srcdir}/wpa_supplicant-conf.d" "${pkgdir}/etc/conf.d/wpa_supplicant"
 	install -Dm755 "${srcdir}/wpa_supplicant-init.d" "${pkgdir}/etc/init.d/wpa_supplicant"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/wpa_supplicant"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/wpa_supplicant"
 }

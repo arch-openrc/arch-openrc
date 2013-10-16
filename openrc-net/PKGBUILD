@@ -185,6 +185,11 @@ pkgver() {
   date +%Y%m%d
 }
 
+_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_runpath='s|/var/run|/run|g'
+_binpath='s|/usr/sbin|/usr/bin|g'
+_binpath2='s|/sbin|/usr/bin|g'
+
 package_apache-openrc() {
 	true
 	pkgdesc="OpenRC apache init script"
@@ -194,7 +199,8 @@ package_apache-openrc() {
 	install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
 	install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|apache2|httpd|g' -e 's|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g' -i "${pkgdir}/etc/init.d/httpd"
+	local _p1='s|apache2|httpd|g' _p2='s|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/httpd"
 }
 
 package_avahi-openrc() {
@@ -206,8 +212,10 @@ package_avahi-openrc() {
 	install -Dm755 "${srcdir}/avahi-${_avaver}/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
 	install -Dm755 "${srcdir}/avahi-${_avaver}/initscript/gentoo/avahi-dnsconfd.in" "${pkgdir}/etc/init.d/avahi-dnsconfd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/bin|' -i "${pkgdir}/etc/init.d/avahi-daemon"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/bin|' -i "${pkgdir}/etc/init.d/avahi-dnsconfd"
+	local _p1='s/opts/extra_started_commands/' _p2='s|@sbindir@|/usr/bin|'
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_p1}" -e "${_p2}" -i $f
+	done
 }
 
 package_bind-openrc() {
@@ -219,7 +227,8 @@ package_bind-openrc() {
 	install -Dm755 "${srcdir}/named.confd-r6" "${pkgdir}/etc/conf.d/named"
 	install -Dm755 "${srcdir}/named.init-r12" "${pkgdir}/etc/init.d/named"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/etc/bind/named.conf|/etc/named.conf|g' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/named"
+	local _p1='s|/etc/bind/named.conf|/etc/named.conf|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/named"
 }
 
 package_bitlbee-openrc() {
@@ -231,8 +240,7 @@ package_bitlbee-openrc() {
 	install -Dm755 "${srcdir}/bitlbee.confd" "${pkgdir}/etc/conf.d/bitlbee"
 	install -Dm755 "${srcdir}/bitlbee.initd" "${pkgdir}/etc/init.d/bitlbee"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/conf.d/bitlbee"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/bitlbee"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/bitlbee"
 }
 
 package_cups-openrc() {
@@ -244,8 +252,8 @@ package_cups-openrc() {
 
 	install -Dm755 "${srcdir}/cupsd.init.d-r1" "${pkgdir}/etc/init.d/cupsd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|lp:lpadmin|daemon:sys|' -e 's|@neededservices@|need dbus avahi-daemon|' -i "${pkgdir}/etc/init.d/cupsd"
-
+	local _p1='s|lp:lpadmin|daemon:sys|' _p2='s|@neededservices@|need dbus avahi-daemon|'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_p1}" -e "${_p1}" -i "${pkgdir}/etc/init.d/cupsd"
 }
 
 package_dhcp-openrc() {
@@ -262,10 +270,10 @@ package_dhcp-openrc() {
 	install -Dm755 "${srcdir}/dhcrelay6.conf" "${pkgdir}/etc/conf.d/dhcrelay6"
 	install -Dm755 "${srcdir}/dhcrelay.init3" "${pkgdir}/etc/init.d/dhcrelay6"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/dhcp|/etc|g' -e 's|#@slapd@|ldap slapd|' -i "${pkgdir}/etc/init.d/dhcpd"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/dhcp|/etc|g' -e 's|#@slapd@|ldap slapd|' -i "${pkgdir}/etc/init.d/dhcrelay"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/dhcp|/etc|g' -e 's|#@slapd@|ldap slapd|' -i "${pkgdir}/etc/init.d/dhcrelay6"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/dhcp|/etc|g' -e 's|#@slapd@|ldap slapd|' -i "${pkgdir}/etc/conf.d/dhcpd"
+	local _p1='s|#@slapd@|ldap slapd|'
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}"  -e "${_p1}" -i $f
+	done
 }
 
 package_dhcpcd-openrc() {
@@ -276,7 +284,7 @@ package_dhcpcd-openrc() {
 
 	install -Dm755 "${srcdir}/dhcpcd.initd" "${pkgdir}/etc/init.d/dhcpcd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/dhcpcd"
+	sed -e "${_shebang}" -e "${_binpath2}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/dhcpcd"
 }
 
 package_glibc-openrc() {
@@ -288,7 +296,7 @@ package_glibc-openrc() {
 
 	install -Dm755 "${srcdir}/nscd" "${pkgdir}/etc/init.d/nscd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/nscd"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/nscd"
 }
 
 package_inetutils-openrc() {
@@ -300,7 +308,7 @@ package_inetutils-openrc() {
 	install -Dm755 "${srcdir}/inetutils.confd" "${pkgdir}/etc/init.d/ftpd"
 	install -Dm755 "${srcdir}/inetutils.initd" "${pkgdir}/etc/init.d/ftpd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/ftpd"
+	sed -e "${_shebang}" -e "${_binpath2}" -i "${pkgdir}/etc/init.d/ftpd"
 }
 
 package_iptables-openrc() {
@@ -314,8 +322,9 @@ package_iptables-openrc() {
 	install -Dm755 "${srcdir}/ip6tables-1.4.13.confd" "${pkgdir}/etc/conf.d/ip6tables"
 	install -Dm755 "${srcdir}/iptables-1.4.13-r1.init" "${pkgdir}/etc/init.d/ip6tables"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/iptables"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ip6tables"
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath2}" -e "${_runpath}" -i $f
+	done
 }
 
 package_krb5-openrc() {
@@ -328,9 +337,10 @@ package_krb5-openrc() {
 	install -Dm755 "${srcdir}/mit-krb5kdc.initd-r1" "${pkgdir}/etc/init.d/krb5kdc"
 	install -Dm755 "${srcdir}/mit-krb5kdc.initd-r1" "${pkgdir}/etc/init.d/krb5kpropd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|mit-krb5kdc|krb5kdc|g' -e 's|mit-krb5kdc mit-krb5kadmind|krb5kdc krb5kadmind|g' -i "${pkgdir}/etc/init.d/krb5kadmind"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|mit-krb5kdc|krb5kdc|g' -e 's|mit-krb5kdc mit-krb5kadmind|krb5kdc krb5kadmind|g' -i "${pkgdir}/etc/init.d/krb5kdc"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|mit-krb5kdc|krb5kdc|g' -e 's|mit-krb5kdc mit-krb5kadmind|krb5kdc krb5kadmind|g' -i "${pkgdir}/etc/init.d/krb5kpropd"
+	local _p1='s|mit-krb5kdc|krb5kdc|g' _p2='s|mit-krb5kdc mit-krb5kadmind|krb5kdc krb5kadmind|g'
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i $f
+	done
 }
 
 package_lighttpd-openrc() {
@@ -342,7 +352,7 @@ package_lighttpd-openrc() {
 	install -Dm755 "${srcdir}/lighttpd.confd" "${pkgdir}/etc/conf.d/lighttpd"
 	install -Dm755 "${srcdir}/lighttpd.initd" "${pkgdir}/etc/init.d/lighttpd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/lighttpd"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/lighttpd"
 }
 
 package_rpcbind-openrc() {
@@ -354,8 +364,7 @@ package_rpcbind-openrc() {
 	install -Dm755 "${srcdir}/rpcbind.confd" "${pkgdir}/etc/conf.d/rpcbind"
 	install -Dm755 "${srcdir}/rpcbind.initd" "${pkgdir}/etc/init.d/rpcbind"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpcbind"
-
+	sed -e "${_shebang}" -e "${_binpath2}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/rpcbind"
 }
 
 package_nfs-utils-openrc() {
@@ -374,13 +383,11 @@ package_nfs-utils-openrc() {
 	install -Dm755 "${srcdir}/rpc.statd.initd" "${pkgdir}/etc/init.d/rpc.statd"
 	install -Dm755 "${srcdir}/rpc.svcgssd.initd" "${pkgdir}/etc/init.d/rpc.svcgssd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/nfs"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/nfsmount"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.gssd"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.idmapd"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.pipefs"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.statd"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.svcgssd"
+	local _p1='s|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g'
+
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}"  -e "${_p1}" -i $f
+	done
 }
 
 package_ntp-openrc() {
@@ -399,9 +406,9 @@ package_ntp-openrc() {
 	install -Dm755 "${srcdir}/sntp.confd" "${pkgdir}/etc/conf.d/sntp"
 	install -Dm755 "${srcdir}/sntp.rc" "${pkgdir}/etc/init.d/sntp"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g'  -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ntpd"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g'  -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ntp-client"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g'  -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/sntp"
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
+	done
 }
 
 package_openldap-openrc() {
@@ -413,8 +420,8 @@ package_openldap-openrc() {
 	install -Dm755 "${srcdir}/slapd-confd-2.4.28-r1" "${pkgdir}/etc/conf.d/slapd"
 	install -Dm755 "${srcdir}/slapd-initd-2.4.28-r1" "${pkgdir}/etc/init.d/slapd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/usr/lib/openldap/slapd|/usr/lib/slapd|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/slapd"
-
+	local _p1='s|/usr/lib/openldap/slapd|/usr/lib/slapd|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/slapd"
 }
 
 package_openslp-openrc() {
@@ -425,8 +432,7 @@ package_openslp-openrc() {
 
 	install -Dm755 "${srcdir}/slpd-init" "${pkgdir}/etc/init.d/slpd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/slpd"
-
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/slpd"
 }
 
 package_openssh-openrc() {
@@ -439,9 +445,8 @@ package_openssh-openrc() {
 	install -Dm755 "${srcdir}/sshd.confd" "${pkgdir}/etc/conf.d/sshd"
 	install -Dm755 "${srcdir}/sshd.rc6.4" "${pkgdir}/etc/init.d/sshd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/conf.d/sshd"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/sshd"
-
+	sed -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/conf.d/sshd"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/sshd"
 }
 
 package_polipo-openrc() {
@@ -452,8 +457,7 @@ package_polipo-openrc() {
 
 	install -Dm755 "${srcdir}/polipo.initd" "${pkgdir}/etc/init.d/polipo"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/polipo"
-
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/polipo"
 }
 
 package_postfix-openrc() {
@@ -465,7 +469,7 @@ package_postfix-openrc() {
 
 	install -Dm755 "${srcdir}/postfix.rc6.2.7" "${pkgdir}/etc/init.d/postfix"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/postfix"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/postfix"
 }
 
 package_privoxy-openrc() {
@@ -476,8 +480,7 @@ package_privoxy-openrc() {
 
 	install -Dm755 "${srcdir}/privoxy.initd" "${pkgdir}/etc/init.d/privoxy"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/privoxy"
-
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/privoxy"
 }
 
 package_quota-tools-openrc() {
@@ -491,8 +494,9 @@ package_quota-tools-openrc() {
 	install -Dm755 "${srcdir}/quota.rc7" "${pkgdir}/etc/init.d/quota"
 	install -Dm755 "${srcdir}/rpc.rquotad.initd" "${pkgdir}/etc/init.d/rpc.rquotad"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/quota"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpc.rquotad"
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
+	done
 }
 
 package_rsync-openrc() {
@@ -504,8 +508,7 @@ package_rsync-openrc() {
 	install -Dm755 "${srcdir}/rsyncd.conf.d" "${pkgdir}/etc/conf.d/rsyncd"
 	install -Dm755 "${srcdir}/rsyncd.init.d-r1" "${pkgdir}/etc/init.d/rsyncd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rsyncd"
-
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/rsyncd"
 }
 
 package_samba-openrc() {
@@ -517,8 +520,9 @@ package_samba-openrc() {
 	install -Dm755 "${srcdir}/samba4.confd" "${pkgdir}/etc/conf.d/samba-rc"
 	install -Dm755 "${srcdir}/samba4.initd-r1" "${pkgdir}/etc/init.d/samba-rc"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|SVCNAME##samba|SVCNAME##samba-rc|g' -e 's|"samba"|"samba-rc"|g' -i "${pkgdir}/etc/conf.d/samba-rc"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|SVCNAME##samba|SVCNAME##samba-rc|g' -e 's|"samba"|"samba-rc"|g' -i "${pkgdir}/etc/init.d/samba-rc"
+	local _p1='s|SVCNAME##samba|SVCNAME##samba-rc|g' _p2='s|"samba"|"samba-rc"|g'
+	sed -e "${_binpath}" -i "${pkgdir}/etc/conf.d/samba-rc"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/samba-rc"
 }
 
 package_squid-openrc() {
@@ -531,8 +535,8 @@ package_squid-openrc() {
 	install -Dm755 "${srcdir}/squid.confd-r1" "${pkgdir}/etc/conf.d/squid"
 	install -Dm755 "${srcdir}/squid.initd-r3" "${pkgdir}/etc/init.d/squid"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|chown squid|chown proxy|g' -i "${pkgdir}/etc/init.d/squid"
-
+	local _p1='s|chown squid|chown proxy|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/squid"
 }
 
 package_transmission-openrc() {
@@ -544,8 +548,7 @@ package_transmission-openrc() {
 	install -Dm755 "${srcdir}/transmission-daemon.confd.4" "${pkgdir}/etc/conf.d/transmission-daemon"
 	install -Dm755 "${srcdir}/transmission-daemon.initd.9" "${pkgdir}/etc/init.d/transmission-daemon"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/transmission-daemon"
-
+	sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/transmission-daemon"
 }
 
 package_ufw-openrc() {
@@ -557,8 +560,8 @@ package_ufw-openrc() {
 	install -Dm755 "${srcdir}/ufw.confd" "${pkgdir}/etc/conf.d/ufw"
 	install -Dm755 "${srcdir}/ufw-2.initd" "${pkgdir}/etc/init.d/ufw"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g' -i "${pkgdir}/etc/init.d/ufw"
-
+	local _p1='s|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/ufw"
 }
 
 package_vsftpd-openrc() {
@@ -571,9 +574,9 @@ package_vsftpd-openrc() {
 	install -Dm755 "${srcdir}/vsftpd.init" "${pkgdir}/etc/init.d/vsftpd"
 	install -Dm755 "${srcdir}/vsftpd-checkconfig.sh" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/vsftpd/|/etc/|g' -e 's|/usr/libexec/|/usr/lib/|g' -i "${pkgdir}/etc/init.d/vsftpd"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/vsftpd/|/etc/|g' -e 's|/usr/libexec/|/usr/lib/|g' -i "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
-
+	local _p1='s|/usr/libexec/|/usr/lib/|g' _p2='s|/etc/vsftpd/|/etc/|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/vsftpd"
+	sed -e "${_p2}" -i "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 }
 
 package_wicd-openrc() {
@@ -584,7 +587,7 @@ package_wicd-openrc() {
 
 	install -Dm755 "${srcdir}/wicd-init.d" "${pkgdir}/etc/init.d/wicd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/wicd"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/wicd"
 }
 
 package_xinetd-openrc() {
@@ -596,8 +599,7 @@ package_xinetd-openrc() {
 	install -Dm755 "${srcdir}/xinetd.confd" "${pkgdir}/etc/conf.d/xinetd"
 	install -Dm755 "${srcdir}/xinetd.rc6" "${pkgdir}/etc/init.d/xinetd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/xinetd"
-
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/xinetd"
 }
 
 package_ypbind-mt-openrc() {
@@ -610,8 +612,7 @@ package_ypbind-mt-openrc() {
 	install -Dm755 "${srcdir}/ypbind.confd-r1" "${pkgdir}/etc/conf.d/ypbind"
 	install -Dm755 "${srcdir}/ypbind.initd" "${pkgdir}/etc/init.d/ypbind"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ypbind"
-
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/ypbind"
 }
 
 package_ypserv-openrc() {
@@ -627,8 +628,8 @@ package_ypserv-openrc() {
 	install -Dm755 "${srcdir}/ypserv.confd" "${pkgdir}/etc/conf.d/ypserv.confd"
 	install -Dm755 "${srcdir}/ypserv" "${pkgdir}/etc/init.d/ypserv"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/ypserv"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpc.yppasswdd"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpc.ypxfrd"
-
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
+	done
 }
+

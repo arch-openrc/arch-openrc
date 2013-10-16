@@ -2,8 +2,9 @@
 
 pkgbase=openrc-sys
 pkgname=openrc-sys
-true && pkgname=('acpid-openrc' 'cpupower-openrc' 'cronie-openrc' 'cryptsetup-openrc' 'dbus-openrc'
-		'device-mapper-openrc' 'lm_sensors-openrc' 'lvm2-openrc' 'mdadm-openrc' 'syslog-ng-openrc')
+true && pkgname=('acpid-openrc' 'cpupower-openrc' 'cronie-openrc'
+		'cryptsetup-openrc' 'dbus-openrc' 'device-mapper-openrc'
+		'lm_sensors-openrc' 'lvm2-openrc' 'mdadm-openrc' 'syslog-ng-openrc')
 pkgver=20131016
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -68,6 +69,11 @@ pkgver() {
   date +%Y%m%d
 }
 
+_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_runpath='s|/var/run|/run|g'
+_binpath='s|/usr/sbin|/usr/bin|g'
+_binpath2='s|/sbin|/usr/bin|g'
+
 package_acpid-openrc() {
 	true
 	pkgdesc="OpenRC acpid init script"
@@ -77,7 +83,7 @@ package_acpid-openrc() {
 	install -Dm755 "${srcdir}/acpid-2.0.16-conf.d" "${pkgdir}/etc/conf.d/acpid"
 	install -Dm755 "${srcdir}/acpid-2.0.16-init.d" "${pkgdir}/etc/init.d/acpid"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|' -i "${pkgdir}/etc/init.d/acpid"
+	sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/acpid"
 }
 
 package_cpupower-openrc() {
@@ -89,7 +95,7 @@ package_cpupower-openrc() {
 	install -Dm755 "${srcdir}/conf.d-r2" "${pkgdir}/etc/conf.d/cpupower"
 	install -Dm755 "${srcdir}/init.d-r2" "${pkgdir}/etc/init.d/cpupower"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/cpupower"
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/cpupower"
 }
 
 package_cronie-openrc() {
@@ -103,9 +109,9 @@ package_cronie-openrc() {
 	install -Dm755 "${srcdir}/cronie-1.3-initd" "${pkgdir}/etc/init.d/cronie"
 	install -Dm755 "${srcdir}/anacron-1.0-initd" "${pkgdir}/etc/init.d/anacron"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/cronie"
-
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/anacron"
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
+	done
 }
 
 package_cryptsetup-openrc() {
@@ -117,7 +123,7 @@ package_cryptsetup-openrc() {
 	install -Dm755 "${srcdir}/1.0.6-dmcrypt.confd" "${pkgdir}/etc/conf.d/dmcrypt"
 	install -Dm755 "${srcdir}/1.5.1-dmcrypt.rc" "${pkgdir}/etc/init.d/dmcrypt"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/dmcrypt
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i ${pkgdir}/etc/init.d/dmcrypt
 }
 
 package_dbus-openrc() {
@@ -128,7 +134,8 @@ package_dbus-openrc() {
 
 	install -Dm755 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|dbus.pid|dbus/pid|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/dbus"
+	local _p1='s|dbus.pid|dbus/pid|g'
+	sed -e "${_shebang}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/dbus"
 }
 
 package_device-mapper-openrc() {
@@ -141,8 +148,9 @@ package_device-mapper-openrc() {
 	install -Dm755 "${srcdir}/device-mapper.rc-2.02.95-r2" "${pkgdir}/etc/init.d/device-mapper"
 	install -Dm755 "${srcdir}/dmeventd.initd-2.02.67-r1" "${pkgdir}/etc/init.d/dmeventd"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/device-mapper
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/dmeventd
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath2}" -e "${_runpath}" -i $f
+	done
 }
 
 package_lm_sensors-openrc() {
@@ -156,9 +164,9 @@ package_lm_sensors-openrc() {
 	install -Dm755 "${srcdir}/fancontrol-init.d-2" "${pkgdir}/etc/init.d/fancontrol"
 	install -Dm755 "${srcdir}/lm_sensors-3-init.d" "${pkgdir}/etc/init.d/lm_sensors"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/sensord
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/fancontrol
-        sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/lm_sensors
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
+	done
 }
 
 package_lvm2-openrc() {
@@ -171,9 +179,9 @@ package_lvm2-openrc() {
 	install -Dm755 "${srcdir}/lvm.rc-2.02.95-r2" "${pkgdir}/etc/init.d/lvm"
 	install -Dm755 "${srcdir}/lvm-monitoring.initd-2.02.67-r2" "${pkgdir}/etc/init.d/lvm-monitoring"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/lvm
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/lvm-monitoring
-
+	for f in ${pkgdir}/etc/init.d/*;do
+	  sed -e "${_shebang}" -e "${_binpath2}" -e "${_runpath}" -i $f
+	done
 }
 
 package_mdadm-openrc() {
@@ -186,7 +194,7 @@ package_mdadm-openrc() {
 	install -Dm755 "${srcdir}/mdadm.confd" "${pkgdir}/etc/conf.d/mdadm"
 	install -Dm755 "${srcdir}/mdadm.rc" "${pkgdir}/etc/init.d/mdadm"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/mdadm
+	sed -e "${_shebang}" -e "${_runpath}" -i ${pkgdir}/etc/init.d/mdadm
 }
 
 package_syslog-ng-openrc() {
@@ -198,5 +206,5 @@ package_syslog-ng-openrc() {
 	install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
 	install -Dm755 "${srcdir}/syslog-ng.rc6.3.3" "${pkgdir}/etc/init.d/syslog-ng"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i ${pkgdir}/etc/init.d/syslog-ng
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i ${pkgdir}/etc/init.d/syslog-ng
 }
