@@ -1,21 +1,15 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-_apver=2.4.4
-_aprel=20130801
-
-_avaver=0.6.31
-
-
 pkgbase=openrc-net
 pkgname=openrc-net
 true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc' 'bitlbee-openrc'
 		'cups-openrc' 'dhcp-openrc' 'dhcpcd-openrc' 'glibc-openrc'
 		'inetutils-openrc' 'iptables-openrc' 'krb5-openrc'
-		'lighttpd-openrc' 'ntp-openrc' 'openldap-openrc'
+		'lighttpd-openrc' 'nfs-utils-openrc' 'ntp-openrc' 'openldap-openrc'
 		'openslp-openrc' 'openssh-openrc' 'polipo-openrc'
-		'postfix-openrc' 'privoxy-openrc' 'rpcbind-openrc' 'rsync-openrc'
-		'squid-openrc' 'transmission-openrc' 'ufw-openrc'
-		'vsftpd-openrc' 'wicd-openrc' 'xinetd-openrc'
+		'postfix-openrc' 'privoxy-openrc' 'quota-tools-openrc' 'rpcbind-openrc'
+		'rsync-openrc' 'samba-openrc' 'squid-openrc' 'transmission-openrc'
+		'ufw-openrc' 'vsftpd-openrc' 'wicd-openrc' 'xinetd-openrc'
 		'ypbind-mt-openrc' 'ypserv-openrc')
 pkgver=20131016
 pkgrel=1
@@ -24,13 +18,16 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-net')
-makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'cups' 'dhcp' 'dhcpcd'
-	    'glibc' 'inetutils' 'iptables' 'krb5' 'lighttpd' 'ntp'
-	    'openldap' 'openslp' 'openssh' 'polipo' 'postfix' 'privoxy'
-	    'rpcbind' 'rsync' 'squid' 'transmission' 'ufw' 'vsftpd'
+makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'cups' 'dhcp' 'dhcpcd' 'glibc'
+	    'inetutils' 'iptables' 'krb5' 'lighttpd' 'nfs-utils' 'ntp'
+	    'openldap' 'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools'
+	    'rpcbind' 'rsync' 'samba' 'squid' 'transmission' 'ufw' 'vsftpd'
 	    'wicd' 'xinetd' 'ypbind-mt' 'ypserv')
 conflicts=('openrc-arch-services-git')
 
+_apver=2.4.4
+_aprel=20130801
+_avaver=0.6.31
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 _dev_uri="http://dev.gentoo.org/~kensington/dist/apache"
 
@@ -58,6 +55,14 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kdc.initd-r1"
 	"${_gentoo_uri}/www-servers/lighttpd/files/lighttpd.confd"
 	"${_gentoo_uri}/www-servers/lighttpd/files/lighttpd.initd"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/nfs.confd"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/nfs.initd"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/nfsmount.initd"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/rpc.gssd.initd"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/rpc.idmapd.initd"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/rpc.pipefs.initd"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/rpc.statd.initd"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/rpc.svcgssd.initd"
 	"${_gentoo_uri}/net-misc/ntp/files/ntpd.confd"
 	"${_gentoo_uri}/net-misc/ntp/files/ntpd.rc"
 	"${_gentoo_uri}/net-misc/ntp/files/ntp-client.confd"
@@ -72,10 +77,15 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/net-proxy/polipo/files/polipo.initd"
 	"${_gentoo_uri}/mail-mta/postfix/files/postfix.rc6.2.7"
 	"${_gentoo_uri}/net-proxy/privoxy/files/privoxy.initd"
+	"${_gentoo_uri}/sys-fs/quota/files/quota.confd"
+	"${_gentoo_uri}/sys-fs/quota/files/quota.rc7"
+	"${_gentoo_uri}/sys-fs/quota/files/rpc.rquotad.initd"
 	"${_gentoo_uri}/net-nds/rpcbind/files/rpcbind.confd"
 	"${_gentoo_uri}/net-nds/rpcbind/files/rpcbind.initd"
 	"${_gentoo_uri}/net-misc/rsync/files/rsyncd.conf.d"
 	"${_gentoo_uri}/net-misc/rsync/files/rsyncd.init.d-r1"
+	"${_gentoo_uri}/net-fs/samba/files/4.0/samba4.confd"
+	"${_gentoo_uri}/net-fs/samba/files/4.0/samba4.initd-r1"
 	"${_gentoo_uri}/net-proxy/squid/files/squid.confd-r1"
 	"${_gentoo_uri}/net-proxy/squid/files/squid.initd-r3"
 	"${_gentoo_uri}/net-p2p/transmission/files/transmission-daemon.confd.4"
@@ -120,6 +130,14 @@ sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
             'bb6e6721f33e6582a91025f3500e159a599fb856d699e9394093e1018c7925e0'
             'b1515472c32927039b38f6c3a797cbc54a5a300b5d6fa54df9550174afa2b7f8'
+            '22bba4ee5d58bae422650875c7c8a797a52fc121ddd02d48297c075b8a35401e'
+            '8df22f253770a24c6a53ce332d821ab680d0ede18d0e968c1c5d8b3796cb74be'
+            'b57637c7eb8e40b5cc1655e8afa69dc0aaecbd3186bdca3301586d1e9b797357'
+            '00d9c29280a83e8458c33139d04a9b38c6fdba9d7cb9b420ca83bf6b10e6435d'
+            '3ce65326859c43983dad25ad2d4731488c488037796e39b6b5eda336e8bf81ef'
+            '6503951b3c200ccf3f46396f7b9274f0a565807f7f6e561c17bed6b0133ae49a'
+            '0c7bd35a14da6c0c2577f09ae82a41ddb693a88157eeaf80684616f79be6c304'
+            'f1c460d8b0e91e54a551397d755135d05a3728d81de596535bf8bda074455677'
             'a3bc17ee0f7d41102d6c33e4281e22d312a42cc2ffd8848b08e9cd78d63f2d05'
             'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
             'e8d5883461f4297c052e3b39814b663965ed3a756c4234675f4a9b62349eca13'
@@ -134,10 +152,15 @@ sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             '438b8a9cfccf1ea14314f38e6821454b6da9ae20ea12bf311ad9fa89816cd702'
             '51f4bffa535d891f94d4a20ca2a4a42cc99189f3de78cee1c8d235e4a9d1721d'
             '224496b498b4f692ae3316a95b5c7c8b6230dcd5fee0ca163956a7acde243de9'
+            '00d1dfb3b893db5d6a213a4edda622c7d64dcafa40b3019f15e070c164286632'
+            '00ce705b49aaa356d9d9f0be3b80a3fe2810471cbe02fd0edc66349f3ca281de'
+            'c3896303d6cfebf314a3f6b8aeed0f6cb6ae421c4c0923b0121c76b3251314e5'
             '38bb95aefc38d843d0890d9c15affd28f19f2133c17f463396c62970e7e2dffc'
             '6561ae40c5899a9f7a12f1f0867bec47d47c7cc3c583574ffcecbbf6f8d8afbb'
             'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
             'baff64277f9aa62cf1eeed2284bb08c4f3078a8e6e7604e4fec228ca5fa9dd82'
+            '53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
+            '4d00243dbd85ee81e2e989f1ac8035c1c1b9379133584291b959bb7bc45fe780'
             '214a184495a3384eb452caef435256043bc51e35140a61b1f5fdff32603c8f7e'
             '9b16b1ab2d3d3411dfcd8ac76b13a0889503ca78e3c6123814801af7577537f3'
             '249689688aad23d0d27ccdd08a0907fd85058d6a52ccd3467f756b07f5d059ee'
@@ -157,7 +180,7 @@ sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             'a6445dd607093fdafb013e5896f60d78223549b38c96300fe239bcf5dbf2a8de'
             '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
             '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b')
-            
+
 pkgver() {
   date +%Y%m%d
 }
@@ -322,6 +345,44 @@ package_lighttpd-openrc() {
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/lighttpd"
 }
 
+package_rpcbind-openrc() {
+	true
+	pkgdesc="OpenRC rpcbind init script"
+	depends=('openrc' 'rpcbind')
+	install=rpcbind.install
+
+	install -Dm755 "${srcdir}/rpcbind.confd" "${pkgdir}/etc/conf.d/rpcbind"
+	install -Dm755 "${srcdir}/rpcbind.initd" "${pkgdir}/etc/init.d/rpcbind"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpcbind"
+
+}
+
+package_nfs-utils-openrc() {
+	true
+	pkgdesc="OpenRC nfs-utils init script"
+	depends=('openrc' 'nfs-utils' 'rpcbind-openrc' 'device-mapper-openrc')
+	optdepends=('ypbind-openrc' 'quota-tools-openrc' 'bind-openrc')
+	install=nfs-utils.install
+
+	install -Dm755 "${srcdir}/nfs.confd" "${pkgdir}/etc/conf.d/nfs-rc"
+	install -Dm755 "${srcdir}/nfs.initd" "${pkgdir}/etc/init.d/nfs"
+	install -Dm755 "${srcdir}/nfsmount.initd" "${pkgdir}/etc/init.d/nfsmount"
+	install -Dm755 "${srcdir}/rpc.gssd.initd" "${pkgdir}/etc/init.d/rpc.gssd"
+	install -Dm755 "${srcdir}/rpc.idmapd.initd" "${pkgdir}/etc/init.d/rpc.idmapd"
+	install -Dm755 "${srcdir}/rpc.pipefs.initd" "${pkgdir}/etc/init.d/rpc.pipefs"
+	install -Dm755 "${srcdir}/rpc.statd.initd" "${pkgdir}/etc/init.d/rpc.statd"
+	install -Dm755 "${srcdir}/rpc.svcgssd.initd" "${pkgdir}/etc/init.d/rpc.svcgssd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/nfs"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/nfsmount"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.gssd"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.idmapd"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.pipefs"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.statd"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g' -i "${pkgdir}/etc/init.d/rpc.svcgssd"
+}
+
 package_ntp-openrc() {
 	true
 	pkgdesc="OpenRC ntp init script"
@@ -419,17 +480,19 @@ package_privoxy-openrc() {
 
 }
 
-package_rpcbind-openrc() {
+package_quota-tools-openrc() {
 	true
-	pkgdesc="OpenRC rpcbind init script"
-	depends=('openrc' 'rpcbind')
-	install=rpcbind.install
+	pkgdesc="OpenRC quota-tools init script"
+	depends=('openrc' 'quota-tools' 'rpcbind-openrc')
+	optdepends=('ypbind-openrc')
+	install=quota-tools.install
 
-	install -Dm755 "${srcdir}/rpcbind.confd" "${pkgdir}/etc/conf.d/rpcbind"
-	install -Dm755 "${srcdir}/rpcbind.initd" "${pkgdir}/etc/init.d/rpcbind"
+	install -Dm755 "${srcdir}/quota.confd" "${pkgdir}/etc/conf.d/quota"
+	install -Dm755 "${srcdir}/quota.rc7" "${pkgdir}/etc/init.d/quota"
+	install -Dm755 "${srcdir}/rpc.rquotad.initd" "${pkgdir}/etc/init.d/rpc.rquotad"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpcbind"
-
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/quota"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rpc.rquotad"
 }
 
 package_rsync-openrc() {
@@ -443,6 +506,19 @@ package_rsync-openrc() {
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rsyncd"
 
+}
+
+package_samba-openrc() {
+	true
+	pkgdesc="OpenRC samba init script"
+	depends=('openrc' 'samba')
+	install=samba.install
+
+	install -Dm755 "${srcdir}/samba4.confd" "${pkgdir}/etc/conf.d/samba-rc"
+	install -Dm755 "${srcdir}/samba4.initd-r1" "${pkgdir}/etc/init.d/samba-rc"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|SVCNAME##samba|SVCNAME##samba-rc|g' -e 's|"samba"|"samba-rc"|g' "${pkgdir}/etc/conf.d/samba-rc"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|SVCNAME##samba|SVCNAME##samba-rc|g' -e 's|"samba"|"samba-rc"|g' "${pkgdir}/etc/init.d/samba-rc"
 }
 
 package_squid-openrc() {

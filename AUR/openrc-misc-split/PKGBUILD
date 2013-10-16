@@ -1,0 +1,164 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+pkgbase=openrc-misc
+pkgname=openrc-misc
+true && pkgname=('alsa-utils-openrc' 'displaymanager-openrc' 'fcron-openrc' 'gpm-openrc'
+		'openntpd-openrc' 'rsyslog-openrc' 'sane-openrc'
+		'vbox-guest-openrc')
+pkgver=20131015
+pkgrel=1
+pkgdesc="OpenRC init scripts"
+arch=('any')
+url="http://openrc4arch.site40.net"
+license=('GPL2')
+#groups=('openrc-misc')
+makedepends=('alsa-utils' 'fcron' 'gpm' 'openntpd' 'rsyslog'
+	    'sane' 'virtualbox-guest-additions' 'xorg-server')
+conflicts=('openrc-arch-services-git')
+
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+
+source=("${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.confd-r4"
+	"${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.initd-r5"
+	"${_gentoo_uri}/sys-process/fcron/files/fcron.init.3"
+	"${_gentoo_uri}/sys-libs/gpm/files/gpm.conf.d"
+	"${_gentoo_uri}/sys-libs/gpm/files/gpm.rc6-2"
+	"${_gentoo_uri}/net-misc/openntpd/files/openntpd.conf.d-3.9_p1-r4"
+	"${_gentoo_uri}/net-misc/openntpd/files/openntpd.init.d-20080406-r2"
+	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/rsyslog.confd"
+	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/rsyslog.initd"
+	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
+	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.initd"
+	"${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
+	"${_gentoo_uri}/x11-base/xorg-server/files/xdm.confd-4"
+	"${_gentoo_uri}/x11-base/xorg-server/files/xdm.initd-10"
+	"${_gentoo_uri}/x11-base/xorg-server/files/xdm-setup.initd-1"
+	"${_gentoo_uri}/x11-apps/xinit/files/startDM.sh")
+
+sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
+            'daf46bbc4156a82e0c6c7135ee94b31a3dfb6d366fcf3f45e8c842d1348601be'
+            'ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
+            '73e7483fdc4b12ab4225a4cb13bbe7da71b07b9e69b17e3a6a4c63cb5e2287c8'
+            'e692e7b97efdd79f6e92fbdaed60f7a71bfd23a82c5561b160b88a7aa50c8461'
+            '1980b5dadcd9478e653ef05c099ef45caacfdf12a73a3745b39322f75773a738'
+            'e0b5a15eab16e378b78d8ee5fa6e2eba630b5e55e864075d3e86fb89f9ea4e71'
+            'ff2634927d3208ac2c82d352f0a7dc9fef1d0ee098d18f818d4417ac04516e9c'
+            '7b3b32e89c051566b68c5e5a077cd5960da183e071e411b1248d4e4702a24279'
+            '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
+            '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
+            '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac'
+            '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
+            '85e5778e23748c6a6285fdadaeb18e6c04b3fdf98d2a81f0ab9d854dbac8076c'
+            '942ce5e8d1a0770543b683dcc388bae7619a24eb9741c1cd678ed3df97c01406'
+            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package_alsa-utils-openrc() {
+	true
+	pkgdesc="OpenRC alsa-utils init script"
+	depends=('openrc' 'alsa-utils')
+	install=alsa-utils.install
+
+	install -Dm755 "${srcdir}/alsasound.confd-r4" "${pkgdir}/etc/conf.d/alsasound"
+	install -Dm755 "${srcdir}/alsasound.initd-r5" "${pkgdir}/etc/init.d/alsasound"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/alsasound"
+}
+
+package_displaymanager-openrc() {
+	true
+	pkgdesc="OpenRC dm init script"
+	depends=('openrc' 'xorg-server')
+	optdepends=('consolekit-openrc' 'dbus-openrc')
+	backup=('etc/conf.d/xdm')
+	install=displaymanager.install
+
+	install -Dm755 "${srcdir}/xdm.confd-4" "${pkgdir}/etc/conf.d/xdm"
+	install -Dm755 "${srcdir}/xdm.initd-9" "${pkgdir}/etc/init.d/xdm"
+	install -Dm755 "${srcdir}/xdm-setup.initd-1" "${pkgdir}/etc/init.d/xdm-setup"
+	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
+
+	 sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|/etc/profile.env|/etc/profile|g' -e 's|{ROOTPATH}|{PATH}|g' -i "${pkgdir}/etc/init.d/xdm"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/xdm-setup"
+}
+
+package_fcron-openrc() {
+	true
+	pkgdesc="OpenRC fcron init script"
+	depends=('openrc' 'fcron')
+	provides=('openrc-cron')
+	conflicts=('openrc-cron')
+	install=fcron.install
+
+	install -Dm755 "${srcdir}/fcron.init.3" "${pkgdir}/etc/init.d/fcron"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/libexec|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/fcron"
+
+}
+
+package_gpm-openrc() {
+	true
+	pkgdesc="OpenRC gpm init script"
+	depends=('openrc' 'gpm')
+	install=gpm.install
+
+	install -Dm755 "${srcdir}/gpm.conf.d" "${pkgdir}/etc/conf.d/gpm"
+	install -Dm755 "${srcdir}/gpm.rc6-2" "${pkgdir}/etc/init.d/gpm"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/gpm"
+}
+
+package_openntpd-openrc() {
+	true
+	pkgdesc="OpenRC openntpd init script"
+	depends=('openrc' 'openntpd')
+	provides=('openrc-timed')
+	conflicts=('openrc-timed')
+	install=openntpd.install
+
+	install -Dm755 "${srcdir}/openntpd.conf.d-3.9_p1-r4" "${pkgdir}/etc/conf.d/openntpd"
+	install -Dm755 "${srcdir}/openntpd.init.d-20080406-r2" "${pkgdir}/etc/init.d/openntpd"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/openntpd"
+}
+
+package_rsyslog-openrc() {
+	true
+	pkgdesc="OpenRC rsyslog init script"
+	depends=('openrc' 'rsyslog')
+	install=rsyslog.install
+
+	install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
+	install -Dm755 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/rsyslog"
+
+}
+
+package_sane-openrc() {
+	true
+	pkgdesc="OpenRC sane init script"
+	depends=('openrc' 'sane')
+	install=sane.install
+
+	install -Dm755 "${srcdir}/saned.confd" "${pkgdir}/etc/conf.d/saned"
+	install -Dm755 "${srcdir}/saned.initd" "${pkgdir}/etc/init.d/saned"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/var/run|/run|' -e 's|/usr/sbin|/usr/bin|' -i ${pkgdir}/etc/init.d/saned
+}
+
+package_vbox-guest-openrc() {
+	true
+	pkgdesc="OpenRC virtualbox-guest-utils init script"
+	depends=('openrc' 'virtualbox-guest-utils')
+	install=virtualbox-guest-additions.install
+
+	install -Dm755 "${srcdir}/virtualbox-guest-additions-8.initd" "${pkgdir}/etc/init.d/vboxservice"
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|vboxguest-service|VBoxService|g' -i "${pkgdir}/etc/init.d/vboxservice"
+
+}
