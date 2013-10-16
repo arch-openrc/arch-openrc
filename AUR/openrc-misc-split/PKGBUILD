@@ -5,7 +5,7 @@ pkgname=openrc-misc
 true && pkgname=('alsa-utils-openrc' 'displaymanager-openrc' 'fcron-openrc' 'gpm-openrc'
 		'openntpd-openrc' 'rsyslog-openrc' 'sane-openrc'
 		'vbox-guest-openrc')
-pkgver=20131015
+pkgver=20131016
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -77,7 +77,7 @@ package_displaymanager-openrc() {
 	install=displaymanager.install
 
 	install -Dm755 "${srcdir}/xdm.confd-4" "${pkgdir}/etc/conf.d/xdm"
-	install -Dm755 "${srcdir}/xdm.initd-9" "${pkgdir}/etc/init.d/xdm"
+	install -Dm755 "${srcdir}/xdm.initd-10" "${pkgdir}/etc/init.d/xdm"
 	install -Dm755 "${srcdir}/xdm-setup.initd-1" "${pkgdir}/etc/init.d/xdm-setup"
 	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
 

@@ -191,8 +191,8 @@ package_apache-openrc() {
 	depends=('openrc' 'apache')
 	install=apache.install
 
-	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
-	install -Dm755 "${srcdir}/gentoo-apache-${_ver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+	install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+	install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|apache2|httpd|g' -e 's|/etc/httpd/httpd.conf|/etc/httpd/conf/httpd.conf|g' -i "${pkgdir}/etc/init.d/httpd"
 }
@@ -203,8 +203,8 @@ package_avahi-openrc() {
 	depends=('openrc' 'avahi' 'dbus-openrc')
 	install=avahi.install
 
-	install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
-	install -Dm755 "${srcdir}/${_name}-${_ver}/initscript/gentoo/avahi-dnsconfd.in" "${pkgdir}/etc/init.d/avahi-dnsconfd"
+	install -Dm755 "${srcdir}/avahi-${_avaver}/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
+	install -Dm755 "${srcdir}/avahi-${_avaver}/initscript/gentoo/avahi-dnsconfd.in" "${pkgdir}/etc/init.d/avahi-dnsconfd"
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/bin|' -i "${pkgdir}/etc/init.d/avahi-daemon"
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|opts|extra_started_commands|' -e 's|@sbindir@|/usr/bin|' -i "${pkgdir}/etc/init.d/avahi-dnsconfd"
@@ -297,8 +297,8 @@ package_inetutils-openrc() {
 	depends=('openrc' 'inetutils')
 	install=inetutils.install
 
-	install -Dm755 "${srcdir}/${_name}.confd" "${pkgdir}/etc/init.d/ftpd"
-	install -Dm755 "${srcdir}/${_name}.initd" "${pkgdir}/etc/init.d/ftpd"
+	install -Dm755 "${srcdir}/inetutils.confd" "${pkgdir}/etc/init.d/ftpd"
+	install -Dm755 "${srcdir}/inetutils.initd" "${pkgdir}/etc/init.d/ftpd"
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/ftpd"
 }
@@ -517,8 +517,8 @@ package_samba-openrc() {
 	install -Dm755 "${srcdir}/samba4.confd" "${pkgdir}/etc/conf.d/samba-rc"
 	install -Dm755 "${srcdir}/samba4.initd-r1" "${pkgdir}/etc/init.d/samba-rc"
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|SVCNAME##samba|SVCNAME##samba-rc|g' -e 's|"samba"|"samba-rc"|g' "${pkgdir}/etc/conf.d/samba-rc"
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|SVCNAME##samba|SVCNAME##samba-rc|g' -e 's|"samba"|"samba-rc"|g' "${pkgdir}/etc/init.d/samba-rc"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|SVCNAME##samba|SVCNAME##samba-rc|g' -e 's|"samba"|"samba-rc"|g' -i "${pkgdir}/etc/conf.d/samba-rc"
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -e 's|/var/run|/run|g' -e 's|SVCNAME##samba|SVCNAME##samba-rc|g' -e 's|"samba"|"samba-rc"|g' -i "${pkgdir}/etc/init.d/samba-rc"
 }
 
 package_squid-openrc() {
