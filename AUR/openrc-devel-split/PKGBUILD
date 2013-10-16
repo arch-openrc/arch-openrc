@@ -12,7 +12,7 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-devel')
-makedepends=('cyrus-sasl' 'git' 'mysql' 'postgresql' 'subversion')
+makedepends=('openrc' 'cyrus-sasl' 'git' 'mysql' 'postgresql' 'subversion')
 conflicts=('openrc-arch-services-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"

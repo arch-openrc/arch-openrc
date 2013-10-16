@@ -18,8 +18,8 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-net')
-makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'cups' 'dhcp' 'dhcpcd' 'glibc'
-	    'inetutils' 'iptables' 'krb5' 'lighttpd' 'nfs-utils' 'ntp'
+makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'cups' 'dbus-openrc' 'device-mapper-openrc'
+	     'dhcp' 'dhcpcd' 'glibc' 'inetutils' 'iptables' 'krb5' 'lighttpd' 'nfs-utils' 'ntp'
 	    'openldap' 'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools'
 	    'rpcbind' 'rsync' 'samba' 'squid' 'transmission' 'ufw' 'vsftpd'
 	    'wicd' 'xinetd' 'ypbind-mt' 'ypserv')

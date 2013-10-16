@@ -9,7 +9,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_
 
 pkgname=syslog-ng-openrc
 pkgver=3.4.3
-pkgrel=2
+pkgrel=1
 pkgdesc="Next-generation syslogd with advanced networking and filtering capabilities with openrc support and disabled systemd"
 arch=('i686' 'x86_64')
 license=('GPL2')

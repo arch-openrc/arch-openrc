@@ -10,7 +10,7 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-mobile')
-makedepends=('bluez' 'connman' 'hostapd' 'laptop-mode-tools' 'wpa_supplicant')
+makedepends=('bluez' 'connman' 'dbus-openrc' 'hdparm' 'hostapd' 'laptop-mode-tools' 'wpa_supplicant')
 conflicts=('openrc-arch-services-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"

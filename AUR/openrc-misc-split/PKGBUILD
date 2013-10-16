@@ -11,9 +11,9 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-#groups=('openrc-misc')
+groups=('openrc-misc')
 makedepends=('alsa-utils' 'fcron' 'gpm' 'openntpd' 'rsyslog'
-	    'sane' 'virtualbox-guest-additions' 'xorg-server')
+	    'sane' 'virtualbox-guest-utils' 'xorg-server')
 conflicts=('openrc-arch-services-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"

@@ -7,7 +7,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-auth/co
 
 pkgname=consolekit-openrc
 pkgver=0.4.6
-pkgrel=3
+pkgrel=1
 pkgdesc="A framework for defining and tracking users, login sessions, and seats with openrc support"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
