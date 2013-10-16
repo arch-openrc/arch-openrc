@@ -19,7 +19,7 @@ depends=("kdelibs>=${pkgver}" 'kdepim-runtime' 'lm_sensors' 'libraw1394'
          'libxklavier' 'xorg-xsetroot' 'libxcomposite' 'libxinerama'
          'xorg-xrdb' 'libxres' 'xorg-xrandr' 'xorg-xmessage' 'libusb-compat'
          'kde-base-artwork' 'xcb-util-renderutil' 'xcb-util-image' 'ttf-font'
-         'xcb-util-keysyms' 'xcb-util-wm' 'pciutils' 'consolekit')
+         'xcb-util-keysyms' 'xcb-util-wm' 'pciutils' 'consolekit-openrc' 'displaymanager-openrc')
 makedepends=('cmake' 'automoc4' 'boost' 'kdebindings-python2' 'networkmanager')
 optdepends=('kde-wallpapers: wallpapers for KDE Plasma Workspaces'
             'appmenu-qt: menu applications over dbus')

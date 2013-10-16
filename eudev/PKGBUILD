@@ -76,6 +76,7 @@ package_eudev-openrc(){
 	url="http://openrc4arch.site40.net"
 	groups=('openrc')
 	depends=('openrc-base' 'eudev')
+	makedepends=('udev')
 	install=eudev.install
 
 	install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"

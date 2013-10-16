@@ -7,20 +7,22 @@ _name="dbus"
 _cat="sys-apps"
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/${_cat}/${_name}/files"
 
-pkgname=dbus-openrc
+pkgname=dbus-eudev-openrc
 pkgver=1.6.16
 pkgrel=1
 pkgdesc="Freedesktop.org message bus system with openrc support and disabled systemd"
 url="http://www.freedesktop.org/Software/dbus"
 arch=(i686 x86_64)
 license=('GPL' 'custom')
-groups=('openrc-desktop')
+groups=('openrc-sys')
 depends=('expat' 'coreutils' 'filesystem' 'openrc-base')
 makedepends=('libx11' 'udev')
-optdepends=('libx11: dbus-launch support')
-provides=('dbus-core' 'dbus')
-conflicts=('dbus' 'dbus-openrc')
-#replaces=('dbus-core')
+optdepends=('libx11: dbus-launch support'
+	    'upower-eudev: upower without systemd'
+	    'udisks2-eudev: udisks2 without systemd')
+provides=('dbus-core' 'dbus' 'dbus-openrc')
+conflicts=('dbus-core''dbus' 'dbus-openrc' 'dbus-eudev')
+replaces=('dbus-core' 'dbus-openrc' 'dbus-eudev')
 install=${_name}.install
 options=(!libtool)
 source=("http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz"
@@ -64,9 +66,6 @@ package(){
   install -Dm644 COPYING "$pkgdir/usr/share/licenses/dbus/COPYING"
 
   install -Dm755 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
-  _fix_init "${pkgdir}/etc/init.d/dbus"
-}
 
-_fix_init(){
-  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|dbus.pid|dbus/pid|g' -e 's|/var/run|/run|g' -i $1
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|dbus.pid|dbus/pid|g' -e 's|/var/run|/run|g' -i "${pkgdir}/etc/init.d/dbus"
 }
