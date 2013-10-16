@@ -4,7 +4,8 @@ _pgs_ver=2.5
 
 pkgbase=openrc-devel
 pkgname=openrc-devel
-true && pkgname=('cyrus-sasl-openrc' 'git-openrc' 'mysql-openrc' 'postgresql-openrc' 'subversion-openrc')
+true && pkgname=('git-openrc' 'mysql-openrc'
+		'postgresql-openrc' 'subversion-openrc')
 pkgver=20131016
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -12,13 +13,12 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc-devel')
-makedepends=('openrc' 'cyrus-sasl' 'git' 'mysql' 'postgresql' 'subversion')
+makedepends=('openrc-base' 'git' 'mysql' 'postgresql' 'subversion')
 conflicts=('openrc-arch-services-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
-source=("${_gentoo_uri}/dev-libs/cyrus-sasl/files/saslauthd2.rc7"
-	"${_gentoo_uri}/dev-vcs/git/files/git-daemon.confd"
+source=("${_gentoo_uri}/dev-vcs/git/files/git-daemon.confd"
 	"${_gentoo_uri}/dev-vcs/git/files/git-daemon.initd"
 	"${_gentoo_uri}/dev-db/mysql-init-scripts/files/mysql-5.1.53-conf.d"
 	"${_gentoo_uri}/dev-db/mysql-init-scripts/files/mysql-5.1.67-init.d"
@@ -26,14 +26,6 @@ source=("${_gentoo_uri}/dev-libs/cyrus-sasl/files/saslauthd2.rc7"
 	"${_gentoo_uri}/dev-vcs/subversion/files/svnserve.confd"
 	"${_gentoo_uri}/dev-vcs/subversion/files/svnserve.initd2")
 
-sha256sums=('a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0'
-            '9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
-            '48e7e1228c9811079dce8fecc560000cf645de5b4bb697f8f8ad3f906906330b'
-            '45da613841969adf564f9f2f08257f749539651ee2fae85266f59fdd7a6f8123'
-            'a08df7aa811607f45a40ee1a4aa56eff569568f9bc69f2f76192cc15e55f21b0'
-            '723b2564572722171e097b165a72453b788cb4451638677dcc5f853cbd2d3c09'
-            '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
-            '8f123253c3bfb9bbe87210a9e1facc7f52df371747dbc188396740a5cf4fa713')
 
 pkgver() {
   date +%Y%m%d
@@ -43,22 +35,10 @@ _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'
 _binpath='s|/usr/sbin|/usr/bin|g'
 
-package_cyrus-sasl-openrc() {
-	true
-	pkgdesc="OpenRC cyrus-sasl init script"
-	depends=('openrc' 'cyrus-sasl')
-	install=cyrus-sasl.install
-
-	install -Dm755 "${srcdir}/saslauthd2.rc7" "${pkgdir}/etc/init.d/saslauthd"
-
-	sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/saslauthd"
-
-}
-
 package_git-openrc() {
 	true
 	pkgdesc="OpenRC git-daemon init script"
-	depends=('openrc' 'git')
+	depends=('openrc-base' 'git')
 	install=git.install
 
 	install -Dm755 "${srcdir}/git-daemon.confd" "${pkgdir}/etc/conf.d/git-daemon"
@@ -72,7 +52,7 @@ package_git-openrc() {
 package_mysql-openrc() {
 	true
 	pkgdesc="OpenRC mysql init script"
-	depends=('openrc' 'mysql')
+	depends=('openrc-base' 'mysql')
 	optdepends=('bind-openrc')
 	install=mysql.install
 
@@ -86,24 +66,24 @@ package_mysql-openrc() {
 package_postgresql-openrc() {
 	true
 	pkgdesc="OpenRC postgresql init script"
-	depends=('openrc' 'postgresql')
+	depends=('openrc-base' 'postgresql')
 	install=postgresql.install
 
 	install -Dm755 "${srcdir}/postgresql.confd" "${pkgdir}/etc/conf.d/postgresql"
 	install -Dm755 "${srcdir}/postgresql.init" "${pkgdir}/etc/init.d/postgresql"
 
-	local _p1='s|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|' \
-	_p2='s|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|' \
-	_p3='s|/usr/lib/postgresql-@SLOT@/bin/pg_ctl|/usr/bin/pg_ctl|' \
-	_p4='s|/usr/lib/postgresql-@SLOT@/bin/postgres|/usr/bin/postgres|'
+	local _p1='s|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|' _p2='s|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|'
 	sed -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/conf.d/postgresql"
-	sed -e "${_shebang}" -e "${_p3}" -e "${_p4}" -i "${pkgdir}/etc/init.d/postgresql"
+
+	_p1='s|/usr/lib/postgresql-@SLOT@/bin/pg_ctl|/usr/bin/pg_ctl|'
+	_p2='s|/usr/lib/postgresql-@SLOT@/bin/postgres|/usr/bin/postgres|'
+	sed -e "${_shebang}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/postgresql"
 }
 
 package_subversion-openrc() {
 	true
 	pkgdesc="OpenRC svnserve init script"
-	depends=('openrc' 'subversion')
+	depends=('openrc-base' 'subversion')
 	install=subversion.install
 
 	install -Dm755 "${srcdir}/svnserve.confd" "${pkgdir}/etc/conf.d/svnserve-rc"
