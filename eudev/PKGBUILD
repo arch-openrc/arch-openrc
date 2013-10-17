@@ -48,7 +48,9 @@ build() {
 package_eudev() {
 	true
 	depends=('glib2' 'hwids' 'kbd' 'kmod' 'util-linux')
-	optdepends=('eudev-openrc: eudev-postmount script')
+	optdepends=('eudev-openrc: eudev-postmount script'
+		    'upower-eudev: upower without systemd'
+		    'udisks2-eudev: udisks2 without systemd')
 	provides=("udev=${_udevver}" "systemd=${_udevver}"
 		  "libsystemd=${_udevver}" "systemd-tools=${_udevver}")
 	conflicts=('systemd' 'libsystemd' 'systemd-tools')
