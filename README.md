@@ -14,7 +14,7 @@ OpenRC pkgbuilds
 
 #####openrc#####
 
-* all openrc group packages except eudev-openrc
+* all openrc group packages plus eudev-openrc
 
 #####openrc-base#####
 
@@ -95,16 +95,12 @@ OpenRC pkgbuilds
 * ypbind-mt-openrc
 * ypserv-openrc
 
-#####openrc-eudev#####
-
-* dbus-eudev-openrc
-* syslog-ng-eudev-openrc
 
 #####eudev-base#####
 
-* dbus-eudev-openrc
+* dbus-eudev
 * eudev
 * eudev-openrc
-* syslog-ng-eudev-openrc
+* syslog-ng-eudev
 * udisks2-eudev
 * upower-eudev
