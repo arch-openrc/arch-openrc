@@ -77,8 +77,8 @@ package_eudev-openrc(){
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
 	url="http://openrc4arch.site40.net"
-	groups=('openrc' 'openrc-base' 'eudev-base')
-	depends=('openrc-base' 'eudev' 'openrc-eudev')
+	groups=('openrc' 'openrc-base' 'eudev-base' 'openrc-eudev')
+	depends=('openrc-base' 'eudev')
 	makedepends=('udev')
 	install=eudev.install
 
