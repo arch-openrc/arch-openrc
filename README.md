@@ -3,8 +3,7 @@ OpenRC pkgbuilds
 
 ####Groups:####
 
-* openrc-devel
-* openrc-misc
-* openrc-mobile
-* openrc-net
 * openrc-sys
+* openrc-misc
+* openrc-devel
+* openrc-net
