@@ -99,6 +99,7 @@ package_fcron-openrc() {
 	true
 	pkgdesc="OpenRC fcron init script"
 	depends=('openrc-base' 'fcron')
+	groups=('openrc-misc')
 	provides=('openrc-cron')
 	conflicts=('openrc-cron')
 	install=fcron.install
@@ -138,6 +139,7 @@ package_openntpd-openrc() {
 	true
 	pkgdesc="OpenRC openntpd init script"
 	depends=('openrc-base' 'openntpd')
+	groups=('openrc-misc')
 	provides=('openrc-timed')
 	conflicts=('openrc-timed')
 	install=openntpd.install
