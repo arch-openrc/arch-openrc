@@ -78,7 +78,7 @@ package_eudev-openrc(){
 	arch=('any')
 	url="http://openrc4arch.site40.net"
 	groups=('openrc' 'openrc-base' 'eudev-base')
-	depends=('openrc-base' 'eudev')
+	depends=('openrc-base' 'eudev' 'eudev-openrc')
 	makedepends=('udev')
 	install=eudev.install
 
