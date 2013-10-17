@@ -86,7 +86,7 @@ package() {
       sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/udev"
       sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-mount"
 
-      # kmod-static-node
+      # kmod-static-nodes
       install -Dm755 "${srcdir}/kmod-static-nodes" "${pkgdir}/etc/init.d/kmod-static-nodes"
 
       sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/kmod-static-nodes"
@@ -96,7 +96,7 @@ package() {
       ln -sf "/etc/init.d/udev-mount" "${pkgdir}/etc/runlevels/sysinit/udev-mount"
       ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
 
-      # netifrc merge
+      # netifrc merge; comment out for openrc MKNET='newnet'
       cd "${srcdir}/${_net}-${_nver}"
 	make \
 	  SYSCONFDIR='/etc' \

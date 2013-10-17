@@ -20,7 +20,6 @@ optdepends=('libx11: dbus-launch support'
 provides=('dbus-core' "${_name}")
 conflicts=('dbus-core' "${_name}")
 replaces=('dbus-core')
-install=dbus.install
 options=(!libtool)
 source=("http://dbus.freedesktop.org/releases/"${_name}"/"${_name}"-$pkgver.tar.gz"
         '30-dbus')

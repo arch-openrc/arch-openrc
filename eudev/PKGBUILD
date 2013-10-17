@@ -9,7 +9,7 @@ pkgname=eudev-split
 true && pkgname=('eudev' 'eudev-openrc')
 pkgver=1.3
 pkgrel=1
-pkgdesc="The userspace dev tools (udev) forked by Gentoo with openrc support"
+pkgdesc="The split pkg userspace dev tools (udev) forked by Gentoo and openrc support"
 arch=('i686' 'x86_64')
 license=('GPL')
 groups=('eudev-base')
@@ -47,6 +47,7 @@ build() {
 
 package_eudev() {
 	true
+	pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 	depends=('glib2' 'hwids' 'kbd' 'kmod' 'util-linux')
 	optdepends=('eudev-openrc: eudev-postmount script'
 		    'upower-eudev: upower without systemd'
