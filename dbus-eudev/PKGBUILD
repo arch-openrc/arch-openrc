@@ -3,7 +3,9 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: Link Dupont <link@subpop.net>
 
-pkgname=dbus-eudev
+ _name="dbus"
+
+pkgname=${_name}-eudev
 pkgver=1.6.16
 pkgrel=1
 pkgdesc="Freedesktop.org message bus system with disabled systemd"
@@ -15,12 +17,12 @@ depends=('expat' 'coreutils' 'filesystem')
 makedepends=('libx11' 'udev')
 optdepends=('libx11: dbus-launch support'
 	    'dbus-openrc: dbus openrc initscript')
-provides=('dbus-core' 'dbus')
-conflicts=('dbus-core' 'dbus' 'dbus-eudev-openrc')
+provides=('dbus-core' "${_name}")
+conflicts=('dbus-core' "${_name}")
 replaces=('dbus-core')
 install=dbus.install
 options=(!libtool)
-source=("http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz"
+source=("http://dbus.freedesktop.org/releases/"${_name}"/"${_name}"-$pkgver.tar.gz"
         '30-dbus')
 
 sha256sums=('463f42873aafcde733de3105e6d166709a42bc961fb4e3ef27657dfd55813573'
