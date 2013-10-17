@@ -25,7 +25,7 @@ makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'bluez' 'connman' 'cups' 'cyrus-s
 	    'dbus-openrc' 'device-mapper-openrc' 'dhcp' 'dhcpcd' 'hostapd'
 	    'inetutils' 'iptables' 'krb5' 'lighttpd' 'nfs-utils' 'ntp' 'openldap'
 	    'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools' 'rpcbind'
-	    'rsync' 'samba' 'squid' 'transmission' 'ufw' 'vsftpd' 'wicd' 'wpa_supplicant'
+	    'rsync' 'samba' 'squid' 'transmission-cli' 'ufw' 'vsftpd' 'wicd' 'wpa_supplicant'
 	    'xinetd' 'ypbind-mt' 'ypserv')
 conflicts=('openrc-arch-services-git'
 	  'initscripts' 'systemd-sysvcompat' 'openrc')
@@ -604,7 +604,7 @@ package_squid-openrc() {
 package_transmission-openrc() {
 	true
 	pkgdesc="OpenRC transmission init script"
-	depends=('openrc-base' 'transmission')
+	depends=('openrc-base' 'transmission-cli')
 	install=transmission.install
 
 	install -Dm755 "${srcdir}/transmission-daemon.confd.4" "${pkgdir}/etc/conf.d/transmission-daemon"
