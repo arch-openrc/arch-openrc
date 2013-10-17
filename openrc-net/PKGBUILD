@@ -20,14 +20,15 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-net')
+groups=('openrc' 'openrc-net')
 makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'bluez' 'connman' 'cups' 'cyrus-sasl'
 	    'dbus-openrc' 'device-mapper-openrc' 'dhcp' 'dhcpcd' 'hostapd'
 	    'inetutils' 'iptables' 'krb5' 'lighttpd' 'nfs-utils' 'ntp' 'openldap'
 	    'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools' 'rpcbind'
 	    'rsync' 'samba' 'squid' 'transmission' 'ufw' 'vsftpd' 'wicd' 'wpa_supplicant'
 	    'xinetd' 'ypbind-mt' 'ypserv')
-conflicts=('openrc-arch-services-git')
+conflicts=('openrc-arch-services-git'
+	  'initscripts' 'systemd-sysvcompat' 'openrc')
 
 _apver=2.4.4
 _aprel=20130801
@@ -228,7 +229,7 @@ package_apache-openrc() {
 package_avahi-openrc() {
 	true
 	pkgdesc="OpenRC avahi init script"
-	depends=('openrc-base' 'avahi' 'dbus-openrc')
+	depends=('avahi' 'dbus-openrc')
 	install=avahi.install
 
 	install -Dm755 "${srcdir}/avahi-${_avaver}/initscript/gentoo/avahi-daemon.in" "${pkgdir}/etc/init.d/avahi-daemon"
@@ -268,7 +269,7 @@ package_bitlbee-openrc() {
 package_bluez-openrc() {
 	true
 	pkgdesc="OpenRC bluez init script"
-	depends=('openrc-base' 'bluez' 'dbus-openrc')
+	depends=('bluez' 'dbus-openrc')
 	install=bluez.install
 
 	install -Dm755 "${srcdir}/rfcomm-conf.d" "${pkgdir}/etc/conf.d/rfcomm"
@@ -295,7 +296,7 @@ package_connman-openrc() {
 package_cups-openrc() {
 	true
 	pkgdesc="OpenRC cups init script"
-	depends=('openrc-base' 'cups' 'dbus-openrc')
+	depends=('cups' 'dbus-openrc')
 	optdepends=('avahi-openrc')
 	install=cups.install
 
@@ -431,7 +432,7 @@ package_rpcbind-openrc() {
 package_nfs-utils-openrc() {
 	true
 	pkgdesc="OpenRC nfs-utils init script"
-	depends=('openrc-base' 'nfs-utils' 'rpcbind-openrc' 'device-mapper-openrc')
+	depends=('nfs-utils' 'rpcbind-openrc' 'device-mapper-openrc')
 	optdepends=('ypbind-openrc' 'quota-tools-openrc' 'bind-openrc')
 	install=nfs-utils.install
 
@@ -547,7 +548,7 @@ package_privoxy-openrc() {
 package_quota-tools-openrc() {
 	true
 	pkgdesc="OpenRC quota-tools init script"
-	depends=('openrc-base' 'quota-tools' 'rpcbind-openrc')
+	depends=('quota-tools' 'rpcbind-openrc')
 	optdepends=('ypbind-openrc')
 	install=quota-tools.install
 
@@ -678,7 +679,7 @@ package_xinetd-openrc() {
 package_ypbind-mt-openrc() {
 	true
 	pkgdesc="OpenRC ypbind-mt init script"
-	depends=('openrc-base' 'ypbind-mt' 'rpcbind-openrc')
+	depends=('ypbind-mt' 'rpcbind-openrc')
 	optdepends=('ypserv-openrc')
 	install=ypbind-mt.install
 

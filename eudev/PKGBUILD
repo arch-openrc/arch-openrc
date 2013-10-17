@@ -12,6 +12,7 @@ pkgrel=1
 pkgdesc="The userspace dev tools (udev) forked by Gentoo with openrc support"
 arch=('i686' 'x86_64')
 license=('GPL')
+groups=('eudev-base')
 makedepends=('gobject-introspection' 'gperf' 'gtk-doc' 'intltool')
 url="http://dev.gentoo.org/~blueness/eudev"
 
@@ -69,12 +70,12 @@ package_eudev() {
 
 package_eudev-openrc(){
 	true
-	pkgver=20131016
+	pkgver=$(date +%Y%m%d)
 	pkgrel=1
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
 	url="http://openrc4arch.site40.net"
-	groups=('openrc')
+	groups=('openrc' 'openrc-base' 'eudev-base')
 	depends=('openrc-base' 'eudev')
 	makedepends=('udev')
 	install=eudev.install

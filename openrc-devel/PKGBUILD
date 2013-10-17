@@ -12,9 +12,10 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-devel')
+groups=('openrc' 'openrc-devel')
 makedepends=('openrc-base' 'git' 'mysql' 'postgresql' 'subversion')
-conflicts=('openrc-arch-services-git')
+conflicts=('openrc-arch-services-git'
+	  'initscripts' 'systemd-sysvcompat' 'openrc')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 

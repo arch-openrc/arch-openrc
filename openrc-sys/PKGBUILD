@@ -12,11 +12,12 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-sys')
+groups=('openrc' 'openrc-sys')
 makedepends=('acpid' 'cpupower' 'cronie' 'cryptsetup' 'dbus'
 	    'device-mapper' 'glibc' 'lm_sensors' 'lvm2'
 	    'mdadm' 'syslog-ng')
-conflicts=('openrc-arch-services-git')
+conflicts=('openrc-arch-services-git'
+	  'initscripts' 'systemd-sysvcompat' 'openrc')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -120,18 +121,6 @@ package_cronie-openrc() {
 	done
 }
 
-package_cryptsetup-openrc() {
-	true
-	pkgdesc="OpenRC cryptsetup init script"
-	depends=('openrc-base' 'cryptsetup')
-	install=cryptsetup.install
-
-	install -Dm755 "${srcdir}/1.0.6-dmcrypt.confd" "${pkgdir}/etc/conf.d/dmcrypt"
-	install -Dm755 "${srcdir}/1.5.1-dmcrypt.rc" "${pkgdir}/etc/init.d/dmcrypt"
-
-	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i ${pkgdir}/etc/init.d/dmcrypt
-}
-
 package_dbus-openrc() {
 	true
 	pkgdesc="OpenRC dbus init script"
@@ -158,6 +147,18 @@ package_device-mapper-openrc() {
 	do
 	  sed -e "${_shebang}" -e "${_binpath2}" -e "${_runpath}" -i $f
 	done
+}
+
+package_cryptsetup-openrc() {
+	true
+	pkgdesc="OpenRC cryptsetup init script"
+	depends=('cryptsetup' 'device-mapper-openrc')
+	install=cryptsetup.install
+
+	install -Dm755 "${srcdir}/1.0.6-dmcrypt.confd" "${pkgdir}/etc/conf.d/dmcrypt"
+	install -Dm755 "${srcdir}/1.5.1-dmcrypt.rc" "${pkgdir}/etc/init.d/dmcrypt"
+
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/dmcrypt"
 }
 
 package_glibc-openrc() {
@@ -192,7 +193,7 @@ package_lm_sensors-openrc() {
 package_lvm2-openrc() {
 	true
 	pkgdesc="OpenRC lvm2 init script"
-	depends=('openrc-base' 'lvm2' 'device-mapper-openrc')
+	depends=('lvm2' 'device-mapper-openrc')
 	install=lvm2.install
 
 	install -Dm755 "${srcdir}/lvm.confd-2.02.28-r2" "${pkgdir}/etc/conf.d/lvm"
@@ -215,7 +216,7 @@ package_mdadm-openrc() {
 	install -Dm755 "${srcdir}/mdadm.confd" "${pkgdir}/etc/conf.d/mdadm"
 	install -Dm755 "${srcdir}/mdadm.rc" "${pkgdir}/etc/init.d/mdadm"
 
-	sed -e "${_shebang}" -e "${_runpath}" -i ${pkgdir}/etc/init.d/mdadm
+	sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/mdadm"
 }
 
 package_syslog-ng-openrc() {
@@ -227,5 +228,5 @@ package_syslog-ng-openrc() {
 	install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
 	install -Dm755 "${srcdir}/syslog-ng.rc6.3.3" "${pkgdir}/etc/init.d/syslog-ng"
 
-	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i ${pkgdir}/etc/init.d/syslog-ng
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/syslog-ng"
 }

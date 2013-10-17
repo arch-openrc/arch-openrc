@@ -11,11 +11,12 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
-groups=('openrc-misc')
+groups=('openrc' 'openrc-misc')
 makedepends=('alsa-utils' 'fcron' 'gpm' 'hdparm'
-	    'laptop-mode-tools''openntpd' 'rsyslog'
+	    'laptop-mode-tools' 'openntpd' 'rsyslog'
 	    'sane' 'virtualbox-guest-utils' 'xorg-server')
-conflicts=('openrc-arch-services-git')
+conflicts=('openrc-arch-services-git'
+	  'initscripts' 'systemd-sysvcompat' 'openrc')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
