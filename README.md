@@ -1,7 +1,7 @@
 OpenRC pkgbuilds
 =========
 
-####Groups:####
+###Groups:###
 
 * openrc
 * openrc-base
@@ -16,7 +16,7 @@ OpenRC pkgbuilds
 
 * all openrc group packages 
 
-#openrc-base#
+#####openrc-base#####
 
 * openrc-base
 * eudev-openrc
@@ -50,7 +50,7 @@ OpenRC pkgbuilds
 * sane-openrc
 * vbox-guest-openrc
 
-#openrc-devel#
+#####openrc-devel#####
 
 * git-openrc
 * mysql-openrc
