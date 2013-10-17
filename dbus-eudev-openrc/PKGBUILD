@@ -14,12 +14,10 @@ pkgdesc="Freedesktop.org message bus system with openrc support and disabled sys
 url="http://www.freedesktop.org/Software/dbus"
 arch=(i686 x86_64)
 license=('GPL' 'custom')
-groups=('openrc' 'openrc-misc' 'eudev-base')
+groups=('openrc-eudev' 'eudev-base')
 depends=('expat' 'coreutils' 'filesystem' 'openrc-base')
 makedepends=('libx11' 'udev')
-optdepends=('libx11: dbus-launch support'
-	    'upower-eudev: upower without systemd'
-	    'udisks2-eudev: udisks2 without systemd')
+optdepends=('libx11: dbus-launch support')
 provides=('dbus-core' 'dbus' 'dbus-openrc')
 conflicts=('dbus-core''dbus' 'dbus-openrc' 'dbus-eudev')
 replaces=('dbus-core' 'dbus-openrc' 'dbus-eudev')
