@@ -2,8 +2,8 @@
 
 _pgs_ver=2.5
 
-pkgbase=openrc-devel
-pkgname=openrc-devel
+pkgbase=openrc-devel-split
+pkgname=openrc-devel-split
 true && pkgname=('git-openrc' 'mysql-openrc'
 		'postgresql-openrc' 'subversion-openrc')
 pkgver=20131017

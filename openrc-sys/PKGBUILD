@@ -1,8 +1,8 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-pkgbase=openrc-sys
-pkgname=openrc-sys
-true && pkgname=('acpid-openrc' 'cpupower-openrc' 'cronie-openrc'
+pkgbase=openrc-sys-split
+pkgname=openrc-sys-split
+true && pkgname=('acpid-openrc' 'consolekit-openrc' 'cpupower-openrc' 'cronie-openrc'
 		'cryptsetup-openrc' 'dbus-openrc' 'device-mapper-openrc'
 		'glibc-openrc' 'lm_sensors-openrc' 'lvm2-openrc'
 		'mdadm-openrc' 'syslog-ng-openrc')
@@ -13,7 +13,7 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc' 'openrc-sys')
-makedepends=('acpid' 'cpupower' 'cronie' 'cryptsetup' 'dbus'
+makedepends=('acpid' 'consolekit' 'cpupower' 'cronie' 'cryptsetup' 'dbus'
 	    'device-mapper' 'glibc' 'lm_sensors' 'lvm2'
 	    'mdadm' 'syslog-ng')
 conflicts=('openrc-arch-services-git'
@@ -23,6 +23,8 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 source=("${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
 	"${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-init.d"
+	"${_gentoo_uri}/sys-auth/consolekit/files/consolekit-0.2.rc"
+	"${_gentoo_uri}/sys-auth/consolekit/files/90-consolekit-3"
 	"${_gentoo_uri}/sys-power/cpupower/files/conf.d-r2"
 	"${_gentoo_uri}/sys-power/cpupower/files/init.d-r2"
 	"${_gentoo_uri}/sys-process/cronie/files/cronie-1.3-initd"
@@ -48,6 +50,8 @@ source=("${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
 
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
+	    'da849bae527a7a5c257301a99ac3fb5ec2ded48103ec114552ca7d2a24b12e49'
+            '91e0900995f7db536220065959d236fb75ec2c77096981a142e2e948518d9761'
             '9ab6f022d2b2948660decf5e383984e6ddb9e9e5e6e2761c3031378ddd87e947'
             '8d8e45f112ea86fb686f66ca16c25f6d1b0e06c62b0fd2ce2ed39b455a1d8a3c'
             '0954be9e1e1c34d2f963cc60828b63711a2949bfe91f65620caf9c80256383f2'
@@ -92,6 +96,19 @@ package_acpid-openrc() {
 	sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/acpid"
 }
 
+package_consolekit-openrc() {
+	true
+	pkgdesc="OpenRC consolekit init script"
+	depends=('openrc-base' 'consolekit')
+	install=consolekit.install
+
+	install -Dm755 "$srcdir/90-consolekit-3" "$pkgdir/etc/X11/xinit/xinitrc.d/90-consolekit"
+
+	install -Dm755 "$srcdir/consolekit-0.2.rc" "$pkgdir/etc/init.d/consolekit"
+
+	sed -e "${_shebang}" -e "${_runpath}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/consolekit"
+}
+
 package_cpupower-openrc() {
 	true
 	pkgdesc="OpenRC cpupower init script"
@@ -109,7 +126,8 @@ package_cronie-openrc() {
 	pkgdesc="OpenRC cronie init script"
 	depends=('openrc-base' 'cronie')
 	provides=('openrc-cron')
-	conflicts=('openrc-cron')
+	conflicts=('openrc-cron' 'openrc-arch-services-git'
+		  'initscripts' 'systemd-sysvcompat' 'openrc')
 	install=cronie.install
 
 	install -Dm755 "${srcdir}/cronie-1.3-initd" "${pkgdir}/etc/init.d/cronie"

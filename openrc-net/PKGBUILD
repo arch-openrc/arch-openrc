@@ -1,7 +1,7 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-pkgbase=openrc-net
-pkgname=openrc-net
+pkgbase=openrc-net-split
+pkgname=openrc-net-split
 true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'bitlbee-openrc' 'bluez-openrc' 'connman-openrc'
 		'cups-openrc' 'cyrus-sasl-openrc' 'dhcp-openrc'
@@ -458,7 +458,8 @@ package_ntp-openrc() {
 	depends=('openrc-base' 'ntp')
 	optdepends=('bind-openrc')
 	provides=('openrc-timed')
-	conflicts=('openrc-timed')
+	conflicts=('openrc-timed' 'openrc-arch-services-git'
+		  'initscripts' 'systemd-sysvcompat' 'openrc')
 	install=ntp.install
 
 	install -Dm755 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"

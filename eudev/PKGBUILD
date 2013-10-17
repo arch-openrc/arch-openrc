@@ -4,8 +4,8 @@
 
 _udevver=208
 
-pkgbase=eudev
-pkgname=eudev
+pkgbase=eudev-split
+pkgname=eudev-split
 true && pkgname=('eudev' 'eudev-openrc')
 pkgver=1.3
 pkgrel=1

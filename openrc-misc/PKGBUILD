@@ -1,7 +1,7 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
-pkgbase=openrc-misc
-pkgname=openrc-misc
+pkgbase=openrc-misc-split
+pkgname=openrc-misc-split
 true && pkgname=('alsa-utils-openrc' 'displaymanager-openrc' 'fcron-openrc'
 		'gpm-openrc' 'laptop-mode-tools-openrc' 'openntpd-openrc'
 		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc')
@@ -101,7 +101,8 @@ package_fcron-openrc() {
 	depends=('openrc-base' 'fcron')
 	groups=('openrc-misc')
 	provides=('openrc-cron')
-	conflicts=('openrc-cron')
+	conflicts=('openrc-cron' 'openrc-arch-services-git'
+		  'initscripts' 'systemd-sysvcompat' 'openrc')
 	install=fcron.install
 
 	install -Dm755 "${srcdir}/fcron.init.3" "${pkgdir}/etc/init.d/fcron"
@@ -141,7 +142,8 @@ package_openntpd-openrc() {
 	depends=('openrc-base' 'openntpd')
 	groups=('openrc-misc')
 	provides=('openrc-timed')
-	conflicts=('openrc-timed')
+	conflicts=('openrc-timed' 'openrc-arch-services-git'
+		  'initscripts' 'systemd-sysvcompat' 'openrc')
 	install=openntpd.install
 
 	install -Dm755 "${srcdir}/openntpd.conf.d-3.9_p1-r4" "${pkgdir}/etc/conf.d/openntpd"

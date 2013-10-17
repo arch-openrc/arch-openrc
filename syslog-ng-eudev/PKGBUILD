@@ -23,7 +23,7 @@ options=('!libtool')
 backup=('etc/syslog-ng/scl.conf'
         'etc/syslog-ng/syslog-ng.conf'
         'etc/logrotate.d/syslog-ng')
-install=syslog-ng.install
+#install=syslog-ng.install
 source=("http://www.balabit.com/downloads/files/syslog-ng/sources/$pkgver/source/${_name}_$pkgver.tar.gz"
         'syslog-ng.conf'
         'syslog-ng.logrotate')
