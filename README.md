@@ -14,7 +14,7 @@ OpenRC pkgbuilds
 
 #####openrc#####
 
-* all openrc group packages 
+* all openrc group packages except eudev-openrc
 
 #####openrc-base#####
 
@@ -38,8 +38,6 @@ OpenRC pkgbuilds
 
 #####openrc-misc#####
 
-* dbus-eudev-openrc
-* syslog-ng-eudev-openrc
 * alsa-utils-openrc
 * displaymanager-openrc
 * fcron-openrc
@@ -96,6 +94,11 @@ OpenRC pkgbuilds
 * xinetd-openrc
 * ypbind-mt-openrc
 * ypserv-openrc
+
+#####openrc-eudev#####
+
+* dbus-eudev-openrc
+* syslog-ng-eudev-openrc
 
 #####eudev-base#####
 
