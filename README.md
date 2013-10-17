@@ -12,16 +12,16 @@ OpenRC pkgbuilds
 * eudev-base
 
 
-#openrc#
+#####openrc#####
 
-* all packages
+* all openrc group packages 
 
 #openrc-base#
 
 * openrc-base
 * eudev-openrc
 
-#openrc-sys#
+#####openrc-sys#####
 
 * consolekit-openrc
 * acpid-openrc
@@ -36,7 +36,7 @@ OpenRC pkgbuilds
 * mdadm-openrc
 * syslog-ng-openrc
 
-#openrc-misc#
+#####openrc-misc#####
 
 * dbus-eudev-openrc
 * syslog-ng-eudev-openrc
@@ -57,7 +57,7 @@ OpenRC pkgbuilds
 * postgresql-openrc
 * subversion-openrc
 
-#openrc-net#
+#####openrc-net#####
 
 * networkmanager-openrc
 * apache-openrc
@@ -97,7 +97,7 @@ OpenRC pkgbuilds
 * ypbind-mt-openrc
 * ypserv-openrc
 
-#eudev-base#
+#####eudev-base#####
 
 * dbus-eudev-openrc
 * eudev
