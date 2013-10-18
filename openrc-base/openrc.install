@@ -4,6 +4,9 @@ pre_install() {
 }
 
 post_install() {
+      echo "  ==> Set up your network interface before you reboot."
+      local _url="http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=4"
+      echo "  ==> Visit ${_url}"
       echo "  ==> Reboot your system to start with OpenRC."
 }
 

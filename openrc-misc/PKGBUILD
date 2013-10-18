@@ -2,9 +2,9 @@
 
 pkgbase=openrc-misc-split
 pkgname=openrc-misc-split
-true && pkgname=('alsa-utils-openrc' 'displaymanager-openrc' 'fcron-openrc'
+true && pkgname=('alsa-utils-openrc' 'fcron-openrc'
 		'gpm-openrc' 'laptop-mode-tools-openrc' 'openntpd-openrc'
-		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc')
+		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc' 'eudev-openrc' 'aur_info')
 pkgver=20131018
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -14,7 +14,7 @@ license=('GPL2')
 groups=('openrc' 'openrc-misc')
 makedepends=('alsa-utils' 'fcron' 'gpm' 'hdparm'
 	    'laptop-mode-tools' 'openntpd' 'rsyslog'
-	    'sane' 'virtualbox-guest-utils' 'xorg-server')
+	    'sane' 'virtualbox-guest-utils' 'udev')
 conflicts=('openrc-arch-services-git' 'initscripts'
 	  'systemd-sysvcompat' 'openrc' 'openrc-git')
 
@@ -33,10 +33,7 @@ source=("${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.confd-r4"
 	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
 	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.initd"
 	"${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
-	"${_gentoo_uri}/x11-base/xorg-server/files/xdm.confd-4"
-	"${_gentoo_uri}/x11-base/xorg-server/files/xdm.initd-10"
-	"${_gentoo_uri}/x11-base/xorg-server/files/xdm-setup.initd-1"
-	"${_gentoo_uri}/x11-apps/xinit/files/startDM.sh")
+	"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
 
 sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             'daf46bbc4156a82e0c6c7135ee94b31a3dfb6d366fcf3f45e8c842d1348601be'
@@ -51,10 +48,7 @@ sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
             '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
             '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac'
-            '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
-            '85e5778e23748c6a6285fdadaeb18e6c04b3fdf98d2a81f0ab9d854dbac8076c'
-            '942ce5e8d1a0770543b683dcc388bae7619a24eb9741c1cd678ed3df97c01406'
-            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
+            '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb')
 
 pkgver() {
   date +%Y%m%d
@@ -76,32 +70,13 @@ package_alsa-utils-openrc() {
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/alsasound"
 }
 
-package_displaymanager-openrc() {
-	true
-	pkgdesc="OpenRC dm init script"
-	depends=('openrc-base' 'xorg-server')
-	optdepends=('consolekit-openrc' 'dbus-openrc')
-	backup=('etc/conf.d/xdm')
-	install=displaymanager.install
-
-	install -Dm755 "${srcdir}/xdm.confd-4" "${pkgdir}/etc/conf.d/xdm"
-	install -Dm755 "${srcdir}/xdm.initd-10" "${pkgdir}/etc/init.d/xdm"
-	install -Dm755 "${srcdir}/xdm-setup.initd-1" "${pkgdir}/etc/init.d/xdm-setup"
-	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
-
-	local _p1='s|/etc/profile.env|/etc/profile|g' \
-	_p2='s|{ROOTPATH}|{PATH}|g'
-	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/xdm"
-	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/xdm-setup"
-}
-
 package_fcron-openrc() {
 	true
 	pkgdesc="OpenRC fcron init script"
 	depends=('openrc-base' 'fcron')
 	groups=('openrc-misc')
 	provides=('openrc-cron')
-	conflicts=('openrc-cron' 'openrc-arch-services-git'
+	conflicts=('cronie-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=fcron.install
 
@@ -142,7 +117,7 @@ package_openntpd-openrc() {
 	depends=('openrc-base' 'openntpd')
 	groups=('openrc-misc')
 	provides=('openrc-timed')
-	conflicts=('openrc-timed' 'openrc-arch-services-git'
+	conflicts=('ntp-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=openntpd.install
 
@@ -187,5 +162,27 @@ package_vbox-guest-openrc() {
 
 	local _p1='s|vboxguest-service|VBoxService|g'
 	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/vboxservice"
+
+}
+
+package_eudev-openrc(){
+	true
+	pkgdesc="OpenRC eudev postmount script"
+	groups=('openrc' 'openrc-base' 'eudev-base')
+	depends=('openrc-base' 'eudev')
+	install=eudev.install
+
+	install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-postmount"
+}
+
+
+# Comment out if you build for your personal repo
+# remove 'aur_info' from pkgname array
+# Dummy package to make AUR display correct info
+package_aur_info() {
+	true
+	pkgdesc="OpenRC init scripts"
+	depends=('openrc-base')
 
 }

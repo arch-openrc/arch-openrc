@@ -5,7 +5,7 @@ pkgname=openrc-sys-split
 true && pkgname=('acpid-openrc' 'consolekit-openrc' 'cpupower-openrc' 'cronie-openrc'
 		'cryptsetup-openrc' 'dbus-openrc' 'device-mapper-openrc'
 		'glibc-openrc' 'lm_sensors-openrc' 'lvm2-openrc'
-		'mdadm-openrc' 'syslog-ng-openrc')
+		'mdadm-openrc' 'syslog-ng-openrc' 'displaymanager-openrc' 'aur_info')
 pkgver=20131018
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -15,7 +15,7 @@ license=('GPL2')
 groups=('openrc' 'openrc-sys')
 makedepends=('acpid' 'consolekit' 'cpupower' 'cronie' 'cryptsetup' 'dbus'
 	    'device-mapper' 'glibc' 'lm_sensors' 'lvm2'
-	    'mdadm' 'syslog-ng')
+	    'mdadm' 'syslog-ng' 'xorg-server')
 conflicts=('openrc-arch-services-git' 'initscripts'
 	  'systemd-sysvcompat' 'openrc' 'openrc-git')
 
@@ -46,7 +46,11 @@ source=("${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
 	"${_gentoo_uri}/sys-fs/mdadm/files/mdadm.confd"
 	"${_gentoo_uri}/sys-fs/mdadm/files/mdadm.rc"
 	"${_gentoo_uri}/app-admin/syslog-ng/files/syslog-ng.confd"
-	"${_gentoo_uri}/app-admin/syslog-ng/files/syslog-ng.rc6.3.3")
+	"${_gentoo_uri}/app-admin/syslog-ng/files/syslog-ng.rc6.3.3"
+	"${_gentoo_uri}/x11-base/xorg-server/files/xdm.confd-4"
+	"${_gentoo_uri}/x11-base/xorg-server/files/xdm.initd-10"
+	"${_gentoo_uri}/x11-base/xorg-server/files/xdm-setup.initd-1"
+	"${_gentoo_uri}/x11-apps/xinit/files/startDM.sh")
 
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
@@ -73,7 +77,11 @@ sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             'ec55674955af7a31da51b8b72b599e8519809287dad796a9b16155bcba471b79'
             '3073b14619cb7b2c99c33f2d6cfd1e59ce5557899bffebaa65fa52f3caffadc7'
             '8319ca8e39a5dab5ddc82eede088e1f58ff25deef330804648000359cb736a3f'
-            '19bbd35abc9f54ce368e1ccf46b6e4af6eec304906e432bb9968d50a01d18284')
+            '19bbd35abc9f54ce368e1ccf46b6e4af6eec304906e432bb9968d50a01d18284'
+            '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
+            '85e5778e23748c6a6285fdadaeb18e6c04b3fdf98d2a81f0ab9d854dbac8076c'
+            '942ce5e8d1a0770543b683dcc388bae7619a24eb9741c1cd678ed3df97c01406'
+            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
 
 pkgver() {
   date +%Y%m%d
@@ -126,7 +134,7 @@ package_cronie-openrc() {
 	pkgdesc="OpenRC cronie init script"
 	depends=('openrc-base' 'cronie')
 	provides=('openrc-cron')
-	conflicts=('openrc-cron' 'openrc-arch-services-git'
+	conflicts=('cronie-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=cronie.install
 
@@ -177,6 +185,25 @@ package_cryptsetup-openrc() {
 	install -Dm755 "${srcdir}/1.5.1-dmcrypt.rc" "${pkgdir}/etc/init.d/dmcrypt"
 
 	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/dmcrypt"
+}
+
+package_displaymanager-openrc() {
+	true
+	pkgdesc="OpenRC dm init script"
+	depends=('openrc-base' 'xorg-server')
+	optdepends=('consolekit-openrc' 'dbus-openrc')
+	backup=('etc/conf.d/xdm')
+	install=displaymanager.install
+
+	install -Dm755 "${srcdir}/xdm.confd-4" "${pkgdir}/etc/conf.d/xdm"
+	install -Dm755 "${srcdir}/xdm.initd-10" "${pkgdir}/etc/init.d/xdm"
+	install -Dm755 "${srcdir}/xdm-setup.initd-1" "${pkgdir}/etc/init.d/xdm-setup"
+	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
+
+	local _p1='s|/etc/profile.env|/etc/profile|g' \
+	_p2='s|{ROOTPATH}|{PATH}|g'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/xdm"
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/xdm-setup"
 }
 
 package_glibc-openrc() {
@@ -247,4 +274,14 @@ package_syslog-ng-openrc() {
 	install -Dm755 "${srcdir}/syslog-ng.rc6.3.3" "${pkgdir}/etc/init.d/syslog-ng"
 
 	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/syslog-ng"
+}
+
+# Comment out if you build for your personal repo
+# remove 'aur_info' from pkgname array
+# Dummy package to make AUR display correct info
+package_aur_info() {
+	true
+	pkgdesc="OpenRC init scripts"
+	depends=('openrc-base')
+
 }

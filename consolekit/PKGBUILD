@@ -12,7 +12,7 @@ pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
 license=('GPL')
-depends=('dbus' 'libx11' 'polkit-consolekit' 'udev' 'zlib')
+depends=('dbus' 'dbus-glib' 'libx11' 'polkit-consolekit' 'udev' 'zlib')
 makedepends=('docbook-xsl' 'pkgconfig' 'xmlto')
 options=(!libtool)
 

@@ -13,7 +13,7 @@ true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'rpcbind-openrc' 'rsync-openrc' 'samba-openrc'
 		'squid-openrc' 'transmission-openrc' 'ufw-openrc'
 		'vsftpd-openrc' 'wicd-openrc' 'wpa_supplicant-openrc'
-		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc')
+		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc' 'aur_info')
 pkgver=20131018
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -458,7 +458,7 @@ package_ntp-openrc() {
 	depends=('openrc-base' 'ntp')
 	optdepends=('bind-openrc')
 	provides=('openrc-timed')
-	conflicts=('openrc-timed' 'openrc-arch-services-git'
+	conflicts=('openntpd-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=ntp.install
 
@@ -706,4 +706,14 @@ package_ypserv-openrc() {
 	for f in ${pkgdir}/etc/init.d/*;do
 	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
 	done
+}
+
+# Comment out if you build for your personal repo
+# remove 'aur_info' from pkgname array
+# Dummy package to make AUR display correct info
+package_aur_info() {
+	true
+	pkgdesc="OpenRC init scripts"
+	depends=('openrc-base')
+
 }
