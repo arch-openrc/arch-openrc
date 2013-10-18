@@ -7,13 +7,13 @@
 
 pkgname=${_name}-eudev
 pkgver=1.6.16
-pkgrel=1
+pkgrel=2
 pkgdesc="Freedesktop.org message bus system with disabled systemd"
 url="http://www.freedesktop.org/Software/dbus"
 arch=(i686 x86_64)
 license=('GPL' 'custom')
 groups=('eudev-base')
-depends=('expat' 'coreutils' 'filesystem')
+depends=('eudev' 'expat' 'coreutils' 'filesystem')
 makedepends=('libx11' 'udev')
 optdepends=('libx11: dbus-launch support'
 	    'dbus-openrc: dbus openrc initscript')
