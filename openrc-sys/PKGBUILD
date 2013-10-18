@@ -6,7 +6,7 @@ true && pkgname=('acpid-openrc' 'consolekit-openrc' 'cpupower-openrc' 'cronie-op
 		'cryptsetup-openrc' 'dbus-openrc' 'device-mapper-openrc'
 		'glibc-openrc' 'lm_sensors-openrc' 'lvm2-openrc'
 		'mdadm-openrc' 'syslog-ng-openrc')
-pkgver=20131017
+pkgver=20131018
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -16,8 +16,8 @@ groups=('openrc' 'openrc-sys')
 makedepends=('acpid' 'consolekit' 'cpupower' 'cronie' 'cryptsetup' 'dbus'
 	    'device-mapper' 'glibc' 'lm_sensors' 'lvm2'
 	    'mdadm' 'syslog-ng')
-conflicts=('openrc-arch-services-git'
-	  'initscripts' 'systemd-sysvcompat' 'openrc')
+conflicts=('openrc-arch-services-git' 'initscripts'
+	  'systemd-sysvcompat' 'openrc' 'openrc-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -127,7 +127,7 @@ package_cronie-openrc() {
 	depends=('openrc-base' 'cronie')
 	provides=('openrc-cron')
 	conflicts=('openrc-cron' 'openrc-arch-services-git'
-		  'initscripts' 'systemd-sysvcompat' 'openrc')
+		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=cronie.install
 
 	install -Dm755 "${srcdir}/cronie-1.3-initd" "${pkgdir}/etc/init.d/cronie"

@@ -22,8 +22,7 @@ license=('BSD')
 groups=('openrc' 'openrc-base')
 depends=('inetutils' 'net-tools' 'pkg-config' 'psmisc' 'sysvinit' 'udev')
 optdepends=('dhcpcd-openrc: dhcpcd initscript')
-conflicts=('initscripts' "${_udev}" 'systemd-sysvcompat' 'openrc')
-replaces=("${_udev}")
+conflicts=('initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 backup=('etc/rc.conf' 'etc/conf.d/consolefont' 'etc/conf.d/keymaps'
 	'etc/conf.d/hostname' 'etc/conf.d/modules' 'etc/conf.d/net')
 install=${_name}.install

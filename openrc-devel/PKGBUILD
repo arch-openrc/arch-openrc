@@ -6,7 +6,7 @@ pkgbase=openrc-devel-split
 pkgname=openrc-devel-split
 true && pkgname=('git-openrc' 'mysql-openrc'
 		'postgresql-openrc' 'subversion-openrc')
-pkgver=20131017
+pkgver=20131018
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -15,7 +15,7 @@ license=('GPL2')
 groups=('openrc' 'openrc-devel')
 makedepends=('openrc-base' 'git' 'mysql' 'postgresql' 'subversion')
 conflicts=('openrc-arch-services-git'
-	  'initscripts' 'systemd-sysvcompat' 'openrc')
+	  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 

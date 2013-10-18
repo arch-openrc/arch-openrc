@@ -73,8 +73,6 @@ package_eudev() {
 
 package_eudev-openrc(){
 	true
-	pkgver=$(date +%Y%m%d)
-	pkgrel=1
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
 	url="http://openrc4arch.site40.net"
@@ -85,5 +83,4 @@ package_eudev-openrc(){
 
 	install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -i "${pkgdir}/etc/init.d/udev-postmount"
-
 }

@@ -14,7 +14,7 @@ true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'squid-openrc' 'transmission-openrc' 'ufw-openrc'
 		'vsftpd-openrc' 'wicd-openrc' 'wpa_supplicant-openrc'
 		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc')
-pkgver=20131017
+pkgver=20131018
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -27,8 +27,8 @@ makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'bluez' 'connman' 'cups' 'cyrus-s
 	    'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools' 'rpcbind'
 	    'rsync' 'samba' 'squid' 'transmission-cli' 'ufw' 'vsftpd' 'wicd' 'wpa_supplicant'
 	    'xinetd' 'ypbind-mt' 'ypserv')
-conflicts=('openrc-arch-services-git'
-	  'initscripts' 'systemd-sysvcompat' 'openrc')
+conflicts=('openrc-arch-services-git' 'initscripts'
+	  'systemd-sysvcompat' 'openrc' 'openrc-git')
 
 _apver=2.4.4
 _aprel=20130801
@@ -459,7 +459,7 @@ package_ntp-openrc() {
 	optdepends=('bind-openrc')
 	provides=('openrc-timed')
 	conflicts=('openrc-timed' 'openrc-arch-services-git'
-		  'initscripts' 'systemd-sysvcompat' 'openrc')
+		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=ntp.install
 
 	install -Dm755 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"

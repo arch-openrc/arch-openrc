@@ -5,7 +5,7 @@ pkgname=openrc-misc-split
 true && pkgname=('alsa-utils-openrc' 'displaymanager-openrc' 'fcron-openrc'
 		'gpm-openrc' 'laptop-mode-tools-openrc' 'openntpd-openrc'
 		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc')
-pkgver=20131017
+pkgver=20131018
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -15,8 +15,8 @@ groups=('openrc' 'openrc-misc')
 makedepends=('alsa-utils' 'fcron' 'gpm' 'hdparm'
 	    'laptop-mode-tools' 'openntpd' 'rsyslog'
 	    'sane' 'virtualbox-guest-utils' 'xorg-server')
-conflicts=('openrc-arch-services-git'
-	  'initscripts' 'systemd-sysvcompat' 'openrc')
+conflicts=('openrc-arch-services-git' 'initscripts'
+	  'systemd-sysvcompat' 'openrc' 'openrc-git')
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -102,7 +102,7 @@ package_fcron-openrc() {
 	groups=('openrc-misc')
 	provides=('openrc-cron')
 	conflicts=('openrc-cron' 'openrc-arch-services-git'
-		  'initscripts' 'systemd-sysvcompat' 'openrc')
+		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=fcron.install
 
 	install -Dm755 "${srcdir}/fcron.init.3" "${pkgdir}/etc/init.d/fcron"
@@ -143,7 +143,7 @@ package_openntpd-openrc() {
 	groups=('openrc-misc')
 	provides=('openrc-timed')
 	conflicts=('openrc-timed' 'openrc-arch-services-git'
-		  'initscripts' 'systemd-sysvcompat' 'openrc')
+		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=openntpd.install
 
 	install -Dm755 "${srcdir}/openntpd.conf.d-3.9_p1-r4" "${pkgdir}/etc/conf.d/openntpd"
