@@ -6,7 +6,7 @@ _name=cups
 
 pkgname=${_name}-eudev
 pkgver=1.6.4
-pkgrel=1
+pkgrel=2
 pkgdesc="The CUPS Printing System - daemon package with disabled systemd"
 arch=('i686' 'x86_64')
 url="http://www.cups.org/"
@@ -127,6 +127,9 @@ package() {
 
   # this one we ship in the libcups pkg
   rm -f ${pkgdir}/usr/bin/cups-config
+
+  rm -rf ${pkgdir}/etc/rc*.d
+  rm -rf ${pkgdir}/etc/init.d
 
   install -D -m644 $srcdir/cups.logrotate ${pkgdir}/etc/logrotate.d/cups
   install -D -m644 $srcdir/cups.pam ${pkgdir}/etc/pam.d/cups
