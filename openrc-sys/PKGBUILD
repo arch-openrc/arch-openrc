@@ -7,7 +7,7 @@ true && pkgname=('acpid-openrc' 'consolekit-openrc' 'cpupower-openrc' 'cronie-op
 		'glibc-openrc' 'lm_sensors-openrc' 'lvm2-openrc'
 		'mdadm-openrc' 'syslog-ng-openrc' 'displaymanager-openrc' 'aur_info')
 pkgver=20131018
-pkgrel=3
+pkgrel=4
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -134,7 +134,7 @@ package_cronie-openrc() {
 	pkgdesc="OpenRC cronie init script"
 	depends=('openrc-base' 'cronie')
 	provides=('openrc-cron')
-	conflicts=('cronie-openrc' 'openrc-arch-services-git'
+	conflicts=('fcron' 'fcron-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=cronie.install
 

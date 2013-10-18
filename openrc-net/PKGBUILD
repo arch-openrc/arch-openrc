@@ -15,7 +15,7 @@ true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'vsftpd-openrc' 'wicd-openrc' 'wpa_supplicant-openrc'
 		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc' 'aur_info')
 pkgver=20131018
-pkgrel=2
+pkgrel=4
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -458,7 +458,7 @@ package_ntp-openrc() {
 	depends=('openrc-base' 'ntp')
 	optdepends=('bind-openrc')
 	provides=('openrc-timed')
-	conflicts=('openntpd-openrc' 'openrc-arch-services-git'
+	conflicts=('openntpd-openrc' 'openntpd' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=ntp.install
 

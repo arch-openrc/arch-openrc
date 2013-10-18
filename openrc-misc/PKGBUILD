@@ -6,7 +6,7 @@ true && pkgname=('alsa-utils-openrc' 'fcron-openrc'
 		'gpm-openrc' 'laptop-mode-tools-openrc' 'openntpd-openrc'
 		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc' 'eudev-openrc' 'aur_info')
 pkgver=20131018
-pkgrel=2
+pkgrel=3
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -76,7 +76,7 @@ package_fcron-openrc() {
 	depends=('openrc-base' 'fcron')
 	groups=('openrc-misc')
 	provides=('openrc-cron')
-	conflicts=('cronie-openrc' 'openrc-arch-services-git'
+	conflicts=('cronie' 'cronie-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=fcron.install
 
@@ -117,7 +117,7 @@ package_openntpd-openrc() {
 	depends=('openrc-base' 'openntpd')
 	groups=('openrc-misc')
 	provides=('openrc-timed')
-	conflicts=('ntp-openrc' 'openrc-arch-services-git'
+	conflicts=('ntp' 'ntp-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 	install=openntpd.install
 
