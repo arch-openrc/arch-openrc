@@ -7,7 +7,7 @@ true && pkgname=('acpid-openrc' 'consolekit-openrc' 'cpupower-openrc' 'cronie-op
 		'glibc-openrc' 'lm_sensors-openrc' 'lvm2-openrc'
 		'mdadm-openrc' 'syslog-ng-openrc' 'displaymanager-openrc' 'aur_info')
 pkgver=20131018
-pkgrel=1
+pkgrel=3
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"

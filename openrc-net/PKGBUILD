@@ -15,7 +15,7 @@ true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'vsftpd-openrc' 'wicd-openrc' 'wpa_supplicant-openrc'
 		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc' 'aur_info')
 pkgver=20131018
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
@@ -303,7 +303,7 @@ package_cups-openrc() {
 	install -Dm755 "${srcdir}/cupsd.init.d-r1" "${pkgdir}/etc/init.d/cupsd"
 
 	local _p1='s|lp:lpadmin|daemon:sys|' _p2='s|@neededservices@|need dbus avahi-daemon|'
-	sed -e "${_shebang}" -e "${_binpath}" -e "${_p1}" -e "${_p1}" -i "${pkgdir}/etc/init.d/cupsd"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/cupsd"
 }
 
 package_cyrus-sasl-openrc() {

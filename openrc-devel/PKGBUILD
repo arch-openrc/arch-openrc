@@ -7,7 +7,7 @@ pkgname=openrc-devel-split
 true && pkgname=('git-openrc' 'mysql-openrc'
 		'postgresql-openrc' 'subversion-openrc' 'aur_info')
 pkgver=20131018
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
