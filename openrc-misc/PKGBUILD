@@ -5,8 +5,8 @@ pkgname=openrc-misc-split
 true && pkgname=('alsa-utils-openrc' 'fcron-openrc'
 		'gpm-openrc' 'laptop-mode-tools-openrc' 'openntpd-openrc'
 		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc' 'eudev-openrc' 'aur_info')
-pkgver=20131018
-pkgrel=3
+pkgver=20131021
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"

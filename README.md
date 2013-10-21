@@ -58,6 +58,7 @@ OpenRC pkgbuilds
 #####openrc-net#####
 
 * networkmanager-openrc
+* autofs-openrc
 * apache-openrc
 * avahi-openrc
 * bind-openrc
@@ -98,9 +99,11 @@ OpenRC pkgbuilds
 
 #####eudev-base#####
 
+* cups-eudev
 * dbus-eudev
 * eudev
 * eudev-openrc
 * syslog-ng-eudev
 * udisks2-eudev
 * upower-eudev
+* transmission-cli-eudev

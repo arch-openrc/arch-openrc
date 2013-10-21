@@ -2,7 +2,7 @@
 
 pkgbase=openrc-net-split
 pkgname=openrc-net-split
-true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc'
+true && pkgname=('autofs-openrc' 'apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'bitlbee-openrc' 'bluez-openrc' 'connman-openrc'
 		'cups-openrc' 'cyrus-sasl-openrc' 'dhcp-openrc'
 		'dhcpcd-openrc' 'hostapd-openrc' 'inetutils-openrc'
@@ -14,14 +14,14 @@ true && pkgname=('apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'squid-openrc' 'transmission-openrc' 'ufw-openrc'
 		'vsftpd-openrc' 'wicd-openrc' 'wpa_supplicant-openrc'
 		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc' 'aur_info')
-pkgver=20131018
-pkgrel=4
+pkgver=20131021
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc' 'openrc-net')
-makedepends=('apache' 'avahi' 'bind' 'bitlbee' 'bluez' 'connman' 'cups' 'cyrus-sasl'
+makedepends=('autofs' 'apache' 'avahi' 'bind' 'bitlbee' 'bluez' 'connman' 'cups' 'cyrus-sasl'
 	    'dbus-openrc' 'device-mapper-openrc' 'dhcp' 'dhcpcd' 'hostapd'
 	    'inetutils' 'iptables' 'krb5' 'lighttpd' 'nfs-utils' 'ntp' 'openldap'
 	    'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools' 'rpcbind'
@@ -118,7 +118,8 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/net-nds/ypserv/files/rpc.ypxfrd.confd"
 	"${_gentoo_uri}/net-nds/ypserv/files/rpc.ypxfrd-2.23"
 	"${_gentoo_uri}/net-nds/ypserv/files/ypserv.confd"
-	"${_gentoo_uri}/net-nds/ypserv/files/ypserv")
+	"${_gentoo_uri}/net-nds/ypserv/files/ypserv"
+	"${_gentoo_uri}/net-fs/autofs/files/autofs5.initd")
 
 sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             '8372719b24e2dd75de6f59bb1315e600db4fd092805bd1201ed0cb651a2dab48'
@@ -202,7 +203,8 @@ sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             'bd1f245a362f85319e83965e8b825e66e686a4a0bf185ab8ec51fd335bc873c2'
             'a6445dd607093fdafb013e5896f60d78223549b38c96300fe239bcf5dbf2a8de'
             '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
-            '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b')
+            '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b'
+            '50cf0d305f1605a7511b9033d9e7a710d0e18e16bf37924c0b6d5a2a4d0910a9')
 
 pkgver() {
   date +%Y%m%d
@@ -706,6 +708,17 @@ package_ypserv-openrc() {
 	for f in ${pkgdir}/etc/init.d/*;do
 	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
 	done
+}
+
+package_autofs-openrc() {
+	true
+	pkgdesc="OpenRC autofs init script"
+	depends=('openrc-base' 'autofs')
+	install=autofs.install
+
+	install -Dm755 "${srcdir}/autofs5.initd" "${pkgdir}/etc/init.d/autofs"
+
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/autofs"
 }
 
 # Comment out if you build for your personal repo

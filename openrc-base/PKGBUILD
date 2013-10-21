@@ -14,7 +14,7 @@ _nver=0.1
 
 pkgname=${_name}-base
 pkgver=0.12.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Gentoo's universal init system."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -94,6 +94,11 @@ package() {
       ln -sf "/etc/init.d/udev" "${pkgdir}/etc/runlevels/sysinit/udev"
       ln -sf "/etc/init.d/udev-mount" "${pkgdir}/etc/runlevels/sysinit/udev-mount"
       ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
+
+      # enable unicode
+      sed -e 's/#unicode="NO"/unicode="YES"/' -i "${pkgdir}/etc/rc.conf"
+      # enable logger
+      sed -e 's/#rc_logger="YES"/rc_logger="YES"/' -i "${pkgdir}/etc/rc.conf"
 
       # netifrc merge; comment out for openrc MKNET='newnet'
       cd "${srcdir}/${_net}-${_nver}"

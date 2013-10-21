@@ -4,7 +4,7 @@
 
 pkgname=polkit-consolekit
 pkgver=0.112
-pkgrel=1
+pkgrel=3
 pkgdesc="PolyciKit with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('LGPL')
