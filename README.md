@@ -41,6 +41,7 @@ OpenRC pkgbuilds
 * alsa-utils-openrc
 * displaymanager-openrc
 * fcron-openrc
+* fuse-openrc
 * gpm-openrc
 * laptop-mode-tools-openrc
 * openntpd-openrc

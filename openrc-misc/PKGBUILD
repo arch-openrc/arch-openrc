@@ -2,7 +2,7 @@
 
 pkgbase=openrc-misc-split
 pkgname=openrc-misc-split
-true && pkgname=('alsa-utils-openrc' 'fcron-openrc'
+true && pkgname=('alsa-utils-openrc' 'fcron-openrc' 'fuse-openrc'
 		'gpm-openrc' 'laptop-mode-tools-openrc' 'openntpd-openrc'
 		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc' 'eudev-openrc' 'aur_info')
 pkgver=20131021
@@ -12,7 +12,7 @@ arch=('any')
 url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc' 'openrc-misc')
-makedepends=('alsa-utils' 'fcron' 'gpm' 'hdparm'
+makedepends=('alsa-utils' 'fcron' 'fuse' 'gpm' 'hdparm'
 	    'laptop-mode-tools' 'openntpd' 'rsyslog'
 	    'sane' 'virtualbox-guest-utils' 'udev')
 conflicts=('openrc-arch-services-git' 'initscripts'
@@ -33,7 +33,8 @@ source=("${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.confd-r4"
 	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
 	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.initd"
 	"${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
-	"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
+	"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount"
+	"${_gentoo_uri}/sys-fs/fuse/files/fuse.init")
 
 sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             'daf46bbc4156a82e0c6c7135ee94b31a3dfb6d366fcf3f45e8c842d1348601be'
@@ -48,7 +49,8 @@ sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
             '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
             '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac'
-            '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb')
+            '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb'
+            '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda')
 
 pkgver() {
   date +%Y%m%d
@@ -176,6 +178,15 @@ package_eudev-openrc(){
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-postmount"
 }
 
+package_fuse-openrc(){
+	true
+	pkgdesc="OpenRC fuse init script"
+	depends=('openrc-base' 'fuse')
+	install=fuse.install
+
+	install -Dm755 "${srcdir}/fuse.init" "${pkgdir}/etc/init.d/fuse"
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/fuse"
+}
 
 # Comment out if you build for your personal repo
 # remove 'aur_info' from pkgname array
