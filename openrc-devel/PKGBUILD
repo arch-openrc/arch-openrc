@@ -5,8 +5,8 @@ _pgs_ver=2.5
 pkgbase=openrc-devel-split
 pkgname=openrc-devel-split
 true && pkgname=('git-openrc' 'mysql-openrc'
-		'postgresql-openrc' 'subversion-openrc' 'aur_info')
-pkgver=20131021
+		'postgresql-openrc' 'subversion-openrc' 'openrc-devel-split')
+pkgver=20131022
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -35,9 +35,9 @@ sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
             '8f123253c3bfb9bbe87210a9e1facc7f52df371747dbc188396740a5cf4fa713')
 
-pkgver() {
-  date +%Y%m%d
-}
+# pkgver() {
+#   date +%Y%m%d
+# }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'
@@ -103,11 +103,12 @@ package_subversion-openrc() {
 }
 
 # Comment out if you build for your personal repo
-# remove 'aur_info' from pkgname array
+# remove 'openrc-devel-split' from pkgname array
 # Dummy package to make AUR display correct info
-package_aur_info() {
+# If installed, it should make upgrade from AUR possible
+package_openrc-devel-split() {
 	true
-	pkgdesc="OpenRC init scripts"
+	pkgdesc="OpenRC devel init scripts, AUR upgrade and info splt-pkg helper"
 	depends=('openrc-base')
-
+	provides=("openrc-devel-split-helper=${pkgver}")
 }

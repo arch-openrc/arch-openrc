@@ -4,8 +4,8 @@ pkgbase=openrc-misc-split
 pkgname=openrc-misc-split
 true && pkgname=('alsa-utils-openrc' 'fcron-openrc' 'fuse-openrc'
 		'gpm-openrc' 'laptop-mode-tools-openrc' 'openntpd-openrc'
-		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc' 'eudev-openrc' 'aur_info')
-pkgver=20131021
+		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc' 'eudev-openrc' 'openrc-misc-split')
+pkgver=20131022
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -52,9 +52,9 @@ sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb'
             '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda')
 
-pkgver() {
-  date +%Y%m%d
-}
+# pkgver() {
+#   date +%Y%m%d
+# }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'
@@ -189,11 +189,12 @@ package_fuse-openrc(){
 }
 
 # Comment out if you build for your personal repo
-# remove 'aur_info' from pkgname array
+# remove 'openrc-misc-split' from pkgname array
 # Dummy package to make AUR display correct info
-package_aur_info() {
+# If installed, it should make upgrade from AUR possible
+package_openrc-misc-split() {
 	true
-	pkgdesc="OpenRC init scripts"
+	pkgdesc="OpenRC misc init scripts, AUR upgrade and info split-pkg helper"
 	depends=('openrc-base')
-
+	provides=("openrc-misc-split-helper=${pkgver}")
 }

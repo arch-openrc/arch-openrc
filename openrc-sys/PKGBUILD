@@ -5,8 +5,8 @@ pkgname=openrc-sys-split
 true && pkgname=('acpid-openrc' 'consolekit-openrc' 'cpupower-openrc' 'cronie-openrc'
 		'cryptsetup-openrc' 'dbus-openrc' 'device-mapper-openrc'
 		'glibc-openrc' 'lm_sensors-openrc' 'lvm2-openrc'
-		'mdadm-openrc' 'syslog-ng-openrc' 'displaymanager-openrc' 'aur_info')
-pkgver=20131021
+		'mdadm-openrc' 'syslog-ng-openrc' 'displaymanager-openrc' 'openrc-sys-split')
+pkgver=20131022
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -83,9 +83,9 @@ sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '942ce5e8d1a0770543b683dcc388bae7619a24eb9741c1cd678ed3df97c01406'
             'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499')
 
-pkgver() {
-  date +%Y%m%d
-}
+# pkgver() {
+#   date +%Y%m%d
+# }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'
@@ -277,11 +277,12 @@ package_syslog-ng-openrc() {
 }
 
 # Comment out if you build for your personal repo
-# remove 'aur_info' from pkgname array
+# remove 'openrc-sys-split' from pkgname array
 # Dummy package to make AUR display correct info
-package_aur_info() {
+# If installed, it should make upgrade from AUR possible
+package_openrc-sys-split() {
 	true
-	pkgdesc="OpenRC init scripts"
+	pkgdesc="OpenRC sys init scripts, AUR upgrade and info split-pkg helper"
 	depends=('openrc-base')
-
+	provides=("openrc-sys-split-helper=${pkgver}")
 }

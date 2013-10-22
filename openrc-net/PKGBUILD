@@ -13,8 +13,9 @@ true && pkgname=('autofs-openrc' 'apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'rpcbind-openrc' 'rsync-openrc' 'samba-openrc'
 		'squid-openrc' 'transmission-openrc' 'ufw-openrc'
 		'vsftpd-openrc' 'wicd-openrc' 'wpa_supplicant-openrc'
-		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc' 'aur_info')
-pkgver=20131021
+		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc'
+		'openrc-net-split')
+pkgver=20131022
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -206,9 +207,9 @@ sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b'
             '50cf0d305f1605a7511b9033d9e7a710d0e18e16bf37924c0b6d5a2a4d0910a9')
 
-pkgver() {
-  date +%Y%m%d
-}
+# pkgver() {
+#   date +%Y%m%d
+# }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'
@@ -722,11 +723,12 @@ package_autofs-openrc() {
 }
 
 # Comment out if you build for your personal repo
-# remove 'aur_info' from pkgname array
+# remove 'openrc-net-split' from pkgname array
 # Dummy package to make AUR display correct info
-package_aur_info() {
+# If installed, it should make upgrade from AUR possible
+package_openrc-net-split() {
 	true
-	pkgdesc="OpenRC init scripts"
+	pkgdesc="OpenRC net init scripts, AUR upgrade and info split-pkg helper"
 	depends=('openrc-base')
-
+	provides=("openrc-net-split-helper=${pkgver}")
 }
