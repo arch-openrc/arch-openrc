@@ -6,7 +6,7 @@ pkgbase=openrc-devel-split
 pkgname=openrc-devel-split
 true && pkgname=('git-openrc' 'mysql-openrc'
 		'postgresql-openrc' 'subversion-openrc' 'openrc-devel-split')
-pkgver=20131022
+pkgver=20131025
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -47,6 +47,7 @@ package_git-openrc() {
 	true
 	pkgdesc="OpenRC git-daemon init script"
 	depends=('openrc-base' 'git')
+	backup=('etc/conf.d/git-daemon')
 	install=git.install
 
 	install -Dm755 "${srcdir}/git-daemon.confd" "${pkgdir}/etc/conf.d/git-daemon"
@@ -62,12 +63,13 @@ package_mysql-openrc() {
 	pkgdesc="OpenRC mysql init script"
 	depends=('openrc-base' 'mysql')
 	optdepends=('bind-openrc')
+	backup=('etc/conf.d/mysql')
 	install=mysql.install
 
 	install -Dm755 "${srcdir}/mysql-5.1.53-conf.d" "${pkgdir}/etc/conf.d/mysql"
 	install -Dm755 "${srcdir}/mysql-5.1.67-init.d" "${pkgdir}/etc/init.d/mysql"
 
-	local _p1='s|/sbin/mysqld|/usr/bin/mysqld|g'
+	local _p1='s|/sbin/mysqld|/bin/mysqld|g'
 	sed -e "${_shebang}" -e "${_p1}" -i "${pkgdir}/etc/init.d/mysql"
 }
 
@@ -75,6 +77,7 @@ package_postgresql-openrc() {
 	true
 	pkgdesc="OpenRC postgresql init script"
 	depends=('openrc-base' 'postgresql')
+	backup=('etc/conf.d/postgresql')
 	install=postgresql.install
 
 	install -Dm755 "${srcdir}/postgresql.confd" "${pkgdir}/etc/conf.d/postgresql"
@@ -92,6 +95,7 @@ package_subversion-openrc() {
 	true
 	pkgdesc="OpenRC svnserve init script"
 	depends=('openrc-base' 'subversion')
+	backup=('etc/conf.d/svnserve-rc')
 	install=subversion.install
 
 	install -Dm755 "${srcdir}/svnserve.confd" "${pkgdir}/etc/conf.d/svnserve-rc"

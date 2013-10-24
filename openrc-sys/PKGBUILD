@@ -6,7 +6,7 @@ true && pkgname=('acpid-openrc' 'consolekit-openrc' 'cpupower-openrc' 'cronie-op
 		'cryptsetup-openrc' 'dbus-openrc' 'device-mapper-openrc'
 		'glibc-openrc' 'lm_sensors-openrc' 'lvm2-openrc'
 		'mdadm-openrc' 'syslog-ng-openrc' 'displaymanager-openrc' 'openrc-sys-split')
-pkgver=20131022
+pkgver=20131025
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -26,7 +26,7 @@ source=("${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
 	"${_gentoo_uri}/sys-auth/consolekit/files/consolekit-0.2.rc"
 	"${_gentoo_uri}/sys-auth/consolekit/files/90-consolekit-3"
 	"${_gentoo_uri}/sys-power/cpupower/files/conf.d-r2"
-	"${_gentoo_uri}/sys-power/cpupower/files/init.d-r2"
+	"${_gentoo_uri}/sys-power/cpupower/files/init.d-r3"
 	"${_gentoo_uri}/sys-process/cronie/files/cronie-1.3-initd"
 	"${_gentoo_uri}/sys-process/cronie/files/anacron-1.0-initd"
 	"${_gentoo_uri}/sys-fs/cryptsetup/files/1.0.6-dmcrypt.confd"
@@ -54,10 +54,10 @@ source=("${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
 
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
-	    'da849bae527a7a5c257301a99ac3fb5ec2ded48103ec114552ca7d2a24b12e49'
+            'da849bae527a7a5c257301a99ac3fb5ec2ded48103ec114552ca7d2a24b12e49'
             '91e0900995f7db536220065959d236fb75ec2c77096981a142e2e948518d9761'
             '9ab6f022d2b2948660decf5e383984e6ddb9e9e5e6e2761c3031378ddd87e947'
-            '8d8e45f112ea86fb686f66ca16c25f6d1b0e06c62b0fd2ce2ed39b455a1d8a3c'
+            'aa16c3190d26aca6c0a3f69cc929e3571df3da0b3ec7b45fe19a216fe912fa6f'
             '0954be9e1e1c34d2f963cc60828b63711a2949bfe91f65620caf9c80256383f2'
             '862c85322f3644997ca5432180e0ef0a4fb36467a44b350dc955365f314b2fbe'
             '0c30e081c0b8f879964ae49735f10b05a1d92f4f481042851958860945e13271'
@@ -96,6 +96,7 @@ package_acpid-openrc() {
 	true
 	pkgdesc="OpenRC acpid init script"
 	depends=('openrc-base' 'acpid')
+	backup=('etc/conf.d/acpid')
 	install=acpid.install
 
 	install -Dm755 "${srcdir}/acpid-2.0.16-conf.d" "${pkgdir}/etc/conf.d/acpid"
@@ -121,10 +122,11 @@ package_cpupower-openrc() {
 	true
 	pkgdesc="OpenRC cpupower init script"
 	depends=('openrc-base' 'cpupower')
+	backup=('etc/conf.d/cpupower')
 	install=cpupower.install
 
 	install -Dm755 "${srcdir}/conf.d-r2" "${pkgdir}/etc/conf.d/cpupower"
-	install -Dm755 "${srcdir}/init.d-r2" "${pkgdir}/etc/init.d/cpupower"
+	install -Dm755 "${srcdir}/init.d-r3" "${pkgdir}/etc/init.d/cpupower"
 
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/cpupower"
 }
@@ -136,6 +138,7 @@ package_cronie-openrc() {
 	provides=('openrc-cron')
 	conflicts=('fcron' 'fcron-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
+	backup=('etc/init.d/cronie')
 	install=cronie.install
 
 	install -Dm755 "${srcdir}/cronie-1.3-initd" "${pkgdir}/etc/init.d/cronie"
@@ -163,6 +166,7 @@ package_device-mapper-openrc() {
 	true
 	pkgdesc="OpenRC device-mapper init script"
 	depends=('openrc-base' 'device-mapper')
+	backup=('etc/conf.d/device-mapper')
 	install=device-mapper.install
 
 	install -Dm755 "${srcdir}/device-mapper.conf-1.02.22-r3" "${pkgdir}/etc/conf.d/device-mapper"
@@ -179,6 +183,7 @@ package_cryptsetup-openrc() {
 	true
 	pkgdesc="OpenRC cryptsetup init script"
 	depends=('cryptsetup' 'device-mapper-openrc')
+	backup=('etc/conf.d/dmcrypt')
 	install=cryptsetup.install
 
 	install -Dm755 "${srcdir}/1.0.6-dmcrypt.confd" "${pkgdir}/etc/conf.d/dmcrypt"
@@ -222,6 +227,7 @@ package_lm_sensors-openrc() {
 	true
 	pkgdesc="OpenRC lm_sensors init script"
 	depends=('openrc-base' 'lm_sensors')
+	backup=('etc/conf.d/sensord')
 	install=lm_sensors.install
 
 	install -Dm755 "${srcdir}/sensord-conf.d" "${pkgdir}/etc/conf.d/sensord"
@@ -239,6 +245,7 @@ package_lvm2-openrc() {
 	true
 	pkgdesc="OpenRC lvm2 init script"
 	depends=('lvm2' 'device-mapper-openrc')
+	backup=('etc/conf.d/lvm')
 	install=lvm2.install
 
 	install -Dm755 "${srcdir}/lvm.confd-2.02.28-r2" "${pkgdir}/etc/conf.d/lvm"
@@ -256,6 +263,7 @@ package_mdadm-openrc() {
 	pkgdesc="OpenRC mdadm init script"
 	depends=('openrc-base' 'mdadm')
 	optdepends=('bind-openrc')
+	backup=('etc/conf.d/mdadm')
 	install=mdadm.install
 
 	install -Dm755 "${srcdir}/mdadm.confd" "${pkgdir}/etc/conf.d/mdadm"
@@ -268,6 +276,7 @@ package_syslog-ng-openrc() {
 	true
 	pkgdesc="OpenRC syslog-ng init script"
 	depends=('openrc-base' 'syslog-ng')
+	backup=('etc/conf.d/syslog-ng')
 	install=syslog-ng.install
 
 	install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"

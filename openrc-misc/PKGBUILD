@@ -5,7 +5,7 @@ pkgname=openrc-misc-split
 true && pkgname=('alsa-utils-openrc' 'fcron-openrc' 'fuse-openrc'
 		'gpm-openrc' 'laptop-mode-tools-openrc' 'openntpd-openrc'
 		'rsyslog-openrc' 'sane-openrc' 'vbox-guest-openrc' 'eudev-openrc' 'openrc-misc-split')
-pkgver=20131022
+pkgver=20131025
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -26,8 +26,8 @@ source=("${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.confd-r4"
 	"${_gentoo_uri}/sys-libs/gpm/files/gpm.conf.d"
 	"${_gentoo_uri}/sys-libs/gpm/files/gpm.rc6-2"
 	"${_gentoo_uri}/app-laptop/laptop-mode-tools/files/laptop_mode.init-1.4"
-	"${_gentoo_uri}/net-misc/openntpd/files/openntpd.conf.d-3.9_p1-r4"
-	"${_gentoo_uri}/net-misc/openntpd/files/openntpd.init.d-20080406-r2"
+	"${_gentoo_uri}/net-misc/openntpd/files/openntpd.conf.d-20080406-r3"
+	"${_gentoo_uri}/net-misc/openntpd/files/openntpd.init.d-20080406-r4"
 	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/rsyslog.confd"
 	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/rsyslog.initd"
 	"${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
@@ -42,8 +42,8 @@ sha256sums=('d1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             '73e7483fdc4b12ab4225a4cb13bbe7da71b07b9e69b17e3a6a4c63cb5e2287c8'
             'e692e7b97efdd79f6e92fbdaed60f7a71bfd23a82c5561b160b88a7aa50c8461'
             '90a18e5c7e4d0b264bb51deb7b92ff25b508a3ddd75dd6c849fdc48c07ce4fda'
-            '1980b5dadcd9478e653ef05c099ef45caacfdf12a73a3745b39322f75773a738'
-            'e0b5a15eab16e378b78d8ee5fa6e2eba630b5e55e864075d3e86fb89f9ea4e71'
+            'd91274d2c0018dccc562b949df2f0b713ca21e8d1522d5f17d1d6c8d6916fedc'
+            '59b5eed7edb1ad53d2312a6208905e6ba53ff5eb7c4e2adf0e77652c5e6cf26d'
             'ff2634927d3208ac2c82d352f0a7dc9fef1d0ee098d18f818d4417ac04516e9c'
             '7b3b32e89c051566b68c5e5a077cd5960da183e071e411b1248d4e4702a24279'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
@@ -93,6 +93,7 @@ package_gpm-openrc() {
 	true
 	pkgdesc="OpenRC gpm init script"
 	depends=('openrc-base' 'gpm')
+	backup=('etc/conf.d/gpm')
 	install=gpm.install
 
 	install -Dm755 "${srcdir}/gpm.conf.d" "${pkgdir}/etc/conf.d/gpm"
@@ -121,18 +122,20 @@ package_openntpd-openrc() {
 	provides=('openrc-timed')
 	conflicts=('ntp' 'ntp-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
+	backup=('etc/conf.d/openntpd')
 	install=openntpd.install
 
-	install -Dm755 "${srcdir}/openntpd.conf.d-3.9_p1-r4" "${pkgdir}/etc/conf.d/openntpd"
-	install -Dm755 "${srcdir}/openntpd.init.d-20080406-r2" "${pkgdir}/etc/init.d/openntpd"
+	install -Dm755 "${srcdir}/openntpd.conf.d-20080406-r3" "${pkgdir}/etc/conf.d/ntpd"
+	install -Dm755 "${srcdir}/openntpd.init.d-20080406-r4" "${pkgdir}/etc/init.d/ntpd"
 
-	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/openntpd"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/ntpd"
 }
 
 package_rsyslog-openrc() {
 	true
 	pkgdesc="OpenRC rsyslog init script"
 	depends=('openrc-base' 'rsyslog')
+	backup=('etc/conf.d/rsyslog')
 	install=rsyslog.install
 
 	install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
@@ -146,6 +149,7 @@ package_sane-openrc() {
 	true
 	pkgdesc="OpenRC sane init script"
 	depends=('openrc-base' 'sane')
+	backup=('etc/conf.d/saned')
 	install=sane.install
 
 	install -Dm755 "${srcdir}/saned.confd" "${pkgdir}/etc/conf.d/saned"

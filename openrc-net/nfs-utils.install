@@ -1,4 +1,4 @@
-_svc=('nfs' 'nfsmount')
+_svc=('nfs-rc' 'nfsmount')
 _rlvl="default"
 
 post_install() {

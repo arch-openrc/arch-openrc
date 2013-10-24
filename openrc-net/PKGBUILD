@@ -15,7 +15,7 @@ true && pkgname=('autofs-openrc' 'apache-openrc' 'avahi-openrc' 'bind-openrc'
 		'vsftpd-openrc' 'wicd-openrc' 'wpa_supplicant-openrc'
 		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc'
 		'openrc-net-split')
-pkgver=20131022
+pkgver=20131025
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -97,8 +97,8 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/net-nds/rpcbind/files/rpcbind.initd"
 	"${_gentoo_uri}/net-misc/rsync/files/rsyncd.conf.d"
 	"${_gentoo_uri}/net-misc/rsync/files/rsyncd.init.d-r1"
-	"${_gentoo_uri}/net-fs/samba/files/4.0/samba4.confd"
-	"${_gentoo_uri}/net-fs/samba/files/4.0/samba4.initd-r1"
+	"${_gentoo_uri}/net-fs/samba/files/4.1/samba4.confd"
+	"${_gentoo_uri}/net-fs/samba/files/4.1/samba4.initd-r1"
 	"${_gentoo_uri}/net-proxy/squid/files/squid.confd-r1"
 	"${_gentoo_uri}/net-proxy/squid/files/squid.initd-r3"
 	"${_gentoo_uri}/net-p2p/transmission/files/transmission-daemon.confd.4"
@@ -183,7 +183,7 @@ sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
             'baff64277f9aa62cf1eeed2284bb08c4f3078a8e6e7604e4fec228ca5fa9dd82'
             '53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
-            '4d00243dbd85ee81e2e989f1ac8035c1c1b9379133584291b959bb7bc45fe780'
+            '973bac0e8fbc7157af236871a3d00358d50478d57a38942dd279dc24ce9a2b97'
             '214a184495a3384eb452caef435256043bc51e35140a61b1f5fdff32603c8f7e'
             '9b16b1ab2d3d3411dfcd8ac76b13a0889503ca78e3c6123814801af7577537f3'
             '249689688aad23d0d27ccdd08a0907fd85058d6a52ccd3467f756b07f5d059ee'
@@ -220,6 +220,7 @@ package_apache-openrc() {
 	true
 	pkgdesc="OpenRC apache init script"
 	depends=('openrc-base' 'apache')
+	backup=('etc/conf.d/httpd')
 	install=apache.install
 
 	install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
@@ -248,6 +249,7 @@ package_bind-openrc() {
 	true
 	pkgdesc="OpenRC bind init script"
 	depends=('openrc-base' 'bind')
+	backup=('etc/conf.d/named')
 	install=bind.install
 
 	install -Dm755 "${srcdir}/named.confd-r6" "${pkgdir}/etc/conf.d/named"
@@ -261,6 +263,7 @@ package_bitlbee-openrc() {
 	true
 	pkgdesc="OpenRC bitlbee init script"
 	depends=('openrc-base' 'bitlbee')
+	backup=('etc/conf.d/bitlbee')
 	install=bitlbee.install
 
 	install -Dm755 "${srcdir}/bitlbee.confd" "${pkgdir}/etc/conf.d/bitlbee"
@@ -273,6 +276,7 @@ package_bluez-openrc() {
 	true
 	pkgdesc="OpenRC bluez init script"
 	depends=('bluez' 'dbus-openrc')
+	backup=('etc/conf.d/rfcomm')
 	install=bluez.install
 
 	install -Dm755 "${srcdir}/rfcomm-conf.d" "${pkgdir}/etc/conf.d/rfcomm"
@@ -288,6 +292,7 @@ package_connman-openrc() {
 	true
 	pkgdesc="OpenRC connman init script"
 	depends=('openrc-base' 'connman')
+	backup=('etc/conf.d/connman')
 	install=connman.install
 
 	install -Dm755 "${srcdir}/connman.confd" "${pkgdir}/etc/conf.d/connman"
@@ -326,6 +331,7 @@ package_dhcp-openrc() {
 	pkgdesc="OpenRC dhcp init script"
 	depends=('openrc-base' 'dhcp')
 	optdepends=('openldap-openrc' 'bind-openrc')
+	backup=('etc/conf.d/dhcpd' 'etc/conf.d/dhcrelay' 'etc/conf.d/dhcrelay6')
 	install=dhcp.install
 
 	install -Dm755 "${srcdir}/dhcpd.conf2" "${pkgdir}/etc/conf.d/dhcpd"
@@ -356,6 +362,7 @@ package_hostapd-openrc() {
 	true
 	pkgdesc="OpenRC hostapd init script"
 	depends=('openrc-base' 'hostapd')
+	backup=('etc/conf.d/hostapd')
 	install=hostapd.install
 
 	install -Dm755 "${srcdir}/hostapd-conf.d" "${pkgdir}/etc/conf.d/hostapd"
@@ -368,9 +375,10 @@ package_inetutils-openrc() {
 	true
 	pkgdesc="OpenRC ftpd init script"
 	depends=('openrc-base' 'inetutils')
+	backup=('etc/conf.d/ftpd')
 	install=inetutils.install
 
-	install -Dm755 "${srcdir}/inetutils.confd" "${pkgdir}/etc/init.d/ftpd"
+	install -Dm755 "${srcdir}/inetutils.confd" "${pkgdir}/etc/conf.d/ftpd"
 	install -Dm755 "${srcdir}/inetutils.initd" "${pkgdir}/etc/init.d/ftpd"
 
 	sed -e "${_shebang}" -e "${_binpath2}" -i "${pkgdir}/etc/init.d/ftpd"
@@ -380,6 +388,7 @@ package_iptables-openrc() {
 	true
 	pkgdesc="OpenRC iptables init script"
 	depends=('openrc-base' 'iptables')
+	backup=('etc/conf.d/iptables' 'etc/conf.d/ip6tables')
 	install=iptables.install
 
 	install -Dm755 "${srcdir}/iptables-1.4.13.confd" "${pkgdir}/etc/conf.d/iptables"
@@ -412,6 +421,7 @@ package_lighttpd-openrc() {
 	true
 	pkgdesc="OpenRC lighttpd init script"
 	depends=('openrc-base' 'lighttpd')
+	backup=('etc/conf.d/lighttpd')
 	install=lighttpd.install
 
 	install -Dm755 "${srcdir}/lighttpd.confd" "${pkgdir}/etc/conf.d/lighttpd"
@@ -424,6 +434,7 @@ package_rpcbind-openrc() {
 	true
 	pkgdesc="OpenRC rpcbind init script"
 	depends=('openrc-base' 'rpcbind')
+	backup=('etc/conf.d/rpcbind')
 	install=rpcbind.install
 
 	install -Dm755 "${srcdir}/rpcbind.confd" "${pkgdir}/etc/conf.d/rpcbind"
@@ -437,10 +448,11 @@ package_nfs-utils-openrc() {
 	pkgdesc="OpenRC nfs-utils init script"
 	depends=('nfs-utils' 'rpcbind-openrc' 'device-mapper-openrc')
 	optdepends=('ypbind-openrc' 'quota-tools-openrc' 'bind-openrc')
+	backup=('etc/conf.d/nfs-rc')
 	install=nfs-utils.install
 
 	install -Dm755 "${srcdir}/nfs.confd" "${pkgdir}/etc/conf.d/nfs-rc"
-	install -Dm755 "${srcdir}/nfs.initd" "${pkgdir}/etc/init.d/nfs"
+	install -Dm755 "${srcdir}/nfs.initd" "${pkgdir}/etc/init.d/nfs-rc"
 	install -Dm755 "${srcdir}/nfsmount.initd" "${pkgdir}/etc/init.d/nfsmount"
 	install -Dm755 "${srcdir}/rpc.gssd.initd" "${pkgdir}/etc/init.d/rpc.gssd"
 	install -Dm755 "${srcdir}/rpc.idmapd.initd" "${pkgdir}/etc/init.d/rpc.idmapd"
@@ -463,6 +475,7 @@ package_ntp-openrc() {
 	provides=('openrc-timed')
 	conflicts=('openntpd-openrc' 'openntpd' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
+	backup=('etc/conf.d/ntpd' 'etc/conf.d/ntp-client' 'etc/init.d/sntp')
 	install=ntp.install
 
 	install -Dm755 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"
@@ -481,6 +494,7 @@ package_openldap-openrc() {
 	true
 	pkgdesc="OpenRC openldap init script"
 	depends=('openrc-base' 'openldap')
+	backup=('etc/conf.d/slapd')
 	install=openldap.install
 
 	install -Dm755 "${srcdir}/slapd-confd-2.4.28-r1" "${pkgdir}/etc/conf.d/slapd"
@@ -506,6 +520,7 @@ package_openssh-openrc() {
 	pkgdesc="OpenRC openssh init script"
 	depends=('openrc-base' 'openssh')
 	optdepends=('bind-openrc')
+	backup=('etc/conf.d/sshd')
 	install=openssh.install
 
 	install -Dm755 "${srcdir}/sshd.confd" "${pkgdir}/etc/conf.d/sshd"
@@ -554,21 +569,29 @@ package_quota-tools-openrc() {
 	pkgdesc="OpenRC quota-tools init script"
 	depends=('quota-tools' 'rpcbind-openrc')
 	optdepends=('ypbind-openrc')
+	backup=('etc/conf.d/quota')
 	install=quota-tools.install
 
 	install -Dm755 "${srcdir}/quota.confd" "${pkgdir}/etc/conf.d/quota"
 	install -Dm755 "${srcdir}/quota.rc7" "${pkgdir}/etc/init.d/quota"
 	install -Dm755 "${srcdir}/rpc.rquotad.initd" "${pkgdir}/etc/init.d/rpc.rquotad"
 
+
 	for f in ${pkgdir}/etc/init.d/*;do
 	  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
 	done
+
+	local _p1='s|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g'
+	sed -e "${_p1}" -i "${pkgdir}/etc/init.d/rpc.rquotad"
+
+
 }
 
 package_rsync-openrc() {
 	true
 	pkgdesc="OpenRC rsync init script"
 	depends=('openrc-base' 'rsync')
+	backup=('etc/conf.d/rsyncd')
 	install=rsync.install
 
 	install -Dm755 "${srcdir}/rsyncd.conf.d" "${pkgdir}/etc/conf.d/rsyncd"
@@ -581,6 +604,7 @@ package_samba-openrc() {
 	true
 	pkgdesc="OpenRC samba init script"
 	depends=('openrc-base' 'samba')
+	backup=('etc/conf.d/samba-rc')
 	install=samba.install
 
 	install -Dm755 "${srcdir}/samba4.confd" "${pkgdir}/etc/conf.d/samba-rc"
@@ -596,6 +620,7 @@ package_squid-openrc() {
 	pkgdesc="OpenRC squid init script"
 	depends=('openrc-base' 'squid')
 	optdepends=('bind-openrc')
+	backup=('etc/conf.d/squid')
 	install=squid.install
 
 	install -Dm755 "${srcdir}/squid.confd-r1" "${pkgdir}/etc/conf.d/squid"
@@ -609,6 +634,7 @@ package_transmission-openrc() {
 	true
 	pkgdesc="OpenRC transmission init script"
 	depends=('openrc-base' 'transmission-cli')
+	backup=('etc/conf.d/transmission-daemon')
 	install=transmission.install
 
 	install -Dm755 "${srcdir}/transmission-daemon.confd.4" "${pkgdir}/etc/conf.d/transmission-daemon"
@@ -621,6 +647,7 @@ package_ufw-openrc() {
 	true
 	pkgdesc="OpenRC ufw init script"
 	depends=('openrc-base' 'ufw')
+	backup=('etc/conf.d/ufw')
 	install=ufw.install
 
 	install -Dm755 "${srcdir}/ufw.confd" "${pkgdir}/etc/conf.d/ufw"
@@ -649,6 +676,7 @@ package_wpa_supplicant-openrc() {
 	true
 	pkgdesc="OpenRC wpa_supplicant init script"
 	depends=('openrc-base' 'wpa_supplicant')
+	backup=('etc/conf.d/wpa_supplicant')
 	install=wpa_supplicant.install
 
 	install -Dm755 "${srcdir}/wpa_supplicant-conf.d" "${pkgdir}/etc/conf.d/wpa_supplicant"
@@ -672,6 +700,7 @@ package_xinetd-openrc() {
 	true
 	pkgdesc="OpenRC xinetd init script"
 	depends=('openrc-base' 'xinetd')
+	backup=('etc/conf.d/xinetd')
 	install=xinetd.install
 
 	install -Dm755 "${srcdir}/xinetd.confd" "${pkgdir}/etc/conf.d/xinetd"
@@ -685,6 +714,7 @@ package_ypbind-mt-openrc() {
 	pkgdesc="OpenRC ypbind-mt init script"
 	depends=('ypbind-mt' 'rpcbind-openrc')
 	optdepends=('ypserv-openrc')
+	backup=('etc/conf.d/ypbind')
 	install=ypbind-mt.install
 
 	install -Dm755 "${srcdir}/ypbind.confd-r1" "${pkgdir}/etc/conf.d/ypbind"
@@ -697,6 +727,7 @@ package_ypserv-openrc() {
 	true
 	pkgdesc="OpenRC ypserv init script"
 	depends=('openrc-base' 'ypserv')
+	backup=('etc/conf.d/rpc.yppasswdd' 'etc/conf.d/rpc.ypxfrd' 'etc/conf.d/ypserv.confd')
 	install=ypserv.install
 
 	install -Dm755 "${srcdir}/rpc.yppasswdd.confd" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
