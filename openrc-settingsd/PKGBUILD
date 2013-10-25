@@ -2,13 +2,13 @@
 
 pkgname=openrc-settingsd
 pkgver=1.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="System settings D-Bus service for OpenRC"
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~tetromino/distfiles/openrc-settingsd/"
 license=('GPL2')
 groups=('openrc-systemd')
-depends=('dbus' 'openrc-base' 'glib2' 'polkit-consolekit' 'systemd' 'xz')
+depends=('dbus' 'openrc-base' 'glib2' 'polkit' 'systemd' 'xz')
 makedepends=('pkg-config')
 install=${pkgname}.install
 source=("${url}/$pkgname-$pkgver.tar.xz")
