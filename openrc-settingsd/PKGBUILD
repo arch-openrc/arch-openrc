@@ -2,7 +2,7 @@
 
 pkgname=openrc-settingsd
 pkgver=1.0.1
-pkgrel=2
+pkgrel=4
 pkgdesc="System settings D-Bus service for OpenRC"
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~tetromino/distfiles/openrc-settingsd/"
@@ -30,4 +30,6 @@ package() {
 	make DESTDIR="$pkgdir/" install
 	local _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|' _lib='s|@libexecdir@|/usr/lib|'
 	sed -e "${_shebang}" -e "${_lib}" -i "${pkgdir}/etc/init.d/${pkgname}"
+	rm -r ${pkgdir}/usr/share/{dbus-1,polkit-1}
+	rm -r ${pkgdir}/etc/dbus-1
 }
