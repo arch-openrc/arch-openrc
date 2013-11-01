@@ -23,8 +23,6 @@ OpenRC pkgbuilds
 
 #####openrc-sys#####
 
-* consolekit-openrc
-* acpid-openrc
 * cpupower-openrc
 * cronie-openrc
 * cryptsetup-openrc
@@ -34,20 +32,26 @@ OpenRC pkgbuilds
 * lm_sensors-openrc
 * lvm2-openrc
 * mdadm-openrc
-* syslog-ng-openrc
+
+#####openrc-desktop#####
+
+* acpid-openrc
+* alsa-utils-openrc
+* consolekit-openrc
+* displaymanager-openrc
+* gpm-openrc
 
 #####openrc-misc#####
 
-* alsa-utils-openrc
-* displaymanager-openrc
+* eudev-openrc
 * fcron-openrc
 * fuse-openrc
-* gpm-openrc
 * laptop-mode-tools-openrc
+* metalog-openrc
 * openntpd-openrc
 * rsyslog-openrc
 * sane-openrc
-* vbox-guest-openrc
+* syslog-ng-openrc
 
 #####openrc-devel#####
 
