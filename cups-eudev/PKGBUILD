@@ -5,8 +5,8 @@
 _name=cups
 
 pkgname=${_name}-eudev
-pkgver=1.6.4
-pkgrel=2
+pkgver=1.7.0
+pkgrel=1
 pkgdesc="The CUPS Printing System - daemon package with disabled systemd"
 arch=('i686' 'x86_64')
 url="http://www.cups.org/"
