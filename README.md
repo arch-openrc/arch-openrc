@@ -37,6 +37,7 @@ OpenRC pkgbuilds
 
 * acpid-openrc
 * alsa-utils-openrc
+* avahi-openrc
 * consolekit-openrc
 * displaymanager-openrc
 * gpm-openrc
@@ -65,7 +66,6 @@ OpenRC pkgbuilds
 * networkmanager-openrc
 * autofs-openrc
 * apache-openrc
-* avahi-openrc
 * bind-openrc
 * bitlbee-openrc
 * bluez-openrc
