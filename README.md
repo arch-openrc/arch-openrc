@@ -6,6 +6,7 @@ OpenRC pkgbuilds
 * openrc
 * openrc-base
 * openrc-sys
+* openrc-desktop
 * openrc-misc
 * openrc-devel
 * openrc-net
@@ -14,7 +15,7 @@ OpenRC pkgbuilds
 
 #####openrc#####
 
-* all openrc group packages plus eudev-openrc
+* all openrc-group packages
 
 #####openrc-base#####
 
