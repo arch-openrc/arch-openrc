@@ -51,6 +51,21 @@ source=("http://www.cups.org/software/${pkgver}/cups-${pkgver}-source.tar.gz"
         'get-ppd-file-for-statically-configured-ipp-shared-queues.patch'
         'ppd-poll-with-client-conf.patch')
 
+sha256sums=('36d6ac58253aa86dc512f8d1c3c6a0584e6cc912d8303ee1c1e080e83158bdba'
+            'b3308353504bc1cc0d5203ad3609bc98639ad9655b52e8ec8257286877532796'
+            '57dfd072fd7ef0018c6b0a798367aac1abb5979060ff3f9df22d1048bb71c0d5'
+            'ff3eb0782af0405f5dafe89e04b1b4ea7a49afc5496860d724343bd04f375832'
+            '1dad0a5af4f812cb9805d117ef3dbd63950e33e80823ebaf6d2ba25f8498d7b6'
+            '125e42dc86ecc4adc7c8d0f3743b5ce444708c96c77546448dc2d7a06f6ada75'
+            'f1773d964f47ca12bac9bf51f115cbe36827bd4b92839b96b236578dc3c5bfca'
+            '8f1a3a6db9293f1efd61c6392bb1c24e70bf7ae0860add452ef3fa083291a7ea'
+            '45499f3cee306eb3e1ad2f3b7b47fa5540a4c548af6e18be95b8ba63cf3f81b9'
+            'acdfd13ef6f8bce6593a8069e5a2aac27885ed3f799090a9a50f7d60f568a821'
+            '4a4a885bb2e111bd67bcb90a5780f33841b18bc02382317fb5e64c384aa0c4c8'
+            '52867308281522fce419b704ddf5c2c7c10b670fe4977050cf926f1d2f4259ca'
+            'e812de449e1db5075a23e732b7cda6fd0af4ea71336745aebb4dbf501805e0ee'
+            '560c9a912314322ed2657347cf46ac269e8bcf2c4e0d5d5ce7235c314681f4e1'
+            'ea2dcb454feccdaa7e22a0878b3401e4b0133a3d37a8def1c43d0ef1b79e71c3')
 
 prepare() {
   cd ${_name}-${pkgver}
@@ -164,18 +179,3 @@ package() {
   # comment out all conversion rules which use any of the removed filters
   perl -p -i -e 's:^(.*\s+bannertops\s*)$:#\1:' ${pkgdir}/usr/share/cups/mime/mime.convs
 }
-sha256sums=('9452ab7720c0075627407ca13a2ecba4fc03f8bfae7d2cbb9e93f41785a8ad68'
-            'b3308353504bc1cc0d5203ad3609bc98639ad9655b52e8ec8257286877532796'
-            '57dfd072fd7ef0018c6b0a798367aac1abb5979060ff3f9df22d1048bb71c0d5'
-            'ff3eb0782af0405f5dafe89e04b1b4ea7a49afc5496860d724343bd04f375832'
-            '1dad0a5af4f812cb9805d117ef3dbd63950e33e80823ebaf6d2ba25f8498d7b6'
-            '125e42dc86ecc4adc7c8d0f3743b5ce444708c96c77546448dc2d7a06f6ada75'
-            'f1773d964f47ca12bac9bf51f115cbe36827bd4b92839b96b236578dc3c5bfca'
-            '8f1a3a6db9293f1efd61c6392bb1c24e70bf7ae0860add452ef3fa083291a7ea'
-            '45499f3cee306eb3e1ad2f3b7b47fa5540a4c548af6e18be95b8ba63cf3f81b9'
-            'acdfd13ef6f8bce6593a8069e5a2aac27885ed3f799090a9a50f7d60f568a821'
-            '4a4a885bb2e111bd67bcb90a5780f33841b18bc02382317fb5e64c384aa0c4c8'
-            '52867308281522fce419b704ddf5c2c7c10b670fe4977050cf926f1d2f4259ca'
-            'e812de449e1db5075a23e732b7cda6fd0af4ea71336745aebb4dbf501805e0ee'
-            '560c9a912314322ed2657347cf46ac269e8bcf2c4e0d5d5ce7235c314681f4e1'
-            'ea2dcb454feccdaa7e22a0878b3401e4b0133a3d37a8def1c43d0ef1b79e71c3')
