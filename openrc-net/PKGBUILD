@@ -409,8 +409,6 @@ package_inetutils-openrc() {
 
 	install -Dm755 "${srcdir}/inetutils.confd" "${pkgdir}/etc/conf.d/ftpd"
 	install -Dm755 "${srcdir}/inetutils.initd" "${pkgdir}/etc/init.d/ftpd"
-
-	sed -e "${_shebang}" -e "${_binpath[1]}" -i "${pkgdir}/etc/init.d/ftpd"
 }
 
 package_iptables-openrc() {
