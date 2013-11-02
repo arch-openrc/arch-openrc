@@ -60,9 +60,11 @@ _Iypbind=ypbind.initd
 _Cypserv=(ypserv.confd rpc.yppasswdd.confd rpc.ypxfrd.confd)
 _Iypserv=(ypserv rpc.yppasswdd-r1 rpc.ypxfrd-2.23)
 _Iautofs=autofs5.initd
+_Cvpn=openvpn-2.1.conf
+_Ivpn=openvpn-2.1.init
 
 _apver=2.4.4
-_aprel=20130801
+_aprel=20130802
 
 _dev_uri="http://dev.gentoo.org/~kensington/dist/apache"
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
@@ -72,8 +74,8 @@ pkgname=openrc-net-split
 true && pkgname=('autofs-openrc' 'apache-openrc' 'bind-openrc' 'bitlbee-openrc' 'bluez-openrc' 'connman-openrc' 'cups-openrc' 'cyrus-sasl-openrc' 'dhcp-openrc' 'dhcpcd-openrc' 'hostapd-openrc'
 		'inetutils-openrc' 'iptables-openrc' 'krb5-openrc' 'lighttpd-openrc' 'nfs-utils-openrc' 'ntp-openrc' 'openldap-openrc' 'openslp-openrc' 'openssh-openrc' 'polipo-openrc' 'postfix-openrc'
 		'privoxy-openrc' 'quota-tools-openrc' 'rpcbind-openrc' 'rsync-openrc' 'samba-openrc' 'squid-openrc' 'transmission-openrc' 'ufw-openrc' 'vsftpd-openrc' 'wicd-openrc' 'wpa_supplicant-openrc'
-		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc' 'openrc-net-split')
-pkgver=20131101
+		'xinetd-openrc'	'ypbind-mt-openrc' 'ypserv-openrc' 'openvpn-openrc' 'openrc-net-split')
+pkgver=20131102
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -81,7 +83,7 @@ url="http://openrc4arch.site40.net"
 license=('GPL2')
 groups=('openrc' 'openrc-net')
 makedepends=('autofs' 'apache' 'bind' 'bitlbee' 'bluez' 'connman' 'cups' 'cyrus-sasl' 'dbus-openrc' 'device-mapper-openrc' 'dhcp' 'dhcpcd' 'hostapd' 'inetutils' 'iptables' 'krb5' 'lighttpd' 'nfs-utils'
-'ntp' 'openldap' 'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools' 'rpcbind' 'rsync' 'samba' 'squid' 'transmission-cli' 'ufw' 'vsftpd' 'wicd' 'wpa_supplicant' 'xinetd' 'ypbind-mt' 'ypserv')
+'ntp' 'openldap' 'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools' 'rpcbind' 'rsync' 'samba' 'squid' 'transmission-cli' 'ufw' 'vsftpd' 'wicd' 'wpa_supplicant' 'xinetd' 'ypbind-mt' 'ypserv' 'openvpn')
 conflicts=('openrc-arch-services-git' 'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/net-dns/bind/files/${_Cbind}"
@@ -166,92 +168,10 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv[1]}"
 	"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv[2]}"
 	"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv[2]}"
-	"${_gentoo_uri}/net-fs/autofs/files/${_Iautofs}")
+	"${_gentoo_uri}/net-fs/autofs/files/${_Iautofs}"
+	"${_gentoo_uri}/net-misc/openvpn/files/${_Cvpn}"
+	"${_gentoo_uri}/net-misc/openvpn/files/${_Ivpn}")
 
-sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
-            '704ac6954b2bad5d0bab19281dc703e86d9b4fe94d63dd00be1e525a3e64c492'
-            '953e066b5d77f59917db59365cd2103c5bec19889775bd3f6437b946c9d6d936'
-            '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
-            '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
-            '672498957049fd301f9c9c1dc9fa49430e5e6d3c3f1f3cdce80df3af7d425d08'
-            '4430703a9bec9a9482416b2d24aa47492264768a0b61356b361bbc8b1229a83e'
-            'cd8cc3763601470328709c961b0c68a311f6d4af302d46a880fb855ed9d04efe'
-            '767a160c1b3392f0a12d3908a937548a2f604a9a121e744c309ee6f478420b02'
-            'f0a561f124cac3791fba6ee7ef5bc3ea46bd7535edf9e864689b0d9cfa65d332'
-            '239f9831ba2a9df36d334037307cdc11cfa6476a11cbf6668db4ffb4096a248d'
-            'a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0'
-            'e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
-            '049a231908dc2c5f82446712d71d5e75d430bd043b53eead1529f2d81e1595ab'
-            '409b895ed489e75c1a08f72961b45d641b93fd9357f528abc78b1fd036b7f730'
-            '099f668e1ad42ed9446b15675032a1186715d1fe9e4a1b24dfb787e68495d2b6'
-            '204aaf81d51dc119cee1d1ff3ae3dd50af666af2f8b2a363fd1bf442d4dcee00'
-            '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
-            '916f4b14095ee4ec8a510391c883e9f01868e18d79a3d5cbeb13a104a793d45d'
-            'a220058841e66a11603df8e968ccc68945f01e1d11c1ae498922d0e01f6fa804'
-            '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
-            '055b63d6703cac6ed92a8e015377b5977acc7964f1bfcf7d683b92c53e521d7c'
-            '7e2341211ca14997b7a8a1f930f94db855291af597c568f680f80031c20d45b6'
-            '2938fe4206514d9868047bd8f888a699fa2097ca69edab176453436d4259abaa'
-            '13047698e03079b754957e1e548ce7505dfb2c73c9a31f87e061140603ab0e44'
-            '3e55c79f19aaa6ef6b64a621c03dbb2eac3ad923916dc803f4c1bfe48ce89fbb'
-            '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
-            'c374ea05d7e9f15e10c8f9dbd0cad6548e0f92aef7de33e5dbc27222e9407e7b'
-            'bb6e6721f33e6582a91025f3500e159a599fb856d699e9394093e1018c7925e0'
-            'b1515472c32927039b38f6c3a797cbc54a5a300b5d6fa54df9550174afa2b7f8'
-            '22bba4ee5d58bae422650875c7c8a797a52fc121ddd02d48297c075b8a35401e'
-            '8df22f253770a24c6a53ce332d821ab680d0ede18d0e968c1c5d8b3796cb74be'
-            'b57637c7eb8e40b5cc1655e8afa69dc0aaecbd3186bdca3301586d1e9b797357'
-            '00d9c29280a83e8458c33139d04a9b38c6fdba9d7cb9b420ca83bf6b10e6435d'
-            '3ce65326859c43983dad25ad2d4731488c488037796e39b6b5eda336e8bf81ef'
-            '6503951b3c200ccf3f46396f7b9274f0a565807f7f6e561c17bed6b0133ae49a'
-            '0c7bd35a14da6c0c2577f09ae82a41ddb693a88157eeaf80684616f79be6c304'
-            'f1c460d8b0e91e54a551397d755135d05a3728d81de596535bf8bda074455677'
-            'a3bc17ee0f7d41102d6c33e4281e22d312a42cc2ffd8848b08e9cd78d63f2d05'
-            'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
-            'e8d5883461f4297c052e3b39814b663965ed3a756c4234675f4a9b62349eca13'
-            'bdd70612cf0654460aa4cfa59bcaaf6d636d240a3fead8b243c86e5cbe640ab9'
-            '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
-            '8fbd405ad951e7ad046e4408abb98f4066077113187198767d52f28d7228bae4'
-            '5bca003ec3b67c7c78519aede1d82002579006ccfecce8f87b559df719f82e92'
-            '1fc515a6816b8a750db513df0b3b9bf8dd8bd4c4e9051205521acadfdebeae0f'
-            '7f228796e020c0779c52683f684197d50662ae890b1ae193ffa9acf157ccd143'
-            '29c6d57ac3ec6018cadc6ba6cd9b90c9ed46e20049b970fdcc68ee2481a2ee41'
-            '97221a017d8ee9de996277c5a794d973a0b5e8180c29c97b3652bd1984a7b5d0'
-            '438b8a9cfccf1ea14314f38e6821454b6da9ae20ea12bf311ad9fa89816cd702'
-            '51f4bffa535d891f94d4a20ca2a4a42cc99189f3de78cee1c8d235e4a9d1721d'
-            '224496b498b4f692ae3316a95b5c7c8b6230dcd5fee0ca163956a7acde243de9'
-            '00d1dfb3b893db5d6a213a4edda622c7d64dcafa40b3019f15e070c164286632'
-            '00ce705b49aaa356d9d9f0be3b80a3fe2810471cbe02fd0edc66349f3ca281de'
-            'c3896303d6cfebf314a3f6b8aeed0f6cb6ae421c4c0923b0121c76b3251314e5'
-            '38bb95aefc38d843d0890d9c15affd28f19f2133c17f463396c62970e7e2dffc'
-            '6561ae40c5899a9f7a12f1f0867bec47d47c7cc3c583574ffcecbbf6f8d8afbb'
-            'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
-            'baff64277f9aa62cf1eeed2284bb08c4f3078a8e6e7604e4fec228ca5fa9dd82'
-            '53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
-            '4e9a6f4e5fe270843c2f81610e0f763db1218803b6c0e84f17664150670dd700'
-            '214a184495a3384eb452caef435256043bc51e35140a61b1f5fdff32603c8f7e'
-            '9b16b1ab2d3d3411dfcd8ac76b13a0889503ca78e3c6123814801af7577537f3'
-            '249689688aad23d0d27ccdd08a0907fd85058d6a52ccd3467f756b07f5d059ee'
-            '06d047b47befe6aaf1b1542fdd50e84ea38e0fef004b5095f6096f33fa1901a3'
-            '069aa7382b40aecebf26ef53f3f4c49890314e0357925c84b3c15f1d0b913be0'
-            '657b5305923b2a5de9eb96931aaaa28d6e997ace6c40793d905887798094258c'
-            'e6cf3df546aae57bb10e2b4282a9ccd79741473ef9dbdbd7628a16c84622da06'
-            '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda'
-            '5546deda3d5fa8f6ee1125922f1217182b24d68a22f5a1212509bb13bf0156e2'
-            '61ec59007f66ac5bacc0aa095d1f2ccbc977a687038e161a463d1727223d5a90'
-            '62a3655ea88b3dfff5243666a4e90d3f0eef6370a7889affb849e178ba4a82b0'
-            'a60d145a8874b57a944c6775fdf500d03dd1ce73c24357b00d3de37b14620179'
-            'e401e2cf7c0180a170d3dc3e91d7e98002bae7b013df72813b7bcf89b864fb3a'
-            '6aeb4ec9b8ccc062b5ee8c609830c05cee3ed790fa90d7b2d8cf82a09e317c5c'
-            '79f6c6ed4875f00fe702f69e9a6180a032d5a47f3e58e892e6ba0e2746b6fec8'
-            '3cdd6872fae15dc8533b3f75ac36ad59ffb946a3f1b445d688629c621cebbe34'
-            '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
-            '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b'
-            'e46afe737bfc57aa31be1a441615fcc112e1ebf41d631c1929e00b81baca119d'
-            'e827778b8a8e6984b637c745c315a2e02ebc46af752651b7a70626ba545a84b6'
-            'bd1f245a362f85319e83965e8b825e66e686a4a0bf185ab8ec51fd335bc873c2'
-            'a6445dd607093fdafb013e5896f60d78223549b38c96300fe239bcf5dbf2a8de'
-            '50cf0d305f1605a7511b9033d9e7a710d0e18e16bf37924c0b6d5a2a4d0910a9')
 
 # pkgver() {
 #   date +%Y%m%d
@@ -778,6 +698,19 @@ package_autofs-openrc() {
 	install -Dm755 "${srcdir}/${_Iautofs}" "${pkgdir}/etc/init.d/autofs"
 
 	sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/autofs"
+}
+
+package_openvpn-openrc() {
+	true
+	pkgdesc="OpenRC openvpn init script"
+	depends=('openrc-base' 'openvpn')
+	backup=('etc/conf.d/openvpn')
+	install=openvpn.install
+
+	install -Dm755 "${srcdir}/${_Cvpn}" "${pkgdir}/etc/conf.d/openvpn"
+	install -Dm755 "${srcdir}/${_Ivpn}" "${pkgdir}/etc/init.d/openvpn"
+
+	sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/openvpn"
 }
 
 # Comment out if you build for your personal repo
