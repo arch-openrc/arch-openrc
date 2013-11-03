@@ -14,7 +14,7 @@ _nver=0.1
 
 pkgname=${_name}-base
 pkgver=0.12.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Gentoo's universal init system."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
