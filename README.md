@@ -54,6 +54,7 @@ OpenRC pkgbuilds
 * rsyslog-openrc
 * sane-openrc
 * syslog-ng-openrc
+* lirc-utils-openrc
 
 #####openrc-devel#####
 
