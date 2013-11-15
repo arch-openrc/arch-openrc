@@ -14,6 +14,7 @@ depends=('openrc-base' 'eudev')
 conflicts=('openrc-arch-services-git' 'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
 install=eudev.install
 source=("${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
+sha256sums=('0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb')
 
 pkgver() {
   date +%Y%m%d
