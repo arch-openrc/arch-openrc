@@ -16,6 +16,7 @@ OpenRC pkgbuilds
 #####openrc#####
 
 * all openrc-group packages
+* eudev-openrc
 
 #####openrc-base#####
 
@@ -45,7 +46,6 @@ OpenRC pkgbuilds
 
 #####openrc-misc#####
 
-* eudev-openrc
 * fcron-openrc
 * fuse-openrc
 * laptop-mode-tools-openrc
@@ -113,3 +113,4 @@ OpenRC pkgbuilds
 * udisks2-eudev
 * upower-eudev
 * transmission-cli-eudev
+* eudev-openrc
