@@ -22,7 +22,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 pkgbase=openrc-misc-split
 pkgname=openrc-misc-split
 true && pkgname=('fcron-openrc' 'fuse-openrc' 'laptop-mode-tools-openrc' 'metalog-openrc' 'openntpd-openrc' 'rsyslog-openrc' 'sane-openrc' 'syslog-ng-openrc' 'lirc-utils-openrc' 'openrc-misc-split')
-pkgver=20131115
+pkgver=20131116
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -62,16 +62,16 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'ec9f05b386a06a4b2d5398cc0c33f34eba3f5e74ad46ae203d682f8ebc593f99'
             '906c31e0817517dc6c141a7a10565140ea272d3c958a065f520a0ecb6f81912f'
             '8319ca8e39a5dab5ddc82eede088e1f58ff25deef330804648000359cb736a3f'
-            '19bbd35abc9f54ce368e1ccf46b6e4af6eec304906e432bb9968d50a01d18284'
+            '72ca10822f4548fb4323777463e3906bd8f6458161a4b3f8adce438d385f0300'
             'd36ff77fa193a065d25e373723e03f1a9471205151b82c73a6574cce4f095962'
             '40d1b609e54327d40e0f4314e31ea58aa029bf95f9f27f311da1260fef2fa416'
             'c404ad3b624004cab25bd3a89593cdeb0abbc25771d6e52caf2f37cb4f7b2b79'
             '5e5a31fbd93294a6e210499a880fcab371b23706824c9d60d827b0187d7bade4'
             'd47f22a33a83c14a4a0c333d6a445c40e550c491899fb0c6d323e23fe1eac7b7')
 
-# pkgver() {
-#   date +%Y%m%d
-# }
+pkgver() {
+  date +%Y%m%d
+}
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'
@@ -216,3 +216,4 @@ package_openrc-misc-split() {
 	depends=('openrc-base')
 	provides=("openrc-misc-split-helper=${pkgver}")
 }
+

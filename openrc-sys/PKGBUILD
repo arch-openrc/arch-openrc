@@ -22,7 +22,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 pkgbase=openrc-sys-split
 pkgname=openrc-sys-split
 true && pkgname=('cpupower-openrc' 'cronie-openrc' 'cryptsetup-openrc' 'dbus-openrc' 'device-mapper-openrc' 'glibc-openrc' 'lm_sensors-openrc' 'lvm2-openrc' 'mdadm-openrc' 'openrc-sys-split')
-pkgver=20131104
+pkgver=20131116
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -73,9 +73,9 @@ sha256sums=('9ab6f022d2b2948660decf5e383984e6ddb9e9e5e6e2761c3031378ddd87e947'
             'ec55674955af7a31da51b8b72b599e8519809287dad796a9b16155bcba471b79'
             '3073b14619cb7b2c99c33f2d6cfd1e59ce5557899bffebaa65fa52f3caffadc7')
 
-# pkgver() {
-#   date +%Y%m%d
-# }
+pkgver() {
+  date +%Y%m%d
+}
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'

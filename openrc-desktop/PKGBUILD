@@ -56,9 +56,9 @@ sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '375ce44cc9cbfa660da68c5b07a0629daccca68477224fa5dd49c0f13dc50015'
             '4e74af8ed0305ee1c22d9a03de9c3fc0a9177c3cb1a0dc65cdfd904dd078653d')
 
-# pkgver() {
-#   date +%Y%m%d
-# }
+pkgver() {
+  date +%Y%m%d
+}
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'

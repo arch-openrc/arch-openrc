@@ -16,7 +16,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 pkgbase=openrc-devel-split
 pkgname=openrc-devel-split
 true && pkgname=('git-openrc' 'mysql-openrc' 'postgresql-openrc' 'subversion-openrc' 'openrc-devel-split')
-pkgver=20131104
+pkgver=20131116
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -41,9 +41,9 @@ sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
             '8f123253c3bfb9bbe87210a9e1facc7f52df371747dbc188396740a5cf4fa713')
 
-# pkgver() {
-#   date +%Y%m%d
-# }
+pkgver() {
+  date +%Y%m%d
+}
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 _runpath='s|/var/run|/run|g'
