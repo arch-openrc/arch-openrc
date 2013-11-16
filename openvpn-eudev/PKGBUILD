@@ -9,11 +9,12 @@ arch=(i686 x86_64)
 url="http://openvpn.net/index.php/open-source.html"
 depends=('openssl' 'lzo2' 'iproute2')
 makedepends=('udev')
+optdepends=('openvpn-openrc: opencpn openrc initscript')
 provides=('openvpn')
 conflicts=('openvpn')
 license=('custom')
-backup=(usr/share/openvpn/easy-rsa/vars
-        usr/share/openvpn/easy-rsa/openssl-1.0.0.cnf)
+backup=('usr/share/openvpn/easy-rsa/vars'
+        'usr/share/openvpn/easy-rsa/openssl-1.0.0.cnf')
 source=(http://swupdate.openvpn.net/community/releases/openvpn-${pkgver}.tar.gz
         http://swupdate.openvpn.net/community/releases/openvpn-${pkgver}.tar.gz.asc
         http://build.openvpn.net/downloads/releases/easy-rsa-2.2.0_master.tar.gz
