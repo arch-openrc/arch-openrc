@@ -3,14 +3,14 @@
 # Contributor: Ionut Biru <ibiru@archlinux.org>
 
 pkgname=colord-eudev
-pkgver=1.0.2
+pkgver=1.0.4
 pkgrel=1
 pkgdesc="System daemon for managing color devices"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/software/colord"
 license=(GPL2)
-depends=(lcms2 libgusb polkit shared-color-profiles sqlite udev dconf dbus)
-makedepends=(intltool gobject-introspection vala docbook2x sane bash-completion)
+depends=('lcms2' 'libgusb' 'polkit' 'shared-color-profiles' 'sqlite' 'udev' 'dconf' 'dbus')
+makedepends=('intltool' 'gobject-introspection' 'vala' 'docbook2x' 'sane' 'bash-completion')
 optdepends=('sane: UseSANE support [/etc/colord.conf]')
 provides=('colord')
 conflicts=('colord')
@@ -18,12 +18,7 @@ options=('!libtool')
 install=colord.install
 backup=('etc/colord.conf')
 source=("$url/releases/colord-$pkgver.tar.xz")
-	#'udev-systemd.patch')
-
-# prepare() {
-#   cd colord-$pkgver
-#   patch -Np1 -i ../udev-systemd.patch
-# }
+sha256sums=('e716d5c284031f7cc6a3fc7aeceab5df2bc5bb17920a57e37b2d800ce26d8bdc')
 
 build() {
   cd colord-$pkgver
@@ -48,7 +43,3 @@ package() {
   cd colord-$pkgver
   make DESTDIR="$pkgdir" install
 }
-
-# vim:set ts=2 sw=2 et:
-sha256sums=('b99d1d07fe21a37b446aa173a35c54fd669324ad61762a7545b1624c896a8a39')
-           # '6c3e4317414573b48a4f056d948c14e61e60b630d08db7e7d57f5480c87a9749'
