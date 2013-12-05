@@ -1,7 +1,7 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
 pkgname=kde-servicemenus-pkg-tools-git
-pkgver=0.r6.d40a0bb
+pkgver=e51ed1f
 pkgrel=1
 pkgdesc="Kde servicemenu for makepkg, repo-add & repo-remove, anmcap & aur upload."
 arch=('any')
@@ -15,26 +15,25 @@ source=("$pkgname"::'git://github.com/udeved/kde-servicemenu-pkg-tools.git')
 md5sums=('SKIP')
 
 pkgver() {
-      cd "$srcdir/$pkgname"
-      printf "0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	cd "$srcdir/$pkgname"
+	#printf "0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	echo "$(git rev-parse --short HEAD)"
 }
 
 package() {
-      cd "$pkgname"
+	cd "$pkgname"
 
-      install -Dm755 bin/pkg-magic $pkgdir/usr/bin/pkg-magic
+	install -Dm755 bin/pkg-magic $pkgdir/usr/bin/pkg-magic
 
-      install -Dm644  ServiceMenus/repo-action.desktop $pkgdir/usr/share/kde4/services/ServiceMenus/repo-action.desktop
-      install -Dm644  ServiceMenus/makepkg.desktop $pkgdir/usr/share/kde4/services/ServiceMenus/makepkg.desktop
-      install -Dm644  ServiceMenus/pacman.desktop $pkgdir/usr/share/kde4/services/ServiceMenus/pacman.desktop
-      install -Dm644  ServiceMenus/namcap.desktop $pkgdir/usr/share/kde4/services/ServiceMenus/namcap.desktop
-      install -Dm644  ServiceMenus/aur-upload.desktop $pkgdir/usr/share/kde4/services/ServiceMenus/aur-upload.desktop
+	for f in ServiceMenus/*;do
+		install -Dm644  $f $pkgdir/usr/share/kde4/services/$f
+	done
 
-      install -Dm644 mime/application/x-xz-pkg.xml $pkgdir/usr/share/mime/application/x-xz-pkg.xml
-      install -Dm644 mime/application/x-pkgbuild.xml $pkgdir/usr/share/mime/application/x-pkgbuild.xml
-      install -Dm644 mime/packages/application-x-xz-pkg.xml $pkgdir/usr/share/mime/packages/application-x-xz-pkg.xml
-      install -Dm644 mime/packages/application-x-pkgbuild.xml $pkgdir/usr/share/mime/packages/application-x-pkgbuild.xml
-      install -Dm644 mime/application/x-gz-src.xml $pkgdir/usr/share/mime/application/x-gz-src.xml
-      install -Dm644 mime/packages/application-x-gz-src.xml $pkgdir/usr/share/mime/packages/application-x-gz-src.xml
+	for f in mime/application/*;do
+		install -Dm644 $f $pkgdir/usr/share/$f
+	done
 
+	for f in mime/packages/*;do
+		install -Dm644 $f $pkgdir/usr/share/$f
+	done
 }
