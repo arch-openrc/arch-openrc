@@ -2,7 +2,7 @@
 # Contributor: williamh <williamh@gentoo.org>
 
 # set vars: 0=off; 1=on
-_use_oldnet=1
+_use_netifrc=1
 _use_udev=1
 _use_kmod=1
 _use_scripts=1
@@ -18,7 +18,7 @@ _uver=26
 _net="netifrc"
 _nver=0.1
 
-if (( ${_use_oldnet} ));then
+if (( ${_use_netifrc} ));then
 	_net_confd='etc/conf.d/net'
 else
 	_net_confd='etc/conf.d/network'
@@ -26,7 +26,7 @@ fi
 
 pkgname=${_name}-base
 pkgver=0.12.4
-pkgrel=6
+pkgrel=7
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -67,7 +67,7 @@ _rc_args+=(MKSELINUX=no)
 _rc_args+=(MKPAM=pam)
 _rc_args+=(MKTERMCAP=ncurses)
 
-if (( ${_use_oldnet} ));then
+if (( ${_use_netifrc} ));then
 	_net_args=( "${_base_args[@]}" )
 	_net_args+=(LIBEXECDIR=/usr/lib/${_net})
 	_rc_args+=(MKNET=oldnet)
@@ -79,7 +79,7 @@ prepare(){
 }
 
 build(){
-	if (( ${_use_oldnet} ));then
+	if (( ${_use_netifrc} ));then
 		cd "${srcdir}/${_net}-${_nver}"
 		make "${_net_args[@]}"
 	fi
@@ -98,8 +98,8 @@ package() {
 	sed -e 's/#unicode="NO"/unicode="YES"/' -i "${pkgdir}/etc/rc.conf"
 	sed -e 's/#rc_logger="YES"/rc_logger="YES"/' -i "${pkgdir}/etc/rc.conf"
 	# oldnet
-	if (( ${_use_oldnet} ));then
-		_install_oldnet
+	if (( ${_use_netifrc} ));then
+		_install_netifrc
 	fi
 	# shutdown & reboot scripts for certain console setups
 	if (( ${_use_scripts} ));then
@@ -115,7 +115,7 @@ package() {
 	fi
 }
 
-_install_oldnet(){
+_install_netifrc(){
 	cd "${srcdir}/${_net}-${_nver}"
 	make DESTDIR="${pkgdir}" "${_net_args[@]}" install
 	install -Dm 644 "${srcdir}/${_net}-${_nver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
@@ -127,6 +127,7 @@ _install_scripts(){
 	cd "${srcdir}/${_name}-${pkgver}"
 	install -Dm755 ${srcdir}/reboot.sh ${pkgdir}/etc/init.d/reboot.sh
 	install -Dm755 ${srcdir}/shutdown.sh ${pkgdir}/etc/init.d/shutdown.sh
+	local _binpath='s|/sbin/|/usr/bin/|g'
 	sed -e "${_binpath}" -i ${pkgdir}/etc/init.d/reboot.sh
 	sed -e "${_binpath}" -i ${pkgdir}/etc/init.d/shutdown.sh
 }
