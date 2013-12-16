@@ -18,8 +18,14 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=openrc-desktop-split
 pkgname=openrc-desktop-split
-true && pkgname=('acpid-openrc' 'alsa-utils-openrc' 'avahi-openrc' 'consolekit-openrc' 'displaymanager-openrc' 'gpm-openrc' 'openrc-desktop-split')
-pkgver=20131121
+true && pkgname=('acpid-openrc'
+				'alsa-utils-openrc'
+				'avahi-openrc'
+				'consolekit-openrc'
+				'displaymanager-openrc'
+				'gpm-openrc'
+				'openrc-desktop-split')
+pkgver=20131205
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -42,7 +48,7 @@ source=("${_gentoo_uri}/sys-power/acpid/files/${_Cacpi}"
 	"${_gentoo_uri}/sys-libs/gpm/files/${_Cgpm}"
 	"${_gentoo_uri}/sys-libs/gpm/files/${_Igpm}"
 	'avahi-daemon' 'avahi-dnsconfd')
-	
+
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
@@ -57,7 +63,7 @@ sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             'e692e7b97efdd79f6e92fbdaed60f7a71bfd23a82c5561b160b88a7aa50c8461'
             '375ce44cc9cbfa660da68c5b07a0629daccca68477224fa5dd49c0f13dc50015'
             '4e74af8ed0305ee1c22d9a03de9c3fc0a9177c3cb1a0dc65cdfd904dd078653d')
-            
+
 pkgver() {
   date +%Y%m%d
 }

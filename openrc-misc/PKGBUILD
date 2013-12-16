@@ -24,8 +24,17 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=openrc-misc-split
 pkgname=openrc-misc-split
-true && pkgname=('fcron-openrc' 'fuse-openrc' 'laptop-mode-tools-openrc' 'metalog-openrc' 'openntpd-openrc' 'rsyslog-openrc' 'sane-openrc' 'syslog-ng-openrc' 'lirc-utils-openrc' 'openrc-misc-split')
-pkgver=20131129
+true && pkgname=('fcron-openrc'
+				'fuse-openrc'
+				'laptop-mode-tools-openrc'
+				'metalog-openrc'
+				'openntpd-openrc'
+				'rsyslog-openrc'
+				'sane-openrc'
+				'syslog-ng-openrc'
+				'lirc-utils-openrc'
+				'openrc-misc-split')
+pkgver=20131205
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -53,7 +62,7 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc1}"
 	"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc2}"
 	"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc3}")
-	
+
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '90a18e5c7e4d0b264bb51deb7b92ff25b508a3ddd75dd6c849fdc48c07ce4fda'
             'd91274d2c0018dccc562b949df2f0b713ca21e8d1522d5f17d1d6c8d6916fedc'
