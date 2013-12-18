@@ -29,7 +29,11 @@ if (( ${_use_eudev} ));then
 	_use_udev=1
 	_dep_udev='eudev'
 else
-	_dep_udev='udev'
+	if ((${_use_udev}));then
+		_dep_udev='udev'
+	else
+		_dep_udev=""
+	fi
 fi
 
 pkgname=${_name}-base
@@ -124,7 +128,7 @@ package() {
 		_install_udev
 		# eudev
 		if (( ${_use_eudev} ));then
-		_install_eudev
+			_install_eudev
 		fi
 	fi
 }
