@@ -1,0 +1,1228 @@
+# Maintainer: udeved <udeved@openrc4arch.site40.net>
+
+# install switch 0=off; 1=on
+_use_crypt=0
+_use_glibc=0
+_use_device_mapper=1
+_use_lvm2=1
+_use_mdadm=0
+_use_rpcbind=1
+_use_nfs=1
+_use_quota=0
+_use_dbus=1
+_use_acpi=1
+_use_alsa=0
+_use_avahi=1
+_use_ck=1
+_use_xdm=1
+_use_gpm=0
+_use_cronie=1
+_use_fcron=0
+_use_fuse=0
+_use_laptop=0
+_use_metalog=0
+_use_rsyslog=0
+_use_syslog_ng=1
+_use_sane=0
+_use_lirc=0
+_use_cpupower=1
+_use_sensors=1
+_use_git=0
+_use_mysql=0
+_use_svn=0
+_use_pgsql=0
+_use_apache=0
+_use_autofs=0
+_use_bind=0
+_use_bitlbee=0
+_use_bluetooth=0
+_use_connman=0
+_use_cups=0
+_use_sasl=0
+_use_dhcp=0
+_use_dhcpcd=1
+_use_hostapd=0
+_use_inetutils=0
+_use_iptables=0
+_use_krb5=0
+_use_lighttpd=0
+_use_ntp=1
+_use_openntpd=0
+_use_ldap=0
+_use_slp=0
+_use_ssh=0
+_use_polipo=0
+_use_postfix=0
+_use_privoxy=0
+_use_rsync=0
+_use_samba=0
+_use_squid=0
+_use_transmission=0
+_use_ufw=0
+_use_vpn=0
+_use_vsftp=0
+_use_wicd=0
+_use_wpa=0
+_use_xinet=0
+_use_ypbind=0
+_use_ypserv=0
+
+# file vars for easy update
+_Cacpi=acpid-2.0.16-conf.d
+_Iacpi=acpid-2.0.16-init.d
+_Calsa=alsasound.confd-r4
+_Ialsa=alsasound.initd-r5
+_Ick=consolekit-0.2.rc
+_Sck=90-consolekit-3
+_Cxdm=xdm.confd-4
+_Ixdm1=xdm.initd-10
+_Ixdm2=xdm-setup.initd-1
+_Sxdm=startDM.sh
+_Cgpm=gpm.conf.d
+_Igpm=gpm.rc6-2
+_Cgit=git-daemon.confd
+_Igit=git-daemon.initd
+_Cmy=mysql-5.1.53-conf.d
+_Imy=mysql-5.1.67-init.d
+_Csvn=svnserve.confd
+_Isvn=svnserve.initd2
+_Icron1=cronie-1.3-initd
+_Icron2=anacron-1.0-initd
+_Ifrcon=fcron.init.3
+_Ilap=laptop_mode.init-1.4
+_Crsysl=rsyslog.confd
+_Irsysl=rsyslog.initd
+_Csane=saned.confd
+_Isane=saned.initd
+_Ifuse=fuse.init
+_Cmeta=metalog.confd
+_Imeta=metalog.initd
+_Csyslog=syslog-ng.confd
+_Isyslog=syslog-ng.rc6
+_Clirc1=lircd.conf.4
+_Clirc2=irexec-confd
+_Ilirc1=lircd-0.8.6-r2
+_Ilirc2=irexec-initd-0.8.6-r2
+_Ilirc3=lircmd
+_Ccpu=conf.d-r2
+_Icpu=init.d-r3
+_Ccrypt=1.0.6-dmcrypt.confd
+_Icrypt=1.5.1-dmcrypt.rc
+_Idbus=dbus.initd
+_Inscd=nscd
+_Csens=sensord-conf.d
+_Isens1=sensord-4-init.d
+_Isens2=fancontrol-init.d-2
+_Isens3=lm_sensors-3-init.d
+_Cdm=device-mapper.conf-1.02.22-r3
+_Idm1=device-mapper.rc-2.02.95-r2
+_Idm2=dmeventd.initd-2.02.67-r1
+_Clvm=lvm.confd-2.02.28-r2
+_Ilvm1=lvm.rc-2.02.95-r2
+_Ilvm2=lvm-monitoring.initd-2.02.67-r2
+_Cmdadm=mdadm.confd
+_Imdadm=mdadm.rc
+_Cbind=named.confd-r6
+_Ibind=named.init-r12
+_Cbit=bitlbee.confd
+_Ibit=bitlbee.initd
+_Cblue=rfcomm-conf.d
+_Iblue1=rfcomm-init.d
+_Iblue2=bluetooth-init.d-r2
+_Ccon=connman.confd
+_Icon=connman.initd2
+_Icups=cupsd.init.d-r1
+_Isasl=saslauthd2.rc7
+_Cdhcp1=dhcpd.conf2
+_Cdhcp2=dhcrelay.conf
+_Cdhcp3=dhcrelay6.conf
+_Idhcp1=dhcpd.init5
+_Idhcp2=dhcrelay.init3
+_Idhcpcd=dhcpcd.initd
+_Chost=hostapd-conf.d
+_Ihost=hostapd-init.d
+_Cip1=iptables-1.4.13.confd
+_Cip2=ip6tables-1.4.13.confd
+_Iip=iptables-1.4.13-r1.init
+_Ikrb1=mit-krb5kadmind.initd-r1
+_Ikrb2=mit-krb5kdc.initd-r1
+_Ikrb3=mit-krb5kpropd.initd-r1
+_Clight=lighttpd.confd
+_Ilight=lighttpd.initd
+_Cnfs=nfs.confd
+_Infs1=nfs.initd
+_Infs2=nfsmount.initd
+_Infs3=rpc.gssd.initd
+_Infs4=rpc.idmapd.initd
+_Infs5=rpc.pipefs.initd
+_Infs6=rpc.statd.initd
+_Infs7=rpc.svcgssd.initd
+_Cntp1=ntpd.confd
+_Cntp2=ntp-client.confd
+_Cntp3=sntp.confd
+_Intp1=ntpd.rc
+_Intp2=ntp-client.rc
+_Intp3=sntp.rc
+_Cldap=slapd-confd-2.4.28-r1
+_Ildap=slapd-initd-2.4.28-r1
+_Islp=slpd-init
+_Cssh=sshd.confd
+_Issh=sshd.rc6.4
+_Ipolip=polipo.initd
+_Ipostfix=postfix.rc6.2.7
+_Ipriv=privoxy.initd
+_Cquota=quota.confd
+_Iquota1=quota.rc7
+_Iquota2=rpc.rquotad.initd
+_Crpc=rpcbind.confd
+_Irpc=rpcbind.initd
+_Crsync=rsyncd.conf.d
+_Irsync=rsyncd.init.d-r1
+_Csmb=samba4.confd
+_Ismb=samba4.initd-r1
+_Csquid=squid.confd-r1
+_Isquid=squid.initd-r3
+_Ctrans=transmission-daemon.confd.4
+_Itrans=transmission-daemon.initd.9
+_Cufw=ufw.confd
+_Iufw=ufw-2.initd
+_Ivsftp=vsftpd.init
+_Svsftp=vsftpd-checkconfig.sh
+_Iwicd=wicd-init.d
+_Cwpa=wpa_supplicant-conf.d
+_Iwpa=wpa_supplicant-init.d
+_Swpa=wpa_cli.sh
+_Cxinet=xinetd.confd
+_Ixinet=xinetd.rc6
+_Cypbind=ypbind.confd-r1
+_Iypbind=ypbind.initd
+_Cypserv1=ypserv.confd
+_Cypserv2=rpc.yppasswdd.confd
+_Cypserv3=rpc.ypxfrd.confd
+_Iypserv1=ypserv
+_Iypserv2=rpc.yppasswdd-r1
+_Iypserv3=rpc.ypxfrd-2.23
+_Iautofs=autofs5.initd
+_Cvpn=openvpn-2.1.conf
+_Ivpn=openvpn-2.1.init
+_Cntp=openntpd.conf.d-20080406-r3
+_Intp=openntpd.init.d-20080406-r4
+
+_pgs_ver=2.6
+_pgs_uri="http://dev.gentoo.org/~titanofold"
+
+_apver=2.4.4
+_aprel=20130801
+_ap_uri="http://dev.gentoo.org/~kensington/dist/apache"
+
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+
+_deps=('openrc-base')
+
+if (( ${_use_acpi} ));then
+	_deps+=('acpid')
+fi
+if (( ${_use_alsa} ));then
+	_deps+=('alsa-utils')
+fi
+if (( ${_use_avahi} ));then
+	_use_dbus=1
+	_deps+=('avahi')
+fi
+if (( ${_use_ck} ));then
+	_use_dbus=1
+	_deps+=('consolekit')
+fi
+if (( ${_use_dbus}  ));then
+	_deps+=('dbus')
+fi
+if (( ${_use_gpm} ));then
+	_deps+=('gpm')
+fi
+if (( ${_use_xdm} ));then
+	_deps+=('xorg-server')
+fi
+
+if (( ${_use_git} ));then
+	_deps+=('git')
+fi
+if (( ${_use_mysql} ));then
+	_deps+=('mysql')
+fi
+if (( ${_use_svn} ));then
+	_deps+=('subversion')
+fi
+if (( ${_use_pgsql} ));then
+	_deps+=('postgresql')
+fi
+
+if (( ${_use_cronie} ));then
+	_use_fcron=0
+	_deps+=('cronie')
+fi
+if (( ${_use_fcron} ));then
+	_use_cronie=0
+	_deps+=('fcron')
+fi
+if (( ${_use_fuse} ));then
+	_deps+=('fuse')
+fi
+if (( ${_use_laptop} ));then
+	_deps+=('laptop-mode-tools')
+fi
+if (( ${_use_metalog} ));then
+	_use_rsyslog=0
+	_use_syslog_ng=0
+	_deps+=('metalog')
+fi
+if (( ${_use_rsyslog} ));then
+	_use_metalog=0
+	_use_syslog_ng=0
+	_deps+=('rsyslog')
+fi
+if (( ${_use_syslog_ng} ));then
+	_use_metalog=0
+	_use_rsyslog=0
+	_deps+=('syslog-ng')
+fi
+if (( ${_use_sane} ));then
+	_use_avahi=1
+	_deps+=('sane')
+fi
+if (( ${_use_lirc} ));then
+	_deps+=('lirc-utils')
+fi
+
+if (( ${_use_cpupower} ));then
+	_deps+=('cpupower')
+fi
+if (( ${_use_crypt} ));then
+	_deps+=('cryptsetup')
+fi
+if (( ${_use_device_mapper} ));then
+	_deps+=('device-mapper')
+fi
+if (( ${_use_glibc} ));then
+	_deps+=('glibc')
+fi
+if (( ${_use_sensors} ));then
+	_deps+=('lm_sensors')
+fi
+if (( ${_use_lvm2} ));then
+	_use_device_mapper=1
+	_deps+=('lvm2')
+fi
+if (( ${_use_mdadm} ));then
+	_deps+=('mdadm')
+fi
+
+if (( ${_use_apache} ));then
+	_deps+=('apache')
+fi
+if (( ${_use_autofs} ));then
+	_deps+=('autofs')
+fi
+if (( ${_use_bind} ));then
+	_deps+=('bind')
+fi
+if (( ${_use_bitlbee} ));then
+	_deps+=('bitlbee')
+fi
+if (( ${_use_bluetooth} ));then
+	_use_dbus=1
+	_deps+=('bluez')
+fi
+if (( ${_use_connman} ));then
+	_use_dbus=1
+	_deps+=('connman')
+fi
+if (( ${_use_cups} ));then
+	_use_dbus=1
+	_use_avahi=1
+	_deps+=('cups')
+fi
+if (( ${_use_dhcp} ));then
+	_deps+=('dhcp')
+fi
+if (( ${_use_dhcpcd} ));then
+	_deps+=('dhcpcd')
+fi
+if (( ${_use_hostapd} ));then
+	_deps+=('hostapd')
+fi
+if (( ${_use_inetutils} ));then
+	_deps+=('inetutils')
+fi
+if (( ${_use_iptables} ));then
+	_deps+=('iptables')
+fi
+if (( ${_use_krb5} ));then
+	_deps+=('krb5')
+fi
+if (( ${_use_ldap} ));then
+	_deps+=('openldap')
+fi
+if (( ${_use_openntpd} ));then
+	_deps+=('openntpd')
+fi
+if (( ${_use_lighttpd} ));then
+	_deps+=('lighttpd')
+fi
+if (( ${_use_nfs} ));then
+	_use_rpcbind=1
+	_use_device_mapper=1
+	_deps+=('nfs-utils')
+fi
+if (( ${_use_ntp} ));then
+	_deps+=('ntp')
+fi
+if (( ${_use_polipo} ));then
+	_deps+=('polipo')
+fi
+if (( ${_use_postfix} ));then
+	_deps+=('postfix')
+fi
+if (( ${_use_privoxy} ));then
+	_deps+=('privoxy')
+fi
+if (( ${_use_quota} ));then
+	_use_rpcbind=1
+	_deps+=('quota-tools')
+fi
+if (( ${_use_rpcbind} ));then
+	_deps+=('rpcbind')
+fi
+if (( ${_use_rsync} ));then
+	_deps+=('rsync')
+fi
+if (( ${_use_samba} ));then
+	_deps+=('samba')
+fi
+if (( ${_use_sasl} ));then
+	_deps+=('cyrus-sasl')
+fi
+if (( ${_use_slp} ));then
+	_deps+=('openslp')
+fi
+if (( ${_use_squid} ));then
+	_deps+=('squid')
+fi
+if (( ${_use_ssh} ));then
+	_deps+=('openssh')
+fi
+if (( ${_use_transmission} ));then
+	_deps+=('transmission-cli')
+fi
+if (( ${_use_ufw} ));then
+	_deps+=('ufw')
+fi
+if (( ${_use_vpn} ));then
+	_deps+=('openvpn')
+fi
+if (( ${_use_vsftp} ));then
+	_deps+=('vsftpd')
+fi
+if (( ${_use_wicd} ));then
+	_deps+=('wicd')
+fi
+if (( ${_use_wpa} ));then
+	_deps+=('wpa_supplicant')
+fi
+if (( ${_use_xinet} ));then
+	_deps+=('xinetd')
+fi
+if (( ${_use_ypbind} ));then
+	_deps+=('ypbind-mt')
+fi
+if (( ${_use_ypserv} ));then
+	_deps+=('ypserv')
+fi
+
+
+pkgname=openrc-services
+pkgver=20131219
+pkgrel=1
+pkgdesc="OpenRC init scripts"
+arch=('any')
+url="https://github.com/udeved/pkgbuilds"
+license=('GPL2')
+groups=('openrc')
+depends=( "${_deps[@]}" )
+conflicts=('openrc-arch-services-git' 'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
+install=${pkgname}.install
+source=("${_gentoo_uri}/sys-power/acpid/files/${_Cacpi}"
+		"${_gentoo_uri}/sys-power/acpid/files/${_Iacpi}"
+		"${_gentoo_uri}/media-sound/alsa-utils/files/${_Calsa}"
+		"${_gentoo_uri}/media-sound/alsa-utils/files/${_Ialsa}"
+		"${_gentoo_uri}/sys-auth/consolekit/files/${_Ick}"
+		"${_gentoo_uri}/sys-auth/consolekit/files/${_Sck}"
+		"${_gentoo_uri}/x11-base/xorg-server/files/${_Cxdm}"
+		"${_gentoo_uri}/x11-base/xorg-server/files/${_Ixdm1}"
+		"${_gentoo_uri}/x11-base/xorg-server/files/${_Ixdm2}"
+		"${_gentoo_uri}/x11-apps/xinit/files/${_Sxdm}"
+		"${_gentoo_uri}/sys-libs/gpm/files/${_Cgpm}"
+		"${_gentoo_uri}/sys-libs/gpm/files/${_Igpm}"
+		"${_gentoo_uri}/dev-vcs/git/files/${_Cgit}"
+		"${_gentoo_uri}/dev-vcs/git/files/${_Igit}"
+		"${_gentoo_uri}/dev-db/mysql-init-scripts/files/${_Cmy}"
+		"${_gentoo_uri}/dev-db/mysql-init-scripts/files/${_Imy}"
+		"${_pgs_uri}/postgresql-initscript-${_pgs_ver}.tbz2"
+		"${_gentoo_uri}/dev-vcs/subversion/files/${_Csvn}"
+		"${_gentoo_uri}/dev-vcs/subversion/files/${_Isvn}"
+		"${_gentoo_uri}/sys-process/cronie/files/${_Icron1}"
+		"${_gentoo_uri}/sys-process/cronie/files/${_Icron2}"
+		"${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
+		"${_gentoo_uri}/app-laptop/laptop-mode-tools/files/${_Ilap}"
+		"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/${_Crsysl}"
+		"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/${_Irsysl}"
+		"${_gentoo_uri}/media-gfx/sane-backends/files/${_Csane}"
+		"${_gentoo_uri}/media-gfx/sane-backends/files/${_Isane}"
+		"${_gentoo_uri}/sys-fs/fuse/files/${_Ifuse}"
+		"${_gentoo_uri}/app-admin/metalog/files/${_Cmeta}"
+		"${_gentoo_uri}/app-admin/metalog/files/${_Imeta}"
+		"${_gentoo_uri}/app-admin/syslog-ng/files/3.4/${_Csyslog}"
+		"${_gentoo_uri}/app-admin/syslog-ng/files/3.4/${_Isyslog}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Clirc1}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Clirc2}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc1}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc2}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc3}"
+		'avahi-daemon' 'avahi-dnsconfd'
+		"${_gentoo_uri}/sys-power/cpupower/files/${_Ccpu}"
+		"${_gentoo_uri}/sys-power/cpupower/files/${_Icpu}"
+		"${_gentoo_uri}/sys-fs/cryptsetup/files/${_Ccrypt}"
+		"${_gentoo_uri}/sys-fs/cryptsetup/files/${_Icrypt}"
+		"${_gentoo_uri}/sys-apps/dbus/files/${_Idbus}"
+		"${_gentoo_uri}/sys-libs/glibc/files/${_Inscd}"
+		"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Csens}"
+		"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens1}"
+		"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens2}"
+		"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens3}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Cdm}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Idm1}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Idm2}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Clvm}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Ilvm1}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Ilvm2}"
+		"${_gentoo_uri}/sys-fs/mdadm/files/${_Cmdadm}"
+		"${_gentoo_uri}/sys-fs/mdadm/files/${_Imdadm}"
+		"${_ap_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
+		"${_gentoo_uri}/net-dns/bind/files/${_Cbind}"
+		"${_gentoo_uri}/net-dns/bind/files/${_Ibind}"
+		"${_gentoo_uri}/net-im/bitlbee/files/${_Cbit}"
+		"${_gentoo_uri}/net-im/bitlbee/files/${_Ibit}"
+		"${_gentoo_uri}/net-wireless/bluez/files/${_Cblue}"
+		"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue1}"
+		"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue2}"
+		"${_gentoo_uri}/net-misc/connman/files/${_Ccon}"
+		"${_gentoo_uri}/net-misc/connman/files/${_Icon}"
+		"${_gentoo_uri}/net-print/cups/files/${_Icups}"
+		"${_gentoo_uri}/dev-libs/cyrus-sasl/files/${_Isasl}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp1}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp2}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp3}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Idhcp1}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Idhcp2}"
+		"${_gentoo_uri}/net-misc/dhcpcd/files/${_Idhcpcd}"
+		"${_gentoo_uri}/net-wireless/hostapd/files/${_Chost}"
+		"${_gentoo_uri}/net-wireless/hostapd/files/${_Ihost}"
+		"${_gentoo_uri}/net-firewall/iptables/files/${_Cip1}"
+		"${_gentoo_uri}/net-firewall/iptables/files/${_Cip2}"
+		"${_gentoo_uri}/net-firewall/iptables/files/${_Iip}"
+		"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb1}"
+		"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb2}"
+		"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb3}"
+		"${_gentoo_uri}/www-servers/lighttpd/files/${_Clight}"
+		"${_gentoo_uri}/www-servers/lighttpd/files/${_Ilight}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Cnfs}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs1}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs2}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs3}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs4}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs5}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs6}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs7}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Cntp1}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Cntp2}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Cntp3}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Intp1}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Intp2}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Intp3}"
+		"${_gentoo_uri}/net-nds/openldap/files/${_Cldap}"
+		"${_gentoo_uri}/net-nds/openldap/files/${_Ildap}"
+		"${_gentoo_uri}/net-libs/openslp/files/${_Islp}"
+		"${_gentoo_uri}/net-misc/openssh/files/${_Cssh}"
+		"${_gentoo_uri}/net-misc/openssh/files/${_Issh}"
+		"${_gentoo_uri}/net-proxy/polipo/files/${_Ipolip}"
+		"${_gentoo_uri}/mail-mta/postfix/files/${_Ipostfix}"
+		"${_gentoo_uri}/net-proxy/privoxy/files/${_Ipriv}"
+		"${_gentoo_uri}/sys-fs/quota/files/${_Cquota}"
+		"${_gentoo_uri}/sys-fs/quota/files/${_Iquota1}"
+		"${_gentoo_uri}/sys-fs/quota/files/${_Iquota2}"
+		"${_gentoo_uri}/net-nds/rpcbind/files/${_Crpc}"
+		"${_gentoo_uri}/net-nds/rpcbind/files/${_Irpc}"
+		"${_gentoo_uri}/net-misc/rsync/files/${_Crsync}"
+		"${_gentoo_uri}/net-misc/rsync/files/${_Irsync}"
+		"${_gentoo_uri}/net-fs/samba/files/4.1/${_Csmb}"
+		"${_gentoo_uri}/net-fs/samba/files/4.1/${_Ismb}"
+		"${_gentoo_uri}/net-proxy/squid/files/${_Csquid}"
+		"${_gentoo_uri}/net-proxy/squid/files/${_Isquid}"
+		"${_gentoo_uri}/net-p2p/transmission/files/${_Ctrans}"
+		"${_gentoo_uri}/net-p2p/transmission/files/${_Itrans}"
+		"${_gentoo_uri}/net-firewall/ufw/files/${_Cufw}"
+		"${_gentoo_uri}/net-firewall/ufw/files/${_Iufw}"
+		"${_gentoo_uri}/net-ftp/vsftpd/files/${_Ivsftp}"
+		"${_gentoo_uri}/net-ftp/vsftpd/files/${_Svsftp}"
+		"${_gentoo_uri}/net-misc/wicd/files/${_Iwicd}"
+		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Cwpa}"
+		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Iwpa}"
+		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Swpa}"
+		"${_gentoo_uri}/sys-apps/xinetd/files/${_Cxinet}"
+		"${_gentoo_uri}/sys-apps/xinetd/files/${_Ixinet}"
+		"${_gentoo_uri}/net-nds/ypbind/files/${_Cypbind}"
+		"${_gentoo_uri}/net-nds/ypbind/files/${_Iypbind}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv1}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv2}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv3}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv1}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv2}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv3}"
+		"${_gentoo_uri}/net-fs/autofs/files/${_Iautofs}"
+		"${_gentoo_uri}/net-misc/openvpn/files/${_Cvpn}"
+		"${_gentoo_uri}/net-misc/openvpn/files/${_Ivpn}"
+		"${_gentoo_uri}/net-misc/openntpd/files/${_Cntp}"
+		"${_gentoo_uri}/net-misc/openntpd/files/${_Intp}"
+		'inetutils.confd' 'inetutils.initd')
+
+
+pkgver() {
+  date +%Y%m%d
+}
+
+_sb='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_run='s|/var/run|/run|g'
+_bin=('s|/usr/sbin|/usr/bin|g' 's|/sbin|/usr/bin|g')
+
+package(){
+	local _p1 _p2
+
+	if (( ${_use_acpi} ));then
+		install -Dm755 "${srcdir}/${_Cacpi}" "${pkgdir}/etc/conf.d/acpid"
+		install -Dm755 "${srcdir}/${_Iacpi}" "${pkgdir}/etc/init.d/acpid"
+		sed -e "${_sb}" -e "${_bin[0]}" -i "${pkgdir}/etc/init.d/acpid"
+	fi
+
+	if (( ${_use_alsa} ));then
+		install -Dm755 "${srcdir}/${_Calsa}" "${pkgdir}/etc/conf.d/alsasound"
+		install -Dm755 "${srcdir}/${_Ialsa}" "${pkgdir}/etc/init.d/alsasound"
+		sed -e "${_sb}" -i "${pkgdir}/etc/init.d/alsasound"
+	fi
+
+	if (( ${_use_avahi} ));then
+		install -Dm755 "${srcdir}/avahi-daemon" "${pkgdir}/etc/init.d/avahi-daemon"
+		install -Dm755 "${srcdir}/avahi-dnsconfd" "${pkgdir}/etc/init.d/avahi-dnsconfd"
+	fi
+
+	if (( ${_use_ck} ));then
+		install -Dm755 "$srcdir/${_Sck}" "$pkgdir/etc/X11/xinit/xinitrc.d/90-consolekit"
+		install -Dm755 "$srcdir/${_Ick}" "$pkgdir/etc/init.d/consolekit"
+		sed -e "${_sb}" -e "${_run}" -e "${_bin[0]}" -i "${pkgdir}/etc/init.d/consolekit"
+	fi
+
+	if (( ${_use_gpm} ));then
+		install -Dm755 "${srcdir}/${_Cgpm}" "${pkgdir}/etc/conf.d/gpm"
+		install -Dm755 "${srcdir}/${_Igpm}" "${pkgdir}/etc/init.d/gpm"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/gpm"
+	fi
+
+	if (( ${_use_xdm} ));then
+		install -Dm755 "${srcdir}/${_Cxdm}" "${pkgdir}/etc/conf.d/xdm"
+		install -Dm755 "${srcdir}/${_Ixdm1}" "${pkgdir}/etc/init.d/xdm"
+		install -Dm755 "${srcdir}/${_Ixdm2}" "${pkgdir}/etc/init.d/xdm-setup"
+		install -Dm755 "${srcdir}/${_Sxdm}" "${pkgdir}/etc/X11/startDM.sh"
+		_p1='s|/etc/profile.env|/etc/profile|g' _p2='s|{ROOTPATH}|{PATH}|g'
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/xdm"
+		sed -e "${_sb}" -i "${pkgdir}/etc/init.d/xdm-setup"
+	fi
+
+	if (( ${_use_git} ));then
+		install -Dm755 "${srcdir}/${_Cgit}" "${pkgdir}/etc/conf.d/git-daemon"
+		install -Dm755 "${srcdir}/${_Igit}" "${pkgdir}/etc/init.d/git-daemon"
+		_p1='s|/var/git|/srv/git|'
+		sed -e "${_p1}" -i "${pkgdir}/etc/conf.d/git-daemon"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/git-daemon"
+	fi
+
+	if (( ${_use_mysql} ));then
+		install -Dm755 "${srcdir}/${_Cmy}" "${pkgdir}/etc/conf.d/mysql"
+		install -Dm755 "${srcdir}/${_Imy}" "${pkgdir}/etc/init.d/mysql"
+		_p1='s|/sbin/mysqld|/bin/mysqld|g'
+		sed -e "${_sb}" -e "${_p1}" -i "${pkgdir}/etc/init.d/mysql"
+	fi
+
+	if (( ${_use_svn} ));then
+		install -Dm755 "${srcdir}/${_Csvn}" "${pkgdir}/etc/conf.d/svnserve-rc"
+		install -Dm755 "${srcdir}/${_Isvn}" "${pkgdir}/etc/init.d/svnserve-rc"
+		_p1='s|/var/svn|/srv/svn|g'
+		sed -e "${_p1}" -i ${pkgdir}/etc/conf.d/svnserve-rc
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -i "${pkgdir}/etc/init.d/svnserve-rc"
+	fi
+
+	if (( ${_use_pgsql} ));then
+		install -Dm755 "${srcdir}/postgresql.confd" "${pkgdir}/etc/conf.d/postgresql"
+		install -Dm755 "${srcdir}/postgresql.init" "${pkgdir}/etc/init.d/postgresql"
+		_p1='s|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|'
+		_p2='s|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|'
+		sed -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/conf.d/postgresql"
+		_p1='s|/usr/lib/postgresql-@SLOT@/bin/pg_ctl|/usr/bin/pg_ctl|'
+		_p2='s|/usr/lib/postgresql-@SLOT@/bin/postgres|/usr/bin/postgres|'
+		sed -e "${_sb}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/postgresql"
+	fi
+
+	if (( ${_use_cronie} ));then
+		install -Dm755 "${srcdir}/${_Icron1}" "${pkgdir}/etc/init.d/cronie"
+		install -Dm755 "${srcdir}/${_Icron2}" "${pkgdir}/etc/init.d/anacron"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i $f
+		done
+	fi
+
+	if (( ${_use_fcron} ));then
+		install -Dm755 "${srcdir}/${_Ifrcon}" "${pkgdir}/etc/init.d/fcron"
+		_p1='s|/usr/libexec|/usr/bin|g'
+		sed -e "${_sb}" -e "${_run}" -e "${_p1}" -i "${pkgdir}/etc/init.d/fcron"
+	fi
+
+	if (( ${_use_fuse} ));then
+		install -Dm755 "${srcdir}/${_Ifuse}" "${pkgdir}/etc/init.d/fuse"
+		sed -e "${_sb}" -i "${pkgdir}/etc/init.d/fuse"
+	fi
+
+	if (( ${_use_laptop} ));then
+		install -Dm755 "${srcdir}/${_Ilap}" "${pkgdir}/etc/init.d/laptop_mode"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/laptop_mode"
+	fi
+
+	if (( ${_use_metalog} ));then
+		install -Dm755 "${srcdir}/${_Cmeta}" "${pkgdir}/etc/conf.d/metalog"
+		install -Dm755 "${srcdir}/${_Imeta}" "${pkgdir}/etc/init.d/metalog"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/metalog"
+	fi
+
+	if (( ${_use_rsyslog} ));then
+		install -Dm755 "${srcdir}/${_Crsysl}" "${pkgdir}/etc/conf.d/rsyslog"
+		install -Dm755 "${srcdir}/${_Irsysl}" "${pkgdir}/etc/init.d/rsyslog"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/rsyslog"
+	fi
+
+	if (( ${_use_syslog_ng} ));then
+		install -Dm755 "${srcdir}/${_Csyslog}" "${pkgdir}/etc/conf.d/syslog-ng"
+		install -Dm755 "${srcdir}/${_Isyslog}" "${pkgdir}/etc/init.d/syslog-ng"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/syslog-ng"
+	fi
+
+	if (( ${_use_sane} ));then
+		install -Dm755 "${srcdir}/${_Csane}" "${pkgdir}/etc/conf.d/saned"
+		install -Dm755 "${srcdir}/${_Isane}" "${pkgdir}/etc/init.d/saned"
+		sed -e "${_sb}" -e "${_run}" -e "${_bin[0]}" -i ${pkgdir}/etc/init.d/saned
+	fi
+
+	if (( ${_use_lirc} ));then
+		install -Dm755 "${srcdir}/${_Clirc1}" "${pkgdir}/etc/conf.d/lircd"
+		install -Dm755 "${srcdir}/${_Ilirc1}" "${pkgdir}/etc/init.d/lircd"
+		install -Dm755 "${srcdir}/${_Clirc2}" "${pkgdir}/etc/conf.d/irexec"
+		install -Dm755 "${srcdir}/${_Ilirc2}" "${pkgdir}/etc/init.d/irexec"
+		install -Dm755 "${srcdir}/${_Ilirc3}" "${pkgdir}/etc/init.d/lircmd"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i $f
+		done
+	fi
+
+	if (( ${_use_cpupower} ));then
+		install -Dm755 "${srcdir}/${_Ccpu}" "${pkgdir}/etc/conf.d/cpupower"
+		install -Dm755 "${srcdir}/${_Icpu}" "${pkgdir}/etc/init.d/cpupower"
+		sed -e "${_sb}" -i "${pkgdir}/etc/init.d/cpupower"
+	fi
+
+	if (( ${_use_crypt} ));then
+		install -Dm755 "${srcdir}/${_Ccrypt}" "${pkgdir}/etc/conf.d/dmcrypt"
+		install -Dm755 "${srcdir}/${_Icrypt}" "${pkgdir}/etc/init.d/dmcrypt"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/dmcrypt"
+	fi
+
+	if (( ${_use_dbus}  ));then
+		install -Dm755 "${srcdir}/${_Idbus}" "${pkgdir}/etc/init.d/dbus"
+		_p1='s|dbus.pid|dbus/pid|g'
+		sed -e "${_sb}" -e "${_run}" -e "${_p1}" -i "${pkgdir}/etc/init.d/dbus"
+	fi
+
+	if (( ${_use_device_mapper} ));then
+		install -Dm755 "${srcdir}/${_Cdm}" "${pkgdir}/etc/conf.d/device-mapper"
+		install -Dm755 "${srcdir}/${_Idm1}" "${pkgdir}/etc/init.d/device-mapper"
+		install -Dm755 "${srcdir}/${_Idm2}" "${pkgdir}/etc/init.d/dmeventd"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[1]}" -e "${_run}" -i $f
+		done
+	fi
+
+	if (( ${_use_lvm2} ));then
+		install -Dm755 "${srcdir}/${_Clvm}" "${pkgdir}/etc/conf.d/lvm"
+		install -Dm755 "${srcdir}/${_Ilvm1}" "${pkgdir}/etc/init.d/lvm"
+		install -Dm755 "${srcdir}/${_Ilvm2}" "${pkgdir}/etc/init.d/lvm-monitoring"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[1]}" -e "${_run}" -i $f
+		done
+	fi
+
+	if (( ${_use_glibc} ));then
+		install -Dm755 "${srcdir}/${_Inscd}" "${pkgdir}/etc/init.d/nscd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/nscd"
+	fi
+
+	if (( ${_use_sensors} ));then
+		install -Dm755 "${srcdir}/${_Csens}" "${pkgdir}/etc/conf.d/sensord"
+		install -Dm755 "${srcdir}/${_Isens1}" "${pkgdir}/etc/init.d/sensord"
+		install -Dm755 "${srcdir}/${_Isens2}" "${pkgdir}/etc/init.d/fancontrol"
+		install -Dm755 "${srcdir}/${_Isens3}" "${pkgdir}/etc/init.d/lm_sensors"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i $f
+		done
+	fi
+
+	if (( ${_use_mdadm} ));then
+		install -Dm755 "${srcdir}/${_Cmdadm}" "${pkgdir}/etc/conf.d/mdadm"
+		install -Dm755 "${srcdir}/${_Imdadm}" "${pkgdir}/etc/init.d/mdadm"
+		sed -e "${_sb}" -e "${_run}" -i "${pkgdir}/etc/init.d/mdadm"
+	fi
+
+	if (( ${_use_apache} ));then
+		local _p3 _p4 _p5 _p6 _p7 _p8
+		install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+		install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+		_p1='s|/usr/sbin/apache2|/usr/bin/apachectl|'
+		_p2='s|/etc/apache2/httpd.conf|/etc/httpd/conf/httpd.conf|'
+		_p3='s/! test -f/test -f/'
+		_p4='s|/usr/lib/apache2|/usr/lib/httpd|'
+		_p5='s|apache2.pid|httpd/httpd.pid|'
+		_p6='s|apache2 >/dev/null|httpd >/dev/null|'
+		_p7='s|apache2|httpd|g'
+		_p8='s|/run/apache_ssl_mutex|/run/httpd|'
+		sed -e "${_sb}" -e "${_p1}" -e "${_p2}" -e "${_p3}" -e "${_p4}" -e "${_p5}" -e "${_p6}" -e "${_p8}" -i "${pkgdir}/etc/init.d/httpd"
+		sed  -e "${_p2}" -e "${_p4}" -e "${_p5}" -e "${_p7}" -i "${pkgdir}/etc/conf.d/httpd"
+	fi
+
+	if (( ${_use_autofs} ));then
+		install -Dm755 "${srcdir}/${_Iautofs}" "${pkgdir}/etc/init.d/autofs"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/autofs"
+	fi
+
+	if (( ${_use_bind} ));then
+		install -Dm755 "${srcdir}/${_Cbind}" "${pkgdir}/etc/conf.d/named"
+		install -Dm755 "${srcdir}/${_Ibind}" "${pkgdir}/etc/init.d/named"
+		_p1='s|/etc/bind/named.conf|/etc/named.conf|g'
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -i "${pkgdir}/etc/init.d/named"
+	fi
+
+	if (( ${_use_bitlbee} ));then
+		install -Dm755 "${srcdir}/${_Cbit}" "${pkgdir}/etc/conf.d/bitlbee"
+		install -Dm755 "${srcdir}/${_Ibit}" "${pkgdir}/etc/init.d/bitlbee"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/bitlbee"
+	fi
+
+	if (( ${_use_bluetooth} ));then
+		install -Dm755 "${srcdir}/${_Cblue}" "${pkgdir}/etc/conf.d/rfcomm"
+		install -Dm755 "${srcdir}/${_Iblue1}" "${pkgdir}/etc/init.d/rfcomm"
+		install -Dm755 "${srcdir}/${_Iblue2}" "${pkgdir}/etc/init.d/bluetooth"
+		_p1='s|/usr/sbin|/usr/lib/bluetooth|g'
+		sed -e "${_sb}" -e "${_p1}" -i "${pkgdir}/etc/init.d/bluetooth"
+		sed -e "${_sb}" -e "${_bin[0]}" -i "${pkgdir}/etc/init.d/rfcomm"
+	fi
+
+	if (( ${_use_connman} ));then
+		install -Dm755 "${srcdir}/${_Ccon}" "${pkgdir}/etc/conf.d/connman"
+		install -Dm755 "${srcdir}/${_Icon}" "${pkgdir}/etc/init.d/connman"
+		sed -e "${_sb}" -e "${_bin[0]}" -i "${pkgdir}/etc/init.d/connman"
+	fi
+
+	if (( ${_use_cups} ));then
+		install -Dm755 "${srcdir}/${_Icups}" "${pkgdir}/etc/init.d/cupsd"
+		_p1='s|lp:lpadmin|daemon:sys|' _p2='s|@neededservices@|need dbus avahi-daemon|'
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/cupsd"
+	fi
+
+	if (( ${_use_dhcp} ));then
+		install -Dm755 "${srcdir}/${_Cdhcp1}" "${pkgdir}/etc/conf.d/dhcpd"
+		install -Dm755 "${srcdir}/${_Idhcp1}" "${pkgdir}/etc/init.d/dhcpd"
+		install -Dm755 "${srcdir}/${_Cdhcp2}" "${pkgdir}/etc/conf.d/dhcrelay"
+		install -Dm755 "${srcdir}/${_Idhcp2}" "${pkgdir}/etc/init.d/dhcrelay"
+		install -Dm755 "${srcdir}/${_Cdhcp3}" "${pkgdir}/etc/conf.d/dhcrelay6"
+		install -Dm755 "${srcdir}/${_Idhcp3}" "${pkgdir}/etc/init.d/dhcrelay6"
+		_p1='s|#@slapd@|ldap slapd|'
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}"  -e "${_p1}" -i $f
+		done
+	fi
+
+	if (( ${_use_dhcpcd} ));then
+		install -Dm755 "${srcdir}/${_Idhcpcd}" "${pkgdir}/etc/init.d/dhcpcd"
+		sed -e "${_sb}" -e "${_bin[1]}" -e "${_run}" -i "${pkgdir}/etc/init.d/dhcpcd"
+	fi
+
+	if (( ${_use_hostapd} ));then
+		install -Dm755 "${srcdir}/${_Chost}" "${pkgdir}/etc/conf.d/hostapd"
+		install -Dm755 "${srcdir}/${_Ihost}" "${pkgdir}/etc/init.d/hostapd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/hostapd"
+	fi
+
+	if (( ${_use_inetutils} ));then
+		install -Dm755 "${srcdir}/inetutils.confd" "${pkgdir}/etc/conf.d/ftpd"
+		install -Dm755 "${srcdir}/inetutils.initd" "${pkgdir}/etc/init.d/ftpd"
+	fi
+
+	if (( ${_use_iptables} ));then
+		install -Dm755 "${srcdir}/${_Cip1}" "${pkgdir}/etc/conf.d/iptables"
+		install -Dm755 "${srcdir}/${_Iip}" "${pkgdir}/etc/init.d/iptables"
+		install -Dm755 "${srcdir}/${_Cip2}" "${pkgdir}/etc/conf.d/ip6tables"
+		install -Dm755 "${srcdir}/${_Iip}" "${pkgdir}/etc/init.d/ip6tables"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[1]}" -e "${_run}" -i $f
+		done
+	fi
+
+	if (( ${_use_krb5} ));then
+		install -Dm755 "${srcdir}/${_Ikrb1}" "${pkgdir}/etc/init.d/krb5kadmind"
+		install -Dm755 "${srcdir}/${_Ikrb2}" "${pkgdir}/etc/init.d/krb5kdc"
+		install -Dm755 "${srcdir}/${_Ikrb3}" "${pkgdir}/etc/init.d/krb5kpropd"
+		_p1='s|mit-krb5kdc|krb5kdc|g' _p2='s|mit-krb5kadmind|krb5kadmind|g'
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -e "${_p2}" -i $f
+		done
+	fi
+
+	if (( ${_use_ldap} ));then
+		install -Dm755 "${srcdir}/${_Cldap}" "${pkgdir}/etc/conf.d/slapd"
+		install -Dm755 "${srcdir}/${_Ildap}" "${pkgdir}/etc/init.d/slapd"
+		_p1='s|/usr/lib/openldap/slapd|/usr/lib/slapd|g'
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -i "${pkgdir}/etc/init.d/slapd"
+	fi
+
+	if (( ${_use_lighttpd} ));then
+		install -Dm755 "${srcdir}/${_Clight}" "${pkgdir}/etc/conf.d/lighttpd"
+		install -Dm755 "${srcdir}/${_Ilight}" "${pkgdir}/etc/init.d/lighttpd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/lighttpd"
+	fi
+
+	if (( ${_use_openntpd} ));then
+		install -Dm755 "${srcdir}/${_Cntp}" "${pkgdir}/etc/conf.d/ntpd"
+		install -Dm755 "${srcdir}/${_Intp}" "${pkgdir}/etc/init.d/ntpd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/ntpd"
+	fi
+
+	if (( ${_use_ntp} ));then
+		install -Dm755 "${srcdir}/${_Cntp1}" "${pkgdir}/etc/conf.d/ntpd"
+		install -Dm755 "${srcdir}/${_Intp1}" "${pkgdir}/etc/init.d/ntpd"
+		install -Dm755 "${srcdir}/${_Cntp2}" "${pkgdir}/etc/conf.d/ntp-client"
+		install -Dm755 "${srcdir}/${_Intp2}" "${pkgdir}/etc/init.d/ntp-client"
+		install -Dm755 "${srcdir}/${_Cntp3}" "${pkgdir}/etc/conf.d/sntp"
+		install -Dm755 "${srcdir}/${_Intp3}" "${pkgdir}/etc/init.d/sntp"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i $f
+		done
+	fi
+
+	if (( ${_use_polipo} ));then
+		install -Dm755 "${srcdir}/${_Ipolip}" "${pkgdir}/etc/init.d/polipo"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/polipo"
+	fi
+
+	if (( ${_use_postfix} ));then
+		install -Dm755 "${srcdir}/${_Ipostfix}" "${pkgdir}/etc/init.d/postfix"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/postfix"
+	fi
+
+	if (( ${_use_privoxy} ));then
+		install -Dm755 "${srcdir}/${_Ipriv}" "${pkgdir}/etc/init.d/privoxy"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/privoxy"
+	fi
+
+	if (( ${_use_rpcbind} ));then
+		install -Dm755 "${srcdir}/${_Crpc}" "${pkgdir}/etc/conf.d/rpcbind"
+		install -Dm755 "${srcdir}/${_Irpc}" "${pkgdir}/etc/init.d/rpcbind"
+		sed -e "${_sb}" -e "${_bin[1]}" -e "${_run}" -i "${pkgdir}/etc/init.d/rpcbind"
+	fi
+
+	if (( ${_use_nfs} ));then
+		install -Dm755 "${srcdir}/${_Cnfs}" "${pkgdir}/etc/conf.d/nfs-rc"
+		install -Dm755 "${srcdir}/${_Infs1}" "${pkgdir}/etc/init.d/nfs-rc"
+		install -Dm755 "${srcdir}/${_Infs2}" "${pkgdir}/etc/init.d/nfsmount"
+		install -Dm755 "${srcdir}/${_Infs3}" "${pkgdir}/etc/init.d/rpc.gssd"
+		install -Dm755 "${srcdir}/${_Infs4}" "${pkgdir}/etc/init.d/rpc.idmapd"
+		install -Dm755 "${srcdir}/${_Infs5}" "${pkgdir}/etc/init.d/rpc.pipefs"
+		install -Dm755 "${srcdir}/${_Infs6}" "${pkgdir}/etc/init.d/rpc.statd"
+		install -Dm755 "${srcdir}/${_Infs7}" "${pkgdir}/etc/init.d/rpc.svcgssd"
+		_p1='s|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g'
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}"  -e "${_p1}" -i $f
+		done
+	fi
+
+	if (( ${_use_quota} ));then
+		install -Dm755 "${srcdir}/${_Cquota}" "${pkgdir}/etc/conf.d/quota"
+		install -Dm755 "${srcdir}/${_Iquota1}" "${pkgdir}/etc/init.d/quota"
+		install -Dm755 "${srcdir}/${_Iquota2}" "${pkgdir}/etc/init.d/rpc.rquotad"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i $f
+		done
+		_p1='s|/etc/conf.d/nfs|/etc/conf.d/nfs-rc|g'
+		sed -e "${_p1}" -i "${pkgdir}/etc/init.d/rpc.rquotad"
+	fi
+
+	if (( ${_use_rsync} ));then
+		install -Dm755 "${srcdir}/${_Crsync}" "${pkgdir}/etc/conf.d/rsyncd"
+		install -Dm755 "${srcdir}/${_Irsync}" "${pkgdir}/etc/init.d/rsyncd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/rsyncd"
+	fi
+
+	if (( ${_use_samba} ));then
+		install -Dm755 "${srcdir}/${_Csmb}" "${pkgdir}/etc/conf.d/samba-rc"
+		install -Dm755 "${srcdir}/${_Ismb}" "${pkgdir}/etc/init.d/samba-rc"
+		_p1='s|SVCNAME##samba|SVCNAME##samba-rc|g' _p2='s|"samba"|"samba-rc"|g'
+		sed -e "${_bin[0]}" -i "${pkgdir}/etc/conf.d/samba-rc"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/samba-rc"
+	fi
+
+	if (( ${_use_sasl} ));then
+		install -Dm755 "${srcdir}/${_Isasl}" "${pkgdir}/etc/init.d/saslauthd"
+		sed -e "${_sb}" -e "${_bin[0]}" -i "${pkgdir}/etc/init.d/saslauthd"
+	fi
+
+	if (( ${_use_slp} ));then
+		install -Dm755 "${srcdir}/${_Islp}" "${pkgdir}/etc/init.d/slpd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/slpd"
+	fi
+
+	if (( ${_use_squid} ));then
+		install -Dm755 "${srcdir}/${_Csquid}" "${pkgdir}/etc/conf.d/squid"
+		install -Dm755 "${srcdir}/${_Isquid}" "${pkgdir}/etc/init.d/squid"
+		_p1='s|chown squid|chown proxy|g'
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -i "${pkgdir}/etc/init.d/squid"
+	fi
+
+	if (( ${_use_ssh} ));then
+		install -Dm755 "${srcdir}/${_Cssh}" "${pkgdir}/etc/conf.d/sshd"
+		install -Dm755 "${srcdir}/${_Issh}" "${pkgdir}/etc/init.d/sshd"
+		sed -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/conf.d/sshd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/sshd"
+	fi
+
+	if (( ${_use_transmission} ));then
+		install -Dm755 "${srcdir}/${_Ctrans}" "${pkgdir}/etc/conf.d/transmission-daemon"
+		install -Dm755 "${srcdir}/${_Itrans}" "${pkgdir}/etc/init.d/transmission-daemon"
+		sed -e "${_sb}" -e "${_run}" -i "${pkgdir}/etc/init.d/transmission-daemon"
+	fi
+
+	if (( ${_use_ufw} ));then
+		install -Dm755 "${srcdir}/${_Cufw}" "${pkgdir}/etc/conf.d/ufw"
+		install -Dm755 "${srcdir}/${_Iufw}" "${pkgdir}/etc/init.d/ufw"
+		_p1='s|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g'
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -i "${pkgdir}/etc/init.d/ufw"
+	fi
+
+	if (( ${_use_vpn} ));then
+		install -Dm755 "${srcdir}/${_Cvpn}" "${pkgdir}/etc/conf.d/openvpn"
+		install -Dm755 "${srcdir}/${_Ivpn}" "${pkgdir}/etc/init.d/openvpn"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/openvpn"
+	fi
+
+	if (( ${_use_vsftp} ));then
+		install -Dm755 "${srcdir}/${_Ivsftp}" "${pkgdir}/etc/init.d/vsftpd"
+		install -Dm755 "${srcdir}/${_Svsftp}" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+		_p1='s|/usr/libexec/|/usr/lib/|g'
+		_p2='s|/etc/vsftpd/|/etc/|g'
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/vsftpd"
+		sed -e "${_p2}" -i "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+	fi
+
+	if (( ${_use_wicd} ));then
+		install -Dm755 "${srcdir}/${_Iwicd}" "${pkgdir}/etc/init.d/wicd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/wicd"
+	fi
+
+	if (( ${_use_wpa} ));then
+		install -Dm755 "${srcdir}/${_Cwpa}" "${pkgdir}/etc/conf.d/wpa_supplicant"
+		install -Dm755 "${srcdir}/${_Iwpa}" "${pkgdir}/etc/init.d/wpa_supplicant"
+		install -Dm755 "${srcdir}/${_Swpa}" "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/wpa_supplicant"
+		sed -e 's|gentoo-release|arch-release|' -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
+	fi
+
+	if (( ${_use_xinet} ));then
+		install -Dm755 "${srcdir}/${_Cxinet}" "${pkgdir}/etc/conf.d/xinetd"
+		install -Dm755 "${srcdir}/${_Ixinet}" "${pkgdir}/etc/init.d/xinetd"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/xinetd"
+	fi
+
+	if (( ${_use_ypbind} ));then
+		install -Dm755 "${srcdir}/${_Cypbind}" "${pkgdir}/etc/conf.d/ypbind"
+		install -Dm755 "${srcdir}/${_Iypbind}" "${pkgdir}/etc/init.d/ypbind"
+		sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i "${pkgdir}/etc/init.d/ypbind"
+	fi
+
+	if (( ${_use_ypserv} ));then
+		install -Dm755 "${srcdir}/${_Cypserv1}" "${pkgdir}/etc/init.d/ypserv"
+		install -Dm755 "${srcdir}/${_Iypserv1}" "${pkgdir}/etc/conf.d/ypserv"
+		install -Dm755 "${srcdir}/${_Cypserv2}" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
+		install -Dm755 "${srcdir}/${_Iypserv2}" "${pkgdir}/etc/init.d/rpc.yppasswdd"
+		install -Dm755 "${srcdir}/${_Cypserv3}" "${pkgdir}/etc/conf.d/rpc.ypxfrd"
+		install -Dm755 "${srcdir}/${_Iypserv3}" "${pkgdir}/etc/init.d/rpc.ypxfrd"
+		for f in ${pkgdir}/etc/init.d/*;do
+			sed -e "${_sb}" -e "${_bin[0]}" -e "${_run}" -i $f
+		done
+	fi
+
+}
+sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
+            '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
+            'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
+            'daf46bbc4156a82e0c6c7135ee94b31a3dfb6d366fcf3f45e8c842d1348601be'
+            'da849bae527a7a5c257301a99ac3fb5ec2ded48103ec114552ca7d2a24b12e49'
+            '91e0900995f7db536220065959d236fb75ec2c77096981a142e2e948518d9761'
+            '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
+            '85e5778e23748c6a6285fdadaeb18e6c04b3fdf98d2a81f0ab9d854dbac8076c'
+            '942ce5e8d1a0770543b683dcc388bae7619a24eb9741c1cd678ed3df97c01406'
+            'e7f2d95b3b4b6b5d711f926f8a3b7b0163b4d9e40b40489bcbd1316806e47499'
+            '73e7483fdc4b12ab4225a4cb13bbe7da71b07b9e69b17e3a6a4c63cb5e2287c8'
+            'e692e7b97efdd79f6e92fbdaed60f7a71bfd23a82c5561b160b88a7aa50c8461'
+            '9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
+            '48e7e1228c9811079dce8fecc560000cf645de5b4bb697f8f8ad3f906906330b'
+            '45da613841969adf564f9f2f08257f749539651ee2fae85266f59fdd7a6f8123'
+            'a08df7aa811607f45a40ee1a4aa56eff569568f9bc69f2f76192cc15e55f21b0'
+            '0ab0e175a2ed735c330fd2e1c659c1130ae7217fea8d3804d5b5eb74c68ddac1'
+            '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
+            '8f123253c3bfb9bbe87210a9e1facc7f52df371747dbc188396740a5cf4fa713'
+            '0954be9e1e1c34d2f963cc60828b63711a2949bfe91f65620caf9c80256383f2'
+            '862c85322f3644997ca5432180e0ef0a4fb36467a44b350dc955365f314b2fbe'
+            'ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
+            '90a18e5c7e4d0b264bb51deb7b92ff25b508a3ddd75dd6c849fdc48c07ce4fda'
+            'ff2634927d3208ac2c82d352f0a7dc9fef1d0ee098d18f818d4417ac04516e9c'
+            '7b3b32e89c051566b68c5e5a077cd5960da183e071e411b1248d4e4702a24279'
+            '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
+            '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
+            '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
+            'ec9f05b386a06a4b2d5398cc0c33f34eba3f5e74ad46ae203d682f8ebc593f99'
+            '906c31e0817517dc6c141a7a10565140ea272d3c958a065f520a0ecb6f81912f'
+            'd28c269c8aa2876a389aefdc76b18bcd30eb6653ea1e54a0eb6fb596568643b6'
+            'f2a180881e061963b1cb85aef0b06e54141158009ca8770d6e7a4832a451052f'
+            'd36ff77fa193a065d25e373723e03f1a9471205151b82c73a6574cce4f095962'
+            'c404ad3b624004cab25bd3a89593cdeb0abbc25771d6e52caf2f37cb4f7b2b79'
+            '40d1b609e54327d40e0f4314e31ea58aa029bf95f9f27f311da1260fef2fa416'
+            '5e5a31fbd93294a6e210499a880fcab371b23706824c9d60d827b0187d7bade4'
+            'd47f22a33a83c14a4a0c333d6a445c40e550c491899fb0c6d323e23fe1eac7b7'
+            '375ce44cc9cbfa660da68c5b07a0629daccca68477224fa5dd49c0f13dc50015'
+            '4e74af8ed0305ee1c22d9a03de9c3fc0a9177c3cb1a0dc65cdfd904dd078653d'
+            '9ab6f022d2b2948660decf5e383984e6ddb9e9e5e6e2761c3031378ddd87e947'
+            'aa16c3190d26aca6c0a3f69cc929e3571df3da0b3ec7b45fe19a216fe912fa6f'
+            '0c30e081c0b8f879964ae49735f10b05a1d92f4f481042851958860945e13271'
+            '02faf27470ea0e50b764c923786724847e77dfdf9680a50cc202546cad2bf02f'
+            '98e37b8b6ed25004e48c5855d74c9361eea06d3fee13cefcc0ed10ccf452aa01'
+            '6165db3a2fcb251d4f3655c0461e018ce9c92a37f7f22a8fd2b75178b5435bc8'
+            '02230edf5efbb0a4de3840cd76f9ebf431c57a246fa7388e9dbeb0fe26fe7b8d'
+            '4bd482a54decc5a51aee60e19ae31b0182d5857b112754247f04c0829b159b07'
+            '36d489296c31736f8015b0ce27052b3f1555b7fe6335120c0477b044b8e4fb8d'
+            '9b018f9f7a0975988387858823fe59a5cd8af6413d8c3170db0e24aac6021ec3'
+            '57777904f12a35617e5a4193c964ebb32396452487fd02353e71e16e7b46bc22'
+            'e0bff689040746480e2479d1ad57adb5ab23cc0415ab9a8356503aed7a14c658'
+            'dbf81d357446fa555bcd75939af6d5982c10a8235800ddc299d2673b2c694d39'
+            '28370c089c39c248d7ded0960b8d8a9256bada44d44c22ce3cec87d512ef6844'
+            '66844a70cedf61b2cd3373cdbd8f8c1afa817bde0764fdf5cf488857532d4553'
+            'b89971a4f163e1a91df2416ff442cae7209f8343e6c8612eb3174ed8f5c5c788'
+            'ec55674955af7a31da51b8b72b599e8519809287dad796a9b16155bcba471b79'
+            '3073b14619cb7b2c99c33f2d6cfd1e59ce5557899bffebaa65fa52f3caffadc7'
+            'bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
+            '704ac6954b2bad5d0bab19281dc703e86d9b4fe94d63dd00be1e525a3e64c492'
+            '953e066b5d77f59917db59365cd2103c5bec19889775bd3f6437b946c9d6d936'
+            '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
+            '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
+            '672498957049fd301f9c9c1dc9fa49430e5e6d3c3f1f3cdce80df3af7d425d08'
+            '4430703a9bec9a9482416b2d24aa47492264768a0b61356b361bbc8b1229a83e'
+            'cd8cc3763601470328709c961b0c68a311f6d4af302d46a880fb855ed9d04efe'
+            '767a160c1b3392f0a12d3908a937548a2f604a9a121e744c309ee6f478420b02'
+            'f0a561f124cac3791fba6ee7ef5bc3ea46bd7535edf9e864689b0d9cfa65d332'
+            '239f9831ba2a9df36d334037307cdc11cfa6476a11cbf6668db4ffb4096a248d'
+            'a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0'
+            'e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
+            '409b895ed489e75c1a08f72961b45d641b93fd9357f528abc78b1fd036b7f730'
+            '099f668e1ad42ed9446b15675032a1186715d1fe9e4a1b24dfb787e68495d2b6'
+            '049a231908dc2c5f82446712d71d5e75d430bd043b53eead1529f2d81e1595ab'
+            '204aaf81d51dc119cee1d1ff3ae3dd50af666af2f8b2a363fd1bf442d4dcee00'
+            '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
+            '916f4b14095ee4ec8a510391c883e9f01868e18d79a3d5cbeb13a104a793d45d'
+            'a220058841e66a11603df8e968ccc68945f01e1d11c1ae498922d0e01f6fa804'
+            '7e2341211ca14997b7a8a1f930f94db855291af597c568f680f80031c20d45b6'
+            '2938fe4206514d9868047bd8f888a699fa2097ca69edab176453436d4259abaa'
+            '13047698e03079b754957e1e548ce7505dfb2c73c9a31f87e061140603ab0e44'
+            '3e55c79f19aaa6ef6b64a621c03dbb2eac3ad923916dc803f4c1bfe48ce89fbb'
+            '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
+            'c374ea05d7e9f15e10c8f9dbd0cad6548e0f92aef7de33e5dbc27222e9407e7b'
+            'bb6e6721f33e6582a91025f3500e159a599fb856d699e9394093e1018c7925e0'
+            'b1515472c32927039b38f6c3a797cbc54a5a300b5d6fa54df9550174afa2b7f8'
+            '22bba4ee5d58bae422650875c7c8a797a52fc121ddd02d48297c075b8a35401e'
+            '8df22f253770a24c6a53ce332d821ab680d0ede18d0e968c1c5d8b3796cb74be'
+            'b57637c7eb8e40b5cc1655e8afa69dc0aaecbd3186bdca3301586d1e9b797357'
+            '00d9c29280a83e8458c33139d04a9b38c6fdba9d7cb9b420ca83bf6b10e6435d'
+            '3ce65326859c43983dad25ad2d4731488c488037796e39b6b5eda336e8bf81ef'
+            '6503951b3c200ccf3f46396f7b9274f0a565807f7f6e561c17bed6b0133ae49a'
+            '0c7bd35a14da6c0c2577f09ae82a41ddb693a88157eeaf80684616f79be6c304'
+            'f1c460d8b0e91e54a551397d755135d05a3728d81de596535bf8bda074455677'
+            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
+            'e8d5883461f4297c052e3b39814b663965ed3a756c4234675f4a9b62349eca13'
+            '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
+            'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
+            'bdd70612cf0654460aa4cfa59bcaaf6d636d240a3fead8b243c86e5cbe640ab9'
+            '8fbd405ad951e7ad046e4408abb98f4066077113187198767d52f28d7228bae4'
+            '5bca003ec3b67c7c78519aede1d82002579006ccfecce8f87b559df719f82e92'
+            '1fc515a6816b8a750db513df0b3b9bf8dd8bd4c4e9051205521acadfdebeae0f'
+            '7f228796e020c0779c52683f684197d50662ae890b1ae193ffa9acf157ccd143'
+            '29c6d57ac3ec6018cadc6ba6cd9b90c9ed46e20049b970fdcc68ee2481a2ee41'
+            '97221a017d8ee9de996277c5a794d973a0b5e8180c29c97b3652bd1984a7b5d0'
+            '438b8a9cfccf1ea14314f38e6821454b6da9ae20ea12bf311ad9fa89816cd702'
+            '51f4bffa535d891f94d4a20ca2a4a42cc99189f3de78cee1c8d235e4a9d1721d'
+            '224496b498b4f692ae3316a95b5c7c8b6230dcd5fee0ca163956a7acde243de9'
+            '00d1dfb3b893db5d6a213a4edda622c7d64dcafa40b3019f15e070c164286632'
+            '00ce705b49aaa356d9d9f0be3b80a3fe2810471cbe02fd0edc66349f3ca281de'
+            'c3896303d6cfebf314a3f6b8aeed0f6cb6ae421c4c0923b0121c76b3251314e5'
+            '38bb95aefc38d843d0890d9c15affd28f19f2133c17f463396c62970e7e2dffc'
+            '6561ae40c5899a9f7a12f1f0867bec47d47c7cc3c583574ffcecbbf6f8d8afbb'
+            'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
+            'baff64277f9aa62cf1eeed2284bb08c4f3078a8e6e7604e4fec228ca5fa9dd82'
+            '53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
+            '4e9a6f4e5fe270843c2f81610e0f763db1218803b6c0e84f17664150670dd700'
+            '214a184495a3384eb452caef435256043bc51e35140a61b1f5fdff32603c8f7e'
+            '9b16b1ab2d3d3411dfcd8ac76b13a0889503ca78e3c6123814801af7577537f3'
+            '249689688aad23d0d27ccdd08a0907fd85058d6a52ccd3467f756b07f5d059ee'
+            '06d047b47befe6aaf1b1542fdd50e84ea38e0fef004b5095f6096f33fa1901a3'
+            '069aa7382b40aecebf26ef53f3f4c49890314e0357925c84b3c15f1d0b913be0'
+            '657b5305923b2a5de9eb96931aaaa28d6e997ace6c40793d905887798094258c'
+            'e6cf3df546aae57bb10e2b4282a9ccd79741473ef9dbdbd7628a16c84622da06'
+            '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda'
+            '5546deda3d5fa8f6ee1125922f1217182b24d68a22f5a1212509bb13bf0156e2'
+            '61ec59007f66ac5bacc0aa095d1f2ccbc977a687038e161a463d1727223d5a90'
+            '62a3655ea88b3dfff5243666a4e90d3f0eef6370a7889affb849e178ba4a82b0'
+            'a60d145a8874b57a944c6775fdf500d03dd1ce73c24357b00d3de37b14620179'
+            'e401e2cf7c0180a170d3dc3e91d7e98002bae7b013df72813b7bcf89b864fb3a'
+            '6aeb4ec9b8ccc062b5ee8c609830c05cee3ed790fa90d7b2d8cf82a09e317c5c'
+            '79f6c6ed4875f00fe702f69e9a6180a032d5a47f3e58e892e6ba0e2746b6fec8'
+            '3cdd6872fae15dc8533b3f75ac36ad59ffb946a3f1b445d688629c621cebbe34'
+            '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
+            'e46afe737bfc57aa31be1a441615fcc112e1ebf41d631c1929e00b81baca119d'
+            'bd1f245a362f85319e83965e8b825e66e686a4a0bf185ab8ec51fd335bc873c2'
+            '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b'
+            'e827778b8a8e6984b637c745c315a2e02ebc46af752651b7a70626ba545a84b6'
+            'a6445dd607093fdafb013e5896f60d78223549b38c96300fe239bcf5dbf2a8de'
+            'f2c44e5018719f644e194a4e8e43390bdc9926c533f79c41f0abf84879799d05'
+            '330149a83684ddabe413d134d4c8efad4c88b18c2ab67165014deff5f7fffad2'
+            'd1b1f8a00935d77521bceb62535350444df3470fa45f4d33c3934051a1bb595b'
+            'd91274d2c0018dccc562b949df2f0b713ca21e8d1522d5f17d1d6c8d6916fedc'
+            '59b5eed7edb1ad53d2312a6208905e6ba53ff5eb7c4e2adf0e77652c5e6cf26d'
+            '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
+            '055b63d6703cac6ed92a8e015377b5977acc7964f1bfcf7d683b92c53e521d7c')
