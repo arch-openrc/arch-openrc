@@ -1,6 +1,15 @@
 OpenRC pkgbuilds
 =========
 
+##openrc-services##
+
+###Groups:###
+
+* openrc
+
+
+##Split packages##
+
 ###Groups:###
 
 * openrc
