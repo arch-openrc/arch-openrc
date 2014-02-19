@@ -38,7 +38,7 @@ fi
 
 pkgname=${_name}-base
 pkgver=0.12.4
-pkgrel=8
+pkgrel=9
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
