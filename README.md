@@ -34,15 +34,14 @@ OpenRC pkgbuilds
 
 #####openrc-sys#####
 
-* cpupower-openrc
 * cronie-openrc
 * cryptsetup-openrc
 * dbus-openrc
 * device-mapper-openrc
 * glibc-openrc
-* lm_sensors-openrc
 * lvm2-openrc
 * mdadm-openrc
+* dhcpcd-openrc
 
 #####openrc-desktop#####
 
@@ -55,15 +54,17 @@ OpenRC pkgbuilds
 
 #####openrc-misc#####
 
+* cpupower-openrc
 * fcron-openrc
 * fuse-openrc
 * laptop-mode-tools-openrc
 * metalog-openrc
-* openntpd-openrc
 * rsyslog-openrc
 * sane-openrc
 * syslog-ng-openrc
 * lirc-utils-openrc
+* ntp-openrc
+* lm_sensors-openrc
 
 #####openrc-devel#####
 
@@ -84,17 +85,16 @@ OpenRC pkgbuilds
 * cups-openrc
 * cyrus-sasl-openrc
 * dhcp-openrc
-* dhcpcd-openrc
 * hostapd-openrc
 * inetutils-openrc
 * iptables-openrc
 * krb5-openrc
 * lighttpd-openrc
 * nfs-utils-openrc
-* ntp-openrc
 * openldap-openrc
 * openslp-openrc
 * openssh-openrc
+* openntpd-openrc
 * polipo-openrc
 * postfix-openrc
 * privoxy-openrc
