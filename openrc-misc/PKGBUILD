@@ -32,7 +32,7 @@ true && pkgname=('fcron-openrc'
 				'syslog-ng-openrc'
 				'lirc-utils-openrc'
 				'openrc-misc-split')
-pkgver=20140227
+pkgver=20140410
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

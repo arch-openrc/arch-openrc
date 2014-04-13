@@ -115,12 +115,5 @@ OpenRC pkgbuilds
 
 #####eudev-base#####
 
-* cups-eudev
-* dbus-eudev
 * eudev
-* eudev-openrc
-* syslog-ng-eudev
-* udisks2-eudev
-* upower-eudev
-* transmission-cli-eudev
 * eudev-openrc
