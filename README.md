@@ -57,7 +57,6 @@ OpenRC pkgbuilds
 * cpupower-openrc
 * fcron-openrc
 * fuse-openrc
-* laptop-mode-tools-openrc
 * metalog-openrc
 * rsyslog-openrc
 * sane-openrc
