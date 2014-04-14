@@ -11,20 +11,36 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/ne
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.8
-pkgrel=3
+pkgrel=4
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/${_name}/"
-groups=('openrc' 'openrc-net')
-depends=('dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit-consolekit' 'consolekit'
-	'udev' 'wpa_supplicant' 'dhcp-client' 'libsoup' 'modemmanager' 'openrc-base')
-makedepends=('intltool' 'dhcpcd' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' 'git')
+groups=('openrc' 'openrc-desktop')
+depends=('dbus-glib'
+		'iproute2'
+		'libnl'
+		'nss'
+		'polkit-consolekit'
+		'consolekit'
+		'udev'
+		'wpa_supplicant'
+		'dhcp-client'
+		'libsoup'
+		'modemmanager'
+		'openrc-base')
+makedepends=('intltool'
+			'dhcpcd'
+			'dhclient'
+			'iptables'
+			'gobject-introspection'
+			'gtk-doc'
+			'git')
 optdepends=('dhclient: DHCPv6 support'
-            'dnsmasq: Connection sharing'
-            'bluez: Bluetooth support'
-            'openresolv: resolvconf support'
-            'ppp: Dialup connection support')
+			'dnsmasq: Connection sharing'
+			'bluez: Bluetooth support'
+			'openresolv: resolvconf support'
+			'ppp: Dialup connection support')
 options=('!libtool')
 provides=("networkmanager=${pkgver}")
 conflicts=('networkmanager')

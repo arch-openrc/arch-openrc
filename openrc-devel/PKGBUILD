@@ -20,25 +20,33 @@ true && pkgname=('git-openrc'
 				'postgresql-openrc'
 				'subversion-openrc'
 				'openrc-devel-split')
-pkgver=20140410
+pkgver=20140415
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-devel')
-makedepends=('openrc-base' 'git' 'mysql' 'postgresql' 'subversion')
-conflicts=('openrc-arch-services-git' 'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
+makedepends=('openrc-base'
+			'git'
+			'mysql'
+			'postgresql'
+			'subversion')
+conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git')
 source=("${_gentoo_uri}/dev-vcs/git/files/${_Cgit}"
-	"${_gentoo_uri}/dev-vcs/git/files/${_Igit}"
-	"${_gentoo_uri}/dev-db/mysql-init-scripts/files/${_Cmy}"
-	"${_gentoo_uri}/dev-db/mysql-init-scripts/files/${_Imy}"
-	"${_dev_uri}/postgresql-initscript-${_pgs_ver}.tbz2"
-	"${_gentoo_uri}/dev-vcs/subversion/files/${_Csvn}"
-	"${_gentoo_uri}/dev-vcs/subversion/files/${_Isvn}")
+		"${_gentoo_uri}/dev-vcs/git/files/${_Igit}"
+		"${_gentoo_uri}/dev-db/mysql-init-scripts/files/${_Cmy}"
+		"${_gentoo_uri}/dev-db/mysql-init-scripts/files/${_Imy}"
+		"${_dev_uri}/postgresql-initscript-${_pgs_ver}.tbz2"
+		"${_gentoo_uri}/dev-vcs/subversion/files/${_Csvn}"
+		"${_gentoo_uri}/dev-vcs/subversion/files/${_Isvn}")
 
 pkgver() {
-  date +%Y%m%d
+	date +%Y%m%d
 }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'

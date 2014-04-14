@@ -125,102 +125,143 @@ true && pkgname=('autofs-openrc'
 				'ypbind-mt-openrc'
 				'ypserv-openrc'
 				'openrc-net-split')
-pkgver=20140414
+pkgver=20140415
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-net')
-makedepends=('openrc-base' 'autofs' 'apache' 'bind' 'bitlbee' 'bluez' 'cups' 'cyrus-sasl' 'dbus-openrc' 'device-mapper-openrc' 'dhcp' 'hostapd' 'inetutils' 'iptables' 'krb5' 'lighttpd' 'nfs-utils'
-'openntpd' 'openldap' 'openslp' 'openssh' 'polipo' 'postfix' 'privoxy' 'quota-tools' 'rpcbind' 'rsync' 'samba' 'squid' 'transmission-cli' 'ufw' 'vsftpd' 'wicd' 'wpa_supplicant' 'xinetd' 'ypbind-mt' 'ypserv' 'yp-tools' 'openvpn' 'connman')
-conflicts=('openrc-arch-services-git' 'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
+makedepends=('openrc-base'
+			'autofs'
+			'apache'
+			'bind'
+			'bitlbee'
+			'bluez'
+			'cups'
+			'cyrus-sasl'
+			'dbus-openrc'
+			'device-mapper-openrc'
+			'dhcp'
+			'hostapd'
+			'inetutils'
+			'iptables'
+			'krb5'
+			'lighttpd'
+			'nfs-utils'
+			'openntpd'
+			'openldap'
+			'openslp'
+			'openssh'
+			'polipo'
+			'postfix'
+			'privoxy'
+			'quota-tools'
+			'rpcbind'
+			'rsync'
+			'samba'
+			'squid'
+			'transmission-cli'
+			'ufw'
+			'vsftpd'
+			'wicd'
+			'wpa_supplicant'
+			'xinetd'
+			'ypbind-mt'
+			'ypserv'
+			#'yp-tools'
+			'openvpn'
+			'connman')
+conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git')
 
 source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
-	"${_gentoo_uri}/net-dns/bind/files/${_Cbind}"
-	"${_gentoo_uri}/net-dns/bind/files/${_Ibind}"
-	"${_gentoo_uri}/net-im/bitlbee/files/${_Cbit}"
-	"${_gentoo_uri}/net-im/bitlbee/files/${_Ibit}"
-	"${_gentoo_uri}/net-wireless/bluez/files/${_Cblue}"
-	"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue1}"
-	"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue2}"
-	"${_gentoo_uri}/net-misc/connman/files/${_Ccon}"
-	"${_gentoo_uri}/net-misc/connman/files/${_Icon}"
-	"${_gentoo_uri}/net-print/cups/files/${_Icups}"
-	"${_gentoo_uri}/dev-libs/cyrus-sasl/files/${_Isasl}"
-	"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp1}"
-	"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp2}"
-	"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp3}"
-	"${_gentoo_uri}/net-misc/dhcp/files/${_Idhcp1}"
-	"${_gentoo_uri}/net-misc/dhcp/files/${_Idhcp2}"
-	"${_gentoo_uri}/net-wireless/hostapd/files/${_Chost}"
-	"${_gentoo_uri}/net-wireless/hostapd/files/${_Ihost}"
-	"${_gentoo_uri}/net-firewall/iptables/files/${_Cip1}"
-	"${_gentoo_uri}/net-firewall/iptables/files/${_Cip2}"
-	"${_gentoo_uri}/net-firewall/iptables/files/${_Iip}"
-	"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb1}"
-	"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb2}"
-	"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb3}"
-	"${_gentoo_uri}/www-servers/lighttpd/files/${_Clight}"
-	"${_gentoo_uri}/www-servers/lighttpd/files/${_Ilight}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Cnfs}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs1}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs2}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs3}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs4}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs5}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs6}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs7}"
-	"${_gentoo_uri}/net-nds/openldap/files/${_Cldap}"
-	"${_gentoo_uri}/net-nds/openldap/files/${_Ildap}"
-	"${_gentoo_uri}/net-libs/openslp/files/${_Islp}"
-	"${_gentoo_uri}/net-misc/openssh/files/${_Cssh}"
-	"${_gentoo_uri}/net-misc/openssh/files/${_Issh}"
-	"${_gentoo_uri}/net-proxy/polipo/files/${_Ipolip}"
-	"${_gentoo_uri}/mail-mta/postfix/files/${_Ipostfix}"
-	"${_gentoo_uri}/net-proxy/privoxy/files/${_Ipriv}"
-	"${_gentoo_uri}/sys-fs/quota/files/${_Cquota}"
-	"${_gentoo_uri}/sys-fs/quota/files/${_Iquota1}"
-	"${_gentoo_uri}/sys-fs/quota/files/${_Iquota2}"
-	"${_gentoo_uri}/net-nds/rpcbind/files/${_Crpc}"
-	"${_gentoo_uri}/net-nds/rpcbind/files/${_Irpc}"
-	"${_gentoo_uri}/net-misc/rsync/files/${_Crsync}"
-	"${_gentoo_uri}/net-misc/rsync/files/${_Irsync}"
-	"${_gentoo_uri}/net-fs/samba/files/4.1/${_Csmb}"
-	"${_gentoo_uri}/net-fs/samba/files/4.1/${_Ismb}"
-	"${_gentoo_uri}/net-proxy/squid/files/${_Csquid}"
-	"${_gentoo_uri}/net-proxy/squid/files/${_Isquid}"
-	"${_gentoo_uri}/net-p2p/transmission/files/${_Ctrans}"
-	"${_gentoo_uri}/net-p2p/transmission/files/${_Itrans}"
-	"${_gentoo_uri}/net-firewall/ufw/files/${_Cufw}"
-	"${_gentoo_uri}/net-firewall/ufw/files/${_Iufw}"
-	"${_gentoo_uri}/net-ftp/vsftpd/files/${_Ivsftp}"
-	"${_gentoo_uri}/net-ftp/vsftpd/files/${_Svsftp}"
-	"${_gentoo_uri}/net-misc/wicd/files/${_Iwicd}"
-	"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Cwpa}"
-	"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Iwpa}"
-	"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Swpa}"
-	"${_gentoo_uri}/sys-apps/xinetd/files/${_Cxinet}"
-	"${_gentoo_uri}/sys-apps/xinetd/files/${_Ixinet}"
-	"${_gentoo_uri}/net-nds/ypbind/files/${_Cypbind}"
-	"${_gentoo_uri}/net-nds/ypbind/files/${_Iypbind}"
-	"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv1}"
-	"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv2}"
-	"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv3}"
-	"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv1}"
-	"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv2}"
-	"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv3}"
-	"${_gentoo_uri}/net-fs/autofs/files/${_Iautofs}"
-	"${_gentoo_uri}/net-misc/openvpn/files/${_Cvpn}"
-	"${_gentoo_uri}/net-misc/openvpn/files/${_Ivpn}"
-	"${_gentoo_uri}/net-misc/openntpd/files/${_Cntp}"
-	"${_gentoo_uri}/net-misc/openntpd/files/${_Intp}"
-	'inetutils.confd' 'inetutils.initd')
-
-
+		"${_gentoo_uri}/net-dns/bind/files/${_Cbind}"
+		"${_gentoo_uri}/net-dns/bind/files/${_Ibind}"
+		"${_gentoo_uri}/net-im/bitlbee/files/${_Cbit}"
+		"${_gentoo_uri}/net-im/bitlbee/files/${_Ibit}"
+		"${_gentoo_uri}/net-wireless/bluez/files/${_Cblue}"
+		"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue1}"
+		"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue2}"
+		"${_gentoo_uri}/net-misc/connman/files/${_Ccon}"
+		"${_gentoo_uri}/net-misc/connman/files/${_Icon}"
+		"${_gentoo_uri}/net-print/cups/files/${_Icups}"
+		"${_gentoo_uri}/dev-libs/cyrus-sasl/files/${_Isasl}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp1}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp2}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp3}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Idhcp1}"
+		"${_gentoo_uri}/net-misc/dhcp/files/${_Idhcp2}"
+		"${_gentoo_uri}/net-wireless/hostapd/files/${_Chost}"
+		"${_gentoo_uri}/net-wireless/hostapd/files/${_Ihost}"
+		"${_gentoo_uri}/net-firewall/iptables/files/${_Cip1}"
+		"${_gentoo_uri}/net-firewall/iptables/files/${_Cip2}"
+		"${_gentoo_uri}/net-firewall/iptables/files/${_Iip}"
+		"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb1}"
+		"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb2}"
+		"${_gentoo_uri}/app-crypt/mit-krb5/files/${_Ikrb3}"
+		"${_gentoo_uri}/www-servers/lighttpd/files/${_Clight}"
+		"${_gentoo_uri}/www-servers/lighttpd/files/${_Ilight}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Cnfs}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs1}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs2}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs3}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs4}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs5}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs6}"
+		"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs7}"
+		"${_gentoo_uri}/net-nds/openldap/files/${_Cldap}"
+		"${_gentoo_uri}/net-nds/openldap/files/${_Ildap}"
+		"${_gentoo_uri}/net-libs/openslp/files/${_Islp}"
+		"${_gentoo_uri}/net-misc/openssh/files/${_Cssh}"
+		"${_gentoo_uri}/net-misc/openssh/files/${_Issh}"
+		"${_gentoo_uri}/net-proxy/polipo/files/${_Ipolip}"
+		"${_gentoo_uri}/mail-mta/postfix/files/${_Ipostfix}"
+		"${_gentoo_uri}/net-proxy/privoxy/files/${_Ipriv}"
+		"${_gentoo_uri}/sys-fs/quota/files/${_Cquota}"
+		"${_gentoo_uri}/sys-fs/quota/files/${_Iquota1}"
+		"${_gentoo_uri}/sys-fs/quota/files/${_Iquota2}"
+		"${_gentoo_uri}/net-nds/rpcbind/files/${_Crpc}"
+		"${_gentoo_uri}/net-nds/rpcbind/files/${_Irpc}"
+		"${_gentoo_uri}/net-misc/rsync/files/${_Crsync}"
+		"${_gentoo_uri}/net-misc/rsync/files/${_Irsync}"
+		"${_gentoo_uri}/net-fs/samba/files/4.1/${_Csmb}"
+		"${_gentoo_uri}/net-fs/samba/files/4.1/${_Ismb}"
+		"${_gentoo_uri}/net-proxy/squid/files/${_Csquid}"
+		"${_gentoo_uri}/net-proxy/squid/files/${_Isquid}"
+		"${_gentoo_uri}/net-p2p/transmission/files/${_Ctrans}"
+		"${_gentoo_uri}/net-p2p/transmission/files/${_Itrans}"
+		"${_gentoo_uri}/net-firewall/ufw/files/${_Cufw}"
+		"${_gentoo_uri}/net-firewall/ufw/files/${_Iufw}"
+		"${_gentoo_uri}/net-ftp/vsftpd/files/${_Ivsftp}"
+		"${_gentoo_uri}/net-ftp/vsftpd/files/${_Svsftp}"
+		"${_gentoo_uri}/net-misc/wicd/files/${_Iwicd}"
+		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Cwpa}"
+		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Iwpa}"
+		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Swpa}"
+		"${_gentoo_uri}/sys-apps/xinetd/files/${_Cxinet}"
+		"${_gentoo_uri}/sys-apps/xinetd/files/${_Ixinet}"
+		"${_gentoo_uri}/net-nds/ypbind/files/${_Cypbind}"
+		"${_gentoo_uri}/net-nds/ypbind/files/${_Iypbind}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv1}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv2}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Cypserv3}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv1}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv2}"
+		"${_gentoo_uri}/net-nds/ypserv/files/${_Iypserv3}"
+		"${_gentoo_uri}/net-fs/autofs/files/${_Iautofs}"
+		"${_gentoo_uri}/net-misc/openvpn/files/${_Cvpn}"
+		"${_gentoo_uri}/net-misc/openvpn/files/${_Ivpn}"
+		"${_gentoo_uri}/net-misc/openntpd/files/${_Cntp}"
+		"${_gentoo_uri}/net-misc/openntpd/files/${_Intp}"
+		'inetutils.confd'
+		'inetutils.initd')
 
 pkgver() {
-  date +%Y%m%d
+	date +%Y%m%d
 }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
@@ -473,7 +514,7 @@ package_openntpd-openrc() {
 	true
 	pkgdesc="OpenRC openntpd init script"
 	depends=('openrc-base' 'openntpd')
-	groups=('openrc-misc')
+	groups=('openrc-net')
 	provides=('openrc-timed')
 	conflicts=('ntp' 'ntp-openrc' 'openrc-arch-services-git'
 		  'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')

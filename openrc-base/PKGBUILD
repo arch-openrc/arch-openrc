@@ -46,11 +46,23 @@ arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('GPL2')
 groups=('openrc' 'openrc-base')
-depends=('inetutils' 'net-tools' 'pkg-config' 'psmisc' 'sysvinit' "${_dep_udev}")
+depends=('inetutils'
+		'net-tools'
+		'pkg-config'
+		'psmisc'
+		'sysvinit'
+		"${_dep_udev}")
 optdepends=('dhcpcd-openrc: dhcpcd initscript')
-conflicts=('initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
-backup=('etc/rc.conf' 'etc/conf.d/consolefont' 'etc/conf.d/keymaps'
-		'etc/conf.d/hostname' 'etc/conf.d/modules' "${_net_confd}")
+conflicts=('initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git')
+backup=('etc/rc.conf'
+		'etc/conf.d/consolefont'
+		'etc/conf.d/keymaps'
+		'etc/conf.d/hostname'
+		'etc/conf.d/modules'
+		"${_net_confd}")
 install=${_name}.install
 source=("${_src_uri}/${_name}-${pkgver}.tar.bz2"
 		"${_src_uri}/${_udev}-${_uver}.tar.bz2"
@@ -111,7 +123,7 @@ package() {
 			_install_eudev
 		fi
 	fi
-	# oldnet	
+	# oldnet
 	if (( ${_use_netifrc} ));then
 		_install_netifrc
 	fi
@@ -172,7 +184,7 @@ _install_udev(){
 	cd "${srcdir}/${_name}-${pkgver}"
 	ln -sf "/etc/init.d/udev" "${pkgdir}/etc/runlevels/sysinit/udev"
 	ln -sf "/etc/init.d/udev-mount" "${pkgdir}/etc/runlevels/sysinit/udev-mount"
-	
+
 	rm ${pkgdir}/usr/lib/udev/net.sh
 	rm ${pkgdir}/usr/lib/udev/rules.d/90-network.rules
 }

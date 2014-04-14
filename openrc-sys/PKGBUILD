@@ -31,35 +31,46 @@ true && pkgname=('cronie-openrc'
 				'lvm2-openrc'
 				'mdadm-openrc'
 				'openrc-sys-split')
-pkgver=20140414
+pkgver=20140415
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-sys')
-makedepends=('cronie' 'cryptsetup' 'dhcpcd' 'dbus' 'device-mapper' 'glibc' 'lvm2' 'mdadm')
-conflicts=('openrc-arch-services-git' 'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
+makedepends=('cronie'
+			'cryptsetup'
+			'dhcpcd'
+			'dbus'
+			'device-mapper'
+			'glibc'
+			'lvm2'
+			'mdadm')
+conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git')
 
 source=("${_gentoo_uri}/sys-process/cronie/files/${_Icron1}"
-	"${_gentoo_uri}/sys-process/cronie/files/${_Icron2}"
-	"${_gentoo_uri}/sys-fs/cryptsetup/files/${_Ccrypt}"
-	"${_gentoo_uri}/sys-fs/cryptsetup/files/${_Icrypt}"
-	"${_gentoo_uri}/sys-apps/dbus/files/${_Idbus}"
-	"${_gentoo_uri}/sys-libs/glibc/files/${_Inscd}"
-	"${_gentoo_uri}/sys-fs/lvm2/files/${_Cdm}"
-	"${_gentoo_uri}/sys-fs/lvm2/files/${_Idm1}"
-	"${_gentoo_uri}/sys-fs/lvm2/files/${_Idm2}"
-	"${_gentoo_uri}/sys-fs/lvm2/files/${_Clvm}"
-	"${_gentoo_uri}/sys-fs/lvm2/files/${_Ilvm1}"
-	"${_gentoo_uri}/sys-fs/lvm2/files/${_Ilvm2}"
-	"${_gentoo_uri}/sys-fs/lvm2/files/${_Ilvm3}"
-	"${_gentoo_uri}/sys-fs/mdadm/files/${_Cmdadm}"
-	"${_gentoo_uri}/sys-fs/mdadm/files/${_Imdadm}"
-	"${_gentoo_uri}/net-misc/dhcpcd/files/${_Idhcpcd}")
+		"${_gentoo_uri}/sys-process/cronie/files/${_Icron2}"
+		"${_gentoo_uri}/sys-fs/cryptsetup/files/${_Ccrypt}"
+		"${_gentoo_uri}/sys-fs/cryptsetup/files/${_Icrypt}"
+		"${_gentoo_uri}/sys-apps/dbus/files/${_Idbus}"
+		"${_gentoo_uri}/sys-libs/glibc/files/${_Inscd}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Cdm}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Idm1}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Idm2}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Clvm}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Ilvm1}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Ilvm2}"
+		"${_gentoo_uri}/sys-fs/lvm2/files/${_Ilvm3}"
+		"${_gentoo_uri}/sys-fs/mdadm/files/${_Cmdadm}"
+		"${_gentoo_uri}/sys-fs/mdadm/files/${_Imdadm}"
+		"${_gentoo_uri}/net-misc/dhcpcd/files/${_Idhcpcd}")
 
 pkgver() {
-  date +%Y%m%d
+	date +%Y%m%d
 }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
@@ -161,7 +172,7 @@ package_lvm2-openrc() {
 	install -Dm755 "${srcdir}/${_Ilvm1}" "${pkgdir}/etc/init.d/lvm"
 	install -Dm755 "${srcdir}/${_Ilvm2}" "${pkgdir}/etc/init.d/lvm-monitoring"
 	install -Dm755 "${srcdir}/${_Ilvm3}" "${pkgdir}/etc/init.d/lvmetad"
-	
+
 	for f in ${pkgdir}/etc/init.d/*;
 	do
 	  sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -i $f

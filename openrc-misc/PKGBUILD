@@ -29,7 +29,6 @@ _Intp1=ntpd.rc
 _Intp2=ntp-client.rc
 _Intp3=sntp.rc
 
-
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=openrc-misc-split
@@ -45,47 +44,57 @@ true && pkgname=('cpupower-openrc'
 				'lm_sensors-openrc'
 				'ntp-openrc'
 				'openrc-misc-split')
-pkgver=20140414
+pkgver=20140415
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-misc')
-makedepends=('cpupower' 'fcron' 'fuse' 'metalog' 'ntp' 'rsyslog' 'sane' 'syslog-ng' 'lirc-utils' 'lm_sensors')
-conflicts=('openrc-arch-services-git' 'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
-
+makedepends=('cpupower'
+			'fcron'
+			'fuse'
+			'metalog'
+			'ntp' 'rsyslog'
+			'sane' 'syslog-ng'
+			'lirc-utils'
+			'lm_sensors')
+conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git')
 
 source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
-	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/${_Crsysl}"
-	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/${_Irsysl}"
-	"${_gentoo_uri}/media-gfx/sane-backends/files/${_Csane}"
-	"${_gentoo_uri}/media-gfx/sane-backends/files/${_Isane}"
-	"${_gentoo_uri}/sys-fs/fuse/files/${_Ifuse}"
-	"${_gentoo_uri}/app-admin/metalog/files/${_Cmeta}"
-	"${_gentoo_uri}/app-admin/metalog/files/${_Imeta}"
-	"${_gentoo_uri}/app-admin/syslog-ng/files/3.5/${_Csyslog}"
-	"${_gentoo_uri}/app-admin/syslog-ng/files/3.5/${_Isyslog}"
-	"${_gentoo_uri}/app-misc/lirc/files/${_Clirc1}"
-	"${_gentoo_uri}/app-misc/lirc/files/${_Clirc2}"
-	"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc1}"
-	"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc2}"
-	"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc3}"
-	"${_gentoo_uri}/sys-power/cpupower/files/${_Ccpu}"
-	"${_gentoo_uri}/sys-power/cpupower/files/${_Icpu}"
-	#"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Csens}"
-	"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens1}"
-	"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens2}"
-	"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens3}"
-	"${_gentoo_uri}/net-misc/ntp/files/${_Cntp1}"
-	"${_gentoo_uri}/net-misc/ntp/files/${_Cntp2}"
-	"${_gentoo_uri}/net-misc/ntp/files/${_Cntp3}"
-	"${_gentoo_uri}/net-misc/ntp/files/${_Intp1}"
-	"${_gentoo_uri}/net-misc/ntp/files/${_Intp2}"
-	"${_gentoo_uri}/net-misc/ntp/files/${_Intp3}")
+		"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/${_Crsysl}"
+		"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/${_Irsysl}"
+		"${_gentoo_uri}/media-gfx/sane-backends/files/${_Csane}"
+		"${_gentoo_uri}/media-gfx/sane-backends/files/${_Isane}"
+		"${_gentoo_uri}/sys-fs/fuse/files/${_Ifuse}"
+		"${_gentoo_uri}/app-admin/metalog/files/${_Cmeta}"
+		"${_gentoo_uri}/app-admin/metalog/files/${_Imeta}"
+		"${_gentoo_uri}/app-admin/syslog-ng/files/3.5/${_Csyslog}"
+		"${_gentoo_uri}/app-admin/syslog-ng/files/3.5/${_Isyslog}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Clirc1}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Clirc2}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc1}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc2}"
+		"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc3}"
+		"${_gentoo_uri}/sys-power/cpupower/files/${_Ccpu}"
+		"${_gentoo_uri}/sys-power/cpupower/files/${_Icpu}"
+		#"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Csens}"
+		"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens1}"
+		"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens2}"
+		"${_gentoo_uri}/sys-apps/lm_sensors/files/${_Isens3}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Cntp1}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Cntp2}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Cntp3}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Intp1}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Intp2}"
+		"${_gentoo_uri}/net-misc/ntp/files/${_Intp3}")
 
 pkgver() {
-  date +%Y%m%d
+	date +%Y%m%d
 }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'

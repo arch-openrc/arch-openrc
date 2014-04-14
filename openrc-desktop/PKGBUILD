@@ -25,32 +25,42 @@ true && pkgname=('acpid-openrc'
 				'displaymanager-openrc'
 				'gpm-openrc'
 				'openrc-desktop-split')
-pkgver=20140410
+pkgver=20140415
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-desktop')
-makedepends=('acpid' 'alsa-utils' 'avahi' 'consolekit' 'gpm' 'xorg-server')
-conflicts=('openrc-arch-services-git' 'initscripts' 'systemd-sysvcompat' 'openrc' 'openrc-git')
+makedepends=('acpid'
+			'alsa-utils'
+			'avahi'
+			'consolekit'
+			'gpm'
+			'xorg-server')
+conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git')
 
 source=("${_gentoo_uri}/sys-power/acpid/files/${_Cacpi}"
-	"${_gentoo_uri}/sys-power/acpid/files/${_Iacpi}"
-	"${_gentoo_uri}/media-sound/alsa-utils/files/${_Calsa}"
-	"${_gentoo_uri}/media-sound/alsa-utils/files/${_Ialsa}"
-	"${_gentoo_uri}/sys-auth/consolekit/files/${_Ick}"
-	"${_gentoo_uri}/sys-auth/consolekit/files/${_Sck}"
-	"${_gentoo_uri}/x11-base/xorg-server/files/${_Cxdm}"
-	"${_gentoo_uri}/x11-base/xorg-server/files/${_Ixdm1}"
-	"${_gentoo_uri}/x11-base/xorg-server/files/${_Ixdm2}"
-	"${_gentoo_uri}/x11-apps/xinit/files/${_Sxdm}"
-	"${_gentoo_uri}/sys-libs/gpm/files/${_Cgpm}"
-	"${_gentoo_uri}/sys-libs/gpm/files/${_Igpm}"
-	'avahi-daemon' 'avahi-dnsconfd')
+		"${_gentoo_uri}/sys-power/acpid/files/${_Iacpi}"
+		"${_gentoo_uri}/media-sound/alsa-utils/files/${_Calsa}"
+		"${_gentoo_uri}/media-sound/alsa-utils/files/${_Ialsa}"
+		"${_gentoo_uri}/sys-auth/consolekit/files/${_Ick}"
+		"${_gentoo_uri}/sys-auth/consolekit/files/${_Sck}"
+		"${_gentoo_uri}/x11-base/xorg-server/files/${_Cxdm}"
+		"${_gentoo_uri}/x11-base/xorg-server/files/${_Ixdm1}"
+		"${_gentoo_uri}/x11-base/xorg-server/files/${_Ixdm2}"
+		"${_gentoo_uri}/x11-apps/xinit/files/${_Sxdm}"
+		"${_gentoo_uri}/sys-libs/gpm/files/${_Cgpm}"
+		"${_gentoo_uri}/sys-libs/gpm/files/${_Igpm}"
+		'avahi-daemon'
+		'avahi-dnsconfd')
 
 pkgver() {
-  date +%Y%m%d
+	date +%Y%m%d
 }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'

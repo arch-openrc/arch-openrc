@@ -12,20 +12,27 @@ pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
 license=('GPL')
-depends=('dbus' 'dbus-glib' 'libx11' 'polkit-consolekit' 'udev' 'zlib')
+depends=('dbus'
+		'dbus-glib'
+		'libx11'
+		'polkit-consolekit'
+		'udev'
+		'zlib')
 optdepends=('consolekit-openrc: consolekit openrc initscript')
-makedepends=('docbook-xsl' 'pkgconfig' 'xmlto')
+makedepends=('docbook-xsl'
+			'pkgconfig'
+			'xmlto')
 options=(!libtool)
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-auth/consolekit/files"
 
 source=("http://www.freedesktop.org/software/ConsoleKit/dist/ConsoleKit-$pkgver.tar.xz"
-	"$_gentoo_uri/pam-foreground-compat.ck"
-	"$_gentoo_uri/consolekit-udev-acl-install_to_usr.patch"
-	"$_gentoo_uri/consolekit-0.4.5-polkit-automagic.patch"
-	"$_gentoo_uri/consolekit-cleanup_console_tags.patch"
-	'consolekit.logrotate'
-	'consolekit.tmpfiles.conf')
+		"$_gentoo_uri/pam-foreground-compat.ck"
+		"$_gentoo_uri/consolekit-udev-acl-install_to_usr.patch"
+		"$_gentoo_uri/consolekit-0.4.5-polkit-automagic.patch"
+		"$_gentoo_uri/consolekit-cleanup_console_tags.patch"
+		'consolekit.logrotate'
+		'consolekit.tmpfiles.conf')
 sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
             '0b5b22641e2b138f4e9dfff9790df9fedaf2f760cc3d878ee1e94c2fd52edea9'
             '823316f6898eaab0744e42fa11b1631f64187aebca35baa5aeab09279820bedd'
@@ -35,37 +42,36 @@ sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1')
 
 prepare(){
-  cd "$srcdir/ConsoleKit-$pkgver"
-  patch -p0 -i "$srcdir/consolekit-udev-acl-install_to_usr.patch"
-  patch -p0 -i "$srcdir/consolekit-0.4.5-polkit-automagic.patch"
-  patch -p0 -i "$srcdir/consolekit-cleanup_console_tags.patch"
+	cd "$srcdir/ConsoleKit-$pkgver"
+	patch -p0 -i "$srcdir/consolekit-udev-acl-install_to_usr.patch"
+	patch -p0 -i "$srcdir/consolekit-0.4.5-polkit-automagic.patch"
+	patch -p0 -i "$srcdir/consolekit-cleanup_console_tags.patch"
 }
 
 build(){
-  cd "$srcdir/ConsoleKit-$pkgver"
-  ./configure  \
-    --prefix=/usr \
-    --sysconfdir=/etc \
-    --sbindir=/usr/bin \
-    --localstatedir=/var \
-    --libexecdir=/usr/lib/ConsoleKit \
-    --enable-pam-module \
-    --with-pam-module-dir=/usr/lib/security \
-    --enable-docbook-docs \
-    --with-dbus-services=/usr/share/dbus-1/services \
-    --enable-udev-acl
-  make
+	cd "$srcdir/ConsoleKit-$pkgver"
+	./configure  \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--sbindir=/usr/bin \
+		--localstatedir=/var \
+		--libexecdir=/usr/lib/ConsoleKit \
+		--enable-pam-module \
+		--with-pam-module-dir=/usr/lib/security \
+		--enable-docbook-docs \
+		--with-dbus-services=/usr/share/dbus-1/services \
+		--enable-udev-acl
+	make
 }
 
 package() {
-  cd "$srcdir/ConsoleKit-$pkgver"
-  make DESTDIR="$pkgdir" install
+	cd "$srcdir/ConsoleKit-$pkgver"
+	make DESTDIR="$pkgdir" install
 
-  install -m755 "$srcdir/pam-foreground-compat.ck" "$pkgdir/usr/lib/ConsoleKit/run-session.d/"
-  install -D -m644 "$srcdir/consolekit.logrotate" "$pkgdir/etc/logrotate.d/consolekit"
-  install -D -m644 "$srcdir/consolekit.tmpfiles.conf" "$pkgdir/usr/lib/tmpfiles.d/consolekit.conf"
-  rm -rf "${pkgdir}/var/run"
-
+	install -m755 "$srcdir/pam-foreground-compat.ck" "$pkgdir/usr/lib/ConsoleKit/run-session.d/"
+	install -D -m644 "$srcdir/consolekit.logrotate" "$pkgdir/etc/logrotate.d/consolekit"
+	install -D -m644 "$srcdir/consolekit.tmpfiles.conf" "$pkgdir/usr/lib/tmpfiles.d/consolekit.conf"
+	rm -rf "${pkgdir}/var/run"
 }
 
 
