@@ -5,8 +5,8 @@
 _udevver=212
 
 pkgname=eudev
-pkgver=1.5.3
-pkgrel=2
+pkgver=1.6
+pkgrel=1
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
@@ -71,7 +71,6 @@ package() {
 	install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
 	install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
 }
-
-sha256sums=('8e4362979572719562f600bfd7decd42d4e21506db5483e3d2e88f725396c57b'
+sha256sums=('9d00d6925ccc7763be89472c5058012bd45ce13f14297e40e4cf3a02244a6a47'
             '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
             '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390')
