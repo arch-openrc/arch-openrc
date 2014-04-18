@@ -16,16 +16,16 @@ _Igpm=gpm.rc6-2
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
-pkgbase=openrc-desktop-split
-pkgname=openrc-desktop-split
+pkgbase=openrc-desktop
+pkgname=openrc-desktop
 true && pkgname=('acpid-openrc'
 				'alsa-utils-openrc'
 				'avahi-openrc'
 				'consolekit-openrc'
 				'displaymanager-openrc'
 				'gpm-openrc'
-				'openrc-desktop-split')
-pkgver=20140416
+				'openrc-desktop')
+pkgver=20140418
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -151,11 +151,18 @@ package_gpm-openrc() {
 # remove 'openrc-desktop-split' from pkgname array
 # Dummy package to make AUR display correct info
 # If installed, it should make upgrade from AUR possible
-package_openrc-desktop-split() {
+package_openrc-desktop() {
 	true
 	pkgdesc="OpenRC desktop init scripts, AUR upgrade and info split-pkg helper"
 	depends=('openrc-base')
 	provides=("openrc-desktop-split-helper=${pkgver}")
+	conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git'
+			'openrc-desktop-split')
+	replaces=('openrc-desktop-split')
 }
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'

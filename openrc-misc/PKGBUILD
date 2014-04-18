@@ -31,8 +31,8 @@ _Intp3=sntp.rc
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
-pkgbase=openrc-misc-split
-pkgname=openrc-misc-split
+pkgbase=openrc-misc
+pkgname=openrc-misc
 true && pkgname=('cpupower-openrc'
 				'fcron-openrc'
 				'fuse-openrc'
@@ -43,7 +43,7 @@ true && pkgname=('cpupower-openrc'
 				'lirc-utils-openrc'
 				'lm_sensors-openrc'
 				'ntp-openrc'
-				'openrc-misc-split')
+				'openrc-misc')
 pkgver=20140415
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -258,11 +258,18 @@ package_lirc-utils-openrc() {
 # remove 'openrc-misc-split' from pkgname array
 # Dummy package to make AUR display correct info
 # If installed, it should make upgrade from AUR possible
-package_openrc-misc-split() {
+package_openrc-misc() {
 	true
 	pkgdesc="OpenRC misc init scripts, AUR upgrade and info split-pkg helper"
 	depends=('openrc-base')
 	provides=("openrc-misc-split-helper=${pkgver}")
+	conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git'
+			'openrc-misc-split')
+	replaces=('openrc-misc-split')
 }
 
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'

@@ -13,13 +13,13 @@ _dev_uri="http://dev.gentoo.org/~titanofold"
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
-pkgbase=openrc-devel-split
-pkgname=openrc-devel-split
+pkgbase=openrc-devel
+pkgname=openrc-devel
 true && pkgname=('git-openrc'
 				'mysql-openrc'
 				'postgresql-openrc'
 				'subversion-openrc'
-				'openrc-devel-split')
+				'openrc-devel')
 pkgver=20140415
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -120,11 +120,18 @@ package_subversion-openrc() {
 # remove 'openrc-devel-split' from pkgname array
 # Dummy package to make AUR display correct info
 # If installed, it should make upgrade from AUR possible
-package_openrc-devel-split() {
+package_openrc-devel() {
 	true
 	pkgdesc="OpenRC devel init scripts, AUR upgrade and info splt-pkg helper"
 	depends=('openrc-base')
 	provides=("openrc-devel-split-helper=${pkgver}")
+	conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git'
+			'openrc-devel-split')
+	replaces=('openrc-devel-split')
 }
 sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '421e68201619bfbf7535d8b1a0030390b7ffab998e025f7cbd7e879c677c2819'

@@ -86,8 +86,8 @@ _aprel=20130801
 _dev_uri="http://dev.gentoo.org/~kensington/dist/apache"
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
-pkgbase=openrc-net-split
-pkgname=openrc-net-split
+pkgbase=openrc-net
+pkgname=openrc-net
 true && pkgname=('autofs-openrc'
 				'apache-openrc'
 				'bind-openrc'
@@ -124,7 +124,7 @@ true && pkgname=('autofs-openrc'
 				'xinetd-openrc'
 				'ypbind-mt-openrc'
 				'ypserv-openrc'
-				'openrc-net-split')
+				'openrc-net')
 pkgver=20140415
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -796,11 +796,18 @@ package_ypserv-openrc() {
 # remove 'openrc-net-split' from pkgname array
 # Dummy package to make AUR display correct info
 # If installed, it should make upgrade from AUR possible
-package_openrc-net-split() {
+package_openrc-net() {
 	true
 	pkgdesc="OpenRC net init scripts, AUR upgrade and info split-pkg helper"
 	depends=('openrc-base')
 	provides=("openrc-net-split-helper=${pkgver}")
+	conflicts=('openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat'
+			'openrc'
+			'openrc-git'
+			'openrc-net-split')
+	replaces=('openrc-net-split')
 }
 
 sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
