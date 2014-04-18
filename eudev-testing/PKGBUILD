@@ -5,7 +5,8 @@
 _udevver=212
 
 pkgbase=eudev
-pkgname=('eudev' 'libeudev')
+pkgname=eudev
+true && pkgname=('eudev' 'libeudev')
 pkgver=1.6
 pkgrel=2
 arch=('i686' 'x86_64')
@@ -39,7 +40,23 @@ build() {
 	make
 }
 
+package_libeudev() {
+	true
+	pkgdesc="eudev libraries"
+	depends=('glib2' 'glibc')
+	license=('GPL')
+	provides=('libgudev-1.0.so'
+			'libudev.so'
+			"libsystemd=${_udevver}"
+			"libudev=${_udevver}")
+	conflicts=('libsystemd')
+	replaces=('libsystemd')
+
+	mv "${srcdir}/_libeudev"/* "${pkgdir}"
+}
+
 package_eudev() {
+	true
 	pkgdesc="The userspace dev tools (udev) forked by Gentoo."
 	license=('GPL')
 	groups=('eudev-base')
@@ -48,7 +65,7 @@ package_eudev() {
 			'kbd'
 			'kmod'
 			'util-linux'
-			"libeudev=${_udevver}")
+			"libudev=${_udevver}")
 	optdepends=('eudev-openrc: eudev-postmount script'
 			'upower-nosystemd: upower without systemd'
 			'udisks2-nosystemd: udisks2 without systemd')
@@ -69,20 +86,6 @@ package_eudev() {
 	cd "${srcdir}/_libeudev"
 	mv "${pkgdir}/usr/lib"/libudev*.so* usr/lib
 	mv "${pkgdir}/usr/lib"/libgudev*.so* usr/lib
-}
-
-package_libeudev() {
-	pkgdesc="eudev libraries"
-	depends=('glib2' 'glibc')
-	license=('GPL')
-	provides=('libgudev-1.0.so'
-			'libudev.so'
-			"libsystemd=${_udevver}"
-			"libeudev=${_udevver}")
-	conflicts=('libsystemd')
-	replaces=('libsystemd')
-
-	mv "${srcdir}/_libeudev"/* "${pkgdir}"
 }
 
 sha256sums=('9d00d6925ccc7763be89472c5058012bd45ce13f14297e40e4cf3a02244a6a47'
