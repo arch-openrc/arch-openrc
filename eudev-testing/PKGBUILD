@@ -50,8 +50,8 @@ package_eudev() {
 			'util-linux'
 			"libeudev=${_udevver}")
 	optdepends=('eudev-openrc: eudev-postmount script'
-		    'upower-nosystemd: upower without systemd'
-		    'udisks2-nosystemd: udisks2 without systemd')
+			'upower-nosystemd: upower without systemd'
+			'udisks2-nosystemd: udisks2 without systemd')
 	provides=("udev=${_udevver}"
 			"systemd=${_udevver}"
 			"systemd-tools=${_udevver}")
@@ -75,7 +75,10 @@ package_libeudev() {
 	pkgdesc="eudev libraries"
 	depends=('glib2' 'glibc')
 	license=('GPL')
-	provides=('libgudev-1.0.so' 'libudev.so' "libsystemd=${_udevver}")
+	provides=('libgudev-1.0.so'
+			'libudev.so'
+			"libsystemd=${_udevver}"
+			"libeudev=${_udevver}")
 	conflicts=('libsystemd')
 	replaces=('libsystemd')
 
