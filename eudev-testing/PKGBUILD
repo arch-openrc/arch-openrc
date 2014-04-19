@@ -8,7 +8,7 @@ pkgbase=eudev
 pkgname=eudev
 true && pkgname=('eudev' 'libeudev')
 pkgver=1.6
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
 makedepends=('gobject-introspection'
@@ -50,7 +50,7 @@ package_libeudev() {
 			"libsystemd=${_udevver}"
 			"libudev=${_udevver}")
 	conflicts=('libsystemd')
-	replaces=('libsystemd')
+	#replaces=('libsystemd')
 
 	mv "${srcdir}/_libeudev"/* "${pkgdir}"
 }
@@ -74,8 +74,8 @@ package_eudev() {
 			"systemd-tools=${_udevver}")
 	conflicts=('systemd'
 			'systemd-tools')
-	replaces=('systemd'
-			'systemd-tools')
+	#replaces=('systemd'
+	#		'systemd-tools')
 	backup=('etc/udev/udev.conf')
 
 	cd "${srcdir}/${pkgbase}-${pkgver}"
