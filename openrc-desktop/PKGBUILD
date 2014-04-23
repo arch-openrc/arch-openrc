@@ -1,5 +1,7 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
+# _is_aur=1
+
 # file vars for easy update
 _Cacpi=acpid-2.0.16-conf.d
 _Iacpi=acpid-2.0.16-init.d
@@ -25,7 +27,7 @@ true && pkgname=('acpid-openrc'
 				'displaymanager-openrc'
 				'gpm-openrc'
 				'openrc-desktop')
-pkgver=20140418
+pkgver=20140423
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -84,6 +86,7 @@ package_alsa-utils-openrc() {
 	true
 	pkgdesc="OpenRC alsa-utils init script"
 	depends=('openrc-base' 'alsa-utils')
+	backup=('etc/conf.d/alsasound')
 	install=alsa-utils.install
 
 	install -Dm755 "${srcdir}/${_Calsa}" "${pkgdir}/etc/conf.d/alsasound"
@@ -148,7 +151,7 @@ package_gpm-openrc() {
 }
 
 # Comment out if you build for your personal repo
-# remove 'openrc-desktop-split' from pkgname array
+# remove 'openrc-desktop' from pkgname array
 # Dummy package to make AUR display correct info
 # If installed, it should make upgrade from AUR possible
 package_openrc-desktop() {

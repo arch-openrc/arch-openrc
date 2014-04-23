@@ -98,7 +98,6 @@ true && pkgname=('autofs-openrc'
 				'cyrus-sasl-openrc'
 				'dhcp-openrc'
 				'hostapd-openrc'
-				'inetutils-openrc'
 				'iptables-openrc'
 				'krb5-openrc'
 				'lighttpd-openrc'
@@ -125,7 +124,7 @@ true && pkgname=('autofs-openrc'
 				'ypbind-mt-openrc'
 				'ypserv-openrc'
 				'openrc-net')
-pkgver=20140415
+pkgver=20140424
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -144,7 +143,6 @@ makedepends=('openrc-base'
 			'device-mapper-openrc'
 			'dhcp'
 			'hostapd'
-			'inetutils'
 			'iptables'
 			'krb5'
 			'lighttpd'
@@ -256,9 +254,7 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 		"${_gentoo_uri}/net-misc/openvpn/files/${_Cvpn}"
 		"${_gentoo_uri}/net-misc/openvpn/files/${_Ivpn}"
 		"${_gentoo_uri}/net-misc/openntpd/files/${_Cntp}"
-		"${_gentoo_uri}/net-misc/openntpd/files/${_Intp}"
-		'inetutils.confd'
-		'inetutils.initd')
+		"${_gentoo_uri}/net-misc/openntpd/files/${_Intp}")
 
 pkgver() {
 	date +%Y%m%d
@@ -414,17 +410,6 @@ package_hostapd-openrc() {
 	install -Dm755 "${srcdir}/${_Ihost}" "${pkgdir}/etc/init.d/hostapd"
 
 	sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/hostapd"
-}
-
-package_inetutils-openrc() {
-	true
-	pkgdesc="OpenRC ftpd init script"
-	depends=('openrc-base' 'inetutils')
-	backup=('etc/conf.d/ftpd')
-	install=inetutils.install
-
-	install -Dm755 "${srcdir}/inetutils.confd" "${pkgdir}/etc/conf.d/ftpd"
-	install -Dm755 "${srcdir}/inetutils.initd" "${pkgdir}/etc/init.d/ftpd"
 }
 
 package_iptables-openrc() {
@@ -793,7 +778,7 @@ package_ypserv-openrc() {
 }
 
 # Comment out if you build for your personal repo
-# remove 'openrc-net-split' from pkgname array
+# remove 'openrc-net' from pkgname array
 # Dummy package to make AUR display correct info
 # If installed, it should make upgrade from AUR possible
 package_openrc-net() {
@@ -809,7 +794,6 @@ package_openrc-net() {
 			'openrc-net-split')
 	replaces=('openrc-net-split')
 }
-
 sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
@@ -888,6 +872,4 @@ sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             '330149a83684ddabe413d134d4c8efad4c88b18c2ab67165014deff5f7fffad2'
             'd1b1f8a00935d77521bceb62535350444df3470fa45f4d33c3934051a1bb595b'
             '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
-            'fca7183a7676f0f471878925c8fbec20b7a0bff01551c0ad2b34d4d8a826c876'
-            '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
-            '055b63d6703cac6ed92a8e015377b5977acc7964f1bfcf7d683b92c53e521d7c')
+            'fca7183a7676f0f471878925c8fbec20b7a0bff01551c0ad2b34d4d8a826c876')

@@ -1,19 +1,9 @@
 OpenRC pkgbuilds
 =========
 
-##openrc-services##
-
 ###Groups:###
 
 * openrc
-
-
-##Split packages##
-
-###Groups:###
-
-* openrc
-* openrc-base
 * openrc-sys
 * openrc-desktop
 * openrc-misc
@@ -22,18 +12,10 @@ OpenRC pkgbuilds
 * eudev-base
 
 
-#####openrc#####
-
-* all openrc-group packages
-* eudev-openrc
-
-#####openrc-base#####
+#####openrc-sys#####
 
 * openrc-base
 * eudev-openrc
-
-#####openrc-sys#####
-
 * cronie-openrc
 * cryptsetup-openrc
 * dbus-openrc
@@ -42,6 +24,7 @@ OpenRC pkgbuilds
 * lvm2-openrc
 * mdadm-openrc
 * dhcpcd-openrc
+* inetutils-openrc
 
 #####openrc-desktop#####
 
@@ -51,6 +34,7 @@ OpenRC pkgbuilds
 * consolekit-openrc
 * displaymanager-openrc
 * gpm-openrc
+* networkmanager-openrc
 
 #####openrc-misc#####
 
@@ -74,7 +58,6 @@ OpenRC pkgbuilds
 
 #####openrc-net#####
 
-* networkmanager-openrc
 * autofs-openrc
 * apache-openrc
 * bind-openrc
@@ -85,7 +68,6 @@ OpenRC pkgbuilds
 * cyrus-sasl-openrc
 * dhcp-openrc
 * hostapd-openrc
-* inetutils-openrc
 * iptables-openrc
 * krb5-openrc
 * lighttpd-openrc

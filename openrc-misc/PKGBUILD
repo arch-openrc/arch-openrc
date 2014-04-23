@@ -44,7 +44,7 @@ true && pkgname=('cpupower-openrc'
 				'lm_sensors-openrc'
 				'ntp-openrc'
 				'openrc-misc')
-pkgver=20140415
+pkgver=20140424
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -255,7 +255,7 @@ package_lirc-utils-openrc() {
 }
 
 # Comment out if you build for your personal repo
-# remove 'openrc-misc-split' from pkgname array
+# remove 'openrc-misc' from pkgname array
 # Dummy package to make AUR display correct info
 # If installed, it should make upgrade from AUR possible
 package_openrc-misc() {

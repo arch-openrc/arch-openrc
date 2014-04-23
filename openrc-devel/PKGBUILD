@@ -20,7 +20,7 @@ true && pkgname=('git-openrc'
 				'postgresql-openrc'
 				'subversion-openrc'
 				'openrc-devel')
-pkgver=20140415
+pkgver=20140423
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -117,7 +117,7 @@ package_subversion-openrc() {
 }
 
 # Comment out if you build for your personal repo
-# remove 'openrc-devel-split' from pkgname array
+# remove 'openrc-devel' from pkgname array
 # Dummy package to make AUR display correct info
 # If installed, it should make upgrade from AUR possible
 package_openrc-devel() {
