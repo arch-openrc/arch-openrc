@@ -28,6 +28,7 @@ _Cntp3=sntp.confd
 _Intp1=ntpd.rc
 _Intp2=ntp-client.rc
 _Intp3=sntp.rc
+_Icups=cupsd.init.d-r1
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -43,6 +44,7 @@ true && pkgname=('cpupower-openrc'
 				'lirc-utils-openrc'
 				'lm_sensors-openrc'
 				'ntp-openrc'
+				'cups-openrc'
 				'openrc-misc')
 pkgver=20140424
 pkgrel=1
@@ -58,7 +60,8 @@ makedepends=('cpupower'
 			'ntp' 'rsyslog'
 			'sane' 'syslog-ng'
 			'lirc-utils'
-			'lm_sensors')
+			'lm_sensors'
+			'cups')
 conflicts=('openrc-arch-services-git'
 			'initscripts'
 			'systemd-sysvcompat'
@@ -91,7 +94,8 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 		"${_gentoo_uri}/net-misc/ntp/files/${_Cntp3}"
 		"${_gentoo_uri}/net-misc/ntp/files/${_Intp1}"
 		"${_gentoo_uri}/net-misc/ntp/files/${_Intp2}"
-		"${_gentoo_uri}/net-misc/ntp/files/${_Intp3}")
+		"${_gentoo_uri}/net-misc/ntp/files/${_Intp3}"
+		"${_gentoo_uri}/net-print/cups/files/${_Icups}")
 
 pkgver() {
 	date +%Y%m%d
@@ -113,6 +117,19 @@ package_cpupower-openrc() {
 	install -Dm755 "${srcdir}/${_Icpu}" "${pkgdir}/etc/init.d/cpupower"
 
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/cpupower"
+}
+
+package_cups-openrc() {
+	true
+	pkgdesc="OpenRC cups init script"
+	depends=('cups' 'dbus-openrc')
+	optdepends=('avahi-openrc')
+	install=cups.install
+
+	install -Dm755 "${srcdir}/${_Icups}" "${pkgdir}/etc/init.d/cupsd"
+
+	local _p1='s|lp:lpadmin|daemon:sys|' _p2='s|@neededservices@|need dbus avahi-daemon|'
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/cupsd"
 }
 
 package_fcron-openrc() {
@@ -271,7 +288,6 @@ package_openrc-misc() {
 			'openrc-misc-split')
 	replaces=('openrc-misc-split')
 }
-
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'ff2634927d3208ac2c82d352f0a7dc9fef1d0ee098d18f818d4417ac04516e9c'
             '7b3b32e89c051566b68c5e5a077cd5960da183e071e411b1248d4e4702a24279'
@@ -297,4 +313,5 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
             'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
             '2e4a42dd64b7c6dacfcfefdab8dc1e7c45d7a0966ef8b928583d18393362c719'
-            '8fbd405ad951e7ad046e4408abb98f4066077113187198767d52f28d7228bae4')
+            '8fbd405ad951e7ad046e4408abb98f4066077113187198767d52f28d7228bae4'
+            '4705b68372090ee7db69da1ad35131551ed1ba99032db2486ff6c31d2170ce6b')

@@ -48,6 +48,7 @@ OpenRC pkgbuilds
 * lirc-utils-openrc
 * ntp-openrc
 * lm_sensors-openrc
+* cups-openrc
 
 #####openrc-devel#####
 
@@ -64,7 +65,6 @@ OpenRC pkgbuilds
 * bitlbee-openrc
 * bluez-openrc
 * connman-openrc
-* cups-openrc
 * cyrus-sasl-openrc
 * dhcp-openrc
 * hostapd-openrc

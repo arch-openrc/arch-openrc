@@ -121,7 +121,7 @@ package_consolekit-openrc() {
 package_displaymanager-openrc() {
 	true
 	pkgdesc="OpenRC dm init script"
-	depends=('openrc-base' 'xorg-server')
+	depends=('openrc-base' 'xorg-server' 'xorg-xinit')
 	optdepends=('consolekit-openrc' 'dbus-openrc')
 	backup=('etc/conf.d/xdm')
 	install=displaymanager.install

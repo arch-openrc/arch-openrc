@@ -10,7 +10,6 @@ _Iblue1=rfcomm-init.d
 _Iblue2=bluetooth-init.d-r3
 _Ccon=connman.confd
 _Icon=connman.initd2
-_Icups=cupsd.init.d-r1
 _Isasl=saslauthd2.rc7
 _Cdhcp1=dhcpd.conf2
 _Cdhcp2=dhcrelay.conf
@@ -94,7 +93,6 @@ true && pkgname=('autofs-openrc'
 				'bitlbee-openrc'
 				'bluez-openrc'
 				'connman-openrc'
-				'cups-openrc'
 				'cyrus-sasl-openrc'
 				'dhcp-openrc'
 				'hostapd-openrc'
@@ -137,7 +135,6 @@ makedepends=('openrc-base'
 			'bind'
 			'bitlbee'
 			'bluez'
-			'cups'
 			'cyrus-sasl'
 			'dbus-openrc'
 			'device-mapper-openrc'
@@ -186,7 +183,6 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 		"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue2}"
 		"${_gentoo_uri}/net-misc/connman/files/${_Ccon}"
 		"${_gentoo_uri}/net-misc/connman/files/${_Icon}"
-		"${_gentoo_uri}/net-print/cups/files/${_Icups}"
 		"${_gentoo_uri}/dev-libs/cyrus-sasl/files/${_Isasl}"
 		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp1}"
 		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp2}"
@@ -351,19 +347,6 @@ package_connman-openrc() {
 	install -Dm755 "${srcdir}/${_Icon}" "${pkgdir}/etc/init.d/connman"
 
 	sed -e "${_shebang}" -e "${_binpath[0]}" -i "${pkgdir}/etc/init.d/connman"
-}
-
-package_cups-openrc() {
-	true
-	pkgdesc="OpenRC cups init script"
-	depends=('cups' 'dbus-openrc')
-	optdepends=('avahi-openrc')
-	install=cups.install
-
-	install -Dm755 "${srcdir}/${_Icups}" "${pkgdir}/etc/init.d/cupsd"
-
-	local _p1='s|lp:lpadmin|daemon:sys|' _p2='s|@neededservices@|need dbus avahi-daemon|'
-	sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/cupsd"
 }
 
 package_cyrus-sasl-openrc() {
@@ -804,7 +787,6 @@ sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             'de7f4a890cf994e1c283251ac5ac6b0aedb29104d708e5e7a77702ac2055dec7'
             '767a160c1b3392f0a12d3908a937548a2f604a9a121e744c309ee6f478420b02'
             'f0a561f124cac3791fba6ee7ef5bc3ea46bd7535edf9e864689b0d9cfa65d332'
-            '4705b68372090ee7db69da1ad35131551ed1ba99032db2486ff6c31d2170ce6b'
             'a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0'
             'e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
             '409b895ed489e75c1a08f72961b45d641b93fd9357f528abc78b1fd036b7f730'
