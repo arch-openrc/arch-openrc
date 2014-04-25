@@ -20,7 +20,7 @@ true && pkgname=('git-openrc'
 				'postgresql-openrc'
 				'subversion-openrc'
 				'openrc-devel')
-pkgver=20140423
+pkgver=20140425
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

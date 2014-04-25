@@ -122,7 +122,7 @@ true && pkgname=('autofs-openrc'
 				'ypbind-mt-openrc'
 				'ypserv-openrc'
 				'openrc-net')
-pkgver=20140424
+pkgver=20140425
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
