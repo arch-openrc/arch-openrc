@@ -1,0 +1,1 @@
+/opt/src/wpa_cli.sh

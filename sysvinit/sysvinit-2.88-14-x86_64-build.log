@@ -1,0 +1,40 @@
+patching file bootlogd.c
+patching file bootlogd.c
+patching file src/Makefile
+Hunk #1 succeeded at 31 with fuzz 1 (offset -6 lines).
+make -C src all
+make[1]: Entering directory '/build/sysvinit/src/sysvinit-2.88dsf/src'
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o init.o init.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE -DINIT_MAIN -c -o init_utmp.o utmp.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o halt.o halt.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o ifdown.o ifdown.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o hddown.o hddown.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o utmp.o utmp.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o shutdown.o shutdown.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o dowall.o dowall.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o runlevel.o runlevel.c
+shutdown.c: In function 'main':
+shutdown.c:485:10: warning: variable 'realuid' set but not used [-Wunused-but-set-variable]
+  uid_t   realuid;
+          ^
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE  -Wl,-O1,--sort-common,--as-needed,-z,relro  killall5.c   -o killall5
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE  -Wl,-O1,--sort-common,--as-needed,-z,relro  fstab-decode.c   -o fstab-decode
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o bootlogd.o bootlogd.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o last.o last.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o mesg.o mesg.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o utmpdump.o utmpdump.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong --param=ssp-buffer-size=4 -W -Wall -D_GNU_SOURCE   -c -o wall.o wall.c
+wall.c: In function 'main':
+wall.c:113:2: warning: format '%d' expects argument of type 'int', but argument 5 has type 'size_t' [-Wformat=]
+  whoami, i, strlen(buf));
+  ^
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  halt.o ifdown.o hddown.o utmp.o reboot.h   -o halt
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  shutdown.o dowall.o utmp.o reboot.h   -o shutdown
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  runlevel.o   -o runlevel
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  bootlogd.o  -lutil -o bootlogd
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  last.o oldutmp.h   -o last
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  mesg.o   -o mesg
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  utmpdump.o   -o utmpdump
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  wall.o dowall.o   -o wall
+cc -Wl,-O1,--sort-common,--as-needed,-z,relro  init.o init_utmp.o    -o init
+make[1]: Leaving directory '/build/sysvinit/src/sysvinit-2.88dsf/src'

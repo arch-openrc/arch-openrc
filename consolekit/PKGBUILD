@@ -7,32 +7,32 @@
 
 pkgname=consolekit
 pkgver=0.4.6
-pkgrel=3
+pkgrel=5
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
 license=('GPL')
 depends=('dbus'
-		'dbus-glib'
-		'libx11'
-		'polkit-consolekit'
-		'udev'
-		'zlib')
+	'dbus-glib'
+	'libx11'
+	'polkit-consolekit'
+	'udev'
+	'acl')
 optdepends=('consolekit-openrc: consolekit openrc initscript')
 makedepends=('docbook-xsl'
-			'pkgconfig'
-			'xmlto')
+	    'pkgconfig'
+	    'xmlto')
 options=(!libtool)
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/sys-auth/consolekit/files"
 
 source=("http://www.freedesktop.org/software/ConsoleKit/dist/ConsoleKit-$pkgver.tar.xz"
-		"$_gentoo_uri/pam-foreground-compat.ck"
-		"$_gentoo_uri/consolekit-udev-acl-install_to_usr.patch"
-		"$_gentoo_uri/consolekit-0.4.5-polkit-automagic.patch"
-		"$_gentoo_uri/consolekit-cleanup_console_tags.patch"
-		'consolekit.logrotate'
-		'consolekit.tmpfiles.conf')
+	"$_gentoo_uri/pam-foreground-compat.ck"
+	"$_gentoo_uri/consolekit-udev-acl-install_to_usr.patch"
+	"$_gentoo_uri/consolekit-0.4.5-polkit-automagic.patch"
+	"$_gentoo_uri/consolekit-cleanup_console_tags.patch"
+	'consolekit.logrotate'
+	'consolekit.tmpfiles.conf')
 sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
             '0b5b22641e2b138f4e9dfff9790df9fedaf2f760cc3d878ee1e94c2fd52edea9'
             '823316f6898eaab0744e42fa11b1631f64187aebca35baa5aeab09279820bedd'

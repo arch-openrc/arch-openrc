@@ -1,0 +1,47 @@
+# Maintainer: A Rojas < nqn1976 @ gmail.com >
+
+pkgname=tribe-partitionmanager-git
+_gitname=partitionmanager
+pkgver=r782.08561a3
+pkgrel=1
+pkgdesc="A KDE utility that allows you to manage disks, partitions, and file systems"
+arch=('i686' 'x86_64')
+url='http://kde.org/applications/system/kdepartitionmanager/'
+license=('GPL2')
+depends=('kdebase-runtime' 'parted')
+makedepends=('cmake' 'automoc4' 'git')
+conflicts=('partitionmanager' 'partitionmanager-git' 'tribe-partitionmanager')
+replaces=('partitionmanager-git')
+provides=('partitionmanager' 'tribe-partitionmanager')
+source=('git://anongit.kde.org/partitionmanager'
+	'tribe.patch')
+install=tribe-partitionmanager.install
+
+pkgver() {
+  cd $_gitname
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  mkdir ${_gitname}-build
+  cp -r ${_gitname}/* ${_gitname}-build
+  cd $srcdir/$_gitname-build
+  patch -p1 < $srcdir/tribe.patch
+}
+
+build() {
+  cd $srcdir/${_gitname}-build
+  cmake ../${_gitname}-build \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DENABLE_UDISKS2=ON \
+    -DQT_QMAKE_EXECUTABLE=qmake-qt4
+  make
+}
+
+package() {
+  cd $srcdir/${_gitname}-build
+  make DESTDIR=${pkgdir} install
+}
+md5sums=('SKIP'
+         'd60306ab4f0a3295987addd201f2bc60')

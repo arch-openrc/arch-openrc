@@ -27,7 +27,7 @@ true && pkgname=('acpid-openrc'
 				'displaymanager-openrc'
 				'gpm-openrc'
 				'openrc-desktop')
-pkgver=20140501
+pkgver=20140527
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

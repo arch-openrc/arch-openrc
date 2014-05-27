@@ -8,8 +8,6 @@ _Ibit=bitlbee.initd
 _Cblue=rfcomm-conf.d
 _Iblue1=rfcomm-init.d
 _Iblue2=bluetooth-init.d-r3
-_Ccon=connman.confd
-_Icon=connman.initd2
 _Isasl=saslauthd2.rc7
 _Cdhcp1=dhcpd.conf2
 _Cdhcp2=dhcrelay.conf
@@ -92,7 +90,6 @@ true && pkgname=('autofs-openrc'
 				'bind-openrc'
 				'bitlbee-openrc'
 				'bluez-openrc'
-				'connman-openrc'
 				'cyrus-sasl-openrc'
 				'dhcp-openrc'
 				'hostapd-openrc'
@@ -116,7 +113,6 @@ true && pkgname=('autofs-openrc'
 				'transmission-openrc'
 				'ufw-openrc'
 				'vsftpd-openrc'
-				'wicd-openrc'
 				'wpa_supplicant-openrc'
 				'xinetd-openrc'
 				'ypbind-mt-openrc'
@@ -134,7 +130,6 @@ makedepends=('apache'
 			'bind'
 			'bitlbee'
 			'bluez'
-			'connman'
 			'cyrus-sasl'
 			'dbus-openrc'
 			'device-mapper-openrc'
@@ -161,7 +156,6 @@ makedepends=('apache'
 			'transmission-cli'
 			'ufw'
 			'vsftpd'
-			'wicd'
 			'wpa_supplicant'
 			'xinetd'
 			'ypbind-mt'
@@ -180,8 +174,6 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 		"${_gentoo_uri}/net-wireless/bluez/files/${_Cblue}"
 		"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue1}"
 		"${_gentoo_uri}/net-wireless/bluez/files/${_Iblue2}"
-		"${_gentoo_uri}/net-misc/connman/files/${_Ccon}"
-		"${_gentoo_uri}/net-misc/connman/files/${_Icon}"
 		"${_gentoo_uri}/dev-libs/cyrus-sasl/files/${_Isasl}"
 		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp1}"
 		"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp2}"
@@ -231,7 +223,6 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 		"${_gentoo_uri}/net-firewall/ufw/files/${_Iufw}"
 		"${_gentoo_uri}/net-ftp/vsftpd/files/${_Ivsftp}"
 		"${_gentoo_uri}/net-ftp/vsftpd/files/${_Svsftp}"
-		"${_gentoo_uri}/net-misc/wicd/files/${_Iwicd}"
 		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Cwpa}"
 		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Iwpa}"
 		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/${_Swpa}"
@@ -333,19 +324,6 @@ package_bluez-openrc() {
 	local _p1='s|/usr/sbin|/usr/lib/bluetooth|g'
 	sed -e "${_shebang}" -e "${_p1}" -i "${pkgdir}/etc/init.d/bluetooth"
 	sed -e "${_shebang}" -e "${_binpath[0]}" -i "${pkgdir}/etc/init.d/rfcomm"
-}
-
-package_connman-openrc() {
-	true
-	pkgdesc="OpenRC connman init script"
-	depends=('openrc-base' 'connman')
-	backup=('etc/conf.d/connman')
-	install=connman.install
-
-	install -Dm755 "${srcdir}/${_Ccon}" "${pkgdir}/etc/conf.d/connman"
-	install -Dm755 "${srcdir}/${_Icon}" "${pkgdir}/etc/init.d/connman"
-
-	sed -e "${_shebang}" -e "${_binpath[0]}" -i "${pkgdir}/etc/init.d/connman"
 }
 
 package_cyrus-sasl-openrc() {
@@ -772,7 +750,6 @@ package_openrc-net() {
 # 			'bind-openrc'
 # 			'bitlbee-openrc'
 # 			'bluez-openrc'
-# 			'connman-openrc'
 # 			'cyrus-sasl-openrc'
 # 			'dhcp-openrc'
 # 			'hostapd-openrc'
@@ -810,82 +787,78 @@ package_openrc-net() {
 			'openrc-net-split')
 	replaces=('openrc-net-split')
 }
-
-sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
-            '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
-            '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
-            '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
-            '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
-            '672498957049fd301f9c9c1dc9fa49430e5e6d3c3f1f3cdce80df3af7d425d08'
-            '88df441dc7a7d5ce28005e311168690ecf877148efc5264e310189a6baedc05e'
-            'de7f4a890cf994e1c283251ac5ac6b0aedb29104d708e5e7a77702ac2055dec7'
-            '767a160c1b3392f0a12d3908a937548a2f604a9a121e744c309ee6f478420b02'
-            'f0a561f124cac3791fba6ee7ef5bc3ea46bd7535edf9e864689b0d9cfa65d332'
-            'a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0'
-            'e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
-            '409b895ed489e75c1a08f72961b45d641b93fd9357f528abc78b1fd036b7f730'
-            '099f668e1ad42ed9446b15675032a1186715d1fe9e4a1b24dfb787e68495d2b6'
-            '049a231908dc2c5f82446712d71d5e75d430bd043b53eead1529f2d81e1595ab'
-            '204aaf81d51dc119cee1d1ff3ae3dd50af666af2f8b2a363fd1bf442d4dcee00'
-            '916f4b14095ee4ec8a510391c883e9f01868e18d79a3d5cbeb13a104a793d45d'
-            'b9701b9ea509638ee1ed74bec38a22e6bd7358763497ce53c146d2faf9e97a61'
-            '7e2341211ca14997b7a8a1f930f94db855291af597c568f680f80031c20d45b6'
-            '2938fe4206514d9868047bd8f888a699fa2097ca69edab176453436d4259abaa'
-            '13047698e03079b754957e1e548ce7505dfb2c73c9a31f87e061140603ab0e44'
-            '3e55c79f19aaa6ef6b64a621c03dbb2eac3ad923916dc803f4c1bfe48ce89fbb'
-            '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
-            'c374ea05d7e9f15e10c8f9dbd0cad6548e0f92aef7de33e5dbc27222e9407e7b'
-            'bb6e6721f33e6582a91025f3500e159a599fb856d699e9394093e1018c7925e0'
-            'b1515472c32927039b38f6c3a797cbc54a5a300b5d6fa54df9550174afa2b7f8'
-            '22bba4ee5d58bae422650875c7c8a797a52fc121ddd02d48297c075b8a35401e'
-            '8df22f253770a24c6a53ce332d821ab680d0ede18d0e968c1c5d8b3796cb74be'
-            'b57637c7eb8e40b5cc1655e8afa69dc0aaecbd3186bdca3301586d1e9b797357'
-            '00d9c29280a83e8458c33139d04a9b38c6fdba9d7cb9b420ca83bf6b10e6435d'
-            '3ce65326859c43983dad25ad2d4731488c488037796e39b6b5eda336e8bf81ef'
-            '6503951b3c200ccf3f46396f7b9274f0a565807f7f6e561c17bed6b0133ae49a'
-            '0c7bd35a14da6c0c2577f09ae82a41ddb693a88157eeaf80684616f79be6c304'
-            'f1c460d8b0e91e54a551397d755135d05a3728d81de596535bf8bda074455677'
-            '5bca003ec3b67c7c78519aede1d82002579006ccfecce8f87b559df719f82e92'
-            '1fc515a6816b8a750db513df0b3b9bf8dd8bd4c4e9051205521acadfdebeae0f'
-            '7f228796e020c0779c52683f684197d50662ae890b1ae193ffa9acf157ccd143'
-            '29c6d57ac3ec6018cadc6ba6cd9b90c9ed46e20049b970fdcc68ee2481a2ee41'
-            '97221a017d8ee9de996277c5a794d973a0b5e8180c29c97b3652bd1984a7b5d0'
-            '438b8a9cfccf1ea14314f38e6821454b6da9ae20ea12bf311ad9fa89816cd702'
-            '51f4bffa535d891f94d4a20ca2a4a42cc99189f3de78cee1c8d235e4a9d1721d'
-            '224496b498b4f692ae3316a95b5c7c8b6230dcd5fee0ca163956a7acde243de9'
-            '00d1dfb3b893db5d6a213a4edda622c7d64dcafa40b3019f15e070c164286632'
-            '00ce705b49aaa356d9d9f0be3b80a3fe2810471cbe02fd0edc66349f3ca281de'
-            'c3896303d6cfebf314a3f6b8aeed0f6cb6ae421c4c0923b0121c76b3251314e5'
-            '38bb95aefc38d843d0890d9c15affd28f19f2133c17f463396c62970e7e2dffc'
-            '6561ae40c5899a9f7a12f1f0867bec47d47c7cc3c583574ffcecbbf6f8d8afbb'
-            'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
-            'baff64277f9aa62cf1eeed2284bb08c4f3078a8e6e7604e4fec228ca5fa9dd82'
-            '53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
-            '9f4eaba0b966fd30351fa66cac9a666b5ec1dc54035ddad94c61a2f43dcb2d62'
-            '214a184495a3384eb452caef435256043bc51e35140a61b1f5fdff32603c8f7e'
-            '3830cb94600ac658a6ff1f9f31bdbece64caf3ad23c62ae0a887d152970125f5'
-            '249689688aad23d0d27ccdd08a0907fd85058d6a52ccd3467f756b07f5d059ee'
-            '06d047b47befe6aaf1b1542fdd50e84ea38e0fef004b5095f6096f33fa1901a3'
-            '069aa7382b40aecebf26ef53f3f4c49890314e0357925c84b3c15f1d0b913be0'
-            '657b5305923b2a5de9eb96931aaaa28d6e997ace6c40793d905887798094258c'
-            'e6cf3df546aae57bb10e2b4282a9ccd79741473ef9dbdbd7628a16c84622da06'
-            '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda'
-            '5546deda3d5fa8f6ee1125922f1217182b24d68a22f5a1212509bb13bf0156e2'
-            '61ec59007f66ac5bacc0aa095d1f2ccbc977a687038e161a463d1727223d5a90'
-            '62a3655ea88b3dfff5243666a4e90d3f0eef6370a7889affb849e178ba4a82b0'
-            'a60d145a8874b57a944c6775fdf500d03dd1ce73c24357b00d3de37b14620179'
-            'e401e2cf7c0180a170d3dc3e91d7e98002bae7b013df72813b7bcf89b864fb3a'
-            '6aeb4ec9b8ccc062b5ee8c609830c05cee3ed790fa90d7b2d8cf82a09e317c5c'
-            '79f6c6ed4875f00fe702f69e9a6180a032d5a47f3e58e892e6ba0e2746b6fec8'
-            '3cdd6872fae15dc8533b3f75ac36ad59ffb946a3f1b445d688629c621cebbe34'
-            '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
-            'e46afe737bfc57aa31be1a441615fcc112e1ebf41d631c1929e00b81baca119d'
-            'bd1f245a362f85319e83965e8b825e66e686a4a0bf185ab8ec51fd335bc873c2'
-            '08db79845b497f2ec8938854ffac904aeed747d98c0820ad0be9e5aa9377512b'
-            'e827778b8a8e6984b637c745c315a2e02ebc46af752651b7a70626ba545a84b6'
-            'a6445dd607093fdafb013e5896f60d78223549b38c96300fe239bcf5dbf2a8de'
-            'f2c44e5018719f644e194a4e8e43390bdc9926c533f79c41f0abf84879799d05'
-            '330149a83684ddabe413d134d4c8efad4c88b18c2ab67165014deff5f7fffad2'
-            'd1b1f8a00935d77521bceb62535350444df3470fa45f4d33c3934051a1bb595b'
-            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
-            'fca7183a7676f0f471878925c8fbec20b7a0bff01551c0ad2b34d4d8a826c876')
+md5sums=('e3cd3ffe6aee349e7d99cfa34b20a13d'
+         'bb341c2bedeeee80966d663c06bea5e6'
+         '3909475873a9e146ceaf66cc7f879469'
+         'ff902ca162f6abb681fdb0e71caf9715'
+         '5822ae8edc15574805e71a2395eb884b'
+         '7f4bb093adb0f519c621f2ea68712f35'
+         'e8dfa071048b019befc77b42bc6a4507'
+         '206546db682b9c83c207724fc32217cd'
+         '3dfd318cb37ff8586f677699996bfd2e'
+         '026570f93fe76d2cdb0bbe6782b3ea5a'
+         'db84514fe15fd7d81136afbaae738f55'
+         '586a3ccc71627b40c83b8e1624afe0cf'
+         '5ae9fd54f0e675135b50c102b0940b95'
+         'f070716786caf8ada45148902fd05854'
+         '44e1d599bbbbabcb53ce925ee037e42b'
+         'afbf89b1a373adf783327e2123d1706f'
+         '5e55e36231cc2bf92da1f30fdbba84b0'
+         'd5eacf7c3b9c2c44e1f2bb97d11197f3'
+         '979cda3013f644988fb2e6dd67e07f2b'
+         '6750e4ea87043b49f0a083c08caa031a'
+         '47efe7f24c98316d38ea46ad629b3517'
+         'd116b1d32517f59f948de98a630cbfb2'
+         '9f27f282a0b6d1bc9c4b881bfe22ab0f'
+         '4cd1abb7125a438ae3e5dfa5fa894cc5'
+         '958d34f1bdcb0ccd95088a0e839d34ab'
+         '97621e3df25c1b2260410534d75b21e1'
+         '579c32ada035ea06552790d9060f13a0'
+         '144b0e1f7d32265abe4c499a47af6154'
+         '650f68e51a02ba84c272960fc302c445'
+         '25119b9ce46fc08c21d78224e27add64'
+         '440a82af810995146b09139b6b8ba93b'
+         '20e71ab412555b2dc9b50f346f68e5c8'
+         '47c47ce8146d4f4a535395119123a98b'
+         '20003ed76003728a47863e576a1a3ea6'
+         '876b7f325b4b3f1a4aba47ee82a55fa4'
+         'b35e9f3829f4cfca07168fcba98749c7'
+         '4c74c47ad9fcf17bffc0f7e44a15898b'
+         '7bcbbef54dd65b2075f9b4e5e581e6af'
+         'b498c8c4a2888021dbc826154c53eeb8'
+         '030be12bb56e87daed2a86c56181c0f6'
+         'c5dea40a64247149737b280f7306a740'
+         '9464002a496f3797da32723c28f1f104'
+         '9e464e21d0713a31fa28418c23f51b86'
+         '1ad5c8dcf432c8f23ba740f4c32a7c60'
+         '1b36cf75c36053c77481a11d5d22b3a1'
+         'e5e62e8cef29e09c22e8ba8152ec1751'
+         '8565be64f077f61804efd64af5d70792'
+         '3c3a8578e562dcb3cf6ffe29123b773f'
+         '9b36d390e79aa59e2a0e6487b97977be'
+         'fa732f3a809eccc202c57613907eb532'
+         '7960369019ee9e6241bb36c11efd26bd'
+         '766945a4090b705a3e5662c704ed5de1'
+         '3d99123b0f48f6c68d62de9f59f57001'
+         '2600804777ec5a93b0fce1d4e6e83311'
+         'c8e24694a33d5ed333370df6a0df06b8'
+         'f25e678da023afec44466b5e7a7c8178'
+         '6537c51bb33b7e59bcf80f17ff6d24ab'
+         'bc117427f2c538439f3f1481a028ee06'
+         '6185ecb6aecef66310cdd23fb3fb7d0c'
+         '2d824bea0c7a3597b8f4736856a162a7'
+         '75be0d5e24dbed7c74493053f455383b'
+         '4ca700e63e2ccbad7c4b5cb7ab52aa37'
+         'c5aee6bd628cd668314e4879a2cad696'
+         '6ed2c04abf05e1c2f63849f2f9e5b4c2'
+         'e5bb4de1f10631c93c5920f87059229a'
+         'f38a0f43a932ff1e4f39d8694cdb0846'
+         '7dc8e37a39eb21d796894f89ffd53262'
+         'ff0f9cd57dcdaac23ae43743d3eebd79'
+         '694f6f542233227781bd04bba4b915da'
+         '490f1e2ad5c1cf080e48d287d9ae3ccb'
+         '8ab75f6438e22c4273df90912c5b4db6'
+         '9eca88cac6294027ec1bb7be74185c3a'
+         'f2b50026aeb81aa2854dd7f5879e5b21'
+         '4bd0344513e299019a3bc653c756a9d4'
+         'c794d1f26289e5c44676ebe26cc5fb3c')
