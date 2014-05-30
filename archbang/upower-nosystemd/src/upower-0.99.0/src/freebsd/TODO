@@ -1,0 +1,4 @@
+FreeBSD doesn't have udev, so the udev rules can't be automatically applied.
+However, they are useful in that they contain some needed battery recall
+information.  To that end, they should be incorporated into the FreeBSD
+backend probably by adding them to a static array, or a hashtable.

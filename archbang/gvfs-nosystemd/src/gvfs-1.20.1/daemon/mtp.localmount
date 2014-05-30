@@ -1,0 +1,4 @@
+[Mount]
+Type=mtp
+Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-mtp
+AutoMount=false

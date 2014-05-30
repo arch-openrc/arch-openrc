@@ -1,1 +1,0 @@
-/opt/src/wpa_supplicant-init.d

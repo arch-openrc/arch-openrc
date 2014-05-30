@@ -1,1 +1,0 @@
-/opt/src/hostapd-init.d

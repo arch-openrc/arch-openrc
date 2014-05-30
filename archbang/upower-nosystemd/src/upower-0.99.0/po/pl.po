@@ -1,0 +1,130 @@
+# translation of pl.po to Polish
+# Piotr Drąg <piotrdrag@gmail.com>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-22 21:13+0000\n"
+"PO-Revision-Date: 2010-01-22 22:14+0100\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
+"Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../policy/org.freedesktop.upower.policy.in.h:1
+msgid "Authentication is required to hibernate the system"
+msgstr "Wymagane jest uwierzytelnienie, aby zahibernować system"
+
+#: ../policy/org.freedesktop.upower.policy.in.h:2
+msgid "Authentication is required to suspend the system"
+msgstr "Wymagane jest uwierzytelnienie, aby wstrzymać system"
+
+#: ../policy/org.freedesktop.upower.policy.in.h:3
+msgid "Hibernate the system"
+msgstr "Hibernacja systemu"
+
+#: ../policy/org.freedesktop.upower.policy.in.h:4
+msgid "Suspend the system"
+msgstr "Wstrzymanie systemu"
+
+#: ../policy/org.freedesktop.upower.qos.policy.in.h:1
+msgid "Authentication is required to cancel a latency request"
+msgstr "Wymagane jest uwierzytelnienie, aby anulować żądanie opóźnienia"
+
+#: ../policy/org.freedesktop.upower.qos.policy.in.h:2
+msgid "Authentication is required to set a persistent latency setting"
+msgstr ""
+"Wymagane jest uwierzytelnienie, aby ustanowić trwałe ustawienie opóźnienia"
+
+#: ../policy/org.freedesktop.upower.qos.policy.in.h:3
+msgid ""
+"Authentication is required to set administrator settings for latency control"
+msgstr ""
+"Wymagane jest uwierzytelnienie, aby ustanowić ustawienia administratora do "
+"kontroli opóźnienia"
+
+#: ../policy/org.freedesktop.upower.qos.policy.in.h:4
+msgid ""
+"Authentication is required to set the required latency of an application"
+msgstr ""
+"Wymagane jest uwierzytelnienie, aby ustawić wymagane opóźnienie programu"
+
+#: ../policy/org.freedesktop.upower.qos.policy.in.h:5
+msgid "Cancel a latency request"
+msgstr "Anulowanie żądania opóźnienia"
+
+#: ../policy/org.freedesktop.upower.qos.policy.in.h:6
+msgid "Set a persistent latency setting"
+msgstr "Ustanowienie ustawienia trwałego opóźnienia"
+
+#: ../policy/org.freedesktop.upower.qos.policy.in.h:7
+msgid "Set administrator settings for latency control"
+msgstr "Ustanowienie ustawień administratora do kontroli opóźnienia"
+
+#: ../policy/org.freedesktop.upower.qos.policy.in.h:8
+msgid "Set the required latency of an application"
+msgstr "Ustawienie wymaganego opóźnienia programu"
+
+#. TRANSLATORS: exit after we've started up, used for user profiling
+#: ../src/up-main.c:140
+msgid "Exit after a small delay"
+msgstr "Kończy działanie po małym opóźnieniu"
+
+#. TRANSLATORS: exit straight away, used for automatic profiling
+#: ../src/up-main.c:143
+msgid "Exit after the engine has loaded"
+msgstr "Kończy działanie po wczytaniu mechanizmu"
+
+#: ../tools/up-tool.c:245
+msgid "Enumerate objects paths for devices"
+msgstr "Wylicza ścieżki obiektów dla urządzeń"
+
+#: ../tools/up-tool.c:246
+msgid "Dump all parameters for all objects"
+msgstr "Zrzuca wszystkie parametry dla wszystkich obiektów"
+
+#: ../tools/up-tool.c:247
+msgid "Get the wakeup data"
+msgstr "Uzyskuje dane wybudzeń"
+
+#: ../tools/up-tool.c:248
+msgid "Monitor activity from the power daemon"
+msgstr "Monitoruje aktywność usługi zasilania"
+
+#: ../tools/up-tool.c:249
+msgid "Monitor with detail"
+msgstr "Monitoruje więcej szczegółów"
+
+#: ../tools/up-tool.c:250
+msgid "Show information about object path"
+msgstr "Wyświetla informacje o ścieżce obiektu"
+
+#. TRANSLATORS: turn on all debugging
+#: ../src/egg-debug.c:364
+msgid "Show debugging information for all files"
+msgstr "Wyświetla informacje debugowania dla wszystkich plików"
+
+#. TRANSLATORS: a list of modules to debug
+#: ../src/egg-debug.c:440
+msgid "Debug these specific modules"
+msgstr "Debuguje podane moduły"
+
+#. TRANSLATORS: a list of functions to debug
+#: ../src/egg-debug.c:443
+msgid "Debug these specific functions"
+msgstr "Debuguje podane funkcje"
+
+#. TRANSLATORS: save to a log
+#: ../src/egg-debug.c:446
+msgid "Log debugging data to a file"
+msgstr "Zapisuje dane debugowania do pliku"
+
+#: ../src/egg-debug.c:450
+msgid "Debugging Options"
+msgstr "Opcje debugowania"
+
+#: ../src/egg-debug.c:450
+msgid "Show debugging options"
+msgstr "Wyświetla opcje debugowania"

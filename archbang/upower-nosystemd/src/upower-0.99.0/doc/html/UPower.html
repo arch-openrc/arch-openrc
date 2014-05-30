@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UPower Reference Manual: org.freedesktop.UPower</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="UPower Reference Manual">
+<link rel="up" href="ref-dbus.html" title="D-Bus API Reference">
+<link rel="prev" href="ref-dbus.html" title="D-Bus API Reference">
+<link rel="next" href="Device.html" title="org.freedesktop.UPower.Device">
+<meta name="generator" content="GTK-Doc V1.19.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="10"><tr valign="middle">
+<td width="100%" align="left">
+<a href="#" class="shortcut">Top</a>
+                   | 
+                  <a href="#UPower.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#UPower.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#UPower.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#UPower.signals" class="shortcut">Signals</a>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ref-dbus.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="ref-dbus.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="Device.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="UPower"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">org.freedesktop.UPower</span></h2>
+<p>org.freedesktop.UPower — UPower interface</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Methods</h2>
+<pre class="synopsis"><a class="link" href="UPower.html#UPower.EnumerateDevices">EnumerateDevices</a>(out'ao'devices)
+<a class="link" href="UPower.html#UPower.GetDisplayDevice">GetDisplayDevice</a>(out'o'device)
+<a class="link" href="UPower.html#UPower.GetCriticalAction">GetCriticalAction</a>(out's'action)
+</pre>
+</div>
+<div class="refsect1">
+<a name="id-1.2.3.4"></a><h2>Signals</h2>
+<pre class="synopsis"><a class="link" href="UPower.html#UPower::DeviceAdded">DeviceAdded</a>('o'device)
+<a class="link" href="UPower.html#UPower::DeviceRemoved">DeviceRemoved</a>('o'device)
+</pre>
+</div>
+<div class="refsect1">
+<a name="id-1.2.3.5"></a><h2>Implemented Interfaces</h2>
+<p>
+    Objects implementing org.freedesktop.UPower also implements
+    org.freedesktop.DBus.Introspectable,
+    org.freedesktop.DBus.Properties
+    </p>
+</div>
+<div class="refsect1">
+<a name="id-1.2.3.6"></a><h2>Properties</h2>
+<pre class="synopsis"><a class="link" href="UPower.html#UPower:DaemonVersion">'DaemonVersion'</a>read's'
+<a class="link" href="UPower.html#UPower:OnBattery">'OnBattery'</a>read'b'
+<a class="link" href="UPower.html#UPower:LidIsClosed">'LidIsClosed'</a>read'b'
+<a class="link" href="UPower.html#UPower:LidIsPresent">'LidIsPresent'</a>read'b'
+<a class="link" href="UPower.html#UPower:IsDocked">'IsDocked'</a>read'b'
+</pre>
+</div>
+<div class="refsect1">
+<a name="id-1.2.3.7"></a><h2>Description</h2>
+<p>
+      
+        </p>
+<p>
+          The UPower service is available via the system message
+          bus. To access the service, use
+          the <code class="literal">org.freedesktop.UPower</code> interface on
+          the <code class="literal">/org/freedesktop/UPower</code> object on
+          the D-Bus system bus service with the well-known
+          name <code class="literal">org.freedesktop.UPower</code>.
+        </p>
+<p>
+        </p>
+<p>
+          </p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="normal">$ dbus</span><span class="symbol">-</span><span class="normal">send </span><span class="symbol">--</span><span class="normal">print</span><span class="symbol">-</span><span class="normal">reply </span><span class="symbol">\</span>
+<span class="normal">            </span><span class="symbol">--</span><span class="normal">system </span><span class="symbol">\</span>
+<span class="normal">            </span><span class="symbol">--</span><span class="normal">dest</span><span class="symbol">=</span><span class="normal">org</span><span class="symbol">.</span><span class="normal">freedesktop</span><span class="symbol">.</span><span class="normal"><a href="UPower.html">UPower</a> </span><span class="symbol">\</span>
+<span class="normal">            </span><span class="symbol">/</span><span class="normal">org</span><span class="symbol">/</span><span class="normal">freedesktop</span><span class="symbol">/</span><span class="normal"><a href="UPower.html">UPower</a> </span><span class="symbol">\</span>
+<span class="normal">            org</span><span class="symbol">.</span><span class="normal">freedesktop</span><span class="symbol">.</span><span class="normal"><a href="UPower.html">UPower</a></span><span class="symbol">.</span><span class="normal">EnumerateDevices</span>
+
+<span class="normal">method </span><span class="usertype">return</span><span class="normal"> sender</span><span class="symbol">=:</span><span class="number">1.386</span><span class="normal"> </span><span class="symbol">-&gt;</span><span class="normal"> dest</span><span class="symbol">=:</span><span class="number">1.451</span><span class="normal"> reply_serial</span><span class="symbol">=</span><span class="number">2</span>
+<span class="normal">   array </span><span class="symbol">[</span>
+<span class="normal">      </span><span class="usertype">object</span><span class="normal"> path </span><span class="string">"/org/freedesktop/UPower/devices/line_power_AC"</span>
+<span class="normal">      </span><span class="usertype">object</span><span class="normal"> path </span><span class="string">"/org/freedesktop/UPower/devices/battery_BAT0"</span>
+<span class="normal">   </span><span class="symbol">]</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+        </p>
+<p>
+      
+    </p>
+</div>
+<div class="refsect1">
+<a name="id-1.2.3.8"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="id-1.2.3.8.2"></a><h3>
+<a name="UPower.EnumerateDevices"></a>EnumerateDevices ()</h3>
+<pre class="programlisting">EnumerateDevices (out'ao'devices)</pre>
+</div>
+<p>
+            Enumerate all power objects on the system.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>devices</code></em>:</span></p></td>
+<td>An array of object paths for devices.</td>
+</tr></tbody>
+</table></div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.3.8.5"></a><h3>
+<a name="UPower.GetDisplayDevice"></a>GetDisplayDevice ()</h3>
+<pre class="programlisting">GetDisplayDevice (out'o'device)</pre>
+</div>
+<p>
+            Get the object to the "display device", a composite device that represents the
+            status icon to show in desktop environments. You can also access the object directly
+            as its path is guaranteed to be /org/freedesktop/UPower/devices/DisplayDevice.
+            The following standard org.freedesktop.UPower.Device
+            properties will be defined (only <code class="literal">IsPresent</code> takes a special meaning):
+            </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+<span class="bold"><strong>Type: </strong></span>the type of the display device, UPS or Battery. Note that this value can change, as opposed to real devices.</li>
+<li class="listitem">
+<span class="bold"><strong>State: </strong></span>the power state of the display device, such as Charging or Discharging.</li>
+<li class="listitem">
+<span class="bold"><strong>Percentage: </strong></span>the amount of energy left on the device.</li>
+<li class="listitem">
+<span class="bold"><strong>Energy: </strong></span>Amount of energy (measured in Wh) currently available in the power source.</li>
+<li class="listitem">
+<span class="bold"><strong>EnergyFull: </strong></span>Amount of energy (measured in Wh) in the power source when it's considered full.</li>
+<li class="listitem">
+<span class="bold"><strong>EnergyRate: </strong></span>Amount of energy being drained from the source, measured in W. If positive, the source is being discharged, if negative it's being charged.</li>
+<li class="listitem">
+<span class="bold"><strong>TimeToEmpty: </strong></span>Number of seconds until the power source is considered empty.</li>
+<li class="listitem">
+<span class="bold"><strong>TimeToFull: </strong></span>Number of seconds until the power source is considered full.</li>
+<li class="listitem">
+<span class="bold"><strong>IsPresent: </strong></span>Whether a status icon using this information should be presented.</li>
+<li class="listitem">
+<span class="bold"><strong>IconName: </strong></span>An icon name representing the device state.</li>
+<li class="listitem">
+<span class="bold"><strong>WarningLevel: </strong></span>The same as the overall <code class="literal">WarningLevel</code>
+</li>
+</ul></div>
+<p>
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em>:</span></p></td>
+<td>An object path for the "display device.</td>
+</tr></tbody>
+</table></div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.3.8.8"></a><h3>
+<a name="UPower.GetCriticalAction"></a>GetCriticalAction ()</h3>
+<pre class="programlisting">GetCriticalAction (out's'action)</pre>
+</div>
+<p>
+            When the system's power supply is critical (critically low batteries or UPS),
+            the system will take this action. Possible values are:
+            </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><span class="bold"><strong>HybridSleep: </strong></span></li>
+<li class="listitem"><span class="bold"><strong>Hibernate: </strong></span></li>
+<li class="listitem"><span class="bold"><strong>PowerOff: </strong></span></li>
+</ul></div>
+<p>
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td>A string representing the critical action configured and available.</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="id-1.2.3.9"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="id-1.2.3.9.2"></a><h3>
+<a name="UPower::DeviceAdded"></a>The DeviceAdded signal</h3>
+<pre class="programlisting">DeviceAdded ('o'device)</pre>
+</div>
+<p>
+            Emitted when a device is added.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em>:</span></p></td>
+<td>Object path of device that was added.</td>
+</tr></tbody>
+</table></div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.3.9.5"></a><h3>
+<a name="UPower::DeviceRemoved"></a>The DeviceRemoved signal</h3>
+<pre class="programlisting">DeviceRemoved ('o'device)</pre>
+</div>
+<p>
+            Emitted when a device is removed.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em>:</span></p></td>
+<td>Object path of device that was removed.</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="id-1.2.3.10"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="id-1.2.3.10.2"></a><h3>
+<a name="UPower:DaemonVersion"></a>The "DaemonVersion" property</h3>
+<pre class="programlisting">'DaemonVersion'read's'
+</pre>
+</div>
+<p>
+            Version of the running daemon, e.g. <code class="literal">002</code>.
+      </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody></tbody>
+</table></div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.3.10.5"></a><h3>
+<a name="UPower:OnBattery"></a>The "OnBattery" property</h3>
+<pre class="programlisting">'OnBattery'read'b'
+</pre>
+</div>
+<p>
+            Indicates whether the system is running on battery power.
+            This property is provided for convenience.
+      </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody></tbody>
+</table></div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.3.10.8"></a><h3>
+<a name="UPower:LidIsClosed"></a>The "LidIsClosed" property</h3>
+<pre class="programlisting">'LidIsClosed'read'b'
+</pre>
+</div>
+<p>
+            Indicates if the laptop lid is closed where the display cannot be seen.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody></tbody>
+</table></div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.3.10.11"></a><h3>
+<a name="UPower:LidIsPresent"></a>The "LidIsPresent" property</h3>
+<pre class="programlisting">'LidIsPresent'read'b'
+</pre>
+</div>
+<p>
+            If the system has a lid device.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody></tbody>
+</table></div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.3.10.14"></a><h3>
+<a name="UPower:IsDocked"></a>The "IsDocked" property</h3>
+<pre class="programlisting">'IsDocked'read'b'
+</pre>
+</div>
+<p>
+            If the system is currently docked.
+            Note: the "is-docked" value is the result of a heuristic,
+            which may involve testing the display output.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody></tbody>
+</table></div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.19.1</div>
+</body>
+</html>

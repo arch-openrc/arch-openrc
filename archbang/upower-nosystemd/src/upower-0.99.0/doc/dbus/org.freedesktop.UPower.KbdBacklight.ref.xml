@@ -1,0 +1,68 @@
+<?xml version="1.0"?><!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="KbdBacklight">
+  <refmeta>
+    <refentrytitle role="top_of_page">org.freedesktop.UPower.KbdBacklight</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname>org.freedesktop.UPower.KbdBacklight</refname>
+    <refpurpose>KbdBacklight interface</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv role="synopsis">
+    <title role="synopsis.title">Methods</title>
+    <synopsis><link linkend="KbdBacklight.GetMaxBrightness">GetMaxBrightness</link>(out'i'value)
+<link linkend="KbdBacklight.GetBrightness">GetBrightness</link>(out'i'value)
+<link linkend="KbdBacklight.SetBrightness">SetBrightness</link>(in'i'value)
+</synopsis>
+  </refsynopsisdiv>
+  <refsect1 role="signal_proto">
+    <title role="signal_proto.title">Signals</title>
+    <synopsis><link linkend="KbdBacklight::BrightnessChanged">BrightnessChanged</link>('i'value)
+</synopsis>
+  </refsect1>
+  <refsect1 role="impl_interfaces">
+    <title role="impl_interfaces.title">Implemented Interfaces</title>
+    <para>
+    Objects implementing org.freedesktop.UPower.KbdBacklight also implements
+    org.freedesktop.DBus.Introspectable,
+    org.freedesktop.DBus.Properties
+    </para>
+  </refsect1>
+  <refsect1 role="desc">
+    <title role="desc.title">Description</title>
+    <para>
+      
+        <para>
+          org.freedesktop.UPower.KbdBacklight is a DBus interface implemented
+          by UPower.
+	  It allows the keyboard backlight (if present) to be controlled.
+        </para>
+      
+    </para>
+  </refsect1>
+  <refsect1 role="details"><title role="details.title">Details</title><refsect2><title><anchor role="function" id="KbdBacklight.GetMaxBrightness"/>GetMaxBrightness ()</title><indexterm><primary>GetMaxBrightness</primary><secondary>KbdBacklight</secondary></indexterm><programlisting>GetMaxBrightness (out'i'value)</programlisting></refsect2>
+          <para>
+            Get the maximum brightness level for the keyboard backlight.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>value</parameter>:</term><listitem><simpara>
+            The maximum value of the keyboard backlight brightness.
+          </simpara></listitem></varlistentry></variablelist><refsect3><title>Errors</title><variablelist role="errors"><varlistentry><term><parameter>org.freedesktop.UPower.GeneralError</parameter>:</term><listitem><simpara>if an error occured while getting the maximum brightness</simpara></listitem></varlistentry></variablelist></refsect3><refsect2><title><anchor role="function" id="KbdBacklight.GetBrightness"/>GetBrightness ()</title><indexterm><primary>GetBrightness</primary><secondary>KbdBacklight</secondary></indexterm><programlisting>GetBrightness (out'i'value)</programlisting></refsect2>
+          <para>
+            Get the brightness level of the keyboard backlight.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>value</parameter>:</term><listitem><simpara>
+            The current value of the keyboard backlight brightness.
+          </simpara></listitem></varlistentry></variablelist><refsect3><title>Errors</title><variablelist role="errors"><varlistentry><term><parameter>org.freedesktop.UPower.GeneralError</parameter>:</term><listitem><simpara>if an error occured while getting the brightness</simpara></listitem></varlistentry></variablelist></refsect3><refsect2><title><anchor role="function" id="KbdBacklight.SetBrightness"/>SetBrightness ()</title><indexterm><primary>SetBrightness</primary><secondary>KbdBacklight</secondary></indexterm><programlisting>SetBrightness (in'i'value)</programlisting></refsect2>
+          <para>
+            Set the brightness level of the keyboard backlight.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>value</parameter>:</term><listitem><simpara>
+            The value to set the KbdBacklight brightness.
+          </simpara></listitem></varlistentry></variablelist><refsect3><title>Errors</title><variablelist role="errors"><varlistentry><term><parameter>org.freedesktop.UPower.GeneralError</parameter>:</term><listitem><simpara>if an error occured while setting the brightness</simpara></listitem></varlistentry></variablelist></refsect3></refsect1>
+  <refsect1 role="signals"><title role="signals.title">Signal Details</title><refsect2><title><anchor role="function" id="KbdBacklight::BrightnessChanged"/>The BrightnessChanged signal</title><indexterm><primary>BrightnessChanged</primary><secondary>KbdBacklight</secondary></indexterm><programlisting>BrightnessChanged ('i'value)</programlisting></refsect2>
+          <para>
+	    The keyboard backlight brightness level has changed.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>value</parameter>:</term><listitem><simpara>
+            The new brightness value of the keyboard backlight.
+          </simpara></listitem></varlistentry></variablelist></refsect1>
+</refentry>

@@ -1,0 +1,90 @@
+<?xml version="1.0"?><!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="Wakeups">
+  <refmeta>
+    <refentrytitle role="top_of_page">org.freedesktop.UPower.Wakeups</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname>org.freedesktop.UPower.Wakeups</refname>
+    <refpurpose>Wakeups interface</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv role="synopsis">
+    <title role="synopsis.title">Methods</title>
+    <synopsis><link linkend="Wakeups.GetTotal">GetTotal</link>(out'u'value)
+<link linkend="Wakeups.GetData">GetData</link>(out'a(budss)'data)
+</synopsis>
+  </refsynopsisdiv>
+  <refsect1 role="signal_proto">
+    <title role="signal_proto.title">Signals</title>
+    <synopsis><link linkend="Wakeups::TotalChanged">TotalChanged</link>('u'value)
+<link linkend="Wakeups::DataChanged">DataChanged</link>()
+</synopsis>
+  </refsect1>
+  <refsect1 role="impl_interfaces">
+    <title role="impl_interfaces.title">Implemented Interfaces</title>
+    <para>
+    Objects implementing org.freedesktop.UPower.Wakeups also implements
+    org.freedesktop.DBus.Introspectable,
+    org.freedesktop.DBus.Properties
+    </para>
+  </refsect1>
+  <refsect1 role="properties">
+    <title role="properties.title">Properties</title>
+    <synopsis><link linkend="Wakeups:HasCapability">'HasCapability'</link>read'b'
+</synopsis>
+  </refsect1>
+  <refsect1 role="desc">
+    <title role="desc.title">Description</title>
+    <para>
+      
+        <para>
+          org.freedesktop.UPower.Wakeups is a DBus interface implemented
+          by UPower.
+          It allows applications to watch what applications and drivers are
+          causing the wakeups on the system.
+        </para>
+      
+    </para>
+  </refsect1>
+  <refsect1 role="details"><title role="details.title">Details</title><refsect2><title><anchor role="function" id="Wakeups.GetTotal"/>GetTotal ()</title><indexterm><primary>GetTotal</primary><secondary>Wakeups</secondary></indexterm><programlisting>GetTotal (out'u'value)</programlisting></refsect2>
+          <para>
+            Get the number of wakeups per second.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>value</parameter>:</term><listitem><simpara>
+            The number of wakeups per second.
+          </simpara></listitem></varlistentry></variablelist><refsect3><title>Errors</title><variablelist role="errors"><varlistentry><term><parameter>org.freedesktop.UPower.GeneralError</parameter>:</term><listitem><simpara>if an error occured while getting the latency</simpara></listitem></varlistentry></variablelist></refsect3><refsect2><title><anchor role="function" id="Wakeups.GetData"/>GetData ()</title><indexterm><primary>GetData</primary><secondary>Wakeups</secondary></indexterm><programlisting>GetData (out'a(budss)'data)</programlisting></refsect2>
+          <para>
+            Gets all the wakeups from drivers and applications.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>data</parameter>:</term><listitem><simpara>
+            The data of all the processes and drivers which contribute to the
+            wakeups on the system.
+            <para><itemizedlist><listitem><emphasis role="bold">is_userspace: </emphasis>
+                  If the wakeup is from userspace.
+                </listitem><listitem><emphasis role="bold">id: </emphasis>
+                  The process ID of the application, or the IRQ for kernel drivers.
+                </listitem><listitem><emphasis role="bold">value: </emphasis>
+                  The number of wakeups per second.
+                </listitem><listitem><emphasis role="bold">cmdline: </emphasis>
+                  The command line for the application, or NULL for kernel drivers.
+                </listitem><listitem><emphasis role="bold">details: </emphasis>
+                  The details about the wakeup.
+                </listitem></itemizedlist></para>
+        </simpara></listitem></varlistentry></variablelist></refsect1>
+  <refsect1 role="signals"><title role="signals.title">Signal Details</title><refsect2><title><anchor role="function" id="Wakeups::TotalChanged"/>The TotalChanged signal</title><indexterm><primary>TotalChanged</primary><secondary>Wakeups</secondary></indexterm><programlisting>TotalChanged ('u'value)</programlisting></refsect2>
+          <para>
+            The number of wakeups per second has changed.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>value</parameter>:</term><listitem><simpara>
+            The number of wakeups per second.
+          </simpara></listitem></varlistentry></variablelist><refsect2><title><anchor role="function" id="Wakeups::DataChanged"/>The DataChanged signal</title><indexterm><primary>DataChanged</primary><secondary>Wakeups</secondary></indexterm><programlisting>DataChanged ()</programlisting></refsect2>
+          <para>
+            The wakeup data has changed.
+          </para>
+        <variablelist role="params"/></refsect1>
+  <refsect1 role="property_details"><title role="property_details.title">Property Details</title><refsect2><title><anchor role="function" id="Wakeups:HasCapability"/>The "HasCapability" property</title><indexterm><primary>HasCapability</primary><secondary>Wakeups</secondary></indexterm><programlisting>'HasCapability'read'b'
+</programlisting></refsect2>
+          <para>
+            If the system has the ability to profile wakeups.
+          </para>
+        <variablelist role="params"/></refsect1>
+</refentry>

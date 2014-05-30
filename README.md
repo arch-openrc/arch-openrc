@@ -11,7 +11,6 @@ OpenRC pkgbuilds
 * openrc-net
 * eudev-base
 
-
 #####openrc-sys#####
 
 * openrc-base
@@ -34,7 +33,6 @@ OpenRC pkgbuilds
 * consolekit-openrc
 * displaymanager-openrc
 * gpm-openrc
-* networkmanager-openrc
 
 #####openrc-misc#####
 
@@ -49,6 +47,8 @@ OpenRC pkgbuilds
 * ntp-openrc
 * lm_sensors-openrc
 * cups-openrc
+* connman-openrc
+* networkmanager-openrc
 
 #####openrc-devel#####
 
@@ -64,7 +64,6 @@ OpenRC pkgbuilds
 * bind-openrc
 * bitlbee-openrc
 * bluez-openrc
-* connman-openrc
 * cyrus-sasl-openrc
 * dhcp-openrc
 * hostapd-openrc
@@ -87,12 +86,10 @@ OpenRC pkgbuilds
 * transmission-openrc
 * ufw-openrc
 * vsftpd-openrc
-* wicd-openrc
 * wpa_supplicant-openrc
 * xinetd-openrc
 * ypbind-mt-openrc
 * ypserv-openrc
-
 
 #####eudev-base#####
 

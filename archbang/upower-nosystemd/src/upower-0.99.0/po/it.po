@@ -1,0 +1,114 @@
+# Italian translation for UPower
+# Copyright (C) 2009 The Free Software Foundation, Inc
+# This file is distributed under the same license as the PolicyKit package.
+# Luca Ferretti <elle.uca@libero.it>, 2009.
+#
+# Milo Casagrande <milo@ubuntu.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: UPower 011\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-24 13:05+0200\n"
+"PO-Revision-Date: 2009-08-26 21:05+0200\n"
+"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
+"Language-Team: Italian <tp@lists.linux.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# message
+#: ../policy/org.freedesktop.devicekit.power.policy.in.h:1
+msgid "Authentication is required to hibernate the system"
+msgstr "È richiesto autenticarsi per ibernare il sistema"
+
+# message
+#: ../policy/org.freedesktop.devicekit.power.policy.in.h:2
+msgid "Authentication is required to suspend the system"
+msgstr "È richiesto autenticarsi per sospendere il sistema"
+
+# description
+#: ../policy/org.freedesktop.devicekit.power.policy.in.h:3
+msgid "Hibernate the system"
+msgstr "Iberna il sistema"
+
+# description
+#: ../policy/org.freedesktop.devicekit.power.policy.in.h:4
+msgid "Suspend the system"
+msgstr "Sospende il sistema"
+
+# message
+#: ../policy/org.freedesktop.devicekit.power.qos.policy.in.h:1
+msgid "Authentication is required to cancel a latency request"
+msgstr "È richiesto autenticarsi per annullare una richiesta di latenza"
+
+# message
+#: ../policy/org.freedesktop.devicekit.power.qos.policy.in.h:2
+msgid "Authentication is required to set a persistent latency setting"
+msgstr ""
+"È richiesto autenticarsi per impostare una impostazione di latenza duratura"
+
+# message
+#: ../policy/org.freedesktop.devicekit.power.qos.policy.in.h:3
+msgid ""
+"Authentication is required to set administrator settings for latency control"
+msgstr ""
+"È richiesto autenticarsi per impostare le impostazioni di amministrazione "
+"per il controllo della latenza"
+
+# message
+#: ../policy/org.freedesktop.devicekit.power.qos.policy.in.h:4
+msgid ""
+"Authentication is required to set the required latency of an application"
+msgstr ""
+"È richiesto autenticarsi per impostare la latenza richiesta di "
+"un'applicazione"
+
+# description
+#: ../policy/org.freedesktop.devicekit.power.qos.policy.in.h:5
+msgid "Cancel a latency request"
+msgstr "Annulla una richiesta di latenza"
+
+# description
+#: ../policy/org.freedesktop.devicekit.power.qos.policy.in.h:6
+msgid "Set a persistent latency setting"
+msgstr "Imposta una impostazione di latenza duratura"
+
+# description
+#: ../policy/org.freedesktop.devicekit.power.qos.policy.in.h:7
+msgid "Set administrator settings for latency control"
+msgstr ""
+"Imposta le impostazioni di amministrazione per il controllo della latenza"
+
+# description
+#: ../policy/org.freedesktop.devicekit.power.qos.policy.in.h:8
+msgid "Set the required latency of an application"
+msgstr "Imposta la latenza richiesta di un'applicazione"
+
+#: ../src/dkp-main.c:134 ../tools/dkp-tool.c:213
+msgid "Show extra debugging information"
+msgstr "Mostra informazioni di debug aggiuntive"
+
+#: ../tools/dkp-tool.c:214
+msgid "Enumerate objects paths for devices"
+msgstr "Enumera i percorsi di oggetti per i dispositivi"
+
+#: ../tools/dkp-tool.c:215
+msgid "Dump all parameters for all objects"
+msgstr "Riversa tutti i parametri per tutti gli oggetti"
+
+#: ../tools/dkp-tool.c:216
+msgid "Get the wakeup data"
+msgstr "Ottiene i dati di risveglio"
+
+# credo sia del
+#: ../tools/dkp-tool.c:217
+msgid "Monitor activity from the power daemon"
+msgstr "Monitoraggio dell'attività del demone di alimentazione"
+
+#: ../tools/dkp-tool.c:218
+msgid "Monitor with detail"
+msgstr "Monitoraggio con dettagli"
+
+#: ../tools/dkp-tool.c:219
+msgid "Show information about object path"
+msgstr "Mostra informazioni sul percorso dell'oggetto"
