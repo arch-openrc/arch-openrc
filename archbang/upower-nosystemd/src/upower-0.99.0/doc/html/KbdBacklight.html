@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UPower Reference Manual: org.freedesktop.UPower.KbdBacklight</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="UPower Reference Manual">
+<link rel="up" href="ref-dbus.html" title="D-Bus API Reference">
+<link rel="prev" href="Device.html" title="org.freedesktop.UPower.Device">
+<link rel="next" href="libupower-glib.html" title="libupower-glib GObjects">
+<meta name="generator" content="GTK-Doc V1.19.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="10"><tr valign="middle">
+<td width="100%" align="left">
+<a href="#" class="shortcut">Top</a>
+                   | 
+                  <a href="#KbdBacklight.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#KbdBacklight.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#KbdBacklight.signals" class="shortcut">Signals</a>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ref-dbus.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="Device.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="libupower-glib.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="KbdBacklight"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">org.freedesktop.UPower.KbdBacklight</span></h2>
+<p>org.freedesktop.UPower.KbdBacklight — KbdBacklight interface</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Methods</h2>
+<pre class="synopsis"><a class="link" href="KbdBacklight.html#KbdBacklight.GetMaxBrightness">GetMaxBrightness</a>(out'i'value)
+<a class="link" href="KbdBacklight.html#KbdBacklight.GetBrightness">GetBrightness</a>(out'i'value)
+<a class="link" href="KbdBacklight.html#KbdBacklight.SetBrightness">SetBrightness</a>(in'i'value)
+</pre>
+</div>
+<div class="refsect1">
+<a name="id-1.2.5.4"></a><h2>Signals</h2>
+<pre class="synopsis"><a class="link" href="KbdBacklight.html#KbdBacklight::BrightnessChanged">BrightnessChanged</a>('i'value)
+</pre>
+</div>
+<div class="refsect1">
+<a name="id-1.2.5.5"></a><h2>Implemented Interfaces</h2>
+<p>
+    Objects implementing org.freedesktop.UPower.KbdBacklight also implements
+    org.freedesktop.DBus.Introspectable,
+    org.freedesktop.DBus.Properties
+    </p>
+</div>
+<div class="refsect1">
+<a name="id-1.2.5.6"></a><h2>Description</h2>
+<p>
+      
+        </p>
+<p>
+          org.freedesktop.UPower.KbdBacklight is a DBus interface implemented
+          by UPower.
+	  It allows the keyboard backlight (if present) to be controlled.
+        </p>
+<p>
+      
+    </p>
+</div>
+<div class="refsect1">
+<a name="id-1.2.5.7"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="id-1.2.5.7.2"></a><h3>
+<a name="KbdBacklight.GetMaxBrightness"></a>GetMaxBrightness ()</h3>
+<pre class="programlisting">GetMaxBrightness (out'i'value)</pre>
+</div>
+<p>
+            Get the maximum brightness level for the keyboard backlight.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>:</span></p></td>
+<td>
+            The maximum value of the keyboard backlight brightness.
+          </td>
+</tr></tbody>
+</table></div>
+<div class="refsect3">
+<a name="id-1.2.5.7.5"></a><h4>Errors</h4>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>org.freedesktop.UPower.GeneralError</code></em>:</span></p></td>
+<td>if an error occured while getting the maximum brightness</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.5.7.6"></a><h3>
+<a name="KbdBacklight.GetBrightness"></a>GetBrightness ()</h3>
+<pre class="programlisting">GetBrightness (out'i'value)</pre>
+</div>
+<p>
+            Get the brightness level of the keyboard backlight.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>:</span></p></td>
+<td>
+            The current value of the keyboard backlight brightness.
+          </td>
+</tr></tbody>
+</table></div>
+<div class="refsect3">
+<a name="id-1.2.5.7.9"></a><h4>Errors</h4>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>org.freedesktop.UPower.GeneralError</code></em>:</span></p></td>
+<td>if an error occured while getting the brightness</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="id-1.2.5.7.10"></a><h3>
+<a name="KbdBacklight.SetBrightness"></a>SetBrightness ()</h3>
+<pre class="programlisting">SetBrightness (in'i'value)</pre>
+</div>
+<p>
+            Set the brightness level of the keyboard backlight.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>:</span></p></td>
+<td>
+            The value to set the KbdBacklight brightness.
+          </td>
+</tr></tbody>
+</table></div>
+<div class="refsect3">
+<a name="id-1.2.5.7.13"></a><h4>Errors</h4>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>org.freedesktop.UPower.GeneralError</code></em>:</span></p></td>
+<td>if an error occured while setting the brightness</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="id-1.2.5.8"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="id-1.2.5.8.2"></a><h3>
+<a name="KbdBacklight::BrightnessChanged"></a>The BrightnessChanged signal</h3>
+<pre class="programlisting">BrightnessChanged ('i'value)</pre>
+</div>
+<p>
+	    The keyboard backlight brightness level has changed.
+          </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>:</span></p></td>
+<td>
+            The new brightness value of the keyboard backlight.
+          </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.19.1</div>
+</body>
+</html>

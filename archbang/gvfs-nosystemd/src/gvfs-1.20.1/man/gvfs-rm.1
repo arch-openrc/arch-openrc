@@ -1,0 +1,64 @@
+'\" t
+.\"     Title: gvfs-rm
+.\"    Author: Alexander Larsson
+.\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
+.\"      Date: 05/29/2014
+.\"    Manual: User Commands
+.\"    Source: gvfs
+.\"  Language: English
+.\"
+.TH "GVFS\-RM" "1" "" "gvfs" "User Commands"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+gvfs-rm \- Delete files
+.SH "SYNOPSIS"
+.HP \w'\fBgvfs\-rm\ \fR\fB[OPTION...]\fR\fB\ \fR\fB[FILE...]\fR\ 'u
+\fBgvfs\-rm \fR\fB[OPTION...]\fR\fB \fR\fB[FILE...]\fR
+.SH "DESCRIPTION"
+.PP
+\fBgvfs\-rm\fR
+deletes each given file\&.
+.PP
+The files can be specified as paths or as URIs with a scheme that is understood by gvfs\&. Note that not all URI schemes may allow deletion of files\&.
+.PP
+\fBgvfs\-rm\fR
+deletes files irreversibly\&. If you want a reversible way to trash files, see
+\fBgvfs\-trash\fR\&.
+.SH "OPTIONS"
+.PP
+The following options are understood:
+.PP
+\fB\-?\fR, \fB\-\-help\fR
+.RS 4
+Prints a short help text and exits\&.
+.RE
+.PP
+\fB\-f\fR, \fB\-\-force\fR
+.RS 4
+Ignore nonexistent and non\-deletable files\&.
+.RE
+.SH "EXIT STATUS"
+.PP
+On success 0 is returned, a non\-zero failure code otherwise\&.
+.SH "SEE ALSO"
+.PP
+\fBrm\fR(1),
+\fBgvfs-trash\fR(1)

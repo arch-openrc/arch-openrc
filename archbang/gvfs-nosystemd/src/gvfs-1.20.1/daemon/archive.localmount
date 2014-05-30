@@ -1,0 +1,5 @@
+[Mount]
+Type=archive
+Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-archive
+AutoMount=false
+Scheme=archive

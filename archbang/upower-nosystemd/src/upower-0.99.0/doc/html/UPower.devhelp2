@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="UPower Reference Manual" link="index.html" author="Richard Hughes" name="UPower" version="2" language="c">
+  <chapters>
+    <sub name="D-Bus API Reference" link="ref-dbus.html">
+      <sub name="org.freedesktop.UPower" link="UPower.html"/>
+      <sub name="org.freedesktop.UPower.Device" link="Device.html"/>
+      <sub name="org.freedesktop.UPower.KbdBacklight" link="KbdBacklight.html"/>
+    </sub>
+    <sub name="libupower-glib GObjects" link="libupower-glib.html">
+      <sub name="up-client" link="UPower-up-client.html"/>
+      <sub name="up-device" link="UPower-up-device.html"/>
+      <sub name="up-history-item" link="UPower-up-history-item.html"/>
+      <sub name="up-stats-item" link="UPower-up-stats-item.html"/>
+      <sub name="up-wakeup-item" link="UPower-up-wakeup-item.html"/>
+    </sub>
+    <sub name="libupower-glib helpers" link="libupower-glib-helpers.html">
+      <sub name="up-types" link="UPower-up-types.html"/>
+    </sub>
+    <sub name="Manual Pages" link="tools-fileformats.html">
+      <sub name="UPower" link="UPower.7.html"/>
+      <sub name="upowerd" link="upowerd.8.html"/>
+      <sub name="upower" link="upower.1.html"/>
+    </sub>
+    <sub name="Index" link="ix01.html"/>
+    <sub name="Annotation Glossary" link="annotation-glossary.html"/>
+    <sub name="License" link="license.html"/>
+  </chapters>
+  <functions>
+    <keyword type="" name="EnumerateDevices ()" link="UPower.html#UPower.EnumerateDevices"/>
+    <keyword type="" name="GetDisplayDevice ()" link="UPower.html#UPower.GetDisplayDevice"/>
+    <keyword type="" name="GetCriticalAction ()" link="UPower.html#UPower.GetCriticalAction"/>
+    <keyword type="" name="The DeviceAdded signal" link="UPower.html#UPower::DeviceAdded"/>
+    <keyword type="" name="The DeviceRemoved signal" link="UPower.html#UPower::DeviceRemoved"/>
+    <keyword type="" name="The &quot;DaemonVersion&quot; property" link="UPower.html#UPower:DaemonVersion"/>
+    <keyword type="" name="The &quot;OnBattery&quot; property" link="UPower.html#UPower:OnBattery"/>
+    <keyword type="" name="The &quot;LidIsClosed&quot; property" link="UPower.html#UPower:LidIsClosed"/>
+    <keyword type="" name="The &quot;LidIsPresent&quot; property" link="UPower.html#UPower:LidIsPresent"/>
+    <keyword type="" name="The &quot;IsDocked&quot; property" link="UPower.html#UPower:IsDocked"/>
+    <keyword type="" name="Refresh ()" link="Device.html#Device.Refresh"/>
+    <keyword type="" name="GetHistory ()" link="Device.html#Device.GetHistory"/>
+    <keyword type="" name="GetStatistics ()" link="Device.html#Device.GetStatistics"/>
+    <keyword type="" name="The &quot;NativePath&quot; property" link="Device.html#Device:NativePath"/>
+    <keyword type="" name="The &quot;Vendor&quot; property" link="Device.html#Device:Vendor"/>
+    <keyword type="" name="The &quot;Model&quot; property" link="Device.html#Device:Model"/>
+    <keyword type="" name="The &quot;Serial&quot; property" link="Device.html#Device:Serial"/>
+    <keyword type="" name="The &quot;UpdateTime&quot; property" link="Device.html#Device:UpdateTime"/>
+    <keyword type="" name="The &quot;Type&quot; property" link="Device.html#Device:Type"/>
+    <keyword type="" name="The &quot;PowerSupply&quot; property" link="Device.html#Device:PowerSupply"/>
+    <keyword type="" name="The &quot;HasHistory&quot; property" link="Device.html#Device:HasHistory"/>
+    <keyword type="" name="The &quot;HasStatistics&quot; property" link="Device.html#Device:HasStatistics"/>
+    <keyword type="" name="The &quot;Online&quot; property" link="Device.html#Device:Online"/>
+    <keyword type="" name="The &quot;Energy&quot; property" link="Device.html#Device:Energy"/>
+    <keyword type="" name="The &quot;EnergyEmpty&quot; property" link="Device.html#Device:EnergyEmpty"/>
+    <keyword type="" name="The &quot;EnergyFull&quot; property" link="Device.html#Device:EnergyFull"/>
+    <keyword type="" name="The &quot;EnergyFullDesign&quot; property" link="Device.html#Device:EnergyFullDesign"/>
+    <keyword type="" name="The &quot;EnergyRate&quot; property" link="Device.html#Device:EnergyRate"/>
+    <keyword type="" name="The &quot;Voltage&quot; property" link="Device.html#Device:Voltage"/>
+    <keyword type="" name="The &quot;Luminosity&quot; property" link="Device.html#Device:Luminosity"/>
+    <keyword type="" name="The &quot;TimeToEmpty&quot; property" link="Device.html#Device:TimeToEmpty"/>
+    <keyword type="" name="The &quot;TimeToFull&quot; property" link="Device.html#Device:TimeToFull"/>
+    <keyword type="" name="The &quot;Percentage&quot; property" link="Device.html#Device:Percentage"/>
+    <keyword type="" name="The &quot;Temperature&quot; property" link="Device.html#Device:Temperature"/>
+    <keyword type="" name="The &quot;IsPresent&quot; property" link="Device.html#Device:IsPresent"/>
+    <keyword type="" name="The &quot;State&quot; property" link="Device.html#Device:State"/>
+    <keyword type="" name="The &quot;IsRechargeable&quot; property" link="Device.html#Device:IsRechargeable"/>
+    <keyword type="" name="The &quot;Capacity&quot; property" link="Device.html#Device:Capacity"/>
+    <keyword type="" name="The &quot;Technology&quot; property" link="Device.html#Device:Technology"/>
+    <keyword type="" name="The &quot;WarningLevel&quot; property" link="Device.html#Device:WarningLevel"/>
+    <keyword type="" name="The &quot;IconName&quot; property" link="Device.html#Device:IconName"/>
+    <keyword type="" name="GetMaxBrightness ()" link="KbdBacklight.html#KbdBacklight.GetMaxBrightness"/>
+    <keyword type="" name="GetBrightness ()" link="KbdBacklight.html#KbdBacklight.GetBrightness"/>
+    <keyword type="" name="SetBrightness ()" link="KbdBacklight.html#KbdBacklight.SetBrightness"/>
+    <keyword type="" name="The BrightnessChanged signal" link="KbdBacklight.html#KbdBacklight::BrightnessChanged"/>
+    <keyword type="macro" name="UP_CLIENT_ERROR" link="UPower-up-client.html#UP-CLIENT-ERROR:CAPS"/>
+    <keyword type="macro" name="UP_CLIENT_TYPE_ERROR" link="UPower-up-client.html#UP-CLIENT-TYPE-ERROR:CAPS"/>
+    <keyword type="function" name="device_added ()" link="UPower-up-client.html#device-added"/>
+    <keyword type="function" name="device_removed ()" link="UPower-up-client.html#device-removed"/>
+    <keyword type="function" name="_up_client_reserved1 ()" link="UPower-up-client.html#up-client-reserved1"/>
+    <keyword type="function" name="_up_client_reserved2 ()" link="UPower-up-client.html#up-client-reserved2"/>
+    <keyword type="function" name="_up_client_reserved3 ()" link="UPower-up-client.html#up-client-reserved3"/>
+    <keyword type="function" name="_up_client_reserved4 ()" link="UPower-up-client.html#up-client-reserved4"/>
+    <keyword type="function" name="_up_client_reserved5 ()" link="UPower-up-client.html#up-client-reserved5"/>
+    <keyword type="function" name="_up_client_reserved6 ()" link="UPower-up-client.html#up-client-reserved6"/>
+    <keyword type="function" name="_up_client_reserved7 ()" link="UPower-up-client.html#up-client-reserved7"/>
+    <keyword type="function" name="_up_client_reserved8 ()" link="UPower-up-client.html#up-client-reserved8"/>
+    <keyword type="function" name="up_client_new ()" link="UPower-up-client.html#up-client-new" since="0.9.0"/>
+    <keyword type="function" name="up_client_get_display_device ()" link="UPower-up-client.html#up-client-get-display-device" since="1.0"/>
+    <keyword type="function" name="up_client_get_critical_action ()" link="UPower-up-client.html#up-client-get-critical-action" since="1.0"/>
+    <keyword type="function" name="up_client_get_devices ()" link="UPower-up-client.html#up-client-get-devices" since="0.9.0"/>
+    <keyword type="function" name="up_client_get_daemon_version ()" link="UPower-up-client.html#up-client-get-daemon-version" since="0.9.0"/>
+    <keyword type="function" name="up_client_get_lid_is_closed ()" link="UPower-up-client.html#up-client-get-lid-is-closed" since="0.9.0"/>
+    <keyword type="function" name="up_client_get_lid_is_present ()" link="UPower-up-client.html#up-client-get-lid-is-present" since="0.9.2"/>
+    <keyword type="function" name="up_client_get_is_docked ()" link="UPower-up-client.html#up-client-get-is-docked" since="0.9.2"/>
+    <keyword type="function" name="up_client_get_on_battery ()" link="UPower-up-client.html#up-client-get-on-battery" since="0.9.0"/>
+    <keyword type="macro" name="UP_DEVICE_ERROR" link="UPower-up-device.html#UP-DEVICE-ERROR:CAPS"/>
+    <keyword type="macro" name="UP_DEVICE_TYPE_ERROR" link="UPower-up-device.html#UP-DEVICE-TYPE-ERROR:CAPS"/>
+    <keyword type="function" name="_up_device_reserved1 ()" link="UPower-up-device.html#up-device-reserved1"/>
+    <keyword type="function" name="_up_device_reserved2 ()" link="UPower-up-device.html#up-device-reserved2"/>
+    <keyword type="function" name="_up_device_reserved3 ()" link="UPower-up-device.html#up-device-reserved3"/>
+    <keyword type="function" name="_up_device_reserved4 ()" link="UPower-up-device.html#up-device-reserved4"/>
+    <keyword type="function" name="_up_device_reserved5 ()" link="UPower-up-device.html#up-device-reserved5"/>
+    <keyword type="function" name="_up_device_reserved6 ()" link="UPower-up-device.html#up-device-reserved6"/>
+    <keyword type="function" name="_up_device_reserved7 ()" link="UPower-up-device.html#up-device-reserved7"/>
+    <keyword type="function" name="_up_device_reserved8 ()" link="UPower-up-device.html#up-device-reserved8"/>
+    <keyword type="function" name="up_device_new ()" link="UPower-up-device.html#up-device-new" since="0.9.0"/>
+    <keyword type="function" name="up_device_to_text ()" link="UPower-up-device.html#up-device-to-text" since="0.9.0"/>
+    <keyword type="function" name="up_device_refresh_sync ()" link="UPower-up-device.html#up-device-refresh-sync" since="0.9.0"/>
+    <keyword type="function" name="up_device_set_object_path_sync ()" link="UPower-up-device.html#up-device-set-object-path-sync" since="0.9.0"/>
+    <keyword type="function" name="up_device_get_history_sync ()" link="UPower-up-device.html#up-device-get-history-sync" since="0.9.0"/>
+    <keyword type="function" name="up_device_get_statistics_sync ()" link="UPower-up-device.html#up-device-get-statistics-sync" since="0.9.0"/>
+    <keyword type="function" name="up_device_get_object_path ()" link="UPower-up-device.html#up-device-get-object-path" since="0.9.0"/>
+    <keyword type="function" name="up_history_item_new ()" link="UPower-up-history-item.html#up-history-item-new" since="0.9.0"/>
+    <keyword type="function" name="up_history_item_get_value ()" link="UPower-up-history-item.html#up-history-item-get-value" since="0.9.0"/>
+    <keyword type="function" name="up_history_item_set_value ()" link="UPower-up-history-item.html#up-history-item-set-value" since="0.9.0"/>
+    <keyword type="function" name="up_history_item_get_time ()" link="UPower-up-history-item.html#up-history-item-get-time" since="0.9.0"/>
+    <keyword type="function" name="up_history_item_set_time ()" link="UPower-up-history-item.html#up-history-item-set-time" since="0.9.0"/>
+    <keyword type="function" name="up_history_item_set_time_to_present ()" link="UPower-up-history-item.html#up-history-item-set-time-to-present" since="0.9.1"/>
+    <keyword type="function" name="up_history_item_get_state ()" link="UPower-up-history-item.html#up-history-item-get-state" since="0.9.0"/>
+    <keyword type="function" name="up_history_item_set_state ()" link="UPower-up-history-item.html#up-history-item-set-state" since="0.9.0"/>
+    <keyword type="function" name="up_history_item_to_string ()" link="UPower-up-history-item.html#up-history-item-to-string" since="0.9.1"/>
+    <keyword type="function" name="up_history_item_set_from_string ()" link="UPower-up-history-item.html#up-history-item-set-from-string" since="0.9.1"/>
+    <keyword type="function" name="up_stats_item_new ()" link="UPower-up-stats-item.html#up-stats-item-new" since="0.9.0"/>
+    <keyword type="function" name="up_stats_item_get_value ()" link="UPower-up-stats-item.html#up-stats-item-get-value" since="0.9.0"/>
+    <keyword type="function" name="up_stats_item_set_value ()" link="UPower-up-stats-item.html#up-stats-item-set-value" since="0.9.0"/>
+    <keyword type="function" name="up_stats_item_get_accuracy ()" link="UPower-up-stats-item.html#up-stats-item-get-accuracy" since="0.9.0"/>
+    <keyword type="function" name="up_stats_item_set_accuracy ()" link="UPower-up-stats-item.html#up-stats-item-set-accuracy" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_new ()" link="UPower-up-wakeup-item.html#up-wakeup-item-new" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_get_is_userspace ()" link="UPower-up-wakeup-item.html#up-wakeup-item-get-is-userspace" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_set_is_userspace ()" link="UPower-up-wakeup-item.html#up-wakeup-item-set-is-userspace" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_get_id ()" link="UPower-up-wakeup-item.html#up-wakeup-item-get-id" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_set_id ()" link="UPower-up-wakeup-item.html#up-wakeup-item-set-id" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_get_old ()" link="UPower-up-wakeup-item.html#up-wakeup-item-get-old" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_set_old ()" link="UPower-up-wakeup-item.html#up-wakeup-item-set-old" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_get_value ()" link="UPower-up-wakeup-item.html#up-wakeup-item-get-value" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_set_value ()" link="UPower-up-wakeup-item.html#up-wakeup-item-set-value" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_get_cmdline ()" link="UPower-up-wakeup-item.html#up-wakeup-item-get-cmdline" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_set_cmdline ()" link="UPower-up-wakeup-item.html#up-wakeup-item-set-cmdline" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_get_details ()" link="UPower-up-wakeup-item.html#up-wakeup-item-get-details" since="0.9.0"/>
+    <keyword type="function" name="up_wakeup_item_set_details ()" link="UPower-up-wakeup-item.html#up-wakeup-item-set-details" since="0.9.0"/>
+    <keyword type="enum" name="enum UpDeviceKind" link="UPower-up-types.html#UpDeviceKind"/>
+    <keyword type="enum" name="enum UpDeviceState" link="UPower-up-types.html#UpDeviceState"/>
+    <keyword type="enum" name="enum UpDeviceTechnology" link="UPower-up-types.html#UpDeviceTechnology"/>
+    <keyword type="enum" name="enum UpDeviceLevel" link="UPower-up-types.html#UpDeviceLevel"/>
+    <keyword type="function" name="up_device_kind_to_string ()" link="UPower-up-types.html#up-device-kind-to-string" since="0.9.0"/>
+    <keyword type="function" name="up_device_state_to_string ()" link="UPower-up-types.html#up-device-state-to-string" since="0.9.0"/>
+    <keyword type="function" name="up_device_technology_to_string ()" link="UPower-up-types.html#up-device-technology-to-string" since="0.9.0"/>
+    <keyword type="function" name="up_device_level_to_string ()" link="UPower-up-types.html#up-device-level-to-string" since="1.0"/>
+    <keyword type="function" name="up_device_kind_from_string ()" link="UPower-up-types.html#up-device-kind-from-string" since="0.9.0"/>
+    <keyword type="function" name="up_device_state_from_string ()" link="UPower-up-types.html#up-device-state-from-string" since="0.9.0"/>
+    <keyword type="function" name="up_device_technology_from_string ()" link="UPower-up-types.html#up-device-technology-from-string" since="0.9.0"/>
+    <keyword type="function" name="up_device_level_from_string ()" link="UPower-up-types.html#up-device-level-from-string" since="1.0"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_UNKNOWN" link="UPower-up-types.html#UP-DEVICE-KIND-UNKNOWN:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_LINE_POWER" link="UPower-up-types.html#UP-DEVICE-KIND-LINE-POWER:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_BATTERY" link="UPower-up-types.html#UP-DEVICE-KIND-BATTERY:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_UPS" link="UPower-up-types.html#UP-DEVICE-KIND-UPS:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_MONITOR" link="UPower-up-types.html#UP-DEVICE-KIND-MONITOR:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_MOUSE" link="UPower-up-types.html#UP-DEVICE-KIND-MOUSE:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_KEYBOARD" link="UPower-up-types.html#UP-DEVICE-KIND-KEYBOARD:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_PDA" link="UPower-up-types.html#UP-DEVICE-KIND-PDA:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_PHONE" link="UPower-up-types.html#UP-DEVICE-KIND-PHONE:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_MEDIA_PLAYER" link="UPower-up-types.html#UP-DEVICE-KIND-MEDIA-PLAYER:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_TABLET" link="UPower-up-types.html#UP-DEVICE-KIND-TABLET:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_COMPUTER" link="UPower-up-types.html#UP-DEVICE-KIND-COMPUTER:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_KIND_LAST" link="UPower-up-types.html#UP-DEVICE-KIND-LAST:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_STATE_UNKNOWN" link="UPower-up-types.html#UP-DEVICE-STATE-UNKNOWN:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_STATE_CHARGING" link="UPower-up-types.html#UP-DEVICE-STATE-CHARGING:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_STATE_DISCHARGING" link="UPower-up-types.html#UP-DEVICE-STATE-DISCHARGING:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_STATE_EMPTY" link="UPower-up-types.html#UP-DEVICE-STATE-EMPTY:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_STATE_FULLY_CHARGED" link="UPower-up-types.html#UP-DEVICE-STATE-FULLY-CHARGED:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_STATE_PENDING_CHARGE" link="UPower-up-types.html#UP-DEVICE-STATE-PENDING-CHARGE:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_STATE_PENDING_DISCHARGE" link="UPower-up-types.html#UP-DEVICE-STATE-PENDING-DISCHARGE:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_STATE_LAST" link="UPower-up-types.html#UP-DEVICE-STATE-LAST:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_TECHNOLOGY_UNKNOWN" link="UPower-up-types.html#UP-DEVICE-TECHNOLOGY-UNKNOWN:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_TECHNOLOGY_LITHIUM_ION" link="UPower-up-types.html#UP-DEVICE-TECHNOLOGY-LITHIUM-ION:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_TECHNOLOGY_LITHIUM_POLYMER" link="UPower-up-types.html#UP-DEVICE-TECHNOLOGY-LITHIUM-POLYMER:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_TECHNOLOGY_LITHIUM_IRON_PHOSPHATE" link="UPower-up-types.html#UP-DEVICE-TECHNOLOGY-LITHIUM-IRON-PHOSPHATE:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_TECHNOLOGY_LEAD_ACID" link="UPower-up-types.html#UP-DEVICE-TECHNOLOGY-LEAD-ACID:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_TECHNOLOGY_NICKEL_CADMIUM" link="UPower-up-types.html#UP-DEVICE-TECHNOLOGY-NICKEL-CADMIUM:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_TECHNOLOGY_NICKEL_METAL_HYDRIDE" link="UPower-up-types.html#UP-DEVICE-TECHNOLOGY-NICKEL-METAL-HYDRIDE:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_TECHNOLOGY_LAST" link="UPower-up-types.html#UP-DEVICE-TECHNOLOGY-LAST:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_LEVEL_UNKNOWN" link="UPower-up-types.html#UP-DEVICE-LEVEL-UNKNOWN:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_LEVEL_NONE" link="UPower-up-types.html#UP-DEVICE-LEVEL-NONE:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_LEVEL_DISCHARGING" link="UPower-up-types.html#UP-DEVICE-LEVEL-DISCHARGING:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_LEVEL_LOW" link="UPower-up-types.html#UP-DEVICE-LEVEL-LOW:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_LEVEL_CRITICAL" link="UPower-up-types.html#UP-DEVICE-LEVEL-CRITICAL:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_LEVEL_ACTION" link="UPower-up-types.html#UP-DEVICE-LEVEL-ACTION:CAPS"/>
+    <keyword type="constant" name="UP_DEVICE_LEVEL_LAST" link="UPower-up-types.html#UP-DEVICE-LEVEL-LAST:CAPS"/>
+  </functions>
+</book>

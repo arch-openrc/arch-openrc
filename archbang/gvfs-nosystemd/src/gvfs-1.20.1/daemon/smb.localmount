@@ -1,0 +1,5 @@
+[Mount]
+Type=smb-share
+Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-smb
+AutoMount=false
+Scheme=smb

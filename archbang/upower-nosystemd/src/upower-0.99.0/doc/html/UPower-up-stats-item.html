@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UPower Reference Manual: up-stats-item</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="UPower Reference Manual">
+<link rel="up" href="libupower-glib.html" title="libupower-glib GObjects">
+<link rel="prev" href="UPower-up-history-item.html" title="up-history-item">
+<link rel="next" href="UPower-up-wakeup-item.html" title="up-wakeup-item">
+<meta name="generator" content="GTK-Doc V1.19.1 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="10"><tr valign="middle">
+<td width="100%" align="left">
+<a href="#" class="shortcut">Top</a>
+                   | 
+                  <a href="#UPower-up-stats-item.description" class="shortcut">Description</a>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="libupower-glib.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="UPower-up-history-item.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="UPower-up-wakeup-item.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="UPower-up-stats-item"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="UPower-up-stats-item.top_of_page"></a>up-stats-item</span></h2>
+<p>up-stats-item — Helper object representing one item of statistics data.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="UPower-up-stats-item.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis"><span class="returnvalue">UpStatsItem</span> *       <a class="link" href="UPower-up-stats-item.html#up-stats-item-new" title="up_stats_item_new ()">up_stats_item_new</a>                   (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="UPower-up-stats-item.html#up-stats-item-get-value" title="up_stats_item_get_value ()">up_stats_item_get_value</a>             (<em class="parameter"><code><span class="type">UpStatsItem</span> *stats_item</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="UPower-up-stats-item.html#up-stats-item-set-value" title="up_stats_item_set_value ()">up_stats_item_set_value</a>             (<em class="parameter"><code><span class="type">UpStatsItem</span> *stats_item</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> value</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="UPower-up-stats-item.html#up-stats-item-get-accuracy" title="up_stats_item_get_accuracy ()">up_stats_item_get_accuracy</a>          (<em class="parameter"><code><span class="type">UpStatsItem</span> *stats_item</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="UPower-up-stats-item.html#up-stats-item-set-accuracy" title="up_stats_item_set_accuracy ()">up_stats_item_set_accuracy</a>          (<em class="parameter"><code><span class="type">UpStatsItem</span> *stats_item</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> accuracy</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="UPower-up-stats-item.description"></a><h2>Description</h2>
+<p>
+This object represents one item of data which may be returned from the
+daemon in response to a query.
+</p>
+<p>
+See also: <span class="type">UpDevice</span>, <span class="type">UpClient</span>
+</p>
+</div>
+<div class="refsect1">
+<a name="UPower-up-stats-item.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="up-stats-item-new"></a><h3>up_stats_item_new ()</h3>
+<pre class="programlisting"><span class="returnvalue">UpStatsItem</span> *       up_stats_item_new                   (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a new UpStatsItem object.</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since 0.9.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="up-stats-item-get-value"></a><h3>up_stats_item_get_value ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             up_stats_item_get_value             (<em class="parameter"><code><span class="type">UpStatsItem</span> *stats_item</code></em>);</pre>
+<p>
+Gets the item value.
+</p>
+<p class="since">Since 0.9.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="up-stats-item-set-value"></a><h3>up_stats_item_set_value ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                up_stats_item_set_value             (<em class="parameter"><code><span class="type">UpStatsItem</span> *stats_item</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> value</code></em>);</pre>
+<p>
+Sets the item value.
+</p>
+<p class="since">Since 0.9.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="up-stats-item-get-accuracy"></a><h3>up_stats_item_get_accuracy ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             up_stats_item_get_accuracy          (<em class="parameter"><code><span class="type">UpStatsItem</span> *stats_item</code></em>);</pre>
+<p>
+Gets the item accuracy.
+</p>
+<p class="since">Since 0.9.0</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="up-stats-item-set-accuracy"></a><h3>up_stats_item_set_accuracy ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                up_stats_item_set_accuracy          (<em class="parameter"><code><span class="type">UpStatsItem</span> *stats_item</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> accuracy</code></em>);</pre>
+<p>
+Sets the item accuracy.
+</p>
+<p class="since">Since 0.9.0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.19.1</div>
+</body>
+</html>

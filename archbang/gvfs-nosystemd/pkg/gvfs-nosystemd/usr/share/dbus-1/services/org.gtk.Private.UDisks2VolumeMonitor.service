@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.gtk.Private.UDisks2VolumeMonitor
+Exec=/usr/lib/gvfs/gvfs-udisks2-volume-monitor

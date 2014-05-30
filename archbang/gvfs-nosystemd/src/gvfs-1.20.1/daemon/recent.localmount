@@ -1,0 +1,5 @@
+[Mount]
+Type=recent
+Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-recent
+AutoMount=true
+

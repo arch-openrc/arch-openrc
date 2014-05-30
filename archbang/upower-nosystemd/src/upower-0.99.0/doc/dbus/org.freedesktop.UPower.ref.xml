@@ -1,0 +1,126 @@
+<?xml version="1.0"?><!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="UPower">
+  <refmeta>
+    <refentrytitle role="top_of_page">org.freedesktop.UPower</refentrytitle>
+  </refmeta>
+  <refnamediv>
+    <refname>org.freedesktop.UPower</refname>
+    <refpurpose>UPower interface</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv role="synopsis">
+    <title role="synopsis.title">Methods</title>
+    <synopsis><link linkend="UPower.EnumerateDevices">EnumerateDevices</link>(out'ao'devices)
+<link linkend="UPower.GetDisplayDevice">GetDisplayDevice</link>(out'o'device)
+<link linkend="UPower.GetCriticalAction">GetCriticalAction</link>(out's'action)
+</synopsis>
+  </refsynopsisdiv>
+  <refsect1 role="signal_proto">
+    <title role="signal_proto.title">Signals</title>
+    <synopsis><link linkend="UPower::DeviceAdded">DeviceAdded</link>('o'device)
+<link linkend="UPower::DeviceRemoved">DeviceRemoved</link>('o'device)
+</synopsis>
+  </refsect1>
+  <refsect1 role="impl_interfaces">
+    <title role="impl_interfaces.title">Implemented Interfaces</title>
+    <para>
+    Objects implementing org.freedesktop.UPower also implements
+    org.freedesktop.DBus.Introspectable,
+    org.freedesktop.DBus.Properties
+    </para>
+  </refsect1>
+  <refsect1 role="properties">
+    <title role="properties.title">Properties</title>
+    <synopsis><link linkend="UPower:DaemonVersion">'DaemonVersion'</link>read's'
+<link linkend="UPower:OnBattery">'OnBattery'</link>read'b'
+<link linkend="UPower:LidIsClosed">'LidIsClosed'</link>read'b'
+<link linkend="UPower:LidIsPresent">'LidIsPresent'</link>read'b'
+<link linkend="UPower:IsDocked">'IsDocked'</link>read'b'
+</synopsis>
+  </refsect1>
+  <refsect1 role="desc">
+    <title role="desc.title">Description</title>
+    <para>
+      
+        <para>
+          The UPower service is available via the system message
+          bus. To access the service, use
+          the <literal>org.freedesktop.UPower</literal> interface on
+          the <literal>/org/freedesktop/UPower</literal> object on
+          the D-Bus system bus service with the well-known
+          name <literal>org.freedesktop.UPower</literal>.
+        </para>
+        <para>
+          <informalexample>
+            <programlisting>
+$ dbus-send --print-reply \
+            --system \
+            --dest=org.freedesktop.UPower \
+            /org/freedesktop/UPower \
+            org.freedesktop.UPower.EnumerateDevices
+
+method return sender=:1.386 -&gt; dest=:1.451 reply_serial=2
+   array [
+      object path "/org/freedesktop/UPower/devices/line_power_AC"
+      object path "/org/freedesktop/UPower/devices/battery_BAT0"
+   ]
+            </programlisting>
+          </informalexample>
+        </para>
+      
+    </para>
+  </refsect1>
+  <refsect1 role="details"><title role="details.title">Details</title><refsect2><title><anchor role="function" id="UPower.EnumerateDevices"/>EnumerateDevices ()</title><indexterm><primary>EnumerateDevices</primary><secondary>UPower</secondary></indexterm><programlisting>EnumerateDevices (out'ao'devices)</programlisting></refsect2>
+          <para>
+            Enumerate all power objects on the system.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>devices</parameter>:</term><listitem><simpara>An array of object paths for devices.</simpara></listitem></varlistentry></variablelist><refsect2><title><anchor role="function" id="UPower.GetDisplayDevice"/>GetDisplayDevice ()</title><indexterm><primary>GetDisplayDevice</primary><secondary>UPower</secondary></indexterm><programlisting>GetDisplayDevice (out'o'device)</programlisting></refsect2>
+          <para>
+            Get the object to the "display device", a composite device that represents the
+            status icon to show in desktop environments. You can also access the object directly
+            as its path is guaranteed to be /org/freedesktop/UPower/devices/DisplayDevice.
+            The following standard org.freedesktop.UPower.Device
+            properties will be defined (only <link linkend="Source:IsPresent"><literal>IsPresent</literal></link> takes a special meaning):
+            <para><itemizedlist><listitem><emphasis role="bold">Type: </emphasis>the type of the display device, UPS or Battery. Note that this value can change, as opposed to real devices.</listitem><listitem><emphasis role="bold">State: </emphasis>the power state of the display device, such as Charging or Discharging.</listitem><listitem><emphasis role="bold">Percentage: </emphasis>the amount of energy left on the device.</listitem><listitem><emphasis role="bold">Energy: </emphasis>Amount of energy (measured in Wh) currently available in the power source.</listitem><listitem><emphasis role="bold">EnergyFull: </emphasis>Amount of energy (measured in Wh) in the power source when it's considered full.</listitem><listitem><emphasis role="bold">EnergyRate: </emphasis>Amount of energy being drained from the source, measured in W. If positive, the source is being discharged, if negative it's being charged.</listitem><listitem><emphasis role="bold">TimeToEmpty: </emphasis>Number of seconds until the power source is considered empty.</listitem><listitem><emphasis role="bold">TimeToFull: </emphasis>Number of seconds until the power source is considered full.</listitem><listitem><emphasis role="bold">IsPresent: </emphasis>Whether a status icon using this information should be presented.</listitem><listitem><emphasis role="bold">IconName: </emphasis>An icon name representing the device state.</listitem><listitem><emphasis role="bold">WarningLevel: </emphasis>The same as the overall <link linkend="Source:WarningLevel"><literal>WarningLevel</literal></link></listitem></itemizedlist></para>
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>device</parameter>:</term><listitem><simpara>An object path for the "display device.</simpara></listitem></varlistentry></variablelist><refsect2><title><anchor role="function" id="UPower.GetCriticalAction"/>GetCriticalAction ()</title><indexterm><primary>GetCriticalAction</primary><secondary>UPower</secondary></indexterm><programlisting>GetCriticalAction (out's'action)</programlisting></refsect2>
+          <para>
+            When the system's power supply is critical (critically low batteries or UPS),
+            the system will take this action. Possible values are:
+            <para><itemizedlist><listitem><emphasis role="bold">HybridSleep: </emphasis></listitem><listitem><emphasis role="bold">Hibernate: </emphasis></listitem><listitem><emphasis role="bold">PowerOff: </emphasis></listitem></itemizedlist></para>
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>action</parameter>:</term><listitem><simpara>A string representing the critical action configured and available.</simpara></listitem></varlistentry></variablelist></refsect1>
+  <refsect1 role="signals"><title role="signals.title">Signal Details</title><refsect2><title><anchor role="function" id="UPower::DeviceAdded"/>The DeviceAdded signal</title><indexterm><primary>DeviceAdded</primary><secondary>UPower</secondary></indexterm><programlisting>DeviceAdded ('o'device)</programlisting></refsect2>
+          <para>
+            Emitted when a device is added.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>device</parameter>:</term><listitem><simpara>Object path of device that was added.</simpara></listitem></varlistentry></variablelist><refsect2><title><anchor role="function" id="UPower::DeviceRemoved"/>The DeviceRemoved signal</title><indexterm><primary>DeviceRemoved</primary><secondary>UPower</secondary></indexterm><programlisting>DeviceRemoved ('o'device)</programlisting></refsect2>
+          <para>
+            Emitted when a device is removed.
+          </para>
+        <variablelist role="params"><varlistentry><term><parameter>device</parameter>:</term><listitem><simpara>Object path of device that was removed.</simpara></listitem></varlistentry></variablelist></refsect1>
+  <refsect1 role="property_details"><title role="property_details.title">Property Details</title><refsect2><title><anchor role="function" id="UPower:DaemonVersion"/>The "DaemonVersion" property</title><indexterm><primary>DaemonVersion</primary><secondary>UPower</secondary></indexterm><programlisting>'DaemonVersion'read's'
+</programlisting></refsect2><para>
+            Version of the running daemon, e.g. <literal>002</literal>.
+      </para><variablelist role="params"/><refsect2><title><anchor role="function" id="UPower:OnBattery"/>The "OnBattery" property</title><indexterm><primary>OnBattery</primary><secondary>UPower</secondary></indexterm><programlisting>'OnBattery'read'b'
+</programlisting></refsect2><para>
+            Indicates whether the system is running on battery power.
+            This property is provided for convenience.
+      </para><variablelist role="params"/><refsect2><title><anchor role="function" id="UPower:LidIsClosed"/>The "LidIsClosed" property</title><indexterm><primary>LidIsClosed</primary><secondary>UPower</secondary></indexterm><programlisting>'LidIsClosed'read'b'
+</programlisting></refsect2>
+          <para>
+            Indicates if the laptop lid is closed where the display cannot be seen.
+          </para>
+        <variablelist role="params"/><refsect2><title><anchor role="function" id="UPower:LidIsPresent"/>The "LidIsPresent" property</title><indexterm><primary>LidIsPresent</primary><secondary>UPower</secondary></indexterm><programlisting>'LidIsPresent'read'b'
+</programlisting></refsect2>
+          <para>
+            If the system has a lid device.
+          </para>
+        <variablelist role="params"/><refsect2><title><anchor role="function" id="UPower:IsDocked"/>The "IsDocked" property</title><indexterm><primary>IsDocked</primary><secondary>UPower</secondary></indexterm><programlisting>'IsDocked'read'b'
+</programlisting></refsect2>
+          <para>
+            If the system is currently docked.
+            Note: the "is-docked" value is the result of a heuristic,
+            which may involve testing the display output.
+          </para>
+        <variablelist role="params"/></refsect1>
+</refentry>
