@@ -7,7 +7,7 @@
 
 pkgname=consolekit
 pkgver=0.4.6
-pkgrel=5
+pkgrel=4
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/ConsoleKit"
@@ -42,36 +42,36 @@ sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1')
 
 prepare(){
-	cd "$srcdir/ConsoleKit-$pkgver"
-	patch -p0 -i "$srcdir/consolekit-udev-acl-install_to_usr.patch"
-	patch -p0 -i "$srcdir/consolekit-0.4.5-polkit-automagic.patch"
-	patch -p0 -i "$srcdir/consolekit-cleanup_console_tags.patch"
+  cd "$srcdir/ConsoleKit-$pkgver"
+  patch -p0 -i "$srcdir/consolekit-udev-acl-install_to_usr.patch"
+  patch -p0 -i "$srcdir/consolekit-0.4.5-polkit-automagic.patch"
+  patch -p0 -i "$srcdir/consolekit-cleanup_console_tags.patch"
 }
 
 build(){
-	cd "$srcdir/ConsoleKit-$pkgver"
-	./configure  \
-		--prefix=/usr \
-		--sysconfdir=/etc \
-		--sbindir=/usr/bin \
-		--localstatedir=/var \
-		--libexecdir=/usr/lib/ConsoleKit \
-		--enable-pam-module \
-		--with-pam-module-dir=/usr/lib/security \
-		--enable-docbook-docs \
-		--with-dbus-services=/usr/share/dbus-1/services \
-		--enable-udev-acl
-	make
+  cd "$srcdir/ConsoleKit-$pkgver"
+  ./configure  \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --sbindir=/usr/bin \
+    --localstatedir=/var \
+    --libexecdir=/usr/lib/ConsoleKit \
+    --enable-pam-module \
+    --with-pam-module-dir=/usr/lib/security \
+    --enable-docbook-docs \
+    --with-dbus-services=/usr/share/dbus-1/services \
+    --enable-udev-acl
+  make
 }
 
 package() {
-	cd "$srcdir/ConsoleKit-$pkgver"
-	make DESTDIR="$pkgdir" install
+  cd "$srcdir/ConsoleKit-$pkgver"
+  make DESTDIR="$pkgdir" install
 
-	install -m755 "$srcdir/pam-foreground-compat.ck" "$pkgdir/usr/lib/ConsoleKit/run-session.d/"
-	install -D -m644 "$srcdir/consolekit.logrotate" "$pkgdir/etc/logrotate.d/consolekit"
-	install -D -m644 "$srcdir/consolekit.tmpfiles.conf" "$pkgdir/usr/lib/tmpfiles.d/consolekit.conf"
-	rm -rf "${pkgdir}/var/run"
+  install -m755 "$srcdir/pam-foreground-compat.ck" "$pkgdir/usr/lib/ConsoleKit/run-session.d/"
+  install -D -m644 "$srcdir/consolekit.logrotate" "$pkgdir/etc/logrotate.d/consolekit"
+  install -D -m644 "$srcdir/consolekit.tmpfiles.conf" "$pkgdir/usr/lib/tmpfiles.d/consolekit.conf"
+  rm -rf "${pkgdir}/var/run"
 }
 
 

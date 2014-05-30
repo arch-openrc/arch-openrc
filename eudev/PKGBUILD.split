@@ -45,7 +45,7 @@ build() {
 package_eudev() {
   pkgdesc="The userspace dev tools (udev) forked by Gentoo"
   license=('GPL')
-  depends=('glib2' 'kbd' 'kmod' 'hwids' 
+  depends=('glib2' 'kbd' 'kmod' 'hwids'
 	    "libeudev=${_udevver}" 'pam' 'util-linux')
   optdepends=('eudev-openrc: eudev-postmount script'
 	      'upower-nosystemd: upower without systemd'
@@ -55,7 +55,7 @@ package_eudev() {
 	    "systemd-tools=${_udevver}")
   conflicts=('systemd'
 	    'systemd-tools')
-  backup=('etc/udev/udev.conf')	    
+  backup=('etc/udev/udev.conf')
   cd "${srcdir}/${pkgbase}-${pkgver}"
   make DESTDIR="${pkgdir}" install
 
@@ -67,8 +67,8 @@ package_eudev() {
 
   install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
   install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
-  
-  ### split off runtime libraries
+
+  # split off runtime libraries
   rm -rf "$srcdir/_libeudev"
   install -dm755 "$srcdir"/_libeudev/usr/lib
   cd "$srcdir"/_libeudev
@@ -81,7 +81,7 @@ package_libeudev() {
   license=('GPL2')
   provides=('libgudev-1.0.so' 'libudev.so'
 	  "libeudev=${_udevver}"
-	  "libsystemd=${_udevver}")	    
+	  "libsystemd=${_udevver}")
   conflicts=('libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
             'libsystemd-journal.so' 'libsystemd-login.so')
 
