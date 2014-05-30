@@ -1,4 +1,0 @@
-[Mount]
-Type=localtest
-Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-localtest
-AutoMount=false

@@ -1,4 +1,0 @@
-[D-BUS Service]
-Name=org.gtk.Private.AfcVolumeMonitor
-Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/monitor/afc/gvfs-afc-volume-monitor
-

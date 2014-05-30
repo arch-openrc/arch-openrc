@@ -1,8 +1,0 @@
-[Mount]
-Type=sftp
-Exec=/usr/lib/gvfs/gvfsd-sftp
-AutoMount=false
-Scheme=sftp
-SchemeAliases=ssh
-DefaultPort=22
-HostnameIsInetAddress=true

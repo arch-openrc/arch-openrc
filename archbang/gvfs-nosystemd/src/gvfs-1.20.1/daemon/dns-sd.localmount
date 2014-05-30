@@ -1,4 +1,0 @@
-[Mount]
-Type=dns-sd
-Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-dnssd
-AutoMount=true

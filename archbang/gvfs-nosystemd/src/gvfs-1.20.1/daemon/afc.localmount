@@ -1,7 +1,0 @@
-[Mount]
-Type=afc
-Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-afc
-AutoMount=false
-Scheme=afc
-DefaultPort=1
-

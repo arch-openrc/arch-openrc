@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.gtk.Private.GPhoto2VolumeMonitor
-Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/monitor/gphoto2/gvfs-gphoto2-volume-monitor

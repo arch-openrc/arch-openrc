@@ -1,5 +1,0 @@
-[Mount]
-Type=burn
-Exec=/usr/lib/gvfs/gvfsd-burn
-AutoMount=true
-

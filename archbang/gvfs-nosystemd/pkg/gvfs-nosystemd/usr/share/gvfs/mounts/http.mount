@@ -1,5 +1,0 @@
-[Mount]
-Type=http
-Exec=/usr/lib/gvfs/gvfsd-http
-AutoMount=true
-DBusName=org.gtk.vfs.mountpoint.http

@@ -1,5 +1,0 @@
-[Mount]
-Type=recent
-Exec=@libexecdir@/gvfsd-recent
-AutoMount=true
-

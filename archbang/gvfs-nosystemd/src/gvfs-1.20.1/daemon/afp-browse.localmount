@@ -1,8 +1,0 @@
-[Mount]
-Type=afp-server
-Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-afp-browse
-AutoMount=false
-Scheme=afp
-DefaultPort=548
-HostnameIsInetAddress=true
-

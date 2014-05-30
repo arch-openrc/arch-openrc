@@ -1,7 +1,0 @@
-[Mount]
-Type=afp-volume
-Exec=@libexecdir@/gvfsd-afp
-AutoMount=false
-Scheme=afp
-DefaultPort=548
-HostnameIsInetAddress=true

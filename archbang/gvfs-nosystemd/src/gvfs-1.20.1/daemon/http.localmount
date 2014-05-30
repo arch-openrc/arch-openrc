@@ -1,5 +1,0 @@
-[Mount]
-Type=http
-Exec=/home/artux/Projekte/pkgbuilds/gvfs-nosystemd/src/gvfs-1.20.1/daemon/gvfsd-http
-AutoMount=true
-DBusName=org.gtk.vfs.mountpoint.http

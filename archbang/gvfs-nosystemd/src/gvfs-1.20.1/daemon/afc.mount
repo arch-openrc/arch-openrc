@@ -1,7 +1,0 @@
-[Mount]
-Type=afc
-Exec=/usr/lib/gvfs/gvfsd-afc
-AutoMount=false
-Scheme=afc
-DefaultPort=1
-

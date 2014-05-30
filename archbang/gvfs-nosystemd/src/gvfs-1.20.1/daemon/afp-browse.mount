@@ -1,8 +1,0 @@
-[Mount]
-Type=afp-server
-Exec=/usr/lib/gvfs/gvfsd-afp-browse
-AutoMount=false
-Scheme=afp
-DefaultPort=548
-HostnameIsInetAddress=true
-

@@ -1,4 +1,0 @@
-[Mount]
-Type=mtp
-Exec=/usr/lib/gvfs/gvfsd-mtp
-AutoMount=false
