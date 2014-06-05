@@ -1,0 +1,178 @@
+Making install in etc
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/etc'
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/etc'
+make[2]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/etc/UPower'
+ /usr/bin/install -c -m 644 UPower.conf '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/etc/UPower'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/etc'
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/etc'
+Making install in libupower-glib
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/libupower-glib'
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/libupower-glib'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/girepository-1.0'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/gir-1.0'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/include/libupower-glib'
+ /bin/sh ../libtool   --mode=install /usr/bin/install -c   libupower-glib.la '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib'
+ /usr/bin/install -c -m 644 upower.h up-version.h up-types.h up-device.h up-qos-item.h up-wakeup-item.h up-stats-item.h up-history-item.h up-wakeups.h up-client.h '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/include/libupower-glib'
+ /usr/bin/install -c -m 644 UPowerGlib-1.0.typelib '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/girepository-1.0'
+ /usr/bin/install -c -m 644 UPowerGlib-1.0.gir '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/gir-1.0'
+libtool: install: /usr/bin/install -c .libs/libupower-glib.so.1.0.4 /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/libupower-glib.so.1.0.4
+libtool: install: (cd /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib && { ln -s -f libupower-glib.so.1.0.4 libupower-glib.so.1 || { rm -f libupower-glib.so.1 && ln -s libupower-glib.so.1.0.4 libupower-glib.so.1; }; })
+libtool: install: (cd /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib && { ln -s -f libupower-glib.so.1.0.4 libupower-glib.so || { rm -f libupower-glib.so && ln -s libupower-glib.so.1.0.4 libupower-glib.so; }; })
+libtool: install: /usr/bin/install -c .libs/libupower-glib.lai /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/libupower-glib.la
+libtool: install: warning: remember to run `libtool --finish /usr/lib'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/libupower-glib'
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/libupower-glib'
+Making install in src
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+make  install-recursive
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+Making install in dummy
+make[3]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/dummy'
+make[4]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/dummy'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/dummy'
+make[3]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/dummy'
+Making install in freebsd
+make[3]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/freebsd'
+make[4]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/freebsd'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/freebsd'
+make[3]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/freebsd'
+Making install in linux
+make[3]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/linux'
+make[4]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/linux'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/linux'
+make[3]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/linux'
+Making install in openbsd
+make[3]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/openbsd'
+make[4]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/openbsd'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/openbsd'
+make[3]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src/openbsd'
+make[3]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+make[4]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/dbus-1/interfaces'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/upower'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/etc/dbus-1/system.d'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/dbus-1/system-services'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/systemd/system'
+ /usr/bin/install -c -m 644 org.freedesktop.UPower.conf '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/etc/dbus-1/system.d'
+ /usr/bin/install -c -m 644 org.freedesktop.UPower.xml org.freedesktop.UPower.Device.xml org.freedesktop.UPower.QoS.xml org.freedesktop.UPower.KbdBacklight.xml org.freedesktop.UPower.Wakeups.xml '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/dbus-1/interfaces'
+ /usr/bin/install -c -m 644 org.freedesktop.UPower.service '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/dbus-1/system-services'
+ /usr/bin/install -c -m 644 upower.service '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/systemd/system'
+  /bin/sh ../libtool   --mode=install /usr/bin/install -c upowerd '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/upower'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/systemd/system-sleep'
+ /usr/bin/install -c notify-upower.sh '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/systemd/system-sleep'
+make  install-data-hook
+make[5]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+if test -w /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/; then \
+	mkdir -p /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/var/lib/upower; \
+fi
+libtool: install: warning: `../libupower-glib/libupower-glib.la' has not been installed in `/usr/lib'
+make[5]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+libtool: install: /usr/bin/install -c .libs/upowerd /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/upower/upowerd
+make[4]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+make[3]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/src'
+Making install in doc
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc'
+Making install in man
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc/man'
+make[3]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc/man'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/man/man8'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/man/man7'
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/man/man1'
+ /usr/bin/install -c -m 644 upower.1 '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/man/man1'
+ /usr/bin/install -c -m 644 UPower.7 '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/man/man7'
+ /usr/bin/install -c -m 644 upowerd.8 '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/man/man8'
+make[3]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc/man'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc/man'
+Making install in dbus
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc/dbus'
+make[3]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc/dbus'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc/dbus'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc/dbus'
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc'
+make[3]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc'
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/doc'
+Making install in tools
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/tools'
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/tools'
+make[2]: Nothing to be done for 'install-data-am'.
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/bin'
+  /bin/sh ../libtool   --mode=install /usr/bin/install -c upower '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/bin'
+libtool: install: warning: `../libupower-glib/libupower-glib.la' has not been installed in `/usr/lib'
+libtool: install: /usr/bin/install -c .libs/upower /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/bin/upower
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/tools'
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/tools'
+Making install in policy
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/policy'
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/policy'
+make[2]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/polkit-1/actions'
+ /usr/bin/install -c -m 644 org.freedesktop.upower.policy org.freedesktop.upower.qos.policy '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/polkit-1/actions'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/policy'
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/policy'
+Making install in po
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/po'
+linguas="fr it sv pl "; \
+for lang in $linguas; do \
+  dir=/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/locale/$lang/LC_MESSAGES; \
+  /bin/sh /build/upower-nosystemd-pmutils/src/upower-0.9.23/build-aux/install-sh -d $dir; \
+  if test -r $lang.gmo; then \
+    /usr/bin/install -c -m 644 $lang.gmo $dir/upower.mo; \
+    echo "installing $lang.gmo as $dir/upower.mo"; \
+  else \
+    /usr/bin/install -c -m 644 ./$lang.gmo $dir/upower.mo; \
+    echo "installing ./$lang.gmo as" \
+	 "$dir/upower.mo"; \
+  fi; \
+  if test -r $lang.gmo.m; then \
+    /usr/bin/install -c -m 644 $lang.gmo.m $dir/upower.mo.m; \
+    echo "installing $lang.gmo.m as $dir/upower.mo.m"; \
+  else \
+    if test -r ./$lang.gmo.m ; then \
+      /usr/bin/install -c -m 644 ./$lang.gmo.m \
+	$dir/upower.mo.m; \
+      echo "installing ./$lang.gmo.m as" \
+	   "$dir/upower.mo.m"; \
+    else \
+      true; \
+    fi; \
+  fi; \
+done
+installing fr.gmo as /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/locale/fr/LC_MESSAGES/upower.mo
+installing it.gmo as /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/locale/it/LC_MESSAGES/upower.mo
+installing sv.gmo as /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/locale/sv/LC_MESSAGES/upower.mo
+installing pl.gmo as /build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/share/locale/pl/LC_MESSAGES/upower.mo
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/po'
+Making install in rules
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/rules'
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/rules'
+make[2]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/udev/rules.d'
+ /usr/bin/install -c -m 644 95-upower-battery-recall-dell.rules 95-upower-battery-recall-fujitsu.rules 95-upower-battery-recall-gateway.rules 95-upower-battery-recall-ibm.rules 95-upower-battery-recall-lenovo.rules 95-upower-battery-recall-toshiba.rules 95-upower-wup.rules 95-upower-hid.rules 95-upower-csr.rules '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/udev/rules.d'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/rules'
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23/rules'
+make[1]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23'
+make[2]: Entering directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23'
+make[2]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/pkgconfig'
+ /usr/bin/install -c -m 644 upower-glib.pc '/build/upower-nosystemd-pmutils/pkg/upower-nosystemd-pmutils/usr/lib/pkgconfig'
+make[2]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23'
+make[1]: Leaving directory '/build/upower-nosystemd-pmutils/src/upower-0.9.23'
