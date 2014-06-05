@@ -1,6 +1,0 @@
-patching file src/up-history.c
-Hunk #2 succeeded at 895 with fuzz 2 (offset 7 lines).
-patching file libupower-glib/up-client.c
-Hunk #1 succeeded at 725 with fuzz 2 (offset 403 lines).
-patching file src/linux/integration-test
-patching file src/linux/up-device-supply.c
