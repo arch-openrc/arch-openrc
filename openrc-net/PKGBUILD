@@ -123,8 +123,7 @@ arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-net')
-makedepends=('openrc-base'
-	    'apache'
+makedepends=('apache'
 	    'autofs'
 	    'bind'
 	    'bitlbee'
@@ -711,8 +710,6 @@ package_ypserv-openrc() {
 
 package_openrc-net() {
   pkgdesc="OpenRC net init scripts, AUR meta package"
-  depends=('openrc-base')
-  makedepends=('openrc-base')
   depends=('autofs-openrc'
 	  'apache-openrc'
 	  'bind-openrc'

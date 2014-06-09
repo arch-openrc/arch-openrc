@@ -31,8 +31,7 @@ arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-desktop')
-makedepends=('openrc-base'
-	    'acpid'
+makedepends=('acpid'
 	    'alsa-utils'
 	    'avahi'
 	    'consolekit'
@@ -146,8 +145,6 @@ package_gpm-openrc() {
 
 package_openrc-desktop() {
   pkgdesc="OpenRC desktop init scripts, AUR meta package"
-  depends=('openrc-base')
-  makedepends=('openrc-base')
   depends=('acpid-openrc'
 	  'alsa-utils-openrc'
 	  'avahi-openrc'

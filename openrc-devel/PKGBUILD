@@ -27,7 +27,7 @@ url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-devel')
 makedepends=('openrc-base'
-	    'git'
+		'git'
 	    'mysql'
 	    'postgresql'
 	    'subversion')
@@ -117,8 +117,6 @@ package_subversion-openrc() {
 
 package_openrc-devel() {
   pkgdesc="OpenRC devel init scripts, AUR meta package"
-  depends=('openrc-base')
-  makedepends=('openrc-base')
   depends=('git-openrc'
 	  'mysql-openrc'
 	  'postgresql-openrc'

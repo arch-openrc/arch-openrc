@@ -58,8 +58,7 @@ arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-misc')
-makedepends=('openrc-base'
-	    'connman'
+makedepends=('connman'
 	    'cpupower'
 	    'cups'
 	    'dbus-openrc'
@@ -313,8 +312,6 @@ package_haveged-openrc() {
 
 package_openrc-misc() {
   pkgdesc="OpenRC misc init scripts, AUR meta package"
-  depends=('openrc-base')
-  makedepends=('openrc-base')
   depends=('cpupower-openrc'
 	  'connman-openrc'
 	  'fcron-openrc'

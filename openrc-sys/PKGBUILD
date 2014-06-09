@@ -360,8 +360,6 @@ package_openrc-base() {
 
 package_openrc-sys() {
   pkgdesc="OpenRC sys init scripts, AUR meta package"
-  depends=('openrc-base')
-  makedepends=('openrc-base')
   depends=('cronie-openrc'
 	  'cryptsetup-openrc'
 	  'dbus-openrc'
