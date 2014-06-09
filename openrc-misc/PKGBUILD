@@ -49,8 +49,7 @@ pkgname=('cpupower-openrc'
 	'lm_sensors-openrc'
 	'ntp-openrc'
 	'cups-openrc'
-	'haveged-openrc'
-	'openrc-misc')
+	'haveged-openrc')
 pkgver=20140531
 pkgrel=1
 pkgdesc="OpenRC init scripts"
