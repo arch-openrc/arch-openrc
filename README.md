@@ -49,6 +49,7 @@ OpenRC pkgbuilds
 * cups-openrc
 * connman-openrc
 * networkmanager-openrc
+* haveged-openrc
 
 #####openrc-devel#####
 
@@ -95,3 +96,7 @@ OpenRC pkgbuilds
 
 * eudev
 * eudev-openrc
+* upower-nosystemd-pm-utils
+* dbus-nosystemd
+* udisks2-nosystemd
+
