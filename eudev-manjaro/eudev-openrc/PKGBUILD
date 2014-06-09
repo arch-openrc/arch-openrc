@@ -1,5 +1,7 @@
 # Maintainer: udeved <udeved@openrc4arch.site40.net>
 
+#Should this build be integrated in the split eudev build?
+
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgname=eudev-openrc

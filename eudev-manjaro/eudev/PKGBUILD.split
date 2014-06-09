@@ -6,8 +6,8 @@ _udevver=212
 
 pkgbase=eudev
 pkgname=('eudev' 'libeudev')
-pkgver=1.6
-pkgrel=2
+pkgver=1.7
+pkgrel=1
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
 groups=('eudev-base')
@@ -18,9 +18,6 @@ options=(!makeflags !libtool)
 source=("${url}/${pkgbase}-${pkgver}.tar.gz"
 	'initcpio_hooks'
 	'initcpio_install')
-sha256sums=('9d00d6925ccc7763be89472c5058012bd45ce13f14297e40e4cf3a02244a6a47'
-            '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
-            '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390')
 
 build() {
 	cd "${srcdir}/${pkgbase}-${pkgver}"
@@ -41,6 +38,10 @@ build() {
 		--enable-rule-generator
 	make
 }
+
+# A clean eudev implementation would have libsystemd and systemd provides removed.
+# This requires lots of packages to change their depends to the functionality they depend on
+# its not really a good solution to have (lib)eudev provide systemd functionality it doesn't have
 
 package_eudev() {
   pkgdesc="The userspace dev tools (udev) forked by Gentoo"

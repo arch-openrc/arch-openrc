@@ -4,7 +4,7 @@
 # Contributor: Corrado Primier <bardo@aur.archlinux.org>
 # Contributor: William Rea <sillywilly@gmail.com>
 
-pkgname=libpulse-nosystemd
+pkgname=libpulse-eudev
 _pkgbase=pulseaudio
 pkgdesc="Client library for PulseAudio"
 pkgver=5.0
@@ -12,6 +12,7 @@ pkgrel=1
 arch=(i686 x86_64)
 url="http://www.freedesktop.org/wiki/Software/PulseAudio"
 license=(LGPL)
+groups=('eudev-base')
 depends=(dbus libasyncns libcap libxtst libsm libsndfile json-c)
 makedepends=(libasyncns libcap attr libxtst libsm libsamplerate libtool rtkit
              speex tdb dbus avahi bluez bluez-libs gconf intltool jack2-dbus sbc
@@ -20,8 +21,8 @@ makedepends=(libasyncns libcap attr libxtst libsm libsamplerate libtool rtkit
 optdepends=('alsa-plugins: ALSA support'
             'avahi: zeroconf support')
 provides=("libpulse=${pkgver}")
-conflicts=('libpulse')
-replaces=('libpulse')
+conflicts=('libpulse' 'libpulse-nosystemd')
+replaces=('libpulse' 'libpulse-nosystemd')
 backup=(etc/pulse/client.conf)
 options=(!emptydirs)
 source=(http://freedesktop.org/software/$_pkgbase/releases/$_pkgbase-$pkgver.tar.xz)
