@@ -1,10 +1,11 @@
-# Maintainer: Alexey D. <lq07829icatm@rambler.ru>
+# Maintainer: artoo <flower_of_life@gmx.net>
+# Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: Link Dupont <link@subpop.net>
 #
 pkgname=dbus-eudev
 pkgver=1.8.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Freedesktop.org message bus system"
 url="http://www.freedesktop.org/Software/dbus"
 arch=(i686 x86_64)
@@ -20,10 +21,7 @@ conflicts=('dbus-core' 'dbus' 'dbus-nosystemd')
 replaces=('dbus-core' 'dbus' 'dbus-nosystemd')
 install=dbus-eudev.install
 source=(http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz #{,.asc}
-		30-dbus dbus)
-md5sums=('d6f709bbec0a022a1847c7caec9d6068'
-         '3314d727fa57fc443fce25b5cbeebbcc'
-         '6f116e46adcbe99326ee67e597598d29')
+		30-dbus)
 
 build() {
   cd dbus-$pkgver
@@ -57,8 +55,9 @@ package(){
   rm -rf "${pkgdir}/var/run"
   rm -rf "${pkgdir}/usr/lib/pkgconfig"
 
-  install -Dm755 ../dbus "$pkgdir/etc/rc.d/dbus"
   install -Dm755 ../30-dbus "$pkgdir/etc/X11/xinit/xinitrc.d/30-dbus"
   install -Dm644 COPYING "$pkgdir/usr/share/licenses/dbus/COPYING"
 }
 
+sha256sums=('5689f7411165adc953f37974e276a3028db94447c76e8dd92efe910c6d3bae08'
+            'a1c324ae758046f0c3ef46db02ab873d35adeaab9980c2e0ee293accb89d0d2c')

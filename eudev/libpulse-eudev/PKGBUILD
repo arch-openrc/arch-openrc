@@ -1,4 +1,5 @@
-# Maintainer: Alexey D. <lq07829icatm@rambler.ru>
+# Maintainer: artoo <flower_of_life@gmx.net>
+# Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 # Contributor: Corrado Primier <bardo@aur.archlinux.org>
@@ -8,7 +9,7 @@ pkgname=libpulse-eudev
 _pkgbase=pulseaudio
 pkgdesc="Client library for PulseAudio"
 pkgver=5.0
-pkgrel=1
+pkgrel=2
 arch=(i686 x86_64)
 url="http://www.freedesktop.org/wiki/Software/PulseAudio"
 license=(LGPL)

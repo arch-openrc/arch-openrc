@@ -1,4 +1,5 @@
 # Maintainer: Mattias Andrée <`base64 -d`(bWFhbmRyZWUK)@member.fsf.org>
+
 pkgname=sysvinit
 pkgver=2.88
 pkgrel=15
@@ -23,7 +24,7 @@ build()
     patch -p1 -d "src" -i "$srcdir/0001-simplify-writelog.patch"
     patch -p1 -d "src" -i "$srcdir/0002-remove-ansi-escape-codes-from-log-file.patch"
     patch -p1          -i "$srcdir/0001-do-not-build-sulogin-on-archlinux-it-is-provided-by-.patch"
-    
+
     # Patch for Arch's Linux filesystem hierarchy
     if [ "$(grep 'execv("/sbin/mount", args);' < src/killall5.c | wc -l)" = 1 ]; then
         sed -i 's:execv("/bin/mount", args);::' src/killall5.c
@@ -34,7 +35,7 @@ build()
     sed -i 's:/sbin/:/bin/:g'    contrib/notify-pam-dead.patch man/*.{1,5,8} src/*.{c,h} src/initscript.sample
     sed -i 's:/bin/:/usr/bin/:g' contrib/notify-pam-dead.patch man/*.{1,5,8} src/*.{c,h} src/initscript.sample
     sed -i 's:/usr/usr/:/usr/:g' contrib/notify-pam-dead.patch man/*.{1,5,8} src/*.{c,h} src/initscript.sample
-    
+
     make DISTRO=archlinux
 }
 

@@ -7,7 +7,7 @@ pkgname=kdebase-workspace-consolekit
 _pkgname=kde-workspace
 pkgver=4.11.9
 _kdever=4.12.5
-pkgrel=2
+pkgrel=3
 pkgdesc="kdebase-workspace with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 url='https://projects.kde.org/projects/kde/kde-workspace'
@@ -31,21 +31,9 @@ conflicts=('kdebase-workspace')
 install="kdebase-workspace.install"
 backup=('usr/share/config/kdm/kdmrc')
 source=("http://download.kde.org/stable/${_kdever}/src/${_pkgname}-${pkgver}.tar.xz"
-	'kdm' 'kde.pam' 'kde-np.pam' 'kscreensaver.pam' 'kdm.service' 'kdm.logrotate'
+	'kde.pam' 'kde-np.pam' 'kscreensaver.pam' 'kdm.logrotate'
 	'etc-scripts.patch' 'terminate-server.patch' 'kdm-xinitrd.patch'
 	'khotkeys-qt4.patch' 'kdm-desktopnames.patch')
-sha1sums=('ea4f3b3401b7304613adcc21acb92b5c3d11c9c1'
-          '5db3a245201bd4a50e65aa2ef583cf5490e4f646'
-          '660eae40a707d2711d8d7f32a93214865506b795'
-          '6aeecc9e0e221f0515c6bf544f9a3c11cb6961fe'
-          '106635aa1aae51d6f0668b1853f6c49a4fe9d3d8'
-          'b6f8e8692737b11eec1f8022ce74b5b23e247b1b'
-          'bbe55f2000217474ce7246f12ee437ceaaf7e9ae'
-          'c079ebd157c836ba996190f0d2bcea1a7828d02c'
-          'ac7bc292c865bc1ab8c02e6341aa7aeaf1a3eeee'
-          'd509dac592bd8b310df27991b208c95b6d907514'
-          'aa9d2e5a69986c4c3d47829721ea99edb473be12'
-          '51d3a3a83e01ce1998c57b0389e7b094d8e9d7b8')
 
 # avoid linking error when libsystemd-journal.so.0 doesn't exist in
 # user's system
@@ -56,7 +44,7 @@ check_libpulse() {
 	fi
 	return 0
 }
-check_libpulse || makedepends+=('libpulse-nosystemd')
+check_libpulse || makedepends+=('libpulse-eudev')
 
 prepare() {
 	cd ${_pkgname}-${pkgver}
@@ -108,8 +96,18 @@ package() {
 	install -d -m755 "${pkgdir}"/etc/kde/{env,shutdown}
 
 	install -d -g 135 -o 135 "${pkgdir}"/var/lib/kdm
-	install -D -m755 "${srcdir}"/kdm "${pkgdir}"/etc/rc.d/kdm
-	install -D -m644 "${srcdir}"/kdm.service \
-		"${pkgdir}"/usr/lib/systemd/system/kdm.service
+	#install -D -m755 "${srcdir}"/kdm "${pkgdir}"/etc/rc.d/kdm
+	#install -D -m644 "${srcdir}"/kdm.service \
+	#	"${pkgdir}"/usr/lib/systemd/system/kdm.service
 	install -Dm644 "${srcdir}"/kdm.logrotate "${pkgdir}"/etc/logrotate.d/kdm
 }
+sha256sums=('aa3d12a264e7fcb6c1330e800b9c7d43c00277275d182824d42f9fe1def0c0cf'
+            '812111f166fdf9ab7ef9400c4414cbe26fac5210f2292399d4446fe6e89eea54'
+            '3ca72a5f34d29747d12b9b41888d0e369956ba383478850c578e3aa109444214'
+            '0a985e3b699578de3e22b25ee72abe4e24ca8730e4afb37dfeed367823bdb0d5'
+            '6fdf115bd6b6cf15dddbe3e0eab00fb62a296d5292759f1a09dcb865a357c220'
+            'a4c05882dd3a340960dec495cb2fd19cf2523d14a7add5b77af0f98cdff4c394'
+            'e5329c87f14ce04f80291f1f7a2be47994f3d54425b572c308b38e2718390959'
+            'df7fe57d73c5a017fed698976b00e6488b8c2f555ff9411e55c015cbcef3312b'
+            '265bdd90af513f21a1398bda1fcdf4a347ba6279cd42590d43a2226a593de070'
+            '6d6f92ca491f04ad752d968f2624ba9f1d668ae8aedfa78e0522db8d9a224f86')
