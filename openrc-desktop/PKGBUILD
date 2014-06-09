@@ -22,8 +22,7 @@ pkgname=('acpid-openrc'
 	'avahi-openrc'
 	'consolekit-openrc'
 	'displaymanager-openrc'
-	'gpm-openrc'
-	'openrc-desktop')
+	'gpm-openrc')
 pkgver=20140531
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -143,15 +142,18 @@ package_gpm-openrc() {
   sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/gpm"
 }
 
-package_openrc-desktop() {
-  pkgdesc="OpenRC desktop init scripts, AUR meta package"
-  depends=('acpid-openrc'
-	  'alsa-utils-openrc'
-	  'avahi-openrc'
-	  'consolekit-openrc'
-	  'displaymanager-openrc'
-	  'gpm-openrc')
-}
+# what to do with this AUR pkg? Openrc has already groups with same name
+# its just in for AUR and render a pacman group call useless, add meta suffix?
+
+# package_openrc-desktop() {
+#   pkgdesc="OpenRC desktop init scripts, AUR meta package"
+#   depends=('acpid-openrc'
+# 	  'alsa-utils-openrc'
+# 	  'avahi-openrc'
+# 	  'consolekit-openrc'
+# 	  'displaymanager-openrc'
+# 	  'gpm-openrc')
+# }
 
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'

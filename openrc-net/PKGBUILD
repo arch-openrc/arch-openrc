@@ -114,8 +114,7 @@ pkgname=('autofs-openrc'
 	'wpa_supplicant-openrc'
 	'xinetd-openrc'
 	'ypbind-mt-openrc'
-	'ypserv-openrc'
-	'openrc-net')
+	'ypserv-openrc')
 pkgver=20140531
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -708,41 +707,44 @@ package_ypserv-openrc() {
   done
 }
 
-package_openrc-net() {
-  pkgdesc="OpenRC net init scripts, AUR meta package"
-  depends=('autofs-openrc'
-	  'apache-openrc'
-	  'bind-openrc'
-	  'bitlbee-openrc'
-	  'bluez-openrc'
-	  'cyrus-sasl-openrc'
-	  'dhcp-openrc'
-	  'hostapd-openrc'
-	  'iptables-openrc'
-	  'krb5-openrc'
-	  'lighttpd-openrc'
-	  'nfs-utils-openrc'
-	  'openldap-openrc'
-	  'openslp-openrc'
-	  'openssh-openrc'
-	  'openntpd-openrc'
-	  'openvpn-openrc'
-	  'polipo-openrc'
-	  'postfix-openrc'
-	  'privoxy-openrc'
-	  'quota-tools-openrc'
-	  'rpcbind-openrc'
-	  'rsync-openrc'
-	  'samba-openrc'
-	  'squid-openrc'
-	  'transmission-openrc'
-	  'ufw-openrc'
-	  'vsftpd-openrc'
-	  'wpa_supplicant-openrc'
-	  'xinetd-openrc'
-	  'ypbind-mt-openrc'
-	  'ypserv-openrc')
-}
+# what to do with this AUR pkg? Openrc has already groups with same name
+# its just in for AUR and render a pacman group call useless, add meta suffix?
+
+# package_openrc-net() {
+#   pkgdesc="OpenRC net init scripts, AUR meta package"
+#   depends=('autofs-openrc'
+# 	  'apache-openrc'
+# 	  'bind-openrc'
+# 	  'bitlbee-openrc'
+# 	  'bluez-openrc'
+# 	  'cyrus-sasl-openrc'
+# 	  'dhcp-openrc'
+# 	  'hostapd-openrc'
+# 	  'iptables-openrc'
+# 	  'krb5-openrc'
+# 	  'lighttpd-openrc'
+# 	  'nfs-utils-openrc'
+# 	  'openldap-openrc'
+# 	  'openslp-openrc'
+# 	  'openssh-openrc'
+# 	  'openntpd-openrc'
+# 	  'openvpn-openrc'
+# 	  'polipo-openrc'
+# 	  'postfix-openrc'
+# 	  'privoxy-openrc'
+# 	  'quota-tools-openrc'
+# 	  'rpcbind-openrc'
+# 	  'rsync-openrc'
+# 	  'samba-openrc'
+# 	  'squid-openrc'
+# 	  'transmission-openrc'
+# 	  'ufw-openrc'
+# 	  'vsftpd-openrc'
+# 	  'wpa_supplicant-openrc'
+# 	  'xinetd-openrc'
+# 	  'ypbind-mt-openrc'
+# 	  'ypserv-openrc')
+# }
 
 sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'

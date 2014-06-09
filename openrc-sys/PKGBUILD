@@ -40,8 +40,7 @@ pkgname=('openrc-base'
 	'glibc-openrc'
 	'inetutils-openrc'
 	'lvm2-openrc'
-	'mdadm-openrc'
-	'openrc-sys')
+	'mdadm-openrc')
 pkgver=0.12.4
 pkgrel=14
 pkgdesc="Gentoo's universal init system, udev enabled."
@@ -358,18 +357,21 @@ package_openrc-base() {
   _install_kmod
 }
 
-package_openrc-sys() {
-  pkgdesc="OpenRC sys init scripts, AUR meta package"
-  depends=('cronie-openrc'
-	  'cryptsetup-openrc'
-	  'dbus-openrc'
-	  'dhcpcd-openrc'
-	  'device-mapper-openrc'
-	  'glibc-openrc'
-	  'inetutils-openrc'
-	  'lvm2-openrc'
-	  'mdadm-openrc')
-}
+# what to do with this AUR pkg? Openrc has already groups with same name
+# its just in for AUR and render a pacman group call useless, add meta suffix?
+
+# package_openrc-sys() {
+#   pkgdesc="OpenRC sys init scripts, AUR meta package"
+#   depends=('cronie-openrc'
+# 	  'cryptsetup-openrc'
+# 	  'dbus-openrc'
+# 	  'dhcpcd-openrc'
+# 	  'device-mapper-openrc'
+# 	  'glibc-openrc'
+# 	  'inetutils-openrc'
+# 	  'lvm2-openrc'
+# 	  'mdadm-openrc')
+# }
 
 sha256sums=('c4edda2fff4b613f50b9cc265bb457a9ab0170fbc1fe7c26eccd4a5d63b2625c'
             'eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203'
