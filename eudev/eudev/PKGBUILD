@@ -6,7 +6,7 @@ _udevver=213
 
 pkgname=eudev
 pkgver=1.7
-pkgrel=2
+pkgrel=3
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
@@ -18,12 +18,12 @@ makedepends=('gobject-introspection'
 			'gtk-doc'
 			'intltool')
 optdepends=('eudev-openrc: eudev-postmount script'
-			'dbus-nosystemd: dbus without systemd'
-			'upower-nosystemd: upower without systemd'
-			'udisks2-nosystemd: udisks2 without systemd'
-			'libpulse-nosystemd: libpulse without systemd'
-			'cups-nosystemd: cups without systemd'
-			'procps-ng-nosystemd: procps-ng without systemd')
+			'dbus-eudev: dbus without systemd'
+			'upower-pm-utils-eudev: upower without systemd'
+			'udisks2-eudev: udisks2 without systemd'
+			'libpulse-eudev: libpulse without systemd'
+			'cups-eudev: cups without systemd'
+			'procps-ng-eudev: procps-ng without systemd')
 provides=("udev=${_udevver}"
 		"systemd=${_udevver}"
 		"libsystemd=${_udevver}"
