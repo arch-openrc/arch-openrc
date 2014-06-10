@@ -8,7 +8,7 @@ _udevver=213
 pkgbase=eudev
 pkgname=('eudev' 'libeudev' 'eudev-openrc')
 pkgver=1.7
-pkgrel=3
+pkgrel=4
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
 groups=('eudev-base')
@@ -52,8 +52,12 @@ package_eudev() {
   depends=('glib2' 'kbd' 'kmod' 'hwids'
 	    "libeudev=${_udevver}" 'pam' 'util-linux')
   optdepends=('eudev-openrc: eudev-postmount script'
-	      'upower-nosystemd: upower without systemd'
-	      'udisks2-nosystemd: udisks2 without systemd')
+			'dbus-eudev: dbus without systemd'
+			'upower-pm-utils-eudev: upower without systemd'
+			'udisks2-eudev: udisks2 without systemd'
+			'libpulse-eudev: libpulse without systemd'
+			'cups-eudev: cups without systemd'
+			'procps-ng-eudev: procps-ng without systemd')
   provides=("udev=${_udevver}"
 	    "systemd=${_udevver}"
 	    "systemd-tools=${_udevver}")
