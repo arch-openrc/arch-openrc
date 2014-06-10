@@ -4,7 +4,7 @@
 
 _pkgname=upower
 
-pkgname=upower-eudev-pm-utils
+pkgname=upower-pm-utils-eudev
 pkgver=0.9.23
 pkgrel=1
 pkgdesc="Abstraction for enumerating power devices, listening to device events and querying history and statistics"
