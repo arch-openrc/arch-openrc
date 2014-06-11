@@ -41,25 +41,31 @@ pkgname=('openrc-base'
 	'inetutils-openrc'
 	'lvm2-openrc'
 	'mdadm-openrc')
+pkgdesc="Gentoo's universal init system, udev enabled."
 pkgver=0.12.4
 pkgrel=14
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
-makedepends=('cronie'
-	     'cryptsetup'
-	     'dbus'
-	     'device-mapper'
-	     'dhcpcd'
-	     'glibc'
-	     'inetutils'
-	     'lvm2'
-	     'mdadm'
-	     'net-tools'
+makedepends=('net-tools'
 	     'pkg-config'
 	     'psmisc'
 	     'sysvinit'
 	     'udev')
+# makedepends=('cronie'
+# 	     'cryptsetup'
+# 	     'dbus'
+# 	     'device-mapper'
+# 	     'dhcpcd'
+# 	     'glibc'
+# 	     'inetutils'
+# 	     'lvm2'
+# 	     'mdadm'
+# 	     'net-tools'
+# 	     'pkg-config'
+# 	     'psmisc'
+# 	     'sysvinit'
+# 	     'udev')
 license=('GPL2')
 groups=('openrc' 'openrc-sys')
 conflicts=('initscripts'
@@ -116,6 +122,7 @@ _pkgver() {
 prepare(){
   cd "${srcdir}/${_name}-${pkgver}"
   sed -e "${_binpath[1]}" -i "support/sysvinit/inittab"
+  sed -i 's:0444:0644:' mk/sys.mk
 }
 
 build(){
@@ -158,6 +165,43 @@ _install_kmod(){
   sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/kmod-static-nodes"
   # create runlevel
   ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
+}
+
+package_openrc-base() {
+  depends=('inetutils'
+	  'psmisc'
+	  'sysvinit'
+	  'udev>=186')
+  optdepends=('dhcpcd-openrc: dhcpcd initscript')
+  conflicts=('openrc'
+	    'openrc-git'
+	    'initscripts'
+	    'systemd-sysvcompat')
+  backup=('etc/rc.conf'
+	  'etc/conf.d/consolefont'
+	  'etc/conf.d/keymaps'
+	  'etc/conf.d/hostname'
+	  'etc/conf.d/modules'
+	  'etc/conf.d/net')
+  install=${_name}.install
+
+  cd "${srcdir}/${_name}-${pkgver}"
+  make DESTDIR="${pkgdir}" "${_rc_args[@]}" install
+  # inittab
+  install -m 644 "${srcdir}/${_name}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
+  # logrotate
+  install -Dm 0644 "${srcdir}/${_name}.logrotate" "${pkgdir}/etc/logrotate.d/${_name}"
+  # enable unicode & logger
+  sed -e 's/#unicode="NO"/unicode="YES"/' -e 's/#rc_logger="YES"/rc_logger="YES"/' -i "${pkgdir}/etc/rc.conf"
+
+  # udev
+  _install_udev
+
+  # netifrc
+  _install_netifrc
+
+  # kmod-static-nodes
+  _install_kmod
 }
 
 package_cronie-openrc() {
@@ -316,62 +360,6 @@ package_mdadm-openrc() {
 
   sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/mdadm"
 }
-
-package_openrc-base() {
-  pkgdesc="Gentoo's universal init system, udev enabled."
-  depends=('inetutils'
-	  'net-tools'
-	  'pkg-config'
-	  'psmisc'
-	  'sysvinit'
-	  'udev>=186')
-  optdepends=('dhcpcd-openrc: dhcpcd initscript')
-  conflicts=('openrc'
-	    'openrc-git'
-	    'initscripts'
-	    'systemd-sysvcompat')
-  backup=('etc/rc.conf'
-	  'etc/conf.d/consolefont'
-	  'etc/conf.d/keymaps'
-	  'etc/conf.d/hostname'
-	  'etc/conf.d/modules'
-	  'etc/conf.d/net')
-  install=${_name}.install
-
-  cd "${srcdir}/${_name}-${pkgver}"
-  make DESTDIR="${pkgdir}" "${_rc_args[@]}" install
-  # inittab
-  install -m 644 "${srcdir}/${_name}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
-  # logrotate
-  install -Dm 0644 "${srcdir}/${_name}.logrotate" "${pkgdir}/etc/logrotate.d/${_name}"
-  # enable unicode & logger
-  sed -e 's/#unicode="NO"/unicode="YES"/' -e 's/#rc_logger="YES"/rc_logger="YES"/' -i "${pkgdir}/etc/rc.conf"
-
-  # udev
-  _install_udev
-
-  # netifrc
-  _install_netifrc
-
-  # kmod-static-nodes
-  _install_kmod
-}
-
-# what to do with this AUR pkg? Openrc has already groups with same name
-# its just in for AUR and render a pacman group call useless, add meta suffix?
-
-# package_openrc-sys() {
-#   pkgdesc="OpenRC sys init scripts, AUR meta package"
-#   depends=('cronie-openrc'
-# 	  'cryptsetup-openrc'
-# 	  'dbus-openrc'
-# 	  'dhcpcd-openrc'
-# 	  'device-mapper-openrc'
-# 	  'glibc-openrc'
-# 	  'inetutils-openrc'
-# 	  'lvm2-openrc'
-# 	  'mdadm-openrc')
-# }
 
 sha256sums=('c4edda2fff4b613f50b9cc265bb457a9ab0170fbc1fe7c26eccd4a5d63b2625c'
             'eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203'

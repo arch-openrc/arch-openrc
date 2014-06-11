@@ -5,7 +5,7 @@
 
 pkgname=procps-ng-eudev
 pkgver=3.3.9
-pkgrel=1
+pkgrel=2
 pkgdesc='Utilities for monitoring your system and its processes'
 url='http://sourceforge.net/projects/procps-ng/'
 license=('GPL' 'LGPL')
@@ -16,7 +16,6 @@ source=("http://downloads.sourceforge.net/project/procps-ng/Production/procps-ng
         'sysctl.conf')
 sha1sums=('088c77631745fc75ee41fc29c254a4069be4869a'
           '674282245d8ab2e09017b8f8cdce20a3ff81e631')
-groups=('base')
 conflicts=('procps' 'procps-ng' 'sysvinit-tools' 'sysctl-default-conf' 'procps-ng-nosystemd')
 replaces=('procps' 'procps-ng' 'sysvinit-tools' 'sysctl-default-conf' 'procps-ng-nosystemd')
 provides=('procps' "procps-ng=$pkgver" 'sysvinit-tools')

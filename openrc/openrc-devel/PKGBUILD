@@ -18,18 +18,18 @@ pkgname=('git-openrc'
 	'mysql-openrc'
 	'postgresql-openrc'
 	'subversion-openrc')
-pkgver=20140531
+pkgver=20140611
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-devel')
-makedepends=('openrc-base'
-		'git'
-	    'mysql'
-	    'postgresql'
-	    'subversion')
+# makedepends=('openrc-base'
+# 		'git'
+# 	    'mysql'
+# 	    'postgresql'
+# 	    'subversion')
 conflicts=('openrc'
 	  'openrc-git'
 	  'openrc-arch-services-git'
@@ -53,7 +53,7 @@ _binpath='s|/usr/sbin|/usr/bin|g'
 
 package_git-openrc() {
   pkgdesc="OpenRC git-daemon init script"
-  depends=('openrc-base' 'git')
+  depends=('git' 'openrc-base')
   backup=('etc/conf.d/git-daemon')
   install=git.install
 
@@ -67,7 +67,7 @@ package_git-openrc() {
 
 package_mysql-openrc() {
   pkgdesc="OpenRC mysql init script"
-  depends=('openrc-base' 'mysql')
+  depends=('mysql' 'openrc-base')
   optdepends=('bind-openrc')
   backup=('etc/conf.d/mysql')
   install=mysql.install
@@ -81,7 +81,7 @@ package_mysql-openrc() {
 
 package_postgresql-openrc() {
   pkgdesc="OpenRC postgresql init script"
-  depends=('openrc-base' 'postgresql')
+  depends=('postgresql' 'openrc-base')
   backup=('etc/conf.d/postgresql')
   install=postgresql.install
 
@@ -99,7 +99,7 @@ package_postgresql-openrc() {
 
 package_subversion-openrc() {
   pkgdesc="OpenRC svnserve init script"
-  depends=('openrc-base' 'subversion')
+  depends=('subversion' 'openrc-base')
   backup=('etc/conf.d/svn')
   install=subversion.install
 
@@ -113,17 +113,6 @@ package_subversion-openrc() {
 	_p4='s/--make-pidfile//'
   sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -e "${_p3}" -e "${_p4}" -i "${pkgdir}/etc/init.d/svn"
 }
-
-# what to do with this AUR pkg? Openrc has already groups with same name
-# its just in for AUR and render a pacman group call useless, add meta suffix?
-
-# package_openrc-devel() {
-#   pkgdesc="OpenRC devel init scripts, AUR meta package"
-#   depends=('git-openrc'
-# 	  'mysql-openrc'
-# 	  'postgresql-openrc'
-# 	  'subversion-openrc')
-# }
 
 sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '421e68201619bfbf7535d8b1a0030390b7ffab998e025f7cbd7e879c677c2819'

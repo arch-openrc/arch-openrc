@@ -50,27 +50,27 @@ pkgname=('cpupower-openrc'
 	'ntp-openrc'
 	'cups-openrc'
 	'haveged-openrc')
-pkgver=20140531
+pkgver=20140611
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-misc')
-makedepends=('connman'
-	    'cpupower'
-	    'cups'
-	    'dbus-openrc'
-	    'fcron'
-	    'fuse'
-	    'haveged'
-	    'lirc-utils'
-	    'lm_sensors'
-	    'metalog'
-	    'ntp'
-	    'rsyslog'
-	    'sane'
-	    'syslog-ng')
+# makedepends=('connman'
+# 	    'cpupower'
+# 	    'cups'
+# 	    'dbus-openrc'
+# 	    'fcron'
+# 	    'fuse'
+# 	    'haveged'
+# 	    'lirc-utils'
+# 	    'lm_sensors'
+# 	    'metalog'
+# 	    'ntp'
+# 	    'rsyslog'
+# 	    'sane'
+# 	    'syslog-ng')
 conflicts=('openrc'
 	'openrc-git'
 	'openrc-arch-services-git'
@@ -308,31 +308,9 @@ package_haveged-openrc() {
 
   sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/haveged"
 }
-
-# what to do with this AUR pkg? Openrc has already groups with same name
-# its just in for AUR and render a pacman group call useless, add meta suffix?
-
-# package_openrc-misc() {
-#   pkgdesc="OpenRC misc init scripts, AUR meta package"
-#   depends=('cpupower-openrc'
-# 	  'connman-openrc'
-# 	  'fcron-openrc'
-# 	  'fuse-openrc'
-# 	  'metalog-openrc'
-# 	  'rsyslog-openrc'
-# 	  'sane-openrc'
-# 	  'syslog-ng-openrc'
-# 	  'lirc-utils-openrc'
-# 	  'lm_sensors-openrc'
-# 	  'ntp-openrc'
-# 	  'cups-openrc'
-# 	  'haveged-openrc'
-# 	  'openrc-misc')
-# }
-
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
-            'da92c6da122789935aba9e47d0b81d0a147a81023bd1fe4a0f1c5c04d170569e'
+            '4fcea7dbac09cd1c46842c68edbb377e124a49849d647a0ed4cfc07370384b5f'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
             '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
             '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
