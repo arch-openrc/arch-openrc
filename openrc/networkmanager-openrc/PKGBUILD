@@ -1,3 +1,5 @@
+# Maintainer: artoo <flower_of_life@gmx.net>
+
 _name=NetworkManager
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files"
 
