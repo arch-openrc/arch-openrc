@@ -57,20 +57,6 @@ arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-misc')
-# makedepends=('connman'
-# 	    'cpupower'
-# 	    'cups'
-# 	    'dbus-openrc'
-# 	    'fcron'
-# 	    'fuse'
-# 	    'haveged'
-# 	    'lirc-utils'
-# 	    'lm_sensors'
-# 	    'metalog'
-# 	    'ntp'
-# 	    'rsyslog'
-# 	    'sane'
-# 	    'syslog-ng')
 conflicts=('openrc'
 	'openrc-git'
 	'openrc-arch-services-git'

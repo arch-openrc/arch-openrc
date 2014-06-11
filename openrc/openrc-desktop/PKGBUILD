@@ -30,14 +30,6 @@ arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-desktop')
-# makedepends=('acpid'
-# 	    'alsa-utils'
-# 	    'avahi'
-# 	    'consolekit'
-# 	    'dbus-openrc'
-# 	    'gpm'
-# 	    'xorg-server'
-# 	    'xorg-xinit')
 conflicts=('openrc'
 	  'openrc-git'
 	  'openrc-arch-services-git'

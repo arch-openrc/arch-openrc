@@ -25,11 +25,6 @@ arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL2')
 groups=('openrc' 'openrc-devel')
-# makedepends=('openrc-base'
-# 		'git'
-# 	    'mysql'
-# 	    'postgresql'
-# 	    'subversion')
 conflicts=('openrc'
 	  'openrc-git'
 	  'openrc-arch-services-git'

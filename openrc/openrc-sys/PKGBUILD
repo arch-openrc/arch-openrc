@@ -47,25 +47,7 @@ pkgrel=14
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
-makedepends=('net-tools'
-	     'pkg-config'
-	     'psmisc'
-	     'sysvinit'
-	     'udev')
-# makedepends=('cronie'
-# 	     'cryptsetup'
-# 	     'dbus'
-# 	     'device-mapper'
-# 	     'dhcpcd'
-# 	     'glibc'
-# 	     'inetutils'
-# 	     'lvm2'
-# 	     'mdadm'
-# 	     'net-tools'
-# 	     'pkg-config'
-# 	     'psmisc'
-# 	     'sysvinit'
-# 	     'udev')
+makedepends=('inetutils' 'psmisc' 'udev>=186')
 license=('GPL2')
 groups=('openrc' 'openrc-sys')
 conflicts=('initscripts'
@@ -121,7 +103,7 @@ _pkgver() {
 
 prepare(){
   cd "${srcdir}/${_name}-${pkgver}"
-  sed -e "${_binpath[1]}" -i "support/sysvinit/inittab"
+  sed -e "${_binpath[1]}" -i support/sysvinit/inittab
   sed -i 's:0444:0644:' mk/sys.mk
 }
 
@@ -182,7 +164,8 @@ package_openrc-base() {
 	  'etc/conf.d/keymaps'
 	  'etc/conf.d/hostname'
 	  'etc/conf.d/modules'
-	  'etc/conf.d/net')
+	  'etc/conf.d/net'
+	  'etc/conf.d/hwclock')
   install=${_name}.install
 
   cd "${srcdir}/${_name}-${pkgver}"
