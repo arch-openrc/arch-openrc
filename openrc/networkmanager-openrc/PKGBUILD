@@ -5,7 +5,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/ne
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.10
-pkgrel=5
+pkgrel=6
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -38,7 +38,7 @@ optdepends=('dhclient: DHCPv6 support'
 	    'openresolv: resolvconf support'
 	    'ppp: Dialup connection support')
 options=('!libtool')
-provides=("networkmanager=${pkgver}" "libnm-glib")
+provides=("networkmanager=${pkgver}" "libnm-glib=${pkgver}")
 conflicts=('networkmanager' 'libnm-glib')
 options=('!libtool')
 backup=("etc/${_name}/${_name}.conf")
