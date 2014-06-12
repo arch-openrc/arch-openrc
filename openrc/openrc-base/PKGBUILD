@@ -49,7 +49,6 @@ arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('GPL2')
 groups=('openrc' 'openrc-base')
-# makedepends=('inetutils' 'psmisc' 'udev>=186')
 conflicts=('initscripts'
 	  'systemd-sysvcompat'
 	  'openrc'
@@ -174,9 +173,9 @@ package_openrc-core() {
   cd "${srcdir}/${_name}-${pkgver}"
   make DESTDIR="${pkgdir}" "${_rc_args[@]}" install
   # inittab
-  install -m 644 "${srcdir}/${_name}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
+  install -m644 "${srcdir}/${_name}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
   # logrotate
-  install -Dm 0644 "${srcdir}/${_name}.logrotate" "${pkgdir}/etc/logrotate.d/${_name}"
+  install -Dm644 "${srcdir}/${_name}.logrotate" "${pkgdir}/etc/logrotate.d/${_name}"
   # enable unicode & logger
   sed -e 's/#unicode="NO"/unicode="YES"/' -e 's/#rc_logger="YES"/rc_logger="YES"/' -i "${pkgdir}/etc/rc.conf"
 
