@@ -18,7 +18,7 @@ pkgname=('git-openrc'
 	'mysql-openrc'
 	'postgresql-openrc'
 	'subversion-openrc')
-pkgver=20140611
+pkgver=20140612
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -48,7 +48,7 @@ _binpath='s|/usr/sbin|/usr/bin|g'
 
 package_git-openrc() {
   pkgdesc="OpenRC git-daemon init script"
-  depends=('git' 'openrc-base')
+  depends=('git' 'openrc-core')
   backup=('etc/conf.d/git-daemon')
   install=git.install
 
@@ -62,8 +62,8 @@ package_git-openrc() {
 
 package_mysql-openrc() {
   pkgdesc="OpenRC mysql init script"
-  depends=('mysql' 'openrc-base')
-  optdepends=('bind-openrc')
+  depends=('mysql' 'openrc-core')
+  optdepends=('bind-openrc: bind initscript')
   backup=('etc/conf.d/mysql')
   install=mysql.install
 
@@ -76,7 +76,7 @@ package_mysql-openrc() {
 
 package_postgresql-openrc() {
   pkgdesc="OpenRC postgresql init script"
-  depends=('postgresql' 'openrc-base')
+  depends=('postgresql' 'openrc-core')
   backup=('etc/conf.d/postgresql')
   install=postgresql.install
 
@@ -94,7 +94,7 @@ package_postgresql-openrc() {
 
 package_subversion-openrc() {
   pkgdesc="OpenRC svnserve init script"
-  depends=('subversion' 'openrc-base')
+  depends=('subversion' 'openrc-core')
   backup=('etc/conf.d/svn')
   install=subversion.install
 

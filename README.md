@@ -4,17 +4,16 @@ OpenRC pkgbuilds
 ###Groups:###
 
 * openrc
-* openrc-sys
+* openrc-base
 * openrc-desktop
 * openrc-misc
 * openrc-devel
 * openrc-net
 * eudev-base
 
-#####openrc-sys#####
+#####openrc-base#####
 
-* openrc-base
-* eudev-openrc
+* openrc-core
 * cronie-openrc
 * cryptsetup-openrc
 * dbus-openrc

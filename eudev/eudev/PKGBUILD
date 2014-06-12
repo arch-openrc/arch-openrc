@@ -10,6 +10,7 @@ pkgname=('eudev' 'eudev-openrc')
 pkgver=1.7
 pkgrel=3
 arch=('i686' 'x86_64')
+license=('GPL')
 url="http://dev.gentoo.org/~blueness/eudev"
 makedepends=('acl' 'dbus' 'hwids' 'kbd' 'kmod' 'pam'
 			'util-linux' 'gobject-introspection'
@@ -51,7 +52,6 @@ build() {
 
 package_eudev() {
 	pkgdesc="The userspace dev tools (udev) forked by Gentoo"
-	license=('GPL')
 	depends=('glib2' 'hwids' 'kbd' 'kmod' 'util-linux')
 	optdepends=('eudev-openrc: eudev-postmount script'
 			'dbus-eudev: dbus without systemd'
@@ -90,7 +90,7 @@ package_eudev-openrc(){
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
 	groups=('eudev-base')
-	depends=('eudev' 'openrc-base')
+	depends=('eudev' 'openrc-core')
 	conflicts=('openrc-arch-services-git'
 			'initscripts'
 			'systemd-sysvcompat'
