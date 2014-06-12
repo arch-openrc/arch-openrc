@@ -2,7 +2,9 @@
 # Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: Link Dupont <link@subpop.net>
-#
+
+_pkgname=dbus
+
 pkgname=dbus-eudev
 pkgver=1.8.2
 pkgrel=1
@@ -15,16 +17,16 @@ groups=('eudev-base')
 depends=('expat' 'coreutils' 'filesystem' 'shadow' "libdbus>=${pkgver}")
 makedepends=('libx11' 'xmlto' 'docbook-xsl')
 optdepends=('libx11: dbus-launch support'
-            'dbus-openrc: dbus openrc initscript')
+            'dbus-openrc: dbus initscript')
 provides=('dbus-core' "dbus=${pkgver}")
 conflicts=('dbus-core' 'dbus' 'dbus-nosystemd')
 replaces=('dbus-core' 'dbus' 'dbus-nosystemd')
 install=${pkgname}.install
-source=(http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz #{,.asc}
+source=(http://dbus.freedesktop.org/releases/dbus/${_pkgname}-$pkgver.tar.gz #{,.asc}
 		30-dbus)
 
 build() {
-  cd dbus-$pkgver
+  cd ${_pkgname}-$pkgver
   ./configure \
       --prefix=/usr \
       --sysconfdir=/etc \
@@ -45,7 +47,7 @@ build() {
 }
 
 package(){
-  cd dbus-$pkgver
+  cd ${_pkgname}-$pkgver
 
   # Disable installation of libdbus
   sed -i -e 's/^SUBDIRS = dbus/SUBDIRS =/' Makefile

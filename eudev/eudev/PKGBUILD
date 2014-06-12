@@ -12,9 +12,6 @@ pkgrel=3
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://dev.gentoo.org/~blueness/eudev"
-makedepends=('acl' 'dbus' 'hwids' 'kbd' 'kmod' 'pam'
-			'util-linux' 'gobject-introspection'
-			'gperf' 'gtk-doc' 'intltool')
 options=(!makeflags !libtool)
 source=("${url}/${pkgbase}-${pkgver}.tar.gz"
 		'initcpio_hooks'
@@ -53,7 +50,10 @@ build() {
 package_eudev() {
 	pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 	depends=('glib2' 'hwids' 'kbd' 'kmod' 'util-linux')
-	optdepends=('eudev-openrc: eudev-postmount script'
+	makedepends=('acl' 'dbus' 'hwids' 'kbd' 'kmod' 'pam'
+			'util-linux' 'gobject-introspection'
+			'gperf' 'gtk-doc' 'intltool')
+	optdepends=('eudev-openrc: eudev postmount script'
 			'dbus-eudev: dbus without systemd'
 			'upower-pm-utils-eudev: upower without systemd'
 			'udisks2-eudev: udisks2 without systemd'

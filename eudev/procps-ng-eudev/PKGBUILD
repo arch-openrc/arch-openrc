@@ -3,32 +3,34 @@
 # Contributor: Gaetan Bisson <bisson@archlinux.org>
 # Contributor: Eric Bélanger <eric@archlinux.org>
 
+_pkgname=procps-ng
+
 pkgname=procps-ng-eudev
 pkgver=3.3.9
-pkgrel=2
+pkgrel=1
 pkgdesc='Utilities for monitoring your system and its processes'
 url='http://sourceforge.net/projects/procps-ng/'
 license=('GPL' 'LGPL')
 arch=('i686' 'x86_64')
 groups=('eudev-base')
+provides=('procps' "procps-ng=$pkgver" 'sysvinit-tools')
 depends=('ncurses')
-source=("http://downloads.sourceforge.net/project/procps-ng/Production/procps-ng-${pkgver}.tar.xz"
+conflicts=('procps' 'procps-ng' 'sysvinit-tools' 'sysctl-default-conf' 'procps-ng-nosystemd')
+replaces=('procps' 'procps-ng' 'sysvinit-tools' 'sysctl-default-conf' 'procps-ng-nosystemd')
+install=${_pkgname}.install
+source=("http://downloads.sourceforge.net/project/procps-ng/Production/${_pkgname}-${pkgver}.tar.xz"
         'sysctl.conf')
 sha1sums=('088c77631745fc75ee41fc29c254a4069be4869a'
           '674282245d8ab2e09017b8f8cdce20a3ff81e631')
-conflicts=('procps' 'procps-ng' 'sysvinit-tools' 'sysctl-default-conf' 'procps-ng-nosystemd')
-replaces=('procps' 'procps-ng' 'sysvinit-tools' 'sysctl-default-conf' 'procps-ng-nosystemd')
-provides=('procps' "procps-ng=$pkgver" 'sysvinit-tools')
-install=procps-ng.install
 
 prepare() {
-	cd "${srcdir}/procps-ng-${pkgver}"
+	cd "${srcdir}/${_pkgname}-${pkgver}"
 
 	sed 's:<ncursesw/:<:g' -i watch.c
 }
 
 build() {
-	cd "${srcdir}/procps-ng-${pkgver}"
+	cd "${srcdir}/${_pkgname}-${pkgver}"
 
 	./configure \
 		--prefix=/usr \
@@ -42,10 +44,11 @@ build() {
 }
 
 package() {
-	cd "${srcdir}/procps-ng-${pkgver}"
+	cd "${srcdir}/${_pkgname}-${pkgver}"
+
+	make DESTDIR="${pkgdir}" install
 
 	# Is this needed? Arch removed it, all config is done in /etc/sysctl.d
-	make DESTDIR="${pkgdir}" install
 	install -Dm644 "sysctl.conf" "$pkgdir/etc/sysctl.conf"
 
 	# provided by util-linux
