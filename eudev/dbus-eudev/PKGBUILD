@@ -6,7 +6,7 @@
 _pkgname=dbus
 
 pkgname=dbus-eudev
-pkgver=1.8.2
+pkgver=1.8.4
 pkgrel=1
 pkgdesc="Freedesktop.org message bus system"
 url="http://www.freedesktop.org/Software/dbus"
@@ -60,6 +60,5 @@ package(){
   install -Dm755 ../30-dbus "$pkgdir/etc/X11/xinit/xinitrc.d/30-dbus"
   install -Dm644 COPYING "$pkgdir/usr/share/licenses/dbus/COPYING"
 }
-
-sha256sums=('5689f7411165adc953f37974e276a3028db94447c76e8dd92efe910c6d3bae08'
+sha256sums=('3ef63dc8d0111042071ee7f7bafa0650c6ce2d7be957ef0b7ec269495a651ff8'
             'a1c324ae758046f0c3ef46db02ab873d35adeaab9980c2e0ee293accb89d0d2c')
