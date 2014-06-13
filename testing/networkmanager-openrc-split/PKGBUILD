@@ -73,7 +73,15 @@ build() {
 }
 
 package_networkmanager-openrc(){
-	depends=(libnm-glib-eudev iproute2 libnl polkit wpa_supplicant dhcp-client libsoup libmm-glib)
+	depends=('libnm-glib-eudev'
+		 'iproute2'
+		 'libnl'
+		 'polkit-consolekit'
+		 'wpa_supplicant'
+		 'dhcp-client'
+		 'libsoup'
+		 'libmm-glib'
+		 'openrc-core')
 	optdepends=('dhclient: DHCPv6 support'
 				'dnsmasq: Connection sharing'
 				'bluez: Bluetooth support'
