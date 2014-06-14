@@ -84,7 +84,13 @@ _runpath='s|/var/run|/run|g'
 _binpath=('s|/usr/sbin|/usr/bin|g' 's|/sbin|/usr/bin|g')
 
 _base_args=(SYSCONFDIR=/etc)
-_base_args+=(BRANDING='Arch Linux')
+# Source the /etc/os-release file for branding
+if [ -f /etc/os-release ]; then
+	. /etc/os-release
+	_base_args+=(BRANDING="$NAME")
+else
+	_base_args+=(BRANDING='Arch Linux')
+fi
 _base_args+=(PREFIX=/usr)
 _base_args+=(SBINDIR=/usr/bin)
 
