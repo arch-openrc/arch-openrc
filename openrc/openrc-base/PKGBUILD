@@ -43,7 +43,7 @@ pkgname=('openrc-core'
 		'mdadm-openrc')
 pkgdesc="Gentoo's universal init system, udev enabled."
 pkgver=0.12.4
-pkgrel=16
+pkgrel=17
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
