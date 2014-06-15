@@ -169,6 +169,7 @@ package_openrc-core() {
 			'initscripts'
 			'systemd-sysvcompat'
 			'openrc-base')
+	provides=('openrc-base')
 	replaces=('openrc-base')
 	backup=('etc/rc.conf'
 		'etc/conf.d/consolefont'
