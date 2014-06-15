@@ -8,6 +8,7 @@ url='http://savannah.nongnu.org/projects/sysvinit'
 arch=('i686' 'x86_64' 'armv6h')
 license=('GPL')
 depends=('glibc')
+conflicts=('systemd-sysvcompat')
 
 source=("http://download.savannah.gnu.org/releases/sysvinit/sysvinit-${pkgver}dsf.tar.bz2"
         "0001-simplify-writelog.patch" "0002-remove-ansi-escape-codes-from-log-file.patch"
