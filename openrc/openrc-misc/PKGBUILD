@@ -33,6 +33,12 @@ _Ccon=connman.confd
 _Icon=connman.initd2
 _Chaveg=haveged-conf.d
 _Ihaveg=haveged-init.d.3
+_Csalt_mtr=master-confd-1
+_Isalt_mtr=master-initd-3
+_Csalt_min=minion-confd-1
+_Isalt_min=minion-initd-3
+_Csalt_sync=syndic-confd-1
+_Isalt_sync=syndic-initd-3
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -49,7 +55,8 @@ pkgname=('cpupower-openrc'
 	'lm_sensors-openrc'
 	'ntp-openrc'
 	'cups-openrc'
-	'haveged-openrc')
+	'haveged-openrc'
+	'salt-openrc')
 pkgver=20140612
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -93,7 +100,13 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/net-misc/connman/files/${_Ccon}"
 	"${_gentoo_uri}/net-misc/connman/files/${_Icon}"
 	"${_gentoo_uri}/sys-apps/haveged/files/${_Chaveg}"
-	"${_gentoo_uri}/sys-apps/haveged/files/${_Ihaveg}")
+	"${_gentoo_uri}/sys-apps/haveged/files/${_Ihaveg}"
+	"${_gentoo_uri}/app-admin/salt/files/${_Csalt_mtr}"
+	"${_gentoo_uri}/app-admin/salt/files/${_Isalt_mtr}"
+	"${_gentoo_uri}/app-admin/salt/files/${_Csalt_min}"
+	"${_gentoo_uri}/app-admin/salt/files/${_Isalt_min}"
+	"${_gentoo_uri}/app-admin/salt/files/${_Csalt_sync}"
+	"${_gentoo_uri}/app-admin/salt/files/${_Isalt_sync}")
 
 pkgver() {
   date +%Y%m%d
@@ -294,6 +307,29 @@ package_haveged-openrc() {
 
   sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/haveged"
 }
+
+package_haveged-openrc() {
+  pkgdesc="OpenRC salt init scripts"
+  depends=('openrc-core' 'salt')
+  backup=('etc/conf.d/salt-master'
+  		'etc/conf.d/salt-minion'
+  		'etc/conf.d/salt-syncdic')
+  install=salt.install
+
+  install -Dm755 "${srcdir}/${_Csalt_mtr}" "${pkgdir}/etc/conf.d/salt-master"
+  install -Dm755 "${srcdir}/${_Isalt_mtr}" "${pkgdir}/etc/init.d/salt-master"
+
+  install -Dm755 "${srcdir}/${_Csalt_min}" "${pkgdir}/etc/conf.d/salt-minion"
+  install -Dm755 "${srcdir}/${_Isalt_min}" "${pkgdir}/etc/init.d/salt-minion"
+
+  install -Dm755 "${srcdir}/${_Csalt_sync}" "${pkgdir}/etc/conf.d/salt-syncdic"
+  install -Dm755 "${srcdir}/${_Isalt_sync}" "${pkgdir}/etc/init.d/salt-syncdic"
+
+	for f in ${pkgdir}/etc/init.d/*;do
+  		sed -e "${_shebang}" -e "${_runpath}" -i $f
+  	done
+
+}
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '4fcea7dbac09cd1c46842c68edbb377e124a49849d647a0ed4cfc07370384b5f'
@@ -324,4 +360,10 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '767a160c1b3392f0a12d3908a937548a2f604a9a121e744c309ee6f478420b02'
             'f0a561f124cac3791fba6ee7ef5bc3ea46bd7535edf9e864689b0d9cfa65d332'
             '3b53f4aabf937766b5aa806561e9b97ab2be49ac25d76ae97f4fca4ab7a42e33'
-            '365e9cbde2564a0430d8d1c0f8bc367db2bb32937ebf61649196f0e6a1ab5363')
+            '365e9cbde2564a0430d8d1c0f8bc367db2bb32937ebf61649196f0e6a1ab5363'
+            '9f3f47a7af4d349a7c525455616139b5019d3b7d0290398ba8c50ab91a62d089'
+            'c5eed64899811966220d04e4b9849ba77d2d111f34dc16f03960cf1ff5ec02da'
+            '286148f5391d42c04a62a13cc125fa2130b5821e50da913c5a20d3a913e5f2d1'
+            '06415d7f958210a4dd1490db5796b0d3c08392a81547f290776d9164dde786ae'
+            '286148f5391d42c04a62a13cc125fa2130b5821e50da913c5a20d3a913e5f2d1'
+            '2de9f69462bc3b575a69a150b6bba21a6e341477010d284cb77614e810a7bf8c')
