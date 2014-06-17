@@ -39,6 +39,7 @@ _Csalt_min=minion-confd-1
 _Isalt_min=minion-initd-3
 _Csalt_sync=syndic-confd-1
 _Isalt_sync=syndic-initd-3
+_Impd=mpd2.init
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -56,7 +57,8 @@ pkgname=('cpupower-openrc'
 	'ntp-openrc'
 	'cups-openrc'
 	'haveged-openrc'
-	'salt-openrc')
+	'salt-openrc'
+	'mpd-openrc')
 pkgver=20140612
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -106,7 +108,8 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/app-admin/salt/files/${_Csalt_min}"
 	"${_gentoo_uri}/app-admin/salt/files/${_Isalt_min}"
 	"${_gentoo_uri}/app-admin/salt/files/${_Csalt_sync}"
-	"${_gentoo_uri}/app-admin/salt/files/${_Isalt_sync}")
+	"${_gentoo_uri}/app-admin/salt/files/${_Isalt_sync}"
+	"${_gentoo_uri}/media-sound/mpd/files/${_Impd}")
 
 pkgver() {
   date +%Y%m%d
@@ -308,7 +311,7 @@ package_haveged-openrc() {
   sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/haveged"
 }
 
-package_haveged-openrc() {
+package_salt-openrc() {
   pkgdesc="OpenRC salt init scripts"
   depends=('openrc-core' 'salt')
   backup=('etc/conf.d/salt-master'
@@ -330,40 +333,13 @@ package_haveged-openrc() {
   	done
 
 }
-sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
-            'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
-            '4fcea7dbac09cd1c46842c68edbb377e124a49849d647a0ed4cfc07370384b5f'
-            '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
-            '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
-            '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
-            'ec9f05b386a06a4b2d5398cc0c33f34eba3f5e74ad46ae203d682f8ebc593f99'
-            '906c31e0817517dc6c141a7a10565140ea272d3c958a065f520a0ecb6f81912f'
-            'd28c269c8aa2876a389aefdc76b18bcd30eb6653ea1e54a0eb6fb596568643b6'
-            '9e5ba6d869b99d835cde702a028dae89935c234a14dad79e00a3b5e6379e1f91'
-            'd36ff77fa193a065d25e373723e03f1a9471205151b82c73a6574cce4f095962'
-            'c404ad3b624004cab25bd3a89593cdeb0abbc25771d6e52caf2f37cb4f7b2b79'
-            '1b1f2970cc81a6053fcb6c0ead786436b6423c67170087dde283e54f32ae16e5'
-            '5e5a31fbd93294a6e210499a880fcab371b23706824c9d60d827b0187d7bade4'
-            'd47f22a33a83c14a4a0c333d6a445c40e550c491899fb0c6d323e23fe1eac7b7'
-            '9ab6f022d2b2948660decf5e383984e6ddb9e9e5e6e2761c3031378ddd87e947'
-            '25f2a1665c88dc5227698bdedc2098d6e37d12d8b966f00e2a180c95a33cc8b4'
-            '4bd482a54decc5a51aee60e19ae31b0182d5857b112754247f04c0829b159b07'
-            '36d489296c31736f8015b0ce27052b3f1555b7fe6335120c0477b044b8e4fb8d'
-            '9b018f9f7a0975988387858823fe59a5cd8af6413d8c3170db0e24aac6021ec3'
-            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
-            'c7dc517cdb5ee10e2a07ccea15ec47ba0b7aff8ac1469204c8d7faf71bcae2c5'
-            '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
-            'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
-            '2e4a42dd64b7c6dacfcfefdab8dc1e7c45d7a0966ef8b928583d18393362c719'
-            '8fbd405ad951e7ad046e4408abb98f4066077113187198767d52f28d7228bae4'
-            '4705b68372090ee7db69da1ad35131551ed1ba99032db2486ff6c31d2170ce6b'
-            '767a160c1b3392f0a12d3908a937548a2f604a9a121e744c309ee6f478420b02'
-            'f0a561f124cac3791fba6ee7ef5bc3ea46bd7535edf9e864689b0d9cfa65d332'
-            '3b53f4aabf937766b5aa806561e9b97ab2be49ac25d76ae97f4fca4ab7a42e33'
-            '365e9cbde2564a0430d8d1c0f8bc367db2bb32937ebf61649196f0e6a1ab5363'
-            '9f3f47a7af4d349a7c525455616139b5019d3b7d0290398ba8c50ab91a62d089'
-            'c5eed64899811966220d04e4b9849ba77d2d111f34dc16f03960cf1ff5ec02da'
-            '286148f5391d42c04a62a13cc125fa2130b5821e50da913c5a20d3a913e5f2d1'
-            '06415d7f958210a4dd1490db5796b0d3c08392a81547f290776d9164dde786ae'
-            '286148f5391d42c04a62a13cc125fa2130b5821e50da913c5a20d3a913e5f2d1'
-            '2de9f69462bc3b575a69a150b6bba21a6e341477010d284cb77614e810a7bf8c')
+
+package_mpd-openrc(){
+  pkgdesc="OpenRC fuse init script"
+  depends=('openrc-core' 'mpd')
+  install=mpd.install
+
+  install -Dm755 "${srcdir}/${_Impd}" "${pkgdir}/etc/init.d/mpd"
+  sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/mpd"
+}
+
