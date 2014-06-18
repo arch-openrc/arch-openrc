@@ -4,3 +4,4 @@ procps-ng-eudev
 # most important package of these dbus-eudev
 # if not installed with eudev, dbus won't start
 dbus-eudev
+libpulse-eudev
