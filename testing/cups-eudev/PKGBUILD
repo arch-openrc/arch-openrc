@@ -21,44 +21,31 @@ provides=("cups=${pkgver}")
 conflicts=('cups' 'cups-nosystemd')
 replaces=('cups' 'cups-nosystemd')
 install=cups-eudev.install
-backup=(etc/cups/cupsd.conf
-        etc/cups/snmp.conf
-        etc/cups/printers.conf
-        etc/cups/classes.conf
-        etc/cups/cups-files.conf
-        etc/cups/subscriptions.conf
-        etc/dbus-1/system.d/cups.conf
-        etc/logrotate.d/cups
-        etc/pam.d/cups
-        etc/xinetd.d/cups-lpd)
-source=(http://www.cups.org/software/${pkgver}/cups-${pkgver}-source.tar.bz2
-        cups cups.logrotate cups.pam
+backup=('etc/cups/cupsd.conf'
+        'etc/cups/snmp.conf'
+        'etc/cups/printers.conf'
+        'etc/cups/classes.conf'
+        'etc/cups/cups-files.conf'
+        'etc/cups/subscriptions.conf'
+        'etc/dbus-1/system.d/cups.conf'
+        'etc/logrotate.d/cups'
+        'etc/pam.d/cups'
+        'etc/xinetd.d/cups-lpd')
+source=("http://www.cups.org/software/${pkgver}/cups-${pkgver}-source.tar.bz2"
+        'cups.logrotate' 'cups.pam'
         # improve build and linking
-        cups-no-export-ssllibs.patch
-        cups-no-gcrypt.patch
-        cups-no-gzip-man.patch
+        'cups-no-export-ssllibs.patch'
+        'cups-no-gcrypt.patch'
+        'cups-no-gzip-man.patch'
         # FC
-        cups-res_init.patch
-        cups-avahi-address.patch
-        cups-enum-all.patch
+        'cups-res_init.patch'
+        'cups-avahi-address.patch'
+        'cups-enum-all.patch'
         # Gentoo
-        cups-1.6.0-fix-install-perms.patch
-        cups-1.6.2-statedir.patch
+        'cups-1.6.0-fix-install-perms.patch'
+        'cups-1.6.2-statedir.patch'
         # Debian
-        get-ppd-file-for-statically-configured-ipp-shared-queues.patch)
-md5sums=('d498c3020acda0904ab0c13b6389a1ec'
-         '9657daa21760bb0b5fa3d8b51d5e01a1'
-         '26e9b4e65c0a4d76db5737c9b156fd80'
-         '96f82c38f3f540b53f3e5144900acf17'
-         '3ba9e3410df1dc3015463d615ef91b3b'
-         'cc4101beccb5ed6deb1c92707a575925'
-         '90c30380d4c8cd48a908cfdadae1ea24'
-         '8fe27d4248cacbc02824e7937cab4088'
-         'df0c367c0022e3c7d8e01827e8a6c5e7'
-         'f30c2a161caaf27854581507cde8cac6'
-         '5117f65342fcc69c6a506529e4daca9e'
-         '451609db34f95209d64c38474de27ce1'
-         'b578bcd17949a7203237ba1e31f78ef9')
+        'get-ppd-file-for-statically-configured-ipp-shared-queues.patch')
 
 prepare() {
   cd ${_pkgname}-${pkgver}
@@ -139,7 +126,7 @@ package() {
   # kill the sysv stuff
   rm -rf ${pkgdir}/etc/rc*.d
   rm -rf ${pkgdir}/etc/init.d
-  install -D -m755 ../cups ${pkgdir}/etc/rc.d/cupsd
+
   install -D -m644 ../cups.logrotate ${pkgdir}/etc/logrotate.d/cups
   install -D -m644 ../cups.pam ${pkgdir}/etc/pam.d/cups
 
@@ -173,3 +160,16 @@ package() {
   # comment out all conversion rules which use any of the removed filters
   perl -p -i -e 's:^(.*\s+bannertops\s*)$:#\1:' "${pkgdir}/usr/share/cups/mime/mime.convs"
 }
+
+sha256sums=('fa989f856d1499169dc442fb2311053ea42fe455ca2721693ba5a9fe4b333e31'
+            '9bbf66c210f0b870e42fc97651366e9ad285ffc1f0548272d9a59dea183292d6'
+            '57dfd072fd7ef0018c6b0a798367aac1abb5979060ff3f9df22d1048bb71c0d5'
+            'ff3eb0782af0405f5dafe89e04b1b4ea7a49afc5496860d724343bd04f375832'
+            '1dad0a5af4f812cb9805d117ef3dbd63950e33e80823ebaf6d2ba25f8498d7b6'
+            '125e42dc86ecc4adc7c8d0f3743b5ce444708c96c77546448dc2d7a06f6ada75'
+            '8f1a3a6db9293f1efd61c6392bb1c24e70bf7ae0860add452ef3fa083291a7ea'
+            '45499f3cee306eb3e1ad2f3b7b47fa5540a4c548af6e18be95b8ba63cf3f81b9'
+            'acdfd13ef6f8bce6593a8069e5a2aac27885ed3f799090a9a50f7d60f568a821'
+            '4a4a885bb2e111bd67bcb90a5780f33841b18bc02382317fb5e64c384aa0c4c8'
+            '23349c96f2f7aeb7d48e3bcd35a969f5d5ac8f55a032b0cfaa0a03d7e37ea9af'
+            '560c9a912314322ed2657347cf46ac269e8bcf2c4e0d5d5ce7235c314681f4e1')
