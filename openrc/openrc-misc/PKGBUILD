@@ -59,7 +59,7 @@ pkgname=('cpupower-openrc'
 	'haveged-openrc'
 	'salt-openrc'
 	'mpd-openrc')
-pkgver=20140612
+pkgver=20140618
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -345,8 +345,8 @@ package_mpd-openrc(){
 
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
-            '4fcea7dbac09cd1c46842c68edbb377e124a49849d647a0ed4cfc07370384b5f'
-            '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
+            '35277ef9d6b9e12780ba0806ae9c99047421d9e5ed77734c344235c803d9677a'
+	    '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
             '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
             '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
             'ec9f05b386a06a4b2d5398cc0c33f34eba3f5e74ad46ae203d682f8ebc593f99'
