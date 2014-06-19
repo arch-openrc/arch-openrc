@@ -48,7 +48,7 @@ package_eudev() {
   pkgdesc="The userspace dev tools (udev) forked by Gentoo"
   license=('GPL')
   depends=('glib2' 'kbd' 'kmod' 'hwids'
-	    "libeudev=${_udevver}" 'pam' 'util-linux')
+	    'libsystemd-eudevcompat' 'pam' 'util-linux')
   optdepends=('eudev-openrc: eudev-postmount script'
 			'dbus-eudev: dbus without systemd'
 			'upower-pm-utils-eudev: upower without systemd'
