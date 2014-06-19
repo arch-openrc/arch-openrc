@@ -148,7 +148,7 @@ package_libsystemd-eudevcompat() {
   license=('GPL2')
   provides=('libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
             'libsystemd-journal.so' 'libsystemd-login.so')
-  conflicts=('libgudev-1.0.so' 'libudev.so' 'libsystemd')
+  conflicts=('libsystemd')
 
   mv "$srcdir/_libsystemd-eudevcompat"/* "$pkgdir"
 }
