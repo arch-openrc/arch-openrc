@@ -121,7 +121,7 @@ package_systemd() {
   mv "$pkgdir"/usr/lib/lib{systemd,{g,}udev}*.so* usr/lib
 
   ### split off systemd only libraries
-  cp -pR $srcdir/_libsystemd $srcdir/_libsystemd-compat
+  cp -pR $srcdir/_libsystemd $srcdir/_libsystemd-eudevcompat
   cd "$srcdir"/_libsystemd-compat
   rm usr/lib/lib{g,}udev*.so*
 
@@ -143,14 +143,14 @@ package_libsystemd() {
 }
 
 package_libsystemd-eudevcompat() {
-  pkgdesc="systemd client libraries"
+  pkgdesc="systemd client libraries without udev"
   depends=('glib2' 'glibc' 'libgcrypt' 'xz' "udev>=${pkgver}" 'libgudev-1.0.so' 'libudev.so')
   license=('GPL2')
   provides=('libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
             'libsystemd-journal.so' 'libsystemd-login.so')
   conflicts=('libgudev-1.0.so' 'libudev.so' 'libsystemd')
 
-  mv "$srcdir/_libsystemd-compat"/* "$pkgdir"
+  mv "$srcdir/_libsystemd-eudevcompat"/* "$pkgdir"
 }
 
 package_systemd-sysvcompat() {
