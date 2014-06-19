@@ -122,7 +122,7 @@ package_systemd() {
 
   ### split off systemd only libraries
   cp -pR $srcdir/_libsystemd $srcdir/_libsystemd-eudevcompat
-  cd "$srcdir"/_libsystemd-compat
+  cd "$srcdir"/_libsystemd-eudevcompat
   rm usr/lib/lib{g,}udev*.so*
 
 
