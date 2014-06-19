@@ -48,7 +48,7 @@ package_eudev() {
   pkgdesc="The userspace dev tools (udev) forked by Gentoo"
   license=('GPL')
   depends=('glib2' 'kbd' 'kmod' 'hwids'
-	    'libsystemd-eudevcompat' 'pam' 'util-linux')
+	    'libsystemd-eudevcompat' "libeudev=${pkgver}" 'pam' 'util-linux')
   optdepends=('eudev-openrc: eudev-postmount script'
 			'dbus-eudev: dbus without systemd'
 			'upower-pm-utils-eudev: upower without systemd'
@@ -86,9 +86,9 @@ package_libeudev() {
 	depends=('glib2' 'glibc')
 	license=('GPL2')
 	provides=('libgudev-1.0.so' 'libudev.so'
-			"libeudev=${_udevver}")
+			"libudev=${_udevver}")
 	conflicts=('libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
-				'libsystemd-journal.so' 'libsystemd-login.so')
+				'libsystemd-journal.so' 'libsystemd-login.so' 'libsystemd')
 
 	mv "$srcdir/_libeudev"/* "$pkgdir"
 
@@ -97,7 +97,7 @@ package_libeudev() {
 package_eudev-openrc(){
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
-	groups=('openrc' 'openrc-sys' 'eudev-base')
+	groups=('eudev-base')
 	depends=('openrc-base' 'eudev')
 	conflicts=('openrc-arch-services-git'
 				'initscripts'

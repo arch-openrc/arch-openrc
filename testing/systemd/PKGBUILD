@@ -144,7 +144,7 @@ package_libsystemd() {
 
 package_libsystemd-eudevcompat() {
   pkgdesc="systemd client libraries without udev"
-  depends=('glib2' 'glibc' 'libgcrypt' 'xz' "udev>=${pkgver}" 'libgudev-1.0.so' 'libudev.so')
+  depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'libgudev-1.0.so' 'libudev.so')
   license=('GPL2')
   provides=('libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
             'libsystemd-journal.so' 'libsystemd-login.so'
