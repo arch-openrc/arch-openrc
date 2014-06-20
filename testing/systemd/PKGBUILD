@@ -120,16 +120,15 @@ package_systemd() {
   cd "$srcdir"/_libsystemd
   mv "$pkgdir"/usr/lib/lib{systemd,{g,}udev}*.so* usr/lib
 
-  ### split off systemd only libraries
-  cp -pR $srcdir/_libsystemd $srcdir/_libsystemd-eudevcompat
-  cd "$srcdir"/_libsystemd-eudevcompat
-  rm usr/lib/lib{g,}udev*.so*
-
-
-
   # include MIT license, since it's technically custom
   install -Dm644 "$srcdir/$pkgname-$pkgver/LICENSE.MIT" \
       "$pkgdir/usr/share/licenses/systemd/LICENSE.MIT"
+
+  ### Manjaro
+  ### split off systemd only libraries for eudev compat
+  cp -pR $srcdir/_libsystemd $srcdir/_libsystemd-eudevcompat
+  cd "$srcdir"/_libsystemd-eudevcompat
+  rm usr/lib/lib{g,}udev*.so*
 }
 
 package_libsystemd() {
@@ -142,13 +141,15 @@ package_libsystemd() {
   mv "$srcdir/_libsystemd"/* "$pkgdir"
 }
 
+# Manjaro eudev
 package_libsystemd-eudevcompat() {
   pkgdesc="systemd client libraries without udev"
-  depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'libgudev-1.0.so' 'libudev.so')
+  depends=('glib2' 'glibc' 'libgcrypt' 'xz')
+  optdepends=('eudev-openrc: eudev initscript')
   license=('GPL2')
-  provides=('libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
-            'libsystemd-journal.so' 'libsystemd-login.so'
-            "libsystemd=${pkgver}")
+  provides=("libsystemd=${pkgver}"
+  			'libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
+            'libsystemd-journal.so' 'libsystemd-login.so')
   conflicts=('libsystemd')
 
   mv "$srcdir/_libsystemd-eudevcompat"/* "$pkgdir"

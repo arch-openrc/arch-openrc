@@ -22,7 +22,6 @@ source=("${url}/${pkgbase}-${pkgver}.tar.gz"
 	#"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
 	'udev-postmount')
 
-noextract=("libsystemd-214-2-${CARCH}.pkg.tar.xz")
 
 build() {
 	cd "${srcdir}/${pkgbase}-${pkgver}"
@@ -48,7 +47,7 @@ package_eudev() {
   pkgdesc="The userspace dev tools (udev) forked by Gentoo"
   license=('GPL')
   depends=('glib2' 'kbd' 'kmod' 'hwids'
-	    'libsystemd-eudevcompat' "libeudev=${pkgver}" 'pam' 'util-linux')
+	     'libeudev' 'pam' 'util-linux')
   optdepends=('eudev-openrc: eudev-postmount script'
 			'dbus-eudev: dbus without systemd'
 			'upower-pm-utils-eudev: upower without systemd'
@@ -57,10 +56,10 @@ package_eudev() {
 			'cups-eudev: cups without systemd'
 			'procps-ng-eudev: procps-ng without systemd')
   provides=("udev=${_udevver}"
-	    "systemd=${_udevver}"
-	    "systemd-tools=${_udevver}")
+  			"systemd=${_udevver}"
+  			"systemd-tools=${_udevver}")
   conflicts=('systemd'
-	    'systemd-tools')
+  			'systemd-tools')
   backup=('etc/udev/udev.conf')
   cd "${srcdir}/${pkgbase}-${pkgver}"
   make DESTDIR="${pkgdir}" install
@@ -78,32 +77,33 @@ package_eudev() {
   rm -rf "$srcdir/_libeudev"
   install -dm755 "$srcdir"/_libeudev/usr/lib
   cd "$srcdir"/_libeudev
-  mv "$pkgdir"/usr/lib/lib{gudev,udev}*.so* usr/lib
+  mv "$pkgdir"/usr/lib/lib{g,}udev*.so* usr/lib
 }
 
 package_libeudev() {
 	pkgdesc="eudev client libraries"
-	depends=('glib2' 'glibc')
+	depends=('glibc' 'glib2' 'libsystemd-eudevcompat')
+	#optdepends=('libsystemd-eudevcompat')
 	license=('GPL2')
-	provides=('libgudev-1.0.so' 'libudev.so'
-			"libudev=${_udevver}")
-	conflicts=('libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
-				'libsystemd-journal.so' 'libsystemd-login.so' 'libsystemd')
+	provides=("libudev=${_udevver}"
+			'libgudev-1.0.so'
+			'libudev.so')
+	#conflicts=('libsystemd')
 
 	mv "$srcdir/_libeudev"/* "$pkgdir"
-
 }
 
 package_eudev-openrc(){
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
+	license=('GPL2')
 	groups=('eudev-base')
 	depends=('openrc-base' 'eudev')
-	conflicts=('openrc-arch-services-git'
+	conflicts=('openrc'
+				'openrc-git'
+				'openrc-arch-services-git'
 				'initscripts'
-				'systemd-sysvcompat'
-				'openrc'
-				'openrc-git')
+				'systemd-sysvcompat')
 	install=eudev.install
 
 	install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
@@ -111,3 +111,7 @@ package_eudev-openrc(){
 	local _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-postmount"
 }
+sha256sums=('7c4186904a87e553ec731458478e53a2bed97331e6ba215c4c480a8e2e6e1930'
+            '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
+            '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390'
+            '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb')
