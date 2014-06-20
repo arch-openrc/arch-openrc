@@ -9,17 +9,18 @@
 _name=NetworkManager
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files"
 pkgbase=networkmanager-openrc
-pkgname=(libnm-glib-eudev networkmanager-openrc)
+pkgname=(networkmanager-openrc libnm-glib-eudev)
 pkgver=0.9.8.10
-pkgrel=4
+pkgrel=9
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/${_name}/"
 groups=('openrc' 'openrc-misc')
-makedepends=(intltool dhcpcd dhclient iptables gobject-introspection gtk-doc git ppp modemmanager
-             dbus-glib iproute2 libnl nss polkit wpa_supplicant dhcp-client libsoup udev
-             libmm-glib-eudev)
+makedepends=('intltool' 'dhcpcd' 'dhclient' 'iptables' 'gobject-introspection'
+			'gtk-doc' 'git' 'ppp' 'modemmanager' 'dbus-glib' 'iproute2' 'libnl'
+			'nss' 'wpa_supplicant' 'dhcp-client' 'polkit-consolekit'
+			'libsoup' 'libeudev')
 source=("http://ftp.gnome.org/pub/gnome/sources/${_name}/${pkgver:0:3}/${_name}-${pkgver}.tar.xz"
         'disable_set_hostname.patch'
         "${_gentoo_uri}/10-openrc-status-r4"
@@ -73,15 +74,8 @@ build() {
 }
 
 package_networkmanager-openrc(){
-	depends=('libnm-glib-eudev'
-		 'iproute2'
-		 'libnl'
-		 'polkit-consolekit'
-		 'wpa_supplicant'
-		 'dhcp-client'
-		 'libsoup'
-		 'libmm-glib'
-		 'openrc-core')
+	depends=('libnm-glib-eudev' 'iproute2' 'libnl' 'polkit-consolekit'
+			'wpa_supplicant' 'dhcp-client' 'libsoup' 'dbus-openrc')
 	optdepends=('dhclient: DHCPv6 support'
 				'dnsmasq: Connection sharing'
 				'bluez: Bluetooth support'
@@ -118,7 +112,7 @@ package_networkmanager-openrc(){
 
 package_libnm-glib-eudev() {
   pkgdesc="NetworkManager library"
-  depends=(libeudev nss dbus-glib libutil-linux)
+  depends=('libeudev' 'nss' 'dbus-glib' 'libutil-linux')
   provides=('libnm-glib')
   conflicts=('libnm-glib')
 
