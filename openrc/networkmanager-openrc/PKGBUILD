@@ -5,7 +5,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/ne
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.10
-pkgrel=7
+pkgrel=8
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -16,13 +16,13 @@ depends=('dbus-glib'
 	'libnl'
 	'nss'
 	'polkit-consolekit'
-	'consolekit'
+	'consolekit-openrc'
 	'udev'
 	'wpa_supplicant'
 	'dhcp-client'
 	'libsoup'
 	'libmm-glib'
-	'openrc-core')
+	'dbus-openrc')
 makedepends=('intltool'
 	    'dhcpcd'
 	    'dhclient'
