@@ -2,7 +2,7 @@
 
 pkgname=sysvinit
 pkgver=2.88
-pkgrel=16
+pkgrel=17
 pkgdesc='Linux System V Init'
 url='http://savannah.nongnu.org/projects/sysvinit'
 arch=('i686' 'x86_64' 'armv6h')
