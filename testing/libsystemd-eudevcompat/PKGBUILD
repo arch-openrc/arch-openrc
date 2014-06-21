@@ -1,0 +1,34 @@
+# Maintainer: Dave Reisner <dreisner@archlinux.org>
+# Maintainer: Tom Gundersen <teg@jklm.no>
+
+pkgname=('libsystemd-eudevcompat')
+pkgver=214
+pkgrel=2
+folder=overlay
+arch=('i686' 'x86_64')
+url="http://www.freedesktop.org/wiki/Software/systemd"
+if [ "$CARCH" = "i686" ]; then
+   source=("http://repo.manjaro.org.uk/pool/$folder/libsystemd-$pkgver-$pkgrel-i686.pkg.tar.xz")
+   sha256sums=('c9a49961d499c1282e70c0e828bd77397f3b5d8ecbdedb8064fa56af294e9622')
+elif [ "$CARCH" = "x86_64" ]; then
+   source=("http://repo.manjaro.org.uk/pool/$folder/libsystemd-$pkgver-$pkgrel-x86_64.pkg.tar.xz")
+   sha256sums=('3b81492edc14fff77fc256bb3f95eed13c7e2e568eb1305cff4f67744628c0af')
+fi
+
+prepare() {
+  rm usr/lib/lib{g,}udev*.so*
+}
+
+package() {
+  pkgdesc="systemd client libraries without udev"
+  depends=('glib2' 'glibc' 'libgcrypt' 'xz')
+  optdepends=('eudev-openrc: eudev initscript')
+  license=('GPL2')
+  provides=("libsystemd=${pkgver}"
+  			'libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
+            'libsystemd-journal.so' 'libsystemd-login.so')
+  conflicts=('libsystemd')
+
+  mv "$srcdir/usr/" "$pkgdir"
+}
+# vim: ft=sh syn=sh et
