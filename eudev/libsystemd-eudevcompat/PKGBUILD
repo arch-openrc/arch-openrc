@@ -1,11 +1,20 @@
 # Maintainer: Dave Reisner <dreisner@archlinux.org>
 # Maintainer: Tom Gundersen <teg@jklm.no>
 
-pkgname=('libsystemd-eudevcompat')
+pkgname=libsystemd-eudevcompat
 pkgver=214
 pkgrel=2
+pkgdesc="systemd client libraries without udev"
 arch=('i686' 'x86_64')
+license=('GPL2')
 url="http://www.freedesktop.org/wiki/Software/systemd"
+provides=("libsystemd=${pkgver}"
+		'libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
+		'libsystemd-journal.so' 'libsystemd-login.so')
+depends=('glib2' 'glibc' 'libgcrypt' 'xz')
+optdepends=('eudev-openrc: eudev initscript')
+conflicts=('libsystemd')
+
 if [ "$CARCH" = "i686" ]; then
    source=("ftp://ftp.archlinux.org/pool/packages/libsystemd-$pkgver-$pkgrel-i686.pkg.tar.xz")
    sha256sums=('c9a49961d499c1282e70c0e828bd77397f3b5d8ecbdedb8064fa56af294e9622')
@@ -19,15 +28,6 @@ prepare() {
 }
 
 package() {
-  pkgdesc="systemd client libraries without udev"
-  depends=('glib2' 'glibc' 'libgcrypt' 'xz')
-  optdepends=('eudev-openrc: eudev initscript')
-  license=('GPL2')
-  provides=("libsystemd=${pkgver}"
-            'libsystemd.so' 'libsystemd-daemon.so' 'libsystemd-id128.so'
-            'libsystemd-journal.so' 'libsystemd-login.so')
-  conflicts=('libsystemd')
-
   mv "$srcdir/usr/" "$pkgdir"
 }
 # vim: ft=sh syn=sh et

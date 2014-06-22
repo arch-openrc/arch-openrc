@@ -13,7 +13,7 @@ fi
 user=$(ls /var/lib/manjarobuild/unstable-`uname -m` | cut -d' ' -f1 | grep -v root | grep -v lock)
 echo "Build eudev"
 date
-cd eudev/dbus-eudev
+cd old_eudev/dbus-eudev
 unstable-`uname -m`-build -c
 cd ../eudev
 makechrootpkg -n -r /var/lib/manjarobuild/unstable-`uname -m`
@@ -28,7 +28,7 @@ date
 echo "Done building openrc"
 echo "Build eudev (additional packages)"
 date
-cd ../eudev
+cd ../old_eudev
 for pkg in $(cat build-list); do cd $pkg && makechrootpkg -n -r /var/lib/manjarobuild/unstable-`uname -m` || break && cd ..; done
 date
 echo "Done building eudev (additional packages)"
