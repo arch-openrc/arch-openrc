@@ -13,9 +13,8 @@ fi
 user=$(ls /var/lib/manjarobuild/unstable-`uname -m` | cut -d' ' -f1 | grep -v root | grep -v lock)
 echo "Build eudev"
 date
-# dbus works on my system with eudevcompat without dbus-eudev
-#cd eudev/dbus-eudev
-#unstable-`uname -m`-build -c
+cd eudev/dbus-eudev
+unstable-`uname -m`-build -c
 cd ../eudev
 makechrootpkg -n -r /var/lib/manjarobuild/unstable-`uname -m`
 pacman -Rdd libsystemd -r /var/lib/manjarobuild/unstable-`uname -m`/$user --noconfirm
@@ -34,3 +33,4 @@ for pkg in $(cat build-list); do cd $pkg && makechrootpkg -n -r /var/lib/manjaro
 date
 echo "Done building eudev (additional packages)"
 #shutdown -h now
+
