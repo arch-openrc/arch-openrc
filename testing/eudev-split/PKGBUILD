@@ -11,7 +11,8 @@ pkgver=1.8
 pkgrel=2
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
-groups=('eudev-base')
+# coment out fortesting new package with default arch optdepend packages
+#groups=('eudev-base')
 makedepends=('acl' 'dbus' 'hwids' 'kbd' 'kmod' 'pam'
 	    'util-linux' 'gobject-introspection'
 	    'gperf' 'gtk-doc' 'intltool')
@@ -97,7 +98,7 @@ package_eudev-openrc(){
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
 	license=('GPL2')
-	groups=('eudev-base')
+	#groups=('eudev-base')
 	depends=('openrc-base' 'eudev')
 	conflicts=('openrc'
 				'openrc-git'
