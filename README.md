@@ -95,9 +95,4 @@ OpenRC pkgbuilds
 
 * eudev
 * eudev-openrc
-* upower-eudev-pm-utils
-* dbus-eudev
-* udisks2-eudev
-* procps-ng-eudev
-* libpulse-eudev
-
+* libsystemd-eudevcompat
