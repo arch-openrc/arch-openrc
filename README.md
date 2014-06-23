@@ -93,6 +93,5 @@ OpenRC pkgbuilds
 
 #####eudev-base#####
 
-* eudev
 * eudev-openrc
-* libsystemd-eudevcompat
+* upower-pm-utils-eudev
