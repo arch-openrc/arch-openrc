@@ -1,5 +1,7 @@
-# Maintainer: Dave Reisner <dreisner@archlinux.org>
-# Maintainer: Tom Gundersen <teg@jklm.no>
+# Maintainer: artoo <flower_of_life@gmx.net>
+# Contributor: Philip Müller <philm|manjaro|org>
+# Contributor: Dave Reisner <dreisner@archlinux.org>
+# Contributor: Tom Gundersen <teg@jklm.no>
 
 pkgname=libsystemd-eudevcompat
 pkgver=214
@@ -30,4 +32,3 @@ prepare() {
 package() {
   mv "$srcdir/usr/" "$pkgdir"
 }
-# vim: ft=sh syn=sh et
