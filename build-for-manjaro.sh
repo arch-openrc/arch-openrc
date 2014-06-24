@@ -15,7 +15,7 @@ user=$(ls /var/lib/manjarobuild/unstable-$(uname -m) | cut -d' ' -f1 | grep -v r
 echo "Build eudev"
 date
 cd eudev/libsystemd-eudevcompat
-### boxit ???
+## boxit ? Nope, its devtools- https://wiki.manjaro.org/index.php?title=Devtools
 unstable-$(uname -m)-build -c
 
 makechrootpkg -n -r /var/lib/manjarobuild/unstable-$(uname -m)
