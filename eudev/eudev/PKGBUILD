@@ -45,6 +45,7 @@ package_eudev() {
 	pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 	license=('GPL')
 	depends=('glib2' 'kbd' 'kmod' 'hwids' 'libeudev' 'pam' 'util-linux')
+	optdepends=('upower-pm-utils: pm-utils support')
 	provides=("udev=${_udevver}"
 			"systemd=${_udevver}"
 			"systemd-tools=${_udevver}")
