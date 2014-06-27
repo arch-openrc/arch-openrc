@@ -1,0 +1,43 @@
+# Maintainer: Your Name <youremail@domain.com>
+
+pkgname=manjaro-openrc-git
+pkgver=0.8.10
+pkgrel=1
+pkgdesc="majaro openrc support"
+arch=('any')
+url="https://github.com/udeved"
+license=('GPL')
+groups=('openrc' 'openrc-base')
+depends=('openrc-core' 'dbus-openrc')
+# makedepends=()
+# optdepends=()
+provides=('manjaro-openrc')
+conflicts=('manjaro-openrc')
+# replaces=()
+# backup=()
+# options=()
+# install=
+# changelog=
+source=('local.d.keyboardctl')
+
+# prepare() {
+# 	cd "$srcdir/$pkgname-$pkgver"
+# 	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
+# }
+
+# build() {
+# 	cd "$srcdir/$pkgname-$pkgver"
+# 	./configure --prefix=/usr
+# 	make
+# }
+
+# check() {
+# 	cd "$srcdir/$pkgname-$pkgver"
+# 	make -k check
+# }
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+	#make DESTDIR="$pkgdir/" install
+	install -Dm755 $srcdir/local.d.keyboardctl $pkgdir/etc/local.d/keyboardctl
+}
