@@ -1,7 +1,7 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 # Contributor: williamh <williamh@gentoo.org>
 
-_name="openrc"
+_pkgname="openrc"
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -29,7 +29,7 @@ conflicts=('initscripts'
 		'openrc'
 		'openrc-git'
 		'openrc-core')
-install=${_name}.install
+install=${_pkgname}.install
 backup=('etc/rc.conf'
 		'etc/conf.d/consolefont'
 		'etc/conf.d/keymaps'
@@ -40,7 +40,7 @@ backup=('etc/rc.conf'
 source=("$pkgname"::'git://github.com/OpenRC/openrc.git'
 		"${_udev}"::"git://git.overlays.gentoo.org/proj/udev-gentoo-scripts.git"
 		"${_net}::git://git.overlays.gentoo.org/proj/netifrc.git"
-		"${_gentoo_uri}/sys-apps/${_name}/files/${_name}.logrotate"
+		"${_pkgname}.logrotate"
 		"${_gentoo_uri}/sys-apps/kmod/files/kmod-static-nodes")
 sha256sums=('SKIP'
             'SKIP'
@@ -67,14 +67,14 @@ _rc_args+=(LIBEXECDIR=/usr/lib/rc)
 _rc_args+=(MKSELINUX=no)
 _rc_args+=(MKPAM=pam)
 _rc_args+=(MKTERMCAP=ncurses)
-_rc_args+=(MKNET=oldnet)
+_rc_args+=(MKNET=no)
 
 _net_args=( "${_base_args[@]}" )
 _net_args+=(LIBEXECDIR=/usr/lib/netifrc)
 
 pkgver() {
-  cd "$srcdir/$pkgname"
-  #git describe --long | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
+	cd "$srcdir/$pkgname"
+	#git describe --long | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
 	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
@@ -130,7 +130,7 @@ package(){
 	# inittab
 	install -m644 "${srcdir}/$pkgname/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
 	# logrotate
-	install -Dm644 "${srcdir}/${_name}.logrotate" "${pkgdir}/etc/logrotate.d/${_name}"
+	install -Dm644 "${srcdir}/${_pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${_pkgname}"
 	# enable unicode & logger
 	sed -e 's/#unicode="NO"/unicode="YES"/' -e 's/#rc_logger="YES"/rc_logger="YES"/' -i "${pkgdir}/etc/rc.conf"
 
