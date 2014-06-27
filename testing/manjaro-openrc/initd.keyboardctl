@@ -1,0 +1,20 @@
+#!/usr/bin/runscript
+
+PID=/run/${SVCNAME}.pid
+CMD=/usr/bin/${SVCNAME}
+
+depend() {
+	before keymaps
+}
+
+start() {
+	ebegin "Starting ${SVCNAME}"
+	start-stop-daemon --start --exec $CMD --make-pidfile $PID -- ${ARGS}
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping ${SVCNAME}"
+	start-stop-daemon --stop --quiet --exec $CMD --pidfile $PID
+	eend $?
+}

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/usr/bin/keyboardctl --setup

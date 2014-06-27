@@ -1,0 +1,20 @@
+#!/usr/bin/runscript
+
+PID=/run/pamac.pid
+CMD=/usr/bin/pamac-daemon
+
+depend() {
+	need dbus
+}
+
+start() {
+	ebegin "Starting ${SVCNAME}"
+	start-stop-daemon --start --background --exec $CMD --make-pidfile $PID
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping ${SVCNAME}"
+	start-stop-daemon --stop --quiet --exec $CMD --pidfile $PID
+	eend $?
+}
