@@ -3,7 +3,7 @@
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
 _udevver=214
-#_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=eudev
 pkgname=('eudev' 'libeudev' 'eudev-openrc')
@@ -18,8 +18,7 @@ options=(!makeflags !libtool)
 source=("${url}/${pkgbase}-${pkgver}.tar.gz"
 	'initcpio_hooks'
 	'initcpio_install'
-	'udev-postmount')
-	#"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
+	"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
 
 _pkgver() {
   date +%Y%m%d
