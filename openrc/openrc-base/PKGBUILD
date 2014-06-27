@@ -58,7 +58,7 @@ conflicts=('initscripts'
 source=("${_src_uri}/${_pkgname}-${pkgver}.tar.bz2"
 		"${_src_uri}/${_udev}-${_uver}.tar.bz2"
 		"${_net_uri}/${_net}-${_nver}.tar.bz2"
-		"openrc.logrotate"
+		'openrc.logrotate'
 		'kmod-static-nodes'
 		"${_gentoo_uri}/sys-process/cronie/files/${_Icron1}"
 		"${_gentoo_uri}/sys-process/cronie/files/${_Icron2}"
