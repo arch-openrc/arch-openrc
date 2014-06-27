@@ -20,7 +20,7 @@ unstable-$(uname -m)-build -c
 
 makechrootpkg -n -r /var/lib/manjarobuild/unstable-$(uname -m)
 pacman -Rdd libsystemd -r /var/lib/manjarobuild/unstable-$(uname -m)/$user --noconfirm
-pacman -U *$(uname -m)*pkg*z -r /var/lib/manjarobuild/unstable-$(uname -m)/$user --noconfirm
+#pacman -U *$(uname -m)*pkg*z -r /var/lib/manjarobuild/unstable-$(uname -m)/$user --noconfirm
 
 cd ../eudev
 makechrootpkg -n -r /var/lib/manjarobuild/unstable-$(uname -m)
@@ -39,7 +39,7 @@ echo "Done building openrc"
 
 echo "Build eudev (additional packages)"
 date
-cd ../eudev
+cd ../../eudev
 for pkg in $(cat build-list); do
 	cd $pkg
 	makechrootpkg -n -r /var/lib/manjarobuild/unstable-$(uname -m) || break && cd ..
