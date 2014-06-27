@@ -21,6 +21,11 @@ source=("${url}/${pkgbase}-${pkgver}.tar.gz"
 	'udev-postmount')
 	#"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
 
+_pkgver() {
+  date +%Y%m%d
+}
+
+
 build() {
 	cd "${srcdir}/${pkgbase}-${pkgver}"
 	./configure \
@@ -84,6 +89,8 @@ package_libeudev() {
 }
 
 package_eudev-openrc(){
+	pkgver=$(_pkgver)
+	pkgrel=1
 	pkgdesc="OpenRC eudev postmount script"
 	arch=('any')
 	license=('GPL2')
