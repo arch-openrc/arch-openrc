@@ -58,8 +58,8 @@ conflicts=('initscripts'
 source=("${_src_uri}/${_pkgname}-${pkgver}.tar.bz2"
 		"${_src_uri}/${_udev}-${_uver}.tar.bz2"
 		"${_net_uri}/${_net}-${_nver}.tar.bz2"
-		'openrc.logrotate'
-		'kmod-static-nodes'
+		"${_pkgname}.logrotate"
+		"${_gentoo_uri}/sys-apps/kmod/files/kmod-static-nodes"
 		"${_gentoo_uri}/sys-process/cronie/files/${_Icron1}"
 		"${_gentoo_uri}/sys-process/cronie/files/${_Icron2}"
 		"${_gentoo_uri}/sys-fs/cryptsetup/files/${_Ccrypt}"
@@ -89,7 +89,7 @@ if [ -f /etc/os-release ]; then
 	. /etc/os-release
 	_base_args+=(BRANDING="$NAME")
 else
-	_base_args+=(BRANDING='Arch Linux')
+	_base_args+=(BRANDING='Unknown Linux')
 fi
 _base_args+=(PREFIX=/usr)
 _base_args+=(SBINDIR=/usr/bin)
@@ -99,7 +99,7 @@ _rc_args+=(LIBEXECDIR=/usr/lib/rc)
 _rc_args+=(MKSELINUX=no)
 _rc_args+=(MKPAM=pam)
 _rc_args+=(MKTERMCAP=ncurses)
-_rc_args+=(MKNET=oldnet)
+_rc_args+=(MKNET=no)
 
 _net_args=( "${_base_args[@]}" )
 _net_args+=(LIBEXECDIR=/usr/lib/${_net})
