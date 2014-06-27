@@ -48,7 +48,7 @@ sha256sums=('SKIP'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
             '078b07581e63b5113cef9e85da7d5b53e1fbad91d793f7fa8b7188b364689b0e')
 
-_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
 _binpath=('s|/sbin|/usr/bin|g')
 
 _base_args=(SYSCONFDIR=/etc)
@@ -133,13 +133,10 @@ package(){
 	install -Dm644 "${srcdir}/${_pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${_pkgname}"
 	# enable unicode & logger
 	sed -e 's/#unicode="NO"/unicode="YES"/' -e 's/#rc_logger="YES"/rc_logger="YES"/' -i "${pkgdir}/etc/rc.conf"
-
 	# udev
 	_install_udev
-
 	# netifrc
 	_install_netifrc
-
 	# kmod-static-nodes
 	_install_kmod
 }
