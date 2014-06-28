@@ -59,7 +59,7 @@ pkgname=('cpupower-openrc'
 	'haveged-openrc'
 	'salt-openrc'
 	'mpd-openrc')
-pkgver=$(pkgver)
+pkgver=20140628
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
