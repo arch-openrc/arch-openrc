@@ -4,18 +4,18 @@ PID=/run/${SVCNAME}.pid
 CMD=/usr/bin/${SVCNAME}
 
 depend() {
-	use dbus
-	before xdm
+	need dbus
+	use xdm
 }
 
 start() {
 	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --exec $CMD --make-pidfile --pidfile $PID -- ${ARGS}
+	start-stop-daemon --start --background --exec "${CMD}" --make-pidfile --pidfile "${PID}" -- "${ARGS}"
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --quiet --exec $CMD --pidfile $PID
+	start-stop-daemon --stop --quiet --exec "${CMD}" --pidfile "${PID}"
 	eend $?
 }

@@ -9,9 +9,10 @@ url="https://github.com/udeved"
 license=('GPL')
 groups=('openrc' 'openrc-base')
 depends=('openrc-core' 'dbus-openrc')
-# optdepends=()
+optdepends=('displaymanager-openrc: DM initscript')
 provides=('manjaro-openrc')
 conflicts=('manjaro-openrc')
+install=manjaro.install
 source=('initd.keyboardctl'
 		'confd.keyboardctl')
 

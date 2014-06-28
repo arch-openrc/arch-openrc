@@ -2,6 +2,7 @@
 
 PID=/run/pamac.pid
 CMD=/usr/bin/pamac-daemon
+extra_started_commands="reload"
 
 depend() {
 	need dbus
@@ -10,12 +11,18 @@ depend() {
 
 start() {
 	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --background --exec $CMD --make-pidfile --pidfile $PID
+	start-stop-daemon --start --background --exec "${CMD}" --make-pidfile --pidfile "${PID}"
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --quiet --exec $CMD --pidfile $PID
+	start-stop-daemon --stop --quiet --exec "${CMD}" --pidfile "${PID}"
+	eend $?
+}
+
+reload() {
+	ebegin "Reloading"
+	start-stop-daemon --name "${SVCNAME}"
 	eend $?
 }
