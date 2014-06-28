@@ -16,7 +16,8 @@ source=('initd.keyboardctl'
 		'confd.keyboardctl')
 
 package() {
-	cd "$srcdir/$pkgname-$pkgver"
 	install -Dm755 $srcdir/confd.keyboardctl $pkgdir/etc/conf.d/keyboardctl
 	install -Dm755 $srcdir/initd.keyboardctl $pkgdir/etc/init.d/keyboardctl
 }
+sha256sums=('98e358fc0348833bcf9f19795f3d9ca7de3b72699bf49471178b408d20b433ca'
+            'c440fe40f7e4dc24f1bef9d7a2d6f3dfed637cc4aae7a12189368497e73cb4dc')

@@ -4,12 +4,13 @@ PID=/run/${SVCNAME}.pid
 CMD=/usr/bin/${SVCNAME}
 
 depend() {
-	before keymaps
+	use dbus
+	before xdm
 }
 
 start() {
 	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --exec $CMD --make-pidfile $PID -- ${ARGS}
+	start-stop-daemon --start --exec $CMD --make-pidfile --pidfile $PID -- ${ARGS}
 	eend $?
 }
 

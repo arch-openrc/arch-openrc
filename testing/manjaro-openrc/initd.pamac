@@ -5,11 +5,12 @@ CMD=/usr/bin/pamac-daemon
 
 depend() {
 	need dbus
+	use consolekit
 }
 
 start() {
 	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --background --exec $CMD --make-pidfile $PID
+	start-stop-daemon --start --background --exec $CMD --make-pidfile --pidfile $PID
 	eend $?
 }
 
