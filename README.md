@@ -49,6 +49,8 @@ OpenRC pkgbuilds
 * connman-openrc
 * networkmanager-openrc
 * haveged-openrc
+* mpd-openrc
+* salt-openrc
 
 #####openrc-devel#####
 
@@ -83,6 +85,7 @@ OpenRC pkgbuilds
 * rsync-openrc
 * samba-openrc
 * squid-openrc
+* tor-openrc
 * transmission-openrc
 * ufw-openrc
 * vsftpd-openrc
@@ -94,4 +97,4 @@ OpenRC pkgbuilds
 #####eudev-base#####
 
 * eudev-openrc
-* upower-pm-utils-eudev
+* upower-pm-utils
