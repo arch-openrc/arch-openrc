@@ -1,0 +1,19 @@
+# Maintainer: Your Name <youremail@domain.com>
+
+pkgname=pamac-openrc
+pkgver=0.9.8
+pkgrel=1
+pkgdesc="pamac openrc support"
+arch=('any')
+url="https://github.com/udeved"
+license=('GPL')
+groups=('openrc' 'openrc-desktop')
+depends=('pamac' 'dbus-openrc')
+optdepends=('consolekit-openrc')
+install=pamac.install
+source=('initd.pamac')
+sha256sums=('004eeeb8659391f6bd3b788d16c416e9c39747d9b2e36604472cde080f78bdde')
+
+package() {
+	install -Dm755 $srcdir/initd.pamac $pkgdir/etc/init.d/pamac
+}

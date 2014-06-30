@@ -5,7 +5,6 @@ CMD=/usr/bin/${SVCNAME}
 
 depend() {
 	need dbus
-	use xdm
 }
 
 start() {
