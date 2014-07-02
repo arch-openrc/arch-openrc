@@ -4,7 +4,11 @@
 export LANG=C
 export LC_MESSAGES=C
 
-CHROOT=/srv/devel/manjarobuild
+if [[ -f mbuild.conf ]];then
+	. "mbuild.conf"
+else
+	CHROOT=/opt/manjarobuild
+fi
 ARCH=$(uname -m)
 BRANCH=unstable
 
