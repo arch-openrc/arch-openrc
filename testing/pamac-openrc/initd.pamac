@@ -1,28 +1,18 @@
 #!/usr/bin/runscript
 
-PID=/run/pamac.pid
-CMD=/usr/bin/pamac-daemon
-extra_started_commands="reload"
-
 depend() {
 	need dbus
-	use consolekit
+	use consolekit xdm
 }
 
 start() {
-	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --background --exec "${CMD}" --make-pidfile --pidfile "${PID}"
+	ebegin "Starting pamac-daemon"
+	start-stop-daemon --background  --quiet --exec /usr/bin/pamac-daemon
 	eend $?
 }
 
 stop() {
-	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --quiet --exec "${CMD}" --pidfile "${PID}"
-	eend $?
-}
-
-reload() {
-	ebegin "Reloading"
-	start-stop-daemon --name "${SVCNAME}"
+	ebegin "Stopping pamac-daemon"
+	start-stop-daemon --background  --quiet --exec /usr/bin/pamac-daemon
 	eend $?
 }

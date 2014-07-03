@@ -1,4 +1,4 @@
-_svc="keyboardctl"
+_svc="pamac-daemon"
 _rlvl="default"
 
 post_install() {
