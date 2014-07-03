@@ -2,7 +2,7 @@
 
 pkgname=keyboardctl-openrc
 pkgver=0.1.5
-pkgrel=1
+pkgrel=2
 pkgdesc="keyboardctl openrc support"
 arch=('any')
 url="https://github.com/udeved"
@@ -10,12 +10,9 @@ license=('GPL')
 groups=('openrc' 'openrc-base')
 depends=('keyboardctl' 'dbus-openrc')
 install=keyboardctl.install
-source=('initd.keyboardctl'
-		'confd.keyboardctl')
-sha256sums=('98e358fc0348833bcf9f19795f3d9ca7de3b72699bf49471178b408d20b433ca'
-            'c440fe40f7e4dc24f1bef9d7a2d6f3dfed637cc4aae7a12189368497e73cb4dc')
+source=('initd.keyboardctl')
 
 package() {
-	install -Dm755 $srcdir/confd.keyboardctl $pkgdir/etc/conf.d/keyboardctl
 	install -Dm755 $srcdir/initd.keyboardctl $pkgdir/etc/init.d/keyboardctl
 }
+sha256sums=('6e4dd002599f3ef3f162f7bb1cca4089b89f009989f40764333d5c73cfc3be99')

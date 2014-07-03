@@ -1,20 +1,30 @@
 #!/usr/bin/runscript
 
-PID=/run/${SVCNAME}.pid
-CMD=/usr/bin/${SVCNAME}
+pidfile="/run/${SVCNAME}.pid"
+command="/usr/bin/${SVCNAME}"
+start_stop_args="--background --setup"
+#extra_started_commands="reload"
 
 depend() {
 	need dbus
 }
 
-start() {
-	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --background --exec "${CMD}" --make-pidfile --pidfile "${PID}" -- "${ARGS}"
-	eend $?
-}
-
-stop() {
-	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --quiet --exec "${CMD}" --pidfile "${PID}"
-	eend $?
-}
+# start() {
+# 	ebegin "Starting ${SVCNAME}"
+# 	start-stop-daemon --start --background --exec "${command}" --make-pidfile --pidfile "${pidfile}" -- "${ARGS}"
+# 	eend $?
+# }
+#
+# stop() {
+# 	ebegin "Stopping ${SVCNAME}"
+# 	start-stop-daemon --stop --quiet --exec "${command}" --pidfile "${pidfile}"
+# 	eend $?
+# }
+#
+# reload() {
+# 	checkconfig || return 1
+# 	ebegin "Reloading ${SVCNAME}"
+# 	start-stop-daemon --signal HUP \
+# 	    --exec "${command}" --pidfile "${pidfile}"
+# 	eend $?
+# }
