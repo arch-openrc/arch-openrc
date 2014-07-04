@@ -4,7 +4,7 @@
 _Cacpi=acpid-2.0.16-conf.d
 _Iacpi=acpid-2.0.16-init.d
 _Calsa=alsasound.confd-r4
-_Ialsa=alsasound.initd-r5
+_Ialsa=alsasound.initd-r6
 _Ick=consolekit-0.2.rc
 _Sck=90-consolekit-3
 _Cxdm=xdm.confd-4
@@ -136,7 +136,7 @@ package_gpm-openrc() {
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
-            'daf46bbc4156a82e0c6c7135ee94b31a3dfb6d366fcf3f45e8c842d1348601be'
+            '5fdcb0212bf8a4be74f410534534fdda6dd8d57df0d2a6c4a158464f705fed18'
             'da849bae527a7a5c257301a99ac3fb5ec2ded48103ec114552ca7d2a24b12e49'
             '91e0900995f7db536220065959d236fb75ec2c77096981a142e2e948518d9761'
             '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
