@@ -23,7 +23,7 @@ pkgname=('acpid-openrc'
 	'consolekit-openrc'
 	'displaymanager-openrc'
 	'gpm-openrc')
-pkgver=20140628
+pkgver=20140704
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -133,7 +133,6 @@ package_gpm-openrc() {
 
   sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/gpm"
 }
-
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'

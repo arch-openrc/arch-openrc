@@ -18,7 +18,7 @@ pkgname=('git-openrc'
 	'mysql-openrc'
 	'postgresql-openrc'
 	'subversion-openrc')
-pkgver=20140628
+pkgver=20140704
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -108,7 +108,6 @@ package_subversion-openrc() {
 	_p4='s/--make-pidfile//'
   sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -e "${_p3}" -e "${_p4}" -i "${pkgdir}/etc/init.d/svn"
 }
-
 sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '421e68201619bfbf7535d8b1a0030390b7ffab998e025f7cbd7e879c677c2819'
             '45da613841969adf564f9f2f08257f749539651ee2fae85266f59fdd7a6f8123'

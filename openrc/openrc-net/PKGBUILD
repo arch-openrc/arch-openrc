@@ -78,10 +78,10 @@ _Intp=openntpd.init.d-20080406-r6
 _Ctor=tor.confd
 _Itor=tor.initd-r6
 
-_apver=2.4.4
-_aprel=20130801
+_apver=2.4.9-r3
+_aprel=20140522
 
-_dev_uri="http://dev.gentoo.org/~kensington/dist/apache"
+_dev_uri="http://dev.gentoo.org/~polynomial-c/dist/apache"
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=openrc-net
@@ -118,7 +118,7 @@ pkgname=('autofs-openrc'
 	'ypbind-mt-openrc'
 	'ypserv-openrc'
 	'tor-openrc')
-pkgver=20140628
+pkgver=20140704
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -689,7 +689,7 @@ package_tor-openrc() {
 
   sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/tor"
 }
-sha256sums=('bae819de1ded2104a65dabc759e8a7bc6b442d2588ffb99e563be8482b3d87bf'
+sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
             '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
