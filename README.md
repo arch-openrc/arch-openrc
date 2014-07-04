@@ -51,6 +51,8 @@ OpenRC pkgbuilds
 * haveged-openrc
 * mpd-openrc
 * salt-openrc
+* hdparm-openrc
+* readahead-list-openrc
 
 #####openrc-devel#####
 
