@@ -10,4 +10,4 @@ pkg
 *.log
 *~
 .lock
-mbuild.sh
+mbuild.conf
