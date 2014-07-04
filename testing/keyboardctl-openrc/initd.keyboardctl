@@ -1,30 +1,17 @@
 #!/usr/bin/runscript
 
-pidfile="/run/${SVCNAME}.pid"
-command="/usr/bin/${SVCNAME}"
-start_stop_args="--background --setup"
-#extra_started_commands="reload"
-
 depend() {
 	need dbus
 }
 
-# start() {
-# 	ebegin "Starting ${SVCNAME}"
-# 	start-stop-daemon --start --background --exec "${command}" --make-pidfile --pidfile "${pidfile}" -- "${ARGS}"
-# 	eend $?
-# }
-#
-# stop() {
-# 	ebegin "Stopping ${SVCNAME}"
-# 	start-stop-daemon --stop --quiet --exec "${command}" --pidfile "${pidfile}"
-# 	eend $?
-# }
-#
-# reload() {
-# 	checkconfig || return 1
-# 	ebegin "Reloading ${SVCNAME}"
-# 	start-stop-daemon --signal HUP \
-# 	    --exec "${command}" --pidfile "${pidfile}"
-# 	eend $?
-# }
+start() {
+	ebegin "Starting ${SVCNAME}"
+	start-stop-daemon --start --background --quiet --exec /usr/bin/keyboardctl -- -s
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping ${SVCNAME}"
+	start-stop-daemon --stop --background --quiet --exec /usr/bin/keyboardctl -- -s
+	eend $?
+}
