@@ -10,7 +10,7 @@ _net="netifrc-git"
 
 pkgname=openrc-core-git
 pkgdesc="Gentoo's universal init system, udev enabled."
-pkgver=r2419.09d81e8
+pkgver=r2422.143f1c6
 pkgrel=1
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
@@ -18,7 +18,7 @@ url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('GPL2')
 groups=('openrc' 'openrc-base')
 provides=('openrc-core')
-makedepends=('inetutils' 'psmisc' 'udev>=186')
+makedepends=('inetutils' 'psmisc' 'udev>=186' 'git')
 depends=('inetutils'
 		'psmisc'
 		'sysvinit'
