@@ -1,4 +1,4 @@
-# Maintainer: Your Name <youremail@domain.com>
+# Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=keyboardctl-openrc
 pkgver=0.1.5
@@ -12,8 +12,6 @@ depends=('keyboardctl' 'dbus-openrc')
 install=keyboardctl.install
 source=('confd.keyboardctl'
 		'initd.keyboardctl')
-sha256sums=('2efaa7c40066dcd5a5976d4d203ae39465764a2cc1eb73658ecfdbbeff0ec840'
-            '79c7b80b4001b16c9ddfc99e1ca5a835f5897e02a0cdded2511c61d5d298a6f1')
 
 package() {
 	install -Dm755 $srcdir/confd.keyboardctl $pkgdir/etc/conf.d/keyboardctl

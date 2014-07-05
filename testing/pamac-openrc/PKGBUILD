@@ -1,4 +1,4 @@
-# Maintainer: Your Name <youremail@domain.com>
+# Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=pamac-openrc
 pkgver=0.9.8
@@ -12,7 +12,6 @@ depends=('pamac' 'dbus-openrc')
 optdepends=('consolekit-openrc')
 install=pamac.install
 source=('initd.pamac')
-sha256sums=('27d2aed2da9559caf6d3180127f9dfef2ced3cbf906ba6f285f690a3e621d121')
 
 package() {
 	install -Dm755 $srcdir/initd.pamac $pkgdir/etc/init.d/pamac-daemon
