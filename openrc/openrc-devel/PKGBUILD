@@ -18,7 +18,7 @@ pkgname=('git-openrc'
 	'mysql-openrc'
 	'postgresql-openrc'
 	'subversion-openrc')
-pkgver=20140704
+pkgver=20140705
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

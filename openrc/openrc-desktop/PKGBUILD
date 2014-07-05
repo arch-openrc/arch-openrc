@@ -23,7 +23,7 @@ pkgname=('acpid-openrc'
 	'consolekit-openrc'
 	'displaymanager-openrc'
 	'gpm-openrc')
-pkgver=20140704
+pkgver=20140705
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
