@@ -10,9 +10,12 @@ license=('GPL')
 groups=('openrc' 'openrc-base')
 depends=('keyboardctl' 'dbus-openrc')
 install=keyboardctl.install
-source=('initd.keyboardctl')
+source=('confd.keyboardctl'
+		'initd.keyboardctl')
+sha256sums=('2efaa7c40066dcd5a5976d4d203ae39465764a2cc1eb73658ecfdbbeff0ec840'
+            '79c7b80b4001b16c9ddfc99e1ca5a835f5897e02a0cdded2511c61d5d298a6f1')
 
 package() {
+	install -Dm755 $srcdir/confd.keyboardctl $pkgdir/etc/conf.d/keyboardctl
 	install -Dm755 $srcdir/initd.keyboardctl $pkgdir/etc/init.d/keyboardctl
 }
-sha256sums=('6e4dd002599f3ef3f162f7bb1cca4089b89f009989f40764333d5c73cfc3be99')
