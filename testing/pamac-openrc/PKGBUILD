@@ -12,6 +12,7 @@ depends=('pamac' 'dbus-openrc')
 optdepends=('consolekit-openrc')
 install=pamac.install
 source=('initd.pamac')
+sha256sums=('f17e6b74a582d215f6cb0db670c95e42c7286400dda7a77bccd75ee78e2ccb66')
 
 package() {
 	install -Dm755 $srcdir/initd.pamac $pkgdir/etc/init.d/pamac-daemon
