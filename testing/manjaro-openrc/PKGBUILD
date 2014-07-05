@@ -1,0 +1,34 @@
+# Maintainer: artoo <flower_of_life@gmx.net>
+
+pkgbase=manjaro-openrc
+pkgname=('manjaro-openrc')
+pkgver=0.8.10
+pkgrel=1
+pkgdesc="Manjaro openrc meta package"
+arch=('any')
+url="https://github.com/udeved/pkgbuilds"
+license=('GPL')
+groups=('openrc-meta')
+
+package_manjaro-openrc(){
+	depends=('openrc-core'
+			'acpid-openrc'
+			'avahi-openrc'
+			'alsa-utils-openrc'
+			'consolekit-openrc'
+			'cpupower-openrc'
+			'cups-openrc'
+			'displaymanager-openrc'
+			'dbus-openrc'
+			'gpm-openrc'
+			'keyboardctl-openrc'
+			'lm_sensors-openrc'
+			'networkmanager-openrc'
+			'openrc-timed'
+			'openrc-cron'
+			'openssh-openrc'
+			'syslog-ng-openrc')
+	optdepends=('eudev-openrc: eudev replacement of systemd udev part'
+				'upower-pm-utils: upower pm-utils support'
+				'pamac-openrc: pamac openrc support')
+}
