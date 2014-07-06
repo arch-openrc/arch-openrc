@@ -9,8 +9,11 @@ if [[ -f mbuild.conf ]];then
 else
 	CHROOT=/opt/manjarobuild
 fi
-ARCH=$(uname -m)
-BRANCH=unstable
+
+BRANCH=${1:-unstable}	# Allows specifying command line agrument for branch, defaulting to unstable
+ARCH=${2:-$(uname -m)}	# Allows specifying command line agrument for arch, defaulting to system's arch
+
+# Example of the command line arguments: sudo ./mbuild.sh testing i686
 
 # do UID checking here so someone can at least get usage instructions
 if [ "$EUID" != "0" ]; then
