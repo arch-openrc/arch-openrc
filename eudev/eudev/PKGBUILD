@@ -81,7 +81,8 @@ package_libeudev() {
 	provides=("libudev=${_udevver}"
 			'libgudev-1.0.so'
 			'libudev.so')
-
+	conflicts=('libsystemd')
+	
 	mv "$srcdir/_libeudev"/* "$pkgdir"
 }
 
@@ -96,7 +97,8 @@ package_eudev-openrc(){
 			'openrc-git'
 			'openrc-arch-services-git'
 			'initscripts'
-			'systemd-sysvcompat')
+			'systemd-sysvcompat'
+			'systemd')
 	install=eudev.install
 
 	install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
