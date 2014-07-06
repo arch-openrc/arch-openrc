@@ -2,13 +2,13 @@
 # Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
-_udevver=214
+_udevver=215
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=eudev
 pkgname=('eudev' 'libeudev' 'eudev-openrc')
-pkgver=1.8
-pkgrel=2
+pkgver=1.9
+pkgrel=1
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
 license=('GPL')
@@ -37,18 +37,17 @@ build() {
 		--with-firmware-path=/usr/lib/firmware/updates:/usr/lib/firmware \
 		--with-modprobe=/usr/bin/modprobe \
 		--with-html-dir=/usr/share/doc/${pkgbase}-${pkgver}/html \
-		--enable-doc \
-		--enable-gtk-doc \
 		--enable-gudev \
 		--enable-introspection \
 		--enable-split-usr \
 		--enable-rule-generator
 	make
 }
+		#--enable-gtk-doc --enable-doc
 
 package_eudev() {
 	pkgdesc="The userspace dev tools (udev) forked by Gentoo"
-	depends=('glib2' 'kbd' 'kmod' 'hwids' 'libeudev' 'pam' 'util-linux')
+	depends=('glib2' 'kbd' 'kmod' 'hwids' "libeudev>=${pkgver}" 'pam' 'util-linux')
 	optdepends=('upower-pm-utils: pm-utils support')
 	provides=("udev=${_udevver}"
 			"systemd=${_udevver}"
@@ -77,7 +76,7 @@ package_eudev() {
 
 package_libeudev() {
 	pkgdesc="eudev client libraries"
-	depends=('glibc' 'glib2' 'libsystemd-eudevcompat')
+	depends=('glibc' 'glib2' "libsystemd-eudevcompat>=${_udevver}")
 	#optdepends=('libsystemd-eudevcompat')
 	provides=("libudev=${_udevver}"
 			'libgudev-1.0.so'
@@ -105,8 +104,7 @@ package_eudev-openrc(){
 	local _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-postmount"
 }
-
-sha256sums=('fb7d4d98e6c91cf0354c3b702b5919d1caac5f50d1fc64b33f5854dd68792010'
+sha256sums=('8f17e92f1177ce9352bde00360e227a7cbb3b97ac8816174bee34be80e44cef0'
             '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
             '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390'
             '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb')
