@@ -1,7 +1,7 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=pamac-openrc
-pkgver=0.9.8
+pkgver=20140705
 pkgrel=1
 pkgdesc="pamac openrc support"
 arch=('any')
@@ -13,6 +13,10 @@ optdepends=('consolekit-openrc')
 install=pamac.install
 source=('initd.pamac')
 sha256sums=('f17e6b74a582d215f6cb0db670c95e42c7286400dda7a77bccd75ee78e2ccb66')
+
+pkgver() {
+  date +%Y%m%d
+}
 
 package() {
 	install -Dm755 $srcdir/initd.pamac $pkgdir/etc/init.d/pamac-daemon
