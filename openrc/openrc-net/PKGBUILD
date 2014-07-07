@@ -275,6 +275,7 @@ package_bitlbee-openrc() {
 
 package_bluez-openrc() {
   pkgdesc="OpenRC bluez init script"
+  groups=('openrc' 'openrc-net' 'openrc-mobile')
   depends=('bluez' 'dbus-openrc')
   backup=('etc/conf.d/rfcomm')
   install=bluez.install
@@ -621,6 +622,7 @@ package_vsftpd-openrc() {
 
 package_wpa_supplicant-openrc() {
   pkgdesc="OpenRC wpa_supplicant init script"
+  groups=('openrc' 'openrc-net' 'openrc-mobile')
   depends=('openrc-core' 'wpa_supplicant')
   backup=('etc/conf.d/wpa_supplicant')
   install=wpa_supplicant.install
