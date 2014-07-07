@@ -5,7 +5,7 @@ export LANG=C
 export LC_MESSAGES=C
 
 if [[ -f mbuild.conf ]];then
-	. "mbuild.conf"
+	. "./mbuild.conf"
 else
 	CHROOT=/opt/manjarobuild
 fi
