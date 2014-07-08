@@ -10,7 +10,7 @@ pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/${_name}/"
-groups=('openrc' 'openrc-misc' 'openrc-mobile')
+groups=('openrc' 'openrc-mobile')
 depends=('dbus-glib'
 	'iproute2'
 	'libnl'
