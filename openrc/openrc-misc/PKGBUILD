@@ -42,9 +42,6 @@ _Isalt_sync=syndic-initd-3
 _Impd=mpd2.init
 _Chdparm=hdparm-conf.d.3
 _Ihdparm=hdparm-init-8
-_Cread=conf.d-readahead-list
-_Iread1=init.d-readahead-list
-_Iread2=init.d-readahead-list-early
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -65,7 +62,6 @@ pkgname=('cpupower-openrc'
 	'salt-openrc'
 	'mpd-openrc'
 	'hdparm-openrc')
-	#'readahead-list-openrc')
 pkgver=20140705
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -119,9 +115,6 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/media-sound/mpd/files/${_Impd}"
 	"${_gentoo_uri}/sys-apps/hdparm/files/${_Chdparm}"
 	"${_gentoo_uri}/sys-apps/hdparm/files/${_Ihdparm}")
-# 	"${_gentoo_uri}/sys-apps/readahead-list/files/${_Cread}"
-# 	"${_gentoo_uri}/sys-apps/readahead-list/files/${_Iread1}"
-# 	"${_gentoo_uri}/sys-apps/readahead-list/files/${_Iread2}")
 
 pkgver() {
   date +%Y%m%d
@@ -367,21 +360,6 @@ package_hdparm-openrc() {
   sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/hdparm"
 }
 
-# package_readahead-list-openrc() {
-#   pkgdesc="OpenRC readahead-list init script"
-#   depends=('openrc-core' 'readahead-list')
-#   backup=('etc/conf.d/readahead-list')
-#   install=readahead-list.install
-#
-#   install -Dm755 "${srcdir}/${_Cread}" "${pkgdir}/etc/conf.d/readahead-list"
-#   install -Dm755 "${srcdir}/${_Iread1}" "${pkgdir}/etc/init.d/readahead-list"
-#   install -Dm755 "${srcdir}/${_Iread2}" "${pkgdir}/etc/init.d/readahead-list-early"
-#
-#   local _bin='s|/sbin/|/usr/bin/|'
-# 	for f in ${pkgdir}/etc/init.d/*;do
-#   		sed -e "${_shebang}" -e "${_runpath}" -e "${_bin}" -i $f
-#   	done
-# }
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '35277ef9d6b9e12780ba0806ae9c99047421d9e5ed77734c344235c803d9677a'
