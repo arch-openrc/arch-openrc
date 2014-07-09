@@ -46,7 +46,8 @@ build() {
 package_eudev() {
 	pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 	depends=('glib2' 'kbd' 'kmod' 'hwids' "libeudev>=${pkgver}" 'pam' 'util-linux')
-	optdepends=('upower-pm-utils: pm-utils support')
+	optdepends=('eudev-systemdcompat: makes packages compiled with systemd features run'
+				'upower-pm-utils: pm-utils support')
 	provides=("udev=${_udevver}")
 	backup=('etc/udev/udev.conf')
 
