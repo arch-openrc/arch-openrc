@@ -14,8 +14,8 @@ license=('GPL2')
 groups=('eudev-base')
 url="http://www.freedesktop.org/wiki/Software/systemd"
 provides=("libsystemd=${pkgver}"
-		"systemd=${_udevver}"
-		"systemd-tools=${_udevver}"
+		"systemd=${pkgver}"
+		"systemd-tools=${pkgver}"
 		'libsystemd.so'
 		'libsystemd-daemon.so'
 		'libsystemd-id128.so'
