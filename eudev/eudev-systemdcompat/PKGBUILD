@@ -22,7 +22,8 @@ provides=("libsystemd=${pkgver}"
 		'libsystemd-journal.so'
 		'libsystemd-login.so')
 depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev')
-optdepends=('eudev-openrc: eudev initscript')
+optdepends=('eudev-openrc: eudev initscript'
+			'upower-pm-utils: pm-utils support for upower')
 conflicts=('libsystemd-eudevcompat'
 			'systemd'
 			'systemd-tools')

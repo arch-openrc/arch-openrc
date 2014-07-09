@@ -47,10 +47,7 @@ package_eudev() {
 	pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 	depends=('glib2' 'kbd' 'kmod' 'hwids' "libeudev>=${pkgver}" 'pam' 'util-linux')
 	optdepends=('upower-pm-utils: pm-utils support')
-	provides=("udev=${_udevver}"
-			"systemd=${_udevver}"
-			"systemd-tools=${_udevver}")
-	conflicts=('systemd' 'systemd-tools')
+	provides=("udev=${_udevver}")
 	backup=('etc/udev/udev.conf')
 
 	cd "${srcdir}/${pkgbase}-${pkgver}"
@@ -74,7 +71,7 @@ package_eudev() {
 
 package_libeudev() {
 	pkgdesc="eudev client libraries"
-	depends=('glibc' 'glib2' 'libsystemd-eudevcompat')
+	depends=('glibc' 'glib2')
 	provides=("libudev=${_udevver}"
 			'libgudev-1.0.so'
 			'libudev.so')
