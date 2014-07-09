@@ -224,15 +224,15 @@ package_rsyslog-openrc() {
 }
 
 package_sane-openrc() {
-  pkgdesc="OpenRC sane init script"
-  depends=('openrc-core' 'sane')
-  backup=('etc/conf.d/saned')
-  install=sane.install
+	pkgdesc="OpenRC sane init script"
+	depends=('openrc-core' 'sane')
+	backup=('etc/conf.d/saned')
+	install=sane.install
 
-  install -Dm755 "${srcdir}/${_Csane}" "${pkgdir}/etc/conf.d/saned"
-  install -Dm755 "${srcdir}/${_Isane}" "${pkgdir}/etc/init.d/saned"
-
-  sed -e "${_shebang}" -e "${_runpath}" -e "${_binpath}" -i ${pkgdir}/etc/init.d/saned
+	install -Dm755 "${srcdir}/${_Csane}" "${pkgdir}/etc/conf.d/saned"
+	install -Dm755 "${srcdir}/${_Isane}" "${pkgdir}/etc/init.d/saned"
+	local _p1='s|/run/saned/saned.pid|/run/saned.pid|'
+	sed -e "${_shebang}" -e "${_runpath}" -e "${_binpath}" -e ${_p1} -i ${pkgdir}/etc/init.d/saned
 }
 
 package_fuse-openrc(){
