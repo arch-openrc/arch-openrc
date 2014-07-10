@@ -8,11 +8,10 @@ BRANCH=${1:-unstable}	# Allows specifying command line agrument for branch, defa
 ARCH=${2:-$(uname -m)}	# Allows specifying command line agrument for arch, defaulting to system's arch
 IS_EXTRA_EUDEV=${3:-0}  # since upower-0.9.23 is deprecated in upstream, it isn't expected to change
 
-if [[ -f mbuild.conf ]];then
+if [[ -f ./mbuild.conf ]];then
 	. "./mbuild.conf"
 else
 	CHROOT=/opt/manjarobuild
-
 fi
 
 # do UID checking here so someone can at least get usage instructions
@@ -45,11 +44,11 @@ date
 echo "==> Done building openrc"
 
 if (( $IS_EXTRA_EUDEV ));then
-	echo "==> Start building eudev (additional packages)"
+	echo "==> Start building upower-pm-utils"
 	date
-	cd ../../eudev
-	for pkg in $(cat build-list-extra); do cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} || break && cd ..; done
+	cd ../eudev/upower-pm-utils
+	makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH}
 	date
-	echo "==> Done building eudev (additional packages)"
+	echo "==> Done building upower-pm-utils"
 fi
 #shutdown -h now
