@@ -171,10 +171,7 @@ package_openrc-core() {
 	conflicts=('openrc'
 			'openrc-git'
 			'initscripts'
-			'systemd-sysvcompat'
-			'openrc-base')
-	provides=('openrc-base')
-	replaces=('openrc-base')
+			'systemd-sysvcompat')
 	backup=('etc/rc.conf'
 		'etc/conf.d/consolefont'
 		'etc/conf.d/keymaps'
