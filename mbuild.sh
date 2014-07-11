@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # switch to basic language
 export LANG=C
 export LC_MESSAGES=C
@@ -23,9 +23,11 @@ fi
 echo "==> Start building eudev"
 date
 #cd eudev/eudev-systemdcompat
-${BRANCH}-${ARCH}-build -c -r ${CHROOT}
 user=$(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v lock)
-cd ../eudev
+
+${BRANCH}-${ARCH}-build -c -r ${CHROOT}
+cd eudev
+
 for pkg in $(cat build-list); do cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} || break && cd ..; done
 date
 #makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH}
@@ -38,7 +40,7 @@ echo "==> Done building eudev"
 
 echo "==> Start building openrc"
 date
-cd ../openrc
+cd ../../openrc
 for pkg in $(cat build-list); do cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} || break && cd ..; done
 date
 echo "==> Done building openrc"
