@@ -110,7 +110,7 @@ pkgname=('autofs-openrc'
 	'ypbind-mt-openrc'
 	'ypserv-openrc'
 	'tor-openrc')
-pkgver=20140708
+pkgver=20140711
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

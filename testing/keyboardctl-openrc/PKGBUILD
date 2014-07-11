@@ -1,7 +1,7 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=keyboardctl-openrc
-pkgver=20140705
+pkgver=20140711
 pkgrel=1
 pkgdesc="keyboardctl openrc support"
 arch=('any')

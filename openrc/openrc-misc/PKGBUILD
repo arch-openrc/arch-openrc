@@ -62,7 +62,7 @@ pkgname=('cpupower-openrc'
 	'salt-openrc'
 	'mpd-openrc'
 	'hdparm-openrc')
-pkgver=20140710
+pkgver=20140711
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
