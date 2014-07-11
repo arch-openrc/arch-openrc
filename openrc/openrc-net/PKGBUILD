@@ -3,8 +3,6 @@
 # file vars for easy update
 _Cbind=named.confd-r7
 _Ibind=named.init-r13
-_Cbit=bitlbee.confd
-_Ibit=bitlbee.initd
 _Isasl=saslauthd2.rc7
 _Cdhcp1=dhcpd.conf2
 _Cdhcp2=dhcrelay.conf
@@ -82,7 +80,6 @@ pkgbase=openrc-net
 pkgname=('autofs-openrc'
 	'apache-openrc'
 	'bind-openrc'
-	'bitlbee-openrc'
 	'cyrus-sasl-openrc'
 	'dhcp-openrc'
 	'hostapd-openrc'
@@ -125,8 +122,6 @@ conflicts=('openrc'
 source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/net-dns/bind/files/${_Cbind}"
 	"${_gentoo_uri}/net-dns/bind/files/${_Ibind}"
-	"${_gentoo_uri}/net-im/bitlbee/files/${_Cbit}"
-	"${_gentoo_uri}/net-im/bitlbee/files/${_Ibit}"
 	"${_gentoo_uri}/dev-libs/cyrus-sasl/files/${_Isasl}"
 	"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp1}"
 	"${_gentoo_uri}/net-misc/dhcp/files/${_Cdhcp2}"
@@ -245,18 +240,6 @@ package_bind-openrc() {
 
   local _p1='s|/etc/bind/named.conf|/etc/named.conf|g'
   sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/named"
-}
-
-package_bitlbee-openrc() {
-  pkgdesc="OpenRC bitlbee init script"
-  depends=('openrc-core' 'bitlbee')
-  backup=('etc/conf.d/bitlbee')
-  install=bitlbee.install
-
-  install -Dm755 "${srcdir}/${_Cbit}" "${pkgdir}/etc/conf.d/bitlbee"
-  install -Dm755 "${srcdir}/${_Ibit}" "${pkgdir}/etc/init.d/bitlbee"
-
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/bitlbee"
 }
 
 package_cyrus-sasl-openrc() {
@@ -646,12 +629,9 @@ package_tor-openrc() {
 
   sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/tor"
 }
-
 sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
-            '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
-            '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
             'a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0'
             'e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
             '409b895ed489e75c1a08f72961b45d641b93fd9357f528abc78b1fd036b7f730'
