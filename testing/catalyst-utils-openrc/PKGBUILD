@@ -1,0 +1,32 @@
+# Maintainer: artoo <flower_of_life@gmx.net>
+
+_pkgname=catalyst-utils
+_gentoo_uri=http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86
+_Iati=atieventsd.init
+
+pkgname=catalyst-utils-openrc
+pkgver=20140716
+pkgrel=1
+pkgdesc="OpenRC atieventsd init script"
+arch=('any')
+url="https://github.com/udeved/pkgbuilds"
+license=('GPL')
+depends=('catalyst-utils' 'acpid-openrc')
+install=${_pkgname}.install
+source=("${_gentoo_uri}/x11-drivers/ati-drivers/files/${_Iati}")
+sha256sums=('20010ebc5cb286149f3c4c9c099b6470463ccdb8fd47cea054b783dc2ad1fff3')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+package() {
+
+	local _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+	local _binpath='s|/opt/sbin|/usr/bin|g'
+
+	install -Dm755 "${srcdir}/${_Iati}" "${pkgdir}"/etc/init.d/atieventsd
+	sed -e ${_shebang} -e ${_binpath} -i "${pkgdir}"/etc/init.d/atieventsd
+	install -d "${pkgdir}"/etc/conf.d
+	echo 'ATIEVENTSDOPTS=""' > "${pkgdir}"/etc/conf.d/atieventsd
+}
