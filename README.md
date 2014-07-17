@@ -32,6 +32,9 @@ OpenRC pkgbuilds
 * consolekit-openrc
 * displaymanager-openrc
 * gpm-openrc
+* cronie-openrc
+* dhcpcd-openrc
+* dbus-openrc
 
 #####openrc-misc#####
 
@@ -47,12 +50,11 @@ OpenRC pkgbuilds
 * lm_sensors-openrc
 * cups-openrc
 * connman-openrc
-* networkmanager-openrc
 * haveged-openrc
 * mpd-openrc
 * salt-openrc
 * hdparm-openrc
-* readahead-list-openrc
+* bitlbee-openrc
 
 #####openrc-devel#####
 
@@ -66,8 +68,6 @@ OpenRC pkgbuilds
 * autofs-openrc
 * apache-openrc
 * bind-openrc
-* bitlbee-openrc
-* bluez-openrc
 * cyrus-sasl-openrc
 * dhcp-openrc
 * hostapd-openrc
@@ -91,10 +91,16 @@ OpenRC pkgbuilds
 * transmission-openrc
 * ufw-openrc
 * vsftpd-openrc
-* wpa_supplicant-openrc
 * xinetd-openrc
 * ypbind-mt-openrc
 * ypserv-openrc
+
+#####openrc-mobile#####
+
+* bluez-openrc
+* wpa_supplicant-openrc
+* networkmanager-openrc
+
 
 #####eudev-base#####
 
