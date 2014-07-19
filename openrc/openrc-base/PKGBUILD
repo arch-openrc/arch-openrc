@@ -30,7 +30,7 @@ _udev="udev-init-scripts"
 _uver=26
 
 _net="netifrc"
-_nver=0.2.3
+_nver=0.2.4
 
 pkgbase=openrc-base
 pkgname=('openrc-core'
@@ -45,7 +45,7 @@ pkgname=('openrc-core'
 		'mdadm-openrc')
 pkgdesc="Gentoo's universal init system, udev enabled."
 pkgver=0.12.4
-pkgrel=19
+pkgrel=20
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -363,10 +363,9 @@ package_mdadm-openrc() {
 	sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/mdadm"
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/mdraid"
 }
-
 sha256sums=('c4edda2fff4b613f50b9cc265bb457a9ab0170fbc1fe7c26eccd4a5d63b2625c'
             'eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203'
-            'c108d34caf555e411a80b56f08ef03693512e076e1a91c320d3aadd080ebc4b7'
+            '9b53eb3c8e6e80cd4073a34f911a28055c28b9f7a9f119a397002b0de7ac0691'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
             '078b07581e63b5113cef9e85da7d5b53e1fbad91d793f7fa8b7188b364689b0e'
             '292a7b20fe33bd027357475fea6aa1194afa7e5c1c47a85299db945b9d1c847e'
