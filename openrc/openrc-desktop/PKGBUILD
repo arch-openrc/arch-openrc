@@ -68,7 +68,7 @@ pkgver() {
   date +%Y%m%d
 }
 
-_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
 _runpath='s|/var/run|/run|g'
 _binpath='s|/usr/sbin|/usr/bin|g'
 
@@ -183,7 +183,6 @@ package_wpa_supplicant-openrc() {
 		sed -e 's|gentoo-release|arch-release|' -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
 	fi
 }
-
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '980468e6bf96c7677898330cadbcff165b4d15f1197cd544548bd0f8c376983d'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'

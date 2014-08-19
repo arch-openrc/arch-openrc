@@ -42,7 +42,7 @@ pkgver() {
   date +%Y%m%d
 }
 
-_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
 _runpath='s|/var/run|/run|g'
 _binpath='s|/usr/sbin|/usr/bin|g'
 

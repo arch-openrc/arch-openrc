@@ -44,7 +44,7 @@ pkgname=('openrc-core'
 		'lvm2-openrc'
 		'mdadm-openrc')
 pkgdesc="Gentoo's universal init system, udev enabled."
-pkgver=0.12.4
+pkgver=0.13
 pkgrel=20
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
@@ -83,7 +83,7 @@ source=("${_src_uri}/${_pkgname}-${pkgver}.tar.bz2"
 		'inetutils.confd'
 		'inetutils.initd')
 
-_shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+_shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
 _runpath='s|/var/run|/run|g'
 _binpath=('s|/usr/sbin|/usr/bin|g' 's|/sbin|/usr/bin|g')
 
@@ -363,7 +363,7 @@ package_mdadm-openrc() {
 	sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/mdadm"
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/mdraid"
 }
-sha256sums=('c4edda2fff4b613f50b9cc265bb457a9ab0170fbc1fe7c26eccd4a5d63b2625c'
+sha256sums=('5d35f8ac014dc6229c97713655c68d35adf395b692b5c7f92331ee9738a1c806'
             'eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203'
             '9b53eb3c8e6e80cd4073a34f911a28055c28b9f7a9f119a397002b0de7ac0691'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
