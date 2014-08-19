@@ -5,7 +5,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/ne
 
 pkgname=networkmanager-openrc
 pkgver=0.9.8.10
-pkgrel=9
+pkgrel=10
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -49,14 +49,16 @@ source=("http://ftp.gnome.org/pub/gnome/sources/${_name}/${pkgver:0:3}/${_name}-
         "${_gentoo_uri}/conf.d.${_name}"
         "${_gentoo_uri}/init.d.${_name}"
         "${_gentoo_uri}/nm-system-settings.conf-ifnet"
-        "${_gentoo_uri}/networkmanager-0.9.8.4-pre-sleep.patch")
+        "${_gentoo_uri}/networkmanager-0.9.8.4-pre-sleep.patch"
+        "${_gentoo_uri}/networkmanager-0.9.8.9-fix-crash-on-wifi-rescan.patch")
 
 prepare() {
   cd ${_name}-${pkgver}
   patch -Np1 -i ${srcdir}/disable_set_hostname.patch
 
   patch -Np1 -i ${srcdir}/networkmanager-0.9.8.4-pre-sleep.patch
-
+  
+  patch -Np1 -i ${srcdir}/networkmanager-0.9.8.9-fix-crash-on-wifi-rescan.patch
 }
 
 build() {
@@ -75,6 +77,7 @@ build() {
     --with-iptables=/usr/bin/iptables \
     --with-udev-dir=/usr/lib/udev \
     --with-resolvconf=/usr/bin/resolvconf \
+    --with-kernel-firmware-dir=/usr/lib/firmware \
     --with-session-tracking=ck \
     --with-modem-manager-1 \
     --disable-static \
@@ -82,11 +85,12 @@ build() {
     --enable-more-warnings=no \
     --disable-wimax \
     --enable-modify-system \
-    --enable-doc \
-    --with-pppd-plugin-dir=/usr/lib/pppd/2.4.6
-
+    --with-pppd-plugin-dir=/usr/lib/pppd/2.4.6 \
+    --enable-doc 
+    
   make
 }
+#    --enable-concheck \
 
 package() {
   cd ${_name}-${pkgver}
@@ -103,7 +107,7 @@ package() {
 
   sed -e 's|@EPREFIX@/sbin|/bin|' -e 's|@EPREFIX@/usr/sbin|/usr/bin|' -e 's/NetworkManager/networkmanager/g' -e 's|#!/bin/sh|#!/usr/bin/sh|' -i "${pkgdir}/etc/${_name}/dispatcher.d/10-openrc-status"
 
-  sed -e 's|#!/sbin/runscript|#!/usr/bin/runscript|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/networkmanager"
+  sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/networkmanager"
 }
 sha256sums=('064d27223d3824859df12e1fb25b787fec1c68bbc864dc52a0289b9211c4c972'
             '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
@@ -111,4 +115,5 @@ sha256sums=('064d27223d3824859df12e1fb25b787fec1c68bbc864dc52a0289b9211c4c972'
             '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
             '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
             '34f53d9ac1ad65eda6942dc3059117f60f6321059ca23f4fbfcc2f2edcae151f'
-            'ea70654524d5b414fcef10164b8dfb5e84bdf2444341f62fc7617952e2e721de')
+            'ea70654524d5b414fcef10164b8dfb5e84bdf2444341f62fc7617952e2e721de'
+            'b883506591031ebda11beed149975137950449c0c17a4c3f06745c89d782256c')
