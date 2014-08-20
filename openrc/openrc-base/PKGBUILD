@@ -134,15 +134,15 @@ _install_udev(){
 	# fix shebang & path to udevd
 	local _bin='s|/sbin/udevd|/usr/bin/udevd|g'
 	sed -e "${_shebang}" -e "${_bin}" -i "${pkgdir}/etc/init.d/udev"
-	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-mount"
+	#sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-mount"
 
 	cd "${srcdir}/${_pkgname}-${pkgver}"
 	ln -sf "/etc/init.d/udev" "${pkgdir}/etc/runlevels/sysinit/udev"
-	ln -sf "/etc/init.d/udev-mount" "${pkgdir}/etc/runlevels/sysinit/udev-mount"
+	#ln -sf "/etc/init.d/udev-mount" "${pkgdir}/etc/runlevels/sysinit/udev-mount"
 
 	# provided by netifrc>=0.2.2
-	rm ${pkgdir}/usr/lib/udev/net.sh
-	rm ${pkgdir}/usr/lib/udev/rules.d/90-network.rules
+	#rm ${pkgdir}/usr/lib/udev/net.sh
+	#rm ${pkgdir}/usr/lib/udev/rules.d/90-network.rules
 }
 
 _install_netifrc(){
