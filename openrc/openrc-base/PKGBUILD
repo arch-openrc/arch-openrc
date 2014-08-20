@@ -27,7 +27,7 @@ _src_uri="http://dev.gentoo.org/~williamh/dist"
 _net_uri="http://dev.gentoo.org/~robbat2/distfiles"
 
 _udev="udev-init-scripts"
-_uver=26
+_uver=27
 
 _net="netifrc"
 _nver=0.2.4
@@ -364,7 +364,7 @@ package_mdadm-openrc() {
 	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/mdraid"
 }
 sha256sums=('5d35f8ac014dc6229c97713655c68d35adf395b692b5c7f92331ee9738a1c806'
-            'eff4cd581cb5d57a1fa09772f9f82a37d9a33a3828f0b7e988278a974864d203'
+            '1a091c361e9845861c138b505881edcb7b68fcf91708db526dff0b320243c936'
             '9b53eb3c8e6e80cd4073a34f911a28055c28b9f7a9f119a397002b0de7ac0691'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
             '078b07581e63b5113cef9e85da7d5b53e1fbad91d793f7fa8b7188b364689b0e'
