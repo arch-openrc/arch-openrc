@@ -2,7 +2,7 @@
 
 pkgname=keyboardctl-openrc
 pkgver=20140711
-pkgrel=1
+pkgrel=2
 pkgdesc="keyboardctl openrc support"
 arch=('any')
 url="https://github.com/udeved"

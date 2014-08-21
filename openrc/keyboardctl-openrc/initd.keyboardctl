@@ -8,12 +8,12 @@ depend() {
 
 start() {
 	ebegin "Starting ${SVCNAME}"
-	start-stop-daemon --start --background --quiet --exec /usr/bin/keyboardctl -- "${OPTS}"
+	/usr/bin/keyboardctl "${OPTS}"
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping ${SVCNAME}"
-	start-stop-daemon --stop --background --quiet --exec /usr/bin/keyboardctl -- "${OPTS}"
+	# Nothing needs to be done as keyboardctl automatically exits after executing
 	eend $?
 }
