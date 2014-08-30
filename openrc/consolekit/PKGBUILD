@@ -51,6 +51,11 @@ prepare(){
   patch -p0 -i "$srcdir/consolekit-shutdown-reboot-without-policies.patch"
   
   sed -i -e '/SystemdService/d' data/org.freedesktop.ConsoleKit.service.in
+  
+  sed -i -e 's|/sbin/|/bin/|g' tools/linux/ck-system-restart
+  sed -i -e 's|/sbin/|/bin/|g' tools/linux/ck-system-stop
+  
+  sed -i -e 's|/var/run/|/run/|' $srcdir/pam-foreground-compat.ck
 }
 
 build(){
