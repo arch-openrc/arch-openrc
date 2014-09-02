@@ -1,0 +1,41 @@
+# Maintainer: Alad Wenter <alad@linuxbbq.org>
+pkgname=systemd-shim
+pkgver=7
+_pkgver=1
+pkgrel=1
+pkgdesc="shim for systemd"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/ubuntu/+source/systemd-shim"
+license=('GPL')
+depends=('cgmanager' 'eudev-systemdcompat')
+optdepends=('pm-utils: utilities and scripts for power management')
+#provides=('systemd=216')
+#conflicts=('systemd')
+source=("https://launchpad.net/ubuntu/+archive/primary/+files/systemd-shim_$_pkgver.orig.tar.xz")
+#	"https://launchpad.net/ubuntu/+archive/primary/+files/systemd-shim_$pkgver-$_pkgver.debian.tar.xz"
+
+# prepare() {
+# 	_patchdir="$srcdir/debian/patches"
+# 	cd "$srcdir/$pkgname-$_pkgver"
+# 	patch -p1 < "$_patchdir/systemd-policy-sync.patch"
+# 	patch -p1 < "$_patchdir/0001-support-logind-cgroup-requests.patch"
+# 	patch -p1 < "$_patchdir/0002-main-move-ourselves-into-cgroup-at-startup.patch"
+# 	patch -p1 < "$_patchdir/0003-shim-send-the-scope-name-and-done-in-JobRemoved-sign.patch"
+# }
+
+build() {
+	cd "$srcdir/$pkgname-$_pkgver"
+	aclocal
+	automake --add-missing
+	./configure --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/${pkgname}
+	make
+}
+
+package() {
+	cd "$srcdir/$pkgname-$_pkgver"
+	make DESTDIR="$pkgdir/" install
+	mv "$pkgdir/etc/dbus-1/system.d/org.freedesktop.systemd1.conf" \
+		"$pkgdir/etc/dbus-1/system.d/org.freedesktop.systemd-shim.conf"
+}
+sha256sums=('6c5b300b485bce464db842d81c8dcbda55d81d0312e40a415b5343d1babfd96d'
+            '4c3dc4d5c74fb90db759fc3d04962c84a4265f7ab00049b972697e6359be8644')
