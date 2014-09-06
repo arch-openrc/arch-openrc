@@ -1,13 +1,19 @@
 #!/bin/bash
-#set -x
+## mbuild.sh: build openrc and eudev packages for manajro
+
+#set -x  # Used to Print commands and their arguments as they are executed
+
 # switch to basic language
 export LANG=C
 export LC_MESSAGES=C
 
-BRANCH=${1:-unstable}	# Allows specifying command line agrument for branch, defaulting to unstable
-ARCH=${2:-$(uname -m)}	# Allows specifying command line agrument for arch, defaulting to system's arch
+# Command line arguments
+BRANCH=${1:-unstable}	# Branch to build for, defaulting to unstable
+ARCH=${2:-$(uname -m)}	# Arch to build for, defaulting to system's arch
+SIGN=${3:-0}  		# Whether to sign packages or not. 1 = sign
 IS_EXTRA_EUDEV=${3:-0}  # since upower-0.9.23 is deprecated in upstream, it isn't expected to change
 
+# Parse config file for mbuild
 if [[ -f ./mbuild.conf ]];then
 	. "./mbuild.conf"
 else
@@ -20,7 +26,8 @@ if [ "$EUID" != "0" ]; then
     exit 1
 fi
 
-cwd=`pwd`  # Keep track of the base build directory
+# Keep track of the base build directory
+cwd=`pwd`
 
 echo "==> Start building eudev"
 date
@@ -58,13 +65,16 @@ if (( $IS_EXTRA_EUDEV ));then
 fi
 
 ### Sign packages
-## eudev
-#cd $cwd # Back to the base directory
-#cd eudev
-#for pkg in $(cat build-list); do cd $pkg && signpkgs || break && cd ..; done
-# openrc
-#cd $cwd # Back to the base directory
-#cd openrc
-#for pkg in $(cat build-list); do cd $pkg && signpkgs || break && cd ..; done
+if [ "$SIGN" -eq 1 ]; then
+	## eudev
+	cd $cwd # Back to the base directory
+	cd eudev
+	for pkg in $(cat build-list); do cd $pkg && signpkgs || break && cd ..; done
+	
+	## openrc
+	cd $cwd # Back to the base directory
+	cd openrc
+	for pkg in $(cat build-list); do cd $pkg && signpkgs || break && cd ..; done
+fi
 
 #shutdown -h now
