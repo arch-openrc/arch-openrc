@@ -20,6 +20,8 @@ if [ "$EUID" != "0" ]; then
     exit 1
 fi
 
+cwd=`pwd`  # Keep track of the base build directory
+
 echo "==> Start building eudev"
 date
 #cd eudev/eudev-systemdcompat
@@ -54,4 +56,15 @@ if (( $IS_EXTRA_EUDEV ));then
 	date
 	echo "==> Done building upower-pm-utils"
 fi
+
+### Sign packages
+## eudev
+#cd $cwd # Back to the base directory
+#cd eudev
+#for pkg in $(cat build-list); do cd $pkg && signpkgs || break && cd ..; done
+# openrc
+#cd $cwd # Back to the base directory
+#cd openrc
+#for pkg in $(cat build-list); do cd $pkg && signpkgs || break && cd ..; done
+
 #shutdown -h now
