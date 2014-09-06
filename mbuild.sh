@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+#set -x
 # switch to basic language
 export LANG=C
 export LC_MESSAGES=C
@@ -26,6 +26,7 @@ date
 user=$(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v lock)
 
 ${BRANCH}-${ARCH}-build -c -r ${CHROOT}
+#${BRANCH}-${ARCH}-build -r ${CHROOT}  # -c (Dont clean chroot everytime)
 cd eudev
 
 for pkg in $(cat build-list); do cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} || break && cd ..; done
