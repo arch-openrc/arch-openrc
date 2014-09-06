@@ -11,7 +11,7 @@ export LC_MESSAGES=C
 BRANCH=${1:-unstable}	# Branch to build for, defaulting to unstable
 ARCH=${2:-$(uname -m)}	# Arch to build for, defaulting to system's arch
 SIGN=${3:-0}  		# Whether to sign packages or not. 1 = sign
-IS_EXTRA_EUDEV=${3:-0}  # since upower-0.9.23 is deprecated in upstream, it isn't expected to change
+IS_EXTRA_EUDEV=${4:-0}  # since upower-0.9.23 is deprecated in upstream, it isn't expected to change
 
 # Parse config file for mbuild
 if [[ -f ./mbuild.conf ]];then
