@@ -32,12 +32,13 @@ cwd=`pwd`
 user=$(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v lock)
 
 # Setup chroot
-${BRANCH}-${ARCH}-build -c -r ${CHROOT}
-#${BRANCH}-${ARCH}-build -r ${CHROOT}  # -c (Dont clean chroot everytime)
+${BRANCH}-${ARCH}-build -c -r ${CHROOT} # (Clean previous chroot)
+#${BRANCH}-${ARCH}-build -u -r ${CHROOT}  # (Update previous chroot)
+#${BRANCH}-${ARCH}-build -r ${CHROOT}  # (Dont clean chroot everytime)
 
-#cd eudev/eudev-systemdcompat
 echo "==> Start building eudev"
 date
+#cd eudev/eudev-systemdcompat
 cd eudev
 for pkg in $(cat build-list); do cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} || break && cd ..; done
 date
