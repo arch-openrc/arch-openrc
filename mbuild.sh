@@ -33,8 +33,8 @@ user=$(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v l
 
 # Setup chroot
 ${BRANCH}-${ARCH}-build -c -r ${CHROOT} # (Clean previous chroot)
-#${BRANCH}-${ARCH}-build -u -r ${CHROOT}  # (Update previous chroot)
 #${BRANCH}-${ARCH}-build -r ${CHROOT}  # (Dont clean chroot everytime)
+#${BRANCH}-${ARCH}-build -u -r ${CHROOT}  # (Update previous chroot)
 
 echo "==> Start building eudev"
 date
