@@ -106,7 +106,8 @@ pkgname=('autofs-openrc'
 	'xinetd-openrc'
 	'ypbind-mt-openrc'
 	'ypserv-openrc'
-	'tor-openrc')
+	'tor-openrc'
+	'wicd-openrc')
 pkgver=20140711
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -187,7 +188,8 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/net-misc/openntpd/files/${_Cntp}"
 	"${_gentoo_uri}/net-misc/openntpd/files/${_Intp}"
 	"${_gentoo_uri}/net-misc/tor/files/${_Ctor}"
-	"${_gentoo_uri}/net-misc/tor/files/${_Itor}")
+	"${_gentoo_uri}/net-misc/tor/files/${_Itor}"
+	"http://sourceforge.net/projects/mefiles/files/Manjaro/init.d/wicd")
 
 pkgver() {
   date +%Y%m%d
@@ -629,6 +631,17 @@ package_tor-openrc() {
 
   sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/tor"
 }
+
+package_wicd-openrc() {
+  pkgdesc="OpenRC wicd script"
+  depends=('openrc-core' 'wicd')
+  install=wicd.install
+
+  install -Dm755 "${srcdir}/wicd" "${pkgdir}/etc/init.d/wicd"
+
+  sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/wicd"
+}
+
 sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
@@ -697,4 +710,5 @@ sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
             'fca7183a7676f0f471878925c8fbec20b7a0bff01551c0ad2b34d4d8a826c876'
             '41d780f291847e19f632428bbf27c3f289414afd237546d2974da1b75384c25c'
-            '49da1b5f267927023bc092adcf89d406ec294584039d6bca6b7aea0a9e7c4c4f')
+            '49da1b5f267927023bc092adcf89d406ec294584039d6bca6b7aea0a9e7c4c4f'
+	    'f6b3540c1f09dfd75bcd205faa238c00ae5500d4402162cc6b16fcea3dc92619')
