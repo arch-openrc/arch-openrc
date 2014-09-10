@@ -40,7 +40,7 @@ echo "==> Start building eudev"
 date
 #cd eudev/eudev-systemdcompat
 cd ../eudev
-for pkg in $(cat build-list); do echo "Building $i"; cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} | break && cd ..; done
+for pkg in $(cat build-list); do echo "Building $pkg"; cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} | break && cd ..; done
 date
 echo "==> Done building eudev"
 #makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH}
