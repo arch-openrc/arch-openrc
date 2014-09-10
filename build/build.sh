@@ -6,9 +6,9 @@
 
 # Build
 sudo ./mbuild.sh
-#sudo mbuild.sh unstable i686
-#sudo mbuild.sh testing
-#sudo mbuild.sh testing i686
+#sudo ./mbuild.sh unstable i686
+#sudo ./mbuild.sh testing
+#sudo ./mbuild.sh testing i686
 
 # Sign
 ./msign.sh

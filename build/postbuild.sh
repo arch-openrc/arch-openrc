@@ -5,7 +5,12 @@
 cwd=`pwd`
 
 # Specify a directory for storing built packages
-pkgdir="$cwd/packages"
+pkgdir="$cwd/packages/"
+
+# Check if pkgdir exists, if not then create it
+if [ ! -d "$pkgdir" ]; then
+	mkdir -p "$pkgdir"
+fi
 
 # Copy built packages and their sig files to $pkgdir
 ## eudev
