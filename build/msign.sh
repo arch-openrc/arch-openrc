@@ -6,11 +6,11 @@
 cwd=`pwd`
 
 ## eudev
-cd eudev
+cd ../eudev
 for pkg in $(cat build-list); do cd $pkg && signpkgs && cd ..; done
 
 ## openrc
 cd $cwd # Back to the base directory
-cd openrc
+cd ../openrc
 for pkg in $(cat build-list); do cd $pkg && signpkgs && cd ..; done
 

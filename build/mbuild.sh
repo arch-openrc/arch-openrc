@@ -39,7 +39,7 @@ ${BRANCH}-${ARCH}-build -c -r ${CHROOT} # (Clean previous chroot)
 echo "==> Start building eudev"
 date
 #cd eudev/eudev-systemdcompat
-cd eudev
+cd ../eudev
 for pkg in $(cat build-list); do cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} || break && cd ..; done
 date
 echo "==> Done building eudev"
@@ -52,7 +52,8 @@ echo "==> Done building eudev"
 
 echo "==> Start building openrc"
 date
-cd ../../openrc
+cd "$cwd"
+cd ../openrc
 for pkg in $(cat build-list); do cd $pkg && makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} || break && cd ..; done
 date
 echo "==> Done building openrc"
@@ -60,6 +61,7 @@ echo "==> Done building openrc"
 if (( $IS_EXTRA_EUDEV ));then
 	echo "==> Start building upower-pm-utils"
 	date
+	cd "$cwd"	
 	cd ../eudev/upower-pm-utils
 	makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH}
 	date
