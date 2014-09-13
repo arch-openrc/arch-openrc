@@ -6,6 +6,8 @@ run_pre(){
     git clean -dfx  # Remove untracked directories and files
 }
 
+# $1: branch
+# $2: arch
 mk_pkg(){
 
     #if [ "$EUID" == "0" ]; then
@@ -13,13 +15,15 @@ mk_pkg(){
       local branch=${1:-unstable}
       local arch=${2:-$(uname -m)}
       local user=$(ls ${CHROOT}/${branch}-${arch} | cut -d' ' -f1 | grep -v root | grep -v lock)
+      # to be removed for eudev builds
       local blacklist='libsystemd systemd'
 
+      # openrc
       date
       cd ${RUN_DIR} && cd ../openrc/${START_PKG}
       echo "==> building ${START_PKG}"
       sudo ${branch}-${arch}-build -c -r ${CHROOT}
-      cd ${RUN_DIR} && cd ../openrc
+      cd ..
       for pkg in $(cat build-list); do
 	cd $pkg
 	echo "==> building $pkg"
@@ -28,6 +32,7 @@ mk_pkg(){
       done
       date
 
+      # eudev
       date
       cd ${RUN_DIR} && cd ../eudev
       for pkg in $(cat build-list); do
@@ -50,6 +55,7 @@ mk_pkg(){
 
 mk_sign(){
 
+    # openrc
     cd ${RUN_DIR} && cd ../openrc/${START_PKG}
     signpkgs
     cd ..
@@ -59,6 +65,7 @@ mk_sign(){
       cd ..
     done
 
+    # eudev
     cd ${RUN_DIR} && cd ../eudev
     for pkg in $(cat build-list); do
       cd $pkg
@@ -75,15 +82,17 @@ run_post(){
       mkdir -p "$pkgdir"
     fi
 
+    # openrc
     cd ${RUN_DIR} && cd ../openrc/${START_PKG}
     cp -v *.pkg.tar.xz{,.sig} $pkgdir
-    cd ${RUN_DIR} && cd ../openrc
+    cd ..
     for pkg in $(cat build-list); do
       cd $pkg
       cp -v *.pkg.tar.xz{,.sig} $pkgdir
       cd ..
     done
 
+    # eudev
     cd ${RUN_DIR} && cd ../eudev
     for pkg in $(cat build-list); do
       cd $pkg
@@ -101,7 +110,7 @@ run_post(){
 export LANG=C
 export LC_MESSAGES=C
 
-RUN_DIR=$(pwd) # Back to the base directory
+RUN_DIR=$(pwd)
 
 if [[ -f ./build.conf ]];then
     . "./build.conf"
