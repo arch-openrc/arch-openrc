@@ -1,0 +1,105 @@
+# Maintainer: artoo <flower_of_life@gmx.net>
+# Contributor: Alexey D. <lq07829icatm@rambler.ru>
+# Contributor: Ivailo Monev <xakepa10@gmail.com>
+
+_udevver=216
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+
+pkgbase=eudev
+pkgname=('eudev' 'libeudev' 'eudev-openrc')
+pkgver=1.10
+pkgrel=1
+arch=('i686' 'x86_64')
+url="http://dev.gentoo.org/~blueness/eudev"
+license=('GPL')
+makedepends=('acl' 'dbus' 'hwids' 'kbd' 'kmod' 'pam'
+	    'util-linux' 'gobject-introspection'
+	    'gperf' 'gtk-doc' 'intltool')
+options=(!makeflags !libtool)
+source=("${url}/${pkgbase}-${pkgver}.tar.gz"
+	'initcpio_hooks'
+	'initcpio_install'
+	"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
+
+_pkgver() {
+  date +%Y%m%d
+}
+
+build() {
+	cd "${srcdir}/${pkgbase}-${pkgver}"
+	./configure \
+		--prefix=/usr \
+		--with-rootprefix=/usr \
+		--sysconfdir=/etc \
+		--libdir=/usr/lib \
+		--sbindir=/usr/bin \
+		--with-firmware-path=/usr/lib/firmware/updates:/usr/lib/firmware \
+		--with-modprobe=/usr/bin/modprobe \
+		--with-html-dir=/usr/share/doc/${pkgbase}-${pkgver}/html \
+		--enable-gudev \
+		--enable-introspection \
+		--enable-split-usr \
+		--enable-rule-generator
+	make
+}
+
+package_eudev() {
+	pkgdesc="The userspace dev tools (udev) forked by Gentoo"
+	depends=('glib2' 'kbd' 'kmod' 'hwids' "libeudev>=${pkgver}" 'pam' 'util-linux')
+	optdepends=('eudev-systemdcompat: makes packages compiled with systemd features run'
+				'upower-pm-utils: pm-utils support')
+	provides=("udev=${_udevver}")
+	backup=('etc/udev/udev.conf')
+
+	cd "${srcdir}/${pkgbase}-${pkgver}"
+	make DESTDIR="${pkgdir}" install
+
+	for i in "${pkgdir}/usr/lib/udev/rules.d/"*.rules; do
+		sed -i -e 's#GROUP="dialout"#GROUP="uucp"#g;
+				s#GROUP="tape"#GROUP="storage"#g;
+				s#GROUP="cdrom"#GROUP="optical"#g' "${i}"
+	done
+
+	install -Dm644 "${srcdir}/initcpio_hooks" "${pkgdir}/usr/lib/initcpio/hooks/udev"
+	install -Dm644 "${srcdir}/initcpio_install" "${pkgdir}/usr/lib/initcpio/install/udev"
+
+	# split out runtime libraries
+	rm -rf "$srcdir/_libeudev"
+	install -dm755 "$srcdir/_libeudev/usr/lib"
+	cd "$srcdir/_libeudev"
+	mv "$pkgdir"/usr/lib/lib{g,}udev*.so* usr/lib
+}
+
+package_libeudev() {
+	pkgdesc="eudev client libraries"
+	depends=('glibc' 'glib2')
+	provides=("libudev=${_udevver}"
+			'libgudev-1.0.so'
+			'libudev.so')
+
+	mv "$srcdir/_libeudev"/* "$pkgdir"
+}
+
+package_eudev-openrc(){
+	pkgver=$(_pkgver)
+	pkgrel=1
+	pkgdesc="OpenRC eudev postmount script"
+	arch=('any')
+	groups=('eudev-base')
+	depends=('openrc-core' 'eudev')
+	conflicts=('openrc'
+			'openrc-git'
+			'openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat')
+	install=eudev.install
+
+	install -Dm755 "${srcdir}/udev-postmount" "${pkgdir}/etc/init.d/udev-postmount"
+
+	local _shebang='s|#!/sbin/runscript|#!/usr/bin/runscript|'
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-postmount"
+}
+sha256sums=('401eeb29147d3e24d87849a8006df62eadeb369d913484d59e9e35f3f73a20d1'
+            '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
+            '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390'
+            'b0327069dbb57b39600079b87df80915dabb77c2fa298d6ae109ca04f8ba08b5')
