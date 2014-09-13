@@ -22,4 +22,4 @@ package() {
 	install -Dm755 $srcdir/initd.keyboardctl $pkgdir/etc/init.d/keyboardctl
 }
 sha256sums=('2efaa7c40066dcd5a5976d4d203ae39465764a2cc1eb73658ecfdbbeff0ec840'
-            '925487f384254d841863d53897fe2b58b967115d54fb033413b4851838d0e206')
+            '1f0013d2dd2fdddf1c8c986baa5712c6b82b2f13a058324dac575817a614fed4')
