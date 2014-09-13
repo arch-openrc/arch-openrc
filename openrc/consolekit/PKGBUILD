@@ -3,8 +3,6 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: onestep_ua <onestep@ukr.net>
 
-
-
 pkgname=consolekit
 pkgver=0.4.6
 pkgrel=5
@@ -33,7 +31,8 @@ source=("http://www.freedesktop.org/software/ConsoleKit/dist/ConsoleKit-$pkgver.
 	"$_gentoo_uri/consolekit-cleanup_console_tags.patch"
 	"$_gentoo_uri/consolekit-shutdown-reboot-without-policies.patch"
 	'consolekit.logrotate'
-	'consolekit.tmpfiles.conf')
+	'consolekit.tmpfiles.conf'
+	'75-consolekit.rules')
 sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
             '0b5b22641e2b138f4e9dfff9790df9fedaf2f760cc3d878ee1e94c2fd52edea9'
             '823316f6898eaab0744e42fa11b1631f64187aebca35baa5aeab09279820bedd'
@@ -41,20 +40,21 @@ sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
             '178d25a93bc04b070840650b6f847b018796186d2a54a3be7b0a6df75e8f501c'
             'cd9a2aa582644ad50fb98e4580b9cf889c71a40f637eb0beb0eaab96d3ad9a47'
             '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
-            '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1')
-            
+            '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
+            '137ff262ae17c3b07d973292a1056e44eb0b22e4e5b509c44b98e1e317bf43b3')
+
 prepare(){
   cd "$srcdir/ConsoleKit-$pkgver"
   patch -p0 -i "$srcdir/consolekit-udev-acl-install_to_usr.patch"
   patch -p0 -i "$srcdir/consolekit-0.4.5-polkit-automagic.patch"
   patch -p0 -i "$srcdir/consolekit-cleanup_console_tags.patch"
   patch -p0 -i "$srcdir/consolekit-shutdown-reboot-without-policies.patch"
-  
-  sed -i -e '/SystemdService/d' data/org.freedesktop.ConsoleKit.service.in
-  
-  sed -i -e 's|/sbin/|/bin/|g' tools/linux/ck-system-restart
-  sed -i -e 's|/sbin/|/bin/|g' tools/linux/ck-system-stop
-  
+
+  #sed -i -e '/SystemdService/d' data/org.freedesktop.ConsoleKit.service.in
+
+  #sed -i -e 's|/sbin/|/bin/|g' tools/linux/ck-system-restart
+  #sed -i -e 's|/sbin/|/bin/|g' tools/linux/ck-system-stop
+
   sed -i -e 's|/var/run/|/run/|' $srcdir/pam-foreground-compat.ck
 }
 
@@ -70,7 +70,7 @@ build(){
     --with-pam-module-dir=/usr/lib/security \
     --enable-docbook-docs \
     --with-dbus-services=/usr/share/dbus-1/services \
-    --enable-udev-acl 
+    --enable-udev-acl
     make
 }
 
@@ -81,7 +81,6 @@ package() {
   install -m755 "$srcdir/pam-foreground-compat.ck" "$pkgdir/usr/lib/ConsoleKit/run-session.d/"
   install -D -m644 "$srcdir/consolekit.logrotate" "$pkgdir/etc/logrotate.d/consolekit"
   install -D -m644 "$srcdir/consolekit.tmpfiles.conf" "$pkgdir/usr/lib/tmpfiles.d/consolekit.conf"
+  install -Dm644 "$srcdir/75-consolekit.rules" "$pkgdir/etc/polkit-1/rules.d/75-consolekit.rules"
   rm -rf "${pkgdir}/var/run"
 }
-
-

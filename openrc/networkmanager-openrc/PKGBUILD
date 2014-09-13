@@ -23,7 +23,7 @@ depends=('dbus-glib'
 	'libsoup'
 	'libmm-glib'
 	'dbus-openrc'
-	libndp)
+	'libndp')
 makedepends=('intltool'
 	    'dhcpcd'
 	    'dhclient'
