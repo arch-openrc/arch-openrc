@@ -1,11 +1,4 @@
 polkit.addRule(function(action, subject) {
-    if (action.id == "org.freedesktop.upower.hibernate" ||
-        action.id == "org.freedesktop.upower.suspend") {
-        return polkit.Result.YES;
-    }
-});
-
-polkit.addRule(function(action, subject) {
     if (action.id == "org.freedesktop.consolekit.system.stop" ||
         action.id == "org.freedesktop.consolekit.system.restart") {
         return polkit.Result.YES;
