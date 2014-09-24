@@ -114,7 +114,7 @@ _pkgver() {
 
 prepare(){
 	cd "${srcdir}/${_pkgname}-${pkgver}"
-	#sed -e "${_binpath[1]}" -i support/sysvinit/inittab
+	sed -e "${_binpath[1]}" -i support/sysvinit/inittab
 	#sed -i 's:0444:0644:' mk/sys.mk
 }
 
@@ -142,6 +142,9 @@ _install_netifrc(){
 	cd "${srcdir}/${_net}-${_nver}"
 	make DESTDIR="${pkgdir}" "${_net_args[@]}" install
 	install -Dm 644 "${srcdir}/${_net}-${_nver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
+
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/net.lo"
+
 	# create runlevel
 	ln -sf "/etc/init.d/net.lo" "${pkgdir}/etc/runlevels/boot/net.lo"
 }
