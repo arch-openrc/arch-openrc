@@ -38,7 +38,7 @@ _Ipriv=privoxy.initd
 _Cquota=quota.confd
 _Iquota1=quota.rc7
 _Iquota2=rpc.rquotad.initd
-_Crpc=rpcbind.confd
+#_Crpc=rpcbind.confd
 _Irpc=rpcbind.initd
 _Crsync=rsyncd.conf.d
 _Irsync=rsyncd.init.d-r1
@@ -158,7 +158,7 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/sys-fs/quota/files/${_Cquota}"
 	"${_gentoo_uri}/sys-fs/quota/files/${_Iquota1}"
 	"${_gentoo_uri}/sys-fs/quota/files/${_Iquota2}"
-	"${_gentoo_uri}/net-nds/rpcbind/files/${_Crpc}"
+	#"${_gentoo_uri}/net-nds/rpcbind/files/${_Crpc}"
 	"${_gentoo_uri}/net-nds/rpcbind/files/${_Irpc}"
 	"${_gentoo_uri}/net-misc/rsync/files/${_Crsync}"
 	"${_gentoo_uri}/net-misc/rsync/files/${_Irsync}"
@@ -338,13 +338,15 @@ package_lighttpd-openrc() {
 package_rpcbind-openrc() {
   pkgdesc="OpenRC rpcbind init script"
   depends=('openrc-core' 'rpcbind')
-  backup=('etc/conf.d/rpcbind')
+  #backup=('etc/conf.d/rpcbind')
   install=rpcbind.install
 
-  install -Dm755 "${srcdir}/${_Crpc}" "${pkgdir}/etc/conf.d/rpcbind"
+  #install -Dm755 "${srcdir}/${_Crpc}" "${pkgdir}/etc/conf.d/rpcbind"
+  local _p1='s|RPCBIND_OPTS|RPCBIND_ARGS|'
+
   install -Dm755 "${srcdir}/${_Irpc}" "${pkgdir}/etc/init.d/rpcbind"
 
-  sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/rpcbind"
+  sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/rpcbind"
 }
 
 package_nfs-utils-openrc() {
@@ -641,6 +643,7 @@ package_wicd-openrc() {
 
   sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/wicd"
 }
+
 sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
@@ -679,7 +682,6 @@ sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             '00d1dfb3b893db5d6a213a4edda622c7d64dcafa40b3019f15e070c164286632'
             '00ce705b49aaa356d9d9f0be3b80a3fe2810471cbe02fd0edc66349f3ca281de'
             'c3896303d6cfebf314a3f6b8aeed0f6cb6ae421c4c0923b0121c76b3251314e5'
-            '38bb95aefc38d843d0890d9c15affd28f19f2133c17f463396c62970e7e2dffc'
             '6561ae40c5899a9f7a12f1f0867bec47d47c7cc3c583574ffcecbbf6f8d8afbb'
             'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
             'baff64277f9aa62cf1eeed2284bb08c4f3078a8e6e7604e4fec228ca5fa9dd82'

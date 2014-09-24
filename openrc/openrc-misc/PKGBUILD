@@ -380,7 +380,6 @@ package_hdparm-openrc() {
   sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/hdparm"
 }
 
-
 package_thermald-openrc() {
   pkgdesc="OpenRC thermald init script"
   depends=('dbus-openrc' 'thermald')
