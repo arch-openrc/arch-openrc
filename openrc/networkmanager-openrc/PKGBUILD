@@ -85,8 +85,10 @@ package() {
 
   sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/networkmanager"
 
-  install -D -m755 "$srcdir/01-org.freedesktop.NetworkManager.settings.modify.system.rules" "$pkgdir/etc/polkit-1/rules.d/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
-  chmod 755 $pkgdir/etc/polkit-1/rules.d/01-org.freedesktop.NetworkManager.settings.modify.system.rules
+
+  install -d -m700 etc/polkit-1/rules.d/
+  install -D -m644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules etc/polkit-1/rules.d/
+  chown 102 etc/polkit-1/rules.d
 
 }
 sha256sums=('66a88346bb04d4f402540281181340313b2ec433e75aa9d9ea13f31697f9487e'

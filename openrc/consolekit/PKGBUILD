@@ -67,8 +67,11 @@ package() {
   install -m755 "$srcdir/pam-foreground-compat.ck" "$pkgdir/usr/lib/ConsoleKit/run-session.d/"
   install -D -m644 "$srcdir/consolekit.logrotate" "$pkgdir/etc/logrotate.d/consolekit"
   install -D -m644 "$srcdir/consolekit.tmpfiles.conf" "$pkgdir/usr/lib/tmpfiles.d/consolekit.conf"
-  install -D -m755 "$srcdir/75-consolekit.rules" "$pkgdir/etc/polkit-1/rules.d/75-consolekit.rules"
-  chmod 755 $pkgdir/etc/polkit-1/rules.d/75-consolekit.rules
+
+  install -d -m700 etc/polkit-1/rules.d/
+  install -D -m644 ${srcdir}/75-consolekit.rules etc/polkit-1/rules.d/
+  chown 102 etc/polkit-1/rules.d
+
   rm -rf "${pkgdir}/var/run"
 }
 sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
