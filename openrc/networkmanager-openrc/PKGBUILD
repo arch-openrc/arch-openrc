@@ -12,9 +12,9 @@ arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/${_name}/"
 groups=('openrc' 'openrc-mobile')
-depends=('libnm-glib' 'iproute2' 'libnl' 'polkit' 'wpa_supplicant' 'dhcp-client' 'libsoup' 'libmm-glib' 'libnewt' 'libndp' 'libteam')
+depends=('libnm-glib' 'iproute2' 'libnl' 'polkit-consolekit' 'wpa_supplicant' 'dhcp-client' 'libsoup' 'libmm-glib' 'libnewt' 'libndp' 'libteam' 'udev' 'dbus-openrc' 'consolekit-openrc')
 makedepends=('intltool' 'dhcpcd' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' 'git' "ppp=$_pppver"
-             'modemmanager' 'dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'wpa_supplicant' 'dhcp-client' 'libsoup' 'systemd' 'libmm-glib' 'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala')
+             'modemmanager' 'dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'wpa_supplicant' 'dhcp-client' 'libsoup' 'libmm-glib' 'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala')
 optdepends=('dhclient: DHCPv6 support'
 	    'dnsmasq: Connection sharing'
 	    'bluez: Bluetooth support'
