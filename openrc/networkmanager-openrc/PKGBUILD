@@ -2,46 +2,26 @@
 
 _name=NetworkManager
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86/net-misc/networkmanager/files"
+_pppver=2.4.7
 
 pkgname=networkmanager-openrc
 pkgver=0.9.10.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.gnome.org/projects/${_name}/"
 groups=('openrc' 'openrc-mobile')
-depends=('dbus-glib'
-	'iproute2'
-	'libnl'
-	'nss'
-	'polkit-consolekit'
-	'consolekit-openrc'
-	'udev'
-	'wpa_supplicant'
-	'dhcp-client'
-	'libsoup'
-	'libmm-glib'
-	'dbus-openrc'
-	'libndp')
-makedepends=('intltool'
-	    'dhcpcd'
-	    'dhclient'
-	    'iptables'
-	    'gobject-introspection'
-	    'gtk-doc'
-	    'git'
-	    'ppp'
-	    'modemmanager')
+depends=('libnm-glib' 'iproute2' 'libnl' 'polkit' 'wpa_supplicant' 'dhcp-client' 'libsoup' 'libmm-glib' 'libnewt' 'libndp' 'libteam')
+makedepends=('intltool' 'dhcpcd' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' 'git' "ppp=$_pppver"
+             'modemmanager' 'dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'wpa_supplicant' 'dhcp-client' 'libsoup' 'systemd' 'libmm-glib' 'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala')
 optdepends=('dhclient: DHCPv6 support'
 	    'dnsmasq: Connection sharing'
 	    'bluez: Bluetooth support'
 	    'openresolv: resolvconf support'
 	    'ppp: Dialup connection support')
-options=('!libtool')
 provides=("networkmanager=${pkgver}" "libnm-glib=${pkgver}")
 conflicts=('networkmanager' 'libnm-glib')
-options=('!libtool')
 backup=("etc/${_name}/${_name}.conf")
 install=networkmanager.install
 source=("http://ftp.gnome.org/pub/gnome/sources/${_name}/${pkgver:0:3}/${_name}-${pkgver}.tar.xz"
@@ -56,36 +36,36 @@ prepare() {
   patch -Np1 -i ${srcdir}/disable_set_hostname.patch
 }
 
+
 build() {
   cd ${_name}-${pkgver}
-
-  ./configure \
-    --prefix=/usr \
+  ./configure --prefix=/usr \
     --sysconfdir=/etc \
     --localstatedir=/var \
-    --libexecdir=/usr/lib/networkmanager \
     --sbindir=/usr/bin \
-    --without-netconfig \
+    --libexecdir=/usr/lib/networkmanager \
     --with-crypto=nss \
     --with-dhclient=/usr/bin/dhclient \
     --with-dhcpcd=/usr/bin/dhcpcd \
+    --with-dnsmasq=/usr/bin/dnsmasq \
     --with-iptables=/usr/bin/iptables \
     --with-udev-dir=/usr/lib/udev \
     --with-resolvconf=/usr/bin/resolvconf \
+    --with-pppd=/usr/bin/pppd \
+    --with-pppd-plugin-dir=/usr/lib/pppd/$_pppver \
+    --with-pppoe=/usr/bin/pppoe \
     --with-kernel-firmware-dir=/usr/lib/firmware \
     --with-session-tracking=ck \
     --with-modem-manager-1 \
     --disable-static \
-    --enable-ifnet \
     --enable-more-warnings=no \
     --disable-wimax \
     --enable-modify-system \
-    --with-pppd-plugin-dir=/usr/lib/pppd/2.4.6 \
-    --enable-doc
+    --enable-doc \
+    --enable-ifnet
 
   make
 }
-#    --enable-concheck \
 
 package() {
   cd ${_name}-${pkgver}
