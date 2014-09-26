@@ -7,12 +7,13 @@ run_pre(){
 }
 
 chroot_init(){
-    local blacklist=('libsystemd')
     cd ${RUN_DIR} && cd ../${START_DIR}/${START_PKG}
     echo "==> building ${START_PKG}"
     sudo ${BRANCH}-${ARCH}-build -c -r ${CHROOT}
-    sudo pacman -Rdd ${blacklist[@]} -r ${CHROOT}/${BRANCH}-${ARCH}/$USR --noconfirm
-    sudo pacman -U *${ARCH}*pkg*z -r ${CHROOT}/${BRANCH}-${ARCH}/$USR --noconfirm
+    local blacklist=('libsystemd')
+    local user=$(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v lock)
+    sudo pacman -Rdd ${blacklist[@]} -r ${CHROOT}/${BRANCH}-${ARCH}/$user --noconfirm
+    sudo pacman -U *${ARCH}*pkg*z -r ${CHROOT}/${BRANCH}-${ARCH}/$user --noconfirm
     cd ..
 }
 
@@ -108,7 +109,6 @@ fi
 BRANCH=${1:-unstable}
 ARCH=${2:-$(uname -m)}
 START_DIR=${3:-all} # options: openrc,eudev,all
-USR=$(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v lock)
 
 mk_pkg $1 $2 $3
 
