@@ -36,13 +36,18 @@ chroot_pkg(){
 
 # $1: task
 run_task(){
-	if [ ! -d "${RUN_DIR}/packages/" ]; then
-		mkdir -p "${RUN_DIR}/packages/"
-	fi
+
 	cd ${RUN_DIR} && cd ../${START_DIR}/${START_PKG} && $1 && cd ..
 	for pkg in $(cat build-list); do
 		cd $pkg && $1 && cd ..
 	done
+}
+
+cp_pkg(){
+	if [ ! -d "${RUN_DIR}/packages/" ]; then
+		mkdir -p "${RUN_DIR}/packages/"
+	fi
+	cp *.pkg.tar.xz{,.sig} ${RUN_DIR}/packages/
 }
 
 mk_pkg(){
@@ -51,20 +56,20 @@ mk_pkg(){
 		openrc)
 			START_PKG=sysvinit
 			chroot_init && chroot_pkg
-			run_task signpkgs && run_task "cp *.pkg.tar.xz{,.sig} ${RUN_DIR}/packages/"
+			run_task signpkgs && run_task cp_pkg
 		;;
 		eudev)
 			START_PKG=eudev
 			chroot_init && chroot_pkg
-			run_task signpkgs && run_task "cp *.pkg.tar.xz{,.sig} ${RUN_DIR}/packages/"
+			run_task signpkgs && run_task cp_pkg
 		;;
 		* | all)
 			START_PKG=sysvinit && START_DIR=openrc
 			chroot_init && chroot_pkg
 			mk_sign && run_post
-			START_PKG=eudev && START_DIR=eudev
+			START_PKG=eudev && START_DIR=${START_PKG}
 			chroot_init && chroot_pkg
-			run_task signpkgs && run_task "cp *.pkg.tar.xz{,.sig} ${RUN_DIR}/packages/"
+			run_task signpkgs && run_task cp_pkg
 		;;
 	esac
 }
@@ -79,7 +84,7 @@ RUN_DIR=$(pwd)
 BRANCH='unstable'
 ARCH=$(uname -m)
 START_DIR='all' # all,eudev,openrc
-CHROOT=/srv/manjarobuild
+CHROOT='/srv/manjarobuild'
 
 usage() {
 	echo 'Usage: build.sh [options]'
