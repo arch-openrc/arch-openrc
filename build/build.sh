@@ -9,7 +9,7 @@ run_pre(){
 chroot_init(){
     cd ${RUN_DIR} && cd ../${START_DIR}/${START_PKG}
     echo "==> building ${START_PKG}"
-    sudo ${BRANCH}-${ARCH}-build -c -r ${CHROOT}
+    sudo "${BRANCH}-${ARCH}-build" -c -r ${CHROOT}
     local blacklist=('libsystemd')
     local user=$(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v lock)
     sudo pacman -Rdd ${blacklist[@]} -r ${CHROOT}/${BRANCH}-${ARCH}/$user --noconfirm
@@ -21,7 +21,7 @@ chroot_build(){
       for pkg in $(cat build-list); do
 	cd $pkg
 	echo "==> building $pkg"
-	sudo makechrootpkg -n -r ${CHROOT}/${BRANCH}-${ARCH} || break
+	sudo makechrootpkg -n -b ${BRANCH} -r ${CHROOT}/${BRANCH}-${ARCH} || break
 	cd ..
       done
 }
@@ -106,10 +106,38 @@ else
     CHROOT=/opt/manjarobuild
 fi
 
-BRANCH=${1:-unstable}
-ARCH=${2:-$(uname -m)}
-START_DIR=${3:-all} # options: openrc,eudev,all
+############################################################
 
-mk_pkg $1 $2 $3
+# BRANCH=${1:-unstable}
+# ARCH=${2:-$(uname -m)}
+# START_DIR=${3:-all} # options: openrc,eudev,all
+#
+# mk_pkg $1 $2 $3
 
-#shutdown -h now
+#############################################################
+
+BRANCH='unstable'
+ARCH=$(uname -m)
+START_DIR='all' # all,eudev,openrc
+
+usage() {
+	echo 'Usage: build.sh [options]'
+	echo ' options:'
+	echo '    -b <branch>   [default] '"${BRANCH}"
+	echo '    -a <arch>     [default] '"${ARCH}"
+	echo '    -s <startdir> [default] '"${START_DIR}"
+	echo '    -h            Help'
+	exit 1
+}
+
+while getopts ':b:a:s:h' arg; do
+	case "${arg}" in
+	  b) BRANCH=$OPTARG ;;
+	  a) ARCH=$OPTARG ;;
+	  s) START_DIR=$OPTARG ;;
+	  h|*) usage ;;
+	esac
+done
+shift $((OPTIND-1))
+
+mk_pkg $@
