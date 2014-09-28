@@ -1,110 +1,109 @@
 #!/bin/bash
-## build.sh: all the steps for building openrc and eudev packages
+## build.sh: all the steps for building openrc and/or eudev packages
 
-run_pre(){
-    cd ..
-    git clean -dfx  # Remove untracked directories and files
+run_clean(){
+	cd ..
+	git clean -dfx  # Remove untracked directories and files
+}
+
+get_user(){
+	echo $(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v lock)
+}
+
+rm_blacklisted(){
+	local blacklist=('libsystemd')
+	sudo pacman -Rdd ${blacklist[@]} -r ${CHROOT}/${BRANCH}-${ARCH}/$(get_user) --noconfirm
+}
+
+install_built(){
+	sudo pacman -U *${ARCH}*pkg*z -r ${CHROOT}/${BRANCH}-${ARCH}/$(get_user) --noconfirm
 }
 
 chroot_init(){
-    cd ${RUN_DIR} && cd ../${START_DIR}/${START_PKG}
-    echo "==> building ${START_PKG}"
-    sudo "${BRANCH}-${ARCH}-build" -c -r ${CHROOT}
-    local blacklist=('libsystemd')
-    local user=$(ls ${CHROOT}/${BRANCH}-${ARCH} | cut -d' ' -f1 | grep -v root | grep -v lock)
-    sudo pacman -Rdd ${blacklist[@]} -r ${CHROOT}/${BRANCH}-${ARCH}/$user --noconfirm
-    sudo pacman -U *${ARCH}*pkg*z -r ${CHROOT}/${BRANCH}-${ARCH}/$user --noconfirm
-    cd ..
+	cd ${RUN_DIR} && cd ../${START_DIR}/${START_PKG} && echo "==> building ${START_PKG}"
+	sudo "${BRANCH}-${ARCH}-build" -c -r ${CHROOT}
+	rm_blacklisted && install_built
+	cd ..
 }
 
-chroot_build(){
-      for pkg in $(cat build-list); do
-	cd $pkg
-	echo "==> building $pkg"
-	sudo makechrootpkg -n -b ${BRANCH} -r ${CHROOT}/${BRANCH}-${ARCH} || break
-	cd ..
-      done
+chroot_pkg(){
+	for pkg in $(cat build-list); do
+		cd $pkg && echo "==> building $pkg"
+		sudo makechrootpkg -n -b ${BRANCH} -r ${CHROOT}/${BRANCH}-${ARCH} || break
+		cd ..
+	done
+}
+
+# $1: task
+run_task(){
+	if [ ! -d "${RUN_DIR}/packages/" ]; then
+		mkdir -p "${RUN_DIR}/packages/"
+	fi
+	cd ${RUN_DIR} && cd ../${START_DIR}/${START_PKG} && $1 && cd ..
+	for pkg in $(cat build-list); do
+		cd $pkg && $1 && cd ..
+	done
 }
 
 mk_pkg(){
-	run_pre
-
+	run_clean
 	case ${START_DIR} in
 		openrc)
-		  START_PKG=sysvinit
-		  chroot_init
-		  chroot_build
-		  mk_sign
-		  run_post
+			START_PKG=sysvinit
+			chroot_init && chroot_pkg
+			run_task signpkgs && run_task "cp *.pkg.tar.xz{,.sig} ${RUN_DIR}/packages/"
 		;;
 		eudev)
-		  START_PKG=eudev
-		  chroot_init
-		  chroot_build
-		  mk_sign
-		  run_post
+			START_PKG=eudev
+			chroot_init && chroot_pkg
+			run_task signpkgs && run_task "cp *.pkg.tar.xz{,.sig} ${RUN_DIR}/packages/"
 		;;
 		* | all)
-		  START_PKG=sysvinit
-		  START_DIR=openrc
-		  chroot_init
-		  chroot_build
-		  mk_sign
-		  run_post
-		  START_PKG=eudev
-		  START_DIR=eudev
-		  chroot_init
-		  chroot_build
-		  mk_sign
-		  run_post
+			START_PKG=sysvinit && START_DIR=openrc
+			chroot_init && chroot_pkg
+			mk_sign && run_post
+			START_PKG=eudev && START_DIR=eudev
+			chroot_init && chroot_pkg
+			run_task signpkgs && run_task "cp *.pkg.tar.xz{,.sig} ${RUN_DIR}/packages/"
 		;;
 	esac
 }
 
-mk_sign(){
-
-    cd ${RUN_DIR} && cd ../${START_DIR}/${START_PKG}
-    signpkgs
-    cd ..
-    for pkg in $(cat build-list); do
-      cd $pkg
-      signpkgs
-      cd ..
-    done
-}
-
-run_post(){
-
-    local pkgdir="${RUN_DIR}/packages/"
-
-    if [ ! -d "$pkgdir" ]; then
-      mkdir -p "$pkgdir"
-    fi
-
-    cd ${RUN_DIR} && cd ../${START_DIR}/${START_PKG}
-    cp -v *.pkg.tar.xz{,.sig} $pkgdir
-    cd ..
-    for pkg in $(cat build-list); do
-      cd $pkg
-      cp -v *.pkg.tar.xz{,.sig} $pkgdir
-      cd ..
-    done
-
-    # Perform any other commands
-}
-
-##############MAIN###################
+########################MAIN################################
 
 export LANG=C
 export LC_MESSAGES=C
 
 RUN_DIR=$(pwd)
 
-if [[ -f ./build.conf ]];then
-    . "./build.conf"
-else
-    CHROOT=/opt/manjarobuild
-fi
+BRANCH='unstable'
+ARCH=$(uname -m)
+START_DIR='all' # all,eudev,openrc
+CHROOT=/srv/manjarobuild
+
+usage() {
+	echo 'Usage: build.sh [options]'
+	echo ' options:'
+	echo '    -b <branch>   [default] '"${BRANCH}"
+	echo '    -a <arch>     [default] '"${ARCH}"
+	echo '    -s <startdir> [default] '"${START_DIR}"
+	echo '    -r <chroot>   [default] '"${CHROOT}"
+	echo '    -h            Help'
+	exit 1
+}
+
+while getopts ':b:a:s:r:' arg; do
+	case "${arg}" in
+		b) BRANCH=$OPTARG ;;
+		a) ARCH=$OPTARG ;;
+		s) START_DIR=$OPTARG ;;
+		r) CHROOT=$OPTARG ;;
+		h|*) usage ;;
+	esac
+done
+shift $((OPTIND-1))
+
+mk_pkg $@
 
 ############################################################
 
@@ -115,29 +114,3 @@ fi
 # mk_pkg $1 $2 $3
 
 #############################################################
-
-BRANCH='unstable'
-ARCH=$(uname -m)
-START_DIR='all' # all,eudev,openrc
-
-usage() {
-	echo 'Usage: build.sh [options]'
-	echo ' options:'
-	echo '    -b <branch>   [default] '"${BRANCH}"
-	echo '    -a <arch>     [default] '"${ARCH}"
-	echo '    -s <startdir> [default] '"${START_DIR}"
-	echo '    -h            Help'
-	exit 1
-}
-
-while getopts ':b:a:s:h' arg; do
-	case "${arg}" in
-	  b) BRANCH=$OPTARG ;;
-	  a) ARCH=$OPTARG ;;
-	  s) START_DIR=$OPTARG ;;
-	  h|*) usage ;;
-	esac
-done
-shift $((OPTIND-1))
-
-mk_pkg $@
