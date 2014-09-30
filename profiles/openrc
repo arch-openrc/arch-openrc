@@ -2,10 +2,6 @@ sysvinit
 polkit-consolekit
 consolekit
 openrc-base
-openrc-desktop
-openrc-misc
-openrc-net
-openrc-devel
 keyboardctl-openrc
 networkmanager-openrc
 manjaro-openrc
