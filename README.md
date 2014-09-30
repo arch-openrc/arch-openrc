@@ -15,14 +15,14 @@ OpenRC pkgbuilds
 ###Build.sh###
 
     Usage: build.sh [options]
-	-h                   This help
-	-a <arch>            Set arch
-	-b <branch>          Set branch
-	-p <profile>         Set profile or pkg
-	-r <dir>             Create chroots in this directory
-	-c                   Recreate the chroot before building
-	-s                   Sign packages
-	-n                   Run namcap on the package
-	-u                   Update the working copy of the chroot before building
-	-C                   Clean pkgbuilds dir
-	-d                   Skip dep check -- makepkg_arg
+    -h                   This help
+    -a <arch>            Set arch
+    -b <branch>          Set branch
+    -p <profile>         Set profile or pkg
+    -r <dir>             Create chroots in this directory
+    -c [default]         Recreate the chroot before building
+    -s                   Sign packages
+    -v                   Run namcap on the package
+    -u                   Update the working copy of the chroot before building
+    -w                   Clean pkgbuilds dir
+    -d                   Skip dep check -- makepkg_arg
