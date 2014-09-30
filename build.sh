@@ -89,7 +89,7 @@ chroot_init(){
 	    "${workdir}/root" \
 	    "${base_packages[@]}" || abort
 
-	msg "Created chroot for [${branch}] (${arch}) $(stat_done)"
+	msg "Created chroot for [${branch}] (${arch})"
     else
 	sudo setarch ${arch} mkmanjaroroot \
 	    -C "${pacman_conf}" \
@@ -140,10 +140,7 @@ cp_pkg(){
 }
 
 cp_pkgs(){
-    if ! [[ -d ${pkgdir}/${arch} ]];then
-	mkdir -pv ${pkgdir}/${arch}
-    fi
-    pkgdir=${pkgdir}/${arch}
+    msg "Copying packages ..."
     eval "case $1 in
 	$profiles)
 	    cp_profile_pkgs $1
@@ -152,6 +149,7 @@ cp_pkgs(){
 	    cp_pkg $1
 	;;
     esac"
+    msg "Finished copying"
 }
 
 sign_pkgs(){
@@ -161,7 +159,9 @@ sign_pkgs(){
 }
 
 git_clean(){
+    msg "Cleaning ${rundir} ..."
     git clean -dfx
+    msg "Finished cleaning"
 }
 
 get_profiles(){
@@ -184,6 +184,13 @@ run(){
 	    chroot_build
 	;;
     esac"
+}
+
+mk_pkgdir(){
+	pkgdir=${rundir}/packages/${arch}
+	if ! [[ -d ${pkgdir} ]];then
+	    mkdir -pv ${pkgdir}
+	fi
 }
 
 #################################MAIN##########################################
@@ -212,9 +219,60 @@ if [[ -t 2 ]]; then
 fi
 readonly ALL_OFF BOLD BLUE GREEN RED YELLOW
 
-pacman_conf_arch='default'
 arch=$(uname -m)
 branch="unstable"
+
+pacman_conf_arch='default'
+
+chroots=/srv/manjarobuild
+profile=all # dynamic profiles as defined in profiledir(must not be a dir name in tree to work)
+
+clean_first=true
+clean_build=false
+sign=false
+update_first=false
+namcap=false
+nodeps=false
+namcap_arg=
+nodeps_arg=
+
+usage() {
+    echo "Usage: $0 [options]"
+    echo '    -h                   This help'
+    echo '    -a <arch>            Set arch'
+    echo '    -b <branch>          Set branch'
+    echo '    -p <profile>         Set profile or pkg'
+    echo '    -r <dir>             Create chroots in this directory'
+    echo '    -c [default]         Recreate the chroot before building'
+    echo '    -s                   Sign packages'
+    echo '    -v                   Run namcap on the package'
+    echo '    -u                   Update the working copy of the chroot before building'
+    echo '    -w                   Clean pkgbuilds dir'
+    echo '    -d                   Skip dep check -- makepkg_arg'
+    echo ''
+    echo ''
+    exit 1
+}
+
+while getopts 'a:b:p:r:csvuhwd' arg; do
+    case "${arg}" in
+	a) arch="$OPTARG" ;;
+	b) branch="$OPTARG" ;;
+	p) profile="$OPTARG" ;;
+	r) chroots="$OPTARG" ;;
+	c) clean_first=false ;;
+	s) sign=true ;;
+	v) namcap=true ;;
+	u) update_first=true ;;
+	w) clean_build=true ;;
+	d) nodeps=true ;;
+	*) usage ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+rundir=$(pwd)
 base_packages=(base-devel)
 
 if [ "$arch" == 'multilib' ]; then
@@ -224,62 +282,34 @@ if [ "$arch" == 'multilib' ]; then
 	base_packages+=(multilib-devel)
 fi
 
-chroots=/srv/manjarobuild
-profile=all # dynamic profiles as defined in profiledir(must not be a dir name in tree to work)
+if [[ -f $HOME/.makepkg.conf ]];then
+    . $HOME/.makepkg.conf
+    if [[ -n $PKGDEST ]];then
+	pkgdir=$PKGDEST
+    else
+	mk_pkgdir
+    fi
+else
+    . /etc/makepkg.conf
+    if [[ -n $PKGDEST ]];then
+	pkgdir=$PKGDEST
+    else
+	mk_pkgdir
+    fi
+fi
 
-clean_first=false
-sign=false
-update_first=false
-namcap=false
-namcap_arg=
-clean_build=false
-nodeps=false
-nodeps_arg=
-
-rundir=$(pwd)
 profiledir=${rundir}/profiles
+
+if ! [[ -d ${profiledir} ]]; then
+    mkdir -p ${profiledir}
+fi
+
 profiles=$(get_profiles)
-pkgdir=${rundir}/packages
-pacman_conf=/usr/share/devtools/pacman-${pacman_conf_arch}.conf
-makepkg_conf=/usr/share/devtools/makepkg-${arch}.conf
-
-usage() {
-    echo "Usage: $0 [options]"
-    echo '    -h                   This help'
-    echo '    -a <arch>            Set arch'
-    echo '    -b <branch>          Set branch'
-    echo '    -p <profile>         Set profile or pkg'
-    echo '    -r <dir>             Create chroots in this directory'
-    echo '    -c                   Recreate the chroot before building'
-    echo '    -s                   Sign packages'
-    echo '    -n                   Run namcap on the package'
-    echo '    -u                   Update the working copy of the chroot before building'
-    echo '    -C                   Clean pkgbuilds dir'
-    echo '    -d                   Skip dep check -- makepkg_arg'
-    echo ''
-    echo ''
-    exit 1
-}
-
-while getopts 'a:b:p:r:csnuhCd' arg; do
-    case "${arg}" in
-	a) arch="$OPTARG" ;;
-	b) branch="$OPTARG" ;;
-	p) profile="$OPTARG" ;;
-	r) chroots="$OPTARG" ;;
-	c) clean_first=true ;;
-	s) sign=true ;;
-	n) namcap=true ;;
-	u) update_first=true ;;
-	C) clean_build=true ;;
-	d) nodeps=true ;;
-	*) usage ;;
-    esac
-done
-
-shift $((OPTIND-1))
 
 workdir=${chroots}/${branch}-${arch}
+
+pacman_conf=/usr/share/devtools/pacman-${pacman_conf_arch}.conf
+makepkg_conf=/usr/share/devtools/makepkg-${arch}.conf
 
 if ${namcap};then
     namcap_arg=-n
@@ -289,8 +319,11 @@ if ${nodeps};then
     nodeps_arg=-d
 fi
 
+msg "Vars info:"
 msg2 "arch: $arch"
 msg2 "branch: $branch"
+msg2 "profilesdir: $profilesdir"
+msg2 "profiles: $profiles"
 msg2 "profile: $profile"
 msg2 "chroots: $chroots"
 msg2 "clean_first: $clean_first"
@@ -298,11 +331,13 @@ msg2 "sign: $sign"
 msg2 "namcap: $namcap"
 msg2 "namcap_arg: $namcap_arg"
 msg2 "update_first: $update_first"
-msg2 "namcap_arg: $namcap_arg"
 msg2 "clean_build: $clean_build"
 msg2 "nodeps: $nodeps"
 msg2 "nodeps_arg: $nodeps_arg"
-
+msg2 "pkgdir: $pkgdir"
+msg2 "base_packages: ${base_packages[*]}"
+msg2 "pacman_conf_arch: ${pacman_conf_arch}"
+msg2 "PKGDEST: $PKGDEST"
 
 if ${clean_build};then
     git_clean
@@ -310,7 +345,9 @@ fi
 
 run $@
 
-cp_pkgs ${profile}
+if [[ -z $PKGDEST ]];then
+    cp_pkgs ${profile}
+fi
 
 if ${sign};then
     sign_pkgs
