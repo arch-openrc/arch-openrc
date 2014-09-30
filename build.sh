@@ -255,6 +255,7 @@ usage() {
     echo '    -n                   Run namcap on the package'
     echo '    -u                   Update the working copy of the chroot before building'
     echo '    -C                   Clean pkgbuilds dir'
+    echo '    -d                   Skip dep check -- makepkg_arg'
     echo ''
     echo ''
     exit 1
