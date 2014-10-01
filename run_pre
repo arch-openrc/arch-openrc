@@ -1,0 +1,8 @@
+#!/bin/bash
+
+git_clean(){
+    msg "Cleaning ${rundir} ..."
+    git clean -dfx
+    msg "Finished cleaning"
+}
+

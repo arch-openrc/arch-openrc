@@ -1,0 +1,33 @@
+#!/bin/bash
+
+cp_profile_pkgs(){
+    for pkg in $(cat ${profiledir}/$1.set); do
+	cp_pkg $pkg
+    done
+}
+
+cp_pkg(){
+    msg2 "Copying $1 to ${pkgdir}"
+    cd $1
+    cp -v *.pkg.tar.xz ${pkgdir}
+    cd ..
+}
+
+cp_pkgs(){
+    msg "Copying packages ..."
+    eval "case $1 in
+	$profiles)
+	    cp_profile_pkgs $1
+	;;
+	*)
+	    cp_pkg $1
+	;;
+    esac"
+    msg "Finished copying"
+}
+
+sign_pkgs(){
+    cd ${pkgdir}
+    signpkgs
+    cd ..
+}
