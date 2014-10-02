@@ -1,5 +1,29 @@
 #!/bin/bash
 
+if [[ -r ~/.makepkg.conf ]];then
+    . ~/.makepkg.conf
+    if [[ -n $PKGDEST ]];then
+	pkgdir=$PKGDEST
+    else
+	mk_pkgdir
+    fi
+else
+    [[ -r /etc/makepkg.conf ]] && . /etc/makepkg.conf
+    if [[ -n $PKGDEST ]];then
+	pkgdir=$PKGDEST
+    else
+	mk_pkgdir
+    fi
+fi
+
+
+mk_pkgdir(){
+	pkgdir=${rundir}/packages/${arch}
+	if ! [[ -d ${pkgdir} ]];then
+	    mkdir -pv ${pkgdir}
+	fi
+}
+
 cp_profile_pkgs(){
     for pkg in $(cat ${profiledir}/$1.set); do
 	cp_pkg $pkg
