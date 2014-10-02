@@ -200,7 +200,7 @@ makepkg_conf="/usr/share/devtools/makepkg-${arch}.conf"
 # pacman_conf="@pkgdatadir@/pacman-${pacman_conf_arch}.conf"
 # makepkg_conf="@pkgdatadir@/makepkg-${arch}.conf"
 
-if ${info};then
+if ${verbose};then
     msg "OPTARGS:"
     msg2 "arch: $arch"
     msg2 "branch: $branch"
