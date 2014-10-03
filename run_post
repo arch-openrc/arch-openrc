@@ -2,20 +2,15 @@
 
 if [[ -r ~/.makepkg.conf ]];then
     . ~/.makepkg.conf
-    if [[ -n $PKGDEST ]];then
-	pkgdir=$PKGDEST
-    else
-	mk_pkgdir
-    fi
 else
     [[ -r /etc/makepkg.conf ]] && . /etc/makepkg.conf
-    if [[ -n $PKGDEST ]];then
-	pkgdir=$PKGDEST
-    else
-	mk_pkgdir
-    fi
 fi
 
+if [[ -n $PKGDEST ]];then
+    pkgdir=$PKGDEST
+else
+    mk_pkgdir
+fi
 
 mk_pkgdir(){
 	pkgdir=${rundir}/packages/${arch}
