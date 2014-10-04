@@ -1,6 +1,0 @@
-sysvinit
-polkit-consolekit
-consolekit
-openrc-base
-keyboardctl-openrc
-networkmanager-openrc
