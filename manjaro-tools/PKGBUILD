@@ -1,7 +1,7 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=manjaro-tools
-pkgver=0.2
+pkgver=0.3
 pkgrel=1
 pkgdesc='Tools for Manjaro Linux'
 arch=('any')
@@ -13,7 +13,7 @@ conflicts=('devtools' 'arch-install-scripts')
 replaces=('devtools')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
 source=("https://github.com/udeved/manjaro-tools/archive/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('f1bf3d69159921f3bb4efd2759bd7930819d6d764907a8b89a975d66f58f3794')
+sha256sums=('883744b08fbfa29ec9cc9a1f523d6f7b7df6137d56723f619b3c72d8d2a50756')
 
 build() {
 	cd ${srcdir}/${pkgname}-${pkgname}-${pkgver}
