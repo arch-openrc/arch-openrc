@@ -68,9 +68,9 @@ package() {
   install -D -m644 "$srcdir/consolekit.logrotate" "$pkgdir/etc/logrotate.d/consolekit"
   install -D -m644 "$srcdir/consolekit.tmpfiles.conf" "$pkgdir/usr/lib/tmpfiles.d/consolekit.conf"
 
-  install -d -m700 etc/polkit-1/rules.d/
-  install -D -m644 ${srcdir}/75-consolekit.rules etc/polkit-1/rules.d/
-  chown 102 etc/polkit-1/rules.d
+  install -d -m700 $pkgdir/etc/polkit-1/rules.d/
+  install -D -m644 ${srcdir}/75-consolekit.rules $pkgdir/etc/polkit-1/rules.d/
+  chown 102 $pkgdir/etc/polkit-1/rules.d
 
   rm -rf "${pkgdir}/var/run"
 }
@@ -83,3 +83,4 @@ sha256sums=('b41d17e06f80059589fbeefe96ad07bcc564c49e65516da1caf975146475565c'
             '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
             '95e998183b8f955317b5f6bc08780c4c4b995cca1b5c60fbeac402a9169cca12')
+

@@ -45,7 +45,7 @@ pkgname=('openrc-core'
 	'mdadm-openrc')
 pkgdesc="Gentoo's universal init system, udev enabled."
 pkgver=0.13.1
-pkgrel=2
+pkgrel=1
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -132,7 +132,9 @@ _install_udev(){
 	make DESTDIR="${pkgdir}" install
 	# fix shebang & path to udevd
 	local _bin='s|/sbin/udevd|/usr/bin/udevd|g'
-	sed -e "${_shebang}" -e "${_bin}" -i "${pkgdir}/etc/init.d/udev"
+	sed -e "${_shebang}" \
+	    -e "${_bin}" \
+	    -i "${pkgdir}/etc/init.d/udev"
 	# create runlevel
 	cd "${srcdir}/${_pkgname}-${pkgver}"
 	ln -sf "/etc/init.d/udev" "${pkgdir}/etc/runlevels/sysinit/udev"
@@ -143,7 +145,8 @@ _install_netifrc(){
 	make DESTDIR="${pkgdir}" "${_net_args[@]}" install
 	install -Dm 644 "${srcdir}/${_net}-${_nver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
 
-	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/net.lo"
+	sed -e "${_shebang}" \
+	    -i "${pkgdir}/etc/init.d/net.lo"
 
 	# create runlevel
 	ln -sf "/etc/init.d/net.lo" "${pkgdir}/etc/runlevels/boot/net.lo"
@@ -153,7 +156,8 @@ _install_kmod(){
 	cd "${srcdir}/${_pkgname}-${pkgver}"
 	install -Dm755 "${srcdir}/kmod-static-nodes" "${pkgdir}/etc/init.d/kmod-static-nodes"
 	# fix shebang
-	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/kmod-static-nodes"
+	sed -e "${_shebang}" \
+	    -i "${pkgdir}/etc/init.d/kmod-static-nodes"
 	# create runlevel
 	ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
 }
@@ -184,7 +188,9 @@ package_openrc-core() {
 	# logrotate
 	install -Dm644 "${srcdir}/${_pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${_pkgname}"
 	# enable unicode & logger
-	sed -e 's/#unicode="NO"/unicode="YES"/' -e 's/#rc_logger="YES"/rc_logger="YES"/' -i "${pkgdir}/etc/rc.conf"
+	sed -e 's/#unicode="NO"/unicode="YES"/' \
+	    -e 's/#rc_logger="YES"/rc_logger="YES"/' \
+	    -i "${pkgdir}/etc/rc.conf"
 
 	# udev
 	_install_udev
@@ -219,7 +225,10 @@ package_cronie-openrc() {
 	install -Dm755 "${srcdir}/${_Icron2}" "${pkgdir}/etc/init.d/anacron"
 
 	for f in ${pkgdir}/etc/init.d/*; do
-		sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i $f
+		sed -e "${_shebang}" \
+		    -e "${_binpath[0]}" \
+		    -e "${_runpath}" \
+		    -i $f
 	done
 }
 
@@ -235,7 +244,10 @@ package_dhcpcd-openrc() {
 
 	install -Dm755 "${srcdir}/${_Idhcpcd}" "${pkgdir}/etc/init.d/dhcpcd"
 
-	sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/dhcpcd"
+	sed -e "${_shebang}" \
+	    -e "${_binpath[1]}" \
+	    -e "${_runpath}" \
+	    -i "${pkgdir}/etc/init.d/dhcpcd"
 }
 
 package_dbus-openrc() {
@@ -251,7 +263,9 @@ package_dbus-openrc() {
 	install -Dm755 "${srcdir}/${_Idbus}" "${pkgdir}/etc/init.d/dbus"
 
 	local _p1='s|dbus.pid|dbus/pid|g'
-	sed -e "${_shebang}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/dbus"
+	sed -e "${_shebang}" -e "${_runpath}" \
+	    -e "${_p1}" \
+	    -i "${pkgdir}/etc/init.d/dbus"
 }
 
 package_device-mapper-openrc() {
@@ -269,7 +283,10 @@ package_device-mapper-openrc() {
 	install -Dm755 "${srcdir}/${_Idm2}" "${pkgdir}/etc/init.d/dmeventd"
 
 	for f in ${pkgdir}/etc/init.d/*; do
-		sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -i $f
+		sed -e "${_shebang}" \
+		    -e "${_binpath[1]}" \
+		    -e "${_runpath}" \
+		    -i $f
 	done
 }
 
@@ -286,7 +303,10 @@ package_cryptsetup-openrc() {
 	install -Dm755 "${srcdir}/${_Ccrypt}" "${pkgdir}/etc/conf.d/dmcrypt"
 	install -Dm755 "${srcdir}/${_Icrypt}" "${pkgdir}/etc/init.d/dmcrypt"
 
-	sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/dmcrypt"
+	sed -e "${_shebang}" \
+	    -e "${_binpath[0]}" \
+	    -e "${_runpath}" \
+	    -i "${pkgdir}/etc/init.d/dmcrypt"
 }
 
 package_glibc-openrc() {
@@ -302,7 +322,10 @@ package_glibc-openrc() {
 
 	install -Dm755 "${srcdir}/${_Inscd}" "${pkgdir}/etc/init.d/nscd"
 
-	sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/nscd"
+	sed -e "${_shebang}" \
+	    -e "${_binpath[0]}" \
+	    -e "${_runpath}" \
+	    -i "${pkgdir}/etc/init.d/nscd"
 }
 
 package_inetutils-openrc() {
@@ -335,7 +358,10 @@ package_lvm2-openrc() {
 	install -Dm755 "${srcdir}/${_Ilvm3}" "${pkgdir}/etc/init.d/lvmetad"
 
 	for f in ${pkgdir}/etc/init.d/*; do
-		sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -i $f
+		sed -e "${_shebang}" \
+		    -e "${_binpath[1]}" \
+		    -e "${_runpath}" \
+		    -i $f
 	done
 }
 
@@ -356,8 +382,11 @@ package_mdadm-openrc() {
 	install -Dm755 "${srcdir}/${_Cmdraid}" "${pkgdir}/etc/conf.d/mdraid"
 	install -Dm755 "${srcdir}/${_Imdraid}" "${pkgdir}/etc/init.d/mdraid"
 
-	sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/mdadm"
-	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/mdraid"
+	sed -e "${_shebang}" \
+	    -e "${_runpath}" \
+	    -i "${pkgdir}/etc/init.d/mdadm"
+	sed -e "${_shebang}" \
+	    -i "${pkgdir}/etc/init.d/mdraid"
 }
 sha256sums=('c2eeea257aa8b6b614fa69a73dd1dbc8b8a0a80e283a73e12356c212414540f6'
             '1a091c361e9845861c138b505881edcb7b68fcf91708db526dff0b320243c936'

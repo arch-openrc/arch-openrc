@@ -1,13 +1,14 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=manjaro-tools-git
-pkgver=r23.79b97f3
+pkgver=r43.e76c341
 pkgrel=1
 pkgdesc='Tools for Manjaro Linux'
 arch=('any')
 license=('GPL')
 url='https://github.com/udeved/manjaro-tools'
-depends=('namcap' 'openssh' 'subversion' 'rsync')
+depends=('namcap' 'openssh' 'rsync')
+makedepends=('git')
 provides=('devtools')
 conflicts=('devtools' 'arch-install-scripts' 'manjaro-tools')
 replaces=('devtools' 'manjaro-tools')
