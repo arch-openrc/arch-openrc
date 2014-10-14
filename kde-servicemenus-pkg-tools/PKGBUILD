@@ -1,7 +1,7 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=kde-servicemenus-pkg-tools
-pkgver=0.9
+pkgver=0.9.2
 pkgrel=1
 pkgdesc="Servicemenu for makepkg, pactree graph, local repo, namcap & aur upload."
 arch=('any')
@@ -10,7 +10,6 @@ license=('GPL2')
 depends=('kdebase-kdialog' 'kdebase-runtime' 'namcap' 'graphviz' 'pkgbuild-introspection' 'curl')
 install=pkg-tools.install
 source=("$url/archive/$pkgname-$pkgver.tar.gz")
-sha256sums=('113f7a099fa38abfdf5cd76439e7e1db5df941cf3a13a18e90c2c62452f0fe99')
 
 build() {
 	cd ${srcdir}/${pkgname}-${pkgname}-${pkgver}
@@ -21,3 +20,4 @@ package() {
 	cd ${srcdir}/${pkgname}-${pkgname}-${pkgver}
 	make PREFIX=/usr DESTDIR=${pkgdir} install
 }
+sha256sums=('5d9a17d6f0966c1e4de89b734c13fdf22d97babf233a6ea7287dca6ca7c0c831')
