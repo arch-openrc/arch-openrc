@@ -1,0 +1,47 @@
+# $Id: PKGBUILD 121049 2014-10-20 10:23:26Z andrea $
+# Maintainer: Andrea Scarpino <andrea@archlinux.org>
+
+_pkgname=sddm
+
+pkgname=sddm-consolekit
+pkgver=0.10.0
+pkgrel=1
+pkgdesc='QML based X11 display manager'
+arch=('i686' 'x86_64')
+url='http://github.com/sddm/sddm'
+license=('GPL')
+depends=('qt5-declarative')
+makedepends=('cmake' 'python-docutils' 'qt5-tools')
+install="${_pkgname}.install"
+backup=('usr/share/sddm/scripts/Xsetup')
+conflicts=('display-manager' 'sddm')
+provides=('display-manager' 'sddm')
+source=("${_pkgname}-${pkgver}.tar.gz::https://github.com/${_pkgname}/${_pkgname}/archive/v${pkgver}.tar.gz"
+        "${_pkgname}-consolekit.patch"
+        "${_pkgname}-upower.patch")
+md5sums=('281f920b61b706fbeb07b5397a9bcda2'
+         '39b48fc158070568fa0729fd6899f4dd'
+         '941e14aa86284f7f1965fca54aa79a6d')
+
+prepare() {
+  mkdir -p build
+  cd ${_pkgname}-${pkgver}
+  patch -p1 -i ${srcdir}/${_pkgname}-consolekit.patch
+  patch -p1 -i ${srcdir}/${_pkgname}-upower.patch
+}
+
+build() {
+  cd build
+  cmake ../${_pkgname}-${pkgver} \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib/sddm \
+        -DBUILD_MAN_PAGES=ON
+  make
+}
+
+package() {
+  cd build
+  make DESTDIR="${pkgdir}" install
+}
+
