@@ -47,6 +47,7 @@ _Ibit=bitlbee.initd
 _Itherm=thermald.initd
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+_notfoss_uri="https://raw.githubusercontent.com/notfoss/archlinux-openrc-services/master/init.d/"
 
 pkgbase=openrc-misc
 pkgname=('cpupower-openrc'
@@ -66,8 +67,9 @@ pkgname=('cpupower-openrc'
 	'mpd-openrc'
 	'hdparm-openrc'
 	'bitlbee-openrc'
+	'teamviewerd-openrc'
 	'thermald-openrc')
-pkgver=20140717
+pkgver=20141022
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -122,6 +124,7 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/sys-apps/hdparm/files/${_Ihdparm}"
 	"${_gentoo_uri}/net-im/bitlbee/files/${_Cbit}"
 	"${_gentoo_uri}/net-im/bitlbee/files/${_Ibit}"
+	"${_notfoss_uri}/teamviewerd"
 	'thermald.initd')
 
 pkgver() {
@@ -380,6 +383,13 @@ package_hdparm-openrc() {
   sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/hdparm"
 }
 
+package_teamviewerd-openrc() {
+  pkgdesc="OpenRC teamviewerd init script"
+  #depends=('teamviewer')
+
+  install -Dm755 "${srcdir}/teamviewerd" "${pkgdir}/etc/init.d/teamviewerd"
+}
+
 package_thermald-openrc() {
   pkgdesc="OpenRC thermald init script"
   depends=('dbus-openrc' 'thermald')
@@ -429,4 +439,5 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '434beee81ba04c96fcd03e6b37a4578c2c25af2c1007368469c48dd37523d56e'
             '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
             '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
+            '43a4ca525d7751fb0f1084d67e142ca712e51bb771d1dbac5d177df975123e30'
             'ba65a3424da413a2005fc6fe37a97ef9f4e063c68e8ae2a7c15f245b43e303df')
