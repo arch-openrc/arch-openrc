@@ -1,0 +1,44 @@
+
+_Iteam=teamviewerd.init
+#_Iteam=teamviewerd
+
+_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+#_notfoss_uri="https://raw.githubusercontent.com/notfoss/archlinux-openrc-services/master/init.d/"
+
+pkgbase=openrc-aur
+pkgname=('teamviewerd-openrc')
+pkgver=20141022
+pkgrel=1
+pkgdesc="OpenRC init scripts for aur depends"
+arch=('any')
+url="https://github.com/udeved/pkgbuilds"
+license=('GPL2')
+groups=('openrc' 'openrc-aur')
+conflicts=('openrc'
+	'openrc-git'
+	'openrc-arch-services-git'
+	'initscripts'
+	'systemd-sysvcompat')
+source=("${_gentoo_uri}/net-misc/teamviewer/files/${_Iteam}"
+	#"${_notfoss_uri}/${_Iteam}"
+	)
+sha256sums=('769f1455cb9b43d9a8907bd7b594db2af7d3905ca40c795ce0bbb4e016219bd8')
+
+pkgver() {
+  date +%Y%m%d
+}
+
+_shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
+_runpath='s|/var/run|/run|g'
+_binpath='s|/usr/sbin|/usr/bin|g'
+
+
+package_teamviewerd-openrc() {
+  pkgdesc="OpenRC teamviewerd init script"
+  depends=('openrc-core' 'teamviewer')
+  install=${_pkgname}.install
+
+  install -Dm755 "${srcdir}/${_Iteam}" "${pkgdir}/etc/init.d/teamviewerd"
+  local _p1='s|teamviewer@TVV@/teamviewerd|teamviewer9/tv_bin/teamviewerd|'
+  sed -e "${_shebang}" -e "${_runpath}" -e ${_p1} -i "${pkgdir}/etc/init.d/teamviewerd"
+}
