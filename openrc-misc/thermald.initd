@@ -5,16 +5,3 @@
 command="/usr/bin/thermald"
 command_args="--dbus-enable"
 start_stop_daemon_args="--quiet"
-
-
-# start() {
-# 	ebegin "Starting thermald"
-#
-# 	start-stop-daemon --start --quiet /usr/bin/thermald --no-daemon --dbus-enable
-# }
-#
-# stop() {
-# 	ebegin "Stopping thermald"
-# 	start-stop-daemon --stop --quiet --pidfile "${DISTCCD_PIDFILE}"
-# 	eend $?
-# }
