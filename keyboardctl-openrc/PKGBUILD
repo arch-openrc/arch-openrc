@@ -1,8 +1,8 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=keyboardctl-openrc
-pkgver=20140711
-pkgrel=2
+pkgver=20141025
+pkgrel=1
 pkgdesc="keyboardctl openrc support"
 arch=('any')
 url="https://github.com/udeved"
