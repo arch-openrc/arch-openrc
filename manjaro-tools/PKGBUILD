@@ -2,13 +2,13 @@
 
 pkgname=manjaro-tools
 pkgver=0.9
-pkgrel=1
+pkgrel=2
 pkgdesc='Tools for Manjaro Linux'
 arch=('any')
 license=('GPL')
 url='https://github.com/udeved/manjaro-tools'
 depends=('namcap' 'openssh' 'rsync')
-provides=('devtools')
+provides=('devtools' 'arch-install-scripts')
 conflicts=('devtools' 'arch-install-scripts')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
 source=("${url}/archive/${pkgname}-${pkgver}.tar.gz")
