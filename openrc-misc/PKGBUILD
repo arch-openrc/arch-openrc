@@ -69,7 +69,7 @@ pkgname=('cpupower-openrc'
 	'bitlbee-openrc'
 	'thermald-openrc'
 	'xe-guest-utilities-openrc')
-pkgver=20141022
+pkgver=20141029
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
