@@ -45,6 +45,7 @@ _Ihdparm=hdparm-init-8
 _Cbit=bitlbee.confd
 _Ibit=bitlbee.initd
 _Itherm=thermald.initd
+_Ixe=xe-daemon.initd
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -66,7 +67,8 @@ pkgname=('cpupower-openrc'
 	'mpd-openrc'
 	'hdparm-openrc'
 	'bitlbee-openrc'
-	'thermald-openrc')
+	'thermald-openrc'
+	'xe-guest-utilities-openrc')
 pkgver=20141022
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -122,7 +124,8 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/sys-apps/hdparm/files/${_Ihdparm}"
 	"${_gentoo_uri}/net-im/bitlbee/files/${_Cbit}"
 	"${_gentoo_uri}/net-im/bitlbee/files/${_Ibit}"
-	'thermald.initd')
+	'thermald.initd'
+	"${_gentoo_uri}/app-emulation/xe-guest-utilities/files/${_Ixe}")
 
 pkgver() {
     date +%Y%m%d
@@ -388,6 +391,17 @@ package_thermald-openrc() {
     install -Dm755 "${srcdir}/${_Itherm}" "${pkgdir}/etc/init.d/thermald"
 }
 
+package_xe-guest-utilities-openrc() {
+    pkgdesc="OpenRC xe-guest-utilities init script"
+    depends=('openrc-core' 'xe-guest-utilities')
+    install=xe-guest-utilities.install
+
+    install -Dm755 "${srcdir}/${_Ixe}" "${pkgdir}/etc/init.d/xe-daemon"
+    
+    sed -e ${_shebang} -e ${_runpath} -e ${_binpath} \
+	-i ${pkgdir}/etc/init.d/xe-daemon
+}
+
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             'b9aec85be59222c894a2464ed4e26027f259eeb52e96d9c7eac7e463d3847944'
@@ -430,4 +444,5 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '434beee81ba04c96fcd03e6b37a4578c2c25af2c1007368469c48dd37523d56e'
             '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
             '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
-            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
+            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
+            '24cbcf298b869e4451b08aeba0e3e4948aa7faaac649f18e8f600ae5fb86a8fb')
