@@ -69,6 +69,7 @@ _Cntp=openntpd.conf.d-20080406-r6
 _Intp=openntpd.init.d-20080406-r6
 _Ctor=tor.confd
 _Itor=tor.initd-r6
+_Iwicd=wicd.initd
 
 _apver=2.4.9-r3
 _aprel=20140522
@@ -187,9 +188,10 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/net-misc/openvpn/files/${_Ivpn}"
 	"${_gentoo_uri}/net-misc/openntpd/files/${_Cntp}"
 	"${_gentoo_uri}/net-misc/openntpd/files/${_Intp}"
+	#"${_gentoo_uri}/net-misc/wicd/files/${_Iwicd}"
 	"${_gentoo_uri}/net-misc/tor/files/${_Ctor}"
 	"${_gentoo_uri}/net-misc/tor/files/${_Itor}"
-	"http://sourceforge.net/projects/mefiles/files/Manjaro/init.d/wicd")
+	"${_Iwicd}")
 
 pkgver() {
   date +%Y%m%d
@@ -200,448 +202,446 @@ _runpath='s|/var/run|/run|g'
 _binpath=('s|/usr/sbin|/usr/bin|g' 's|/sbin|/usr/bin|g')
 
 package_apache-openrc() {
-  pkgdesc="OpenRC apache init script"
-  depends=('openrc-core' 'apache')
-  backup=('etc/conf.d/httpd')
-  install=apache.install
+    pkgdesc="OpenRC apache init script"
+    depends=('openrc-core' 'apache')
+    backup=('etc/conf.d/httpd')
+    install=apache.install
 
-  install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
-  install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+    install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
+    install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
 
-  local _p1='s|/usr/sbin/apache2|/usr/bin/apachectl|' \
-	_p2='s|/etc/apache2/httpd.conf|/etc/httpd/conf/httpd.conf|' \
-	_p3='s/! test -f/test -f/' \
-	_p4='s|/usr/lib/apache2|/usr/lib/httpd|' \
-	_p5='s|apache2.pid|httpd/httpd.pid|' \
-	_p6='s|apache2 >/dev/null|httpd >/dev/null|' \
-	_p7='s|apache2|httpd|g' \
-	_p8='s|/run/apache_ssl_mutex|/run/httpd|'
-  sed -e "${_shebang}" -e "${_p1}" -e "${_p2}" -e "${_p3}" \
-      -e "${_p4}" -e "${_p5}" -e "${_p6}" -e "${_p8}" -i "${pkgdir}/etc/init.d/httpd"
-  sed -e "${_p2}" -e "${_p4}" -e "${_p5}" -e "${_p7}" -i "${pkgdir}/etc/conf.d/httpd"
+    local _p1='s|/usr/sbin/apache2|/usr/bin/apachectl|' \
+	  _p2='s|/etc/apache2/httpd.conf|/etc/httpd/conf/httpd.conf|' \
+	  _p3='s/! test -f/test -f/' \
+	  _p4='s|/usr/lib/apache2|/usr/lib/httpd|' \
+	  _p5='s|apache2.pid|httpd/httpd.pid|' \
+	  _p6='s|apache2 >/dev/null|httpd >/dev/null|' \
+	  _p7='s|apache2|httpd|g' \
+	  _p8='s|/run/apache_ssl_mutex|/run/httpd|'
+    sed -e "${_shebang}" -e "${_p1}" -e "${_p2}" -e "${_p3}" \
+	-e "${_p4}" -e "${_p5}" -e "${_p6}" -e "${_p8}" -i "${pkgdir}/etc/init.d/httpd"
+    sed -e "${_p2}" -e "${_p4}" -e "${_p5}" -e "${_p7}" -i "${pkgdir}/etc/conf.d/httpd"
 }
 
 package_autofs-openrc() {
-  pkgdesc="OpenRC autofs init script"
-  depends=('openrc-core' 'autofs')
-  install=autofs.install
+    pkgdesc="OpenRC autofs init script"
+    depends=('openrc-core' 'autofs')
+    install=autofs.install
 
-  install -Dm755 "${srcdir}/${_Iautofs}" "${pkgdir}/etc/init.d/autofs"
+    install -Dm755 "${srcdir}/${_Iautofs}" "${pkgdir}/etc/init.d/autofs"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/autofs"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/autofs"
 }
 
 package_bind-openrc() {
-  pkgdesc="OpenRC bind init script"
-  depends=('openrc-core' 'bind')
-  backup=('etc/conf.d/named')
-  install=bind.install
+    pkgdesc="OpenRC bind init script"
+    depends=('openrc-core' 'bind')
+    backup=('etc/conf.d/named')
+    install=bind.install
 
-  install -Dm755 "${srcdir}/${_Cbind}" "${pkgdir}/etc/conf.d/named"
-  install -Dm755 "${srcdir}/${_Ibind}" "${pkgdir}/etc/init.d/named"
+    install -Dm755 "${srcdir}/${_Cbind}" "${pkgdir}/etc/conf.d/named"
+    install -Dm755 "${srcdir}/${_Ibind}" "${pkgdir}/etc/init.d/named"
 
-  local _p1='s|/etc/bind/named.conf|/etc/named.conf|g'
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/named"
+    local _p1='s|/etc/bind/named.conf|/etc/named.conf|g'
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/named"
 }
 
 package_cyrus-sasl-openrc() {
-  pkgdesc="OpenRC cyrus-sasl init script"
-  depends=('openrc-core' 'cyrus-sasl')
-  install=cyrus-sasl.install
+    pkgdesc="OpenRC cyrus-sasl init script"
+    depends=('openrc-core' 'cyrus-sasl')
+    install=cyrus-sasl.install
 
-  install -Dm755 "${srcdir}/${_Isasl}" "${pkgdir}/etc/init.d/saslauthd"
+    install -Dm755 "${srcdir}/${_Isasl}" "${pkgdir}/etc/init.d/saslauthd"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -i "${pkgdir}/etc/init.d/saslauthd"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -i "${pkgdir}/etc/init.d/saslauthd"
 }
 
 package_dhcp-openrc() {
-  pkgdesc="OpenRC dhcp init script"
-  depends=('openrc-core' 'dhcp')
-  optdepends=('openldap-openrc: openldap initscript'
-	      'bind-openrc: bind initscript')
-  backup=('etc/conf.d/dhcpd'
-	  'etc/conf.d/dhcrelay'
-	  'etc/conf.d/dhcrelay6')
-  install=dhcp.install
+    pkgdesc="OpenRC dhcp init script"
+    depends=('openrc-core' 'dhcp')
+    optdepends=('openldap-openrc: openldap initscript'
+		'bind-openrc: bind initscript')
+    backup=('etc/conf.d/dhcpd'
+	    'etc/conf.d/dhcrelay'
+	    'etc/conf.d/dhcrelay6')
+    install=dhcp.install
 
-  install -Dm755 "${srcdir}/${_Cdhcp1}" "${pkgdir}/etc/conf.d/dhcpd"
-  install -Dm755 "${srcdir}/${_Cdhcp2}" "${pkgdir}/etc/conf.d/dhcrelay"
-  install -Dm755 "${srcdir}/${_Cdhcp3}" "${pkgdir}/etc/conf.d/dhcrelay6"
+    install -Dm755 "${srcdir}/${_Cdhcp1}" "${pkgdir}/etc/conf.d/dhcpd"
+    install -Dm755 "${srcdir}/${_Cdhcp2}" "${pkgdir}/etc/conf.d/dhcrelay"
+    install -Dm755 "${srcdir}/${_Cdhcp3}" "${pkgdir}/etc/conf.d/dhcrelay6"
 
-  install -Dm755 "${srcdir}/${_Idhcp1}" "${pkgdir}/etc/init.d/dhcpd"
-  install -Dm755 "${srcdir}/${_Idhcp2}" "${pkgdir}/etc/init.d/dhcrelay"
-  install -Dm755 "${srcdir}/${_Idhcp2}" "${pkgdir}/etc/init.d/dhcrelay6"
+    install -Dm755 "${srcdir}/${_Idhcp1}" "${pkgdir}/etc/init.d/dhcpd"
+    install -Dm755 "${srcdir}/${_Idhcp2}" "${pkgdir}/etc/init.d/dhcrelay"
+    install -Dm755 "${srcdir}/${_Idhcp2}" "${pkgdir}/etc/init.d/dhcrelay6"
 
-  local _p1='s|#@slapd@|ldap slapd|'
-  for f in ${pkgdir}/etc/init.d/*;do
-    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}"  -e "${_p1}" -i $f
-  done
+    local _p1='s|#@slapd@|ldap slapd|'
+    for f in ${pkgdir}/etc/init.d/*;do
+      sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}"  -e "${_p1}" -i $f
+    done
 }
 
 package_hostapd-openrc() {
-  pkgdesc="OpenRC hostapd init script"
-  depends=('openrc-core' 'hostapd')
-  backup=('etc/conf.d/hostapd')
-  install=hostapd.install
+    pkgdesc="OpenRC hostapd init script"
+    depends=('openrc-core' 'hostapd')
+    backup=('etc/conf.d/hostapd')
+    install=hostapd.install
 
-  install -Dm755 "${srcdir}/${_Chost}" "${pkgdir}/etc/conf.d/hostapd"
-  install -Dm755 "${srcdir}/${_Ihost}" "${pkgdir}/etc/init.d/hostapd"
+    install -Dm755 "${srcdir}/${_Chost}" "${pkgdir}/etc/conf.d/hostapd"
+    install -Dm755 "${srcdir}/${_Ihost}" "${pkgdir}/etc/init.d/hostapd"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/hostapd"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/hostapd"
 }
 
 package_iptables-openrc() {
-  pkgdesc="OpenRC iptables init script"
-  depends=('openrc-core' 'iptables')
-  backup=('etc/conf.d/iptables'
-	  'etc/conf.d/ip6tables')
-  install=iptables.install
+    pkgdesc="OpenRC iptables init script"
+    depends=('openrc-core' 'iptables')
+    backup=('etc/conf.d/iptables'
+	    'etc/conf.d/ip6tables')
+    install=iptables.install
 
-  install -Dm755 "${srcdir}/${_Cip1}" "${pkgdir}/etc/conf.d/iptables"
-  install -Dm755 "${srcdir}/${_Iip}" "${pkgdir}/etc/init.d/iptables"
-  install -Dm755 "${srcdir}/${_Cip2}" "${pkgdir}/etc/conf.d/ip6tables"
-  install -Dm755 "${srcdir}/${_Iip}" "${pkgdir}/etc/init.d/ip6tables"
+    install -Dm755 "${srcdir}/${_Cip1}" "${pkgdir}/etc/conf.d/iptables"
+    install -Dm755 "${srcdir}/${_Iip}" "${pkgdir}/etc/init.d/iptables"
+    install -Dm755 "${srcdir}/${_Cip2}" "${pkgdir}/etc/conf.d/ip6tables"
+    install -Dm755 "${srcdir}/${_Iip}" "${pkgdir}/etc/init.d/ip6tables"
 
-  for f in ${pkgdir}/etc/init.d/*;do
-    sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -i $f
-  done
+    for f in ${pkgdir}/etc/init.d/*;do
+      sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -i $f
+    done
 }
 
 package_krb5-openrc() {
-  pkgdesc="OpenRC krb5 init script"
-  depends=('openrc-core' 'krb5')
-  install=krb5.install
+    pkgdesc="OpenRC krb5 init script"
+    depends=('openrc-core' 'krb5')
+    install=krb5.install
 
-  install -Dm755 "${srcdir}/${_Ikrb1}" "${pkgdir}/etc/init.d/krb5kadmind"
-  install -Dm755 "${srcdir}/${_Ikrb2}" "${pkgdir}/etc/init.d/krb5kdc"
-  install -Dm755 "${srcdir}/${_Ikrb3}" "${pkgdir}/etc/init.d/krb5kpropd"
+    install -Dm755 "${srcdir}/${_Ikrb1}" "${pkgdir}/etc/init.d/krb5kadmind"
+    install -Dm755 "${srcdir}/${_Ikrb2}" "${pkgdir}/etc/init.d/krb5kdc"
+    install -Dm755 "${srcdir}/${_Ikrb3}" "${pkgdir}/etc/init.d/krb5kpropd"
 
-  local _p1='s|mit-krb5kdc|krb5kdc|g' \
-	_p2='s|mit-krb5kadmind|krb5kadmind|g'
-  for f in ${pkgdir}/etc/init.d/*;do
-    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i $f
-  done
+    local _p1='s|mit-krb5kdc|krb5kdc|g' \
+	  _p2='s|mit-krb5kadmind|krb5kadmind|g'
+    for f in ${pkgdir}/etc/init.d/*;do
+      sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i $f
+    done
 }
 
 package_lighttpd-openrc() {
-  pkgdesc="OpenRC lighttpd init script"
-  depends=('openrc-core' 'lighttpd')
-  backup=('etc/conf.d/lighttpd')
-  install=lighttpd.install
+    pkgdesc="OpenRC lighttpd init script"
+    depends=('openrc-core' 'lighttpd')
+    backup=('etc/conf.d/lighttpd')
+    install=lighttpd.install
 
-  install -Dm755 "${srcdir}/${_Clight}" "${pkgdir}/etc/conf.d/lighttpd"
-  install -Dm755 "${srcdir}/${_Ilight}" "${pkgdir}/etc/init.d/lighttpd"
-  local _p1='s/lighttpd:lighttpd/http:http/'
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e ${_p1} -i "${pkgdir}/etc/init.d/lighttpd"
+    install -Dm755 "${srcdir}/${_Clight}" "${pkgdir}/etc/conf.d/lighttpd"
+    install -Dm755 "${srcdir}/${_Ilight}" "${pkgdir}/etc/init.d/lighttpd"
+    local _p1='s/lighttpd:lighttpd/http:http/'
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e ${_p1} -i "${pkgdir}/etc/init.d/lighttpd"
 }
 
 package_rpcbind-openrc() {
-  pkgdesc="OpenRC rpcbind init script"
-  depends=('openrc-core' 'rpcbind')
-  #backup=('etc/conf.d/rpcbind')
-  install=rpcbind.install
+    pkgdesc="OpenRC rpcbind init script"
+    depends=('openrc-core' 'rpcbind')
+    #backup=('etc/conf.d/rpcbind')
+    install=rpcbind.install
 
-  #install -Dm755 "${srcdir}/${_Crpc}" "${pkgdir}/etc/conf.d/rpcbind"
-  local _p1='s|RPCBIND_OPTS|RPCBIND_ARGS|'
+    #install -Dm755 "${srcdir}/${_Crpc}" "${pkgdir}/etc/conf.d/rpcbind"
+    local _p1='s|RPCBIND_OPTS|RPCBIND_ARGS|'
 
-  install -Dm755 "${srcdir}/${_Irpc}" "${pkgdir}/etc/init.d/rpcbind"
+    install -Dm755 "${srcdir}/${_Irpc}" "${pkgdir}/etc/init.d/rpcbind"
 
-  sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/rpcbind"
+    sed -e "${_shebang}" -e "${_binpath[1]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/rpcbind"
 }
 
 package_nfs-utils-openrc() {
-  pkgdesc="OpenRC nfs-utils init script"
-  depends=('nfs-utils' 'rpcbind-openrc' 'device-mapper-openrc')
-  optdepends=('ypbind-openrc: ypbind initscript'
-	      'quota-tools-openrc: quota-tools initscript'
-	      'bind-openrc: bind initscript')
-  backup=('etc/conf.d/nfs')
-  install=nfs-utils.install
+    pkgdesc="OpenRC nfs-utils init script"
+    depends=('nfs-utils' 'rpcbind-openrc' 'device-mapper-openrc')
+    optdepends=('ypbind-openrc: ypbind initscript'
+		'quota-tools-openrc: quota-tools initscript'
+		'bind-openrc: bind initscript')
+    backup=('etc/conf.d/nfs')
+    install=nfs-utils.install
 
-  install -Dm755 "${srcdir}/${_Cnfs}" "${pkgdir}/etc/conf.d/nfs"
+    install -Dm755 "${srcdir}/${_Cnfs}" "${pkgdir}/etc/conf.d/nfs"
 
-  install -Dm755 "${srcdir}/${_Infs1}" "${pkgdir}/etc/init.d/nfs"
-  install -Dm755 "${srcdir}/${_Infs2}" "${pkgdir}/etc/init.d/nfsmount"
-  install -Dm755 "${srcdir}/${_Infs3}" "${pkgdir}/etc/init.d/rpc.gssd"
-  install -Dm755 "${srcdir}/${_Infs4}" "${pkgdir}/etc/init.d/rpc.idmapd"
-  install -Dm755 "${srcdir}/${_Infs5}" "${pkgdir}/etc/init.d/rpc.pipefs"
-  install -Dm755 "${srcdir}/${_Infs6}" "${pkgdir}/etc/init.d/rpc.statd"
-  install -Dm755 "${srcdir}/${_Infs7}" "${pkgdir}/etc/init.d/rpc.svcgssd"
+    install -Dm755 "${srcdir}/${_Infs1}" "${pkgdir}/etc/init.d/nfs"
+    install -Dm755 "${srcdir}/${_Infs2}" "${pkgdir}/etc/init.d/nfsmount"
+    install -Dm755 "${srcdir}/${_Infs3}" "${pkgdir}/etc/init.d/rpc.gssd"
+    install -Dm755 "${srcdir}/${_Infs4}" "${pkgdir}/etc/init.d/rpc.idmapd"
+    install -Dm755 "${srcdir}/${_Infs5}" "${pkgdir}/etc/init.d/rpc.pipefs"
+    install -Dm755 "${srcdir}/${_Infs6}" "${pkgdir}/etc/init.d/rpc.statd"
+    install -Dm755 "${srcdir}/${_Infs7}" "${pkgdir}/etc/init.d/rpc.svcgssd"
 
-  for f in ${pkgdir}/etc/init.d/*;do
-    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i $f
-  done
+    for f in ${pkgdir}/etc/init.d/*;do
+      sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i $f
+    done
 }
 
 package_openntpd-openrc() {
-  pkgdesc="OpenRC openntpd init script"
-  depends=('openrc-core' 'openntpd')
-  groups=('openrc-net')
-  provides=('openrc-timed')
-  conflicts=('ntp'
-	    'ntp-openrc'
-	    'openrc'
-	    'openrc-git'
-	    'openrc-arch-services-git'
-	    'initscripts'
-	    'systemd-sysvcompat')
-  backup=('etc/conf.d/ntpd')
-  install=openntpd.install
+    pkgdesc="OpenRC openntpd init script"
+    depends=('openrc-core' 'openntpd')
+    groups=('openrc-net')
+    provides=('openrc-timed')
+    conflicts=('ntp'
+	      'ntp-openrc'
+	      'openrc'
+	      'openrc-git'
+	      'openrc-arch-services-git'
+	      'initscripts'
+	      'systemd-sysvcompat')
+    backup=('etc/conf.d/ntpd')
+    install=openntpd.install
 
-  install -Dm755 "${srcdir}/${_Cntp}" "${pkgdir}/etc/conf.d/ntpd"
-  install -Dm755 "${srcdir}/${_Intp}" "${pkgdir}/etc/init.d/ntpd"
+    install -Dm755 "${srcdir}/${_Cntp}" "${pkgdir}/etc/conf.d/ntpd"
+    install -Dm755 "${srcdir}/${_Intp}" "${pkgdir}/etc/init.d/ntpd"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/ntpd"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/ntpd"
 }
 
 package_openldap-openrc() {
-  pkgdesc="OpenRC openldap init script"
-  depends=('openrc-core' 'openldap')
-  backup=('etc/conf.d/slapd')
-  install=openldap.install
+    pkgdesc="OpenRC openldap init script"
+    depends=('openrc-core' 'openldap')
+    backup=('etc/conf.d/slapd')
+    install=openldap.install
 
-  install -Dm755 "${srcdir}/${_Cldap}" "${pkgdir}/etc/conf.d/slapd"
-  install -Dm755 "${srcdir}/${_Ildap}" "${pkgdir}/etc/init.d/slapd"
+    install -Dm755 "${srcdir}/${_Cldap}" "${pkgdir}/etc/conf.d/slapd"
+    install -Dm755 "${srcdir}/${_Ildap}" "${pkgdir}/etc/init.d/slapd"
 
-  local _p1='s|/usr/lib/openldap/slapd|/usr/lib/slapd|g'
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/slapd"
+    local _p1='s|/usr/lib/openldap/slapd|/usr/lib/slapd|g'
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/slapd"
 }
 
 package_openslp-openrc() {
-  pkgdesc="OpenRC openslp init script"
-  depends=('openrc-core' 'openslp')
-  install=openslp.install
+    pkgdesc="OpenRC openslp init script"
+    depends=('openrc-core' 'openslp')
+    install=openslp.install
 
-  install -Dm755 "${srcdir}/${_Islp}" "${pkgdir}/etc/init.d/slpd"
+    install -Dm755 "${srcdir}/${_Islp}" "${pkgdir}/etc/init.d/slpd"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/slpd"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/slpd"
 }
 
 package_openssh-openrc() {
-  pkgdesc="OpenRC openssh init script"
-  depends=('openrc-core' 'openssh')
-  optdepends=('bind-openrc: bind initscript')
-  backup=('etc/conf.d/sshd')
-  install=openssh.install
+    pkgdesc="OpenRC openssh init script"
+    depends=('openrc-core' 'openssh')
+    optdepends=('bind-openrc: bind initscript')
+    backup=('etc/conf.d/sshd')
+    install=openssh.install
 
-  install -Dm755 "${srcdir}/${_Cssh}" "${pkgdir}/etc/conf.d/sshd"
-  install -Dm755 "${srcdir}/${_Issh}" "${pkgdir}/etc/init.d/sshd"
+    install -Dm755 "${srcdir}/${_Cssh}" "${pkgdir}/etc/conf.d/sshd"
+    install -Dm755 "${srcdir}/${_Issh}" "${pkgdir}/etc/init.d/sshd"
 
-  sed -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/conf.d/sshd"
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/sshd"
+    sed -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/conf.d/sshd"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/sshd"
 }
 
 package_openvpn-openrc() {
-  pkgdesc="OpenRC openvpn init script"
-  depends=('openrc-core' 'openvpn')
-  backup=('etc/conf.d/openvpn')
-  install=openvpn.install
+    pkgdesc="OpenRC openvpn init script"
+    depends=('openrc-core' 'openvpn')
+    backup=('etc/conf.d/openvpn')
+    install=openvpn.install
 
-  install -Dm755 "${srcdir}/${_Cvpn}" "${pkgdir}/etc/conf.d/openvpn"
-  install -Dm755 "${srcdir}/${_Ivpn}" "${pkgdir}/etc/init.d/openvpn"
+    install -Dm755 "${srcdir}/${_Cvpn}" "${pkgdir}/etc/conf.d/openvpn"
+    install -Dm755 "${srcdir}/${_Ivpn}" "${pkgdir}/etc/init.d/openvpn"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/openvpn"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/openvpn"
 }
 
 package_polipo-openrc() {
-  pkgdesc="OpenRC polipo init script"
-  depends=('openrc-core' 'polipo')
-  install=polipo.install
+    pkgdesc="OpenRC polipo init script"
+    depends=('openrc-core' 'polipo')
+    install=polipo.install
 
-  install -Dm755 "${srcdir}/${_Ipolip}" "${pkgdir}/etc/init.d/polipo"
+    install -Dm755 "${srcdir}/${_Ipolip}" "${pkgdir}/etc/init.d/polipo"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/polipo"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/polipo"
 }
 
 package_postfix-openrc() {
-  pkgdesc="OpenRC postfix init script"
-  depends=('openrc-core' 'postfix')
-  optdepends=('bind-openrc: bind initscript'
-	      'ypbind-openrc: ypbind initscript'
-	      'cyrus-sasl-openrc: cyrus-sasl initscript')
-  install=postfix.install
+    pkgdesc="OpenRC postfix init script"
+    depends=('openrc-core' 'postfix')
+    optdepends=('bind-openrc: bind initscript'
+		'ypbind-openrc: ypbind initscript'
+		'cyrus-sasl-openrc: cyrus-sasl initscript')
+    install=postfix.install
 
-  install -Dm755 "${srcdir}/${_Ipostfix}" "${pkgdir}/etc/init.d/postfix"
+    install -Dm755 "${srcdir}/${_Ipostfix}" "${pkgdir}/etc/init.d/postfix"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/postfix"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/postfix"
 }
 
 package_privoxy-openrc() {
-  pkgdesc="OpenRC privoxy init script"
-  depends=('openrc-core' 'privoxy')
-  install=privoxy.install
+    pkgdesc="OpenRC privoxy init script"
+    depends=('openrc-core' 'privoxy')
+    install=privoxy.install
 
-  install -Dm755 "${srcdir}/${_Ipriv}" "${pkgdir}/etc/init.d/privoxy"
+    install -Dm755 "${srcdir}/${_Ipriv}" "${pkgdir}/etc/init.d/privoxy"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/privoxy"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/privoxy"
 }
 
 package_quota-tools-openrc() {
-  pkgdesc="OpenRC quota-tools init script"
-  depends=('quota-tools' 'rpcbind-openrc')
-  optdepends=('ypbind-openrc: ypbind initscript')
-  backup=('etc/conf.d/quota')
-  install=quota-tools.install
+    pkgdesc="OpenRC quota-tools init script"
+    depends=('quota-tools' 'rpcbind-openrc')
+    optdepends=('ypbind-openrc: ypbind initscript')
+    backup=('etc/conf.d/quota')
+    install=quota-tools.install
 
-  install -Dm755 "${srcdir}/${_Cquota}" "${pkgdir}/etc/conf.d/quota"
-  install -Dm755 "${srcdir}/${_Iquota1}" "${pkgdir}/etc/init.d/quota"
-  install -Dm755 "${srcdir}/${_Iquota2}" "${pkgdir}/etc/init.d/rpc.rquotad"
+    install -Dm755 "${srcdir}/${_Cquota}" "${pkgdir}/etc/conf.d/quota"
+    install -Dm755 "${srcdir}/${_Iquota1}" "${pkgdir}/etc/init.d/quota"
+    install -Dm755 "${srcdir}/${_Iquota2}" "${pkgdir}/etc/init.d/rpc.rquotad"
 
 
-  for f in ${pkgdir}/etc/init.d/*;do
-    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i $f
-  done
+    for f in ${pkgdir}/etc/init.d/*;do
+      sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i $f
+    done
 }
 
 package_rsync-openrc() {
-  pkgdesc="OpenRC rsync init script"
-  depends=('openrc-core' 'rsync')
-  backup=('etc/conf.d/rsyncd')
-  install=rsync.install
+    pkgdesc="OpenRC rsync init script"
+    depends=('openrc-core' 'rsync')
+    backup=('etc/conf.d/rsyncd')
+    install=rsync.install
 
-  install -Dm755 "${srcdir}/${_Crsync}" "${pkgdir}/etc/conf.d/rsyncd"
-  install -Dm755 "${srcdir}/${_Irsync}" "${pkgdir}/etc/init.d/rsyncd"
+    install -Dm755 "${srcdir}/${_Crsync}" "${pkgdir}/etc/conf.d/rsyncd"
+    install -Dm755 "${srcdir}/${_Irsync}" "${pkgdir}/etc/init.d/rsyncd"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/rsyncd"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/rsyncd"
 }
 
 package_samba-openrc() {
-  pkgdesc="OpenRC samba init script"
-  depends=('openrc-core' 'samba')
-  backup=('etc/conf.d/smb')
-  install=samba.install
+    pkgdesc="OpenRC samba init script"
+    depends=('openrc-core' 'samba')
+    backup=('etc/conf.d/smb')
+    install=samba.install
 
-  install -Dm755 "${srcdir}/${_Csmb}" "${pkgdir}/etc/conf.d/smb"
-  install -Dm755 "${srcdir}/${_Ismb}" "${pkgdir}/etc/init.d/smb"
+    install -Dm755 "${srcdir}/${_Csmb}" "${pkgdir}/etc/conf.d/smb"
+    install -Dm755 "${srcdir}/${_Ismb}" "${pkgdir}/etc/init.d/smb"
 
-  local _p1='s/="samba"/="smb"/'
-  sed -e "${_binpath[0]}" -e ${_p1} -i "${pkgdir}/etc/conf.d/smb"
+    local _p1='s/="samba"/="smb"/'
+    sed -e "${_binpath[0]}" -e ${_p1} -i "${pkgdir}/etc/conf.d/smb"
 
-  _p1='s/##samba/##smb/'
-  local _p2='s|"samba"|"smb"|'
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e ${_p1} -e ${_p2} -i "${pkgdir}/etc/init.d/smb"
+    _p1='s/##samba/##smb/'
+    local _p2='s|"samba"|"smb"|'
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e ${_p1} -e ${_p2} -i "${pkgdir}/etc/init.d/smb"
 }
 
 package_squid-openrc() {
-  pkgdesc="OpenRC squid init script"
-  depends=('openrc-core' 'squid')
-  optdepends=('bind-openrc: bind initscript')
-  backup=('etc/conf.d/squid')
-  install=squid.install
+    pkgdesc="OpenRC squid init script"
+    depends=('openrc-core' 'squid')
+    optdepends=('bind-openrc: bind initscript')
+    backup=('etc/conf.d/squid')
+    install=squid.install
 
-  install -Dm755 "${srcdir}/${_Csquid}" "${pkgdir}/etc/conf.d/squid"
-  install -Dm755 "${srcdir}/${_Isquid}" "${pkgdir}/etc/init.d/squid"
+    install -Dm755 "${srcdir}/${_Csquid}" "${pkgdir}/etc/conf.d/squid"
+    install -Dm755 "${srcdir}/${_Isquid}" "${pkgdir}/etc/init.d/squid"
 
-  local _p1='s|chown squid|chown proxy|' \
-	_p2='s|squid:squid|proxy:proxy|'
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/squid"
+    local _p1='s|chown squid|chown proxy|' \
+	  _p2='s|squid:squid|proxy:proxy|'
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/squid"
 }
 
 package_transmission-openrc() {
-  pkgdesc="OpenRC transmission init script"
-  depends=('openrc-core' 'transmission-cli')
-  backup=('etc/conf.d/transmission-daemon')
-  install=transmission.install
+    pkgdesc="OpenRC transmission init script"
+    depends=('openrc-core' 'transmission-cli')
+    backup=('etc/conf.d/transmission-daemon')
+    install=transmission.install
 
-  install -Dm755 "${srcdir}/${_Ctrans}" "${pkgdir}/etc/conf.d/transmission-daemon"
-  install -Dm755 "${srcdir}/${_Itrans}" "${pkgdir}/etc/init.d/transmission-daemon"
+    install -Dm755 "${srcdir}/${_Ctrans}" "${pkgdir}/etc/conf.d/transmission-daemon"
+    install -Dm755 "${srcdir}/${_Itrans}" "${pkgdir}/etc/init.d/transmission-daemon"
 
-  sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/transmission-daemon"
+    sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/transmission-daemon"
 }
 
 package_ufw-openrc() {
-  pkgdesc="OpenRC ufw init script"
-  depends=('openrc-core' 'ufw')
-  backup=('etc/conf.d/ufw')
-  install=ufw.install
+    pkgdesc="OpenRC ufw init script"
+    depends=('openrc-core' 'ufw')
+    backup=('etc/conf.d/ufw')
+    install=ufw.install
 
-  install -Dm755 "${srcdir}/${_Cufw}" "${pkgdir}/etc/conf.d/ufw"
-  install -Dm755 "${srcdir}/${_Iufw}" "${pkgdir}/etc/init.d/ufw"
+    install -Dm755 "${srcdir}/${_Cufw}" "${pkgdir}/etc/conf.d/ufw"
+    install -Dm755 "${srcdir}/${_Iufw}" "${pkgdir}/etc/init.d/ufw"
 
-  local _p1='s|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g'
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/ufw"
+    local _p1='s|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g'
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/ufw"
 }
 
 package_vsftpd-openrc() {
-  pkgdesc="OpenRC vsftpd init script"
-  depends=('openrc-core' 'vsftpd')
-  optdepends=('bind-openrc: bind initscript')
-  install=vsftpd.install
+    pkgdesc="OpenRC vsftpd init script"
+    depends=('openrc-core' 'vsftpd')
+    optdepends=('bind-openrc: bind initscript')
+    install=vsftpd.install
 
-  install -Dm755 "${srcdir}/${_Ivsftp}" "${pkgdir}/etc/init.d/vsftpd"
-  install -Dm755 "${srcdir}/${_Svsftp}" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+    install -Dm755 "${srcdir}/${_Ivsftp}" "${pkgdir}/etc/init.d/vsftpd"
+    install -Dm755 "${srcdir}/${_Svsftp}" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 
-  local _p1='s|/usr/libexec/|/usr/lib/|g' \
-	_p2='s|/etc/vsftpd/|/etc/|g'
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/vsftpd"
-  sed -e "${_p2}" -i "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+    local _p1='s|/usr/libexec/|/usr/lib/|g' \
+	  _p2='s|/etc/vsftpd/|/etc/|g'
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/vsftpd"
+    sed -e "${_p2}" -i "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 }
 
 package_xinetd-openrc() {
-  pkgdesc="OpenRC xinetd init script"
-  depends=('openrc-core' 'xinetd')
-  backup=('etc/conf.d/xinetd')
-  install=xinetd.install
+    pkgdesc="OpenRC xinetd init script"
+    depends=('openrc-core' 'xinetd')
+    backup=('etc/conf.d/xinetd')
+    install=xinetd.install
 
-  install -Dm755 "${srcdir}/${_Cxinet}" "${pkgdir}/etc/conf.d/xinetd"
-  install -Dm755 "${srcdir}/${_Ixinet}" "${pkgdir}/etc/init.d/xinetd"
+    install -Dm755 "${srcdir}/${_Cxinet}" "${pkgdir}/etc/conf.d/xinetd"
+    install -Dm755 "${srcdir}/${_Ixinet}" "${pkgdir}/etc/init.d/xinetd"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/xinetd"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/xinetd"
 }
 
 package_ypbind-mt-openrc() {
-  pkgdesc="OpenRC ypbind-mt init script"
-  depends=('ypbind-mt' 'rpcbind-openrc' 'openslp-openrc')
-  optdepends=('ypserv-openrc: ypserv initscript')
-  backup=('etc/conf.d/ypbind')
-  install=ypbind-mt.install
+    pkgdesc="OpenRC ypbind-mt init script"
+    depends=('ypbind-mt' 'rpcbind-openrc' 'openslp-openrc')
+    optdepends=('ypserv-openrc: ypserv initscript')
+    backup=('etc/conf.d/ypbind')
+    install=ypbind-mt.install
 
-  install -Dm755 "${srcdir}/${_Cypbind}" "${pkgdir}/etc/conf.d/ypbind"
-  install -Dm755 "${srcdir}/${_Iypbind}" "${pkgdir}/etc/init.d/ypbind"
+    install -Dm755 "${srcdir}/${_Cypbind}" "${pkgdir}/etc/conf.d/ypbind"
+    install -Dm755 "${srcdir}/${_Iypbind}" "${pkgdir}/etc/init.d/ypbind"
 
-  sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/ypbind"
+    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/ypbind"
 }
 
 package_ypserv-openrc() {
-  pkgdesc="OpenRC ypserv init script"
-  depends=('openrc-core' 'ypserv')
-  backup=('etc/conf.d/rpc.yppasswdd'
-	  'etc/conf.d/rpc.ypxfrd'
-	  'etc/conf.d/ypserv')
-  install=ypserv.install
+    pkgdesc="OpenRC ypserv init script"
+    depends=('openrc-core' 'ypserv')
+    backup=('etc/conf.d/rpc.yppasswdd'
+	    'etc/conf.d/rpc.ypxfrd'
+	    'etc/conf.d/ypserv')
+    install=ypserv.install
 
-  install -Dm755 "${srcdir}/${_Cypserv1}" "${pkgdir}/etc/init.d/ypserv"
-  install -Dm755 "${srcdir}/${_Iypserv1}" "${pkgdir}/etc/conf.d/ypserv"
-  install -Dm755 "${srcdir}/${_Cypserv2}" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
-  install -Dm755 "${srcdir}/${_Iypserv2}" "${pkgdir}/etc/init.d/rpc.yppasswdd"
-  install -Dm755 "${srcdir}/${_Cypserv3}" "${pkgdir}/etc/conf.d/rpc.ypxfrd"
-  install -Dm755 "${srcdir}/${_Iypserv3}" "${pkgdir}/etc/init.d/rpc.ypxfrd"
+    install -Dm755 "${srcdir}/${_Cypserv1}" "${pkgdir}/etc/init.d/ypserv"
+    install -Dm755 "${srcdir}/${_Iypserv1}" "${pkgdir}/etc/conf.d/ypserv"
+    install -Dm755 "${srcdir}/${_Cypserv2}" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
+    install -Dm755 "${srcdir}/${_Iypserv2}" "${pkgdir}/etc/init.d/rpc.yppasswdd"
+    install -Dm755 "${srcdir}/${_Cypserv3}" "${pkgdir}/etc/conf.d/rpc.ypxfrd"
+    install -Dm755 "${srcdir}/${_Iypserv3}" "${pkgdir}/etc/init.d/rpc.ypxfrd"
 
-  for f in ${pkgdir}/etc/init.d/*;do
-    sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i $f
-  done
+    for f in ${pkgdir}/etc/init.d/*;do
+      sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i $f
+    done
 }
 
 package_tor-openrc() {
-  pkgdesc="OpenRC tor init script"
-  depends=('openrc-core' 'tor')
-  backup=('etc/conf.d/tor')
-  install=tor.install
+    pkgdesc="OpenRC tor init script"
+    depends=('openrc-core' 'tor')
+    backup=('etc/conf.d/tor')
+    install=tor.install
 
-  install -Dm755 "${srcdir}/${_Ctor}" "${pkgdir}/etc/conf.d/tor"
-  install -Dm755 "${srcdir}/${_Itor}" "${pkgdir}/etc/init.d/tor"
+    install -Dm755 "${srcdir}/${_Ctor}" "${pkgdir}/etc/conf.d/tor"
+    install -Dm755 "${srcdir}/${_Itor}" "${pkgdir}/etc/init.d/tor"
 
-  sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/tor"
+    sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/tor"
 }
 
 package_wicd-openrc() {
-  pkgdesc="OpenRC wicd script"
-  depends=('openrc-core' 'wicd')
-  install=wicd.install
+    pkgdesc="OpenRC wicd script"
+    depends=('openrc-core' 'wicd')
+    install=wicd.install
 
-  install -Dm755 "${srcdir}/wicd" "${pkgdir}/etc/init.d/wicd"
-
-  sed -e "${_shebang}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/wicd"
+    install -Dm755 "${srcdir}/${_Iwicd}" "${pkgdir}/etc/init.d/wicd"
 }
 
 sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
@@ -712,4 +712,4 @@ sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             'fca7183a7676f0f471878925c8fbec20b7a0bff01551c0ad2b34d4d8a826c876'
             '41d780f291847e19f632428bbf27c3f289414afd237546d2974da1b75384c25c'
             '49da1b5f267927023bc092adcf89d406ec294584039d6bca6b7aea0a9e7c4c4f'
-            'f6b3540c1f09dfd75bcd205faa238c00ae5500d4402162cc6b16fcea3dc92619')
+            '66b2b53b077ddc2d5eb1d81faa99fa0f4f0db01520900ba948001e539bfe02d8')
