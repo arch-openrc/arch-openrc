@@ -1,0 +1,42 @@
+# Maintainer: artoo <flower_of_life@gmx.net>
+
+_pkgname=ConsoleKit2
+
+pkgname=consolekit2
+pkgver=0.9.2
+pkgrel=1
+pkgdesc="A framework for defining and tracking users, login sessions, and seats"
+arch=('i686' 'x86_64')
+url="https://github.com/ConsoleKit2/ConsoleKit2"
+license=('GPL')
+provides=('consolekit' 'logind')
+conflicts=('consolekit')
+depends=('dbus' 'dbus-glib' 'libx11' 'polkit' 'libudev' 'zlib')
+optdepends=('consolekit-openrc: consolekit openrc initscript')
+makedepends=('xmlto')
+options=(!libtool)
+source=(https://github.com/ConsoleKit2/ConsoleKit2/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2)
+sha256sums=('102aa07e0960e56740e235bba06a546c8e0e88f47546ef252ecda917935af41f')
+
+
+build(){
+  cd "$srcdir/$_pkgname-$pkgver"
+  ./configure  \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --sbindir=/usr/bin \
+    --libexecdir=/usr/lib/ConsoleKit \
+    --localstatedir=/var \
+    --enable-pam-module \
+    --with-pam-module-dir=/usr/lib/security \
+    --enable-docbook-docs \
+    --enable-udev-acl
+    make
+}
+
+package() {
+  cd "$srcdir/$_pkgname-$pkgver"
+  make DESTDIR="$pkgdir" install
+
+  rm -rf "${pkgdir}/var/run"
+}
