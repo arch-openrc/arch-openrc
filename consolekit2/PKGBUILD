@@ -14,10 +14,15 @@ conflicts=('consolekit')
 depends=('dbus' 'dbus-glib' 'libx11' 'polkit' 'libudev' 'zlib')
 optdepends=('consolekit-openrc: consolekit openrc initscript')
 makedepends=('xmlto')
-options=(!libtool)
-source=(https://github.com/ConsoleKit2/ConsoleKit2/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2)
-sha256sums=('102aa07e0960e56740e235bba06a546c8e0e88f47546ef252ecda917935af41f')
-
+options=(libtool)
+source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
+	'consolekit.logrotate'
+	'consolekit.tmpfiles.conf'
+	'90-consolekit')
+sha256sums=('102aa07e0960e56740e235bba06a546c8e0e88f47546ef252ecda917935af41f'
+            '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
+            '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
+            '4e5fefcdfd7a908b015f4eb41bf882179f3ca3ed4821998b495abc0d152859cf')
 
 build(){
   cd "$srcdir/$_pkgname-$pkgver"
@@ -27,16 +32,26 @@ build(){
     --sbindir=/usr/bin \
     --libexecdir=/usr/lib/ConsoleKit \
     --localstatedir=/var \
+    --enable-polkit \
     --enable-pam-module \
-    --with-pam-module-dir=/usr/lib/security \
+    --enable-udev-acl \
     --enable-docbook-docs \
-    --enable-udev-acl
+    --with-dbus-services=/usr/share/dbus-1/services \
+    --with-logrotate-dir=/etc/logrotate.d \
+    --with-xinitrc-dir=/etc/X11/xinit/xinitrc.d \
+    --with-pam-module-dir=/usr/lib/security \
+    --without-systemdsystemunitdir
+    
     make
 }
 
 package() {
   cd "$srcdir/$_pkgname-$pkgver"
   make DESTDIR="$pkgdir" install
+  
+  install -D -m644 "$srcdir/consolekit.logrotate" "$pkgdir/etc/logrotate.d/consolekit"
+  install -D -m644 "$srcdir/consolekit.tmpfiles.conf" "$pkgdir/usr/lib/tmpfiles.d/consolekit.conf"
+  install -D -m644 "$srcdir/90-consolekit" "$pkgdir/etc/X11/xinit/xinitrc.d/90-consolekit"
 
   rm -rf "${pkgdir}/var/run"
 }
