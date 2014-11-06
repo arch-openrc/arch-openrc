@@ -2,13 +2,13 @@
 # Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
-_udevver=216
+_udevver=217
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=eudev
 pkgname=('eudev' 'eudev-openrc')
 pkgver=2.1.1
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
 license=('GPL')
