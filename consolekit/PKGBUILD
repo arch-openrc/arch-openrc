@@ -10,9 +10,9 @@ arch=('i686' 'x86_64')
 url="https://github.com/ConsoleKit2/ConsoleKit2"
 license=('GPL')
 provides=('logind')
-depends=('dbus' 'dbus-glib' 'libx11' 'polkit' 'libudev' 'zlib')
+depends=('dbus' 'dbus-glib' 'libx11' 'polkit' 'udev' 'zlib')
 optdepends=('consolekit-openrc: consolekit openrc initscript')
-makedepends=('xmlto')
+makedepends=('xmlto' 'docbook-xsl')
 options=(libtool)
 source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 	'consolekit.tmpfiles.conf'
