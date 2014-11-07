@@ -1,4 +1,4 @@
-_svc="bumblebeed"
+_svc="bumblebee"
 _rlvl="default"
 
 post_install() {
