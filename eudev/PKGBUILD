@@ -10,13 +10,13 @@ pkgname=('eudev' 'eudev-openrc')
 pkgver=2.1.1
 pkgrel=2
 arch=('i686' 'x86_64')
-url="http://dev.gentoo.org/~blueness/eudev"
+url="http://www.gentoo.org/proj/en/eudev/" #"http://dev.gentoo.org/~blueness/eudev"
 license=('GPL')
 makedepends=('acl' 'dbus' 'hwids' 'kbd' 'kmod' 'pam'
 	    'util-linux' 'gobject-introspection'
 	    'gperf' 'gtk-doc' 'intltool')
 options=(!makeflags !libtool)
-source=("${url}/${pkgbase}-${pkgver}.tar.gz"
+source=("http://dev.gentoo.org/~blueness/eudev/${pkgbase}-${pkgver}.tar.gz"
 	'initcpio_hooks'
 	'initcpio_install'
 	"${_gentoo_uri}/sys-fs/eudev/files/udev-postmount")
@@ -51,8 +51,7 @@ package_eudev() {
 		"libudev=${_udevver}"
 		'libgudev-1.0.so'
 		'libudev.so')
-	conflicts=('libeudev>=1.8' 'libgudev-1.0.so' 'libudev.so')
-	replaces=('libeudev>=1.8')
+	conflicts=('libgudev-1.0.so' 'libudev.so')
 	backup=('etc/udev/udev.conf')
 
 	cd "${srcdir}/${pkgbase}-${pkgver}"
