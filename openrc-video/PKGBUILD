@@ -9,29 +9,27 @@ _Iati=atieventsd.init
 _Cvgl=vgl.confd-r1
 _Ivgl=vgl.initd-r2
 _Svgl=vgl-helper.sh
+_Ivbox=virtualbox-guest-additions-8.initd
 
 pkgbase=openrc-video
 pkgname=('nvidia-utils-openrc'
 	'catalyst-utils-openrc'
 	'virtualgl-openrc'
-	'bumblebee-openrc')
+	'bumblebee-openrc'
+	'vbox-guest-openrc')
 pkgver=20141106
 pkgrel=1
 arch=('any')
 url="https://github.com/udeved/pkgbuilds"
 license=('GPL')
-makedepends=('nvidia-utils'
-	    'acpid-openrc' 
-	    'catalyst-utils'
-	    'virtualgl'
-	    'bumblebee')
 source=("${_gentoo_uri}/x11-drivers/nvidia-drivers/files/${_Inv}"
 	"${_gentoo_uri}/x11-drivers/ati-drivers/files/${_Iati}"
 	"${_gentoo_uri}/x11-misc/virtualgl/files/${_Cvgl}"
 	"${_gentoo_uri}/x11-misc/virtualgl/files/${_Ivgl}"
 	"${_gentoo_uri}/x11-misc/virtualgl/files/${_Svgl}"
 	"${_gentoo_uri}/x11-misc/bumblebee/files/${_Cbumb}"
-	"${_gentoo_uri}/x11-misc/bumblebee/files/${_Ibumb}")
+	"${_gentoo_uri}/x11-misc/bumblebee/files/${_Ibumb}"
+	"${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/${_Ivbox}")
 
 
 pkgver() {
@@ -91,7 +89,7 @@ package_bumblebee-openrc() {
     sed -e ${_shebang} -e ${_binpath} -e ${_runpath} -i "${pkgdir}"/etc/init.d/bumblebee
 }
 
-package() {
+package_vbox-guest-openrc() {
 	pkgdesc="OpenRC virtualbox-guest-utils init script"
 	depends=('openrc-core' 'virtualbox-guest-utils')
 	install=virtualbox-guest-additions.install
@@ -105,3 +103,11 @@ package() {
 	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/vboxservice"
 }
 
+sha256sums=('c996033b81cc1512d8370d62575a0ea0c694f6e1b91cc948b4529625130601a7'
+            '20010ebc5cb286149f3c4c9c099b6470463ccdb8fd47cea054b783dc2ad1fff3'
+            '500957c2736f761e763f75e9c3a09bb4f53bcde8a3cd38dd5ec6b34777737fd2'
+            'd9337f0f337f291809e8ce7b34b495439c453e9e71e1b8c5623f51be60543707'
+            '438c928840fbfb9274604296b8178e7f97b42a3428d115e1de6e609ea3146497'
+            '9e0287f542cff0fd3452a0c3d6d427a3404706c93ac9a00f4d99fe52ed596d75'
+            '8dd0ea64c084a6e4daac3b8da043ff16d87ec2ba44c63e9965a2e8c9382dc639'
+            '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac')
