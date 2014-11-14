@@ -5,7 +5,6 @@ _pkgname="openrc"
 
 _src_uri="http://dev.gentoo.org/~williamh/dist"
 _net_uri="http://dev.gentoo.org/~robbat2/distfiles"
-_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 _udev="udev-init-scripts"
 _uver=27
@@ -16,13 +15,12 @@ _nver=0.2.4
 pkgname=openrc-core
 pkgdesc="Gentoo's universal init system, udev enabled."
 pkgver=0.13.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('GPL2')
 groups=('openrc' 'openrc-base')
-makedepends=('inetutils' 'psmisc' 'udev>=186') 
 depends=('inetutils' 'psmisc' 'sysvinit' 'udev>=186')
 optdepends=('dhcpcd-openrc: dhcpcd initscript')
 conflicts=('openrc' 'openrc-git' 'initscripts' 'systemd-sysvcompat' 'openrc-sysvinit')
@@ -38,12 +36,7 @@ source=("${_src_uri}/${_pkgname}-${pkgver}.tar.bz2"
 	"${_src_uri}/${_udev}-${_uver}.tar.bz2"
 	"${_net_uri}/${_net}-${_nver}.tar.bz2"
 	"${_pkgname}.logrotate"
-	"${_gentoo_uri}/sys-apps/kmod/files/kmod-static-nodes")
-sha256sums=('41adddd95644f96bc5fec0d1da8ae498698181374e731b17428d88ed362bdf28'
-            '1a091c361e9845861c138b505881edcb7b68fcf91708db526dff0b320243c936'
-            '9b53eb3c8e6e80cd4073a34f911a28055c28b9f7a9f119a397002b0de7ac0691'
-            '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
-            '6da7ef73984b6943f8af225c4b7ff0786ece345eb3e9892886dbdfaa46b4e97c')
+	'kmod-static-nodes')
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
 _binpath='s|/sbin|/usr/bin|g'
@@ -122,9 +115,7 @@ package() {
 	# kmod-static-nodes
 	cd "${srcdir}/${_pkgname}-${pkgver}"
 	install -Dm755 "${srcdir}/kmod-static-nodes" "${pkgdir}/etc/init.d/kmod-static-nodes"
-	# fix shebang
-	sed -e "${_shebang}" \
-	    -i "${pkgdir}/etc/init.d/kmod-static-nodes"
+
 	# create runlevel
 	ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
 }

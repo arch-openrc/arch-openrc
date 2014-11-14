@@ -18,8 +18,7 @@ _Imdadm=mdadm.rc
 _Idhcpcd=dhcpcd.initd
 _Cmdraid=mdraid.confd
 _Imdraid=mdraid.rc
-
-_pkgname="openrc"
+_Ieudev=udev-postmount
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -32,7 +31,8 @@ pkgname=('cronie-openrc'
 	'glibc-openrc'
 	'inetutils-openrc'
 	'lvm2-openrc'
-	'mdadm-openrc')
+	'mdadm-openrc'
+	'eudev-openrc')
 pkgver=20141119
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -63,6 +63,7 @@ source=("${_gentoo_uri}/sys-process/cronie/files/${_Icron1}"
 	"${_gentoo_uri}/sys-fs/mdadm/files/${_Cmdraid}"
 	"${_gentoo_uri}/sys-fs/mdadm/files/${_Imdraid}"
 	"${_gentoo_uri}/net-misc/dhcpcd/files/${_Idhcpcd}"
+	"${_gentoo_uri}/sys-fs/eudev/files/${_Ieudev}"
 	'inetutils.confd'
 	'inetutils.initd')
 
@@ -148,7 +149,7 @@ package_device-mapper-openrc() {
 
 package_cryptsetup-openrc() {
 	pkgdesc="OpenRC cryptsetup init script"
-	depends=('cryptsetup' 'device-mapper-openrc')
+	depends=('device-mapper-openrc' 'cryptsetup')
 	backup=('etc/conf.d/dmcrypt')
 	install=cryptsetup.install
 
@@ -188,7 +189,7 @@ package_inetutils-openrc() {
 
 package_lvm2-openrc() {
 	pkgdesc="OpenRC lvm2 init script"
-	depends=('lvm2' 'device-mapper-openrc')
+	depends=('device-mapper-openrc' 'lvm2')
 	backup=('etc/conf.d/lvm')
 	install=lvm2.install
 
@@ -224,6 +225,18 @@ package_mdadm-openrc() {
 	sed -e "${_shebang}" \
 	    -i "${pkgdir}/etc/init.d/mdraid"
 }
+
+package_eudev-openrc(){
+	pkgdesc="OpenRC eudev postmount script"
+	groups=('eudev-base')
+	depends=('openrc-core' 'eudev')
+	install=eudev.install
+
+	install -Dm755 "${srcdir}/${_Ieudev}" "${pkgdir}/etc/init.d/udev-postmount"
+
+	sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/udev-postmount"
+}
+
 sha256sums=('292a7b20fe33bd027357475fea6aa1194afa7e5c1c47a85299db945b9d1c847e'
             '7ff283ee8b492929d33831461b72e872fe9d3a98344cf39af442f575875b0132'
             '0c30e081c0b8f879964ae49735f10b05a1d92f4f481042851958860945e13271'
@@ -242,5 +255,6 @@ sha256sums=('292a7b20fe33bd027357475fea6aa1194afa7e5c1c47a85299db945b9d1c847e'
             '1b7918c4bdd024607bcb49d7cea0a77cb70502d2fbb4dbe07024bb5b5699c8e0'
             '73303ec32b7010c7f6d4fd66dde1a5baea07e73c79d3e516dce31000abdb4089'
             '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
+            '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb'
             '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
             '7f46e5e9ac9f204fb1564560c506a5bb4cede8823b89e3f1844e4f8be258e9ef')
