@@ -155,12 +155,9 @@ package_bluez-openrc() {
     install -Dm755 "${srcdir}/${_Iblue1}" "${pkgdir}/etc/init.d/rfcomm"
     install -Dm755 "${srcdir}/${_Iblue2}" "${pkgdir}/etc/init.d/bluetooth"
 
-    local _p1='s|/usr/sbin|/usr/lib/bluetooth|g'
-    sed -e "${_shebang}" -e "${_p1}" -i "${pkgdir}/etc/init.d/bluetooth"
+    local _p1='s|/usr/sbin|/usr/lib/bluetooth|g' _p2='s/libexec/lib/'
+    sed -e "${_shebang}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/bluetooth"
     sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/rfcomm"
-
-    # Add libexec fix
-    sed -i 's/libexec/lib/' "${pkgdir}/etc/init.d/bluetooth"
 }
 
 package_wpa_supplicant-openrc() {
