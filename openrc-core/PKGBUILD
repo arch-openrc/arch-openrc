@@ -20,7 +20,7 @@ pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('GPL2')
-groups=('openrc' 'openrc-base')
+#groups=('openrc' 'openrc-base')
 depends=('inetutils' 'psmisc' 'sysvinit' 'udev>=186')
 optdepends=('dhcpcd-openrc: dhcpcd initscript')
 conflicts=('openrc' 'openrc-git' 'initscripts' 'systemd-sysvcompat' 'openrc-sysvinit')
@@ -37,9 +37,11 @@ source=("${_src_uri}/${_pkgname}-${pkgver}.tar.bz2"
 	"${_net_uri}/${_net}-${_nver}.tar.bz2"
 	"${_pkgname}.logrotate"
 	'kmod-static-nodes')
-
-_shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
-_binpath='s|/sbin|/usr/bin|g'
+sha256sums=('41adddd95644f96bc5fec0d1da8ae498698181374e731b17428d88ed362bdf28'
+            '1a091c361e9845861c138b505881edcb7b68fcf91708db526dff0b320243c936'
+            '9b53eb3c8e6e80cd4073a34f911a28055c28b9f7a9f119a397002b0de7ac0691'
+            '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
+            'fc90e8d480de39aff90e41477f79720a98bee2a2359c53c209d0ca7bb75fb6ba')
 
 _base_args=(SYSCONFDIR=/etc)
 # Source the /etc/os-release file for branding
@@ -64,7 +66,8 @@ _net_args+=(LIBEXECDIR=/usr/lib/${_net})
 
 prepare(){
 	cd "${srcdir}/${_pkgname}-${pkgver}"
-	sed -e "${_binpath}" -i support/sysvinit/inittab
+	local _bin='s|/sbin|/usr/bin|g'
+	sed -e "${_bin}" -i support/sysvinit/inittab
 	#sed -i 's:0444:0644:' mk/sys.mk
 }
 
@@ -93,7 +96,9 @@ package() {
 	cd "${srcdir}/${_udev}-${_uver}"
 	make DESTDIR="${pkgdir}" install
 	# fix shebang & path to udevd
-	local _bin='s|/sbin/udevd|/usr/bin/udevd|g'
+	local _bin='s|/sbin/udevd|/usr/bin/udevd|g' \
+	      _shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
+	
 	sed -e "${_shebang}" \
 	    -e "${_bin}" \
 	    -i "${pkgdir}/etc/init.d/udev"
