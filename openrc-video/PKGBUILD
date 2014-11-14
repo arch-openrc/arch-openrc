@@ -97,10 +97,11 @@ package_vbox-guest-openrc() {
 	install -Dm755 "${srcdir}/${_Ivbox}" "${pkgdir}/etc/init.d/vboxservice"
 
 	local _runpath='s|/var/run|/run|g'
-	local _binpath='s|/sbin/|/bin/|g'
-	local _p1='s|vboxguest-service|VBoxService|g'
+	local _binpath='s|/usr/sbin|/usr/bin|'
+	local _p1='s|vboxguest-service|VBoxService|'
+	local _p2='s|/sbin/modprobe|/usr/bin/modprobe|g'
 
-	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/vboxservice"
+	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/vboxservice"
 }
 
 sha256sums=('c996033b81cc1512d8370d62575a0ea0c694f6e1b91cc948b4529625130601a7'
