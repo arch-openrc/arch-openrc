@@ -30,7 +30,7 @@ pkgname=('acpid-openrc'
 	'gpm-openrc'
 	'bluez-openrc'
 	'wpa_supplicant-openrc')
-pkgver=20141105
+pkgver=20141114
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -158,6 +158,9 @@ package_bluez-openrc() {
     local _p1='s|/usr/sbin|/usr/lib/bluetooth|g'
     sed -e "${_shebang}" -e "${_p1}" -i "${pkgdir}/etc/init.d/bluetooth"
     sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/rfcomm"
+
+    # Add libexec fix
+    sed -i 's/libexec/lib/' "${pkgdir}/etc/init.d/bluetooth"
 }
 
 package_wpa_supplicant-openrc() {
