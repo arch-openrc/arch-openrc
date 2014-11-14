@@ -1,12 +1,12 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 
-_udevver=216
+_udevver=217
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 _pkgname=eudev
 
 pkgname=lib32-eudev
 pkgdesc="The userspace dev tools (udev) forked by Gentoo (32-bit)"
-pkgver=1.10
+pkgver=2.1.1
 pkgrel=1
 arch=('x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
@@ -17,7 +17,7 @@ provides=("lib32-udev=${_udevver}")
 conflicts=('libgudev-1.0.so' 'libudev.so')
 options=(!makeflags !libtool)
 source=("${url}/${_pkgname}-${pkgver}.tar.gz")
-sha256sums=('401eeb29147d3e24d87849a8006df62eadeb369d913484d59e9e35f3f73a20d1')
+sha256sums=('6aef101c5496a2dc45e669307d478dbccb0ee0462a285512edcda51ff12e0e6a')
 
 build() {
 
@@ -42,8 +42,12 @@ build() {
 
 package() {
     cd "${srcdir}/${_pkgname}-${pkgver}"
-    make DESTDIR="${pkgdir}" install
+    #make DESTDIR="${pkgdir}" install
+    make DESTDIR="${pkgdir}" -C src/shared uninstall
+    make DESTDIR="${pkgdir}" -C src/libudev install
+    make DESTDIR="${pkgdir}" -C src/gudev install
+    make DESTDIR="${pkgdir}" -C src/shared uninstall
 
-    rm -rf "${pkgdir}"/etc
-    rm -rf "${pkgdir}"/usr/{bin,include,lib,share}
+    #rm -rf "${pkgdir}"/etc
+    #rm -rf "${pkgdir}"/usr/{bin,include,lib,share}
 }
