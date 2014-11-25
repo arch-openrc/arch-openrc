@@ -30,7 +30,7 @@ pkgname=('acpid-openrc'
 	'gpm-openrc'
 	'bluez-openrc'
 	'wpa_supplicant-openrc')
-pkgver=20141114
+pkgver=20141125
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
