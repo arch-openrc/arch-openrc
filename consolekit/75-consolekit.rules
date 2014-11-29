@@ -6,3 +6,10 @@ polkit.addRule(function(action, subject) {
         return polkit.Result.YES;
     }
 });
+
+polkit.addRule(function(action, subject) {
+    if (/^org\.freedesktop\.ModemManager1\.(Device\.Control|Contacts|Messaging|Location)$/.test(action.id) &&
+        subject.isInGroup("network") && subject.active) {
+        return "yes";
+    }
+});
