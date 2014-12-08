@@ -2,15 +2,15 @@
 
 pkgname=openrc-systemdcompat
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="openrc wrapper(s) for systemd components"
 arch=('any')
 license=('GPL')
 groups=('openrc' 'openrc-base')
 url="https://github.com/aadityabagga/scripts"
 depends=('openrc-core')
-conflicts=('systemd')
-source=("https://github.com/aadityabagga/scripts/raw/f737ea2b647b129780a77b2ea6eee2b9e9fcd2b3/systemctl")
+#conflicts=('systemd')
+source=("http://github.com/aadityabagga/scripts/raw/f737ea2b647b129780a77b2ea6eee2b9e9fcd2b3/systemctl")
 md5sums=('f3fd71aba2cbc034b074a1661687772f')
 
 package() {
