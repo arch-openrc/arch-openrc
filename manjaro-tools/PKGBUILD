@@ -2,7 +2,7 @@
 
 pkgname=manjaro-tools
 pkgver=0.9.4
-pkgrel=1
+pkgrel=2
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
 license=('GPL')
