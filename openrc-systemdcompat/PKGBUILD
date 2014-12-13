@@ -2,11 +2,11 @@
 
 pkgname=openrc-systemdcompat
 pkgver=0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="openrc wrapper(s) for systemd components"
 arch=('any')
 license=('GPL')
-groups=('openrc' 'openrc-base')
+groups=('openrc')
 url="https://github.com/aadityabagga/scripts"
 depends=('openrc-core')
 #conflicts=('systemd')
