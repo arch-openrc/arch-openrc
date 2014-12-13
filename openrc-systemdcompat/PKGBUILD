@@ -1,8 +1,8 @@
 # Maintainer: Aaditya Bagga <aaditya_gnulinux@zoho.com>
 
 pkgname=openrc-systemdcompat
-pkgver=0.1
-pkgrel=2
+pkgver=0.2
+pkgrel=1
 pkgdesc="openrc wrapper(s) for systemd components"
 arch=('any')
 license=('GPL')
@@ -10,8 +10,8 @@ groups=('openrc' 'openrc-base')
 url="https://github.com/aadityabagga/scripts"
 depends=('openrc-core')
 #conflicts=('systemd')
-source=("http://github.com/aadityabagga/scripts/raw/f737ea2b647b129780a77b2ea6eee2b9e9fcd2b3/systemctl")
-md5sums=('f3fd71aba2cbc034b074a1661687772f')
+source=("https://raw.githubusercontent.com/aadityabagga/scripts/bb30b53d0d4cfb05febebb794c3fce944a64e1d9/systemctl")
+sha1sums=('8af8d82d159ff7f6a94be574ae9ff5bea067a34d')
 
 package() {
   install -Dm 755 systemctl $pkgdir/usr/bin/systemctl
