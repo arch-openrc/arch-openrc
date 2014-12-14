@@ -1,0 +1,44 @@
+# Maintainer: Philip Müller <philm[at]manjaro[dog]org>
+# Contributor: artoo <flower_of_life@gmx.net>
+ 
+pkgbase=manjaro-tools-livecd
+pkgname=('manjaro-tools-livecd'
+	'manjaro-tools-livecd-openrc' 
+	'manjaro-tools-livecd-systemd')
+pkgver=r9.1cee1f8
+pkgrel=1
+arch=('any')
+url="https://github.com/udeved/manjaro-tools-livecd"
+license=('GPL')
+makedepends=('git')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+	cd ${srcdir}/${pkgbase}
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package_manjaro-tools-livecd() {
+	cd ${srcdir}/${pkgbase} #-${pkgver}
+	install -dm 755 $pkgdir/opt
+	cp -a livecd $pkgdir/opt
+}
+
+package_manjaro-tools-livecd-openrc() {
+	
+	depends=('openrc-core' 'manjaro-tools-livecd')
+	
+	cd ${srcdir}/${pkgbase} #-${pkgver}
+	install -dm 755 $pkgdir
+	cp -a init-openrc/* $pkgdir
+	
+}
+
+package_manjaro-tools-livecd-systemd() {
+	depends=('systemd' 'manjaro-tools-livecd')
+	
+	cd ${srcdir}/${pkgbase} #-${pkgver}
+	install -dm 755 $pkgdir
+	cp -a init-systemd/* $pkgdir
+}
