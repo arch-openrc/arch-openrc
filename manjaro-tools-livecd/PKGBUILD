@@ -5,7 +5,7 @@ pkgbase=manjaro-tools-livecd
 pkgname=('manjaro-tools-livecd'
 	'manjaro-tools-livecd-openrc' 
 	'manjaro-tools-livecd-systemd')
-pkgver=r14.47b4d59
+pkgver=r23.aece5dc
 pkgrel=1
 arch=('any')
 url="https://github.com/udeved/manjaro-tools-livecd"
