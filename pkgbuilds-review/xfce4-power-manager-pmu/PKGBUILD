@@ -2,7 +2,7 @@
 # Maintainer: Evangelos Foutras <evangelos@foutrelis.com>
 # Contributor: Tobias Kieslich <tobias funnychar archlinux.org>
 
-pkgname=xfce4-power-manager-pmu
+pkgname=xfce-power-manager-upower-applet
 _pkgname=xfce4-power-manager
 pkgver=1.4.2
 pkgrel=2
@@ -13,7 +13,7 @@ license=('GPL2')
 groups=('xfce4')
 depends=('xfce4-panel' 'upower-pm-utils' 'libnotify' 'hicolor-icon-theme')
 makedepends=('intltool')
-conflicts=('xfce4-power-manager' 'xfce4-power-manager-upower0')
+conflicts=('xfce4-power-manager' 'xfce4-power-manager-upower')
 provides=('xfce4-power-manager')
 install=$_pkgname.install
 source=(http://archive.xfce.org/src/apps/$_pkgname/1.4/$_pkgname-$pkgver.tar.bz2)
