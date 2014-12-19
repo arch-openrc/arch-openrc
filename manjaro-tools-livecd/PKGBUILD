@@ -47,7 +47,7 @@ package_manjaro-livecd-openrc() {
 	
 	cd ${srcdir}/${pkgbase} #-${pkgver}
 	install -dm 755 $pkgdir
-	cp -a init-openrc/* $pkgdir
+	cp -a livecd-init-openrc/* $pkgdir
 	
 }
 
@@ -57,7 +57,7 @@ package_manjaro-livecd-systemd() {
 	
 	cd ${srcdir}/${pkgbase} #-${pkgver}
 	install -dm 755 $pkgdir
-	cp -a init-systemd/* $pkgdir
+	cp -a livecd-init-systemd/* $pkgdir
 }
 
 package_manjaro-livecd-skel-xfce() {
