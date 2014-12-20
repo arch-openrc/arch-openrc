@@ -5,12 +5,8 @@ pkgbase=manjaro-tools-livecd
 pkgname=('manjaro-livecd'
 	'manjaro-livecd-openrc' 
 	'manjaro-livecd-systemd'
-	'manjaro-livecd-cli-installer'
-	'manjaro-livecd-skel-e'
-	'manjaro-livecd-skel-openbox'
-	'manjaro-livecd-skel-pekwm'
-	'manjaro-livecd-skel-xfce')
-pkgver=r27.9db076a
+	'manjaro-livecd-cli-installer')
+pkgver=r37.496d129
 pkgdesc='Manjaro Linux livecd'
 pkgrel=1
 arch=('any')
@@ -30,6 +26,7 @@ package_manjaro-livecd() {
 	cd ${srcdir}/${pkgbase} #-${pkgver}
 	install -dm 755 $pkgdir
 	cp -a livecd/* $pkgdir
+	chmod 750 $pkgdir/etc/sudoers.d
 }
 
 package_manjaro-livecd-cli-installer() {
@@ -37,8 +34,8 @@ package_manjaro-livecd-cli-installer() {
 	depends=('manjaro-livecd')
 	
 	cd ${srcdir}/${pkgbase} #-${pkgver}
-	install -dm 755 $pkgdir/opt
-	cp -a livecd-cli-installer/* $pkgdir/opt
+	install -dm 755 $pkgdir/opt/livecd
+	cp -a livecd-cli-installer/* $pkgdir/opt/livecd
 }
 
 package_manjaro-livecd-openrc() {
@@ -59,40 +56,3 @@ package_manjaro-livecd-systemd() {
 	install -dm 755 $pkgdir
 	cp -a livecd-init-systemd/* $pkgdir
 }
-
-package_manjaro-livecd-skel-xfce() {
-	pkgdesc='Manjaro Linux livecd xfce skel'
-	depends=('manjaro-livecd')
-	
-	cd ${srcdir}/${pkgbase} #-${pkgver}
-	install -dm 755 $pkgdir
-	cp -a livecd-skel-xfce/* $pkgdir
-}
-
-package_manjaro-livecd-skel-openbox() {
-	pkgdesc='Manjaro Linux livecd openbox skel'
-	depends=('manjaro-livecd')
-	
-	cd ${srcdir}/${pkgbase} #-${pkgver}
-	install -dm 755 $pkgdir
-	cp -a livecd-skel-openbox/* $pkgdir
-}
-
-package_manjaro-livecd-skel-pekwm() {
-	pkgdesc='Manjaro Linux livecd pekwm skel'
-	depends=('manjaro-livecd')
-	
-	cd ${srcdir}/${pkgbase} #-${pkgver}
-	install -dm 755 $pkgdir
-	cp -a livecd-skel-pekwm/* $pkgdir
-}
-
-package_manjaro-livecd-skel-e() {
-	pkgdesc='Manjaro Linux livecd e skel'
-	depends=('manjaro-livecd')
-	
-	cd ${srcdir}/${pkgbase} #-${pkgver}
-	install -dm 755 $pkgdir
-	cp -a livecd-skel-e/* $pkgdir
-}
-
