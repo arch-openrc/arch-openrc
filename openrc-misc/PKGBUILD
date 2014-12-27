@@ -47,6 +47,7 @@ _Ibit=bitlbee.initd
 _Itherm=thermald.initd
 _Ixe=xe-daemon.initd
 _Ivbox=virtualbox-guest-additions-8.initd
+_Izfs=zfs.initd
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -70,7 +71,8 @@ pkgname=('cpupower-openrc'
 	'bitlbee-openrc'
 	'thermald-openrc'
 	'xe-guest-utilities-openrc'
-	'virtualbox-guest-utils-openrc')
+	'virtualbox-guest-utils-openrc'
+	'zfs-openrc')
 pkgver=20141208
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -126,9 +128,10 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/sys-apps/hdparm/files/${_Ihdparm}"
 	"${_gentoo_uri}/net-im/bitlbee/files/${_Cbit}"
 	"${_gentoo_uri}/net-im/bitlbee/files/${_Ibit}"
-	'thermald.initd'
 	"${_gentoo_uri}/app-emulation/xe-guest-utilities/files/${_Ixe}"
-	"${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/${_Ivbox}")
+	"${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/${_Ivbox}"
+	"${_Izfs}"
+	"${_Itherm}")
 
 pkgver() {
     date +%Y%m%d
@@ -418,16 +421,24 @@ package_virtualbox-guest-utils-openrc() {
 	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/vboxservice"
 }
 
+package_zfs-openrc() {
+    pkgdesc="OpenRC zfs init script"
+    depends=('openrc-core' 'zfs')
+    install=zfs.install
+
+    install -Dm755 "${srcdir}/${_Izfs}" "${pkgdir}/etc/init.d/zfs"
+}
+
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
-            '35277ef9d6b9e12780ba0806ae9c99047421d9e5ed77734c344235c803d9677a'
+            'b9aec85be59222c894a2464ed4e26027f259eeb52e96d9c7eac7e463d3847944'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
             '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
             '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
             'ec9f05b386a06a4b2d5398cc0c33f34eba3f5e74ad46ae203d682f8ebc593f99'
             '906c31e0817517dc6c141a7a10565140ea272d3c958a065f520a0ecb6f81912f'
             'd28c269c8aa2876a389aefdc76b18bcd30eb6653ea1e54a0eb6fb596568643b6'
-            '9e5ba6d869b99d835cde702a028dae89935c234a14dad79e00a3b5e6379e1f91'
+            'c03b2b55afe33db25c4ef22833c8b933807db5e86ab514105eefc2c7ab919fdd'
             'd36ff77fa193a065d25e373723e03f1a9471205151b82c73a6574cce4f095962'
             'c404ad3b624004cab25bd3a89593cdeb0abbc25771d6e52caf2f37cb4f7b2b79'
             '1b1f2970cc81a6053fcb6c0ead786436b6423c67170087dde283e54f32ae16e5'
@@ -460,6 +471,7 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '434beee81ba04c96fcd03e6b37a4578c2c25af2c1007368469c48dd37523d56e'
             '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
             '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
-            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
             '24cbcf298b869e4451b08aeba0e3e4948aa7faaac649f18e8f600ae5fb86a8fb'
-            '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac')
+            '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac'
+            '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
+            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
