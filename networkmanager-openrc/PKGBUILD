@@ -6,7 +6,7 @@ _pppver=2.4.7
 
 pkgname=networkmanager-openrc
 pkgver=0.9.10.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Network Management daemon for consolekit and openrc"
 arch=('i686' 'x86_64')
 license=('GPL')
@@ -29,8 +29,7 @@ source=("http://ftp.gnome.org/pub/gnome/sources/${_name}/${pkgver:0:3}/${_name}-
         "${_gentoo_uri}/10-openrc-status-r4"
         "${_gentoo_uri}/conf.d.${_name}"
         "${_gentoo_uri}/init.d.${_name}"
-        "${_gentoo_uri}/nm-system-settings.conf-ifnet"
-        '01-org.freedesktop.NetworkManager.settings.modify.system.rules')
+        "${_gentoo_uri}/nm-system-settings.conf-ifnet")
 
 prepare() {
   cd ${_name}-${pkgver}
@@ -86,15 +85,8 @@ package() {
   sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/networkmanager"
 
 
-  install -d -m700 ${pkgdir}/etc/polkit-1/rules.d/
-  install -D -m644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules ${pkgdir}/etc/polkit-1/rules.d/
-  chown 102 ${pkgdir}/etc/polkit-1/rules.d
+#   install -d -m700 ${pkgdir}/etc/polkit-1/rules.d/
+#   install -D -m644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules ${pkgdir}/etc/polkit-1/rules.d/
+#   chown 102 ${pkgdir}/etc/polkit-1/rules.d
 
 }
-sha256sums=('66a88346bb04d4f402540281181340313b2ec433e75aa9d9ea13f31697f9487e'
-            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
-            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
-            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
-            '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
-            '34f53d9ac1ad65eda6942dc3059117f60f6321059ca23f4fbfcc2f2edcae151f'
-            '5c8e1933151fc8cbfa838f31b0e7ec053657fa184131be4fd13a1114f58063a0')
