@@ -6,7 +6,7 @@ pkgbase=manjaro-tools-livecd
 pkgname=('manjaro-livecd-openrc' 
 	'manjaro-livecd-systemd'
 	'manjaro-livecd-cli-installer')
-pkgver=r37.496d129
+pkgver=r38.9ce3b29
 pkgdesc='Manjaro Linux livecd'
 pkgrel=1
 arch=('any')

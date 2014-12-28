@@ -1,7 +1,7 @@
 # Maintainer: artoo <flower_of_life@gmx.net>
 
 pkgname=manjaro-tools
-pkgver=0.9.5
+pkgver=0.9.5.1
 pkgrel=1
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
@@ -9,14 +9,14 @@ license=('GPL')
 url='https://github.com/udeved/manjaro-tools'
 depends=('namcap' 'openssh' 'rsync'  'mkinitcpio-nfs-utils' 'nbd'
 	'libisoburn' 'squashfs-tools' 'syslinux' 'haveged')
-optdepends=('qemu: quickly test isos'
-	    'manjaroiso-profiles: Manjaro Linux ISO-Image profiles')
+optdepends=('manjaro-iso-profiles: Manjaro Linux ISO-Image profiles'
+	    'qemu: quickly test isos')
 provides=('devtools' 'arch-install-scripts' 'manjaroiso')
 conflicts=('devtools' 'arch-install-scripts' 'manjaroiso')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
 install=${pkgname}.install
 source=("${url}/archive/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('4b41c2d225db7086f626c950362c380aaee30f1b3b395a17b504b2eac2324176')
+sha256sums=('a7c117dfc872a648f3fd2da268cc1754eceb1414f52d876b0bf6cb25e9301818')
 
 build() {
 	cd ${srcdir}/${pkgname}-${pkgname}-${pkgver}

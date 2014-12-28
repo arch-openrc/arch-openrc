@@ -1,8 +1,6 @@
 post_install() {
     echo "  ==> manjaro-tools now supports a user config"
-    echo "  in /<userhome>/.config"
-    echo "  the livecd scripts are installed"
-    echo "  in /usr/share/manjaro-tools/livecd"
+    echo "  in <userhome>/.config/"
 }
 
 post_upgrade() {
