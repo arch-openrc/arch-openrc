@@ -18,7 +18,7 @@ pkgname=('nvidia-utils-openrc'
 pkgver=20141106
 pkgrel=1
 arch=('any')
-url="https://github.com/udeved/pkgbuilds"
+url="https://github.com/manjaro/packages-openrc"
 license=('GPL')
 source=("${_gentoo_uri}/x11-drivers/nvidia-drivers/files/${_Inv}"
 	"${_gentoo_uri}/x11-drivers/ati-drivers/files/${_Iati}"

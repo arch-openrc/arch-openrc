@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
 license=('GPL')
-url='https://github.com/udeved/manjaro-tools'
+url='https://github.com/manjaro/manjaro-tools'
 depends=('namcap' 'openssh' 'rsync'  'mkinitcpio-nfs-utils' 'nbd'
 	'libisoburn' 'squashfs-tools' 'syslinux' 'haveged')
 makedepends=('git')

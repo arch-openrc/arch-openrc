@@ -2,11 +2,11 @@
 
 pkgbase=manjaro-openrc
 pkgname=('manjaro-openrc')
-pkgver=0.8.10
-pkgrel=2
+pkgver=0.8.11
+pkgrel=1
 pkgdesc="Manjaro openrc meta package"
 arch=('any')
-url="https://github.com/udeved/pkgbuilds"
+url="https://github.com/manjaro/packages-openrc"
 license=('GPL')
 groups=('openrc-meta')
 
