@@ -73,7 +73,7 @@ pkgname=('cpupower-openrc'
 	'xe-guest-utilities-openrc'
 	'virtualbox-guest-utils-openrc'
 	'zfs-openrc')
-pkgver=20141208
+pkgver=20141227
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -423,7 +423,7 @@ package_virtualbox-guest-utils-openrc() {
 
 package_zfs-openrc() {
     pkgdesc="OpenRC zfs init script"
-    depends=('openrc-core' 'zfs')
+    depends=('openrc-core' 'zfs-utils')
     install=zfs.install
 
     install -Dm755 "${srcdir}/${_Izfs}" "${pkgdir}/etc/init.d/zfs"
