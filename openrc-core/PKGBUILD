@@ -30,7 +30,8 @@ backup=('etc/rc.conf'
 	'etc/conf.d/hostname'
 	'etc/conf.d/modules'
 	'etc/conf.d/net'
-	'etc/conf.d/hwclock')
+	'etc/conf.d/hwclock'
+	'etc/inittab')
 install=${_pkgname}.install	      
 source=("${_src_uri}/${_pkgname}-${pkgver}.tar.bz2"
 	"${_src_uri}/${_udev}-${_uver}.tar.bz2"
