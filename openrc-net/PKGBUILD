@@ -109,7 +109,7 @@ pkgname=('autofs-openrc'
 	'ypserv-openrc'
 	'tor-openrc'
 	'wicd-openrc')
-pkgver=20140711
+pkgver=20141229
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -649,7 +649,7 @@ sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
             'a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0'
             'e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
-            '409b895ed489e75c1a08f72961b45d641b93fd9357f528abc78b1fd036b7f730'
+            'a157630c3bdc9565cca8240ee1e6539fc9cbc1e4642c40e0965e3609d1021bac'
             '099f668e1ad42ed9446b15675032a1186715d1fe9e4a1b24dfb787e68495d2b6'
             '049a231908dc2c5f82446712d71d5e75d430bd043b53eead1529f2d81e1595ab'
             '204aaf81d51dc119cee1d1ff3ae3dd50af666af2f8b2a363fd1bf442d4dcee00'

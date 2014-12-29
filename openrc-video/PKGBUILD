@@ -15,7 +15,7 @@ pkgname=('nvidia-utils-openrc'
 	'catalyst-utils-openrc'
 	'virtualgl-openrc'
 	'bumblebee-openrc')
-pkgver=20141106
+pkgver=20141229
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
