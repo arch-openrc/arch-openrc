@@ -2,30 +2,24 @@
 # Contributor: artoo <flower_of_life@gmx.net>
 # Contributor: anex <assassin.anex[@]gmail.com>
  
-pkgbase=manjaro-tools-livecd
+pkgbase=manjaro-livecd
 pkgname=('manjaro-livecd-openrc' 
 	'manjaro-livecd-systemd'
 	'manjaro-livecd-cli-installer')
-pkgver=r38.9ce3b29
+pkgver=0.8.11
 pkgdesc='Manjaro Linux livecd'
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/manjaro-tools-livecd"
 license=('GPL')
 makedepends=('git')
-source=("git+$url.git")
-sha256sums=('SKIP')
-
-pkgver() {
-	cd ${srcdir}/${pkgbase}
-	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
+source=("$url/archive/${pkgbase}-${pkgver}.tar.gz")
+sha256sums=('a0d233ac7c2671ee32cbac9b23c8a91472f348177d85d78a7e3c3f119c50adc2')
 
 package_manjaro-livecd-cli-installer() {
 	pkgdesc='Manjaro Linux livecd cli-installer'
-	depends=('')
 	
-	cd ${srcdir}/${pkgbase} #-${pkgver}
+	cd *${pkgbase}-${pkgver}
 	install -dm 755 $pkgdir/opt/livecd
 	cp -a livecd-cli-installer/* $pkgdir/opt/livecd
 }
@@ -34,7 +28,7 @@ package_manjaro-livecd-openrc() {
 	pkgdesc='Manjaro Linux livecd openrc init scripts'
 	depends=('openrc-core')
 	
-	cd ${srcdir}/${pkgbase} #-${pkgver}
+	cd *${pkgbase}-${pkgver}
 	install -dm 755 $pkgdir
 	cp -a livecd-init-openrc/* $pkgdir
 	
@@ -44,7 +38,7 @@ package_manjaro-livecd-systemd() {
 	pkgdesc='Manjaro Linux livecd systemd units'
 	depends=('systemd')
 	
-	cd ${srcdir}/${pkgbase} #-${pkgver}
+	cd *${pkgbase}-${pkgver}
 	install -dm 755 $pkgdir
 	cp -a livecd-init-systemd/* $pkgdir
 }
