@@ -48,6 +48,8 @@ _Itherm=thermald.initd
 _Ixe=xe-daemon.initd
 _Ivbox=virtualbox-guest-additions-8.initd
 _Izfs=zfs.initd
+_IClam=clamd.initd-r6
+_CClam=clamd.conf-r1
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -72,8 +74,9 @@ pkgname=('cpupower-openrc'
 	'thermald-openrc'
 	'xe-guest-utilities-openrc'
 	'virtualbox-guest-utils-openrc'
-	'zfs-openrc')
-pkgver=20141229
+	'zfs-openrc'
+	'clamav-openrc')
+pkgver=20150105
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -131,7 +134,9 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/app-emulation/xe-guest-utilities/files/${_Ixe}"
 	"${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/${_Ivbox}"
 	"${_Izfs}"
-	"${_Itherm}")
+	"${_Itherm}"
+	"${_gentoo_uri}/app-antivirus/clamav/files/${_CClam}"
+	"${_gentoo_uri}/app-antivirus/clamav/files/${_IClam}")
 
 pkgver() {
     date +%Y%m%d
@@ -429,6 +434,18 @@ package_zfs-openrc() {
     install -Dm755 "${srcdir}/${_Izfs}" "${pkgdir}/etc/init.d/zfs"
 }
 
+package_clamav-openrc() {
+    pkgdesc="OpenRC clamav init script"
+    depends=('openrc-core' 'clamav')
+    backup=('etc/conf.d/clamd')
+    install=clamav.install
+
+    install -Dm755 "${srcdir}/${_CClam}" "${pkgdir}/etc/conf.d/clamd"
+    install -Dm755 "${srcdir}/${_IClam}" "${pkgdir}/etc/init.d/clamd"
+
+    sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/clamd"
+}
+
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             'b9aec85be59222c894a2464ed4e26027f259eeb52e96d9c7eac7e463d3847944'
@@ -474,4 +491,6 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '24cbcf298b869e4451b08aeba0e3e4948aa7faaac649f18e8f600ae5fb86a8fb'
             '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
-            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
+            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
+            '28ebd47810b0568fc7692218867d6804a1df70290681462f5555e230ca817732'
+            'c00bb921afe65e31a9ac4bbcfc97e4c9afa7ad77604c2dcb7eedc152fec5bbd8')
