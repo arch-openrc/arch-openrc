@@ -70,6 +70,8 @@ _Intp=openntpd.init.d-20080406-r6
 _Ctor=tor.confd
 _Itor=tor.initd-r6
 _Iwicd=wicd.initd
+_CSync=syncthing.confd
+_ISync=syncthing.initd
 
 _apver=2.4.9-r3
 _aprel=20140522
@@ -108,8 +110,9 @@ pkgname=('autofs-openrc'
 	'ypbind-mt-openrc'
 	'ypserv-openrc'
 	'tor-openrc'
-	'wicd-openrc')
-pkgver=20141229
+	'wicd-openrc'
+	'syncthing-openrc')
+pkgver=20150105
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -191,7 +194,9 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	#"${_gentoo_uri}/net-misc/wicd/files/${_Iwicd}"
 	"${_gentoo_uri}/net-misc/tor/files/${_Ctor}"
 	"${_gentoo_uri}/net-misc/tor/files/${_Itor}"
-	"${_Iwicd}")
+	"${_Iwicd}"
+	"${_CSync}"
+	"${_ISync}")
 
 pkgver() {
   date +%Y%m%d
@@ -644,6 +649,17 @@ package_wicd-openrc() {
     install -Dm755 "${srcdir}/${_Iwicd}" "${pkgdir}/etc/init.d/wicd"
 }
 
+package_syncthing-openrc() {
+    pkgdesc="OpenRC syncthing init script"
+    depends=('openrc-core' 'syncthing')
+    backup=('etc/conf.d/syncthing')
+    install=syncthing.install
+
+    install -Dm755 "${srcdir}/${_CSync}" "${pkgdir}/etc/conf.d/syncthing"
+    install -Dm755 "${srcdir}/${_ISync}" "${pkgdir}/etc/init.d/syncthing"
+
+}
+
 sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
@@ -712,4 +728,6 @@ sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             'fca7183a7676f0f471878925c8fbec20b7a0bff01551c0ad2b34d4d8a826c876'
             '41d780f291847e19f632428bbf27c3f289414afd237546d2974da1b75384c25c'
             '49da1b5f267927023bc092adcf89d406ec294584039d6bca6b7aea0a9e7c4c4f'
-            '66b2b53b077ddc2d5eb1d81faa99fa0f4f0db01520900ba948001e539bfe02d8')
+            '66b2b53b077ddc2d5eb1d81faa99fa0f4f0db01520900ba948001e539bfe02d8'
+            'eb4a4315916fe3f8688c1da5bb5c249a1f402e61617452288d5b0668078c955c'
+            '63708b1a7b61ae791df64bb4cefa01dc12236f96bb67fe6d0b2c513e11c81f3e')
