@@ -1,10 +1,8 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
 _Iteam=teamviewerd.init
-#_Iteam=teamviewerd
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
-#_notfoss_uri="https://raw.githubusercontent.com/notfoss/archlinux-openrc-services/master/init.d/"
 
 pkgbase=openrc-aur
 pkgname=('teamviewerd-openrc')
@@ -20,9 +18,7 @@ conflicts=('openrc'
 	'openrc-arch-services-git'
 	'initscripts'
 	'systemd-sysvcompat')
-source=("${_gentoo_uri}/net-misc/teamviewer/files/${_Iteam}"
-	#"${_notfoss_uri}/${_Iteam}"
-	)
+source=("${_gentoo_uri}/net-misc/teamviewer/files/${_Iteam}")
 sha256sums=('769f1455cb9b43d9a8907bd7b594db2af7d3905ca40c795ce0bbb4e016219bd8')
 
 pkgver() {
