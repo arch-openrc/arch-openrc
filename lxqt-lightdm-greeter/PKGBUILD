@@ -1,4 +1,5 @@
-# Maintainer: dartagan <william at weiskopf dot me>
+# Maintainer: artoo <artoo@manjaro.org>
+# Contributor: dartagan <william at weiskopf dot me>
 # Contributor: faerbit <faerbit at gmail dot com>
 
 pkgname=lxqt-lightdm-greeter

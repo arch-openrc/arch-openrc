@@ -1,5 +1,5 @@
-# $Id: PKGBUILD 121049 2014-10-20 10:23:26Z andrea $
-# Maintainer: Andrea Scarpino <andrea@archlinux.org>
+# Maintainer: artoo <artoo@manjaro.org>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
 
 _pkgname=sddm
 
