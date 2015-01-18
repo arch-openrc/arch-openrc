@@ -3,13 +3,12 @@
 # file vars for easy update
 _Cgit=git-daemon.confd
 _Igit=git-daemon-r1.initd
-_Cmy=mysql-5.1.53-conf.d
-_Imy=mysql-5.1.67-init.d-r1
+_Cmy=conf.d-2.0
+_Imy=init.d-2.0
 _Csvn=svnserve.confd
 _Isvn=svnserve.initd2
-
-_pgs_ver=2.6
-_dev_uri="http://dev.gentoo.org/~titanofold"
+_CPgsql=postgresql.confd
+_IPgsql=postgresql.init
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -36,7 +35,8 @@ source=("${_gentoo_uri}/dev-vcs/git/files/${_Cgit}"
 	"${_gentoo_uri}/dev-db/mysql-init-scripts/files/${_Imy}"
 	"${_gentoo_uri}/dev-vcs/subversion/files/${_Csvn}"
 	"${_gentoo_uri}/dev-vcs/subversion/files/${_Isvn}"
-	"${_dev_uri}/postgresql-initscript-${_pgs_ver}.tbz2")
+	"${_gentoo_uri}/dev-db/postgresql/files/${_CPgsql}"
+	"${_gentoo_uri}/dev-db/postgresql/files/${_IPgsql}")
 
 pkgver() {
   date +%Y%m%d
@@ -80,8 +80,8 @@ package_postgresql-openrc() {
   backup=('etc/conf.d/postgresql')
   install=postgresql.install
 
-  install -Dm755 "${srcdir}/postgresql.confd" "${pkgdir}/etc/conf.d/postgresql"
-  install -Dm755 "${srcdir}/postgresql.init" "${pkgdir}/etc/init.d/postgresql"
+  install -Dm755 "${srcdir}/${_CPgsql}" "${pkgdir}/etc/conf.d/postgresql"
+  install -Dm755 "${srcdir}/${_IPgsql}" "${pkgdir}/etc/init.d/postgresql"
 
   local _p1='s|/var/lib/postgresql/@SLOT@/data|/var/lib/postgres/data|' \
 	_p2='s|/etc/postgresql-@SLOT@/|/var/lib/postgres/data|'
@@ -108,10 +108,12 @@ package_subversion-openrc() {
 	_p4='s/--make-pidfile//'
   sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -e "${_p3}" -e "${_p4}" -i "${pkgdir}/etc/init.d/svn"
 }
+
 sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '421e68201619bfbf7535d8b1a0030390b7ffab998e025f7cbd7e879c677c2819'
-            '45da613841969adf564f9f2f08257f749539651ee2fae85266f59fdd7a6f8123'
-            '26b9c710fae4c439b4e28aa3e0489ede78e21f9d31cb4a4df93e023efabdd90d'
+            '6cd8551b8ac0dded54f42c2cc9cd55fbc4776d1a541e13d7d571cefd906cb3f4'
+            '1c89b70714bac5edece71ecc113a35350fc96ef977be2e0f44d6b46adbbb6c30'
             '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
             '8f123253c3bfb9bbe87210a9e1facc7f52df371747dbc188396740a5cf4fa713'
-            '0ab0e175a2ed735c330fd2e1c659c1130ae7217fea8d3804d5b5eb74c68ddac1')
+            '57c1ad0b14e8458024c713dd8cc2390023b95c27ba4cbd637333b1020f11f398'
+            '21825916cf5469151c1fbe546e5a76948dca53921c584882c1413b6bec3cb4f0')

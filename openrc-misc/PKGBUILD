@@ -2,8 +2,8 @@
 
 # file vars for easy update
 _Ifrcon=fcron.init.3
-_Crsysl=rsyslog.confd-r1
-_Irsysl=rsyslog.initd-r1
+_Crsysl=rsyslog.confd
+_Irsysl=rsyslog.initd
 _Csane=saned.confd
 _Isane=saned.initd
 _Ifuse=fuse.init
@@ -25,7 +25,7 @@ _Icpu=init.d-r4
 _Cntp1=ntpd.confd
 _Cntp2=ntp-client.confd
 _Cntp3=sntp.confd
-_Intp1=ntpd.rc
+_Intp1=ntpd.rc-r1
 _Intp2=ntp-client.rc
 _Intp3=sntp.rc
 _Icups=cupsd.init.d-r1
@@ -50,6 +50,9 @@ _Ivbox=virtualbox-guest-additions-8.initd
 _Izfs=zfs.initd
 _IClam=clamd.initd-r6
 _CClam=clamd.conf-r1
+_CNM=conf.d.NetworkManager
+_INM=init.d.NetworkManager
+_SNM=10-openrc-status-r4
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -75,8 +78,9 @@ pkgname=('cpupower-openrc'
 	'xe-guest-utilities-openrc'
 	'virtualbox-guest-utils-openrc'
 	'zfs-openrc'
-	'clamav-openrc')
-pkgver=20150105
+	'clamav-openrc'
+	'networkmanager-openrc')
+pkgver=20150118
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -89,15 +93,15 @@ conflicts=('openrc'
 	'initscripts'
 	'systemd-sysvcompat')
 source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
-	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/${_Crsysl}"
-	"${_gentoo_uri}/app-admin/rsyslog/files/7-stable/${_Irsysl}"
+	"${_gentoo_uri}/app-admin/rsyslog/files/8-stable/${_Crsysl}"
+	"${_gentoo_uri}/app-admin/rsyslog/files/8-stable/${_Irsysl}"
 	"${_gentoo_uri}/media-gfx/sane-backends/files/${_Csane}"
 	"${_gentoo_uri}/media-gfx/sane-backends/files/${_Isane}"
 	"${_gentoo_uri}/sys-fs/fuse/files/${_Ifuse}"
 	"${_gentoo_uri}/app-admin/metalog/files/${_Cmeta}"
 	"${_gentoo_uri}/app-admin/metalog/files/${_Imeta}"
-	"${_gentoo_uri}/app-admin/syslog-ng/files/3.5/${_Csyslog}"
-	"${_gentoo_uri}/app-admin/syslog-ng/files/3.5/${_Isyslog}"
+	"${_gentoo_uri}/app-admin/syslog-ng/files/3.6/${_Csyslog}"
+	"${_gentoo_uri}/app-admin/syslog-ng/files/3.6/${_Isyslog}"
 	"${_gentoo_uri}/app-misc/lirc/files/${_Clirc1}"
 	"${_gentoo_uri}/app-misc/lirc/files/${_Clirc2}"
 	"${_gentoo_uri}/app-misc/lirc/files/${_Ilirc1}"
@@ -136,7 +140,10 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_Izfs}"
 	"${_Itherm}"
 	"${_gentoo_uri}/app-antivirus/clamav/files/${_CClam}"
-	"${_gentoo_uri}/app-antivirus/clamav/files/${_IClam}")
+	"${_gentoo_uri}/app-antivirus/clamav/files/${_IClam}"
+	"${_gentoo_uri}/net-misc/networkmanager/files/${_CNM}"
+        "${_gentoo_uri}/net-misc/networkmanager/files/${_INM}"
+        "${_gentoo_uri}/net-misc/networkmanager/files/${_SNM}")
 
 pkgver() {
     date +%Y%m%d
@@ -446,16 +453,35 @@ package_clamav-openrc() {
     sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/clamd"
 }
 
+package_networkmanager-openrc() {
+    pkgdesc="OpenRC networkmanager init script"
+    depends=('openrc-core' 'networkmanager-consolekit')
+    backup=('etc/conf.d/NetworkManager')
+    install=networkmanager.install
+
+    install -Dm755 "${srcdir}/${_CNM}" "${pkgdir}/etc/conf.d/NetworkManager"
+    install -Dm755 "${srcdir}/${_INM}" "${pkgdir}/etc/init.d/NetworkManager"
+
+    install -Dm755 "${srcdir}/${_SNM}" "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
+
+    sed -e 's|@EPREFIX@/sbin|/usr/bin|' \
+	-e 's|@EPREFIX@/usr/sbin|/usr/sbin|' \
+	-e 's|#!/bin/sh|#!/usr/bin/sh|' \
+	-i "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
+
+    sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/NetworkManager"
+}
+
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
-            'b9aec85be59222c894a2464ed4e26027f259eeb52e96d9c7eac7e463d3847944'
+            '204c66d2b7d4d20115acc7499708cf538538fe1c100281ad55f909508041fb19'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
             '4dd4e7fa07bf2ab2d4f5753156f5df0ad2277523f6755b0eab3d2db3480989e2'
             '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
             'ec9f05b386a06a4b2d5398cc0c33f34eba3f5e74ad46ae203d682f8ebc593f99'
             '906c31e0817517dc6c141a7a10565140ea272d3c958a065f520a0ecb6f81912f'
-            'd28c269c8aa2876a389aefdc76b18bcd30eb6653ea1e54a0eb6fb596568643b6'
-            'c03b2b55afe33db25c4ef22833c8b933807db5e86ab514105eefc2c7ab919fdd'
+            'b29325498ee3b1f3d63672efcd1e93f0745eecdb9f4bb05fed82a2f085399484'
+            'b95392c69b26418a2c9ba31c88263501c272378736d79407afb156cc66abd157'
             'd36ff77fa193a065d25e373723e03f1a9471205151b82c73a6574cce4f095962'
             'c404ad3b624004cab25bd3a89593cdeb0abbc25771d6e52caf2f37cb4f7b2b79'
             '1b1f2970cc81a6053fcb6c0ead786436b6423c67170087dde283e54f32ae16e5'
@@ -469,7 +495,7 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
             'c7dc517cdb5ee10e2a07ccea15ec47ba0b7aff8ac1469204c8d7faf71bcae2c5'
             '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
-            'f7c58e8f8e91ee0c1b947e9684b0a9e9e27220e0c97a8b06ee4e3bc5578a88b2'
+            '22a4b5e4c934ea8ba66764441b0bb60d31d23c147c8b64a4a035947327bfc3ec'
             '2e4a42dd64b7c6dacfcfefdab8dc1e7c45d7a0966ef8b928583d18393362c719'
             '8fbd405ad951e7ad046e4408abb98f4066077113187198767d52f28d7228bae4'
             '4705b68372090ee7db69da1ad35131551ed1ba99032db2486ff6c31d2170ce6b'
@@ -493,4 +519,7 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
             '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
             '28ebd47810b0568fc7692218867d6804a1df70290681462f5555e230ca817732'
-            'c00bb921afe65e31a9ac4bbcfc97e4c9afa7ad77604c2dcb7eedc152fec5bbd8')
+            'c00bb921afe65e31a9ac4bbcfc97e4c9afa7ad77604c2dcb7eedc152fec5bbd8'
+            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
+            '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
+            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65')

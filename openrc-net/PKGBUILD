@@ -19,14 +19,19 @@ _Ikrb2=mit-krb5kdc.initd-r1
 _Ikrb3=mit-krb5kpropd.initd-r1
 _Clight=lighttpd.confd
 _Ilight=lighttpd.initd
+
 _Cnfs=nfs.confd
-_Infs1=nfs.initd
-_Infs2=nfsmount.initd
-_Infs3=rpc.gssd.initd
-_Infs4=rpc.idmapd.initd
-_Infs5=rpc.pipefs.initd
-_Infs6=rpc.statd.initd
-_Infs7=rpc.svcgssd.initd
+_Infs=nfs.initd
+_Cnfsc=nfsclient.confd
+_Infsc=nfsclient.initd
+
+_Iidmapd=rpc.idmapd.initd
+_Ipipefs=rpc.pipefs.initd
+_Igssd=rpc.gssd.initd
+_Isvcgssd=rpc.svcgssd.initd
+_Istatd=rpc.statd.initd
+
+
 _Cldap=slapd-confd-2.4.28-r1
 _Ildap=slapd-initd-2.4.28-r1
 _Islp=slpd-init
@@ -73,8 +78,8 @@ _Iwicd=wicd.initd
 _CSync=syncthing.confd
 _ISync=syncthing.initd
 
-_apver=2.4.9-r3
-_aprel=20140522
+_apver=2.4.10-r1
+_aprel=20140731
 
 _dev_uri="http://dev.gentoo.org/~polynomial-c/dist/apache"
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
@@ -144,13 +149,14 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 	"${_gentoo_uri}/www-servers/lighttpd/files/${_Clight}"
 	"${_gentoo_uri}/www-servers/lighttpd/files/${_Ilight}"
 	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Cnfs}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs1}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs2}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs3}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs4}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs5}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs6}"
-	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs7}"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infs}"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Cnfsc}"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Infsc}"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Iidmapd}"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Ipipefs}"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Igssd}"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Isvcgssd}"
+	"${_gentoo_uri}/net-fs/nfs-utils/files/${_Istatd}"
 	"${_gentoo_uri}/net-nds/openldap/files/${_Cldap}"
 	"${_gentoo_uri}/net-nds/openldap/files/${_Ildap}"
 	"${_gentoo_uri}/net-libs/openslp/files/${_Islp}"
@@ -362,18 +368,21 @@ package_nfs-utils-openrc() {
     optdepends=('ypbind-openrc: ypbind initscript'
 		'quota-tools-openrc: quota-tools initscript'
 		'bind-openrc: bind initscript')
-    backup=('etc/conf.d/nfs')
+    backup=('etc/conf.d/nfs'
+	    'etc/conf.d/nfsclient')
     install=nfs-utils.install
 
     install -Dm755 "${srcdir}/${_Cnfs}" "${pkgdir}/etc/conf.d/nfs"
-
-    install -Dm755 "${srcdir}/${_Infs1}" "${pkgdir}/etc/init.d/nfs"
-    install -Dm755 "${srcdir}/${_Infs2}" "${pkgdir}/etc/init.d/nfsmount"
-    install -Dm755 "${srcdir}/${_Infs3}" "${pkgdir}/etc/init.d/rpc.gssd"
-    install -Dm755 "${srcdir}/${_Infs4}" "${pkgdir}/etc/init.d/rpc.idmapd"
-    install -Dm755 "${srcdir}/${_Infs5}" "${pkgdir}/etc/init.d/rpc.pipefs"
-    install -Dm755 "${srcdir}/${_Infs6}" "${pkgdir}/etc/init.d/rpc.statd"
-    install -Dm755 "${srcdir}/${_Infs7}" "${pkgdir}/etc/init.d/rpc.svcgssd"
+    install -Dm755 "${srcdir}/${_Infs}" "${pkgdir}/etc/init.d/nfs"
+    
+    install -Dm755 "${srcdir}/${_Cnfsc}" "${pkgdir}/etc/conf.d/nfsclient"
+    install -Dm755 "${srcdir}/${_Infsc}" "${pkgdir}/etc/init.d/nfsclient"
+    
+    install -Dm755 "${srcdir}/${_Igssd}" "${pkgdir}/etc/init.d/rpc.gssd"
+    install -Dm755 "${srcdir}/${_Iidmapd}" "${pkgdir}/etc/init.d/rpc.idmapd"
+    install -Dm755 "${srcdir}/${_Ipipefs}" "${pkgdir}/etc/init.d/rpc.pipefs"
+    install -Dm755 "${srcdir}/${_Istatd}" "${pkgdir}/etc/init.d/rpc.statd"
+    install -Dm755 "${srcdir}/${_Isvcgssd}" "${pkgdir}/etc/init.d/rpc.svcgssd"
 
     for f in ${pkgdir}/etc/init.d/*;do
       sed -e "${_shebang}" -e "${_binpath[0]}" -e "${_runpath}" -i $f
@@ -659,8 +668,7 @@ package_syncthing-openrc() {
     install -Dm755 "${srcdir}/${_ISync}" "${pkgdir}/etc/init.d/syncthing"
 
 }
-
-sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
+sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '55024fe0e2b491b5cb490a9f575bad3096d446f20f8d52778d778fd26a415d52'
             'a095def10c3b7e6894a6d782c70cbe176c7b53f36386dcc4b1e5bc75424e29f0'
@@ -681,18 +689,19 @@ sha256sums=('65714f27eb1d3c125ff9cd9ef71159ca5592d4336c8d7807e55c826f3a317920'
             'b1515472c32927039b38f6c3a797cbc54a5a300b5d6fa54df9550174afa2b7f8'
             '22bba4ee5d58bae422650875c7c8a797a52fc121ddd02d48297c075b8a35401e'
             '1e77bc6fb2ceb266f724818898bd42bec47512a5a7ede6660e0565ea1c58d619'
-            'b57637c7eb8e40b5cc1655e8afa69dc0aaecbd3186bdca3301586d1e9b797357'
-            '00d9c29280a83e8458c33139d04a9b38c6fdba9d7cb9b420ca83bf6b10e6435d'
+            'a1ecfb9441052d374b6bc2b77554a3253a4e4c231c76114b3313d2cc68e561b8'
+            '426996fc12758565d4c827762df76634f40cc8915988ab89ba5e81aeb561cf46'
             '3ce65326859c43983dad25ad2d4731488c488037796e39b6b5eda336e8bf81ef'
             'ebee63e81fb952474c34b745913e8774b29c9cc65180d363a33d991e478aea2d'
-            '0c7bd35a14da6c0c2577f09ae82a41ddb693a88157eeaf80684616f79be6c304'
+            '00d9c29280a83e8458c33139d04a9b38c6fdba9d7cb9b420ca83bf6b10e6435d'
             'f1c460d8b0e91e54a551397d755135d05a3728d81de596535bf8bda074455677'
+            '0c7bd35a14da6c0c2577f09ae82a41ddb693a88157eeaf80684616f79be6c304'
             '5bca003ec3b67c7c78519aede1d82002579006ccfecce8f87b559df719f82e92'
             '1fc515a6816b8a750db513df0b3b9bf8dd8bd4c4e9051205521acadfdebeae0f'
             '7f228796e020c0779c52683f684197d50662ae890b1ae193ffa9acf157ccd143'
             '29c6d57ac3ec6018cadc6ba6cd9b90c9ed46e20049b970fdcc68ee2481a2ee41'
             '97221a017d8ee9de996277c5a794d973a0b5e8180c29c97b3652bd1984a7b5d0'
-            '438b8a9cfccf1ea14314f38e6821454b6da9ae20ea12bf311ad9fa89816cd702'
+            'ff37dacce4551b6ef9866435d586b014aae5fef5b6c3ae7ba839165514644765'
             '51f4bffa535d891f94d4a20ca2a4a42cc99189f3de78cee1c8d235e4a9d1721d'
             '224496b498b4f692ae3316a95b5c7c8b6230dcd5fee0ca163956a7acde243de9'
             '00d1dfb3b893db5d6a213a4edda622c7d64dcafa40b3019f15e070c164286632'
