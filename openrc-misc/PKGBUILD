@@ -80,7 +80,7 @@ pkgname=('cpupower-openrc'
 	'zfs-openrc'
 	'clamav-openrc'
 	'networkmanager-openrc')
-pkgver=20150118
+pkgver=20150119
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -469,7 +469,7 @@ package_networkmanager-openrc() {
 	-e 's|#!/bin/sh|#!/usr/bin/sh|' \
 	-i "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
 
-    sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/NetworkManager"
+    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/NetworkManager"
 }
 
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
