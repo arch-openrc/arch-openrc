@@ -94,3 +94,6 @@ package() {
 
   rm -r "${pkgdir}/var/run"
 }
+sha256sums=('3a66afec670c975edd9832e620b725a5f16ed267a1b9e1b2d51ef27250d85947'
+            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
+            '759db295ddae7a6dc6b29211fc0ec08695f875584d456dd146d3679e2c33e2e3')
