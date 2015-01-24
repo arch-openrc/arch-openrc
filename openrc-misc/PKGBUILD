@@ -80,7 +80,7 @@ pkgname=('cpupower-openrc'
 	'zfs-openrc'
 	'clamav-openrc'
 	'networkmanager-openrc')
-pkgver=20150119
+pkgver=20150124
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
