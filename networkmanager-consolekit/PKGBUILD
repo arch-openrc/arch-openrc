@@ -12,7 +12,7 @@
 pkgname=networkmanager-consolekit
 _pkgname=NetworkManager
 pkgver=1.0.0
-pkgrel=2
+pkgrel=3
 _pppver=2.4.7
 pkgdesc="NetworkManager with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
@@ -68,7 +68,7 @@ build() {
     --with-pppd-plugin-dir=/usr/lib/pppd/$_pppver \
     --with-pppoe=/usr/bin/pppoe \
     --with-kernel-firmware-dir=/usr/lib/firmware \
-    --with-session-tracking=systemd \
+    --with-session-tracking=ck \
     --with-modem-manager-1 \
     --disable-static \
     --enable-more-warnings=no \
