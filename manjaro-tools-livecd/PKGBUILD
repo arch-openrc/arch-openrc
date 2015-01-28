@@ -22,6 +22,8 @@ sha256sums=('d5ba6246138b76a3c63a192479c0a0b57f5acf23bc31b97f17b530e4e5f1faca')
 
 package_manjaro-livecd-cli-installer() {
 	pkgdesc='Manjaro Linux livecd cli-installer'
+	# add depends 
+	depends=('dialog' 'dmidecode' 'gptfdisk' 'parted' 'pv' 'tcpdump' 'wget')
 	
 	#cd *${pkgbase}-${pkgver}
 	cd *tools-livecd*
