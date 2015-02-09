@@ -19,11 +19,11 @@ sha256sums=('SKIP'
             '5d971845bf71ea8c8bfb900eba6b5b9b923d530087e087fdb7cc99788c7d72d9')
 #install=lxqt-lightdm-greeter.install
 
-pkgver() {
-    cd "$pkgname"
-    #git describe --short | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
-    git describe --long | sed -r 's/-([0-9,a-g,A-G]{7}.*)//' | sed 's/-/./'
-}
+# pkgver() {
+#     cd "$pkgname"
+#     #git describe --short | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
+#     git describe --long | sed -r 's/-([0-9,a-g,A-G]{7}.*)//' | sed 's/-/./'
+# }
 
 prepare(){
     cd ${pkgname}
