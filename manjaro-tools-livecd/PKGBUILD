@@ -7,9 +7,9 @@ pkgname=('manjaro-livecd-openrc'
 	'manjaro-livecd-systemd'
 	'manjaro-livecd-cli-installer')
 pkgver=0.8.12
-_git=d0fb301ea88bc735eca355b3dff32bcf29fe9e09
+_git=047f50a40b0c6ee846c6d24311588cb8d106e633
 pkgdesc='Manjaro Linux livecd'
-pkgrel=3
+pkgrel=4
 arch=('any')
 url="https://github.com/manjaro/manjaro-tools-livecd"
 license=('GPL')
@@ -18,7 +18,7 @@ makedepends=('git')
 #sha256sums=('a0d233ac7c2671ee32cbac9b23c8a91472f348177d85d78a7e3c3f119c50adc2')
 
 source=("${pkgbase}-${pkgver}-${pkgrel}.tar.gz::$url/archive/${_git}.tar.gz")
-sha256sums=('6243a749d5735b23f8bf01e2eeb1656d8427dc7098cf872f809d37902a6a64f0')
+sha256sums=('ff26c8d67be3a1c12c064d94fb7fa78f2c8ecc8c749725036e0946c63f18a25f')
 
 package_manjaro-livecd-cli-installer() {
 	pkgdesc='Manjaro Linux livecd cli-installer'
