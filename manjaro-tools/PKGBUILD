@@ -1,7 +1,7 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
 pkgname=manjaro-tools
-pkgver=0.9.6.2
+pkgver=0.9.6.3
 pkgrel=1
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
@@ -15,15 +15,15 @@ provides=('devtools' 'arch-install-scripts' 'manjaroiso')
 conflicts=('devtools' 'arch-install-scripts' 'manjaroiso')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
 install=${pkgname}.install
-source=("${url}/archive/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('7a4c57c7d73f4eb9f6bb158c6ab4ca778ffa6e8eae4012884ca1a823f036a080')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
+sha256sums=('328611a66df04f56bd464c553e7795b2d52a441c2cb401176e0134db07559d9a')
 
 build() {
-	cd ${srcdir}/${pkgname}-${pkgname}-${pkgver}
+	cd ${srcdir}/${pkgname}-${pkgver}
 	make SYSCONFDIR=/etc PREFIX=/usr
 }
 
 package() {
-	cd ${srcdir}/${pkgname}-${pkgname}-${pkgver}
+	cd ${srcdir}/${pkgname}-${pkgver}
 	make SYSCONFDIR=/etc PREFIX=/usr DESTDIR=${pkgdir} install
 }
