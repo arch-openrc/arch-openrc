@@ -2,7 +2,8 @@
 # Contributor: artoo <artoo@manjaro.org>
 
 pkgname=manjaro-iso-profiles
-pkgver=0.8.11
+pkgver=0.8.12
+_git=7b5a600e8cde74850f1cb0f3b8060b43ea04e3e8
 pkgrel=1
 pkgdesc='Manjaro Linux iso profiles'
 arch=('any')
@@ -10,15 +11,15 @@ url="https://github.com/manjaro/manjaro-tools-iso-profiles"
 license=('GPL')
 depends=('manjaro-tools')
 makedepends=('git')
-conflicts=('manjaroiso-profiles' 
-	  'manjaroiso-openrc-profiles' 
+conflicts=('manjaroiso-profiles'
+	  'manjaroiso-openrc-profiles'
 	  'manjaroiso-community-profiles')
-source=("$url/archive/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('c4cd0df70d89729b5140985f141d2d0dab7c078691b0a048b83f922de0516f52')
+source=("${pkgname}-${pkgver}-${pkgrel}.tar.gz::$url/archive/${_git}.tar.gz")
+sha256sums=('4d98b37601b6e2de747ab441ccbf4e27f5cbc3cdbd2dbc155972f4983797863d')
 
 
 package() {
-	cd *${pkgname}-${pkgver}
+	cd *iso-profiles-${_git}
 	install -d $pkgdir/usr/share/manjaro-tools/iso-profiles
 	cp -a * $pkgdir/usr/share/manjaro-tools/iso-profiles
 }
