@@ -2,7 +2,7 @@
 
 pkgbase=manjaro-openrc
 pkgname=('manjaro-openrc')
-pkgver=0.8.11
+pkgver=0.9.0
 pkgrel=1
 pkgdesc="Manjaro openrc meta package"
 arch=('any')
@@ -29,10 +29,6 @@ package_manjaro-openrc(){
 	    'syslog-ng-openrc')
     optdepends=('eudev-openrc: eudev replacement of systemd udev part'
 		'upower-pm-utils: upower pm-utils support'
-		'pamac-openrc: pamac openrc support'
-		'kdebase-workspace-consolekit: AUR'
-		'xfce4-session-consolekit: AUR'
-		'lxdm-consolekit: AUR'
 		'lvm2-openrc: init script'
 		'mdadm-openrc: init script'
 		'crypsetup-openrc: init script')
