@@ -17,7 +17,7 @@
 -				eoutdent
 -				sync
 -			done
-+			if [[ -d ${aufs_si_dir};then
++			if [[ -d ${aufs_si_dir} ]];then
 +				aufs_mount_dir=${aufs_si_dir#/sys/fs/aufs/}
 +				aufs_si_id="$(printf "%s" $aufs_mount_dir | sed 's/_/=/g')"
 +				aufs_mount_point="$(mountinfo -o ${aufs_si_id})"
