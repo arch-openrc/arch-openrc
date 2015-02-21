@@ -55,6 +55,8 @@ _INM=init.d.NetworkManager
 _SNM=10-openrc-status-r4
 _IBoinc=boinc.init
 _CBoinc=boinc.conf
+_IAt=atd.rc8
+_CAt=atd.confd
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -82,7 +84,8 @@ pkgname=('cpupower-openrc'
 	'zfs-openrc'
 	'clamav-openrc'
 	'networkmanager-openrc'
-	'boinc-openrc')
+	'boinc-openrc'
+	'at-openrc')
 pkgver=20150221
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -148,7 +151,9 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
         "${_gentoo_uri}/net-misc/networkmanager/files/${_INM}"
         "${_gentoo_uri}/net-misc/networkmanager/files/${_SNM}"
 	"${_gentoo_uri}/sci-misc/boinc/files/${_IBoinc}"
-	"${_gentoo_uri}/sci-misc/boinc/files/${_CBoinc}")
+	"${_gentoo_uri}/sci-misc/boinc/files/${_CBoinc}"
+	"${_gentoo_uri}/sys-process/at/files/${_IAt}"
+	"${_gentoo_uri}/sys-process/at/files/${_CAt}")
 
 pkgver() {
     date +%Y%m%d
@@ -480,12 +485,26 @@ package_networkmanager-openrc() {
 package_boinc-openrc() {
     pkgdesc="OpenRC boinc init script"
     depends=('boinc')
+    backup=('etc/conf.d/boinc')
     install=boinc.install
 
     install -Dm755 "${srcdir}/${_IBoinc}" "${pkgdir}/etc/init.d/boinc"
     install -Dm755 "${srcdir}/${_CBoinc}" "${pkgdir}/etc/conf.d/boinc"
 
     sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/boinc"
+}
+
+package_at-openrc() {
+    pkgdesc="OpenRC at init script"
+    depends=('at')
+    backup=('etc/conf.d/atd')
+    install=at.install
+
+    install -Dm755 "${srcdir}/${_IAt}" "${pkgdir}/etc/init.d/atd"
+    install -Dm755 "${srcdir}/${_CAt}" "${pkgdir}/etc/conf.d/atd"
+
+    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/atd"
+    sed -e "${_runpath}" -i "${pkgdir}/etc/conf.d/atd"
 }
 
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
@@ -540,4 +559,6 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
             'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
             'd15f25a8e53e1d94abd1f30eda1e49be497ebbfcd167facc40b7f46128e01d5c'
-            '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9')
+            '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9'
+            '0f7c55e125d9d16f30fd9d2335485cac0b64a9452128d564e9318290703d8229'
+            '92350108a385cc66dffab8c9fc9cc1c85ca1abf36d0ffb007a4e1e55291e0179')
