@@ -1,22 +1,8 @@
 polkit.addRule(function(action, subject) {
-    if (action.id == "org.freedesktop.consolekit.system.stop" ||
-        action.id == "org.freedesktop.consolekit.system.restart" ||
-	action.id == "org.freedesktop.consolekit.system.hibernate" ||
-	action.id == "org.freedesktop.consolekit.system.suspend") {
-        return polkit.Result.YES;
-    }
-});
-
-polkit.addRule(function(action, subject) {
-    if (/^org\.freedesktop\.ModemManager1\.(Device\.Control|Contacts|Messaging|Location)$/.test(action.id) &&
-        subject.isInGroup("network") && subject.active) {
-        return "yes";
-    }
-});
-
-polkit.addRule(function(action, subject) {
-    if (action.id == "org.freedesktop.NetworkManager.settings.modify.system" &&
-        subject.isInGroup("network") && subject.active) {
-        return "yes";
-    }
+	if (action.id == "org.freedesktop.consolekit.system.stop" ||
+		action.id == "org.freedesktop.consolekit.system.restart" ||
+		action.id == "org.freedesktop.consolekit.system.hibernate" ||
+		action.id == "org.freedesktop.consolekit.system.suspend") {
+		return polkit.Result.YES;
+	}
 });
