@@ -53,6 +53,8 @@ _CClam=clamd.conf-r1
 _CNM=conf.d.NetworkManager
 _INM=init.d.NetworkManager
 _SNM=10-openrc-status-r4
+_IBoinc=boinc.init
+_CBoinc=boinc.conf
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -79,8 +81,9 @@ pkgname=('cpupower-openrc'
 	'virtualbox-guest-utils-openrc'
 	'zfs-openrc'
 	'clamav-openrc'
-	'networkmanager-openrc')
-pkgver=20150124
+	'networkmanager-openrc'
+	'boinc-openrc')
+pkgver=20150221
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -143,7 +146,9 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/app-antivirus/clamav/files/${_IClam}"
 	"${_gentoo_uri}/net-misc/networkmanager/files/${_CNM}"
         "${_gentoo_uri}/net-misc/networkmanager/files/${_INM}"
-        "${_gentoo_uri}/net-misc/networkmanager/files/${_SNM}")
+        "${_gentoo_uri}/net-misc/networkmanager/files/${_SNM}"
+	"${_gentoo_uri}/sci-misc/boinc/files/${_IBoinc}"
+	"${_gentoo_uri}/sci-misc/boinc/files/${_CBoinc}")
 
 pkgver() {
     date +%Y%m%d
@@ -472,6 +477,17 @@ package_networkmanager-openrc() {
     sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/NetworkManager"
 }
 
+package_boinc-openrc() {
+    pkgdesc="OpenRC boinc init script"
+    depends=('boinc')
+    install=boinc.install
+
+    install -Dm755 "${srcdir}/${_IBoinc}" "${pkgdir}/etc/init.d/boinc"
+    install -Dm755 "${srcdir}/${_CBoinc}" "${pkgdir}/etc/conf.d/boinc"
+
+    sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/boinc"
+}
+
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '204c66d2b7d4d20115acc7499708cf538538fe1c100281ad55f909508041fb19'
@@ -522,4 +538,6 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'c00bb921afe65e31a9ac4bbcfc97e4c9afa7ad77604c2dcb7eedc152fec5bbd8'
             '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
             '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
-            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65')
+            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
+            'd15f25a8e53e1d94abd1f30eda1e49be497ebbfcd167facc40b7f46128e01d5c'
+            '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9')
