@@ -3,8 +3,8 @@
 
 pkgname=manjaro-iso-profiles
 pkgver=0.8.12
-_git=7b5a600e8cde74850f1cb0f3b8060b43ea04e3e8
-pkgrel=1
+_git=1f660a914cbc74ceb56bd5805026f61a810d43a6
+pkgrel=2
 pkgdesc='Manjaro Linux iso profiles'
 arch=('any')
 url="https://github.com/manjaro/manjaro-tools-iso-profiles"
@@ -15,8 +15,7 @@ conflicts=('manjaroiso-profiles'
 	  'manjaroiso-openrc-profiles'
 	  'manjaroiso-community-profiles')
 source=("${pkgname}-${pkgver}-${pkgrel}.tar.gz::$url/archive/${_git}.tar.gz")
-sha256sums=('4d98b37601b6e2de747ab441ccbf4e27f5cbc3cdbd2dbc155972f4983797863d')
-
+sha256sums=('04bb7f635897733beb792e076410336471428ec7db6ee5bfa96a33cfd2606101')
 
 package() {
 	cd *iso-profiles-${_git}
