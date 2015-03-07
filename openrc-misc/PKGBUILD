@@ -57,6 +57,8 @@ _IBoinc=boinc.init
 _CBoinc=boinc.conf
 _IAt=atd.rc8
 _CAt=atd.confd
+_Ilibvirt=libvirtd.init-r14
+_Clibvirt=libvirtd.confd-r4
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -85,8 +87,9 @@ pkgname=('cpupower-openrc'
 	'clamav-openrc'
 	'networkmanager-openrc'
 	'boinc-openrc'
-	'at-openrc')
-pkgver=20150221
+	'at-openrc'
+	'libvirt-openrc')
+pkgver=20150307
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -153,7 +156,9 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/sci-misc/boinc/files/${_IBoinc}"
 	"${_gentoo_uri}/sci-misc/boinc/files/${_CBoinc}"
 	"${_gentoo_uri}/sys-process/at/files/${_IAt}"
-	"${_gentoo_uri}/sys-process/at/files/${_CAt}")
+	"${_gentoo_uri}/sys-process/at/files/${_CAt}"
+	"${_gentoo_uri}/app-emulation/libvirt/files/${_Ilibvirt}"
+	"${_gentoo_uri}/app-emulation/libvirt/files/${_Clibvirt}")
 
 pkgver() {
     date +%Y%m%d
@@ -507,6 +512,18 @@ package_at-openrc() {
     sed -e "${_runpath}" -i "${pkgdir}/etc/conf.d/atd"
 }
 
+package_libvirt-openrc() {
+    pkgdesc="OpenRC libvirt init script"
+    depends=('libvirt')
+    backup=('etc/conf.d/libvirtd')
+    install=libvirt.install
+
+    install -Dm755 "${srcdir}/${_Ilibvirt}" "${pkgdir}/etc/init.d/libvirtd"
+    install -Dm755 "${srcdir}/${_Clibvirt}" "${pkgdir}/etc/conf.d/libvirtd"
+
+    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/libvirtd"
+}
+
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '204c66d2b7d4d20115acc7499708cf538538fe1c100281ad55f909508041fb19'
@@ -561,4 +578,6 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'd15f25a8e53e1d94abd1f30eda1e49be497ebbfcd167facc40b7f46128e01d5c'
             '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9'
             '0f7c55e125d9d16f30fd9d2335485cac0b64a9452128d564e9318290703d8229'
-            '92350108a385cc66dffab8c9fc9cc1c85ca1abf36d0ffb007a4e1e55291e0179')
+            '92350108a385cc66dffab8c9fc9cc1c85ca1abf36d0ffb007a4e1e55291e0179'
+            'ed8514d347d3a8a0b243cfc25a85dedb1e595f1e29e874bcadd14ef5f5d03e58'
+            'c2ca5d9a2d4ed433e91bd215c2ca678109cc981072897a497955e36760dc3b9f')
