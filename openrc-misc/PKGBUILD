@@ -89,7 +89,7 @@ pkgname=('cpupower-openrc'
 	'boinc-openrc'
 	'at-openrc'
 	'libvirt-openrc')
-pkgver=20150307
+pkgver=20150313
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

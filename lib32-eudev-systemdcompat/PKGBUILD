@@ -21,7 +21,7 @@ provides=("lib32-systemd=${pkgver}"
             'libsystemd-login.so')
 depends=('lib32-glib2' 'lib32-glibc' 'lib32-libgcrypt' 'xz' 'eudev>=1.8')
 conflicts=('lib32-systemd')
-source=("ftp://ftp.archlinux.org/multilib/os/x86_64/lib32-systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
+source=("http://seblu.net/a/arm/2014/12/01/multilib/os/x86_64/lib32-systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
 sha256sums=('bf4175de73641e7caa067648b52a05904204a3962d5d922c742d111bca958f8d')
 
 prepare() {
