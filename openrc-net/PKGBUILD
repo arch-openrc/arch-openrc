@@ -115,7 +115,7 @@ pkgname=('autofs-openrc'
 	'wicd-openrc'
 	'syncthing-openrc'
 	'nginx-openrc')
-pkgver=20150119
+pkgver=20150313
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

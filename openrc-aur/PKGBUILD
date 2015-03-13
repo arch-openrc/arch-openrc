@@ -6,7 +6,7 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=openrc-aur
 pkgname=('teamviewerd-openrc')
-pkgver=20141022
+pkgver=20150313
 pkgrel=1
 pkgdesc="OpenRC init scripts for aur depends"
 arch=('any')
