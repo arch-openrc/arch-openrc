@@ -2,7 +2,7 @@
 
 pkgname=manjaro-tools
 pkgver=0.9.7.1
-pkgrel=1
+pkgrel=2
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
 license=('GPL')
@@ -15,8 +15,15 @@ provides=('devtools' 'arch-install-scripts' 'manjaroiso')
 conflicts=('devtools' 'arch-install-scripts' 'manjaroiso')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
 install=${pkgname}.install
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('f78f7c7c98af4847d9227bb7c739403f86ed485dbffa7ed63df969db335440ac')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
+        01-fix-uefi-localegen.patch::https://github.com/manjaro/manjaro-tools/commit/385a97befe90a347c839ce4175a221bcd7f548cd.patch)
+sha256sums=('f78f7c7c98af4847d9227bb7c739403f86ed485dbffa7ed63df969db335440ac'
+            '7581243af6ab849181703ffe72974d4dd8b33ce32464275134d09c9e18819bcd')
+
+prepare() {
+	cd ${srcdir}/${pkgname}-${pkgver}
+	patch -p1 -i ${srcdir}/01-fix-uefi-localegen.patch
+}
 
 build() {
 	cd ${srcdir}/${pkgname}-${pkgver}
