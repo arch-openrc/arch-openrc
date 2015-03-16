@@ -6,13 +6,13 @@
 pkgname=xfce4-session-consolekit
 _pkgname=xfce4-session
 pkgver=4.12.0
-pkgrel=2
+pkgrel=2.1
 pkgdesc="A session manager for Xfce, with upower and consolekit2 support"
 arch=('i686' 'x86_64')
 url="http://www.xfce.org/"
 license=('GPL2')
 groups=('xfce4')
-depends=('libxfce4ui>=4.12' 'libwnck' 'libsm' 'polkit-consolekit' 'xorg-iceauth'
+depends=('libxfce4ui>=4.12.1' 'libwnck' 'libsm' 'polkit-consolekit' 'xorg-iceauth'
 	 'xorg-xinit' 'xorg-xrdb' 'hicolor-icon-theme' 'consolekit' 'upower=0.9.23')
 conflicts=('xfce4-session')
 provides=('xfce4-session')
