@@ -43,6 +43,7 @@ build() {
 		--with-html-dir=/usr/share/doc/${pkgname}-${pkgver}/html \
 		--enable-gudev \
 		--enable-introspection \
+		--enable-kmod \
 		--enable-split-usr
 	make
 }
