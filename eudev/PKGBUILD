@@ -29,7 +29,7 @@ source=("https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz"
 	'initcpio_install')
 sha256sums=('7c480fb77feb94f14a52bbd3d1e84fca3afe83548aba5297a368016cb6adadfd'
             '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
-            '1a70e48d5f5b476ed624f745b03988f2e8950e33ae864c6b1c4ef088882c8390')
+            '869e002ec73caa98b4ee00ba8174ce5603bee70b68014678383ec877e8fc7e84')
             
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
