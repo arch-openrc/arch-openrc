@@ -69,7 +69,7 @@ _Ivpn=openvpn-2.1.init
 _Cntp=openntpd.conf.d-20080406-r6
 _Intp=openntpd.init.d-20080406-r6
 _Ctor=tor.confd
-_Itor=tor.initd-r6
+_Itor=tor.initd-r7
 _Iwicd=wicd.initd
 _CSync=syncthing.confd
 _ISync=syncthing.initd
@@ -115,7 +115,7 @@ pkgname=('autofs-openrc'
 	'wicd-openrc'
 	'syncthing-openrc'
 	'nginx-openrc')
-pkgver=20150313
+pkgver=20150330
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
