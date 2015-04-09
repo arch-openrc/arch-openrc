@@ -2,6 +2,7 @@
 
 pkgname=manjaro-tools-git
 pkgver=r958.ba25229
+_pkgver=0.9.7.2
 pkgrel=1
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
@@ -11,8 +12,8 @@ depends=('namcap' 'openssh' 'rsync'  'mkinitcpio-nfs-utils' 'nbd'
 	'libisoburn' 'squashfs-tools' 'syslinux' 'haveged')
 makedepends=('git')
 optdepends=('qemu: quickly test isos' 'manjaro-iso-profiles: Manjaro Linux ISO-Image profiles')
-provides=('devtools' 'arch-install-scripts' 'manjaro-tools' 'manjaroiso')
-conflicts=('devtools' 'arch-install-scripts' 'manjaro-tools' 'manjaroiso')
+provides=('devtools' 'arch-install-scripts' "manjaro-tools=$_pkgver" 'manjaroiso')
+conflicts=('devtools' 'arch-install-scripts' "manjaro-tools=$_pkgver" 'manjaroiso')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
 source=("git+$url.git#branch=devel")
 sha256sums=('SKIP')
