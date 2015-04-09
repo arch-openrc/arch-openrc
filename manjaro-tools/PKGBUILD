@@ -14,9 +14,8 @@ optdepends=('manjaro-iso-profiles: Manjaro Linux ISO-Image profiles'
 provides=('devtools' 'arch-install-scripts' 'manjaroiso')
 conflicts=('devtools' 'arch-install-scripts' 'manjaroiso')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
-install=${pkgname}.install
+#install=${pkgname}.install
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('15b57d2a47232bc27b800c3eca61ae0cbfef3e938d58afb31a1011847db2a45d')
 
 build() {
 	cd ${srcdir}/${pkgname}-${pkgver}

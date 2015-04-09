@@ -1,5 +1,5 @@
 post_install() {
-    echo "  ==> manjaro-tools now supports a user config"
+    echo "  ==> manjaro-tools now supports a user config."
     echo "  in <userhome>/.config/"
 }
 
