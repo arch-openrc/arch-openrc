@@ -2,7 +2,7 @@
 
 pkgname=manjaro-tools
 pkgver=0.9.7.2
-pkgrel=2
+pkgrel=3
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
 license=('GPL')
@@ -17,15 +17,18 @@ backup=('etc/manjaro-tools/manjaro-tools.conf')
 install=${pkgname}.install
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
         01-autologin_support_for_gdm.patch::https://github.com/manjaro/manjaro-tools/commit/739e6f680889c6b72b50a5a8cad2077f55d843c2.patch
-        02-proper-thus-support.patch::https://github.com/manjaro/manjaro-tools/commit/d76b67d084624b730d16da11cd36e7f5b841e11a.patch)
+        02-proper-thus-support.patch::https://github.com/manjaro/manjaro-tools/commit/d76b67d084624b730d16da11cd36e7f5b841e11a.patch
+        03-use-kdesu-on-kde-based-editions.patch::https://github.com/manjaro/manjaro-tools/commit/443c7afcb08d74d88b2714f034fe1fed49cbee97.patch)
 sha256sums=('1557d653dd91b9531a82264809fc19d66326efa57993430b98f16b8cb52e08d7'
             'c357df85f2069b0a9369d537f90f6277c46622d2cae9cca596dde0fa811931b7'
-            '0fdaf45940034e0c89faa298bb75d4343e282257778a14d0ac863cb941bcbfc2')
+            '0fdaf45940034e0c89faa298bb75d4343e282257778a14d0ac863cb941bcbfc2'
+            'c06ccdbc2ab7318f46e9bc9f8d4c89470dfd1b360bbb695f62173f15077ae2a7')
 
 prepare() {
  cd ${srcdir}/${pkgname}-${pkgver}
  patch -p1 -i ${srcdir}/01-autologin_support_for_gdm.patch
  patch -p1 -i ${srcdir}/02-proper-thus-support.patch
+ patch -p1 -i ${srcdir}/03-use-kdesu-on-kde-based-editions.patch
 }
 
 build() {
