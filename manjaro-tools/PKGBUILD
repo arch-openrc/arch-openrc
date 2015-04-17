@@ -2,7 +2,7 @@
 
 pkgname=manjaro-tools
 pkgver=0.9.7.3
-pkgrel=2
+pkgrel=3
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
 license=('GPL')
@@ -16,14 +16,17 @@ conflicts=('devtools' 'arch-install-scripts' 'manjaroiso')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
 install=${pkgname}.install
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
-        "keyboard.patch::https://github.com/manjaro/manjaro-tools/commit/398460ba833efe743fee48e6d8d881c5e12bb023.patch")
+        "keyboard.patch::https://github.com/manjaro/manjaro-tools/commit/398460ba833efe743fee48e6d8d881c5e12bb023.patch"
+        "intel_ucode_opt.patch::https://github.com/manjaro/manjaro-tools/commit/4274cd239f883b89f552d7c6d1f57334840ddeba.patch")
 sha256sums=('1f2f0bf6e5d15bf3ca5546c3a80910c817c3adf93f9d34f589c7c94048f1d303'
-            '3ed94f2b9a18885fd11bf8ec1750c9c4d8a597ce4809336f3a2cfb7d6f1549c3')
+            '3ed94f2b9a18885fd11bf8ec1750c9c4d8a597ce4809336f3a2cfb7d6f1549c3'
+            '386bc7f7256faf79f1b699349ba559171b6459bb16fba5d0f4bab9226d3fd070')
 
 prepare() {
  cd ${srcdir}/${pkgname}-${pkgver}
  # patches here
  patch -p1 -i ${srcdir}/keyboard.patch
+ patch -p1 -i ${srcdir}/intel_ucode_opt.patch
 }
 
 build() {
