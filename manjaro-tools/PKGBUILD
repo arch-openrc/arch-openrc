@@ -2,7 +2,7 @@
 
 pkgname=manjaro-tools
 pkgver=0.9.7.3
-pkgrel=1
+pkgrel=2
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
 license=('GPL')
@@ -15,12 +15,15 @@ provides=('devtools' 'arch-install-scripts' 'manjaroiso')
 conflicts=('devtools' 'arch-install-scripts' 'manjaroiso')
 backup=('etc/manjaro-tools/manjaro-tools.conf')
 install=${pkgname}.install
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('1f2f0bf6e5d15bf3ca5546c3a80910c817c3adf93f9d34f589c7c94048f1d303')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
+        "keyboard.patch::https://github.com/manjaro/manjaro-tools/commit/398460ba833efe743fee48e6d8d881c5e12bb023.patch")
+sha256sums=('1f2f0bf6e5d15bf3ca5546c3a80910c817c3adf93f9d34f589c7c94048f1d303'
+            '3ed94f2b9a18885fd11bf8ec1750c9c4d8a597ce4809336f3a2cfb7d6f1549c3')
 
 prepare() {
  cd ${srcdir}/${pkgname}-${pkgver}
  # patches here
+ patch -p1 -i ${srcdir}/keyboard.patch
 }
 
 build() {
