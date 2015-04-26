@@ -1,0 +1,24 @@
+# Maintainer: Aaditya Bagga <aaditya_gnulinux@zoho.com>
+
+pkgname=modules-load-openrc
+pkgver=0.4
+pkgrel=1
+modules_load_git_ver=606e79d22fe15fce3713611f4f512433ef13acb2
+pkgdesc="systemd module loading compatibility script for OpenRC"
+arch=('any')
+license=('GPL')
+groups=('openrc')
+url="https://bitbucket.com/aadityabagga/openrc-systemdcompat"
+depends=('bash' 'openrc-core')
+conflicts=('openrc-systemdcompat<=0.6')
+provides=('openrc-systemdcompat=0.6')
+source=("https://sourceforge.net/projects/mefiles/files/Manjaro/init.d/modules_load-0.2"
+	"https://bitbucket.org/aadityabagga/openrc-systemdcompat/raw/$modules_load_git_ver/modules-load.sh")
+sha1sums=('760ad18a6461db1457b096768f92997c5d7d112a'
+          '7dc4b7f2ac4e23458caf2ecbbb87842d8f71305e')
+install=$pkgname.install
+
+package () {
+    install -Dm755 modules-load.sh $pkgdir/usr/bin/modules_load
+    install -Dm755 "${srcdir}/modules_load-0.2" "${pkgdir}/etc/init.d/modules_load"
+}

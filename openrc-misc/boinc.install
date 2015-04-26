@@ -1,4 +1,4 @@
-_svc="NetworkManager"
+_svc="boinc"
 _rlvl="default"
 
 post_install() {
@@ -7,9 +7,6 @@ post_install() {
 }
 
 post_upgrade() {
-	# For transition from old nm-openrc
-	oldpkgver=${2%-*}
-	[ "$oldpkgver" -lt 20150118 ] && rc-update del networkmanager
 	post_install "$1"
 }
 

@@ -53,6 +53,12 @@ _CClam=clamd.conf-r1
 _CNM=conf.d.NetworkManager
 _INM=init.d.NetworkManager
 _SNM=10-openrc-status-r4
+_IBoinc=boinc.init
+_CBoinc=boinc.conf
+_IAt=atd.rc8
+_CAt=atd.confd
+_Ilibvirt=libvirtd.init-r14
+_Clibvirt=libvirtd.confd-r4
 
 _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
@@ -79,8 +85,11 @@ pkgname=('cpupower-openrc'
 	'virtualbox-guest-utils-openrc'
 	'zfs-openrc'
 	'clamav-openrc'
-	'networkmanager-openrc')
-pkgver=20150124
+	'networkmanager-openrc'
+	'boinc-openrc'
+	'at-openrc'
+	'libvirt-openrc')
+pkgver=20150313
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -143,7 +152,13 @@ source=("${_gentoo_uri}/sys-process/fcron/files/${_Ifrcon}"
 	"${_gentoo_uri}/app-antivirus/clamav/files/${_IClam}"
 	"${_gentoo_uri}/net-misc/networkmanager/files/${_CNM}"
         "${_gentoo_uri}/net-misc/networkmanager/files/${_INM}"
-        "${_gentoo_uri}/net-misc/networkmanager/files/${_SNM}")
+        "${_gentoo_uri}/net-misc/networkmanager/files/${_SNM}"
+	"${_gentoo_uri}/sci-misc/boinc/files/${_IBoinc}"
+	"${_gentoo_uri}/sci-misc/boinc/files/${_CBoinc}"
+	"${_gentoo_uri}/sys-process/at/files/${_IAt}"
+	"${_gentoo_uri}/sys-process/at/files/${_CAt}"
+	"${_gentoo_uri}/app-emulation/libvirt/files/${_Ilibvirt}"
+	"${_gentoo_uri}/app-emulation/libvirt/files/${_Clibvirt}")
 
 pkgver() {
     date +%Y%m%d
@@ -472,6 +487,43 @@ package_networkmanager-openrc() {
     sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/NetworkManager"
 }
 
+package_boinc-openrc() {
+    pkgdesc="OpenRC boinc init script"
+    depends=('boinc')
+    backup=('etc/conf.d/boinc')
+    install=boinc.install
+
+    install -Dm755 "${srcdir}/${_IBoinc}" "${pkgdir}/etc/init.d/boinc"
+    install -Dm755 "${srcdir}/${_CBoinc}" "${pkgdir}/etc/conf.d/boinc"
+
+    sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/boinc"
+}
+
+package_at-openrc() {
+    pkgdesc="OpenRC at init script"
+    depends=('at')
+    backup=('etc/conf.d/atd')
+    install=at.install
+
+    install -Dm755 "${srcdir}/${_IAt}" "${pkgdir}/etc/init.d/atd"
+    install -Dm755 "${srcdir}/${_CAt}" "${pkgdir}/etc/conf.d/atd"
+
+    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/atd"
+    sed -e "${_runpath}" -i "${pkgdir}/etc/conf.d/atd"
+}
+
+package_libvirt-openrc() {
+    pkgdesc="OpenRC libvirt init script"
+    depends=('libvirt')
+    backup=('etc/conf.d/libvirtd')
+    install=libvirt.install
+
+    install -Dm755 "${srcdir}/${_Ilibvirt}" "${pkgdir}/etc/init.d/libvirtd"
+    install -Dm755 "${srcdir}/${_Clibvirt}" "${pkgdir}/etc/conf.d/libvirtd"
+
+    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/libvirtd"
+}
+
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '204c66d2b7d4d20115acc7499708cf538538fe1c100281ad55f909508041fb19'
@@ -481,7 +533,7 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'ec9f05b386a06a4b2d5398cc0c33f34eba3f5e74ad46ae203d682f8ebc593f99'
             '906c31e0817517dc6c141a7a10565140ea272d3c958a065f520a0ecb6f81912f'
             'b29325498ee3b1f3d63672efcd1e93f0745eecdb9f4bb05fed82a2f085399484'
-            'b95392c69b26418a2c9ba31c88263501c272378736d79407afb156cc66abd157'
+            'aa027dac0d145bc342728864cd432a0cf3c25dd6cb66880e7b70df1a9d5a66cf'
             'd36ff77fa193a065d25e373723e03f1a9471205151b82c73a6574cce4f095962'
             'c404ad3b624004cab25bd3a89593cdeb0abbc25771d6e52caf2f37cb4f7b2b79'
             '1b1f2970cc81a6053fcb6c0ead786436b6423c67170087dde283e54f32ae16e5'
@@ -522,4 +574,10 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'c00bb921afe65e31a9ac4bbcfc97e4c9afa7ad77604c2dcb7eedc152fec5bbd8'
             '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
             '5f368362ef5c6deed538f20dc582d6da3c86871bd42297fa78536c0312021843'
-            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65')
+            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
+            'd15f25a8e53e1d94abd1f30eda1e49be497ebbfcd167facc40b7f46128e01d5c'
+            '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9'
+            '0f7c55e125d9d16f30fd9d2335485cac0b64a9452128d564e9318290703d8229'
+            '92350108a385cc66dffab8c9fc9cc1c85ca1abf36d0ffb007a4e1e55291e0179'
+            'ed8514d347d3a8a0b243cfc25a85dedb1e595f1e29e874bcadd14ef5f5d03e58'
+            'c2ca5d9a2d4ed433e91bd215c2ca678109cc981072897a497955e36760dc3b9f')

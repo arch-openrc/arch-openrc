@@ -23,7 +23,7 @@ provides=("udev=${_udev_ver}"
 conflicts=('libgudev-1.0.so' 'libudev.so')
 backup=('etc/udev/udev.conf')
 options=(!makeflags !libtool)
-source=("${_src_uri}/${pkgname}-${pkgver}.tar.gz"
+source=("https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz"
 	'initcpio_hooks'
 	'initcpio_install')
 sha256sums=('74db8aaf13cc392edfb821291783ecd64d815e6f81409f57e290d3017750db29'
@@ -32,6 +32,7 @@ sha256sums=('74db8aaf13cc392edfb821291783ecd64d815e6f81409f57e290d3017750db29'
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
+	./autogen.sh
 	./configure \
 		--prefix=/usr \
 		--with-rootprefix=/usr \
