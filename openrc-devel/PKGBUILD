@@ -6,7 +6,7 @@ _Igit=git-daemon-r1.initd
 _Cmy=conf.d-2.0
 _Imy=init.d-2.0
 _Csvn=svnserve.confd
-_Isvn=svnserve.initd2
+_Isvn=svnserve.initd3
 _CPgsql=postgresql.confd
 _IPgsql=postgresql.init
 _Iphp=php-fpm-r4.init
@@ -19,7 +19,7 @@ pkgname=('git-openrc'
 	'postgresql-openrc'
 	'subversion-openrc'
 	'php-fpm-openrc')
-pkgver=20150313
+pkgver=20150426
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -138,7 +138,7 @@ sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '6cd8551b8ac0dded54f42c2cc9cd55fbc4776d1a541e13d7d571cefd906cb3f4'
             '1c89b70714bac5edece71ecc113a35350fc96ef977be2e0f44d6b46adbbb6c30'
             '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
-            '8f123253c3bfb9bbe87210a9e1facc7f52df371747dbc188396740a5cf4fa713'
+            'b5bd2a3b09c5e84d385e5d873ad9e3061a6e05dcf59276d6a38a5b86f180eb77'
             '57c1ad0b14e8458024c713dd8cc2390023b95c27ba4cbd637333b1020f11f398'
             '21825916cf5469151c1fbe546e5a76948dca53921c584882c1413b6bec3cb4f0'
             '37e34461babfb5881169f9729fbdde7d4aba533f123e2c480fe25ac3b863d3e7')

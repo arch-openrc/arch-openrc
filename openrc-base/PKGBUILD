@@ -2,8 +2,8 @@
 
 _Icron1=cronie-1.3-initd
 _Icron2=anacron-1.0-initd
-_Ccrypt=1.0.6-dmcrypt.confd
-_Icrypt=1.5.1-dmcrypt.rc
+_Ccrypt=1.6.7-dmcrypt.confd
+_Icrypt=1.6.7-dmcrypt.rc
 _Idbus=dbus.initd
 _Inscd=nscd
 _Cdm=device-mapper.conf-1.02.22-r3
@@ -41,7 +41,7 @@ if ${_is_eudev};then
 else
     pkgname=( ${_pkgname[@]} )
 fi
-pkgver=20150313
+pkgver=20150426
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -247,8 +247,8 @@ package_eudev-openrc(){
 
 sha256sums=('292a7b20fe33bd027357475fea6aa1194afa7e5c1c47a85299db945b9d1c847e'
             '7ff283ee8b492929d33831461b72e872fe9d3a98344cf39af442f575875b0132'
-            '9696d70a49296113a9ae3dff1b023b859df984bfb3572426ba199a630b628ce8'
-            '1010666cfb3cd2c662032c3e8f3c2aec35316fc376d0ce30f2c821b581ae2c6d'
+            '3d933a54abe62a547294b83208dbf5d7615d9c7f380d6504c91fff3620530803'
+            '4bec4e67e2447a4472eecdd2fb31325b4dd558e1fe283683f86707629b9d192d'
             '98e37b8b6ed25004e48c5855d74c9361eea06d3fee13cefcc0ed10ccf452aa01'
             '6165db3a2fcb251d4f3655c0461e018ce9c92a37f7f22a8fd2b75178b5435bc8'
             '57777904f12a35617e5a4193c964ebb32396452487fd02353e71e16e7b46bc22'
@@ -260,8 +260,8 @@ sha256sums=('292a7b20fe33bd027357475fea6aa1194afa7e5c1c47a85299db945b9d1c847e'
             '60accb4b6114753232f2db0adf3fc3f46d4459bfedf79b888801a13c55d79fa9'
             'ec55674955af7a31da51b8b72b599e8519809287dad796a9b16155bcba471b79'
             '3073b14619cb7b2c99c33f2d6cfd1e59ce5557899bffebaa65fa52f3caffadc7'
-            '1b7918c4bdd024607bcb49d7cea0a77cb70502d2fbb4dbe07024bb5b5699c8e0'
-            '73303ec32b7010c7f6d4fd66dde1a5baea07e73c79d3e516dce31000abdb4089'
+            'b489ced10391d4295bb8ca29e128b0d4217c290f1b4e37b05f5a9275048d289d'
+            '003b2c832909f1b89ffd283fb02d2712791d922394e201de0e42c0b463b2b1bd'
             '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
             '0220e949b1f31832a205021c0a8615e77b27b73b7c9b16ef4a61bbd2774aeecb'
             '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
