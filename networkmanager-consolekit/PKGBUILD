@@ -12,16 +12,16 @@
 pkgname=networkmanager-consolekit
 _pkgname=NetworkManager
 pkgver=1.0.0
-pkgrel=3
+pkgrel=4
 _pppver=2.4.7
 pkgdesc="NetworkManager with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('GPL' 'LGPL2.1')
 url="http://www.gnome.org/projects/$_pkgname/"
-depends=("libnm-glib>=${pkgver}" 'iproute2' 'libnl' 'polkit-consolekit' 'consolekit' 
-         'wpa_supplicant' 'dhcp-client' 'libsoup' 'libmm-glib' 'libnewt' 'libndp' 
+depends=("libnm-glib>=${pkgver}" 'iproute2' 'libnl' 'polkit-consolekit' 'consolekit'
+         'wpa_supplicant' 'dhcp-client' 'libsoup' 'libmm-glib' 'libnewt' 'libndp'
          'libteam')
-makedepends=('intltool' 'dhcpcd' 'iptables' 'gobject-introspection' 'gtk-doc' 'git' 
+makedepends=('intltool' 'dhcpcd' 'iptables' 'gobject-introspection' 'gtk-doc' 'git'
              "ppp=$_pppver" 'modemmanager' 'rp-pppoe' 'vala')
 optdepends=('modemmanager: for modem management service'
             'dhcpcd: alternative DHCP client; does not support DHCPv6'
@@ -37,8 +37,14 @@ backup=('etc/NetworkManager/NetworkManager.conf')
 install=networkmanager.install
 source=("http://ftp.gnome.org/pub/gnome/sources/$_pkgname/${pkgver:0:3}/$_pkgname-$pkgver.tar.xz"
         'disable_set_hostname.patch'
-        'NetworkManager.conf')
-
+        'NetworkManager.conf'
+        '01-org.freedesktop.ModemManager1.rules'
+        '01-org.freedesktop.NetworkManager.settings.modify.system.rules')
+sha256sums=('3a66afec670c975edd9832e620b725a5f16ed267a1b9e1b2d51ef27250d85947'
+            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
+            '759db295ddae7a6dc6b29211fc0ec08695f875584d456dd146d3679e2c33e2e3'
+            'b8c47eb6de2ffbcd533514ecbc660842e072d8ba2bbe601608038ef6bc18dd17'
+            '3d0b6f30de1c91a95429af4fed99e41c8e8db55b45b2f3a17974c5be36c16475')
 
 prepare() {
   cd $_pkgname-$pkgver
@@ -48,52 +54,56 @@ prepare() {
 }
 
 build() {
-  cd $_pkgname-$pkgver
+	cd $_pkgname-$pkgver
 
-  AUTOPOINT="intltoolize -f -c --automake" autoreconf -fi
-  ./configure --prefix=/usr \
-    --sysconfdir=/etc \
-    --localstatedir=/var \
-    --sbindir=/usr/bin \
-    --libexecdir=/usr/lib/networkmanager \
-    --with-crypto=nss \
-    --with-dhclient=/usr/bin/dhclient \
-    --with-dhcpcd=/usr/bin/dhcpcd \
-    --with-dnsmasq=/usr/bin/dnsmasq \
-    --with-iptables=/usr/bin/iptables \
-    --with-systemdsystemunitdir=/usr/lib/systemd/system \
-    --with-udev-dir=/usr/lib/udev \
-    --with-resolvconf=/usr/bin/resolvconf \
-    --with-pppd=/usr/bin/pppd \
-    --with-pppd-plugin-dir=/usr/lib/pppd/$_pppver \
-    --with-pppoe=/usr/bin/pppoe \
-    --with-kernel-firmware-dir=/usr/lib/firmware \
-    --with-session-tracking=ck \
-    --with-modem-manager-1 \
-    --disable-static \
-    --enable-more-warnings=no \
-    --disable-wimax \
-    --enable-modify-system \
-    --enable-doc
+	AUTOPOINT="intltoolize -f -c --automake" autoreconf -fi
+	./configure --prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--sbindir=/usr/bin \
+		--libexecdir=/usr/lib/networkmanager \
+		--with-crypto=nss \
+		--with-dhclient=/usr/bin/dhclient \
+		--with-dhcpcd=/usr/bin/dhcpcd \
+		--with-dnsmasq=/usr/bin/dnsmasq \
+		--with-iptables=/usr/bin/iptables \
+		--with-systemdsystemunitdir=/usr/lib/systemd/system \
+		--with-udev-dir=/usr/lib/udev \
+		--with-resolvconf=/usr/bin/resolvconf \
+		--with-pppd=/usr/bin/pppd \
+		--with-pppd-plugin-dir=/usr/lib/pppd/$_pppver \
+		--with-pppoe=/usr/bin/pppoe \
+		--with-kernel-firmware-dir=/usr/lib/firmware \
+		--with-session-tracking=ck \
+		--with-modem-manager-1 \
+		--disable-static \
+		--enable-more-warnings=no \
+		--disable-wimax \
+		--enable-modify-system \
+		--enable-doc
 
-  make
+	make
 }
 
 package() {
-  cd $_pkgname-$pkgver
-  make DESTDIR="${pkgdir}" install
-  make DESTDIR="$pkgdir" -C libnm uninstall
-  make DESTDIR="$pkgdir" -C libnm-glib uninstall
-  make DESTDIR="$pkgdir" -C libnm-util uninstall
-  make DESTDIR="$pkgdir" -C vapi uninstall
-  
-  install -m644 $srcdir/NetworkManager.conf "$pkgdir/etc/NetworkManager/"
-  
-  rm -rf "$pkgdir/usr/include"
-  rm -rf "$pkgdir/usr/lib/pkgconfig"
+	cd $_pkgname-$pkgver
+	make DESTDIR="${pkgdir}" install
+	make DESTDIR="$pkgdir" -C libnm uninstall
+	make DESTDIR="$pkgdir" -C libnm-glib uninstall
+	make DESTDIR="$pkgdir" -C libnm-util uninstall
+	make DESTDIR="$pkgdir" -C vapi uninstall
 
-  rm -r "${pkgdir}/var/run"
+	install -m644 $srcdir/NetworkManager.conf "$pkgdir/etc/NetworkManager/"
+
+	rm -rf "$pkgdir/usr/include"
+	rm -rf "$pkgdir/usr/lib/pkgconfig"
+
+	rm -r "${pkgdir}/var/run"
+
+
+    install -d -m700 $pkgdir/etc/polkit-1/rules.d/
+	install -D -m644 ${srcdir}/01-org.freedesktop.ModemManager1.rules $pkgdir/etc/polkit-1/rules.d/
+    install -D -m644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/etc/polkit-1/rules.d/
+
+	chown 102 $pkgdir/etc/polkit-1/rules.d
 }
-sha256sums=('3a66afec670c975edd9832e620b725a5f16ed267a1b9e1b2d51ef27250d85947'
-            '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
-            '759db295ddae7a6dc6b29211fc0ec08695f875584d456dd146d3679e2c33e2e3')
