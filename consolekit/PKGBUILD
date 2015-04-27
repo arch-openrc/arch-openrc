@@ -64,5 +64,5 @@ package() {
 	chown 102 $pkgdir/etc/polkit-1/rules.d
 
 	install -d -m755 $pkgdir/etc/pam.d/
-	install -D -m755 ${srcdir}/consolekit.pamd $pkgdir/etc/pam.d/
+	install -D -m755 ${srcdir}/consolekit.pamd $pkgdir/etc/pam.d/consolekit
 }
