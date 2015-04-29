@@ -11,19 +11,19 @@ arch=('i686' 'x86_64')
 url="https://github.com/dimkr/LoginKit"
 license=('GPL')
 provides=("eudev-systemdcompat=${_udevver}"
-			"libsystemd=${_udevver}"
-            "systemd=${_udevver}"
-            "systemd-tools=${_udevver}"
-            'libsystemd.so'
-            'libsystemd-daemon.so'
-            'libsystemd-journal.so'
-            'libsystemd-login.so')
+		"libsystemd=${_udevver}"
+		"systemd=${_udevver}"
+		"systemd-tools=${_udevver}"
+		'libsystemd.so'
+		'libsystemd-daemon.so'
+		'libsystemd-journal.so'
+		'libsystemd-login.so')
 depends=('consolekit' 'glib2')
 makedepends=('glib2')
 conflicts=('systemd'
-	  'systemd-tools'
-	  'libsystemd'
-	  'eudev-systemdcompat')
+		'systemd-tools'
+		'libsystemd'
+		'eudev-systemdcompat')
 source=("git+$url.git#branch=master")
 sha256sums=('SKIP')
 
@@ -41,8 +41,8 @@ package() {
 	cd $srcdir/$_pkgname
 	make SBIN_DIR=/usr/bin DESTDIR="$pkgdir" install
 
-	ln -sf /usr/lib/libsystemd.so.0 ${pkgdir}/usr/lib/libsystemd.so
-	ln -sf /usr/lib/libsystemd-journal.so.0 ${pkgdir}/usr/lib/libsystemd-journal.so
-	ln -sf /usr/lib/libsystemd-daemon.so.0 ${pkgdir}/usr/lib/libsystemd-daemon.so
-	ln -sf /usr/lib/libsystemd-login.so.0 ${pkgdir}/usr/lib/libsystemd-login.so
+	ln -sf /usr/lib/libsystemd.so.0 ${pkgdir}/usr/lib/libloginkit.so
+	ln -sf /usr/lib/libsystemd-journal.so.0 ${pkgdir}/usr/lib/libloginkit-journal.so
+	ln -sf /usr/lib/libsystemd-daemon.so.0 ${pkgdir}/usr/lib/libloginkit-daemon.so
+	ln -sf /usr/lib/libsystemd-login.so.0 ${pkgdir}/usr/lib/libloginkit-login.so
 }
