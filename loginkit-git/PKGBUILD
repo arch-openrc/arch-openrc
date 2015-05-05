@@ -41,8 +41,8 @@ package() {
 	cd $srcdir/$_pkgname
 	make SBIN_DIR=/usr/bin DESTDIR="$pkgdir" install
 
-	ln -sf /usr/lib/libsystemd.so.0 ${pkgdir}/usr/lib/libloginkit.so.0.1
-	ln -sf /usr/lib/libsystemd-journal.so.0 ${pkgdir}/usr/lib/libloginkit-journal.so.0.1
-	ln -sf /usr/lib/libsystemd-daemon.so.0 ${pkgdir}/usr/lib/libloginkit-daemon.so.0.1
-	ln -sf /usr/lib/libsystemd-login.so.0 ${pkgdir}/usr/lib/libloginkit-login.so.0.1
+	ln -sf /usr/lib/libsystemd.so ${pkgdir}/usr/lib/libloginkit.so.0.1
+	ln -sf /usr/lib/libsystemd-journal.so ${pkgdir}/usr/lib/libloginkit-journal.so.0.1
+	ln -sf /usr/lib/libsystemd-daemon.so ${pkgdir}/usr/lib/libloginkit-daemon.so.0.1
+	ln -sf /usr/lib/libsystemd-login.so ${pkgdir}/usr/lib/libloginkit-login.so.0.1
 }
