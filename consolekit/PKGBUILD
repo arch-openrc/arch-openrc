@@ -16,14 +16,9 @@ makedepends=('xmlto' 'docbook-xsl')
 options=(libtool)
 source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 		'consolekit.tmpfiles.conf'
-		'75-consolekit.rules'
+		'25-consolekit.rules'
 		'consolekit.logrotate'
 		'consolekit.pamd')
-sha256sums=('102aa07e0960e56740e235bba06a546c8e0e88f47546ef252ecda917935af41f'
-            '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
-            'c5159d9fe8fdd52ad0d6a84af7ba00bac09edaae965896ab0d099a4df1c5ea6b'
-            '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
-            '29756cfdbb7114cf5fc5e45fa3dbe493f223f5c0b5a7c34f94a3cc839e02253b')
 
 build(){
 	cd "$srcdir/$_pkgname-$pkgver"
@@ -66,3 +61,8 @@ package() {
 	install -d -m755 $pkgdir/etc/pam.d/
 	install -D -m755 ${srcdir}/consolekit.pamd $pkgdir/etc/pam.d/consolekit
 }
+sha256sums=('102aa07e0960e56740e235bba06a546c8e0e88f47546ef252ecda917935af41f'
+            '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
+            'c5159d9fe8fdd52ad0d6a84af7ba00bac09edaae965896ab0d099a4df1c5ea6b'
+            '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
+            '331b5dee7ab3afffbf116ead77d04422e524ce741fa9dc1b4d37fc684c61dc3b')
