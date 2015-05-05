@@ -1,0 +1,47 @@
+# $Id$
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+# Contributor: Antonio Rojas
+
+pkgname=kinfocenter
+pkgver=5.3.0
+pkgrel=1.1
+pkgdesc='A utility that provides information about a computer system'
+arch=('i686' 'x86_64')
+url='https://www.kde.org/applications/system/kinfocenter/'
+license=('LGPL')
+depends=('kdelibs4support' 'kcmutils' 'pciutils' 'glu' 'libraw1394' 'kwayland')
+makedepends=('extra-cmake-modules' 'kdoctools' 'python' 'plasma-framework')
+conflicts=('kdebase-workspace')
+groups=('plasma')
+source=("http://download.kde.org/stable/plasma/${pkgver}/$pkgname-$pkgver.tar.xz"
+'archlinux-logo.svg::https://sources.archlinux.org/other/artwork/archlinux-logo-dark-scalable.svg' 'kcm-about-distrorc')
+
+
+
+prepare() {
+  mkdir build
+}
+
+build() {
+  cd build
+  cmake ../${pkgname}-${pkgver} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DLIB_INSTALL_DIR=lib \
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+    -DBUILD_TESTING=OFF
+  make
+}
+
+package() {
+  cd build
+  make DESTDIR="${pkgdir}" install
+
+# Install Arch logo
+  install -Dm644 "$srcdir"/Manjaro-logo.svg "$pkgdir"/usr/share/about-distro/Manjaro-logo.svg
+  install -Dm644 "$srcdir"/kcm-about-distrorc "$pkgdir"/etc/xdg/kcm-about-distrorc
+}
+sha256sums=('3cb666bc974d26e269cf07f050049b47bb523530e14ab60802ee0c1902b7f60b'
+            'a7f37c9c87f0e0e37454b47ec1221b61416aa9e319cc46a1f0b5b70c4a1dcb6e'
+            'b247e9248bc3260fb4b76e20a470154f2deac098c4638a5cd85e1a8ec7db1d4f')
