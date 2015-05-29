@@ -41,7 +41,7 @@ if ${_is_eudev};then
 else
     pkgname=( ${_pkgname[@]} )
 fi
-pkgver=20150426
+pkgver=20150507
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

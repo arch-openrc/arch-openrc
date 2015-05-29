@@ -12,3 +12,5 @@ pkg
 .lock
 packages
 *.SRCINFO
+*.AURINFO
+.kateproject.d

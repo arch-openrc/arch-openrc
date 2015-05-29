@@ -1,3 +1,4 @@
 {
-      "name": "packages-openrc", "files": [ { "directory": "", "filters": ["PKGBUILD", "-*.xz", "*.*", "*"], "recursive": 1 } ]
+      "name": "packages-openrc"
+      , "files": [ { "git": 1 } ]
 }
