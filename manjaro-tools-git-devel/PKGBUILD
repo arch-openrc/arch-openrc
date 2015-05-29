@@ -1,8 +1,8 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
 pkgname=manjaro-tools-git
-pkgver=r969.ccf80ec
-_pkgver=0.9.7.3
+pkgver=r1219.4b320d3
+_pkgver=0.9.8
 pkgrel=1
 pkgdesc='Development tools for Manjaro Linux'
 arch=('any')
@@ -10,7 +10,7 @@ license=('GPL')
 url='https://github.com/manjaro/manjaro-tools'
 depends=('namcap' 'openssh' 'rsync'  'mkinitcpio-nfs-utils' 'nbd'
 	'libisoburn' 'squashfs-tools' 'syslinux' 'haveged')
-makedepends=('git')
+makedepends=('git' 'docbook2x')
 optdepends=('qemu: quickly test isos' 'manjaro-iso-profiles: Manjaro Linux ISO-Image profiles')
 provides=('devtools' 'arch-install-scripts' "manjaro-tools=$_pkgver" 'manjaroiso')
 conflicts=('devtools' 'arch-install-scripts' "manjaro-tools=$_pkgver" 'manjaroiso')
