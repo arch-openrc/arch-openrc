@@ -1,8 +1,0 @@
-post_install() {
-    echo "  ==> manjaro-tools now supports a user config."
-    echo "  in <userhome>/.config/"
-}
-
-post_upgrade() {
-	post_install "$1"
-}
