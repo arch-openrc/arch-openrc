@@ -5,39 +5,44 @@
 
 pkgname=polkit-consolekit
 pkgver=0.112
-pkgrel=3
+pkgrel=4
 pkgdesc="PolyciKit with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('LGPL')
 url="http://www.freedesktop.org/wiki/Software/polkit"
 depends=('glib2' 'pam' 'expat' 'js17')
-makedepends=('intltool' 'gtk-doc' 'gobject-introspection' 'python2')
+makedepends=('intltool' 'gtk-doc' 'gobject-introspection' 'git')
 provides=("polkit=$pkgver")
 conflicts=('polkit')
 options=('!libtool')
 install=polkit.install
-source=(http://www.freedesktop.org/software/polkit/releases/polkit-$pkgver.tar.gz
-        polkit.pam)
-sha256sums=('d695f43cba4748a822fbe864dd32c4887c5da1c71694a47693ace5e88fcf6af6'
+source=("git://anongit.freedesktop.org/polkit#commit=f4d71e0de885010494b8b0b8d62ca910011d7544"
+		'polkit.pam')
+sha256sums=('SKIP'
             'a35af3210bff1a8f2c04add47ed131a17df9eafbbc6f1671f97021be3ab1ff34')
 
 build() {
-  cd "$srcdir/polkit-$pkgver"
+	cd "$srcdir"/polkit #-$pkgver"
 
-  ./configure --prefix=/usr --sysconfdir=/etc \
-      --localstatedir=/var --libexecdir=/usr/lib/polkit-1 \
-      --with-systemdsystemunitdir=/usr/lib/systemd/system \
-      --enable-libsystemd-login=no \
-      --disable-static --enable-gtk-doc
-  make
+	NOCONFIGURE=1 ./autogen.sh
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--sbindir=/usr/bin \
+		--localstatedir=/var \
+		--libexecdir=/usr/lib/polkit-1 \
+		--enable-libsystemd-login=no \
+		--disable-static \
+		--enable-gtk-doc
+	make
 }
 
 package() {
-  cd "$srcdir/polkit-$pkgver"
-  make DESTDIR="$pkgdir" install
+	cd "$srcdir"/polkit #-$pkgver"
+	make DESTDIR="$pkgdir" install
 
-  chown 102 "$pkgdir/etc/polkit-1/rules.d"
-  chown 102 "$pkgdir/usr/share/polkit-1/rules.d"
+	chown 102 "$pkgdir/etc/polkit-1/rules.d"
+	chown 102 "$pkgdir/usr/share/polkit-1/rules.d"
 
-  install -m644 "$srcdir/polkit.pam" "$pkgdir/etc/pam.d/polkit-1"
+	install -m644 "$srcdir/polkit.pam" "$pkgdir/etc/pam.d/polkit-1"
 }
