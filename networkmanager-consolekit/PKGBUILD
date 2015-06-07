@@ -99,9 +99,9 @@ package() {
 	rm -rf "$pkgdir/usr/lib/pkgconfig"
 	rm -r "${pkgdir}/var/run"
 
-	install -d -m700 $pkgdir/etc/polkit-1/rules.d/
-	install -D -m644 ${srcdir}/01-org.freedesktop.ModemManager1.rules $pkgdir/etc/polkit-1/rules.d/
-	install -D -m644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/etc/polkit-1/rules.d/
+	install -d -m700 $pkgdir/usr/share/polkit-1/rules.d/
+	install -D -m644 ${srcdir}/01-org.freedesktop.ModemManager1.rules $pkgdir/usr/share/polkit-1/rules.d/
+	install -D -m644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/usr/share/polkit-1/rules.d/
 
-	chown 102 $pkgdir/etc/polkit-1/rules.d
+	chown 102 $pkgdir/usr/share/polkit-1/rules.d/{01-org.freedesktop.ModemManager1.rules,01-org.freedesktop.NetworkManager.settings.modify.system.rules}
 }
