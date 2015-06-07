@@ -3,11 +3,16 @@
 # Contributor: Dave Reisner <dreisner@archlinux.org>
 # Contributor: Tom Gundersen <teg@jklm.no>
 
-_spkgrel=6
+_spkgrel=5
+_y=2015
+_m=04
+_d=26
+_url=http://seblu.net/a/arm/$_y/$_m/$_d/core/os
+_repo=http://arch.packages.gnp-tec.net/testing/os
 
 pkgname=eudev-systemdcompat
-pkgver=219
-pkgrel=2
+pkgver=220
+pkgrel=1
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
 license=('GPL2')
@@ -25,21 +30,50 @@ depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev>=1.10')
 optdepends=('eudev-openrc: eudev initscript'
             'upower-pm-utils: pm-utils support')
 conflicts=('systemd'
-	  'systemd-tools'
-	  'libsystemd')
+			'systemd-tools'
+			'libsystemd'
+			'openrc-systemdcompat')
+replaces=('openrc-systemdcompat')
+
+# if [ "$CARCH" = "i686" ]; then
+#     source=("$_url/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
+# 			"$_url/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
+# 	sha256sums=('5dd169b36e126702d683a2b81efcc80a830fea622dc83380dbec94513876a586'
+# 				'f9f3d59c9fa2ed6474216feca2fc36fcb231aa8ca07f69d6a4f4f10db84399ab')
+# elif [ "$CARCH" = "x86_64" ]; then
+#     source=("$_url/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
+# 			"$_url/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
+# 	sha256sums=('f9f3d59c9fa2ed6474216feca2fc36fcb231aa8ca07f69d6a4f4f10db84399ab'
+# 				'f9f3d59c9fa2ed6474216feca2fc36fcb231aa8ca07f69d6a4f4f10db84399ab')
+# fi
 
 if [ "$CARCH" = "i686" ]; then
-    source=("http://seblu.net/a/arm/2015/04/26/core/os/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
-	sha256sums=('5dd169b36e126702d683a2b81efcc80a830fea622dc83380dbec94513876a586')
+    source=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
+			"$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
+	sha256sums=('e0bacb3cb9c117aa6ced26f81ad8f3d132f372a1ede3953207a4805aef5da778'
+            '8344b53422bf79a2a9b5725946af1e3da77175815dd7b830b25361c808cda5e4')
 elif [ "$CARCH" = "x86_64" ]; then
-    source=("http://seblu.net/a/arm/2015/04/26/core/os/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
-	sha256sums=('f9f3d59c9fa2ed6474216feca2fc36fcb231aa8ca07f69d6a4f4f10db84399ab')
+    source=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
+			"$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
+	sha256sums=('1a6f018444c5d823e63985bf65e08136f4c3e58fc4f4df759914ea813416d285'
+            '142f52bd991d4f059b707626c9538a0256966d0a53d9faa1b1b2d5fe8f01a849')
 fi
 
 prepare() {
-  rm usr/lib/lib{g,}udev*.so*
+	#clean libsystemd
+	rm usr/lib/lib{g,}udev*.so*
+
+	# clean systemd
+	rm -r {etc,var,usr/{include,share}}
+	rm usr/lib/libnss*
+	for d in usr/lib/*;do
+		[[ -d $d ]] && rm -r $d
+	done
+	for f in usr/bin/*;do
+		[[ $f != 'usr/bin/systemd-tmpfiles' && $f != 'usr/bin/systemd-sysusers' ]] && rm $f
+	done
 }
 
 package() {
-  mv "$srcdir/usr/" "$pkgdir"
+	mv "$srcdir/usr/" "$pkgdir"
 }
