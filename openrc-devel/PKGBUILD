@@ -110,7 +110,7 @@ package_postgresql-openrc() {
 
 	sed -e "${_shebang}" \
 		-e 's|/@LIBDIR@/postgresql-@SLOT@||g' \
-		-e 's|/etc/conf.d/postgresql-@SLOT@|/etc/conf.d/postgresql|'
+		-e 's|/etc/conf.d/postgresql-@SLOT@|/etc/conf.d/postgresql|' \
 		-i "${pkgdir}/etc/init.d/postgresql"
 }
 
