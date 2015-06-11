@@ -12,7 +12,7 @@
 pkgname=networkmanager-consolekit
 _pkgname=NetworkManager
 pkgver=1.0.2
-pkgrel=1
+pkgrel=2
 _pppver=2.4.7
 pkgdesc="NetworkManager with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
@@ -99,9 +99,9 @@ package() {
 	rm -rf "$pkgdir/usr/lib/pkgconfig"
 	rm -r "${pkgdir}/var/run"
 
-	install -d -m700 $pkgdir/usr/share/polkit-1/rules.d/
-	install -D -m644 ${srcdir}/01-org.freedesktop.ModemManager1.rules $pkgdir/usr/share/polkit-1/rules.d/
-	install -D -m644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/usr/share/polkit-1/rules.d/
+	install -dm 700 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
+	install -m 644 ${srcdir}/01-org.freedesktop.ModemManager1.rules $pkgdir/usr/share/polkit-1/rules.d/
+	install -m 644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/usr/share/polkit-1/rules.d/
 
-	chown 102 $pkgdir/usr/share/polkit-1/rules.d/{01-org.freedesktop.ModemManager1.rules,01-org.freedesktop.NetworkManager.settings.modify.system.rules}
+	#chown 102 $pkgdir/usr/share/polkit-1/rules.d/{01-org.freedesktop.ModemManager1.rules,01-org.freedesktop.NetworkManager.settings.modify.system.rules}
 }
