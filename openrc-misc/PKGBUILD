@@ -74,11 +74,13 @@ source=("fcron.initd::${_gentoo_uri}/sys-process/fcron/files/fcron.init.3"
 		"haveged.confd::${_gentoo_uri}/sys-apps/haveged/files/haveged-conf.d"
 		"haveged.initd::${_gentoo_uri}/sys-apps/haveged/files/haveged-init.d.3"
 		"salt-master.confd::${_gentoo_uri}/app-admin/salt/files/master-confd-1"
-		"salt-master.initd::${_gentoo_uri}/app-admin/salt/files/master-initd-3"
+		"salt-master.initd::${_gentoo_uri}/app-admin/salt/files/master-initd-4"
 		"salt-minion.confd::${_gentoo_uri}/app-admin/salt/files/minion-confd-1"
-		"salt-minion.initd::${_gentoo_uri}/app-admin/salt/files/minion-initd-3"
+		"salt-minion.initd::${_gentoo_uri}/app-admin/salt/files/minion-initd-4"
 		"salt-syndic.confd::${_gentoo_uri}/app-admin/salt/files/syndic-confd-1"
-		"salt-syndic.initd::${_gentoo_uri}/app-admin/salt/files/syndic-initd-3"
+		"salt-syndic.initd::${_gentoo_uri}/app-admin/salt/files/syndic-initd-4"
+		"salt-api.confd::${_gentoo_uri}/app-admin/salt/files/api-confd-1"
+		"salt-api.initd::${_gentoo_uri}/app-admin/salt/files/api-initd-4"
 		"mpd.initd::${_gentoo_uri}/media-sound/mpd/files/mpd2.init"
 		"hdparm.confd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-conf.d.3"
 		"hdparm.initd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-init-8"
@@ -97,6 +99,7 @@ source=("fcron.initd::${_gentoo_uri}/sys-process/fcron/files/fcron.init.3"
 		"atd.initd::${_gentoo_uri}/sys-process/at/files/atd.rc8"
 		"libvirtd.confd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.confd-r4"
 		"libvirtd.initd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.init-r14"
+		"virtlockd.initd::${_gentoo_uri}/app-emulation/libvirt/files/virtlockd.init-r1"
 		"zfs.initd"
 		"thermald.initd")
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
@@ -136,6 +139,8 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '06415d7f958210a4dd1490db5796b0d3c08392a81547f290776d9164dde786ae'
             '286148f5391d42c04a62a13cc125fa2130b5821e50da913c5a20d3a913e5f2d1'
             '2de9f69462bc3b575a69a150b6bba21a6e341477010d284cb77614e810a7bf8c'
+            '9f3f47a7af4d349a7c525455616139b5019d3b7d0290398ba8c50ab91a62d089'
+            '78940f949714d654a80426871f4679b44466ae38e87a4d681f3f0ad353f7d607'
             '3591473024005cdb15f13809c7675fbb964dc1b13e7658a01e12e34c7e751897'
             '37c95ff723fa578e9039613d09dbf790d99113a318c065422986c744519214e9'
             '434beee81ba04c96fcd03e6b37a4578c2c25af2c1007368469c48dd37523d56e'
@@ -154,6 +159,7 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '0f7c55e125d9d16f30fd9d2335485cac0b64a9452128d564e9318290703d8229'
             'c2ca5d9a2d4ed433e91bd215c2ca678109cc981072897a497955e36760dc3b9f'
             'ed8514d347d3a8a0b243cfc25a85dedb1e595f1e29e874bcadd14ef5f5d03e58'
+            'd156cf6a2b00d8d81529e63231fd49b2599838f6c79740fed6c443840e57ece8'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
             '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
 
@@ -423,6 +429,9 @@ package_salt-openrc() {
 	install -Dm644 "${srcdir}/salt-syndic.confd" "${pkgdir}/etc/conf.d/salt-syncdic"
 	install -Dm755 "${srcdir}/salt-syndic.initd" "${pkgdir}/etc/init.d/salt-syncdic"
 
+	install -Dm644 "${srcdir}/salt-api.confd" "${pkgdir}/etc/conf.d/salt-api"
+	install -Dm755 "${srcdir}/salt-api.initd" "${pkgdir}/etc/init.d/salt-api"
+
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
 			-e "${_runpath}" \
@@ -572,9 +581,12 @@ package_libvirt-openrc() {
 
 	install -Dm644 "${srcdir}/libvirtd.confd" "${pkgdir}/etc/conf.d/libvirtd"
 	install -Dm755 "${srcdir}/libvirtd.initd" "${pkgdir}/etc/init.d/libvirtd"
+	install -Dm755 "${srcdir}/virtlockd.initd" "${pkgdir}/etc/init.d/virtlockd"
 
-	sed -e "${_shebang}" \
-		-e "${_binpath}" \
-		-e "${_runpath}" \
-		-i "${pkgdir}/etc/init.d/libvirtd"
+	for f in ${pkgdir}/etc/init.d/*;do
+		sed -e "${_shebang}" \
+			-e "${_binpath}" \
+			-e "${_runpath}" \
+			-i $f
+	done
 }

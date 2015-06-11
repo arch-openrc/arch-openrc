@@ -27,7 +27,7 @@ source=("git-daemon.confd::${_gentoo_uri}/dev-vcs/git/files/git-daemon.confd"
 		"svn.confd::${_gentoo_uri}/dev-vcs/subversion/files/svnserve.confd"
 		"svn.initd::${_gentoo_uri}/dev-vcs/subversion/files/svnserve.initd3"
 		"postgresql.confd::${_gentoo_uri}/dev-db/postgresql/files/postgresql.confd"
-		"postgresql.initd::${_gentoo_uri}/dev-db/postgresql/files/postgresql.init"
+		"postgresql.initd::${_gentoo_uri}/dev-db/postgresql/files/postgresql.init-9.3"
 		"php-fpm.initd::${_gentoo_uri}/dev-lang/php/files/php-fpm-r4.init")
 sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '421e68201619bfbf7535d8b1a0030390b7ffab998e025f7cbd7e879c677c2819'
@@ -36,7 +36,7 @@ sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
             'b5bd2a3b09c5e84d385e5d873ad9e3061a6e05dcf59276d6a38a5b86f180eb77'
             '57c1ad0b14e8458024c713dd8cc2390023b95c27ba4cbd637333b1020f11f398'
-            '21825916cf5469151c1fbe546e5a76948dca53921c584882c1413b6bec3cb4f0'
+            '6a22c5d3bcacbe21f03663a318131fb692aa321abd4db36c3a013a7964685143'
             '37e34461babfb5881169f9729fbdde7d4aba533f123e2c480fe25ac3b863d3e7')
 
 pkgver() {
