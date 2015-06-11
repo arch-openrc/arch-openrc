@@ -73,7 +73,7 @@ pkgver() {
 
 package_cronie-openrc() {
 	pkgdesc="OpenRC cronie init script"
-	groups=('openrc' 'openrc-base' 'openrc-desktop')
+	groups=('openrc-base' 'openrc-desktop')
 	depends=('openrc-core' 'cronie')
 	provides=('openrc-cron')
 	conflicts=('fcron'
@@ -96,7 +96,7 @@ package_cronie-openrc() {
 
 package_dhcpcd-openrc() {
 	pkgdesc="OpenRC dhcpcd init script"
-	groups=('openrc' 'openrc-base' 'openrc-desktop')
+	groups=('openrc-base' 'openrc-desktop')
 	depends=('openrc-core' 'dhcpcd')
 	install=dhcpcd.install
 
@@ -110,7 +110,7 @@ package_dhcpcd-openrc() {
 
 package_dbus-openrc() {
 	pkgdesc="OpenRC dbus init script"
-	groups=('openrc' 'openrc-base' 'openrc-desktop')
+	groups=('openrc-base' 'openrc-desktop')
 	depends=('openrc-core' 'dbus')
 	install=dbus.install
 
