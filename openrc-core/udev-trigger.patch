@@ -1,0 +1,32 @@
+--- udev-trigger	2015-06-01 08:32:25.000000000 -0700
++++ /root/udev-trigger	2015-06-10 08:49:07.603653668 -0700
+@@ -33,12 +33,16 @@
+
+ 		services="${services} ${svc}"
+ 	done
+-	[ -n "${services}" ] && einfo "Device initiated services:${HILITE}${services}${NORMAL}"
++	if [ -z "${services}" ]; then
++	   einfo "No services were initiated by devices.${NORMAL}"
++	else
++	   einfo "Device initiated services:${HILITE}${services}${NORMAL}"
++	fi
+ }
+
+ start_post()
+ {
+-	if yesno "${udev_monitor}:-no}"; then
++	if yesno "${udev_monitor:-no}"; then
+ 		if yesno "${udev_monitor_keep_running:-no}"; then
+ 			ewarn "udevmonitor is still writing into ${udevmonitor_log}"
+ 		else
+@@ -46,8 +50,8 @@
+ 			start-stop-daemon --stop --pidfile "${udevmonitor_pid}" \
+ 				--exec /bin/udevadm
+ 		fi
+-		fi
+-		display_hotplugged_services
++	fi
++	display_hotplugged_services
+ }
+
+ # This is here because some software expects /dev/root to exist.
