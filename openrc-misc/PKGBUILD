@@ -417,7 +417,8 @@ package_salt-openrc() {
 	depends=('openrc-core' 'salt')
 	backup=('etc/conf.d/salt-master'
 		'etc/conf.d/salt-minion'
-		'etc/conf.d/salt-syncdic')
+		'etc/conf.d/salt-syncdic'
+		'etc/conf.d/salt-api')
 	install=salt.install
 
 	install -Dm644 "${srcdir}/salt-master.confd" "${pkgdir}/etc/conf.d/salt-master"

@@ -80,7 +80,7 @@ package_virtualgl-openrc() {
 
 package_bumblebee-openrc() {
 	pkgdesc="OpenRC bumblebee init script"
-	depends=('virtualgl-openrc' 'bumblebee')
+	depends=('virtualgl-openrc' 'bumblebee-pid')
 	groups=('openrc-video' 'openrc-mobile')
 	install=bumblebee.install
 	backup=('etc/conf.d/bumblebee')
