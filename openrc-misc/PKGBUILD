@@ -172,8 +172,8 @@ package_bitlbee-openrc() {
 	backup=('etc/conf.d/bitlbee')
 	install=bitlbee.install
 
-	install -Dm755 "${srcdir}/bitlbee.confd" "${pkgdir}/etc/conf.d/bitlbee"
-	install -Dm755 "${srcdir}/bitlbee.initd" "${pkgdir}/etc/init.d/bitlbee"
+	install -Dm644 "${srcdir}/bitlbee.confd" "${pkgdir}/etc/conf.d/bitlbee"
+	install -Dm644 "${srcdir}/bitlbee.initd" "${pkgdir}/etc/init.d/bitlbee"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -188,8 +188,8 @@ package_cpupower-openrc() {
 	backup=('etc/conf.d/cpupower')
 	install=cpupower.install
 
-	install -Dm755 "${srcdir}/cpupower.confd" "${pkgdir}/etc/conf.d/cpupower"
-	install -Dm755 "${srcdir}/cpupower.initd" "${pkgdir}/etc/init.d/cpupower"
+	install -Dm644 "${srcdir}/cpupower.confd" "${pkgdir}/etc/conf.d/cpupower"
+	install -Dm644 "${srcdir}/cpupower.initd" "${pkgdir}/etc/init.d/cpupower"
 
 	sed -e "${_shebang}" \
 		-i "${pkgdir}/etc/init.d/cpupower"
@@ -201,8 +201,8 @@ package_connman-openrc() {
 	backup=('etc/conf.d/connman')
 	install=connman.install
 
-	install -Dm755 "${srcdir}/connman.confd" "${pkgdir}/etc/conf.d/connman"
-	install -Dm755 "${srcdir}/connman.initd" "${pkgdir}/etc/init.d/connman"
+	install -Dm644 "${srcdir}/connman.confd" "${pkgdir}/etc/conf.d/connman"
+	install -Dm644 "${srcdir}/connman.initd" "${pkgdir}/etc/init.d/connman"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -215,7 +215,7 @@ package_cups-openrc() {
 	optdepends=('avahi-openrc: avahi initscripts')
 	install=cups.install
 
-	install -Dm755 "${srcdir}/cupsd.initd" "${pkgdir}/etc/init.d/cupsd"
+	install -Dm644 "${srcdir}/cupsd.initd" "${pkgdir}/etc/init.d/cupsd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -238,7 +238,7 @@ package_fcron-openrc() {
 		'systemd-sysvcompat')
 	install=fcron.install
 
-	install -Dm755 "${srcdir}/fcron.initd" "${pkgdir}/etc/init.d/fcron"
+	install -Dm644 "${srcdir}/fcron.initd" "${pkgdir}/etc/init.d/fcron"
 
     sed -e "${_shebang}" \
 		-e "${_runpath}" \
@@ -263,12 +263,12 @@ package_ntp-openrc() {
 		'etc/init.d/sntp')
 	install=ntp.install
 
-	install -Dm755 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"
-	install -Dm755 "${srcdir}/ntpd.initd" "${pkgdir}/etc/init.d/ntpd"
-	install -Dm755 "${srcdir}/ntp-client.confd" "${pkgdir}/etc/conf.d/ntp-client"
-	install -Dm755 "${srcdir}/ntp-client.initd" "${pkgdir}/etc/init.d/ntp-client"
-	install -Dm755 "${srcdir}/sntp.confd" "${pkgdir}/etc/conf.d/sntp"
-	install -Dm755 "${srcdir}/sntp.initd" "${pkgdir}/etc/init.d/sntp"
+	install -Dm644 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"
+	install -Dm644 "${srcdir}/ntpd.initd" "${pkgdir}/etc/init.d/ntpd"
+	install -Dm644 "${srcdir}/ntp-client.confd" "${pkgdir}/etc/conf.d/ntp-client"
+	install -Dm644 "${srcdir}/ntp-client.initd" "${pkgdir}/etc/init.d/ntp-client"
+	install -Dm644 "${srcdir}/sntp.confd" "${pkgdir}/etc/conf.d/sntp"
+	install -Dm644 "${srcdir}/sntp.initd" "${pkgdir}/etc/init.d/sntp"
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
@@ -284,8 +284,8 @@ package_rsyslog-openrc() {
 	backup=('etc/conf.d/rsyslog')
 	install=rsyslog.install
 
-	install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
-	install -Dm755 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
+	install -Dm644 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
+	install -Dm644 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -299,8 +299,8 @@ package_sane-openrc() {
 	backup=('etc/conf.d/saned')
 	install=sane.install
 
-	install -Dm755 "${srcdir}/saned.confd" "${pkgdir}/etc/conf.d/saned"
-	install -Dm755 "${srcdir}/saned.initd" "${pkgdir}/etc/init.d/saned"
+	install -Dm644 "${srcdir}/saned.confd" "${pkgdir}/etc/conf.d/saned"
+	install -Dm644 "${srcdir}/saned.initd" "${pkgdir}/etc/init.d/saned"
 
     sed -e "${_shebang}" \
 		-e "${_runpath}" \
@@ -314,7 +314,7 @@ package_fuse-openrc(){
 	depends=('openrc-core' 'fuse')
 	install=fuse.install
 
-	install -Dm755 "${srcdir}/fuse.initd" "${pkgdir}/etc/init.d/fuse"
+	install -Dm644 "${srcdir}/fuse.initd" "${pkgdir}/etc/init.d/fuse"
 
     sed -e "${_shebang}" \
 		-i "${pkgdir}/etc/init.d/fuse"
@@ -326,8 +326,8 @@ package_metalog-openrc() {
 	backup=('etc/conf.d/metalog')
 	install=metalog.install
 
-	install -Dm755 "${srcdir}/metalog.confd" "${pkgdir}/etc/conf.d/metalog"
-	install -Dm755 "${srcdir}/metalog.initd" "${pkgdir}/etc/init.d/metalog"
+	install -Dm644 "${srcdir}/metalog.confd" "${pkgdir}/etc/conf.d/metalog"
+	install -Dm644 "${srcdir}/metalog.initd" "${pkgdir}/etc/init.d/metalog"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -341,8 +341,8 @@ package_syslog-ng-openrc() {
 	backup=('etc/conf.d/syslog-ng')
 	install=syslog-ng.install
 
-	install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
-	install -Dm755 "${srcdir}/syslog-ng.initd" "${pkgdir}/etc/init.d/syslog-ng"
+	install -Dm644 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
+	install -Dm644 "${srcdir}/syslog-ng.initd" "${pkgdir}/etc/init.d/syslog-ng"
 
     sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -356,10 +356,10 @@ package_lm_sensors-openrc() {
 	#backup=('etc/conf.d/sensord')
 	install=lm_sensors.install
 
-	#install -Dm755 "${srcdir}/${_Csens}" "${pkgdir}/etc/conf.d/sensord"
-	install -Dm755 "${srcdir}/sensord.initd" "${pkgdir}/etc/init.d/sensord"
-	install -Dm755 "${srcdir}/fancontrol.initd" "${pkgdir}/etc/init.d/fancontrol"
-	install -Dm755 "${srcdir}/lm_sensors.initd" "${pkgdir}/etc/init.d/lm_sensors"
+	#install -Dm644 "${srcdir}/${_Csens}" "${pkgdir}/etc/conf.d/sensord"
+	install -Dm644 "${srcdir}/sensord.initd" "${pkgdir}/etc/init.d/sensord"
+	install -Dm644 "${srcdir}/fancontrol.initd" "${pkgdir}/etc/init.d/fancontrol"
+	install -Dm644 "${srcdir}/lm_sensors.initd" "${pkgdir}/etc/init.d/lm_sensors"
 
 	for f in ${pkgdir}/etc/init.d/*; do
 		sed -e "${_shebang}" \
@@ -376,13 +376,13 @@ package_lirc-utils-openrc() {
 		'etc/conf.d/irexec')
 	install=lirc-utils.install
 
-	install -Dm755 "${srcdir}/lircd.confd" "${pkgdir}/etc/conf.d/lircd"
-	install -Dm755 "${srcdir}/lircd.initd" "${pkgdir}/etc/init.d/lircd"
+	install -Dm644 "${srcdir}/lircd.confd" "${pkgdir}/etc/conf.d/lircd"
+	install -Dm644 "${srcdir}/lircd.initd" "${pkgdir}/etc/init.d/lircd"
 
-	install -Dm755 "${srcdir}/irexec.confd" "${pkgdir}/etc/conf.d/irexec"
-	install -Dm755 "${srcdir}/irexec.initd" "${pkgdir}/etc/init.d/irexec"
+	install -Dm644 "${srcdir}/irexec.confd" "${pkgdir}/etc/conf.d/irexec"
+	install -Dm644 "${srcdir}/irexec.initd" "${pkgdir}/etc/init.d/irexec"
 
-	install -Dm755 "${srcdir}/lircmd.initd" "${pkgdir}/etc/init.d/lircmd"
+	install -Dm644 "${srcdir}/lircmd.initd" "${pkgdir}/etc/init.d/lircmd"
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
@@ -398,8 +398,8 @@ package_haveged-openrc() {
 	backup=('etc/conf.d/haveged')
 	install=haveged.install
 
-	install -Dm755 "${srcdir}/haveged.confd" "${pkgdir}/etc/conf.d/haveged"
-	install -Dm755 "${srcdir}/haveged.initd" "${pkgdir}/etc/init.d/haveged"
+	install -Dm644 "${srcdir}/haveged.confd" "${pkgdir}/etc/conf.d/haveged"
+	install -Dm644 "${srcdir}/haveged.initd" "${pkgdir}/etc/init.d/haveged"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -414,14 +414,14 @@ package_salt-openrc() {
 		'etc/conf.d/salt-syncdic')
 	install=salt.install
 
-	install -Dm755 "${srcdir}/salt-master.confd" "${pkgdir}/etc/conf.d/salt-master"
-	install -Dm755 "${srcdir}/salt-master.initd" "${pkgdir}/etc/init.d/salt-master"
+	install -Dm644 "${srcdir}/salt-master.confd" "${pkgdir}/etc/conf.d/salt-master"
+	install -Dm644 "${srcdir}/salt-master.initd" "${pkgdir}/etc/init.d/salt-master"
 
-	install -Dm755 "${srcdir}/salt-minion.confd" "${pkgdir}/etc/conf.d/salt-minion"
-	install -Dm755 "${srcdir}/salt-minion.initd" "${pkgdir}/etc/init.d/salt-minion"
+	install -Dm644 "${srcdir}/salt-minion.confd" "${pkgdir}/etc/conf.d/salt-minion"
+	install -Dm644 "${srcdir}/salt-minion.initd" "${pkgdir}/etc/init.d/salt-minion"
 
-	install -Dm755 "${srcdir}/salt-syndic.confd" "${pkgdir}/etc/conf.d/salt-syncdic"
-	install -Dm755 "${srcdir}/salt-syndic.initd" "${pkgdir}/etc/init.d/salt-syncdic"
+	install -Dm644 "${srcdir}/salt-syndic.confd" "${pkgdir}/etc/conf.d/salt-syncdic"
+	install -Dm644 "${srcdir}/salt-syndic.initd" "${pkgdir}/etc/init.d/salt-syncdic"
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
@@ -435,7 +435,7 @@ package_mpd-openrc(){
 	depends=('openrc-core' 'mpd')
 	install=mpd.install
 
-	install -Dm755 "${srcdir}/mpd.initd" "${pkgdir}/etc/init.d/mpd"
+	install -Dm644 "${srcdir}/mpd.initd" "${pkgdir}/etc/init.d/mpd"
 
 	sed -e "${_shebang}" \
 		-i "${pkgdir}/etc/init.d/mpd"
@@ -447,8 +447,8 @@ package_hdparm-openrc() {
 	backup=('etc/conf.d/hdparm')
 	install=hdparm.install
 
-	install -Dm755 "${srcdir}/hdparm.confd" "${pkgdir}/etc/conf.d/hdparm"
-	install -Dm755 "${srcdir}/hdparm.initd" "${pkgdir}/etc/init.d/hdparm"
+	install -Dm644 "${srcdir}/hdparm.confd" "${pkgdir}/etc/conf.d/hdparm"
+	install -Dm644 "${srcdir}/hdparm.initd" "${pkgdir}/etc/init.d/hdparm"
 
 	sed -e "${_shebang}" \
 		-i "${pkgdir}/etc/init.d/hdparm"
@@ -459,7 +459,7 @@ package_thermald-openrc() {
 	depends=('dbus-openrc' 'thermald')
 	install=thermald.install
 
-	install -Dm755 "${srcdir}/thermald.initd" "${pkgdir}/etc/init.d/thermald"
+	install -Dm644 "${srcdir}/thermald.initd" "${pkgdir}/etc/init.d/thermald"
 }
 
 package_xe-guest-utilities-openrc() {
@@ -467,7 +467,7 @@ package_xe-guest-utilities-openrc() {
 	depends=('openrc-core' 'xe-guest-utilities')
 	install=xe-guest-utilities.install
 
-	install -Dm755 "${srcdir}/xe-daemon.initd" "${pkgdir}/etc/init.d/xe-daemon"
+	install -Dm644 "${srcdir}/xe-daemon.initd" "${pkgdir}/etc/init.d/xe-daemon"
 
 	sed -e ${_shebang} \
 		-e ${_runpath} \
@@ -480,7 +480,7 @@ package_virtualbox-guest-utils-openrc() {
 	depends=('openrc-core' 'virtualbox-guest-utils')
 	install=virtualbox-guest-additions.install
 
-	install -Dm755 "${srcdir}/vboxservice.initd" "${pkgdir}/etc/init.d/vboxservice"
+	install -Dm644 "${srcdir}/vboxservice.initd" "${pkgdir}/etc/init.d/vboxservice"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -495,7 +495,7 @@ package_zfs-openrc() {
 	depends=('openrc-core' 'zfs-utils')
 	install=zfs.install
 
-	install -Dm755 "${srcdir}/zfs.initd" "${pkgdir}/etc/init.d/zfs"
+	install -Dm644 "${srcdir}/zfs.initd" "${pkgdir}/etc/init.d/zfs"
 }
 
 package_clamav-openrc() {
@@ -504,8 +504,8 @@ package_clamav-openrc() {
 	backup=('etc/conf.d/clamd')
 	install=clamav.install
 
-	install -Dm755 "${srcdir}/clamd.confd" "${pkgdir}/etc/conf.d/clamd"
-	install -Dm755 "${srcdir}/clamd.initd" "${pkgdir}/etc/init.d/clamd"
+	install -Dm644 "${srcdir}/clamd.confd" "${pkgdir}/etc/conf.d/clamd"
+	install -Dm644 "${srcdir}/clamd.initd" "${pkgdir}/etc/init.d/clamd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -518,10 +518,10 @@ package_networkmanager-openrc() {
 	backup=('etc/conf.d/NetworkManager')
 	install=networkmanager.install
 
-	install -Dm755 "${srcdir}/NetworkManager.confd" "${pkgdir}/etc/conf.d/NetworkManager"
-	install -Dm755 "${srcdir}/NetworkManager.initd" "${pkgdir}/etc/init.d/NetworkManager"
+	install -Dm644 "${srcdir}/NetworkManager.confd" "${pkgdir}/etc/conf.d/NetworkManager"
+	install -Dm644 "${srcdir}/NetworkManager.initd" "${pkgdir}/etc/init.d/NetworkManager"
 
-	install -Dm755 "${srcdir}/10-openrc-status" "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
+	install -Dm644 "${srcdir}/10-openrc-status" "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
 
 	sed -e 's|@EPREFIX@/sbin|/usr/bin|' \
 		-e 's|@EPREFIX@/usr/sbin|/usr/sbin|' \
@@ -540,8 +540,8 @@ package_boinc-openrc() {
 	backup=('etc/conf.d/boinc')
 	install=boinc.install
 
-	install -Dm755 "${srcdir}/boinc.initd" "${pkgdir}/etc/init.d/boinc"
-	install -Dm755 "${srcdir}/boinc.confd" "${pkgdir}/etc/conf.d/boinc"
+	install -Dm644 "${srcdir}/boinc.initd" "${pkgdir}/etc/init.d/boinc"
+	install -Dm644 "${srcdir}/boinc.confd" "${pkgdir}/etc/conf.d/boinc"
 
 	sed -e "${_shebang}" \
 		-i "${pkgdir}/etc/init.d/boinc"
@@ -553,8 +553,8 @@ package_at-openrc() {
 	backup=('etc/conf.d/atd')
 	install=at.install
 
-	install -Dm755 "${srcdir}/atd.initd" "${pkgdir}/etc/init.d/atd"
-	install -Dm755 "${srcdir}/atd.confd" "${pkgdir}/etc/conf.d/atd"
+	install -Dm644 "${srcdir}/atd.initd" "${pkgdir}/etc/init.d/atd"
+	install -Dm644 "${srcdir}/atd.confd" "${pkgdir}/etc/conf.d/atd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -570,8 +570,8 @@ package_libvirt-openrc() {
 	backup=('etc/conf.d/libvirtd')
 	install=libvirt.install
 
-	install -Dm755 "${srcdir}/libvirtd.initd" "${pkgdir}/etc/init.d/libvirtd"
-	install -Dm755 "${srcdir}/libvirtd.confd" "${pkgdir}/etc/conf.d/libvirtd"
+	install -Dm644 "${srcdir}/libvirtd.initd" "${pkgdir}/etc/init.d/libvirtd"
+	install -Dm644 "${srcdir}/libvirtd.confd" "${pkgdir}/etc/conf.d/libvirtd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \

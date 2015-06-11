@@ -76,8 +76,8 @@ package_acpid-openrc() {
 	backup=('etc/conf.d/acpid')
 	install=acpid.install
 
-	install -Dm755 "${srcdir}/acpid.confd" "${pkgdir}/etc/conf.d/acpid"
-	install -Dm755 "${srcdir}/acpid.initd" "${pkgdir}/etc/init.d/acpid"
+	install -Dm644 "${srcdir}/acpid.confd" "${pkgdir}/etc/conf.d/acpid"
+	install -Dm644 "${srcdir}/acpid.initd" "${pkgdir}/etc/init.d/acpid"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -90,8 +90,8 @@ package_alsa-utils-openrc() {
 	backup=('etc/conf.d/alsasound')
 	install=alsa-utils.install
 
-	install -Dm755 "${srcdir}/alsasound.confd" "${pkgdir}/etc/conf.d/alsasound"
-	install -Dm755 "${srcdir}/alsasound.initd" "${pkgdir}/etc/init.d/alsasound"
+	install -Dm644 "${srcdir}/alsasound.confd" "${pkgdir}/etc/conf.d/alsasound"
+	install -Dm644 "${srcdir}/alsasound.initd" "${pkgdir}/etc/init.d/alsasound"
 
 	sed -e "${_shebang}" \
 		-i "${pkgdir}/etc/init.d/alsasound"
@@ -102,8 +102,8 @@ package_avahi-openrc() {
 	depends=('avahi' 'dbus-openrc')
 	install=avahi.install
 
-	install -Dm755 "${srcdir}/avahi-daemon.initd" "${pkgdir}/etc/init.d/avahi-daemon"
-	install -Dm755 "${srcdir}/avahi-dnsconfd.initd" "${pkgdir}/etc/init.d/avahi-dnsconfd"
+	install -Dm644 "${srcdir}/avahi-daemon.initd" "${pkgdir}/etc/init.d/avahi-daemon"
+	install -Dm644 "${srcdir}/avahi-dnsconfd.initd" "${pkgdir}/etc/init.d/avahi-dnsconfd"
 }
 
 package_consolekit-openrc() {
@@ -111,7 +111,7 @@ package_consolekit-openrc() {
 	depends=('consolekit' 'dbus-openrc')
 	install=consolekit.install
 
-	install -Dm755 "$srcdir/consolekit.initd" "$pkgdir/etc/init.d/consolekit"
+	install -Dm644 "$srcdir/consolekit.initd" "$pkgdir/etc/init.d/consolekit"
 
 	sed -e "${_shebang}" \
 		-e "${_runpath}" \
@@ -127,10 +127,10 @@ package_displaymanager-openrc() {
 	backup=('etc/conf.d/xdm')
 	install=displaymanager.install
 
-	install -Dm755 "${srcdir}/xdm.confd" "${pkgdir}/etc/conf.d/xdm"
-	install -Dm755 "${srcdir}/xdm.initd" "${pkgdir}/etc/init.d/xdm"
-	install -Dm755 "${srcdir}/xdm-setup.initd" "${pkgdir}/etc/init.d/xdm-setup"
-	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
+	install -Dm644 "${srcdir}/xdm.confd" "${pkgdir}/etc/conf.d/xdm"
+	install -Dm644 "${srcdir}/xdm.initd" "${pkgdir}/etc/init.d/xdm"
+	install -Dm644 "${srcdir}/xdm-setup.initd" "${pkgdir}/etc/init.d/xdm-setup"
+	install -Dm644 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
 
     sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -148,8 +148,8 @@ package_gpm-openrc() {
 	backup=('etc/conf.d/gpm')
 	install=gpm.install
 
-	install -Dm755 "${srcdir}/gpm.confd" "${pkgdir}/etc/conf.d/gpm"
-	install -Dm755 "${srcdir}/gpm.initd" "${pkgdir}/etc/init.d/gpm"
+	install -Dm644 "${srcdir}/gpm.confd" "${pkgdir}/etc/conf.d/gpm"
+	install -Dm644 "${srcdir}/gpm.initd" "${pkgdir}/etc/init.d/gpm"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \
@@ -164,9 +164,9 @@ package_bluez-openrc() {
 	backup=('etc/conf.d/rfcomm')
 	install=bluez.install
 
-	install -Dm755 "${srcdir}/rfcomm.confd" "${pkgdir}/etc/conf.d/rfcomm"
-	install -Dm755 "${srcdir}/rfcomm.initd" "${pkgdir}/etc/init.d/rfcomm"
-	install -Dm755 "${srcdir}/bluetooth.initd" "${pkgdir}/etc/init.d/bluetooth"
+	install -Dm644 "${srcdir}/rfcomm.confd" "${pkgdir}/etc/conf.d/rfcomm"
+	install -Dm644 "${srcdir}/rfcomm.initd" "${pkgdir}/etc/init.d/rfcomm"
+	install -Dm644 "${srcdir}/bluetooth.initd" "${pkgdir}/etc/init.d/bluetooth"
 
 	sed -e "${_shebang}" \
 		-e 's|/usr/sbin|/usr/lib/bluetooth|g' \
@@ -184,9 +184,9 @@ package_wpa_supplicant-openrc() {
 	backup=('etc/conf.d/wpa_supplicant')
 	install=wpa_supplicant.install
 
-	install -Dm755 "${srcdir}/wpa_supplicant.confd" "${pkgdir}/etc/conf.d/wpa_supplicant"
-	install -Dm755 "${srcdir}/wpa_supplicant.initd" "${pkgdir}/etc/init.d/wpa_supplicant"
-	install -Dm755 "${srcdir}/wpa_cli.sh" "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
+	install -Dm644 "${srcdir}/wpa_supplicant.confd" "${pkgdir}/etc/conf.d/wpa_supplicant"
+	install -Dm644 "${srcdir}/wpa_supplicant.initd" "${pkgdir}/etc/init.d/wpa_supplicant"
+	install -Dm644 "${srcdir}/wpa_cli.sh" "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath}" \

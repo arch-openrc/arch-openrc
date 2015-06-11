@@ -131,7 +131,7 @@ package() {
 
 	# kmod-static-nodes
 	cd "${srcdir}/${_pkgname}-${pkgver}"
-	install -Dm755 "${srcdir}/kmod-static-nodes" "${pkgdir}/etc/init.d/kmod-static-nodes"
+	install -Dm644 "${srcdir}/kmod-static-nodes" "${pkgdir}/etc/init.d/kmod-static-nodes"
 	ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
 
 	cd ${srcdir}/${_genf}-${_gver}
