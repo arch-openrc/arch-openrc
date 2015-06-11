@@ -1,12 +1,12 @@
 # $Id$
 # Contributor: Maxime Gauduin <alucryd@archlinux.org>
 # Contributor: Marc Schulte <bomba@nerdstube.de>
-# Contributor: Aaditya Bagga <aaditya_gnulinux@zoho.com>
-# Maintainer: 
+# Maintainer: Aaditya Bagga <aaditya_gnulinux@zoho.com>
 
 pkgname=('tlp-pmu')
+_pkgname=tlp
 pkgver=0.7
-pkgrel=2.1
+pkgrel=2.2
 pkgdesc='Advanced Power Management for Linux, with pm-utils support'
 depends=('hdparm' 'iw' 'pciutils' 'rfkill' 'usbutils' 'util-linux' 'pm-utils')
 optdepends=('acpi_call: Sandy Bridge and newer ThinkPad battery functions'
@@ -16,8 +16,9 @@ optdepends=('acpi_call: Sandy Bridge and newer ThinkPad battery functions'
             'tp_smapi: ThinkPad battery functions'
             'x86_energy_perf_policy: Set energy versus performance policy on x86 processors')
 conflicts=('laptop-mode-tools' 'tlp')
-provides=('tlp')
+provides=($_pkgname)
 backup=('etc/default/tlp')
+install=("$pkgname.install")
 arch=('any')
 url='http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html'
 license=('GPL2' 'GPL3')
@@ -38,10 +39,9 @@ package() {
 
   export TLP_SBIN='/usr/bin'
   export TLP_ULIB='/usr/lib/udev'
-  #export TLP_SYSD='/usr/lib/systemd/system'
-  #export TLP_NO_INIT='1'
-  #export TLP_NO_PMUTILS='1'
-  #export TLP_WITH_SYSTEMD='1'
+  export TLP_NO_INIT='0'
+  export TLP_NO_PMUTILS='0'
+  export TLP_WITH_SYSTEMD='0'
 
   make DESTDIR="${pkgdir}" install-tlp
 

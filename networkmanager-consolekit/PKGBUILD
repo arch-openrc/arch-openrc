@@ -104,4 +104,7 @@ package() {
 	install -m 644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/usr/share/polkit-1/rules.d/
 
 	#chown 102 $pkgdir/usr/share/polkit-1/rules.d/{01-org.freedesktop.ModemManager1.rules,01-org.freedesktop.NetworkManager.settings.modify.system.rules}
+
+	# Fix for inactive polkit session to allow changing nm state
+	sed 's|<allow_inactive>no</allow_inactive>|<allow_inactive>yes</allow_inactive>|g' -i "${pkgdir}/usr/share/polkit-1/actions/org.freedesktop.NetworkManager.policy"
 }
