@@ -2,14 +2,6 @@
 
 _gentoo_uri=http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86
 
-_Cbumb=bumblebee.confd
-_Ibumb=bumblebee.initd
-_Inv=nvidia-smi.init
-_Iati=atieventsd.init
-_Cvgl=vgl.confd-r1
-_Ivgl=vgl.initd-r2
-_Svgl=vgl-helper.sh
-
 pkgbase=openrc-video
 pkgname=('nvidia-utils-openrc'
 	'catalyst-utils-openrc'
@@ -20,14 +12,14 @@ pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL')
-groups=('openrc' 'openrc-video')
-source=("${_gentoo_uri}/x11-drivers/nvidia-drivers/files/${_Inv}"
-	"${_gentoo_uri}/x11-drivers/ati-drivers/files/${_Iati}"
-	"${_gentoo_uri}/x11-misc/virtualgl/files/${_Cvgl}"
-	"${_gentoo_uri}/x11-misc/virtualgl/files/${_Ivgl}"
-	"${_gentoo_uri}/x11-misc/virtualgl/files/${_Svgl}"
-	"${_gentoo_uri}/x11-misc/bumblebee/files/${_Cbumb}"
-	"${_gentoo_uri}/x11-misc/bumblebee/files/${_Ibumb}")
+groups=('openrc-video')
+source=("nvidia-smi.initd::${_gentoo_uri}/x11-drivers/nvidia-drivers/files/nvidia-smi.init"
+	"atieventsd.initd::${_gentoo_uri}/x11-drivers/ati-drivers/files/atieventsd.init"
+	"vgl.confd::${_gentoo_uri}/x11-misc/virtualgl/files/vgl.confd-r1"
+	"vgl.initd::${_gentoo_uri}/x11-misc/virtualgl/files/vgl.initd-r2"
+	"${_gentoo_uri}/x11-misc/virtualgl/files/vgl-helper.sh"
+	"bumblebee.confd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.confd"
+	"bumblebee.initd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.initd")
 sha256sums=('c996033b81cc1512d8370d62575a0ea0c694f6e1b91cc948b4529625130601a7'
             '20010ebc5cb286149f3c4c9c099b6470463ccdb8fd47cea054b783dc2ad1fff3'
             '500957c2736f761e763f75e9c3a09bb4f53bcde8a3cd38dd5ec6b34777737fd2'
@@ -49,7 +41,7 @@ package_nvidia-utils-openrc() {
 
     local _binpath='s|/opt/bin|/usr/bin|g'
 
-    install -Dm755 "${srcdir}/${_Inv}" "${pkgdir}"/etc/init.d/nvidia-smi
+    install -Dm755 "${srcdir}/nvidia-smi.initd" "${pkgdir}"/etc/init.d/nvidia-smi
     sed -e ${_shebang} -e ${_binpath} -i "${pkgdir}"/etc/init.d/nvidia-smi
 }
 
@@ -58,10 +50,10 @@ package_catalyst-utils-openrc() {
     depends=('catalyst-utils' 'acpid-openrc')
     install=catalyst-utils.install
     backup=('etc/conf.d/atieventsd')
-    
+
     local _binpath='s|/opt/sbin|/usr/bin|g'
 
-    install -Dm755 "${srcdir}/${_Iati}" "${pkgdir}"/etc/init.d/atieventsd
+    install -Dm755 "${srcdir}/atieventsd.initd" "${pkgdir}"/etc/init.d/atieventsd
     sed -e ${_shebang} -e ${_binpath} -i "${pkgdir}"/etc/init.d/atieventsd
     install -d "${pkgdir}"/etc/conf.d
     echo 'ATIEVENTSDOPTS=""' > "${pkgdir}"/etc/conf.d/atieventsd
@@ -73,10 +65,10 @@ package_virtualgl-openrc() {
     install=virtualgl.install
     backup=('etc/conf.d/vgl')
 
-    install -Dm755 "${srcdir}/${_Cvgl}" "${pkgdir}"/etc/conf.d/vgl
-    install -Dm755 "${srcdir}/${_Ivgl}" "${pkgdir}"/etc/init.d/vgl
+    install -Dm755 "${srcdir}/vgl.confd" "${pkgdir}"/etc/conf.d/vgl
+    install -Dm755 "${srcdir}/vgl.initd" "${pkgdir}"/etc/init.d/vgl
     sed -e ${_shebang} -i "${pkgdir}"/etc/init.d/vgl
-    install -Dm755 "${srcdir}/${_Svgl}" "${pkgdir}"/usr/lib/${_Svgl}
+    install -Dm755 "${srcdir}/vgl-helper.sh" "${pkgdir}"/usr/lib/vgl-helper.sh
     install -d "${pkgdir}"/var/lib/VirtualGL
 }
 
@@ -86,10 +78,10 @@ package_bumblebee-openrc() {
     groups=('openrc' 'openrc-video' 'openrc-mobile')
     install=bumblebee.install
     backup=('etc/conf.d/bumblebee')
-    
+
     local _binpath='s|/usr/sbin|/usr/bin|g'
     local _runpath='s|/var/run|/run|g'
-    install -Dm755 "${srcdir}/${_Cbumb}" "${pkgdir}"/etc/conf.d/bumblebee
-    install -Dm755 "${srcdir}/${_Ibumb}" "${pkgdir}"/etc/init.d/bumblebee
+    install -Dm755 "${srcdir}/bumblebee.confd" "${pkgdir}"/etc/conf.d/bumblebee
+    install -Dm755 "${srcdir}/bumblebee.initd" "${pkgdir}"/etc/init.d/bumblebee
     sed -e ${_shebang} -e ${_binpath} -e ${_runpath} -i "${pkgdir}"/etc/init.d/bumblebee
 }
