@@ -4,10 +4,10 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=openrc-devel
 pkgname=('git-openrc'
-	'mysql-openrc'
-	'postgresql-openrc'
-	'subversion-openrc'
-	'php-fpm-openrc')
+		'mysql-openrc'
+		'postgresql-openrc'
+		'subversion-openrc'
+		'php-fpm-openrc')
 pkgver=20150611
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -16,19 +16,19 @@ url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
 groups=('openrc-devel')
 conflicts=('openrc'
-	  'openrc-git'
-	  'openrc-arch-services-git'
-	  'initscripts'
-	  'systemd-sysvcompat')
+		'openrc-git'
+		'openrc-arch-services-git'
+		'initscripts'
+		'systemd-sysvcompat')
 source=("git-daemon.confd::${_gentoo_uri}/dev-vcs/git/files/git-daemon.confd"
-	"git-daemon.initd::${_gentoo_uri}/dev-vcs/git/files/git-daemon-r1.initd"
-	"mysql.confd::${_gentoo_uri}/dev-db/mysql-init-scripts/files/conf.d-2.0"
-	"mysql.initd::${_gentoo_uri}/dev-db/mysql-init-scripts/files/init.d-2.0"
-	"svn.confd::${_gentoo_uri}/dev-vcs/subversion/files/svnserve.confd"
-	"svn.initd::${_gentoo_uri}/dev-vcs/subversion/files/svnserve.initd3"
-	"postgresql.confd::${_gentoo_uri}/dev-db/postgresql/files/postgresql.confd"
-	"postgresql.initd::${_gentoo_uri}/dev-db/postgresql/files/postgresql.init"
-	"php-fpm.initd::${_gentoo_uri}/dev-lang/php/files/php-fpm-r4.init")
+		"git-daemon.initd::${_gentoo_uri}/dev-vcs/git/files/git-daemon-r1.initd"
+		"mysql.confd::${_gentoo_uri}/dev-db/mysql-init-scripts/files/conf.d-2.0"
+		"mysql.initd::${_gentoo_uri}/dev-db/mysql-init-scripts/files/init.d-2.0"
+		"svn.confd::${_gentoo_uri}/dev-vcs/subversion/files/svnserve.confd"
+		"svn.initd::${_gentoo_uri}/dev-vcs/subversion/files/svnserve.initd3"
+		"postgresql.confd::${_gentoo_uri}/dev-db/postgresql/files/postgresql.confd"
+		"postgresql.initd::${_gentoo_uri}/dev-db/postgresql/files/postgresql.init"
+		"php-fpm.initd::${_gentoo_uri}/dev-lang/php/files/php-fpm-r4.init")
 sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '421e68201619bfbf7535d8b1a0030390b7ffab998e025f7cbd7e879c677c2819'
             '6cd8551b8ac0dded54f42c2cc9cd55fbc4776d1a541e13d7d571cefd906cb3f4'
@@ -40,7 +40,7 @@ sha256sums=('9bf02170dcf73e930a992adf44326ed7c27159d41a503ca4d9371861ee5030c9'
             '37e34461babfb5881169f9729fbdde7d4aba533f123e2c480fe25ac3b863d3e7')
 
 pkgver() {
-  date +%Y%m%d
+	date +%Y%m%d
 }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
@@ -48,85 +48,89 @@ _runpath='s|/var/run|/run|g'
 _binpath='s|/usr/sbin|/usr/bin|g'
 
 package_git-openrc() {
-  pkgdesc="OpenRC git-daemon init script"
-  depends=('git' 'openrc-core')
-  backup=('etc/conf.d/git-daemon')
-  install=git.install
+	pkgdesc="OpenRC git-daemon init script"
+	depends=('git' 'openrc-core')
+	backup=('etc/conf.d/git-daemon')
+	install=git.install
 
-  install -Dm755 "${srcdir}/git-daemon.confd" "${pkgdir}/etc/conf.d/git-daemon"
-  install -Dm755 "${srcdir}/git-daemon.initd" "${pkgdir}/etc/init.d/git-daemon"
+	install -Dm755 "${srcdir}/git-daemon.confd" "${pkgdir}/etc/conf.d/git-daemon"
+	install -Dm755 "${srcdir}/git-daemon.initd" "${pkgdir}/etc/init.d/git-daemon"
 
-  local _p1='s|/var/git|/srv/git|'
-  sed -e "${_p1}" -i "${pkgdir}/etc/conf.d/git-daemon"
-  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/git-daemon"
+	sed -e 's|/var/git|/srv/git|' \
+		-i "${pkgdir}/etc/conf.d/git-daemon"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-i "${pkgdir}/etc/init.d/git-daemon"
 }
 
 package_mysql-openrc() {
-  pkgdesc="OpenRC mysql init script"
-  depends=('mysql' 'openrc-core')
-  optdepends=('bind-openrc: bind initscript')
-  backup=('etc/conf.d/mysql')
-  install=mysql.install
+	pkgdesc="OpenRC mysql init script"
+	depends=('mysql' 'openrc-core')
+	optdepends=('bind-openrc: bind initscript')
+	backup=('etc/conf.d/mysql')
+	install=mysql.install
 
-  install -Dm755 "${srcdir}/mysql.confd" "${pkgdir}/etc/conf.d/mysql"
-  install -Dm755 "${srcdir}/mysql.initd" "${pkgdir}/etc/init.d/mysql"
+	install -Dm755 "${srcdir}/mysql.confd" "${pkgdir}/etc/conf.d/mysql"
+	install -Dm755 "${srcdir}/mysql.initd" "${pkgdir}/etc/init.d/mysql"
 
-  local _p1='s|/sbin/mysqld|/bin/mysqld|g'
-  sed -e "${_shebang}" -e "${_p1}" -i "${pkgdir}/etc/init.d/mysql"
+	sed -e "${_shebang}" \
+		-e 's|/sbin/mysqld|/bin/mysqld|g' \
+		-i "${pkgdir}/etc/init.d/mysql"
 }
 
 package_php-fpm-openrc() {
-  pkgdesc="OpenRC php-fpm init script"
-  depends=('php-fpm' 'openrc-core')
-  optdepends=('apache-openrc: apache initscript'
-	      'lighttp-openrc: lighttp initscript'
-	      'nginx-openrc: nginx initscript')
-  install=php-fpm.install
+	pkgdesc="OpenRC php-fpm init script"
+	depends=('php-fpm' 'openrc-core')
+	optdepends=('apache-openrc: apache initscript'
+			'lighttp-openrc: lighttp initscript'
+			'nginx-openrc: nginx initscript')
+	install=php-fpm.install
 
-  install -Dm755 "${srcdir}/php-fpm.initd" "${pkgdir}/etc/init.d/php-fpm"
+	install -Dm755 "${srcdir}/php-fpm.initd" "${pkgdir}/etc/init.d/php-fpm"
 
-  local _p1='s|/lib/${PHPSLOT}||g'
-  local _p2='s|/etc/php/fpm-${PHPSLOT}|/etc/php|'
-  local _p3='s|/run/php-fpm-${PHPSLOT}|/run/php-fpm|'
-  local _p4='s|PHPSLOT=${SVCNAME#php-fpm-}||'
-  local _p5='s|^.*${PHPSLOT}.*||'
-  sed -e "${_shebang}" \
-      -e "${_runpath}" \
-      -e "${_p1}" \
-      -e "${_p2}" \
-      -e "${_p3}" \
-      -e "${_p4}" \
-      -e "${_p5}" \
-      -i "${pkgdir}/etc/init.d/php-fpm"
+	sed -e "${_shebang}" \
+		-e "${_runpath}" \
+		-e 's|/lib/${PHPSLOT}||g' \
+		-e 's|/etc/php/fpm-${PHPSLOT}|/etc/php|' \
+		-e 's|/run/php-fpm-${PHPSLOT}|/run/php-fpm|' \
+		-e 's|PHPSLOT=${SVCNAME#php-fpm-}||' \
+		-e 's|^.*${PHPSLOT}.*||' \
+		-i "${pkgdir}/etc/init.d/php-fpm"
 }
 
 package_postgresql-openrc() {
-  pkgdesc="OpenRC postgresql init script"
-  depends=('postgresql' 'openrc-core')
-  backup=('etc/conf.d/postgresql')
-  install=postgresql.install
+	pkgdesc="OpenRC postgresql init script"
+	depends=('postgresql' 'openrc-core')
+	backup=('etc/conf.d/postgresql')
+	install=postgresql.install
 
-  install -Dm755 "${srcdir}/postgresql.confd" "${pkgdir}/etc/conf.d/postgresql"
-  install -Dm755 "${srcdir}/postgresql.initd" "${pkgdir}/etc/init.d/postgresql"
+	install -Dm755 "${srcdir}/postgresql.confd" "${pkgdir}/etc/conf.d/postgresql"
+	install -Dm755 "${srcdir}/postgresql.initd" "${pkgdir}/etc/init.d/postgresql"
 
-  local _p1='s|/@LIBDIR@/postgresql-@SLOT@||g'
-
-  sed -e "${_shebang}" -e "${_p1}" -i "${pkgdir}/etc/init.d/postgresql"
+	sed -e "${_shebang}" \
+		-e 's|/@LIBDIR@/postgresql-@SLOT@||g' \
+		-i "${pkgdir}/etc/init.d/postgresql"
 }
 
 package_subversion-openrc() {
-  pkgdesc="OpenRC svnserve init script"
-  depends=('subversion' 'openrc-core')
-  backup=('etc/conf.d/svn')
-  install=subversion.install
+	pkgdesc="OpenRC svnserve init script"
+	depends=('subversion' 'openrc-core')
+	backup=('etc/conf.d/svn')
+	install=subversion.install
 
-  install -Dm755 "${srcdir}/svn.confd" "${pkgdir}/etc/conf.d/svn"
-  install -Dm755 "${srcdir}/svn.initd" "${pkgdir}/etc/init.d/svn"
+	install -Dm755 "${srcdir}/svn.confd" "${pkgdir}/etc/conf.d/svn"
+	install -Dm755 "${srcdir}/svn.initd" "${pkgdir}/etc/init.d/svn"
 
-  local _p1='s|/var/svn|/srv/svn|g'
-  sed -e "${_p1}" -i ${pkgdir}/etc/conf.d/svn
-  local _p2='s|-apache|-http|g' \
-	_p3='s|/run/svnserve.pid|/run/svnserve/svnserve.pid|g' \
-	_p4='s/--make-pidfile//'
-  sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -e "${_p3}" -e "${_p4}" -i "${pkgdir}/etc/init.d/svn"
+	sed -e 's|/var/svn|/srv/svn|g' \
+		-i ${pkgdir}/etc/conf.d/svn
+		
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-e 's|/var/svn|/srv/svn|g' \
+		-e 's|-apache|-http|g' \
+		-e 's|/run/svnserve.pid|/run/svnserve/svnserve.pid|g' \
+		-e 's/--make-pidfile//' \
+		-i "${pkgdir}/etc/init.d/svn"
 }

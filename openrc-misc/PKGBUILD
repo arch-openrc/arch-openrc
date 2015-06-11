@@ -4,31 +4,31 @@ _gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
 
 pkgbase=openrc-misc
 pkgname=('cpupower-openrc'
-	'connman-openrc'
-	'fcron-openrc'
-	'fuse-openrc'
-	'metalog-openrc'
-	'rsyslog-openrc'
-	'sane-openrc'
-	'syslog-ng-openrc'
-	'lirc-utils-openrc'
-	'lm_sensors-openrc'
-	'ntp-openrc'
-	'cups-openrc'
-	'haveged-openrc'
-	'salt-openrc'
-	'mpd-openrc'
-	'hdparm-openrc'
-	'bitlbee-openrc'
-	'thermald-openrc'
-	'xe-guest-utilities-openrc'
-	'virtualbox-guest-utils-openrc'
-	'zfs-openrc'
-	'clamav-openrc'
-	'networkmanager-openrc'
-	'boinc-openrc'
-	'at-openrc'
-	'libvirt-openrc')
+		'connman-openrc'
+		'fcron-openrc'
+		'fuse-openrc'
+		'metalog-openrc'
+		'rsyslog-openrc'
+		'sane-openrc'
+		'syslog-ng-openrc'
+		'lirc-utils-openrc'
+		'lm_sensors-openrc'
+		'ntp-openrc'
+		'cups-openrc'
+		'haveged-openrc'
+		'salt-openrc'
+		'mpd-openrc'
+		'hdparm-openrc'
+		'bitlbee-openrc'
+		'thermald-openrc'
+		'xe-guest-utilities-openrc'
+		'virtualbox-guest-utils-openrc'
+		'zfs-openrc'
+		'clamav-openrc'
+		'networkmanager-openrc'
+		'boinc-openrc'
+		'at-openrc'
+		'libvirt-openrc')
 pkgver=20150611
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -37,68 +37,68 @@ url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
 groups=('openrc-misc')
 conflicts=('openrc'
-	'openrc-git'
-	'openrc-arch-services-git'
-	'initscripts'
-	'systemd-sysvcompat')
+		'openrc-git'
+		'openrc-arch-services-git'
+		'initscripts'
+		'systemd-sysvcompat')
 source=("fcron.initd::${_gentoo_uri}/sys-process/fcron/files/fcron.init.3"
-	"rsyslog.confd::${_gentoo_uri}/app-admin/rsyslog/files/8-stable/rsyslog.confd"
-	"rsyslog.initd::${_gentoo_uri}/app-admin/rsyslog/files/8-stable/rsyslog.initd"
-	"saned.confd::${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
-	"saned.initd::${_gentoo_uri}/media-gfx/sane-backends/files/saned.initd"
-	"fuse.initd::${_gentoo_uri}/sys-fs/fuse/files/fuse.init"
-	"metalog.confd::${_gentoo_uri}/app-admin/metalog/files/metalog.confd"
-	"metalog.initd::${_gentoo_uri}/app-admin/metalog/files/metalog.initd"
-	"syslog-ng.confd::${_gentoo_uri}/app-admin/syslog-ng/files/3.6/syslog-ng.confd"
-	"syslog-ng.initd::${_gentoo_uri}/app-admin/syslog-ng/files/3.6/syslog-ng.rc6"
-	"lircd.confd::${_gentoo_uri}/app-misc/lirc/files/lircd.conf.4"
-	"irexec.confd::${_gentoo_uri}/app-misc/lirc/files/irexec-confd"
-	"lircd.initd::${_gentoo_uri}/app-misc/lirc/files/lircd-0.8.6-r2"
-	"irexec.initd::${_gentoo_uri}/app-misc/lirc/files/irexec-initd-0.8.6-r2"
-	"lircmd.initd::${_gentoo_uri}/app-misc/lirc/files/lircmd"
-	"cpupower.confd::${_gentoo_uri}/sys-power/cpupower/files/conf.d-r2"
-	"cpupower.initd::${_gentoo_uri}/sys-power/cpupower/files/init.d-r4"
-	#"sensord.confd::${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-conf.d"
-	"sensord.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-4-init.d"
-	"fancontrol.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/fancontrol-init.d-2"
-	"lm_sensors.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/lm_sensors-3-init.d"
-	"ntpd.confd::${_gentoo_uri}/net-misc/ntp/files/ntpd.confd"
-	"ntp-client.confd::${_gentoo_uri}/net-misc/ntp/files/ntp-client.confd"
-	"sntp.confd::${_gentoo_uri}/net-misc/ntp/files/sntp.confd"
-	"ntpd.initd::${_gentoo_uri}/net-misc/ntp/files/ntpd.rc-r1"
-	"ntp-client.initd::${_gentoo_uri}/net-misc/ntp/files/ntp-client.rc"
-	"sntp.initd::${_gentoo_uri}/net-misc/ntp/files/sntp.rc"
-	"cupsd.initd::${_gentoo_uri}/net-print/cups/files/cupsd.init.d-r1"
-	"connman.confd::${_gentoo_uri}/net-misc/connman/files/connman.confd"
-	"connman.initd::${_gentoo_uri}/net-misc/connman/files/connman.initd2"
-	"haveged.confd::${_gentoo_uri}/sys-apps/haveged/files/haveged-conf.d"
-	"haveged.initd::${_gentoo_uri}/sys-apps/haveged/files/haveged-init.d.3"
-	"salt-master.confd::${_gentoo_uri}/app-admin/salt/files/master-confd-1"
-	"salt-master.initd::${_gentoo_uri}/app-admin/salt/files/master-initd-3"
-	"salt-minion.confd::${_gentoo_uri}/app-admin/salt/files/minion-confd-1"
-	"salt-minion.initd::${_gentoo_uri}/app-admin/salt/files/minion-initd-3"
-	"salt-syndic.confd::${_gentoo_uri}/app-admin/salt/files/syndic-confd-1"
-	"salt-syndic.initd::${_gentoo_uri}/app-admin/salt/files/syndic-initd-3"
-	"mpd.initd::${_gentoo_uri}/media-sound/mpd/files/mpd2.init"
-	"hdparm.confd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-conf.d.3"
-	"hdparm.initd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-init-8"
-	"bitlbee.confd::${_gentoo_uri}/net-im/bitlbee/files/bitlbee.confd"
-	"bitlbee.initd::${_gentoo_uri}/net-im/bitlbee/files/bitlbee.initd"
-	"xe-daemon.initd::${_gentoo_uri}/app-emulation/xe-guest-utilities/files/xe-daemon.initd"
-	"vboxservice.initd::${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
-	"zfs.initd"
-	"thermald.initd"
-	"clamd.confd::${_gentoo_uri}/app-antivirus/clamav/files/clamd.conf-r1"
-	"clamd.initd::${_gentoo_uri}/app-antivirus/clamav/files/clamd.initd-r6"
-	"NetworkManager.confd::${_gentoo_uri}/net-misc/networkmanager/files/conf.d.NetworkManager"
-	"NetworkManager.initd::${_gentoo_uri}/net-misc/networkmanager/files/init.d.NetworkManager"
-	"10-openrc-status::${_gentoo_uri}/net-misc/networkmanager/files/10-openrc-status-r4"
-	"boinc.confd::${_gentoo_uri}/sci-misc/boinc/files/boinc.conf"
-	"boinc.initd::${_gentoo_uri}/sci-misc/boinc/files/boinc.init"
-	"atd.confd::${_gentoo_uri}/sys-process/at/files/atd.confd"
-	"atd.initd::${_gentoo_uri}/sys-process/at/files/atd.rc8"
-	"libvirtd.confd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.confd-r4"
-	"libvirtd.initd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.init-r14")
+		"rsyslog.confd::${_gentoo_uri}/app-admin/rsyslog/files/8-stable/rsyslog.confd"
+		"rsyslog.initd::${_gentoo_uri}/app-admin/rsyslog/files/8-stable/rsyslog.initd"
+		"saned.confd::${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
+		"saned.initd::${_gentoo_uri}/media-gfx/sane-backends/files/saned.initd"
+		"fuse.initd::${_gentoo_uri}/sys-fs/fuse/files/fuse.init"
+		"metalog.confd::${_gentoo_uri}/app-admin/metalog/files/metalog.confd"
+		"metalog.initd::${_gentoo_uri}/app-admin/metalog/files/metalog.initd"
+		"syslog-ng.confd::${_gentoo_uri}/app-admin/syslog-ng/files/3.6/syslog-ng.confd"
+		"syslog-ng.initd::${_gentoo_uri}/app-admin/syslog-ng/files/3.6/syslog-ng.rc6"
+		"lircd.confd::${_gentoo_uri}/app-misc/lirc/files/lircd.conf.4"
+		"irexec.confd::${_gentoo_uri}/app-misc/lirc/files/irexec-confd"
+		"lircd.initd::${_gentoo_uri}/app-misc/lirc/files/lircd-0.8.6-r2"
+		"irexec.initd::${_gentoo_uri}/app-misc/lirc/files/irexec-initd-0.8.6-r2"
+		"lircmd.initd::${_gentoo_uri}/app-misc/lirc/files/lircmd"
+		"cpupower.confd::${_gentoo_uri}/sys-power/cpupower/files/conf.d-r2"
+		"cpupower.initd::${_gentoo_uri}/sys-power/cpupower/files/init.d-r4"
+		#"sensord.confd::${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-conf.d"
+		"sensord.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-4-init.d"
+		"fancontrol.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/fancontrol-init.d-2"
+		"lm_sensors.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/lm_sensors-3-init.d"
+		"ntpd.confd::${_gentoo_uri}/net-misc/ntp/files/ntpd.confd"
+		"ntp-client.confd::${_gentoo_uri}/net-misc/ntp/files/ntp-client.confd"
+		"sntp.confd::${_gentoo_uri}/net-misc/ntp/files/sntp.confd"
+		"ntpd.initd::${_gentoo_uri}/net-misc/ntp/files/ntpd.rc-r1"
+		"ntp-client.initd::${_gentoo_uri}/net-misc/ntp/files/ntp-client.rc"
+		"sntp.initd::${_gentoo_uri}/net-misc/ntp/files/sntp.rc"
+		"cupsd.initd::${_gentoo_uri}/net-print/cups/files/cupsd.init.d-r1"
+		"connman.confd::${_gentoo_uri}/net-misc/connman/files/connman.confd"
+		"connman.initd::${_gentoo_uri}/net-misc/connman/files/connman.initd2"
+		"haveged.confd::${_gentoo_uri}/sys-apps/haveged/files/haveged-conf.d"
+		"haveged.initd::${_gentoo_uri}/sys-apps/haveged/files/haveged-init.d.3"
+		"salt-master.confd::${_gentoo_uri}/app-admin/salt/files/master-confd-1"
+		"salt-master.initd::${_gentoo_uri}/app-admin/salt/files/master-initd-3"
+		"salt-minion.confd::${_gentoo_uri}/app-admin/salt/files/minion-confd-1"
+		"salt-minion.initd::${_gentoo_uri}/app-admin/salt/files/minion-initd-3"
+		"salt-syndic.confd::${_gentoo_uri}/app-admin/salt/files/syndic-confd-1"
+		"salt-syndic.initd::${_gentoo_uri}/app-admin/salt/files/syndic-initd-3"
+		"mpd.initd::${_gentoo_uri}/media-sound/mpd/files/mpd2.init"
+		"hdparm.confd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-conf.d.3"
+		"hdparm.initd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-init-8"
+		"bitlbee.confd::${_gentoo_uri}/net-im/bitlbee/files/bitlbee.confd"
+		"bitlbee.initd::${_gentoo_uri}/net-im/bitlbee/files/bitlbee.initd"
+		"xe-daemon.initd::${_gentoo_uri}/app-emulation/xe-guest-utilities/files/xe-daemon.initd"
+		"vboxservice.initd::${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
+		"clamd.confd::${_gentoo_uri}/app-antivirus/clamav/files/clamd.conf-r1"
+		"clamd.initd::${_gentoo_uri}/app-antivirus/clamav/files/clamd.initd-r6"
+		"NetworkManager.confd::${_gentoo_uri}/net-misc/networkmanager/files/conf.d.NetworkManager"
+		"NetworkManager.initd::${_gentoo_uri}/net-misc/networkmanager/files/init.d.NetworkManager"
+		"10-openrc-status::${_gentoo_uri}/net-misc/networkmanager/files/10-openrc-status-r4"
+		"boinc.confd::${_gentoo_uri}/sci-misc/boinc/files/boinc.conf"
+		"boinc.initd::${_gentoo_uri}/sci-misc/boinc/files/boinc.init"
+		"atd.confd::${_gentoo_uri}/sys-process/at/files/atd.confd"
+		"atd.initd::${_gentoo_uri}/sys-process/at/files/atd.rc8"
+		"libvirtd.confd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.confd-r4"
+		"libvirtd.initd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.init-r14"
+		"zfs.initd"
+		"thermald.initd")
 sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '204c66d2b7d4d20115acc7499708cf538538fe1c100281ad55f909508041fb19'
@@ -143,8 +143,6 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '2eaef8071b34c1a3d55271d283b31e25e081791e48a6a55eb394912e4954ba48'
             '24cbcf298b869e4451b08aeba0e3e4948aa7faaac649f18e8f600ae5fb86a8fb'
             '605e7fe4dea401547957db63e45f3f75ae2da3544b0ff1f3279fcf07217d5aac'
-            '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
-            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
             '28ebd47810b0568fc7692218867d6804a1df70290681462f5555e230ca817732'
             'c00bb921afe65e31a9ac4bbcfc97e4c9afa7ad77604c2dcb7eedc152fec5bbd8'
             '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
@@ -155,10 +153,12 @@ sha256sums=('ceada7a1c9e8b62cff506bc94a1813706c7de1ed23daf9c3450ad549df4fafb7'
             '92350108a385cc66dffab8c9fc9cc1c85ca1abf36d0ffb007a4e1e55291e0179'
             '0f7c55e125d9d16f30fd9d2335485cac0b64a9452128d564e9318290703d8229'
             'c2ca5d9a2d4ed433e91bd215c2ca678109cc981072897a497955e36760dc3b9f'
-            'ed8514d347d3a8a0b243cfc25a85dedb1e595f1e29e874bcadd14ef5f5d03e58')
+            'ed8514d347d3a8a0b243cfc25a85dedb1e595f1e29e874bcadd14ef5f5d03e58'
+            '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
+            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
 
 pkgver() {
-    date +%Y%m%d
+	date +%Y%m%d
 }
 
 _shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
@@ -167,269 +167,312 @@ _binpath='s|/usr/sbin|/usr/bin|g'
 
 
 package_bitlbee-openrc() {
-    pkgdesc="OpenRC bitlbee init script"
-    depends=('openrc-core' 'bitlbee')
-    backup=('etc/conf.d/bitlbee')
-    install=bitlbee.install
+	pkgdesc="OpenRC bitlbee init script"
+	depends=('openrc-core' 'bitlbee')
+	backup=('etc/conf.d/bitlbee')
+	install=bitlbee.install
 
-    install -Dm755 "${srcdir}/bitlbee.confd" "${pkgdir}/etc/conf.d/bitlbee"
-    install -Dm755 "${srcdir}/bitlbee.initd" "${pkgdir}/etc/init.d/bitlbee"
-	  local _p1='s|need logger net|need net\n	use logger|'
-    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/bitlbee"
+	install -Dm755 "${srcdir}/bitlbee.confd" "${pkgdir}/etc/conf.d/bitlbee"
+	install -Dm755 "${srcdir}/bitlbee.initd" "${pkgdir}/etc/init.d/bitlbee"
+
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-e 's|need logger net|need net\n	use logger|' \
+		-i "${pkgdir}/etc/init.d/bitlbee"
 }
 
 package_cpupower-openrc() {
-    pkgdesc="OpenRC cpupower init script"
-    depends=('openrc-core' 'cpupower')
-    backup=('etc/conf.d/cpupower')
-    install=cpupower.install
+	pkgdesc="OpenRC cpupower init script"
+	depends=('openrc-core' 'cpupower')
+	backup=('etc/conf.d/cpupower')
+	install=cpupower.install
 
-    install -Dm755 "${srcdir}/cpupower.confd" "${pkgdir}/etc/conf.d/cpupower"
-    install -Dm755 "${srcdir}/cpupower.initd" "${pkgdir}/etc/init.d/cpupower"
+	install -Dm755 "${srcdir}/cpupower.confd" "${pkgdir}/etc/conf.d/cpupower"
+	install -Dm755 "${srcdir}/cpupower.initd" "${pkgdir}/etc/init.d/cpupower"
 
-    sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/cpupower"
+	sed -e "${_shebang}" \
+		-i "${pkgdir}/etc/init.d/cpupower"
 }
 
 package_connman-openrc() {
-    pkgdesc="OpenRC connman init script"
-    depends=('openrc-core' 'connman')
-    backup=('etc/conf.d/connman')
-    install=connman.install
+	pkgdesc="OpenRC connman init script"
+	depends=('openrc-core' 'connman')
+	backup=('etc/conf.d/connman')
+	install=connman.install
 
-    install -Dm755 "${srcdir}/connman.confd" "${pkgdir}/etc/conf.d/connman"
-    install -Dm755 "${srcdir}/connman.initd" "${pkgdir}/etc/init.d/connman"
+	install -Dm755 "${srcdir}/connman.confd" "${pkgdir}/etc/conf.d/connman"
+	install -Dm755 "${srcdir}/connman.initd" "${pkgdir}/etc/init.d/connman"
 
-    sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/connman"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-i "${pkgdir}/etc/init.d/connman"
 }
 
 package_cups-openrc() {
-    pkgdesc="OpenRC cups init script"
-    depends=('cups' 'dbus-openrc')
-    optdepends=('avahi-openrc: avahi initscripts')
-    install=cups.install
+	pkgdesc="OpenRC cups init script"
+	depends=('cups' 'dbus-openrc')
+	optdepends=('avahi-openrc: avahi initscripts')
+	install=cups.install
 
-    install -Dm755 "${srcdir}/cupsd.initd" "${pkgdir}/etc/init.d/cupsd"
+	install -Dm755 "${srcdir}/cupsd.initd" "${pkgdir}/etc/init.d/cupsd"
 
-    local _p1='s|lp:lpadmin|daemon:sys|' \
-	  _p2='s|@neededservices@|need dbus avahi-daemon|'
-    sed -e "${_shebang}" -e "${_binpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/cupsd"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e 's|lp:lpadmin|daemon:sys|' \
+		-e 's|@neededservices@|need dbus avahi-daemon|' \
+		-i "${pkgdir}/etc/init.d/cupsd"
 }
 
 package_fcron-openrc() {
-    pkgdesc="OpenRC fcron init script"
-    depends=('openrc-core' 'fcron')
-    groups=('openrc-misc')
-    provides=('openrc-cron')
-    conflicts=('cronie'
-	      'cronie-openrc'
-	      'openrc'
-	      'openrc-git'
-	      'openrc-arch-services-git'
-	      'initscripts'
-	      'systemd-sysvcompat')
-    install=fcron.install
+	pkgdesc="OpenRC fcron init script"
+	depends=('openrc-core' 'fcron')
+	groups=('openrc-misc')
+	provides=('openrc-cron')
+	conflicts=('cronie'
+		'cronie-openrc'
+		'openrc'
+		'openrc-git'
+		'openrc-arch-services-git'
+		'initscripts'
+		'systemd-sysvcompat')
+	install=fcron.install
 
-    install -Dm755 "${srcdir}/fcron.initd" "${pkgdir}/etc/init.d/fcron"
+	install -Dm755 "${srcdir}/fcron.initd" "${pkgdir}/etc/init.d/fcron"
 
-    local _p1='s|/usr/libexec|/usr/bin|g'
-    sed -e "${_shebang}" -e "${_runpath}" -e "${_p1}" -i "${pkgdir}/etc/init.d/fcron"
+    sed -e "${_shebang}" \
+		-e "${_runpath}" \
+		-e 's|/usr/libexec|/usr/bin|g' \
+		-i "${pkgdir}/etc/init.d/fcron"
 }
 
 package_ntp-openrc() {
-    pkgdesc="OpenRC ntp init script"
-    depends=('openrc-core' 'ntp')
-    optdepends=('bind-openrc: bind initscript')
-    provides=('openrc-timed')
-    conflicts=('openntpd'
-	      'openntpd-openrc'
-	      'openrc'
-	      'openrc-git'
-	      'openrc-arch-services-git'
-	      'initscripts'
-	      'systemd-sysvcompat')
-    backup=('etc/conf.d/ntpd'
-	    'etc/conf.d/ntp-client'
-	    'etc/init.d/sntp')
-    install=ntp.install
+	pkgdesc="OpenRC ntp init script"
+	depends=('openrc-core' 'ntp')
+	optdepends=('bind-openrc: bind initscript')
+	provides=('openrc-timed')
+	conflicts=('openntpd'
+			'openntpd-openrc'
+			'openrc'
+			'openrc-git'
+			'openrc-arch-services-git'
+			'initscripts'
+			'systemd-sysvcompat')
+	backup=('etc/conf.d/ntpd'
+		'etc/conf.d/ntp-client'
+		'etc/init.d/sntp')
+	install=ntp.install
 
-    install -Dm755 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"
-    install -Dm755 "${srcdir}/ntpd.initd" "${pkgdir}/etc/init.d/ntpd"
-    install -Dm755 "${srcdir}/ntp-client.confd" "${pkgdir}/etc/conf.d/ntp-client"
-    install -Dm755 "${srcdir}/ntp-client.initd" "${pkgdir}/etc/init.d/ntp-client"
-    install -Dm755 "${srcdir}/sntp.confd" "${pkgdir}/etc/conf.d/sntp"
-    install -Dm755 "${srcdir}/sntp.initd" "${pkgdir}/etc/init.d/sntp"
+	install -Dm755 "${srcdir}/ntpd.confd" "${pkgdir}/etc/conf.d/ntpd"
+	install -Dm755 "${srcdir}/ntpd.initd" "${pkgdir}/etc/init.d/ntpd"
+	install -Dm755 "${srcdir}/ntp-client.confd" "${pkgdir}/etc/conf.d/ntp-client"
+	install -Dm755 "${srcdir}/ntp-client.initd" "${pkgdir}/etc/init.d/ntp-client"
+	install -Dm755 "${srcdir}/sntp.confd" "${pkgdir}/etc/conf.d/sntp"
+	install -Dm755 "${srcdir}/sntp.initd" "${pkgdir}/etc/init.d/sntp"
 
-    for f in ${pkgdir}/etc/init.d/*;do
-      sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
+	for f in ${pkgdir}/etc/init.d/*;do
+		sed -e "${_shebang}" \
+			-e "${_binpath}" \
+			-e "${_runpath}" \
+			-i $f
     done
 }
 
 package_rsyslog-openrc() {
-    pkgdesc="OpenRC rsyslog init script"
-    depends=('openrc-core' 'rsyslog')
-    backup=('etc/conf.d/rsyslog')
-    install=rsyslog.install
+	pkgdesc="OpenRC rsyslog init script"
+	depends=('openrc-core' 'rsyslog')
+	backup=('etc/conf.d/rsyslog')
+	install=rsyslog.install
 
-    install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
-    install -Dm755 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
+	install -Dm755 "${srcdir}/rsyslog.confd" "${pkgdir}/etc/conf.d/rsyslog"
+	install -Dm755 "${srcdir}/rsyslog.initd" "${pkgdir}/etc/init.d/rsyslog"
 
-    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/rsyslog"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-i "${pkgdir}/etc/init.d/rsyslog"
 }
 
 package_sane-openrc() {
-    pkgdesc="OpenRC sane init script"
-    depends=('openrc-core' 'sane')
-    backup=('etc/conf.d/saned')
-    install=sane.install
+	pkgdesc="OpenRC sane init script"
+	depends=('openrc-core' 'sane')
+	backup=('etc/conf.d/saned')
+	install=sane.install
 
-    install -Dm755 "${srcdir}/saned.confd" "${pkgdir}/etc/conf.d/saned"
-    install -Dm755 "${srcdir}/saned.initd" "${pkgdir}/etc/init.d/saned"
-    local _p1='s|/run/saned/saned.pid|/run/saned.pid|'
-    sed -e "${_shebang}" -e "${_runpath}" -e "${_binpath}" -e ${_p1} -i ${pkgdir}/etc/init.d/saned
+	install -Dm755 "${srcdir}/saned.confd" "${pkgdir}/etc/conf.d/saned"
+	install -Dm755 "${srcdir}/saned.initd" "${pkgdir}/etc/init.d/saned"
+
+    sed -e "${_shebang}" \
+		-e "${_runpath}" \
+		-e "${_binpath}" \
+		-e 's|/run/saned/saned.pid|/run/saned.pid|' \
+		-i ${pkgdir}/etc/init.d/saned
 }
 
 package_fuse-openrc(){
-    pkgdesc="OpenRC fuse init script"
-    depends=('openrc-core' 'fuse')
-    install=fuse.install
+	pkgdesc="OpenRC fuse init script"
+	depends=('openrc-core' 'fuse')
+	install=fuse.install
 
-    install -Dm755 "${srcdir}/fuse.initd" "${pkgdir}/etc/init.d/fuse"
-    sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/fuse"
+	install -Dm755 "${srcdir}/fuse.initd" "${pkgdir}/etc/init.d/fuse"
+
+    sed -e "${_shebang}" \
+		-i "${pkgdir}/etc/init.d/fuse"
 }
 
 package_metalog-openrc() {
-    pkgdesc="OpenRC metalog init script"
-    depends=('openrc-core' 'metalog')
-    backup=('etc/conf.d/metalog')
-    install=metalog.install
+	pkgdesc="OpenRC metalog init script"
+	depends=('openrc-core' 'metalog')
+	backup=('etc/conf.d/metalog')
+	install=metalog.install
 
-    install -Dm755 "${srcdir}/metalog.confd" "${pkgdir}/etc/conf.d/metalog"
-    install -Dm755 "${srcdir}/metalog.initd" "${pkgdir}/etc/init.d/metalog"
+	install -Dm755 "${srcdir}/metalog.confd" "${pkgdir}/etc/conf.d/metalog"
+	install -Dm755 "${srcdir}/metalog.initd" "${pkgdir}/etc/init.d/metalog"
 
-    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/metalog"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-i "${pkgdir}/etc/init.d/metalog"
 }
 
 package_syslog-ng-openrc() {
-    pkgdesc="OpenRC syslog-ng init script"
-    depends=('openrc-core' 'syslog-ng')
-    backup=('etc/conf.d/syslog-ng')
-    install=syslog-ng.install
+	pkgdesc="OpenRC syslog-ng init script"
+	depends=('openrc-core' 'syslog-ng')
+	backup=('etc/conf.d/syslog-ng')
+	install=syslog-ng.install
 
-    install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
-    install -Dm755 "${srcdir}/syslog-ng.initd" "${pkgdir}/etc/init.d/syslog-ng"
+	install -Dm755 "${srcdir}/syslog-ng.confd" "${pkgdir}/etc/conf.d/syslog-ng"
+	install -Dm755 "${srcdir}/syslog-ng.initd" "${pkgdir}/etc/init.d/syslog-ng"
 
-    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/syslog-ng"
+    sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-i "${pkgdir}/etc/init.d/syslog-ng"
 }
 
 package_lm_sensors-openrc() {
-    pkgdesc="OpenRC lm_sensors init script"
-    depends=('openrc-core' 'lm_sensors')
-    #backup=('etc/conf.d/sensord')
-    install=lm_sensors.install
+	pkgdesc="OpenRC lm_sensors init script"
+	depends=('openrc-core' 'lm_sensors')
+	#backup=('etc/conf.d/sensord')
+	install=lm_sensors.install
 
-    #install -Dm755 "${srcdir}/${_Csens}" "${pkgdir}/etc/conf.d/sensord"
-    install -Dm755 "${srcdir}/sensord.initd" "${pkgdir}/etc/init.d/sensord"
-    install -Dm755 "${srcdir}/fancontrol.initd" "${pkgdir}/etc/init.d/fancontrol"
-    install -Dm755 "${srcdir}/lm_sensors.initd" "${pkgdir}/etc/init.d/lm_sensors"
+	#install -Dm755 "${srcdir}/${_Csens}" "${pkgdir}/etc/conf.d/sensord"
+	install -Dm755 "${srcdir}/sensord.initd" "${pkgdir}/etc/init.d/sensord"
+	install -Dm755 "${srcdir}/fancontrol.initd" "${pkgdir}/etc/init.d/fancontrol"
+	install -Dm755 "${srcdir}/lm_sensors.initd" "${pkgdir}/etc/init.d/lm_sensors"
 
-    for f in ${pkgdir}/etc/init.d/*; do
-      sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
-    done
+	for f in ${pkgdir}/etc/init.d/*; do
+		sed -e "${_shebang}" \
+			-e "${_binpath}" \
+			-e "${_runpath}" \
+			-i $f
+	done
 }
 
 package_lirc-utils-openrc() {
-    pkgdesc="OpenRC lirc-utils init script"
-    depends=('openrc-core' 'lirc-utils')
-    backup=('etc/conf.d/lircd'
-	    'etc/conf.d/irexec')
-    install=lirc-utils.install
+	pkgdesc="OpenRC lirc-utils init script"
+	depends=('openrc-core' 'lirc-utils')
+	backup=('etc/conf.d/lircd'
+		'etc/conf.d/irexec')
+	install=lirc-utils.install
 
-    install -Dm755 "${srcdir}/lircd.confd" "${pkgdir}/etc/conf.d/lircd"
-    install -Dm755 "${srcdir}/lircd.initd" "${pkgdir}/etc/init.d/lircd"
+	install -Dm755 "${srcdir}/lircd.confd" "${pkgdir}/etc/conf.d/lircd"
+	install -Dm755 "${srcdir}/lircd.initd" "${pkgdir}/etc/init.d/lircd"
 
-    install -Dm755 "${srcdir}/irexec.confd" "${pkgdir}/etc/conf.d/irexec"
-    install -Dm755 "${srcdir}/irexec.initd" "${pkgdir}/etc/init.d/irexec"
+	install -Dm755 "${srcdir}/irexec.confd" "${pkgdir}/etc/conf.d/irexec"
+	install -Dm755 "${srcdir}/irexec.initd" "${pkgdir}/etc/init.d/irexec"
 
-    install -Dm755 "${srcdir}/lircmd.initd" "${pkgdir}/etc/init.d/lircmd"
+	install -Dm755 "${srcdir}/lircmd.initd" "${pkgdir}/etc/init.d/lircmd"
 
-    for f in ${pkgdir}/etc/init.d/*;do
-      sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i $f
-    done
+	for f in ${pkgdir}/etc/init.d/*;do
+		sed -e "${_shebang}" \
+			-e "${_binpath}" \
+			-e "${_runpath}" \
+			-i $f
+	done
 }
 
 package_haveged-openrc() {
-    pkgdesc="OpenRC haveged init script"
-    depends=('openrc-core' 'haveged')
-    backup=('etc/conf.d/haveged')
-    install=haveged.install
+	pkgdesc="OpenRC haveged init script"
+	depends=('openrc-core' 'haveged')
+	backup=('etc/conf.d/haveged')
+	install=haveged.install
 
-    install -Dm755 "${srcdir}/haveged.confd" "${pkgdir}/etc/conf.d/haveged"
-    install -Dm755 "${srcdir}/haveged.initd" "${pkgdir}/etc/init.d/haveged"
+	install -Dm755 "${srcdir}/haveged.confd" "${pkgdir}/etc/conf.d/haveged"
+	install -Dm755 "${srcdir}/haveged.initd" "${pkgdir}/etc/init.d/haveged"
 
-    sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/haveged"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-i "${pkgdir}/etc/init.d/haveged"
 }
 
 package_salt-openrc() {
-    pkgdesc="OpenRC salt init scripts"
-    depends=('openrc-core' 'salt')
-    backup=('etc/conf.d/salt-master'
-		  'etc/conf.d/salt-minion'
-		  'etc/conf.d/salt-syncdic')
-    install=salt.install
+	pkgdesc="OpenRC salt init scripts"
+	depends=('openrc-core' 'salt')
+	backup=('etc/conf.d/salt-master'
+		'etc/conf.d/salt-minion'
+		'etc/conf.d/salt-syncdic')
+	install=salt.install
 
-    install -Dm755 "${srcdir}/salt-master.confd" "${pkgdir}/etc/conf.d/salt-master"
-    install -Dm755 "${srcdir}/salt-master.initd" "${pkgdir}/etc/init.d/salt-master"
+	install -Dm755 "${srcdir}/salt-master.confd" "${pkgdir}/etc/conf.d/salt-master"
+	install -Dm755 "${srcdir}/salt-master.initd" "${pkgdir}/etc/init.d/salt-master"
 
-    install -Dm755 "${srcdir}/salt-minion.confd" "${pkgdir}/etc/conf.d/salt-minion"
-    install -Dm755 "${srcdir}/salt-minion.initd" "${pkgdir}/etc/init.d/salt-minion"
+	install -Dm755 "${srcdir}/salt-minion.confd" "${pkgdir}/etc/conf.d/salt-minion"
+	install -Dm755 "${srcdir}/salt-minion.initd" "${pkgdir}/etc/init.d/salt-minion"
 
-    install -Dm755 "${srcdir}/salt-syndic.confd" "${pkgdir}/etc/conf.d/salt-syncdic"
-    install -Dm755 "${srcdir}/salt-syndic.initd" "${pkgdir}/etc/init.d/salt-syncdic"
+	install -Dm755 "${srcdir}/salt-syndic.confd" "${pkgdir}/etc/conf.d/salt-syncdic"
+	install -Dm755 "${srcdir}/salt-syndic.initd" "${pkgdir}/etc/init.d/salt-syncdic"
 
-    for f in ${pkgdir}/etc/init.d/*;do
-	    sed -e "${_shebang}" -e "${_runpath}" -i $f
-    done
-
+	for f in ${pkgdir}/etc/init.d/*;do
+		sed -e "${_shebang}" \
+			-e "${_runpath}" \
+			-i $f
+	done
 }
 
 package_mpd-openrc(){
-    pkgdesc="OpenRC fuse init script"
-    depends=('openrc-core' 'mpd')
-    install=mpd.install
+	pkgdesc="OpenRC fuse init script"
+	depends=('openrc-core' 'mpd')
+	install=mpd.install
 
-    install -Dm755 "${srcdir}/mpd.initd" "${pkgdir}/etc/init.d/mpd"
-    sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/mpd"
+	install -Dm755 "${srcdir}/mpd.initd" "${pkgdir}/etc/init.d/mpd"
+
+	sed -e "${_shebang}" \
+		-i "${pkgdir}/etc/init.d/mpd"
 }
 
 package_hdparm-openrc() {
-    pkgdesc="OpenRC hdparm init script"
-    depends=('openrc-core' 'hdparm')
-    backup=('etc/conf.d/hdparm')
-    install=hdparm.install
+	pkgdesc="OpenRC hdparm init script"
+	depends=('openrc-core' 'hdparm')
+	backup=('etc/conf.d/hdparm')
+	install=hdparm.install
 
-    install -Dm755 "${srcdir}/hdparm.confd" "${pkgdir}/etc/conf.d/hdparm"
-    install -Dm755 "${srcdir}/hdparm.initd" "${pkgdir}/etc/init.d/hdparm"
+	install -Dm755 "${srcdir}/hdparm.confd" "${pkgdir}/etc/conf.d/hdparm"
+	install -Dm755 "${srcdir}/hdparm.initd" "${pkgdir}/etc/init.d/hdparm"
 
-    sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/hdparm"
+	sed -e "${_shebang}" \
+		-i "${pkgdir}/etc/init.d/hdparm"
 }
 
 package_thermald-openrc() {
-    pkgdesc="OpenRC thermald init script"
-    depends=('dbus-openrc' 'thermald')
-    install=thermald.install
+	pkgdesc="OpenRC thermald init script"
+	depends=('dbus-openrc' 'thermald')
+	install=thermald.install
 
-    install -Dm755 "${srcdir}/thermald.initd" "${pkgdir}/etc/init.d/thermald"
+	install -Dm755 "${srcdir}/thermald.initd" "${pkgdir}/etc/init.d/thermald"
 }
 
 package_xe-guest-utilities-openrc() {
-    pkgdesc="OpenRC xe-guest-utilities init script"
-    depends=('openrc-core' 'xe-guest-utilities')
-    install=xe-guest-utilities.install
+	pkgdesc="OpenRC xe-guest-utilities init script"
+	depends=('openrc-core' 'xe-guest-utilities')
+	install=xe-guest-utilities.install
 
-    install -Dm755 "${srcdir}/xe-daemon.initd" "${pkgdir}/etc/init.d/xe-daemon"
+	install -Dm755 "${srcdir}/xe-daemon.initd" "${pkgdir}/etc/init.d/xe-daemon"
 
-    sed -e ${_shebang} -e ${_runpath} -e ${_binpath} \
-	-i ${pkgdir}/etc/init.d/xe-daemon
+	sed -e ${_shebang} \
+		-e ${_runpath} \
+		-e ${_binpath} \
+		-i ${pkgdir}/etc/init.d/xe-daemon
 }
 
 package_virtualbox-guest-utils-openrc() {
@@ -439,84 +482,99 @@ package_virtualbox-guest-utils-openrc() {
 
 	install -Dm755 "${srcdir}/vboxservice.initd" "${pkgdir}/etc/init.d/vboxservice"
 
-	local _p1='s|vboxguest-service|VBoxService|' \
-	      _p2='s|/sbin/modprobe|/usr/bin/modprobe|g'
-
-	sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -e "${_p1}" -e "${_p2}" -i "${pkgdir}/etc/init.d/vboxservice"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-e 's|vboxguest-service|VBoxService|' \
+		-e 's|/sbin/modprobe|/usr/bin/modprobe|g' \
+		-i "${pkgdir}/etc/init.d/vboxservice"
 }
 
 package_zfs-openrc() {
-    pkgdesc="OpenRC zfs init script"
-    depends=('openrc-core' 'zfs-utils')
-    install=zfs.install
+	pkgdesc="OpenRC zfs init script"
+	depends=('openrc-core' 'zfs-utils')
+	install=zfs.install
 
-    install -Dm755 "${srcdir}/zfs.initd" "${pkgdir}/etc/init.d/zfs"
+	install -Dm755 "${srcdir}/zfs.initd" "${pkgdir}/etc/init.d/zfs"
 }
 
 package_clamav-openrc() {
-    pkgdesc="OpenRC clamav init script"
-    depends=('openrc-core' 'clamav')
-    backup=('etc/conf.d/clamd')
-    install=clamav.install
+	pkgdesc="OpenRC clamav init script"
+	depends=('openrc-core' 'clamav')
+	backup=('etc/conf.d/clamd')
+	install=clamav.install
 
-    install -Dm755 "${srcdir}/clamd.confd" "${pkgdir}/etc/conf.d/clamd"
-    install -Dm755 "${srcdir}/clamd.initd" "${pkgdir}/etc/init.d/clamd"
+	install -Dm755 "${srcdir}/clamd.confd" "${pkgdir}/etc/conf.d/clamd"
+	install -Dm755 "${srcdir}/clamd.initd" "${pkgdir}/etc/init.d/clamd"
 
-    sed -e "${_shebang}" -e "${_binpath}" -i "${pkgdir}/etc/init.d/clamd"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-i "${pkgdir}/etc/init.d/clamd"
 }
 
 package_networkmanager-openrc() {
-    pkgdesc="OpenRC networkmanager init script"
-    depends=('openrc-core' 'networkmanager-consolekit')
-    backup=('etc/conf.d/NetworkManager')
-    install=networkmanager.install
+	pkgdesc="OpenRC networkmanager init script"
+	depends=('openrc-core' 'networkmanager-consolekit')
+	backup=('etc/conf.d/NetworkManager')
+	install=networkmanager.install
 
-    install -Dm755 "${srcdir}/NetworkManager.confd" "${pkgdir}/etc/conf.d/NetworkManager"
-    install -Dm755 "${srcdir}/NetworkManager.initd" "${pkgdir}/etc/init.d/NetworkManager"
+	install -Dm755 "${srcdir}/NetworkManager.confd" "${pkgdir}/etc/conf.d/NetworkManager"
+	install -Dm755 "${srcdir}/NetworkManager.initd" "${pkgdir}/etc/init.d/NetworkManager"
 
-    install -Dm755 "${srcdir}/10-openrc-status" "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
+	install -Dm755 "${srcdir}/10-openrc-status" "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
 
-    sed -e 's|@EPREFIX@/sbin|/usr/bin|' \
-	-e 's|@EPREFIX@/usr/sbin|/usr/sbin|' \
-	-e 's|#!/bin/sh|#!/usr/bin/sh|' \
-	-i "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
+	sed -e 's|@EPREFIX@/sbin|/usr/bin|' \
+		-e 's|@EPREFIX@/usr/sbin|/usr/sbin|' \
+		-e 's|#!/bin/sh|#!/usr/bin/sh|' \
+		-i "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
 
-    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/NetworkManager"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-i "${pkgdir}/etc/init.d/NetworkManager"
 }
 
 package_boinc-openrc() {
-    pkgdesc="OpenRC boinc init script"
-    depends=('boinc')
-    backup=('etc/conf.d/boinc')
-    install=boinc.install
+	pkgdesc="OpenRC boinc init script"
+	depends=('boinc')
+	backup=('etc/conf.d/boinc')
+	install=boinc.install
 
-    install -Dm755 "${srcdir}/boinc.initd" "${pkgdir}/etc/init.d/boinc"
-    install -Dm755 "${srcdir}/boinc.confd" "${pkgdir}/etc/conf.d/boinc"
+	install -Dm755 "${srcdir}/boinc.initd" "${pkgdir}/etc/init.d/boinc"
+	install -Dm755 "${srcdir}/boinc.confd" "${pkgdir}/etc/conf.d/boinc"
 
-    sed -e "${_shebang}" -i "${pkgdir}/etc/init.d/boinc"
+	sed -e "${_shebang}" \
+		-i "${pkgdir}/etc/init.d/boinc"
 }
 
 package_at-openrc() {
-    pkgdesc="OpenRC at init script"
-    depends=('at')
-    backup=('etc/conf.d/atd')
-    install=at.install
+	pkgdesc="OpenRC at init script"
+	depends=('at')
+	backup=('etc/conf.d/atd')
+	install=at.install
 
-    install -Dm755 "${srcdir}/atd.initd" "${pkgdir}/etc/init.d/atd"
-    install -Dm755 "${srcdir}/atd.confd" "${pkgdir}/etc/conf.d/atd"
+	install -Dm755 "${srcdir}/atd.initd" "${pkgdir}/etc/init.d/atd"
+	install -Dm755 "${srcdir}/atd.confd" "${pkgdir}/etc/conf.d/atd"
 
-    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/atd"
-    sed -e "${_runpath}" -i "${pkgdir}/etc/conf.d/atd"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-i "${pkgdir}/etc/init.d/atd"
+	sed -e "${_runpath}" \
+		-i "${pkgdir}/etc/conf.d/atd"
 }
 
 package_libvirt-openrc() {
-    pkgdesc="OpenRC libvirt init script"
-    depends=('libvirt')
-    backup=('etc/conf.d/libvirtd')
-    install=libvirt.install
+	pkgdesc="OpenRC libvirt init script"
+	depends=('libvirt')
+	backup=('etc/conf.d/libvirtd')
+	install=libvirt.install
 
-    install -Dm755 "${srcdir}/libvirtd.initd" "${pkgdir}/etc/init.d/libvirtd"
-    install -Dm755 "${srcdir}/libvirtd.confd" "${pkgdir}/etc/conf.d/libvirtd"
+	install -Dm755 "${srcdir}/libvirtd.initd" "${pkgdir}/etc/init.d/libvirtd"
+	install -Dm755 "${srcdir}/libvirtd.confd" "${pkgdir}/etc/conf.d/libvirtd"
 
-    sed -e "${_shebang}" -e "${_binpath}" -e "${_runpath}" -i "${pkgdir}/etc/init.d/libvirtd"
+	sed -e "${_shebang}" \
+		-e "${_binpath}" \
+		-e "${_runpath}" \
+		-i "${pkgdir}/etc/init.d/libvirtd"
 }
