@@ -3,22 +3,25 @@
 _pkgname=ConsoleKit2
 
 pkgname=consolekit
-pkgver=0.9.2
-pkgrel=5
+pkgver=0.9.3
+pkgrel=1
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="https://github.com/ConsoleKit2/ConsoleKit2"
 license=('GPL')
 #provides=('logind')
-depends=('dbus' 'dbus-glib' 'libx11' 'polkit' 'udev' 'zlib')
+depends=('dbus' 'glib2' 'libx11' 'polkit' 'libudev.so' 'zlib')
 optdepends=('consolekit-openrc: consolekit openrc initscript')
 makedepends=('xmlto' 'docbook-xsl')
 options=(libtool)
 source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 		'consolekit.tmpfiles.conf'
 		'25-consolekit.rules'
-		'consolekit.logrotate'
 		'consolekit.pamd')
+sha256sums=('e8755fd12130ab5c2efe50d0e0314e748e70502ccc42912490488366f7f39e52'
+            '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
+            'c5159d9fe8fdd52ad0d6a84af7ba00bac09edaae965896ab0d099a4df1c5ea6b'
+            '331b5dee7ab3afffbf116ead77d04422e524ce741fa9dc1b4d37fc684c61dc3b')
 
 build(){
 	cd "$srcdir/$_pkgname-$pkgver"
@@ -26,6 +29,7 @@ build(){
 		--prefix=/usr \
 		--sysconfdir=/etc \
 		--sbindir=/usr/bin \
+		--with-rundir=/run \
 		--libexecdir=/usr/lib/ConsoleKit \
 		--localstatedir=/var \
 		--enable-polkit \
@@ -45,24 +49,13 @@ package() {
 	cd "$srcdir/$_pkgname-$pkgver"
 	make DESTDIR="$pkgdir" install
 
-	install -D -m644 "$srcdir"/consolekit.logrotate "$pkgdir"/etc/logrotate.d/consolekit
-	install -D -m644 data/90-consolekit "$pkgdir"/etc/X11/xinit/xinitrc.d/90-consolekit.sh
-	chmod +x "$pkgdir"/etc/X11/xinit/xinitrc.d/90-consolekit.sh
+	install -Dm644 "$srcdir"/consolekit.tmpfiles.conf "$pkgdir"/usr/lib/tmpfiles.d/consolekit.conf
 
-	install -D -m644 "$srcdir"/consolekit.tmpfiles.conf "$pkgdir"/usr/lib/tmpfiles.d/consolekit.conf
+	rm -rf "${pkgdir}"/run
 
-	rm -rf "${pkgdir}"/var/run
+	install -dm 700 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
+	install -m 644 ${srcdir}/25-consolekit.rules $pkgdir/usr/share/polkit-1/rules.d/75-consolekit.rules
 
-	install -d -m700 $pkgdir/etc/polkit-1/rules.d/
-	install -D -m644 ${srcdir}/25-consolekit.rules $pkgdir/etc/polkit-1/rules.d/25-consolekit.rules
-
-	chown 102 $pkgdir/etc/polkit-1/rules.d
-
-	install -d -m755 $pkgdir/etc/pam.d/
-	install -D -m755 ${srcdir}/consolekit.pamd $pkgdir/etc/pam.d/consolekit
+	install -dm755 $pkgdir/etc/pam.d/
+	install -Dm755 ${srcdir}/consolekit.pamd $pkgdir/etc/pam.d/consolekit
 }
-sha256sums=('102aa07e0960e56740e235bba06a546c8e0e88f47546ef252ecda917935af41f'
-            '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
-            'c5159d9fe8fdd52ad0d6a84af7ba00bac09edaae965896ab0d099a4df1c5ea6b'
-            '79735ddd37b8ce6216c78542c2a4e32692dce757c86ecd5771ea8a895a1e8e4d'
-            '331b5dee7ab3afffbf116ead77d04422e524ce741fa9dc1b4d37fc684c61dc3b')
