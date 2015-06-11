@@ -86,7 +86,7 @@ package_cronie-openrc() {
 	backup=('etc/init.d/cronie')
 	install=cronie.install
 
-	install -Dm644 "${srcdir}/cronie.initd" "${pkgdir}/etc/init.d/cronie"
+	install -Dm755 "${srcdir}/cronie.initd" "${pkgdir}/etc/init.d/cronie"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -100,7 +100,7 @@ package_dhcpcd-openrc() {
 	depends=('openrc-core' 'dhcpcd')
 	install=dhcpcd.install
 
-	install -Dm644 "${srcdir}/dhcpcd.initd" "${pkgdir}/etc/init.d/dhcpcd"
+	install -Dm755 "${srcdir}/dhcpcd.initd" "${pkgdir}/etc/init.d/dhcpcd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[1]}" \
@@ -114,7 +114,7 @@ package_dbus-openrc() {
 	depends=('openrc-core' 'dbus')
 	install=dbus.install
 
-	install -Dm644 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
+	install -Dm755 "${srcdir}/dbus.initd" "${pkgdir}/etc/init.d/dbus"
 
 	sed -e "${_shebang}" \
 		-e "${_runpath}" \
@@ -129,8 +129,8 @@ package_device-mapper-openrc() {
 	install=device-mapper.install
 
 	install -Dm644 "${srcdir}/device-mapper.confd" "${pkgdir}/etc/conf.d/device-mapper"
-	install -Dm644 "${srcdir}/device-mapper.initd" "${pkgdir}/etc/init.d/device-mapper"
-	install -Dm644 "${srcdir}/dmeventd.initd" "${pkgdir}/etc/init.d/dmeventd"
+	install -Dm755 "${srcdir}/device-mapper.initd" "${pkgdir}/etc/init.d/device-mapper"
+	install -Dm755 "${srcdir}/dmeventd.initd" "${pkgdir}/etc/init.d/dmeventd"
 
 	for f in ${pkgdir}/etc/init.d/*; do
 		sed -e "${_shebang}" \
@@ -147,7 +147,7 @@ package_cryptsetup-openrc() {
 	install=cryptsetup.install
 
 	install -Dm644 "${srcdir}/dmcrypt.confd" "${pkgdir}/etc/conf.d/dmcrypt"
-	install -Dm644 "${srcdir}/dmcrypt.initd" "${pkgdir}/etc/init.d/dmcrypt"
+	install -Dm755 "${srcdir}/dmcrypt.initd" "${pkgdir}/etc/init.d/dmcrypt"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -162,7 +162,7 @@ package_glibc-openrc() {
 			'bind-openrc')
 	install=glibc.install
 
-	install -Dm644 "${srcdir}/nscd.initd" "${pkgdir}/etc/init.d/nscd"
+	install -Dm755 "${srcdir}/nscd.initd" "${pkgdir}/etc/init.d/nscd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -177,7 +177,7 @@ package_inetutils-openrc() {
 	install=inetutils.install
 
 	install -Dm644 "${srcdir}/inetutils.confd" "${pkgdir}/etc/conf.d/ftpd"
-	install -Dm644 "${srcdir}/inetutils.initd" "${pkgdir}/etc/init.d/ftpd"
+	install -Dm755 "${srcdir}/inetutils.initd" "${pkgdir}/etc/init.d/ftpd"
 }
 
 package_lvm2-openrc() {
@@ -187,9 +187,9 @@ package_lvm2-openrc() {
 	install=lvm2.install
 
 	install -Dm644 "${srcdir}/lvm.confd" "${pkgdir}/etc/conf.d/lvm"
-	install -Dm644 "${srcdir}/lvm.initd" "${pkgdir}/etc/init.d/lvm"
-	install -Dm644 "${srcdir}/lvm-monitoring.initd" "${pkgdir}/etc/init.d/lvm-monitoring"
-	install -Dm644 "${srcdir}/lvmetad.initd" "${pkgdir}/etc/init.d/lvmetad"
+	install -Dm755 "${srcdir}/lvm.initd" "${pkgdir}/etc/init.d/lvm"
+	install -Dm755 "${srcdir}/lvm-monitoring.initd" "${pkgdir}/etc/init.d/lvm-monitoring"
+	install -Dm755 "${srcdir}/lvmetad.initd" "${pkgdir}/etc/init.d/lvmetad"
 
 	for f in ${pkgdir}/etc/init.d/*; do
 		sed -e "${_shebang}" \
@@ -207,10 +207,10 @@ package_mdadm-openrc() {
 	install=mdadm.install
 
 	install -Dm644 "${srcdir}/mdadm.confd" "${pkgdir}/etc/conf.d/mdadm"
-	install -Dm644 "${srcdir}/mdadm.initd" "${pkgdir}/etc/init.d/mdadm"
+	install -Dm755 "${srcdir}/mdadm.initd" "${pkgdir}/etc/init.d/mdadm"
 
 	install -Dm644 "${srcdir}/mdraid.confd" "${pkgdir}/etc/conf.d/mdraid"
-	install -Dm644 "${srcdir}/mdraid.initd" "${pkgdir}/etc/init.d/mdraid"
+	install -Dm755 "${srcdir}/mdraid.initd" "${pkgdir}/etc/init.d/mdraid"
 
 	for f in ${pkgdir}/etc/init.d/*; do
 		sed -e "${_shebang}" \

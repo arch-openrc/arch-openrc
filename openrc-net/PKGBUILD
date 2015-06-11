@@ -214,7 +214,7 @@ package_apache-openrc() {
 	install=apache.install
 
 	install -Dm644 "${srcdir}/gentoo-apache-${_apver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
-	install -Dm644 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
+	install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
 
 	sed -e "${_shebang}" \
 		-e 's|/usr/sbin/apache2|/usr/bin/apachectl|' \
@@ -238,7 +238,7 @@ package_autofs-openrc() {
 	depends=('openrc-core' 'autofs')
 	install=autofs.install
 
-	install -Dm644 "${srcdir}/autofs5.initd" "${pkgdir}/etc/init.d/autofs"
+	install -Dm755 "${srcdir}/autofs5.initd" "${pkgdir}/etc/init.d/autofs"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -253,7 +253,7 @@ package_bind-openrc() {
 	install=bind.install
 
 	install -Dm644 "${srcdir}/named.confd" "${pkgdir}/etc/conf.d/named"
-	install -Dm644 "${srcdir}/named.initd" "${pkgdir}/etc/init.d/named"
+	install -Dm755 "${srcdir}/named.initd" "${pkgdir}/etc/init.d/named"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -267,7 +267,7 @@ package_cyrus-sasl-openrc() {
 	depends=('openrc-core' 'cyrus-sasl')
 	install=cyrus-sasl.install
 
-	install -Dm644 "${srcdir}/saslauthd.initd" "${pkgdir}/etc/init.d/saslauthd"
+	install -Dm755 "${srcdir}/saslauthd.initd" "${pkgdir}/etc/init.d/saslauthd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -288,9 +288,9 @@ package_dhcp-openrc() {
 	install -Dm644 "${srcdir}/dhcrelay.confd" "${pkgdir}/etc/conf.d/dhcrelay"
 	install -Dm644 "${srcdir}/dhcrelay6.confd" "${pkgdir}/etc/conf.d/dhcrelay6"
 
-	install -Dm644 "${srcdir}/dhcpd.initd" "${pkgdir}/etc/init.d/dhcpd"
-	install -Dm644 "${srcdir}/dhcrelay.initd" "${pkgdir}/etc/init.d/dhcrelay"
-	install -Dm644 "${srcdir}/dhcrelay.initd" "${pkgdir}/etc/init.d/dhcrelay6"
+	install -Dm755 "${srcdir}/dhcpd.initd" "${pkgdir}/etc/init.d/dhcpd"
+	install -Dm755 "${srcdir}/dhcrelay.initd" "${pkgdir}/etc/init.d/dhcrelay"
+	install -Dm755 "${srcdir}/dhcrelay.initd" "${pkgdir}/etc/init.d/dhcrelay6"
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
@@ -308,7 +308,7 @@ package_hostapd-openrc() {
 	install=hostapd.install
 
 	install -Dm644 "${srcdir}/hostapd.confd" "${pkgdir}/etc/conf.d/hostapd"
-	install -Dm644 "${srcdir}/hostapd.initd" "${pkgdir}/etc/init.d/hostapd"
+	install -Dm755 "${srcdir}/hostapd.initd" "${pkgdir}/etc/init.d/hostapd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -324,10 +324,10 @@ package_iptables-openrc() {
 	install=iptables.install
 
 	install -Dm644 "${srcdir}/iptables.confd" "${pkgdir}/etc/conf.d/iptables"
-	install -Dm644 "${srcdir}/iptables.initd" "${pkgdir}/etc/init.d/iptables"
+	install -Dm755 "${srcdir}/iptables.initd" "${pkgdir}/etc/init.d/iptables"
 
 	install -Dm644 "${srcdir}/ip6tables.confd" "${pkgdir}/etc/conf.d/ip6tables"
-	install -Dm644 "${srcdir}/iptables.initd" "${pkgdir}/etc/init.d/ip6tables"
+	install -Dm755 "${srcdir}/iptables.initd" "${pkgdir}/etc/init.d/ip6tables"
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
@@ -342,9 +342,9 @@ package_krb5-openrc() {
 	depends=('openrc-core' 'krb5')
 	install=krb5.install
 
-	install -Dm644 "${srcdir}/krb5kadmind.initd" "${pkgdir}/etc/init.d/krb5kadmind"
-	install -Dm644 "${srcdir}/krb5kdc.initd" "${pkgdir}/etc/init.d/krb5kdc"
-	install -Dm644 "${srcdir}/krb5kpropd.initd" "${pkgdir}/etc/init.d/krb5kpropd"
+	install -Dm755 "${srcdir}/krb5kadmind.initd" "${pkgdir}/etc/init.d/krb5kadmind"
+	install -Dm755 "${srcdir}/krb5kdc.initd" "${pkgdir}/etc/init.d/krb5kdc"
+	install -Dm755 "${srcdir}/krb5kpropd.initd" "${pkgdir}/etc/init.d/krb5kpropd"
 
 
 	for f in ${pkgdir}/etc/init.d/*;do
@@ -364,7 +364,7 @@ package_lighttpd-openrc() {
 	install=lighttpd.install
 
 	install -Dm644 "${srcdir}/lighttpd.confd" "${pkgdir}/etc/conf.d/lighttpd"
-	install -Dm644 "${srcdir}/lighttpd.initd" "${pkgdir}/etc/init.d/lighttpd"
+	install -Dm755 "${srcdir}/lighttpd.initd" "${pkgdir}/etc/init.d/lighttpd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -381,7 +381,7 @@ package_rpcbind-openrc() {
 
 	#install -Dm644 "${srcdir}/${_Crpc}" "${pkgdir}/etc/conf.d/rpcbind"
 
-	install -Dm644 "${srcdir}/rpcbind.initd" "${pkgdir}/etc/init.d/rpcbind"
+	install -Dm755 "${srcdir}/rpcbind.initd" "${pkgdir}/etc/init.d/rpcbind"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[1]}" \
@@ -401,16 +401,16 @@ package_nfs-utils-openrc() {
 	install=nfs-utils.install
 
 	install -Dm644 "${srcdir}/nfs.confd" "${pkgdir}/etc/conf.d/nfs"
-	install -Dm644 "${srcdir}/nfs.initd" "${pkgdir}/etc/init.d/nfs"
+	install -Dm755 "${srcdir}/nfs.initd" "${pkgdir}/etc/init.d/nfs"
 
 	install -Dm644 "${srcdir}/nfsclient.confd" "${pkgdir}/etc/conf.d/nfsclient"
-	install -Dm644 "${srcdir}/nfsclient.initd" "${pkgdir}/etc/init.d/nfsclient"
+	install -Dm755 "${srcdir}/nfsclient.initd" "${pkgdir}/etc/init.d/nfsclient"
 
-	install -Dm644 "${srcdir}/rpc.gssd.initd" "${pkgdir}/etc/init.d/rpc.gssd"
-	install -Dm644 "${srcdir}/rpc.idmapd.initd" "${pkgdir}/etc/init.d/rpc.idmapd"
-	install -Dm644 "${srcdir}/rpc.pipefs.initd" "${pkgdir}/etc/init.d/rpc.pipefs"
-	install -Dm644 "${srcdir}/rpc.statd.initd" "${pkgdir}/etc/init.d/rpc.statd"
-	install -Dm644 "${srcdir}/rpc.svcgssd.initd" "${pkgdir}/etc/init.d/rpc.svcgssd"
+	install -Dm755 "${srcdir}/rpc.gssd.initd" "${pkgdir}/etc/init.d/rpc.gssd"
+	install -Dm755 "${srcdir}/rpc.idmapd.initd" "${pkgdir}/etc/init.d/rpc.idmapd"
+	install -Dm755 "${srcdir}/rpc.pipefs.initd" "${pkgdir}/etc/init.d/rpc.pipefs"
+	install -Dm755 "${srcdir}/rpc.statd.initd" "${pkgdir}/etc/init.d/rpc.statd"
+	install -Dm755 "${srcdir}/rpc.svcgssd.initd" "${pkgdir}/etc/init.d/rpc.svcgssd"
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
@@ -436,7 +436,7 @@ package_openntpd-openrc() {
 	install=openntpd.install
 
 	install -Dm644 "${srcdir}/openntpd.confd" "${pkgdir}/etc/conf.d/ntpd"
-	install -Dm644 "${srcdir}/openntpd.initd" "${pkgdir}/etc/init.d/ntpd"
+	install -Dm755 "${srcdir}/openntpd.initd" "${pkgdir}/etc/init.d/ntpd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -451,7 +451,7 @@ package_openldap-openrc() {
 	install=openldap.install
 
 	install -Dm644 "${srcdir}/slapd.confd" "${pkgdir}/etc/conf.d/slapd"
-	install -Dm644 "${srcdir}/slapd.initd" "${pkgdir}/etc/init.d/slapd"
+	install -Dm755 "${srcdir}/slapd.initd" "${pkgdir}/etc/init.d/slapd"
 
 	local _p1='s|/usr/lib/openldap/slapd|/usr/lib/slapd|g'
 	sed -e "${_shebang}" \
@@ -466,7 +466,7 @@ package_openslp-openrc() {
 	depends=('openrc-core' 'openslp')
 	install=openslp.install
 
-	install -Dm644 "${srcdir}/slpd.initd" "${pkgdir}/etc/init.d/slpd"
+	install -Dm755 "${srcdir}/slpd.initd" "${pkgdir}/etc/init.d/slpd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -482,7 +482,7 @@ package_openssh-openrc() {
 	install=openssh.install
 
 	install -Dm644 "${srcdir}/sshd.confd" "${pkgdir}/etc/conf.d/sshd"
-	install -Dm644 "${srcdir}/sshd.initd" "${pkgdir}/etc/init.d/sshd"
+	install -Dm755 "${srcdir}/sshd.initd" "${pkgdir}/etc/init.d/sshd"
 
 	sed -e "${_binpath[0]}" \
 		-e "${_runpath}" \
@@ -501,7 +501,7 @@ package_openvpn-openrc() {
 	install=openvpn.install
 
 	install -Dm644 "${srcdir}/openvpn.confd" "${pkgdir}/etc/conf.d/openvpn"
-	install -Dm644 "${srcdir}/openvpn.initd" "${pkgdir}/etc/init.d/openvpn"
+	install -Dm755 "${srcdir}/openvpn.initd" "${pkgdir}/etc/init.d/openvpn"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -514,7 +514,7 @@ package_polipo-openrc() {
 	depends=('openrc-core' 'polipo')
 	install=polipo.install
 
-	install -Dm644 "${srcdir}/polipo.initd" "${pkgdir}/etc/init.d/polipo"
+	install -Dm755 "${srcdir}/polipo.initd" "${pkgdir}/etc/init.d/polipo"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -530,7 +530,7 @@ package_postfix-openrc() {
 		'cyrus-sasl-openrc: cyrus-sasl initscript')
 	install=postfix.install
 
-	install -Dm644 "${srcdir}/postfix.initd" "${pkgdir}/etc/init.d/postfix"
+	install -Dm755 "${srcdir}/postfix.initd" "${pkgdir}/etc/init.d/postfix"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -543,7 +543,7 @@ package_privoxy-openrc() {
 	depends=('openrc-core' 'privoxy')
 	install=privoxy.install
 
-	install -Dm644 "${srcdir}/privoxy.initd" "${pkgdir}/etc/init.d/privoxy"
+	install -Dm755 "${srcdir}/privoxy.initd" "${pkgdir}/etc/init.d/privoxy"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -559,8 +559,8 @@ package_quota-tools-openrc() {
 	install=quota-tools.install
 
 	install -Dm644 "${srcdir}/quota.confd" "${pkgdir}/etc/conf.d/quota"
-	install -Dm644 "${srcdir}/quota.initd" "${pkgdir}/etc/init.d/quota"
-	install -Dm644 "${srcdir}/rpc.rquotad.initd" "${pkgdir}/etc/init.d/rpc.rquotad"
+	install -Dm755 "${srcdir}/quota.initd" "${pkgdir}/etc/init.d/quota"
+	install -Dm755 "${srcdir}/rpc.rquotad.initd" "${pkgdir}/etc/init.d/rpc.rquotad"
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
@@ -577,7 +577,7 @@ package_rsync-openrc() {
 	install=rsync.install
 
 	install -Dm644 "${srcdir}/rsyncd.confd" "${pkgdir}/etc/conf.d/rsyncd"
-	install -Dm644 "${srcdir}/rsyncd.initd" "${pkgdir}/etc/init.d/rsyncd"
+	install -Dm755 "${srcdir}/rsyncd.initd" "${pkgdir}/etc/init.d/rsyncd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -592,7 +592,7 @@ package_samba-openrc() {
 	install=samba.install
 
 	install -Dm644 "${srcdir}/samba4.confd" "${pkgdir}/etc/conf.d/smb"
-	install -Dm644 "${srcdir}/samba4.initd" "${pkgdir}/etc/init.d/smb"
+	install -Dm755 "${srcdir}/samba4.initd" "${pkgdir}/etc/init.d/smb"
 
 	sed -e "${_binpath[0]}" \
 		-e 's/="samba"/="smb"/' \
@@ -614,7 +614,7 @@ package_squid-openrc() {
 	install=squid.install
 
 	install -Dm644 "${srcdir}/squid.confd" "${pkgdir}/etc/conf.d/squid"
-	install -Dm644 "${srcdir}/squid.initd" "${pkgdir}/etc/init.d/squid"
+	install -Dm755 "${srcdir}/squid.initd" "${pkgdir}/etc/init.d/squid"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -631,7 +631,7 @@ package_transmission-openrc() {
 	install=transmission.install
 
 	install -Dm644 "${srcdir}/transmission-daemon.confd" "${pkgdir}/etc/conf.d/transmission-daemon"
-	install -Dm644 "${srcdir}/transmission-daemon.initd" "${pkgdir}/etc/init.d/transmission-daemon"
+	install -Dm755 "${srcdir}/transmission-daemon.initd" "${pkgdir}/etc/init.d/transmission-daemon"
 
 	sed -e "${_shebang}" \
 		-e "${_runpath}" \
@@ -645,7 +645,7 @@ package_ufw-openrc() {
 	install=ufw.install
 
 	install -Dm644 "${srcdir}/ufw.confd" "${pkgdir}/etc/conf.d/ufw"
-	install -Dm644 "${srcdir}/ufw.initd" "${pkgdir}/etc/init.d/ufw"
+	install -Dm755 "${srcdir}/ufw.initd" "${pkgdir}/etc/init.d/ufw"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -660,8 +660,8 @@ package_vsftpd-openrc() {
 	optdepends=('bind-openrc: bind initscript')
 	install=vsftpd.install
 
-	install -Dm644 "${srcdir}/vsftpd.initd" "${pkgdir}/etc/init.d/vsftpd"
-	install -Dm644 "${srcdir}/vsftpd-checkconfig.sh" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+	install -Dm755 "${srcdir}/vsftpd.initd" "${pkgdir}/etc/init.d/vsftpd"
+	install -Dm755 "${srcdir}/vsftpd-checkconfig.sh" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -681,7 +681,7 @@ package_xinetd-openrc() {
 	install=xinetd.install
 
 	install -Dm644 "${srcdir}/xinetd.confd" "${pkgdir}/etc/conf.d/xinetd"
-	install -Dm644 "${srcdir}/xinetd.initd" "${pkgdir}/etc/init.d/xinetd"
+	install -Dm755 "${srcdir}/xinetd.initd" "${pkgdir}/etc/init.d/xinetd"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -697,7 +697,7 @@ package_ypbind-mt-openrc() {
 	install=ypbind-mt.install
 
 	install -Dm644 "${srcdir}/ypbind.confd" "${pkgdir}/etc/conf.d/ypbind"
-	install -Dm644 "${srcdir}/ypbind.initd" "${pkgdir}/etc/init.d/ypbind"
+	install -Dm755 "${srcdir}/ypbind.initd" "${pkgdir}/etc/init.d/ypbind"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \
@@ -714,11 +714,11 @@ package_ypserv-openrc() {
 	install=ypserv.install
 
 	install -Dm644 "${srcdir}/ypserv.confd" "${pkgdir}/etc/init.d/ypserv"
-	install -Dm644 "${srcdir}/ypserv.initd" "${pkgdir}/etc/conf.d/ypserv"
+	install -Dm755 "${srcdir}/ypserv.initd" "${pkgdir}/etc/conf.d/ypserv"
 	install -Dm644 "${srcdir}/rpc.yppasswdd.confd" "${pkgdir}/etc/conf.d/rpc.yppasswdd"
-	install -Dm644 "${srcdir}/rpc.yppasswdd.initd" "${pkgdir}/etc/init.d/rpc.yppasswdd"
+	install -Dm755 "${srcdir}/rpc.yppasswdd.initd" "${pkgdir}/etc/init.d/rpc.yppasswdd"
 	install -Dm644 "${srcdir}/rpc.ypxfrd.confd" "${pkgdir}/etc/conf.d/rpc.ypxfrd"
-	install -Dm644 "${srcdir}/rpc.ypxfrd.initd" "${pkgdir}/etc/init.d/rpc.ypxfrd"
+	install -Dm755 "${srcdir}/rpc.ypxfrd.initd" "${pkgdir}/etc/init.d/rpc.ypxfrd"
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "${_shebang}" \
@@ -735,7 +735,7 @@ package_tor-openrc() {
 	install=tor.install
 
 	install -Dm644 "${srcdir}/tor.confd" "${pkgdir}/etc/conf.d/tor"
-	install -Dm644 "${srcdir}/tor.initd" "${pkgdir}/etc/init.d/tor"
+	install -Dm755 "${srcdir}/tor.initd" "${pkgdir}/etc/init.d/tor"
 
 	sed -e "${_shebang}" \
 		-e "${_runpath}" \
@@ -747,7 +747,7 @@ package_wicd-openrc() {
 	depends=('openrc-core' 'wicd')
 	install=wicd.install
 
-	install -Dm644 "${srcdir}/wicd.initd" "${pkgdir}/etc/init.d/wicd"
+	install -Dm755 "${srcdir}/wicd.initd" "${pkgdir}/etc/init.d/wicd"
 }
 
 package_syncthing-openrc() {
@@ -757,7 +757,7 @@ package_syncthing-openrc() {
 	install=syncthing.install
 
 	install -Dm644 "${srcdir}/syncthing.confd" "${pkgdir}/etc/conf.d/syncthing"
-	install -Dm644 "${srcdir}/syncthing.initd" "${pkgdir}/etc/init.d/syncthing"
+	install -Dm755 "${srcdir}/syncthing.initd" "${pkgdir}/etc/init.d/syncthing"
 }
 
 package_nginx-openrc() {
@@ -765,7 +765,7 @@ package_nginx-openrc() {
 	depends=('openrc-core' 'nginx')
 	install=nginx.install
 
-	install -Dm644 "${srcdir}/nginx.initd" "${pkgdir}/etc/init.d/nginx"
+	install -Dm755 "${srcdir}/nginx.initd" "${pkgdir}/etc/init.d/nginx"
 
 	sed -e "${_shebang}" \
 		-e "${_binpath[0]}" \

@@ -39,7 +39,7 @@ package_nvidia-utils-openrc() {
 	depends=('openrc-core' 'nvidia-utils')
 	install=nvidia-utils.install
 
-	install -Dm644 "${srcdir}/nvidia-smi.initd" "${pkgdir}"/etc/init.d/nvidia-smi
+	install -Dm755 "${srcdir}/nvidia-smi.initd" "${pkgdir}"/etc/init.d/nvidia-smi
 
 	sed -e ${_shebang} \
 		-e 's|/opt/bin|/usr/bin|g' \
@@ -52,7 +52,7 @@ package_catalyst-utils-openrc() {
 	install=catalyst-utils.install
 	backup=('etc/conf.d/atieventsd')
 
-	install -Dm644 "${srcdir}/atieventsd.initd" "${pkgdir}"/etc/init.d/atieventsd
+	install -Dm755 "${srcdir}/atieventsd.initd" "${pkgdir}"/etc/init.d/atieventsd
 
 	sed -e ${_shebang} \
 		-e 's|/opt/sbin|/usr/bin|g' \
@@ -69,12 +69,12 @@ package_virtualgl-openrc() {
 	backup=('etc/conf.d/vgl')
 
 	install -Dm644 "${srcdir}/vgl.confd" "${pkgdir}"/etc/conf.d/vgl
-	install -Dm644 "${srcdir}/vgl.initd" "${pkgdir}"/etc/init.d/vgl
+	install -Dm755 "${srcdir}/vgl.initd" "${pkgdir}"/etc/init.d/vgl
 
 	sed -e ${_shebang} \
 		-i "${pkgdir}"/etc/init.d/vgl
 
-	install -Dm644 "${srcdir}/vgl-helper.sh" "${pkgdir}"/usr/lib/vgl-helper.sh
+	install -Dm755 "${srcdir}/vgl-helper.sh" "${pkgdir}"/usr/lib/vgl-helper.sh
 	install -d "${pkgdir}"/var/lib/VirtualGL
 }
 
@@ -86,7 +86,7 @@ package_bumblebee-openrc() {
 	backup=('etc/conf.d/bumblebee')
 
 	install -Dm644 "${srcdir}/bumblebee.confd" "${pkgdir}"/etc/conf.d/bumblebee
-	install -Dm644 "${srcdir}/bumblebee.initd" "${pkgdir}"/etc/init.d/bumblebee
+	install -Dm755 "${srcdir}/bumblebee.initd" "${pkgdir}"/etc/init.d/bumblebee
 
 	sed -e ${_shebang} \
 		-e 's|/usr/sbin|/usr/bin|g' \
