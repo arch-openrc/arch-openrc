@@ -7,7 +7,7 @@ pkgname=('nvidia-utils-openrc'
 		'catalyst-utils-openrc'
 		'virtualgl-openrc'
 		'bumblebee-openrc')
-pkgver=20150611
+pkgver=20150613
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -32,18 +32,26 @@ pkgver() {
 	date +%Y%m%d
 }
 
-_shebang='s|#!/sbin/runscript|#!/usr/bin/openrc-run|'
+_inst_initd(){
+	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
+		-e 's|/var/run|/run|g' \
+		-i ${pkgdir}/etc/init.d/$1
+}
+
+_inst_confd(){
+	install -Dm755 ${srcdir}/$1.confd ${pkgdir}/etc/conf.d/$1
+}
 
 package_nvidia-utils-openrc() {
 	pkgdesc="OpenRC nvidia-smi init script"
 	depends=('openrc-core' 'nvidia-utils')
 	install=nvidia-utils.install
 
-	install -Dm755 "${srcdir}/nvidia-smi.initd" "${pkgdir}"/etc/init.d/nvidia-smi
+	_inst_initd 'nvidia-smi'
 
-	sed -e ${_shebang} \
-		-e 's|/opt/bin|/usr/bin|g' \
-		-i "${pkgdir}"/etc/init.d/nvidia-smi
+	sed -e 's|/opt/bin|/usr/bin|g' -i "${pkgdir}"/etc/init.d/nvidia-smi
 }
 
 package_catalyst-utils-openrc() {
@@ -52,11 +60,9 @@ package_catalyst-utils-openrc() {
 	install=catalyst-utils.install
 	backup=('etc/conf.d/atieventsd')
 
-	install -Dm755 "${srcdir}/atieventsd.initd" "${pkgdir}"/etc/init.d/atieventsd
+	_inst_initd 'atieventsd'
 
-	sed -e ${_shebang} \
-		-e 's|/opt/sbin|/usr/bin|g' \
-		-i "${pkgdir}"/etc/init.d/atieventsd
+	sed -e 's|/opt/sbin|/usr/bin|g' -i "${pkgdir}"/etc/init.d/atieventsd
 
 	install -d "${pkgdir}"/etc/conf.d
 	echo 'ATIEVENTSDOPTS=""' > "${pkgdir}"/etc/conf.d/atieventsd
@@ -68,11 +74,8 @@ package_virtualgl-openrc() {
 	install=virtualgl.install
 	backup=('etc/conf.d/vgl')
 
-	install -Dm644 "${srcdir}/vgl.confd" "${pkgdir}"/etc/conf.d/vgl
-	install -Dm755 "${srcdir}/vgl.initd" "${pkgdir}"/etc/init.d/vgl
-
-	sed -e ${_shebang} \
-		-i "${pkgdir}"/etc/init.d/vgl
+	_inst_confd 'vgl'
+	_inst_initd 'vgl'
 
 	install -Dm755 "${srcdir}/vgl-helper.sh" "${pkgdir}"/usr/lib/vgl-helper.sh
 	install -d "${pkgdir}"/var/lib/VirtualGL
@@ -85,11 +88,6 @@ package_bumblebee-openrc() {
 	install=bumblebee.install
 	backup=('etc/conf.d/bumblebee')
 
-	install -Dm644 "${srcdir}/bumblebee.confd" "${pkgdir}"/etc/conf.d/bumblebee
-	install -Dm755 "${srcdir}/bumblebee.initd" "${pkgdir}"/etc/init.d/bumblebee
-
-	sed -e ${_shebang} \
-		-e 's|/usr/sbin|/usr/bin|g' \
-		-e 's|/var/run|/run|g' \
-		-i "${pkgdir}"/etc/init.d/bumblebee
+	_inst_confd 'bumblebee'
+	_inst_initd 'bumblebee'
 }
