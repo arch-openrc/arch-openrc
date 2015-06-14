@@ -4,27 +4,35 @@ _pkgname=ConsoleKit2
 
 pkgname=consolekit
 pkgver=0.9.3
-pkgrel=1
+pkgrel=2
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="https://github.com/ConsoleKit2/ConsoleKit2"
 license=('GPL')
 #provides=('logind')
-depends=('dbus' 'glib2' 'libx11' 'polkit' 'libudev.so' 'zlib')
+depends=('dbus' 'glib2' 'libx11' 'polkit-consolekit' 'udev' 'zlib')
 optdepends=('consolekit-openrc: consolekit openrc initscript')
-makedepends=('xmlto' 'docbook-xsl')
-options=(libtool)
+makedepends=('xmlto' 'docbook-xsl' 'git')
+options=('libtool')
 source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 		'consolekit.tmpfiles.conf'
 		'25-consolekit.rules'
-		'consolekit.pamd')
+		'consolekit.pamd'
+		"gdbus.patch::https://github.com/EricKoegel/ConsoleKit2/commit/7c33506401269c36274987228097042fd23897c7.patch")
 sha256sums=('e8755fd12130ab5c2efe50d0e0314e748e70502ccc42912490488366f7f39e52'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
             'c5159d9fe8fdd52ad0d6a84af7ba00bac09edaae965896ab0d099a4df1c5ea6b'
-            '331b5dee7ab3afffbf116ead77d04422e524ce741fa9dc1b4d37fc684c61dc3b')
+            '331b5dee7ab3afffbf116ead77d04422e524ce741fa9dc1b4d37fc684c61dc3b'
+            'a85d48c3db202bd97f99ac5b144214bdb060f33b4e1813f895fc55e32c2fc49e')
+
+prepare(){
+	cd $srcdir/$_pkgname-$pkgver
+	patch -Np1 -i "${srcdir}/gdbus.patch"
+}
 
 build(){
-	cd "$srcdir/$_pkgname-$pkgver"
+	cd $srcdir/$_pkgname-$pkgver
+
 	./configure  \
 		--prefix=/usr \
 		--sysconfdir=/etc \
@@ -37,7 +45,6 @@ build(){
 		--enable-udev-acl \
 		--enable-docbook-docs \
 		--with-dbus-services=/usr/share/dbus-1/services \
-		--with-logrotate-dir=/etc/logrotate.d \
 		--with-xinitrc-dir=/etc/X11/xinit/xinitrc.d \
 		--with-pam-module-dir=/usr/lib/security \
 		--without-systemdsystemunitdir
@@ -46,7 +53,7 @@ build(){
 }
 
 package() {
-	cd "$srcdir/$_pkgname-$pkgver"
+	cd $srcdir/$_pkgname-$pkgver
 	make DESTDIR="$pkgdir" install
 
 	install -Dm644 "$srcdir"/consolekit.tmpfiles.conf "$pkgdir"/usr/lib/tmpfiles.d/consolekit.conf
