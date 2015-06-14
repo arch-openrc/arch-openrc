@@ -4,7 +4,7 @@ _pkgname=ConsoleKit2
 
 pkgname=consolekit
 pkgver=0.9.3
-pkgrel=2
+pkgrel=3
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="https://github.com/ConsoleKit2/ConsoleKit2"
@@ -12,7 +12,7 @@ license=('GPL')
 #provides=('logind')
 depends=('dbus' 'glib2' 'libx11' 'polkit-consolekit' 'udev' 'zlib')
 optdepends=('consolekit-openrc: consolekit openrc initscript')
-makedepends=('xmlto' 'docbook-xsl' 'git')
+makedepends=('xmlto' 'docbook-xsl')
 options=('libtool')
 source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 		'consolekit.tmpfiles.conf'
@@ -22,7 +22,7 @@ source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 sha256sums=('e8755fd12130ab5c2efe50d0e0314e748e70502ccc42912490488366f7f39e52'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
             'c5159d9fe8fdd52ad0d6a84af7ba00bac09edaae965896ab0d099a4df1c5ea6b'
-            '331b5dee7ab3afffbf116ead77d04422e524ce741fa9dc1b4d37fc684c61dc3b'
+            'f7b88e87f447e2d37c12886f57d932c385f19a8fef238e0f1de7a1746d8be69e'
             'a85d48c3db202bd97f99ac5b144214bdb060f33b4e1813f895fc55e32c2fc49e')
 
 prepare(){
