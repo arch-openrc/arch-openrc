@@ -8,4 +8,4 @@ session		include		system-login
 
 password	include		system-login
 
-session		optional	pam_ck_connector.so
+session		optional	pam_ck_connector.so nox11
