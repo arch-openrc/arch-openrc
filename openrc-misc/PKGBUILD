@@ -459,8 +459,7 @@ package_networkmanager-openrc() {
 	install -Dm755 "${srcdir}/10-openrc-status" "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
 
 	sed -e 's|@EPREFIX@/sbin|/usr/bin|' \
-		-e 's|@EPREFIX@/usr/sbin|/usr/sbin|' \
-		-e 's|#!/bin/sh|#!/usr/bin/sh|' \
+		-e 's|@EPREFIX@/usr/sbin|/usr/bin|' \
 		-i "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
 }
 
