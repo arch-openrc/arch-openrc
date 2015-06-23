@@ -12,7 +12,7 @@ _repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
 pkgver=221
-pkgrel=1
+pkgrel=2
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
 license=('GPL2')
@@ -25,14 +25,12 @@ provides=("libsystemd=${pkgver}"
             'libsystemd-daemon.so'
             'libsystemd-id128.so'
             'libsystemd-journal.so'
-            'libsystemd-login.so'
-            'libgudev')
+            'libsystemd-login.so')
 depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev>=3.1.2')
 optdepends=('upower-pm-utils: pm-utils support')
 conflicts=('systemd'
 			'systemd-tools'
 			'libsystemd'
-			'libgudev'
 			'openrc-systemdcompat')
 replaces=('openrc-systemdcompat')
 
