@@ -2,12 +2,12 @@
 # Contributor: Alexey D. <lq07829icatm@rambler.ru>
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
-_udev_ver=220
+_udev_ver=221
 _src_uri='http://dev.gentoo.org/~blueness/eudev'
 
 pkgname=eudev
 pkgver=3.1.2
-pkgrel=1
+pkgrel=2
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/eudev/"
@@ -18,9 +18,9 @@ optdepends=('eudev-systemdcompat: makes packages compiled with systemd features 
 	    'upower-pm-utils: pm-utils support')
 provides=("udev=${_udev_ver}"
 	"libudev=${_udev_ver}"
-	'libgudev-1.0.so'
-	'libudev.so')
-conflicts=('libgudev-1.0.so' 'libudev.so')
+	'libudev.so'
+	'libgudev-1.0.so')
+conflicts=('libudev.so' 'libgudev-1.0.so')
 backup=('etc/udev/udev.conf')
 options=(!makeflags !libtool)
 source=("https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz"

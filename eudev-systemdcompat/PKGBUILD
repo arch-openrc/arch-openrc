@@ -3,15 +3,15 @@
 # Contributor: Dave Reisner <dreisner@archlinux.org>
 # Contributor: Tom Gundersen <teg@jklm.no>
 
-_spkgrel=5
+_spkgrel=1
 _y=2015
-_m=04
-_d=26
+_m=05
+_d=23
 _url=http://seblu.net/a/arm/$_y/$_m/$_d/core/os
-_repo=http://arch.packages.gnp-tec.net/testing/os
+_repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
-pkgver=220
+pkgver=221
 pkgrel=1
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
@@ -25,15 +25,28 @@ provides=("libsystemd=${pkgver}"
             'libsystemd-daemon.so'
             'libsystemd-id128.so'
             'libsystemd-journal.so'
-            'libsystemd-login.so')
-depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev>=1.10')
-optdepends=('eudev-openrc: eudev initscript'
-            'upower-pm-utils: pm-utils support')
+            'libsystemd-login.so'
+            'libgudev')
+depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev>=3.1.2')
+optdepends=('upower-pm-utils: pm-utils support')
 conflicts=('systemd'
 			'systemd-tools'
 			'libsystemd'
+			'libgudev'
 			'openrc-systemdcompat')
 replaces=('openrc-systemdcompat')
+
+if [ "$CARCH" = "i686" ]; then
+    source=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
+			"$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
+	sha256sums=('8b314f4bf6773ef9211f46d34cee7112cade6b567e18a8c270aa3822a2838362'
+				'8f783aaa36927c5082cd42f2738f90cd81da927959b18afbef42353a5cfc1c9c')
+elif [ "$CARCH" = "x86_64" ]; then
+    source=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
+			"$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
+	sha256sums=('567732f68b3a6c583516205bd2fddef4f7db63bd869988cb7c1f34b401968c15'
+            '53faf6a01bd593b077a44b3d9a4bf66540f7c0f7ba3c6ea84a1ddcab28bdb573')
+fi
 
 # if [ "$CARCH" = "i686" ]; then
 #     source=("$_url/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
@@ -47,21 +60,9 @@ replaces=('openrc-systemdcompat')
 # 				'f9f3d59c9fa2ed6474216feca2fc36fcb231aa8ca07f69d6a4f4f10db84399ab')
 # fi
 
-if [ "$CARCH" = "i686" ]; then
-    source=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
-			"$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
-	sha256sums=('e0bacb3cb9c117aa6ced26f81ad8f3d132f372a1ede3953207a4805aef5da778'
-            '8344b53422bf79a2a9b5725946af1e3da77175815dd7b830b25361c808cda5e4')
-elif [ "$CARCH" = "x86_64" ]; then
-    source=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
-			"$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
-	sha256sums=('1a6f018444c5d823e63985bf65e08136f4c3e58fc4f4df759914ea813416d285'
-            '142f52bd991d4f059b707626c9538a0256966d0a53d9faa1b1b2d5fe8f01a849')
-fi
-
 prepare() {
 	#clean libsystemd
-	rm usr/lib/lib{g,}udev*.so*
+	rm usr/lib/libudev*.so*
 
 	# clean systemd
 	rm -r {etc,var,usr/{include,share}}
