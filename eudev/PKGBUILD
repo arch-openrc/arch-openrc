@@ -7,7 +7,7 @@ _src_uri='http://dev.gentoo.org/~blueness/eudev'
 
 pkgname=eudev
 pkgver=3.1.2
-pkgrel=3
+pkgrel=4
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/eudev/"
@@ -42,6 +42,7 @@ build() {
 		--disable-gudev \
 		--enable-introspection \
 		--enable-kmod \
+		--enable-manpages \
 		--enable-split-usr
 
 	make
