@@ -18,8 +18,8 @@ _gver=0.10
 
 pkgname=openrc-core
 pkgdesc="Gentoo's universal init system, udev enabled."
-pkgver=0.16.4
-pkgrel=3
+pkgver=0.17
+pkgrel=1
 pkgdesc="Gentoo's universal init system, udev enabled."
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -43,7 +43,7 @@ source=("${_src_uri}/${_pkgname}-${pkgver}.tar.bz2"
 	"${_genf}-${_gver}::${_g_uri}/${_gver}.tar.gz"
 	"${_pkgname}.logrotate"
 	'kmod-static-nodes')
-sha256sums=('6771257e208da2e4d20b4ac2e3e7f065eb8873566644ff385e9dbd6bc5221d21'
+sha256sums=('45818d9ef4659e8dd924a1468a091255c305daee5417f94d9515f0e125298b30'
             '4de998d68e28f8ce4c1d4c9955aec0fa4cfe84673cbf3bfe1be71a1e9918693f'
             'a92a96b6f065981ee1c0232a507f3695230eeb7fb6172ec9048c2538b36cfea8'
             '709c8b22f404001a512e47a7a4d3192070b3e150fb9d0f943de09736d665b0db'
@@ -54,9 +54,10 @@ _base_args=(SYSCONFDIR=/etc)
 if [ -f /etc/os-release ]; then
     . /etc/os-release
     _base_args+=(BRANDING="$NAME")
-
+    _id=$ID
 else
     _base_args+=(BRANDING='Unknown Linux')
+    _id=manjaro
 fi
 _base_args+=(PREFIX=/usr)
 _base_args+=(SBINDIR=/usr/bin)
@@ -70,7 +71,7 @@ _rc_args+=(MKNET=no)
 
 _f_args+=(ROOTPREFIX=/usr)
 _f_args+=(ROOTSBINDIR=/usr/bin)
-_f_args+=(ROOTLIBEXECDIR=/usr/lib/manjaro)
+_f_args+=(ROOTLIBEXECDIR=/usr/lib/$_id)
 
 _net_args=( "${_base_args[@]}" )
 _net_args+=(LIBEXECDIR=/usr/lib/${_net})
@@ -127,7 +128,7 @@ package() {
 	sed -e 's|#!/usr/bin/runscript|#!/usr/bin/openrc-run|' \
 	    -i "${pkgdir}/etc/init.d/net.lo"
 	ln -sf "/etc/init.d/net.lo" "${pkgdir}/etc/runlevels/boot/net.lo"
-	sed -e 's|/lib/gentoo/functions.sh|/usr/lib/manjaro/functions.sh|g' \
+	sed -e "s|/lib/gentoo/functions.sh|/usr/lib/$_id/functions.sh|g" \
 		-i "${pkgdir}/usr/lib/netifrc/sh/functions.sh"
 
 	# kmod-static-nodes
