@@ -1,4 +1,4 @@
-_svc="nginx"
+_svc="vnstatd"
 _rlvl="default"
 
 post_install() {

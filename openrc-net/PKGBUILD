@@ -39,8 +39,9 @@ pkgname=('autofs-openrc'
 		'tor-openrc'
 		'wicd-openrc'
 		'syncthing-openrc'
-		'nginx-openrc')
-pkgver=20150613
+		'nginx-openrc'
+		'vnstat-openrc')
+pkgver=20150628
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -122,6 +123,8 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
 		"tor.confd::${_gentoo_uri}/net-misc/tor/files/tor.confd"
 		"tor.initd::${_gentoo_uri}/net-misc/tor/files/tor.initd-r7"
 		"nginx.initd::${_gentoo_uri}/www-servers/nginx/files/nginx.initd-r2"
+		"vnstatd.confd::${_gentoo_uri}/net-analyzer/vnstat/files/vnstatd.confd"
+		"vnstatd.initd::${_gentoo_uri}/net-analyzer/vnstat/files/vnstatd.initd-r1"
 		"wicd.initd"
 		"syncthing.confd"
 		"syncthing.initd")
@@ -190,11 +193,13 @@ sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             'f2c44e5018719f644e194a4e8e43390bdc9926c533f79c41f0abf84879799d05'
             '330149a83684ddabe413d134d4c8efad4c88b18c2ab67165014deff5f7fffad2'
             'd1b1f8a00935d77521bceb62535350444df3470fa45f4d33c3934051a1bb595b'
-            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
-            '22a4b5e4c934ea8ba66764441b0bb60d31d23c147c8b64a4a035947327bfc3ec'
+            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
+            'fca7183a7676f0f471878925c8fbec20b7a0bff01551c0ad2b34d4d8a826c876'
             '41d780f291847e19f632428bbf27c3f289414afd237546d2974da1b75384c25c'
             '666b0cacc53515fb8409ada05d7e92b1de4d9a4814ba145f4982ffd164958aae'
             '9d5fca09d0161446a5cec30a0694cdc0656469403a008920a52a190051218b36'
+            '2cd5b91f86bc26aca85166a50de89faaccbf1ea8f219efb48b50b7ed0f3fe377'
+            '04348007015cfa35a4c1835f94b18a82c67cd4308ca6f374dfab9b97e7d85f94'
             '66b2b53b077ddc2d5eb1d81faa99fa0f4f0db01520900ba948001e539bfe02d8'
             'eb4a4315916fe3f8688c1da5bb5c249a1f402e61617452288d5b0668078c955c'
             '63708b1a7b61ae791df64bb4cefa01dc12236f96bb67fe6d0b2c513e11c81f3e')
@@ -721,4 +726,14 @@ package_nginx-openrc() {
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
 		-i "${pkgdir}/etc/init.d/nginx"
+}
+
+package_vnstat-openrc() {
+	pkgdesc="OpenRC vnstat init script"
+	depends=('openrc-core' 'vnstat')
+	backup=('etc/conf.d/vnstatd')
+	install=vnstat.install
+
+	_inst_confd 'vnstatd'
+	_inst_initd 'vnstatd'
 }
