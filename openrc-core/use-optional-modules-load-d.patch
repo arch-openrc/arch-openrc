@@ -1,0 +1,33 @@
+--- ../init.d/modules.in.orig	2015-06-19 16:55:37.000000000 +0200
++++ ../init.d/modules.in	2015-07-01 02:48:44.641796738 +0200
+@@ -16,6 +16,30 @@
+ 	# support compiled in ...
+ 	[ ! -f /proc/modules ] && return 0
+
++	local conf_s=/etc/modules-load.d
++	if [[ -d ${conf_s} ]] && [[ -f ${conf_s}/mhwd-gpu.conf ]]; then
++		local mods=() mhwd=() fn= kv=
++		local conf_rc=/etc/conf.d/modules
++		mv ${conf_rc} ${conf_rc}.lastboot
++		touch ${conf_rc}
++		for m in $(cat ${conf_s}/mhwd-gpu.conf | sed '/^.*#/d'); do
++			mhwd+=("$m")
++		done
++		for f in $(ls ${conf_s}/*.conf); do
++			if [[ $fn != mhwd-gpu ]];then
++				fn=${f##*/}
++				fn=${fn%%.conf}
++				kv=${fn//-*}
++				kv=${kv##linux}
++				for m in $(cat $f | sed '/^.*#/d'); do
++					mods+=("$m")
++				done
++				[[ $fn == linux${kv}-* ]] && echo 'modules_'${kv:0:1}'_'${kv:1:2}'="'${mods[@]} ${mhwd[@]}'"' >> ${conf_rc}
++				mods=()
++			fi
++		done
++	fi
++
+ 	local KV x y kv_variant_list
+ 	KV=$(uname -r)
+ 	# full $KV
