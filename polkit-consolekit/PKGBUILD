@@ -5,7 +5,7 @@
 
 pkgname=polkit-consolekit
 pkgver=0.112
-pkgrel=4
+pkgrel=5
 pkgdesc="PolyciKit with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('LGPL')
@@ -16,7 +16,7 @@ provides=("polkit=$pkgver")
 conflicts=('polkit')
 options=('!libtool')
 install=polkit.install
-source=("git://anongit.freedesktop.org/polkit#commit=f4d71e0de885010494b8b0b8d62ca910011d7544"
+source=("git://anongit.freedesktop.org/polkit#commit=fb5076b7c05d01a532d593a4079a29cf2d63a228"
 		'polkit.pam')
 sha256sums=('SKIP'
             'a35af3210bff1a8f2c04add47ed131a17df9eafbbc6f1671f97021be3ab1ff34')
