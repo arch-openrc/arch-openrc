@@ -7,17 +7,17 @@ _gentoo_uri=http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86
 
 pkgname=bumblebee-openrc
 pkgver=3.2.1
-pkgrel=1
-pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
+pkgrel=2
+pkgdesc="NVIDIA Optimus support for Linux through VirtualGL"
 arch=('i686' 'x86_64')
 provides=('bumblebee')
-depends=('primus' 'glib2' 'mesa-libgl')
+depends=('virtualgl' 'glib2' 'mesa-libgl')
 makedepends=('help2man' 'libbsd')
 optdepends=('xf86-video-nouveau: nouveau driver'
             'nouveau-dri: 3D acceleration features fo nouveau'
             'bbswitch: switch on/off discrete card'
             'nvidia: NVIDIA kernel driver'
-            'virtualgl: alternative back-end for optirun')
+            'primus: faster back-end for optirun')
 if [ "$CARCH" = "x86_64" ]; then
      optdepends[${#optdepends[@]}]='lib32-primus: faster 32bit back-end for optirun'
      optdepends[${#optdepends[@]}]='lib32-virtualgl: run 32bit applications with optirun'
