@@ -12,7 +12,7 @@ url='https://github.com/the-cavalry/light-locker'
 license=('GPL2')
 depends=('dbus-glib' 'gtk3' 'libxxf86misc' 'lightdm' 'libxss' 'upower=0.9.23' 'consolekit')
 makedepends=('gnome-common' 'intltool')
-#replaces=('light-locker-xfce' 'light-locker-upower')
+#replaces=('light-locker-upower')
 conflicts=('light-locker' 'light-locker-upower')
 provides=('light-locker')
 install='light-locker.install'
