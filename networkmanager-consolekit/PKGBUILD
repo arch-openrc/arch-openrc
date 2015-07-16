@@ -11,27 +11,25 @@
 
 pkgname=networkmanager-consolekit
 _pkgname=NetworkManager
-pkgver=1.0.2
-pkgrel=3
+pkgver=1.0.4
+pkgrel=1
 _pppver=2.4.7
 pkgdesc="NetworkManager with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('GPL' 'LGPL2.1')
 url="http://www.gnome.org/projects/$_pkgname/"
-depends=("libnm-glib>=${pkgver}" 'iproute2' 'libnl' 'polkit-consolekit' 'consolekit'
-         'wpa_supplicant' 'dhcp-client' 'libsoup' 'libmm-glib' 'libnewt' 'libndp'
-         'libteam')
-makedepends=('intltool' 'dhcpcd' 'iptables' 'gobject-introspection' 'gtk-doc' 'git'
-             "ppp=$_pppver" 'modemmanager' 'rp-pppoe' 'vala')
-optdepends=('modemmanager: for modem management service'
-            'dhcpcd: alternative DHCP client; does not support DHCPv6'
-            'iptables: connection sharing'
-            'dnsmasq: connection sharing'
-            'bluez: bluetooth support'
-            'openresolv: resolvconf support'
-            'ppp: dialup connection support')
+depends=('libnm-glib' 'iproute2' 'libnl' 'polkit-consolekit' 'wpa_supplicant' 'dhclient' 'libsoup'
+		'libmm-glib' 'libnewt' 'libndp' 'libteam' 'libgudev' 'consolekit')
+optdepends=('dnsmasq: connection sharing'
+			'bluez: Bluetooth support'
+			'openresolv: resolvconf support'
+			'ppp: dialup connection support'
+			'rp-pppoe: ADSL support'
+			'modemmanager: cellular network support')
+makedepends=('intltool' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' "ppp=$_pppver"
+             'modemmanager' 'dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'wpa_supplicant' 'libsoup'
+             'udev' 'libgudev' 'libmm-glib' 'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala')
 provides=("networkmanager=$pkgver")
-# replaces=('networkmanager')
 conflicts=('networkmanager')
 backup=('etc/NetworkManager/NetworkManager.conf')
 install=networkmanager.install
@@ -40,21 +38,18 @@ source=("http://ftp.gnome.org/pub/gnome/sources/$_pkgname/${pkgver:0:3}/$_pkgnam
         'NetworkManager.conf'
         '01-org.freedesktop.ModemManager1.rules'
         '01-org.freedesktop.NetworkManager.settings.modify.system.rules'
-        '50-org.freedesktop.NetworkManager.rules'
-        '0001-dns-Fix-falling-back-in-the-resolv.conf-methods.patch')
-sha256sums=('359385707494bedbb48cfe0992ccfbcc4ac147dae1f7a47055c71e96439508ff'
+        '50-org.freedesktop.NetworkManager.rules')
+sha256sums=('e4099fa2f4f4b8d95d0ad9fdd03ec20960845085fa500bf79aecbf54cee018c9'
             '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
             '759db295ddae7a6dc6b29211fc0ec08695f875584d456dd146d3679e2c33e2e3'
             '17b5e3ead960a0d2c3cea3f1549d1e83ada9600f174ab9a96f083abe6d8f962d'
             '4b815f43de58379e68653d890f529485aec4d2f83f11d050b08b31489d2267c2'
-            '02d9f7d836d297d6ddf39482d86a8573b3e41735b408aa2cd6df22048ec5f6c4'
-            '4c5cbd0871437c43c2081fe4a1e58d6464c9b960798fd57fd80a79135647e50a')
+            '02d9f7d836d297d6ddf39482d86a8573b3e41735b408aa2cd6df22048ec5f6c4')
 
 prepare() {
   cd $_pkgname-$pkgver
 
   patch -Np1 -i ../disable_set_hostname.patch
-  patch -Np1 -i ../0001-dns-Fix-falling-back-in-the-resolv.conf-methods.patch
   NOCONFIGURE=1 ./autogen.sh
 }
 
@@ -69,7 +64,7 @@ build() {
 		--libexecdir=/usr/lib/networkmanager \
 		--with-crypto=nss \
 		--with-dhclient=/usr/bin/dhclient \
-		--with-dhcpcd=/usr/bin/dhcpcd \
+		--without-dhcpcd \
 		--with-dnsmasq=/usr/bin/dnsmasq \
 		--with-iptables=/usr/bin/iptables \
 		--with-systemdsystemunitdir=/usr/lib/systemd/system \
