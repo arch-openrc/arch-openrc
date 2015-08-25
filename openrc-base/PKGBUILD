@@ -1,6 +1,6 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
-_gentoo_uri="http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86"
+_gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
 pkgbase=openrc-base
 pkgname=('cronie-openrc'
@@ -43,22 +43,22 @@ source=("cronie.initd::${_gentoo_uri}/sys-process/cronie/files/cronie-1.3-initd"
 		"dhcpcd.initd::${_gentoo_uri}/net-misc/dhcpcd/files/dhcpcd.initd"
 		'ftpd.confd'
 		'ftpd.initd')
-sha256sums=('292a7b20fe33bd027357475fea6aa1194afa7e5c1c47a85299db945b9d1c847e'
+sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
             '3d933a54abe62a547294b83208dbf5d7615d9c7f380d6504c91fff3620530803'
-            '4bec4e67e2447a4472eecdd2fb31325b4dd558e1fe283683f86707629b9d192d'
-            '98e37b8b6ed25004e48c5855d74c9361eea06d3fee13cefcc0ed10ccf452aa01'
-            '6165db3a2fcb251d4f3655c0461e018ce9c92a37f7f22a8fd2b75178b5435bc8'
+            'd0a55d31c713bbddf7d05634018623586e69d43281bc5019b5b821a745f9a57f'
+            '31281696ad3920da14fbb03d983131361665567c2d06001dbf829dc159d48375'
+            '7da9311c50f432d425549288288e0952d50e08644a06af6b8e2f886039f682fe'
             '57777904f12a35617e5a4193c964ebb32396452487fd02353e71e16e7b46bc22'
-            '036b6de05e6cbd921a667d6fc6b01d30c8f9b720e1a0d0e2453ecd62d32573fb'
-            '0c051388991ba69afbf2f6baf36ba227d7c26fc8f0d7588d8de76d9a74886d79'
+            'eb5c194b5e70a6fef95d5b1064771e37384d0972494a500fc22c3265eb9064e4'
+            '63e45f4a86c9c0be27d455999289f0dd62d912c04f12a38e3fa0257fafe293fb'
             '28370c089c39c248d7ded0960b8d8a9256bada44d44c22ce3cec87d512ef6844'
-            'a5754ffa0a05a0c29a9f6b5acf1b21dd313581fd6156c1ef722dc620e0114676'
-            'd7655cadd3a3a9d3683a540413365310ca9503c38fd21a9bfccec40630ca72f1'
-            '60accb4b6114753232f2db0adf3fc3f46d4459bfedf79b888801a13c55d79fa9'
+            '53aaa87749be5cc89942e2485ea76491e3f2ca98de4f9a392fac4cd88c87f548'
+            '258b913654312e39ab8db4aa43584cbeee8d654621f357810e6dac744312fb62'
+            '84fe3d786652a0d73f3626923feffa1fcb0a0b0054260cb5f73b0485d99fa168'
             'ec55674955af7a31da51b8b72b599e8519809287dad796a9b16155bcba471b79'
-            '3073b14619cb7b2c99c33f2d6cfd1e59ce5557899bffebaa65fa52f3caffadc7'
+            'b686fbc31b85a9dbf2f8569ce9158858e7f96a0ee02b21f68c36cb38eedbf927'
             'b489ced10391d4295bb8ca29e128b0d4217c290f1b4e37b05f5a9275048d289d'
-            '003b2c832909f1b89ffd283fb02d2712791d922394e201de0e42c0b463b2b1bd'
+            '9681b6bc6358dd80f6add0a115faa0113afa2be1784de4e07dbf31c460ac4252'
             '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
             '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
             '7f46e5e9ac9f204fb1564560c506a5bb4cede8823b89e3f1844e4f8be258e9ef')

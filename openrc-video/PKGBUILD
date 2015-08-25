@@ -1,6 +1,6 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
-_gentoo_uri=http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86
+_gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
 pkgbase=openrc-video
 pkgname=('nvidia-utils-openrc'
@@ -20,13 +20,11 @@ source=("nvidia-smi.initd::${_gentoo_uri}/x11-drivers/nvidia-drivers/files/nvidi
 		"${_gentoo_uri}/x11-misc/virtualgl/files/vgl-helper.sh")
 # 		"bumblebee.confd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.confd"
 # 		"bumblebee.initd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.initd")
-sha256sums=('c996033b81cc1512d8370d62575a0ea0c694f6e1b91cc948b4529625130601a7'
-            '20010ebc5cb286149f3c4c9c099b6470463ccdb8fd47cea054b783dc2ad1fff3'
+sha256sums=('706ae49d4a61d400b6cb1cd942a98a7764e617ccb3256b3ab7d92e22b1421605'
+            '585857e5655b23805043edb988d98ebf0327cd2f6b2589497c97ed9c4dcfa70b'
             '500957c2736f761e763f75e9c3a09bb4f53bcde8a3cd38dd5ec6b34777737fd2'
-            'd9337f0f337f291809e8ce7b34b495439c453e9e71e1b8c5623f51be60543707'
-            '438c928840fbfb9274604296b8178e7f97b42a3428d115e1de6e609ea3146497'
-            '9e0287f542cff0fd3452a0c3d6d427a3404706c93ac9a00f4d99fe52ed596d75'
-            '8dd0ea64c084a6e4daac3b8da043ff16d87ec2ba44c63e9965a2e8c9382dc639')
+            '34aef928ef3d90d007f28b7e54b31d534c0cd01bdce7f76ceb904e83005ce008'
+            '438c928840fbfb9274604296b8178e7f97b42a3428d115e1de6e609ea3146497')
 
 pkgver() {
 	date +%Y%m%d
