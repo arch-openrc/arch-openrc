@@ -11,7 +11,7 @@ _spkgrel=1
 _repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
-pkgver=224
+pkgver=226
 pkgrel=1
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
@@ -37,13 +37,15 @@ replaces=('openrc-systemdcompat')
 if [ "$CARCH" = "i686" ]; then
     source=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
             "$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
-sha256sums=('000ccacb94fcb226f2dfbfa64b0fdb2482ddce3d34b3685ed48cd6d6286af14e'
-            '2aa411e7e2a8916bf19ee736c2a8513190644f2e920ad02ce9383e1b564e3823')
+    sha256sums=('ee98131ccaea76f1087bef8528ad76eb299b92fbf6d84fb3718e83303f923fce'
+                '91570b5b87af2b38505880f6dc979197edd4555539747678ac1d3dad4c880108')
 elif [ "$CARCH" = "x86_64" ]; then
     source=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
-            "$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
-    sha256sums=('14c93c61e7d6a8c8eb46574a674e581930bb3cbea39b2be754c171e4bc8e2338'
-                '973cfb6e5d152f914ec9c1d8431b4e392ec0e153325fab887eae76dc44acc9a4')
+            "$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
+            "gummibootx64.efi")
+    sha256sums=('5d2f6b19c5c566143a9bf4d1c72b150fff853291544435e4a649cfcf282711aa'
+                '6ca54cb2320dac3173bff9234c5b108ed05b7d97c1a17b6a111a33133ffca789'
+                'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
 fi
 
 # if [ "$CARCH" = "i686" ]; then
@@ -66,7 +68,7 @@ prepare() {
 	rm -r {etc,var,usr/{include,share}}
 	rm usr/lib/libnss*
 	for d in usr/lib/*;do
-		[[ -d $d ]] && rm -r $d
+            [[ -d $d ]] && rm -rv $d
 	done
 	for f in usr/bin/*;do
 		[[ $f != 'usr/bin/systemd-tmpfiles' && $f != 'usr/bin/systemd-sysusers' ]] && rm $f
@@ -75,4 +77,8 @@ prepare() {
 
 package() {
 	mv "$srcdir/usr/" "$pkgdir"
+	if [[ $CARCH == 'x86_64' ]];then
+            install -d $pkgdir/usr/lib/systemd/boot/efi
+            cp $srcdir/gummibootx64.efi $pkgdir/usr/lib/systemd/boot/efi/systemd-bootx64.efi
+	fi
 }
