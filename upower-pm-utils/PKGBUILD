@@ -12,7 +12,7 @@ arch=('i686' 'x86_64')
 url="http://upower.freedesktop.org"
 license=('GPL')
 groups=('eudev-base')
-depends=('libusb' 'polkit-consolekit' 'pm-utils' 'dbus-glib' 'libimobiledevice' 'eudev-systemdcompat')
+depends=('libgudev' 'polkit-consolekit' 'pm-utils' 'dbus-glib' 'libimobiledevice' 'eudev-systemdcompat')
 backup=('etc/UPower/UPower.conf')
 makedepends=('intltool' 'docbook-xsl' 'gobject-introspection' 'python2')
 provides=("upower=${pkgver}")
