@@ -12,7 +12,8 @@ pkgname=('acpid-openrc'
 		'gpm-openrc'
 		'bluez-openrc'
 		'wpa_supplicant-openrc')
-pkgver=20150825
+		
+pkgver=20150921
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -43,8 +44,8 @@ source=("acpid.confd::${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
 		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_cli.sh"
 		'avahi-daemon.initd'
 		'avahi-dnsconfd.initd'
-		"cgproxy.initd::${_gentoo_uri}/app-admin/cgmanager/files/cgproxy.initd"
-		"cgmanager.initd::${_gentoo_uri}/app-admin/cgmanager/files/cgmanager.initd")
+		"cgproxy.initd::${_gentoo_uri}/app-admin/cgmanager/files/cgproxy.initd-r1"
+		"cgmanager.initd::${_gentoo_uri}/app-admin/cgmanager/files/cgmanager.initd-r1")
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             'c2e7afd61146f24dd4abc29a77474cb2172b6b608a7754cfa64b18a490d0d816'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
@@ -64,8 +65,8 @@ sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             'fb3483d4e54d3b48b993e117e45338977a5782373520e15d51cd9cd9417eec03'
             '876788303553fe773e64917f76f0208f5e8adf7b91d4af24aa9d6a68a147d646'
             'e128576d72981e402ff106bb481108ab6d5ba941ab1b0f5f53e96a7831fc1d15'
-            '227d249d7ed1da8947cd820ec831e9f30b2e1500f527c2f23ec473bc57e8ec24'
-            'c8daeffcf148f1f5b304b41192fafc2aa78e5dca7d226fa624ff7ea58ea4bb6a')
+            '5e676e1bd76f73a1fd48f706030b8cc0bea5cb36c439dd02f213092ca985cd9e'
+            '625c8b2f507076eac0108e75547239508d147bcc669372fc3991bb42b17608e1')
 
 pkgver() {
 	date +%Y%m%d
@@ -75,6 +76,7 @@ _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
+		-e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
 		-e 's|/usr/sbin|/usr/bin|g' \
 		-i ${pkgdir}/etc/init.d/$1
@@ -121,7 +123,6 @@ package_cgmanager-openrc() {
 
 	_inst_initd 'cgproxy'
 	_inst_initd 'cgmanager'
-	sed -e 's|cgproxy server|cgmanager server|' -i ${pkgdir}/etc/init.d/cgmanager
 }
 
 package_consolekit-openrc() {
