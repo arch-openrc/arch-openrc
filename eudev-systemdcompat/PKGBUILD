@@ -68,7 +68,7 @@ prepare() {
 	rm -r {etc,var,usr/{include,share}}
 	rm usr/lib/libnss*
 	for d in usr/lib/*;do
-            [[ -d $d ]] && rm -rv $d
+            [[ -d $d ]] && rm -r $d
 	done
 	for f in usr/bin/*;do
 		[[ $f != 'usr/bin/systemd-tmpfiles' && $f != 'usr/bin/systemd-sysusers' ]] && rm $f
@@ -78,7 +78,6 @@ prepare() {
 package() {
 	mv "$srcdir/usr/" "$pkgdir"
 	if [[ $CARCH == 'x86_64' ]];then
-            install -d $pkgdir/usr/lib/systemd/boot/efi
-            cp $srcdir/gummibootx64.efi $pkgdir/usr/lib/systemd/boot/efi/systemd-bootx64.efi
+            install -D $srcdir/gummibootx64.efi $pkgdir/usr/lib/systemd/boot/efi/systemd-bootx64.efi
 	fi
 }
