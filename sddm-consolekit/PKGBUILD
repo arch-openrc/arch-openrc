@@ -27,7 +27,7 @@ prepare() {
   mkdir -p build
   cd ${_pkgname}-${pkgver}
   patch -p1 -i ${srcdir}/${_pkgname}-consolekit.patch
-  patch -p1 -i ${srcdir}/${_pkgname}-respect-user-flags.patch
+  patch -p0 -i ${srcdir}/${_pkgname}-respect-user-flags.patch
 }
 
 build() {
