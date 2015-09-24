@@ -5,7 +5,6 @@ _gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master"
 pkgbase=openrc-base
 pkgname=('cronie-openrc'
 		'cryptsetup-openrc'
-		'dbus-openrc'
 		'dhcpcd-openrc'
 		'device-mapper-openrc'
 		'glibc-openrc'
@@ -27,7 +26,6 @@ conflicts=('initscripts'
 source=("cronie.initd::${_gentoo_uri}/sys-process/cronie/files/cronie-1.3-initd"
 		"dmcrypt.confd::${_gentoo_uri}/sys-fs/cryptsetup/files/1.6.7-dmcrypt.confd"
 		"dmcrypt.initd::${_gentoo_uri}/sys-fs/cryptsetup/files/1.6.7-dmcrypt.rc"
-		"dbus.initd::${_gentoo_uri}/sys-apps/dbus/files/dbus.initd"
 		"nscd.initd::${_gentoo_uri}/sys-libs/glibc/files/nscd"
 		"device-mapper.confd::${_gentoo_uri}/sys-fs/lvm2/files/device-mapper.conf-1.02.22-r3"
 		"device-mapper.initd::${_gentoo_uri}/sys-fs/lvm2/files/device-mapper.rc-2.02.105-r2"
@@ -46,7 +44,6 @@ source=("cronie.initd::${_gentoo_uri}/sys-process/cronie/files/cronie-1.3-initd"
 sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
             '3d933a54abe62a547294b83208dbf5d7615d9c7f380d6504c91fff3620530803'
             'd0a55d31c713bbddf7d05634018623586e69d43281bc5019b5b821a745f9a57f'
-            '31281696ad3920da14fbb03d983131361665567c2d06001dbf829dc159d48375'
             '7da9311c50f432d425549288288e0952d50e08644a06af6b8e2f886039f682fe'
             '57777904f12a35617e5a4193c964ebb32396452487fd02353e71e16e7b46bc22'
             'eb5c194b5e70a6fef95d5b1064771e37384d0972494a500fc22c3265eb9064e4'
@@ -71,8 +68,9 @@ _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
-		-e 's|/var/run|/run|g' \
-		-i ${pkgdir}/etc/init.d/$1
+            -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
+            -e 's|/var/run|/run|g' \
+            -i ${pkgdir}/etc/init.d/$1
 }
 
 _inst_confd(){
@@ -108,17 +106,6 @@ package_dhcpcd-openrc() {
 	_inst_initd 'dhcpcd'
 
 	sed -e 's|/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/dhcpcd"
-}
-
-package_dbus-openrc() {
-	pkgdesc="OpenRC dbus init script"
-	groups=('openrc-base' 'openrc-desktop')
-	depends=('openrc-core' 'dbus')
-	install=dbus.install
-
-	_inst_initd 'dbus'
-
-	sed -e 's|dbus.pid|dbus/pid|g' -i "${pkgdir}/etc/init.d/dbus"
 }
 
 package_device-mapper-openrc() {
