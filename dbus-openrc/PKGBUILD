@@ -30,6 +30,7 @@ source=("http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz" #{,.asc}
         "dbus.initd::${_gentoo_uri}/dbus.initd"
 	'30-dbus.sh')
 sha256sums=('1dfb9745fb992f1ccd43c920490de8caddf6726a6222e8b803be6098293f924b'
+            '31281696ad3920da14fbb03d983131361665567c2d06001dbf829dc159d48375'
             'dc1ce6d38674bad7a48ad1911576f8bbb3819f1019126fb1ef7c3cfad16bb02a')
 
 build() {
