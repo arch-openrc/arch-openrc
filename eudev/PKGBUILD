@@ -14,14 +14,15 @@ license=('GPL')
 depends=('glib2' 'kbd' 'kmod' 'hwids' 'util-linux')
 makedepends=('gobject-introspection' 'gperf' 'gtk-doc' 'intltool')
 optdepends=('eudev-systemdcompat: makes packages compiled with systemd features run'
-	    'upower-pm-utils: pm-utils support')
+	    'upower-pm-utils: pm-utils support'
+	    'udev-openrc: udev starup scripts for openrc')
 provides=("udev=${_udev_ver}"
 	"libudev=${_udev_ver}"
 	'libudev.so')
 conflicts=('libudev.so')
 backup=('etc/udev/udev.conf')
 options=(!makeflags !libtool)
-source=("$pkgname-$pkgver::https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz"
+source=("$pkgname-$pkgver.tar.gz::https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz"
 	'initcpio_hooks'
 	'initcpio_install')
 sha256sums=('ce9d5fa91e3a42c7eb95512ca0fa2a631e89833053066bb6cdf42046b2a88553'

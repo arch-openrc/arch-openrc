@@ -1,8 +1,8 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
 _gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master"
-_uscript="udev-init-scripts"
-_usver=30
+
+_uscript_ver=30
 
 pkgbase=openrc-base
 pkgname=('cronie-openrc'
@@ -16,17 +16,13 @@ pkgname=('cronie-openrc'
         'udev-openrc')
         #'dbus-openrc')
 pkgver=20151014
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
 groups=('openrc-base')
-conflicts=('initscripts'
-		'systemd-sysvcompat'
-		'openrc'
-		'openrc-git'
-		'openrc-sysvinit')
+conflicts=('systemd-sysvcompat')
 source=("cronie.initd::${_gentoo_uri}/sys-process/cronie/files/cronie-1.3-initd"
 		"dmcrypt.confd::${_gentoo_uri}/sys-fs/cryptsetup/files/1.6.7-dmcrypt.confd"
 		"dmcrypt.initd::${_gentoo_uri}/sys-fs/cryptsetup/files/1.6.7-dmcrypt.rc"
@@ -45,7 +41,7 @@ source=("cronie.initd::${_gentoo_uri}/sys-process/cronie/files/cronie-1.3-initd"
 		"dhcpcd.initd::${_gentoo_uri}/net-misc/dhcpcd/files/dhcpcd.initd"
 		'ftpd.confd'
 		'ftpd.initd'
-		"http://dev.gentoo.org/~williamh/dist/${_uscript}-${_usver}.tar.gz")
+		"http://dev.gentoo.org/~williamh/dist/udev-init-scripts-${_uscript_ver}.tar.gz")
 		#"dbus.initd::${_gentoo_uri}/sys-apps/dbus/files/dbus.initd")
 sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
             '3d933a54abe62a547294b83208dbf5d7615d9c7f380d6504c91fff3620530803'
@@ -91,10 +87,6 @@ package_cronie-openrc() {
 	provides=('openrc-cron')
 	conflicts=('fcron'
                     'fcron-openrc'
-                    'openrc'
-                    'openrc-git'
-                    'openrc-arch-services-git'
-                    'initscripts'
                     'systemd-sysvcompat')
 	backup=('etc/init.d/cronie')
 	install=cronie.install
@@ -198,19 +190,24 @@ package_mdadm-openrc() {
 	backup=('etc/conf.d/mdadm')
 	install=mdadm.install
 
-	_inst_confd 'mdadm'
-	_inst_initd 'mdadm'
-
-	_inst_confd 'mdraid'
-	_inst_initd 'mdraid'
+        for f in mdadm mdraid;do
+            _inst_confd $f
+            _inst_initd $f
+        done
+#         _inst_confd 'mdadm'
+# 	_inst_initd 'mdadm'
+#
+# 	_inst_confd 'mdraid'
+# 	_inst_initd 'mdraid'
 }
 
 package_udev-openrc(){
-        pkgver=${_usver}
+        pkgver=${_uscript_ver}
+        pkgrel=1
         pkgdesc="udev startup scripts for openrc"
         depends=('openrc' 'udev')
 
-        cd "${srcdir}/${_uscript}-${_usver}"
+        cd "${srcdir}/udev-init-scripts-${_uscript_ver}"
 	make DESTDIR="${pkgdir}" install
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e "s|#!/sbin/openrc-run|#!/usr/bin/openrc-run|" \

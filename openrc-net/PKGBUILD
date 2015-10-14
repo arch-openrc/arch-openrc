@@ -8,126 +8,122 @@ _gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
 pkgbase=openrc-net
 pkgname=('autofs-openrc'
-		'apache-openrc'
-		'bind-openrc'
-		'cyrus-sasl-openrc'
-		'dhcp-openrc'
-		'hostapd-openrc'
-		'iptables-openrc'
-		'krb5-openrc'
-		'lighttpd-openrc'
-		'nfs-utils-openrc'
-		'openldap-openrc'
-		'openslp-openrc'
-		'openssh-openrc'
-		'openntpd-openrc'
-		'openvpn-openrc'
-		'polipo-openrc'
-		'postfix-openrc'
-		'privoxy-openrc'
-		'quota-tools-openrc'
-		'rpcbind-openrc'
-		'rsync-openrc'
-		'samba-openrc'
-		'squid-openrc'
-		'transmission-openrc'
-		'ufw-openrc'
-		'vsftpd-openrc'
-		'xinetd-openrc'
-		'ypbind-mt-openrc'
-		'ypserv-openrc'
-		'tor-openrc'
-		'wicd-openrc'
-		'syncthing-openrc'
-		'nginx-openrc'
-		'vnstat-openrc')
-pkgver=20150629
-pkgrel=1
+        'apache-openrc'
+        'bind-openrc'
+        'cyrus-sasl-openrc'
+        'dhcp-openrc'
+        'hostapd-openrc'
+        'iptables-openrc'
+        'krb5-openrc'
+        'lighttpd-openrc'
+        'nfs-utils-openrc'
+        'openldap-openrc'
+        'openslp-openrc'
+        'openssh-openrc'
+        'openntpd-openrc'
+        'openvpn-openrc'
+        'polipo-openrc'
+        'postfix-openrc'
+        'privoxy-openrc'
+        'quota-tools-openrc'
+        'rpcbind-openrc'
+        'rsync-openrc'
+        'samba-openrc'
+        'squid-openrc'
+        'transmission-openrc'
+        'ufw-openrc'
+        'vsftpd-openrc'
+        'xinetd-openrc'
+        'ypbind-mt-openrc'
+        'ypserv-openrc'
+        'tor-openrc'
+        'wicd-openrc'
+        'syncthing-openrc'
+        'nginx-openrc'
+        'vnstat-openrc')
+pkgver=20151014
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
 groups=('openrc-net')
-conflicts=('openrc'
-		'openrc-git'
-		'openrc-arch-services-git'
-		'initscripts'
-		'systemd-sysvcompat')
+conflicts=('systemd-sysvcompat')
 source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
-		"named.confd::${_gentoo_uri}/net-dns/bind/files/named.confd-r7"
-		"named.initd::${_gentoo_uri}/net-dns/bind/files/named.init-r13"
-		"saslauthd.initd::${_gentoo_uri}/dev-libs/cyrus-sasl/files/saslauthd2.rc7"
-		"dhcpd.confd::${_gentoo_uri}/net-misc/dhcp/files/dhcpd.conf2"
-		"dhcrelay.confd::${_gentoo_uri}/net-misc/dhcp/files/dhcrelay.conf"
-		"dhcrelay6.confd::${_gentoo_uri}/net-misc/dhcp/files/dhcrelay6.conf"
-		"dhcpd.initd::${_gentoo_uri}/net-misc/dhcp/files/dhcpd.init5"
-		"dhcrelay.initd::${_gentoo_uri}/net-misc/dhcp/files/dhcrelay.init3"
-		"hostapd.confd::${_gentoo_uri}/net-wireless/hostapd/files/hostapd-conf.d"
-		"hostapd.initd::${_gentoo_uri}/net-wireless/hostapd/files/hostapd-init.d"
-		"iptables.confd::${_gentoo_uri}/net-firewall/iptables/files/iptables-1.4.13.confd"
-		"ip6tables.confd::${_gentoo_uri}/net-firewall/iptables/files/ip6tables-1.4.13.confd"
-		"iptables.initd::${_gentoo_uri}/net-firewall/iptables/files/iptables-1.4.13-r1.init"
-		"krb5kadmind.initd::${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kadmind.initd-r1"
-		"krb5kdc.initd::${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kdc.initd-r1"
-		"krb5kpropd.initd::${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kpropd.initd-r1"
-		"lighttpd.confd::${_gentoo_uri}/www-servers/lighttpd/files/lighttpd.confd"
-		"lighttpd.initd::${_gentoo_uri}/www-servers/lighttpd/files/lighttpd.initd"
-		"nfs.confd::${_gentoo_uri}/net-fs/nfs-utils/files/nfs.confd"
-		"nfs.initd::${_gentoo_uri}/net-fs/nfs-utils/files/nfs.initd"
-		"nfsclient.confd::${_gentoo_uri}/net-fs/nfs-utils/files/nfsclient.confd"
-		"nfsclient.initd::${_gentoo_uri}/net-fs/nfs-utils/files/nfsclient.initd"
-		"rpc.idmapd.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.idmapd.initd"
-		"rpc.pipefs.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.pipefs.initd"
-		"rpc.gssd.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.gssd.initd"
-		"rpc.svcgssd.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.svcgssd.initd"
-		"rpc.statd.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.statd.initd"
-		"slapd.confd::${_gentoo_uri}/net-nds/openldap/files/slapd-confd-2.4.28-r1"
-		"slapd.initd::${_gentoo_uri}/net-nds/openldap/files/slapd-initd-2.4.28-r1"
-		"slpd.initd::${_gentoo_uri}/net-libs/openslp/files/slpd-init"
-		"sshd.confd::${_gentoo_uri}/net-misc/openssh/files/sshd.confd"
-		"sshd.initd::${_gentoo_uri}/net-misc/openssh/files/sshd.rc6.4"
-		"polipo.initd::${_gentoo_uri}/net-proxy/polipo/files/polipo.initd-2"
-		"postfix.initd::${_gentoo_uri}/mail-mta/postfix/files/postfix.rc6.2.7"
-		"privoxy.initd::${_gentoo_uri}/net-proxy/privoxy/files/privoxy.initd"
-		"quota.confd::${_gentoo_uri}/sys-fs/quota/files/quota.confd"
-		"quota.initd::${_gentoo_uri}/sys-fs/quota/files/quota.rc7"
-		"rpc.rquotad.initd::${_gentoo_uri}/sys-fs/quota/files/rpc.rquotad.initd"
-		"rpcbind.initd::${_gentoo_uri}/net-nds/rpcbind/files/rpcbind.initd"
-		"rsyncd.confd::${_gentoo_uri}/net-misc/rsync/files/rsyncd.conf.d"
-		"rsyncd.initd::${_gentoo_uri}/net-misc/rsync/files/rsyncd.init.d-r1"
-		"smb.confd::${_gentoo_uri}/net-fs/samba/files/4.3/samba4.confd"
-		"smb.initd::${_gentoo_uri}/net-fs/samba/files/4.3/samba4.initd-r1"
-		"squid.confd::${_gentoo_uri}/net-proxy/squid/files/squid.confd-r1"
-		"squid.initd::${_gentoo_uri}/net-proxy/squid/files/squid.initd-r4"
-		"transmission-daemon.confd::${_gentoo_uri}/net-p2p/transmission/files/transmission-daemon.confd.4"
-		"transmission-daemon.initd::${_gentoo_uri}/net-p2p/transmission/files/transmission-daemon.initd.9"
-		"ufw.confd::${_gentoo_uri}/net-firewall/ufw/files/ufw.confd"
-		"ufw.initd::${_gentoo_uri}/net-firewall/ufw/files/ufw-2.initd"
-		"${_gentoo_uri}/net-ftp/vsftpd/files/vsftpd-checkconfig.sh"
-		"vsftpd.initd::${_gentoo_uri}/net-ftp/vsftpd/files/vsftpd.init"
-		"xinetd.confd::${_gentoo_uri}/sys-apps/xinetd/files/xinetd.confd"
-		"xinetd.initd::${_gentoo_uri}/sys-apps/xinetd/files/xinetd.rc6"
-		"ypbind.confd::${_gentoo_uri}/net-nds/ypbind/files/ypbind.confd-r1"
-		"ypbind.initd::${_gentoo_uri}/net-nds/ypbind/files/ypbind.initd"
-		"ypserv.confd::${_gentoo_uri}/net-nds/ypserv/files/ypserv.confd"
-		"rpc.yppasswdd.confd::${_gentoo_uri}/net-nds/ypserv/files/rpc.yppasswdd.confd"
-		"rpc.ypxfrd.confd::${_gentoo_uri}/net-nds/ypserv/files/rpc.ypxfrd.confd"
-		"ypserv.initd::${_gentoo_uri}/net-nds/ypserv/files/ypserv"
-		"rpc.yppasswdd.initd::${_gentoo_uri}/net-nds/ypserv/files/rpc.yppasswdd-r1"
-		"rpc.ypxfrd.initd::${_gentoo_uri}/net-nds/ypserv/files/rpc.ypxfrd-2.23"
-		"autofs.initd::${_gentoo_uri}/net-fs/autofs/files/autofs5.initd"
-		"openvpn.confd::${_gentoo_uri}/net-misc/openvpn/files/openvpn-2.1.conf"
-		"openvpn.initd::${_gentoo_uri}/net-misc/openvpn/files/openvpn-2.1.init"
-		"ntpd.confd::${_gentoo_uri}/net-misc/openntpd/files/openntpd.conf.d-20080406-r6"
-		"ntpd.initd::${_gentoo_uri}/net-misc/openntpd/files/openntpd.init.d-20080406-r6"
-		"tor.confd::${_gentoo_uri}/net-misc/tor/files/tor.confd"
-		"tor.initd::${_gentoo_uri}/net-misc/tor/files/tor.initd-r7"
-		"nginx.initd::${_gentoo_uri}/www-servers/nginx/files/nginx.initd-r2"
-		"vnstatd.confd::${_gentoo_uri}/net-analyzer/vnstat/files/vnstatd.confd"
-		"vnstatd.initd::${_gentoo_uri}/net-analyzer/vnstat/files/vnstatd.initd-r1"
-		"wicd.initd"
-		"syncthing.confd"
-		"syncthing.initd")
+        "named.confd::${_gentoo_uri}/net-dns/bind/files/named.confd-r7"
+        "named.initd::${_gentoo_uri}/net-dns/bind/files/named.init-r13"
+        "saslauthd.initd::${_gentoo_uri}/dev-libs/cyrus-sasl/files/saslauthd2.rc7"
+        "dhcpd.confd::${_gentoo_uri}/net-misc/dhcp/files/dhcpd.conf2"
+        "dhcrelay.confd::${_gentoo_uri}/net-misc/dhcp/files/dhcrelay.conf"
+        "dhcrelay6.confd::${_gentoo_uri}/net-misc/dhcp/files/dhcrelay6.conf"
+        "dhcpd.initd::${_gentoo_uri}/net-misc/dhcp/files/dhcpd.init5"
+        "dhcrelay.initd::${_gentoo_uri}/net-misc/dhcp/files/dhcrelay.init3"
+        "hostapd.confd::${_gentoo_uri}/net-wireless/hostapd/files/hostapd-conf.d"
+        "hostapd.initd::${_gentoo_uri}/net-wireless/hostapd/files/hostapd-init.d"
+        "iptables.confd::${_gentoo_uri}/net-firewall/iptables/files/iptables-1.4.13.confd"
+        "ip6tables.confd::${_gentoo_uri}/net-firewall/iptables/files/ip6tables-1.4.13.confd"
+        "iptables.initd::${_gentoo_uri}/net-firewall/iptables/files/iptables-1.4.13-r1.init"
+        "krb5kadmind.initd::${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kadmind.initd-r1"
+        "krb5kdc.initd::${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kdc.initd-r1"
+        "krb5kpropd.initd::${_gentoo_uri}/app-crypt/mit-krb5/files/mit-krb5kpropd.initd-r1"
+        "lighttpd.confd::${_gentoo_uri}/www-servers/lighttpd/files/lighttpd.confd"
+        "lighttpd.initd::${_gentoo_uri}/www-servers/lighttpd/files/lighttpd.initd"
+        "nfs.confd::${_gentoo_uri}/net-fs/nfs-utils/files/nfs.confd"
+        "nfs.initd::${_gentoo_uri}/net-fs/nfs-utils/files/nfs.initd"
+        "nfsclient.confd::${_gentoo_uri}/net-fs/nfs-utils/files/nfsclient.confd"
+        "nfsclient.initd::${_gentoo_uri}/net-fs/nfs-utils/files/nfsclient.initd"
+        "rpc.idmapd.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.idmapd.initd"
+        "rpc.pipefs.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.pipefs.initd"
+        "rpc.gssd.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.gssd.initd"
+        "rpc.svcgssd.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.svcgssd.initd"
+        "rpc.statd.initd::${_gentoo_uri}/net-fs/nfs-utils/files/rpc.statd.initd"
+        "slapd.confd::${_gentoo_uri}/net-nds/openldap/files/slapd-confd-2.4.28-r1"
+        "slapd.initd::${_gentoo_uri}/net-nds/openldap/files/slapd-initd-2.4.28-r1"
+        "slpd.initd::${_gentoo_uri}/net-libs/openslp/files/slpd-init"
+        "sshd.confd::${_gentoo_uri}/net-misc/openssh/files/sshd.confd"
+        "sshd.initd::${_gentoo_uri}/net-misc/openssh/files/sshd.rc6.4"
+        "polipo.initd::${_gentoo_uri}/net-proxy/polipo/files/polipo.initd-2"
+        "postfix.initd::${_gentoo_uri}/mail-mta/postfix/files/postfix.rc6.2.7"
+        "privoxy.initd::${_gentoo_uri}/net-proxy/privoxy/files/privoxy.initd"
+        "quota.confd::${_gentoo_uri}/sys-fs/quota/files/quota.confd"
+        "quota.initd::${_gentoo_uri}/sys-fs/quota/files/quota.rc7"
+        "rpc.rquotad.initd::${_gentoo_uri}/sys-fs/quota/files/rpc.rquotad.initd"
+        "rpcbind.initd::${_gentoo_uri}/net-nds/rpcbind/files/rpcbind.initd"
+        "rsyncd.confd::${_gentoo_uri}/net-misc/rsync/files/rsyncd.conf.d"
+        "rsyncd.initd::${_gentoo_uri}/net-misc/rsync/files/rsyncd.init.d-r1"
+        "smb.confd::${_gentoo_uri}/net-fs/samba/files/4.3/samba4.confd"
+        "smb.initd::${_gentoo_uri}/net-fs/samba/files/4.3/samba4.initd-r1"
+        "squid.confd::${_gentoo_uri}/net-proxy/squid/files/squid.confd-r1"
+        "squid.initd::${_gentoo_uri}/net-proxy/squid/files/squid.initd-r4"
+        "transmission-daemon.confd::${_gentoo_uri}/net-p2p/transmission/files/transmission-daemon.confd.4"
+        "transmission-daemon.initd::${_gentoo_uri}/net-p2p/transmission/files/transmission-daemon.initd.9"
+        "ufw.confd::${_gentoo_uri}/net-firewall/ufw/files/ufw.confd"
+        "ufw.initd::${_gentoo_uri}/net-firewall/ufw/files/ufw-2.initd"
+        "${_gentoo_uri}/net-ftp/vsftpd/files/vsftpd-checkconfig.sh"
+        "vsftpd.initd::${_gentoo_uri}/net-ftp/vsftpd/files/vsftpd.init"
+        "xinetd.confd::${_gentoo_uri}/sys-apps/xinetd/files/xinetd.confd"
+        "xinetd.initd::${_gentoo_uri}/sys-apps/xinetd/files/xinetd.rc6"
+        "ypbind.confd::${_gentoo_uri}/net-nds/ypbind/files/ypbind.confd-r1"
+        "ypbind.initd::${_gentoo_uri}/net-nds/ypbind/files/ypbind.initd"
+        "ypserv.confd::${_gentoo_uri}/net-nds/ypserv/files/ypserv.confd"
+        "rpc.yppasswdd.confd::${_gentoo_uri}/net-nds/ypserv/files/rpc.yppasswdd.confd"
+        "rpc.ypxfrd.confd::${_gentoo_uri}/net-nds/ypserv/files/rpc.ypxfrd.confd"
+        "ypserv.initd::${_gentoo_uri}/net-nds/ypserv/files/ypserv"
+        "rpc.yppasswdd.initd::${_gentoo_uri}/net-nds/ypserv/files/rpc.yppasswdd-r1"
+        "rpc.ypxfrd.initd::${_gentoo_uri}/net-nds/ypserv/files/rpc.ypxfrd-2.23"
+        "autofs.initd::${_gentoo_uri}/net-fs/autofs/files/autofs5.initd"
+        "openvpn.confd::${_gentoo_uri}/net-misc/openvpn/files/openvpn-2.1.conf"
+        "openvpn.initd::${_gentoo_uri}/net-misc/openvpn/files/openvpn-2.1.init"
+        "ntpd.confd::${_gentoo_uri}/net-misc/openntpd/files/openntpd.conf.d-20080406-r6"
+        "ntpd.initd::${_gentoo_uri}/net-misc/openntpd/files/openntpd.init.d-20080406-r6"
+        "tor.confd::${_gentoo_uri}/net-misc/tor/files/tor.confd"
+        "tor.initd::${_gentoo_uri}/net-misc/tor/files/tor.initd-r7"
+        "nginx.initd::${_gentoo_uri}/www-servers/nginx/files/nginx.initd-r2"
+        "vnstatd.confd::${_gentoo_uri}/net-analyzer/vnstat/files/vnstatd.confd"
+        "vnstatd.initd::${_gentoo_uri}/net-analyzer/vnstat/files/vnstatd.initd-r1"
+        "wicd.initd"
+        "syncthing.confd"
+        "syncthing.initd")
 sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '7837345357a7c0162f2bd7aada22329c89b516a85af227a5d3d81afd1000a969'
@@ -145,8 +141,8 @@ sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             '3e55c79f19aaa6ef6b64a621c03dbb2eac3ad923916dc803f4c1bfe48ce89fbb'
             '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
             'c374ea05d7e9f15e10c8f9dbd0cad6548e0f92aef7de33e5dbc27222e9407e7b'
-            'bb6e6721f33e6582a91025f3500e159a599fb856d699e9394093e1018c7925e0'
-            '2e060179124d0fcdc120cdc26228e2f5bc724ab5134135111aeaf9dce1287833'
+            '0be7c9c04ce508cbefb3e913951d83c5ed7f0e01fe5aebcf3a5071f30ef3dbc2'
+            '7a2bf39cc899982f995f3e8999829e9d14fc99d7fc8b17829c5a980cfebbe48a'
             'c652a4fe8a43dc68a818345db2b3acc560663b5b6c969324d4f23afb0fb96a94'
             'c19a9543fe734bcd4194a4fbe5bb6873eb9c16fc6610239f8a30ec594f66d7c6'
             'e8842fca856eae598fb8fe15ed8d3cef13e61851217be66b8cc4087af8cee8ad'
@@ -171,7 +167,7 @@ sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
             '5725dbb5c7ca7ea324393e33eaeac67cd83aaee3daf1d92b24fa215bf3637633'
             '53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
-            '1fc0c948e1eab3b0b06f8957b2f5261f7472b1daabf5271e6ef8224c78ca8a1d'
+            '5d93618a7fb34eabfe4825c525066c976fc69c4caae8229751df36a0cec7ebd1'
             'fb3ca6be7ecd0fa89773c7052262a35cfdebd75afa03246e5bcd778ab0eda4c7'
             'c5acaeb20f4ecfc2938f730a546bf881062d38ac26aafea814c674692f8241bb'
             '249689688aad23d0d27ccdd08a0907fd85058d6a52ccd3467f756b07f5d059ee'
@@ -212,6 +208,7 @@ _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
+            -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
 		-i ${pkgdir}/etc/init.d/$1
 }
@@ -292,12 +289,16 @@ package_dhcp-openrc() {
 			'etc/conf.d/dhcrelay6')
 	install=dhcp.install
 
-	_inst_confd 'dhcpd'
-	_inst_initd 'dhcpd'
-
-	_inst_confd 'dhcrelay'
-	_inst_initd 'dhcrelay'
-
+        for f in dhcpd dhcrelay;do
+            _inst_confd $f
+            _inst_initd $f
+        done
+# 	_inst_confd 'dhcpd'
+# 	_inst_initd 'dhcpd'
+#
+# 	_inst_confd 'dhcrelay'
+# 	_inst_initd 'dhcrelay'
+#
 	_inst_confd 'dhcrelay6'
 # 	_inst_initd 'dhcrelay6'
 
@@ -349,9 +350,12 @@ package_krb5-openrc() {
 	depends=('openrc' 'krb5')
 	install=krb5.install
 
-	_inst_initd 'krb5kadmind'
-	_inst_initd 'krb5kdc'
-	_inst_initd 'krb5kpropd'
+        for f in krb5kadmind krb5kdc krb5kpropd;do
+            _inst_initd $f
+        done
+# 	_inst_initd 'krb5kadmind'
+# 	_inst_initd 'krb5kdc'
+# 	_inst_initd 'krb5kpropd'
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e 's|/usr/sbin|/usr/bin|g' \
@@ -398,17 +402,23 @@ package_nfs-utils-openrc() {
 		'etc/conf.d/nfsclient')
 	install=nfs-utils.install
 
-	_inst_confd 'nfs'
-	_inst_initd 'nfs'
-
-	_inst_confd 'nfsclient'
-	_inst_initd 'nfsclient'
-
-	_inst_initd 'rpc.gssd'
-	_inst_initd 'rpc.idmapd'
-	_inst_initd 'rpc.pipefs'
-	_inst_initd 'rpc.statd'
-	_inst_initd 'rpc.svcgssd'
+        for f in nfs nfsclient;do
+            _inst_confd $f
+            _inst_initd $f
+        done
+# 	_inst_confd 'nfs'
+# 	_inst_initd 'nfs'
+#
+# 	_inst_confd 'nfsclient'
+# 	_inst_initd 'nfsclient'
+        for f in rpc.gssd rpc.idmapd rpc.pipefs rpc.statd rpc.svcgssd;do
+            _inst_initd $f
+        done
+# 	_inst_initd 'rpc.gssd'
+# 	_inst_initd 'rpc.idmapd'
+# 	_inst_initd 'rpc.pipefs'
+# 	_inst_initd 'rpc.statd'
+# 	_inst_initd 'rpc.svcgssd'
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e 's|/usr/sbin|/usr/bin|g' \
@@ -423,10 +433,6 @@ package_openntpd-openrc() {
 	provides=('openrc-timed')
 	conflicts=('ntp'
 		'ntp-openrc'
-		'openrc'
-		'openrc-git'
-		'openrc-arch-services-git'
-		'initscripts'
 		'systemd-sysvcompat')
 	backup=('etc/conf.d/ntpd')
 	install=openntpd.install
@@ -674,14 +680,18 @@ package_ypserv-openrc() {
 		'etc/conf.d/ypserv')
 	install=ypserv.install
 
-	_inst_confd 'ypserv'
-	_inst_initd 'ypserv'
-
-	_inst_confd 'rpc.yppasswdd'
-	_inst_initd 'rpc.yppasswdd'
-
-	_inst_confd 'rpc.ypxfrd'
-	_inst_initd 'rpc.ypxfrd'
+        for f in ypserv rpc.yppasswdd rpc.ypxfrd;do
+            _inst_confd $f
+            _inst_initd $f
+        done
+# 	_inst_confd 'ypserv'
+# 	_inst_initd 'ypserv'
+#
+# 	_inst_confd 'rpc.yppasswdd'
+# 	_inst_initd 'rpc.yppasswdd'
+#
+# 	_inst_confd 'rpc.ypxfrd'
+# 	_inst_initd 'rpc.ypxfrd'
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e 's|/usr/sbin|/usr/bin|g' \

@@ -7,7 +7,7 @@ _gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master/sys-apps/dbu
 
 pkgname=dbus-openrc
 pkgver=1.10.0
-pkgrel=1
+pkgrel=3
 pkgdesc="Freedesktop.org message bus system"
 url="http://www.freedesktop.org/Software/dbus"
 arch=('i686' 'x86_64')
@@ -19,11 +19,7 @@ optdepends=('libx11: dbus-launch support'
             'dbus-openrc: dbus openrc initscript')
 provides=('dbus-core' "dbus=${pkgver}")
 conflicts=('dbus-core' 'dbus'
-            'initscripts'
-            'systemd-sysvcompat'
-            'openrc'
-            'openrc-git'
-            'openrc-sysvinit')
+            'systemd-sysvcompat')
 #replaces=('dbus-core' 'dbus')
 install=dbus.install
 source=("http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz" #{,.asc}

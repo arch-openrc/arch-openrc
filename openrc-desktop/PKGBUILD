@@ -4,48 +4,44 @@ _gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
 pkgbase=openrc-desktop
 pkgname=('acpid-openrc'
-		'alsa-utils-openrc'
-		'avahi-openrc'
-		'cgmanager-openrc'
-		'consolekit-openrc'
-		'displaymanager-openrc'
-		'gpm-openrc'
-		'bluez-openrc'
-		'wpa_supplicant-openrc')
+        'alsa-utils-openrc'
+        'avahi-openrc'
+        'cgmanager-openrc'
+        'consolekit-openrc'
+        'displaymanager-openrc'
+        'gpm-openrc'
+        'bluez-openrc'
+        'wpa_supplicant-openrc')
 
-pkgver=20150921
+pkgver=20151014
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
 groups=('openrc-desktop')
-conflicts=('openrc'
-		'openrc-git'
-		'openrc-arch-services-git'
-		'initscripts'
-		'systemd-sysvcompat')
+conflicts=('systemd-sysvcompat')
 source=("acpid.confd::${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-conf.d"
-		"acpid.initd::${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-init.d"
-		"alsasound.confd::${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.confd-r4"
-		"alsasound.initd::${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.initd-r6"
-		"consolekit.initd::${_gentoo_uri}/sys-auth/consolekit/files/consolekit-1.0.0.initd"
-		"xdm.confd::${_gentoo_uri}/x11-base/xorg-server/files/xdm.confd-4"
-		"xdm.initd::${_gentoo_uri}/x11-base/xorg-server/files/xdm.initd-11"
-		"xdm-setup.initd::${_gentoo_uri}/x11-base/xorg-server/files/xdm-setup.initd-1"
-		"${_gentoo_uri}/x11-apps/xinit/files/startDM.sh"
-		"gpm.confd::${_gentoo_uri}/sys-libs/gpm/files/gpm.conf.d"
-		"gpm.initd::${_gentoo_uri}/sys-libs/gpm/files/gpm.rc6-2"
-		"rfcomm.confd::${_gentoo_uri}/net-wireless/bluez/files/rfcomm-conf.d"
-		"rfcomm.initd::${_gentoo_uri}/net-wireless/bluez/files/rfcomm-init.d-r2"
-		"bluetooth.initd::${_gentoo_uri}/net-wireless/bluez/files/bluetooth-init.d-r3"
-		"wpa_supplicant.confd::${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_supplicant-conf.d"
-		"wpa_supplicant.initd::${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_supplicant-init.d"
-		"${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_cli.sh"
-		'avahi-daemon.initd'
-		'avahi-dnsconfd.initd'
-		"cgproxy.initd::${_gentoo_uri}/app-admin/cgmanager/files/cgproxy.initd-r1"
-		"cgmanager.initd::${_gentoo_uri}/app-admin/cgmanager/files/cgmanager.initd-r1")
+        "acpid.initd::${_gentoo_uri}/sys-power/acpid/files/acpid-2.0.16-init.d"
+        "alsasound.confd::${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.confd-r4"
+        "alsasound.initd::${_gentoo_uri}/media-sound/alsa-utils/files/alsasound.initd-r6"
+        "consolekit.initd::${_gentoo_uri}/sys-auth/consolekit/files/consolekit-1.0.0.initd"
+        "xdm.confd::${_gentoo_uri}/x11-base/xorg-server/files/xdm.confd-4"
+        "xdm.initd::${_gentoo_uri}/x11-base/xorg-server/files/xdm.initd-11"
+        "xdm-setup.initd::${_gentoo_uri}/x11-base/xorg-server/files/xdm-setup.initd-1"
+        "${_gentoo_uri}/x11-apps/xinit/files/startDM.sh"
+        "gpm.confd::${_gentoo_uri}/sys-libs/gpm/files/gpm.conf.d"
+        "gpm.initd::${_gentoo_uri}/sys-libs/gpm/files/gpm.rc6-2"
+        "rfcomm.confd::${_gentoo_uri}/net-wireless/bluez/files/rfcomm-conf.d"
+        "rfcomm.initd::${_gentoo_uri}/net-wireless/bluez/files/rfcomm-init.d-r2"
+        "bluetooth.initd::${_gentoo_uri}/net-wireless/bluez/files/bluetooth-init.d-r3"
+        "wpa_supplicant.confd::${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_supplicant-conf.d"
+        "wpa_supplicant.initd::${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_supplicant-init.d"
+        "${_gentoo_uri}/net-wireless/wpa_supplicant/files/wpa_cli.sh"
+        'avahi-daemon.initd'
+        'avahi-dnsconfd.initd'
+        "cgproxy.initd::${_gentoo_uri}/app-admin/cgmanager/files/cgproxy.initd-r1"
+        "cgmanager.initd::${_gentoo_uri}/app-admin/cgmanager/files/cgmanager.initd-r1")
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             'c2e7afd61146f24dd4abc29a77474cb2172b6b608a7754cfa64b18a490d0d816'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'

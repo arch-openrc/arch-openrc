@@ -1,12 +1,10 @@
 pre_install() {
-	echo "	==> You can boot up systemd any time."
+	echo "	==> You can boot up systemd any time if systemd is used for udev."
 	echo "	==> Add 'init=/usr/lib/systemd/systemd' to kernel command line."
 }
 
 post_install() {
-	echo "	==> Set up your network interface before you reboot."
-	local _url="https://wiki.gentoo.org/wiki/Handbook:X86/Full/Networking"
-	echo "	==> Visit ${_url}"
+        echo "	==> Install one of the optional depends for network support!"
 }
 
 post_upgrade() {

@@ -4,104 +4,100 @@ _gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
 pkgbase=openrc-misc
 pkgname=('cpupower-openrc'
-		'connman-openrc'
-		'fcron-openrc'
-		'fuse-openrc'
-		'metalog-openrc'
-		'rsyslog-openrc'
-		'sane-openrc'
-		'syslog-ng-openrc'
-		'lirc-utils-openrc'
-		'lm_sensors-openrc'
-		'ntp-openrc'
-		'cups-openrc'
-		'haveged-openrc'
-		'salt-openrc'
-		'mpd-openrc'
-		'hdparm-openrc'
-		'bitlbee-openrc'
-		'thermald-openrc'
-		'xe-guest-utilities-openrc'
-		'virtualbox-guest-utils-openrc'
-		'zfs-openrc'
-		'clamav-openrc'
-		'networkmanager-openrc'
-		'boinc-openrc'
-		'at-openrc'
-		'libvirt-openrc')
-pkgver=20150613
-pkgrel=1
+        'connman-openrc'
+        'fcron-openrc'
+        'fuse-openrc'
+        'metalog-openrc'
+        'rsyslog-openrc'
+        'sane-openrc'
+        'syslog-ng-openrc'
+        'lirc-utils-openrc'
+        'lm_sensors-openrc'
+        'ntp-openrc'
+        'cups-openrc'
+        'haveged-openrc'
+        'salt-openrc'
+        'mpd-openrc'
+        'hdparm-openrc'
+        'bitlbee-openrc'
+        'thermald-openrc'
+        'xe-guest-utilities-openrc'
+        'virtualbox-guest-utils-openrc'
+        'zfs-openrc'
+        'clamav-openrc'
+        'networkmanager-openrc'
+        'boinc-openrc'
+        'at-openrc'
+        'libvirt-openrc')
+pkgver=20151014
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
 groups=('openrc-misc')
-conflicts=('openrc'
-		'openrc-git'
-		'openrc-arch-services-git'
-		'initscripts'
-		'systemd-sysvcompat')
+conflicts=('systemd-sysvcompat')
 source=("fcron.initd::${_gentoo_uri}/sys-process/fcron/files/fcron.init.3"
-		"rsyslog.confd::${_gentoo_uri}/app-admin/rsyslog/files/8-stable/rsyslog.confd"
-		"rsyslog.initd::${_gentoo_uri}/app-admin/rsyslog/files/8-stable/rsyslog.initd"
-		"saned.confd::${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
-		"saned.initd::${_gentoo_uri}/media-gfx/sane-backends/files/saned.initd"
-		"fuse.initd::${_gentoo_uri}/sys-fs/fuse/files/fuse.init"
-		"metalog.confd::${_gentoo_uri}/app-admin/metalog/files/metalog.confd"
-		"metalog.initd::${_gentoo_uri}/app-admin/metalog/files/metalog.initd"
-		"syslog-ng.confd::${_gentoo_uri}/app-admin/syslog-ng/files/3.6/syslog-ng.confd"
-		"syslog-ng.initd::${_gentoo_uri}/app-admin/syslog-ng/files/3.6/syslog-ng.rc6"
-		"lircd.confd::${_gentoo_uri}/app-misc/lirc/files/lircd.conf.4"
-		"irexec.confd::${_gentoo_uri}/app-misc/lirc/files/irexec-confd"
-		"lircd.initd::${_gentoo_uri}/app-misc/lirc/files/lircd-0.8.6-r2"
-		"irexec.initd::${_gentoo_uri}/app-misc/lirc/files/irexec-initd-0.8.6-r2"
-		"lircmd.initd::${_gentoo_uri}/app-misc/lirc/files/lircmd"
-		"cpupower.confd::${_gentoo_uri}/sys-power/cpupower/files/conf.d-r2"
-		"cpupower.initd::${_gentoo_uri}/sys-power/cpupower/files/init.d-r4"
-		#"sensord.confd::${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-conf.d"
-		"sensord.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-4-init.d"
-		"fancontrol.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/fancontrol-init.d-2"
-		"lm_sensors.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/lm_sensors-3-init.d"
-		"ntpd.confd::${_gentoo_uri}/net-misc/ntp/files/ntpd.confd"
-		"ntp-client.confd::${_gentoo_uri}/net-misc/ntp/files/ntp-client.confd"
-		"sntp.confd::${_gentoo_uri}/net-misc/ntp/files/sntp.confd"
-		"ntpd.initd::${_gentoo_uri}/net-misc/ntp/files/ntpd.rc-r1"
-		"ntp-client.initd::${_gentoo_uri}/net-misc/ntp/files/ntp-client.rc"
-		"sntp.initd::${_gentoo_uri}/net-misc/ntp/files/sntp.rc"
-		"cupsd.initd::${_gentoo_uri}/net-print/cups/files/cupsd.init.d-r1"
-		"connman.confd::${_gentoo_uri}/net-misc/connman/files/connman.confd"
-		"connman.initd::${_gentoo_uri}/net-misc/connman/files/connman.initd2"
-		"haveged.confd::${_gentoo_uri}/sys-apps/haveged/files/haveged-conf.d"
-		"haveged.initd::${_gentoo_uri}/sys-apps/haveged/files/haveged-init.d.3"
-		"salt-master.confd::${_gentoo_uri}/app-admin/salt/files/master-confd-1"
-		"salt-master.initd::${_gentoo_uri}/app-admin/salt/files/master-initd-4"
-		"salt-minion.confd::${_gentoo_uri}/app-admin/salt/files/minion-confd-1"
-		"salt-minion.initd::${_gentoo_uri}/app-admin/salt/files/minion-initd-4"
-		"salt-syncdic.confd::${_gentoo_uri}/app-admin/salt/files/syndic-confd-1"
-		"salt-syncdic.initd::${_gentoo_uri}/app-admin/salt/files/syndic-initd-4"
-		"salt-api.confd::${_gentoo_uri}/app-admin/salt/files/api-confd-1"
-		"salt-api.initd::${_gentoo_uri}/app-admin/salt/files/api-initd-4"
-		"mpd.initd::${_gentoo_uri}/media-sound/mpd/files/mpd2.init"
-		"hdparm.confd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-conf.d.3"
-		"hdparm.initd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-init-8"
-		"bitlbee.confd::${_gentoo_uri}/net-im/bitlbee/files/bitlbee.confd"
-		"bitlbee.initd::${_gentoo_uri}/net-im/bitlbee/files/bitlbee.initd"
-		"xe-daemon.initd::${_gentoo_uri}/app-emulation/xe-guest-utilities/files/xe-daemon.initd"
-		"vboxservice.initd::${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
-		"clamd.confd::${_gentoo_uri}/app-antivirus/clamav/files/clamd.conf-r1"
-		"clamd.initd::${_gentoo_uri}/app-antivirus/clamav/files/clamd.initd-r6"
-		"NetworkManager.confd::${_gentoo_uri}/net-misc/networkmanager/files/conf.d.NetworkManager"
-		"NetworkManager.initd::${_gentoo_uri}/net-misc/networkmanager/files/init.d.NetworkManager"
-		"10-openrc-status::${_gentoo_uri}/net-misc/networkmanager/files/10-openrc-status-r4"
-		"boinc.confd::${_gentoo_uri}/sci-misc/boinc/files/boinc.conf"
-		"boinc.initd::${_gentoo_uri}/sci-misc/boinc/files/boinc.init"
-		"atd.confd::${_gentoo_uri}/sys-process/at/files/atd.confd"
-		"atd.initd::${_gentoo_uri}/sys-process/at/files/atd.rc8"
-		"libvirtd.confd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.confd-r4"
-		"libvirtd.initd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.init-r14"
-		"virtlockd.initd::${_gentoo_uri}/app-emulation/libvirt/files/virtlockd.init-r1"
-		"zfs.initd"
-		"thermald.initd")
+        "rsyslog.confd::${_gentoo_uri}/app-admin/rsyslog/files/8-stable/rsyslog.confd"
+        "rsyslog.initd::${_gentoo_uri}/app-admin/rsyslog/files/8-stable/rsyslog.initd"
+        "saned.confd::${_gentoo_uri}/media-gfx/sane-backends/files/saned.confd"
+        "saned.initd::${_gentoo_uri}/media-gfx/sane-backends/files/saned.initd"
+        "fuse.initd::${_gentoo_uri}/sys-fs/fuse/files/fuse.init"
+        "metalog.confd::${_gentoo_uri}/app-admin/metalog/files/metalog.confd"
+        "metalog.initd::${_gentoo_uri}/app-admin/metalog/files/metalog.initd"
+        "syslog-ng.confd::${_gentoo_uri}/app-admin/syslog-ng/files/3.6/syslog-ng.confd"
+        "syslog-ng.initd::${_gentoo_uri}/app-admin/syslog-ng/files/3.6/syslog-ng.rc6"
+        "lircd.confd::${_gentoo_uri}/app-misc/lirc/files/lircd.conf.4"
+        "irexec.confd::${_gentoo_uri}/app-misc/lirc/files/irexec-confd"
+        "lircd.initd::${_gentoo_uri}/app-misc/lirc/files/lircd-0.8.6-r2"
+        "irexec.initd::${_gentoo_uri}/app-misc/lirc/files/irexec-initd-0.8.6-r2"
+        "lircmd.initd::${_gentoo_uri}/app-misc/lirc/files/lircmd"
+        "cpupower.confd::${_gentoo_uri}/sys-power/cpupower/files/conf.d-r2"
+        "cpupower.initd::${_gentoo_uri}/sys-power/cpupower/files/init.d-r4"
+        #"sensord.confd::${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-conf.d"
+        "sensord.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/sensord-4-init.d"
+        "fancontrol.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/fancontrol-init.d-2"
+        "lm_sensors.initd::${_gentoo_uri}/sys-apps/lm_sensors/files/lm_sensors-3-init.d"
+        "ntpd.confd::${_gentoo_uri}/net-misc/ntp/files/ntpd.confd"
+        "ntp-client.confd::${_gentoo_uri}/net-misc/ntp/files/ntp-client.confd"
+        "sntp.confd::${_gentoo_uri}/net-misc/ntp/files/sntp.confd"
+        "ntpd.initd::${_gentoo_uri}/net-misc/ntp/files/ntpd.rc-r1"
+        "ntp-client.initd::${_gentoo_uri}/net-misc/ntp/files/ntp-client.rc"
+        "sntp.initd::${_gentoo_uri}/net-misc/ntp/files/sntp.rc"
+        "cupsd.initd::${_gentoo_uri}/net-print/cups/files/cupsd.init.d-r1"
+        "connman.confd::${_gentoo_uri}/net-misc/connman/files/connman.confd"
+        "connman.initd::${_gentoo_uri}/net-misc/connman/files/connman.initd2"
+        "haveged.confd::${_gentoo_uri}/sys-apps/haveged/files/haveged-conf.d"
+        "haveged.initd::${_gentoo_uri}/sys-apps/haveged/files/haveged-init.d.3"
+        "salt-master.confd::${_gentoo_uri}/app-admin/salt/files/master-confd-1"
+        "salt-master.initd::${_gentoo_uri}/app-admin/salt/files/master-initd-4"
+        "salt-minion.confd::${_gentoo_uri}/app-admin/salt/files/minion-confd-1"
+        "salt-minion.initd::${_gentoo_uri}/app-admin/salt/files/minion-initd-4"
+        "salt-syncdic.confd::${_gentoo_uri}/app-admin/salt/files/syndic-confd-1"
+        "salt-syncdic.initd::${_gentoo_uri}/app-admin/salt/files/syndic-initd-4"
+        "salt-api.confd::${_gentoo_uri}/app-admin/salt/files/api-confd-1"
+        "salt-api.initd::${_gentoo_uri}/app-admin/salt/files/api-initd-4"
+        "mpd.initd::${_gentoo_uri}/media-sound/mpd/files/mpd2.init"
+        "hdparm.confd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-conf.d.3"
+        "hdparm.initd::${_gentoo_uri}/sys-apps/hdparm/files/hdparm-init-8"
+        "bitlbee.confd::${_gentoo_uri}/net-im/bitlbee/files/bitlbee.confd"
+        "bitlbee.initd::${_gentoo_uri}/net-im/bitlbee/files/bitlbee.initd"
+        "xe-daemon.initd::${_gentoo_uri}/app-emulation/xe-guest-utilities/files/xe-daemon.initd"
+        "vboxservice.initd::${_gentoo_uri}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
+        "clamd.confd::${_gentoo_uri}/app-antivirus/clamav/files/clamd.conf-r1"
+        "clamd.initd::${_gentoo_uri}/app-antivirus/clamav/files/clamd.initd-r6"
+        "NetworkManager.confd::${_gentoo_uri}/net-misc/networkmanager/files/conf.d.NetworkManager"
+        "NetworkManager.initd::${_gentoo_uri}/net-misc/networkmanager/files/init.d.NetworkManager"
+        "10-openrc-status::${_gentoo_uri}/net-misc/networkmanager/files/10-openrc-status-r4"
+        "boinc.confd::${_gentoo_uri}/sci-misc/boinc/files/boinc.conf"
+        "boinc.initd::${_gentoo_uri}/sci-misc/boinc/files/boinc.init"
+        "atd.confd::${_gentoo_uri}/sys-process/at/files/atd.confd"
+        "atd.initd::${_gentoo_uri}/sys-process/at/files/atd.rc8"
+        "libvirtd.confd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.confd-r4"
+        "libvirtd.initd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.init-r14"
+        "virtlockd.initd::${_gentoo_uri}/app-emulation/libvirt/files/virtlockd.init-r1"
+        "zfs.initd"
+        "thermald.initd")
 sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '99724a799a7bd56e07e8e01adda6e6de184d6455876fab6aa21ee104976621ba'
@@ -171,6 +167,7 @@ _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
+            -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
 		-e 's|/usr/sbin|/usr/bin|g' \
 		-i ${pkgdir}/etc/init.d/$1
@@ -233,10 +230,6 @@ package_fcron-openrc() {
 	provides=('openrc-cron')
 	conflicts=('cronie'
 		'cronie-openrc'
-		'openrc'
-		'openrc-git'
-		'openrc-arch-services-git'
-		'initscripts'
 		'systemd-sysvcompat')
 	install=fcron.install
 
@@ -252,25 +245,25 @@ package_ntp-openrc() {
 	optdepends=('bind-openrc: bind initscript')
 	provides=('openrc-timed')
 	conflicts=('openntpd'
-			'openntpd-openrc'
-			'openrc'
-			'openrc-git'
-			'openrc-arch-services-git'
-			'initscripts'
-			'systemd-sysvcompat')
+                'openntpd-openrc'
+                'systemd-sysvcompat')
 	backup=('etc/conf.d/ntpd'
 		'etc/conf.d/ntp-client'
 		'etc/init.d/sntp')
 	install=ntp.install
 
-	_inst_confd 'ntpd'
-	_inst_initd 'ntpd'
-
-	_inst_confd 'ntp-client'
-	_inst_initd 'ntp-client'
-
-	_inst_confd 'sntp'
-	_inst_initd 'sntp'
+        for f in ntpd ntp-client sntp;do
+            _inst_confd $f
+            _inst_initd $f
+        done
+# 	_inst_confd 'ntpd'
+# 	_inst_initd 'ntpd'
+#
+# 	_inst_confd 'ntp-client'
+# 	_inst_initd 'ntp-client'
+#
+# 	_inst_confd 'sntp'
+# 	_inst_initd 'sntp'
 }
 
 package_rsyslog-openrc() {
@@ -342,11 +335,16 @@ package_lirc-utils-openrc() {
 		'etc/conf.d/irexec')
 	install=lirc-utils.install
 
-	_inst_confd 'lircd'
-	_inst_initd 'lircd'
 
-	_inst_confd 'irexec'
-	_inst_initd 'irexec'
+	for f in lircd irexec;do
+            _inst_confd $f
+            _inst_initd $f
+	done
+# 	_inst_confd 'lircd'
+# 	_inst_initd 'lircd'
+#
+# 	_inst_confd 'irexec'
+# 	_inst_initd 'irexec'
 
 	_inst_initd 'lircmd'
 }
@@ -370,17 +368,22 @@ package_salt-openrc() {
 		'etc/conf.d/salt-api')
 	install=salt.install
 
-	_inst_confd 'salt-master'
-	_inst_initd 'salt-master'
+        for f in salt-master salt-minion salt-syncdic salt-api;do
+            _inst_confd $f
+            _inst_initd $f
+        done
 
-	_inst_confd 'salt-minion'
-	_inst_initd 'salt-minion'
-
-	_inst_confd 'salt-syncdic'
-	_inst_initd 'salt-syncdic'
-
-	_inst_confd 'salt-api'
-	_inst_initd 'salt-api'
+# 	_inst_confd 'salt-master'
+# 	_inst_initd 'salt-master'
+#
+# 	_inst_confd 'salt-minion'
+# 	_inst_initd 'salt-minion'
+#
+# 	_inst_confd 'salt-syncdic'
+# 	_inst_initd 'salt-syncdic'
+#
+# 	_inst_confd 'salt-api'
+# 	_inst_initd 'salt-api'
 }
 
 package_mpd-openrc(){

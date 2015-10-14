@@ -86,7 +86,7 @@ package_openrc() {
         depends=('inetutils' 'psmisc' 'sysvinit')
         optdepends=('netifrc: Network Interface Management Scripts'
                     'networkmanager-openrc: NetworkManager'
-                    'dhcpcd-openrc: dhcpcd initscript')
+                    'connman-openrc: connman')
         conflicts=('systemd-sysvcompat' 'openrc-core')
         replaces=('openrc-core')
         install=${pkgname}.install
@@ -121,25 +121,26 @@ package_openrc() {
 package_netifrc() {
         pkgver=${_net_ver}
         pkgrel=1
-        groups=('eudev-base' 'openrc-base')
+        groups=('openrc-base')
         pkgdesc="Gentoo Network Interface Management Scripts"
-        depends=('openrc' 'eudev')
+        depends=('openrc' 'udev')
+        install=${pkgname}.install
         backup=('etc/conf.d/net')
 
-	cd "${srcdir}/${pkgname}-${pkgver}"
-	make DESTDIR="${pkgdir}" "${_net_args[@]}" install
-	install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
+        cd "${srcdir}/${pkgname}-${pkgver}"
+        make DESTDIR="${pkgdir}" "${_net_args[@]}" install
+        install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
 
         install -d "${pkgdir}/etc/runlevels//boot"
-	sed -e 's|#!/usr/bin/runscript|#!/usr/bin/openrc-run|' \
-	    -i "${pkgdir}/etc/init.d/net.lo"
-	ln -sf "/etc/init.d/net.lo" "${pkgdir}/etc/runlevels/boot/net.lo"
+        sed -e 's|#!/usr/bin/runscript|#!/usr/bin/openrc-run|' \
+            -i "${pkgdir}/etc/init.d/net.lo"
+        ln -sf "/etc/init.d/net.lo" "${pkgdir}/etc/runlevels/boot/net.lo"
 
         cd ${srcdir}/gentoo-functions-${_func_ver}
-	make DESTDIR="${pkgdir}" "${_func_args[@]}" install
+        make DESTDIR="${pkgdir}" "${_func_args[@]}" install
 
-	sed -e "s|/lib/gentoo/functions.sh|/usr/lib/$_id/functions.sh|g" \
-		-i "${pkgdir}/usr/lib/${pkgname}/sh/functions.sh"
+        sed -e "s|/lib/gentoo/functions.sh|/usr/lib/$_id/functions.sh|g" \
+                -i "${pkgdir}/usr/lib/${pkgname}/sh/functions.sh"
 
         install -Dm644 ${srcdir}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
 }
