@@ -7,7 +7,7 @@ _gentoo_uri=http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86
 
 pkgname=bumblebee-openrc
 pkgver=3.2.1
-pkgrel=1
+pkgrel=2
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 provides=('bumblebee')
