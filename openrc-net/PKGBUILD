@@ -41,8 +41,8 @@ pkgname=('autofs-openrc'
         'syncthing-openrc'
         'nginx-openrc'
         'vnstat-openrc')
-pkgver=20151014
-pkgrel=2
+pkgver=20151015
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -293,11 +293,6 @@ package_dhcp-openrc() {
             _inst_confd $f
             _inst_initd $f
         done
-# 	_inst_confd 'dhcpd'
-# 	_inst_initd 'dhcpd'
-#
-# 	_inst_confd 'dhcrelay'
-# 	_inst_initd 'dhcrelay'
 #
 	_inst_confd 'dhcrelay6'
 # 	_inst_initd 'dhcrelay6'
@@ -353,9 +348,6 @@ package_krb5-openrc() {
         for f in krb5kadmind krb5kdc krb5kpropd;do
             _inst_initd $f
         done
-# 	_inst_initd 'krb5kadmind'
-# 	_inst_initd 'krb5kdc'
-# 	_inst_initd 'krb5kpropd'
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e 's|/usr/sbin|/usr/bin|g' \
@@ -406,19 +398,10 @@ package_nfs-utils-openrc() {
             _inst_confd $f
             _inst_initd $f
         done
-# 	_inst_confd 'nfs'
-# 	_inst_initd 'nfs'
-#
-# 	_inst_confd 'nfsclient'
-# 	_inst_initd 'nfsclient'
+
         for f in rpc.gssd rpc.idmapd rpc.pipefs rpc.statd rpc.svcgssd;do
             _inst_initd $f
         done
-# 	_inst_initd 'rpc.gssd'
-# 	_inst_initd 'rpc.idmapd'
-# 	_inst_initd 'rpc.pipefs'
-# 	_inst_initd 'rpc.statd'
-# 	_inst_initd 'rpc.svcgssd'
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e 's|/usr/sbin|/usr/bin|g' \
@@ -684,14 +667,6 @@ package_ypserv-openrc() {
             _inst_confd $f
             _inst_initd $f
         done
-# 	_inst_confd 'ypserv'
-# 	_inst_initd 'ypserv'
-#
-# 	_inst_confd 'rpc.yppasswdd'
-# 	_inst_initd 'rpc.yppasswdd'
-#
-# 	_inst_confd 'rpc.ypxfrd'
-# 	_inst_initd 'rpc.ypxfrd'
 
 	for f in ${pkgdir}/etc/init.d/*;do
 		sed -e 's|/usr/sbin|/usr/bin|g' \

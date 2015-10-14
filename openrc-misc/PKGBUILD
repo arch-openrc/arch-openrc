@@ -29,8 +29,8 @@ pkgname=('cpupower-openrc'
         'boinc-openrc'
         'at-openrc'
         'libvirt-openrc')
-pkgver=20151014
-pkgrel=2
+pkgver=20151015
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -256,14 +256,6 @@ package_ntp-openrc() {
             _inst_confd $f
             _inst_initd $f
         done
-# 	_inst_confd 'ntpd'
-# 	_inst_initd 'ntpd'
-#
-# 	_inst_confd 'ntp-client'
-# 	_inst_initd 'ntp-client'
-#
-# 	_inst_confd 'sntp'
-# 	_inst_initd 'sntp'
 }
 
 package_rsyslog-openrc() {
@@ -340,11 +332,6 @@ package_lirc-utils-openrc() {
             _inst_confd $f
             _inst_initd $f
 	done
-# 	_inst_confd 'lircd'
-# 	_inst_initd 'lircd'
-#
-# 	_inst_confd 'irexec'
-# 	_inst_initd 'irexec'
 
 	_inst_initd 'lircmd'
 }
@@ -372,18 +359,6 @@ package_salt-openrc() {
             _inst_confd $f
             _inst_initd $f
         done
-
-# 	_inst_confd 'salt-master'
-# 	_inst_initd 'salt-master'
-#
-# 	_inst_confd 'salt-minion'
-# 	_inst_initd 'salt-minion'
-#
-# 	_inst_confd 'salt-syncdic'
-# 	_inst_initd 'salt-syncdic'
-#
-# 	_inst_confd 'salt-api'
-# 	_inst_initd 'salt-api'
 }
 
 package_mpd-openrc(){
