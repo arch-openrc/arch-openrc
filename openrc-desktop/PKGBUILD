@@ -12,7 +12,7 @@ pkgname=('acpid-openrc'
 		'gpm-openrc'
 		'bluez-openrc'
 		'wpa_supplicant-openrc')
-		
+
 pkgver=20150921
 pkgrel=1
 pkgdesc="OpenRC init scripts"
@@ -88,7 +88,7 @@ _inst_confd(){
 
 package_acpid-openrc() {
 	pkgdesc="OpenRC acpid init script"
-	depends=('openrc-core' 'acpid')
+	depends=('openrc' 'acpid')
 	backup=('etc/conf.d/acpid')
 	install=acpid.install
 
@@ -98,7 +98,7 @@ package_acpid-openrc() {
 
 package_alsa-utils-openrc() {
 	pkgdesc="OpenRC alsa-utils init script"
-	depends=('openrc-core' 'alsa-utils')
+	depends=('openrc' 'alsa-utils')
 	backup=('etc/conf.d/alsasound')
 	install=alsa-utils.install
 
@@ -118,7 +118,7 @@ package_avahi-openrc() {
 package_cgmanager-openrc() {
 	pkgdesc="OpenRC cgmanager init script"
 	groups=('openrc-desktop')
-	depends=('openrc-core' 'cgmanager')
+	depends=('openrc' 'cgmanager')
 	install=cgmanager.install
 
 	_inst_initd 'cgproxy'
@@ -135,7 +135,7 @@ package_consolekit-openrc() {
 
 package_displaymanager-openrc() {
 	pkgdesc="OpenRC dm init script"
-	depends=('openrc-core' 'xorg-server' 'xorg-xinit')
+	depends=('openrc' 'xorg-server' 'xorg-xinit')
 	optdepends=('consolekit-openrc: consolekit initscript'
 			'dbus-openrc: dbus initscript')
 	backup=('etc/conf.d/xdm')
@@ -154,7 +154,7 @@ package_displaymanager-openrc() {
 
 package_gpm-openrc() {
 	pkgdesc="OpenRC gpm init script"
-	depends=('openrc-core' 'gpm')
+	depends=('openrc' 'gpm')
 	backup=('etc/conf.d/gpm')
 	install=gpm.install
 
@@ -181,7 +181,7 @@ package_bluez-openrc() {
 package_wpa_supplicant-openrc() {
 	pkgdesc="OpenRC wpa_supplicant init script"
 	groups=('openrc-mobile')
-	depends=('openrc-core' 'wpa_supplicant')
+	depends=('openrc' 'wpa_supplicant')
 	backup=('etc/conf.d/wpa_supplicant')
 	install=wpa_supplicant.install
 

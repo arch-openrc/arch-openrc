@@ -11,7 +11,7 @@ pkgrel=1
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 provides=('bumblebee')
-depends=('primus' 'glib2' 'mesa-libgl')
+depends=('primus' 'glib2' 'mesa-libgl' 'openrc')
 makedepends=('help2man' 'libbsd')
 optdepends=('xf86-video-nouveau: nouveau driver'
             'nouveau-dri: 3D acceleration features fo nouveau'

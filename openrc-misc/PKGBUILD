@@ -182,7 +182,7 @@ _inst_confd(){
 
 package_bitlbee-openrc() {
 	pkgdesc="OpenRC bitlbee init script"
-	depends=('openrc-core' 'bitlbee')
+	depends=('openrc' 'bitlbee')
 	backup=('etc/conf.d/bitlbee')
 	install=bitlbee.install
 
@@ -195,7 +195,7 @@ package_bitlbee-openrc() {
 
 package_cpupower-openrc() {
 	pkgdesc="OpenRC cpupower init script"
-	depends=('openrc-core' 'cpupower')
+	depends=('openrc' 'cpupower')
 	backup=('etc/conf.d/cpupower')
 	install=cpupower.install
 
@@ -205,7 +205,7 @@ package_cpupower-openrc() {
 
 package_connman-openrc() {
 	pkgdesc="OpenRC connman init script"
-	depends=('openrc-core' 'connman')
+	depends=('openrc' 'connman')
 	backup=('etc/conf.d/connman')
 	install=connman.install
 
@@ -228,7 +228,7 @@ package_cups-openrc() {
 
 package_fcron-openrc() {
 	pkgdesc="OpenRC fcron init script"
-	depends=('openrc-core' 'fcron')
+	depends=('openrc' 'fcron')
 	groups=('openrc-misc')
 	provides=('openrc-cron')
 	conflicts=('cronie'
@@ -248,7 +248,7 @@ package_fcron-openrc() {
 
 package_ntp-openrc() {
 	pkgdesc="OpenRC ntp init script"
-	depends=('openrc-core' 'ntp')
+	depends=('openrc' 'ntp')
 	optdepends=('bind-openrc: bind initscript')
 	provides=('openrc-timed')
 	conflicts=('openntpd'
@@ -275,7 +275,7 @@ package_ntp-openrc() {
 
 package_rsyslog-openrc() {
 	pkgdesc="OpenRC rsyslog init script"
-	depends=('openrc-core' 'rsyslog')
+	depends=('openrc' 'rsyslog')
 	backup=('etc/conf.d/rsyslog')
 	install=rsyslog.install
 
@@ -285,7 +285,7 @@ package_rsyslog-openrc() {
 
 package_sane-openrc() {
 	pkgdesc="OpenRC sane init script"
-	depends=('openrc-core' 'sane')
+	depends=('openrc' 'sane')
 	backup=('etc/conf.d/saned')
 	install=sane.install
 
@@ -298,7 +298,7 @@ package_sane-openrc() {
 
 package_fuse-openrc(){
 	pkgdesc="OpenRC fuse init script"
-	depends=('openrc-core' 'fuse')
+	depends=('openrc' 'fuse')
 	install=fuse.install
 
 	_inst_initd 'fuse'
@@ -306,7 +306,7 @@ package_fuse-openrc(){
 
 package_metalog-openrc() {
 	pkgdesc="OpenRC metalog init script"
-	depends=('openrc-core' 'metalog')
+	depends=('openrc' 'metalog')
 	backup=('etc/conf.d/metalog')
 	install=metalog.install
 
@@ -316,7 +316,7 @@ package_metalog-openrc() {
 
 package_syslog-ng-openrc() {
 	pkgdesc="OpenRC syslog-ng init script"
-	depends=('openrc-core' 'syslog-ng')
+	depends=('openrc' 'syslog-ng')
 	backup=('etc/conf.d/syslog-ng')
 	install=syslog-ng.install
 
@@ -326,7 +326,7 @@ package_syslog-ng-openrc() {
 
 package_lm_sensors-openrc() {
 	pkgdesc="OpenRC lm_sensors init script"
-	depends=('openrc-core' 'lm_sensors')
+	depends=('openrc' 'lm_sensors')
 	#backup=('etc/conf.d/sensord')
 	install=lm_sensors.install
 
@@ -337,7 +337,7 @@ package_lm_sensors-openrc() {
 
 package_lirc-utils-openrc() {
 	pkgdesc="OpenRC lirc-utils init script"
-	depends=('openrc-core' 'lirc-utils')
+	depends=('openrc' 'lirc-utils')
 	backup=('etc/conf.d/lircd'
 		'etc/conf.d/irexec')
 	install=lirc-utils.install
@@ -353,7 +353,7 @@ package_lirc-utils-openrc() {
 
 package_haveged-openrc() {
 	pkgdesc="OpenRC haveged init script"
-	depends=('openrc-core' 'haveged')
+	depends=('openrc' 'haveged')
 	backup=('etc/conf.d/haveged')
 	install=haveged.install
 
@@ -363,7 +363,7 @@ package_haveged-openrc() {
 
 package_salt-openrc() {
 	pkgdesc="OpenRC salt init scripts"
-	depends=('openrc-core' 'salt')
+	depends=('openrc' 'salt')
 	backup=('etc/conf.d/salt-master'
 		'etc/conf.d/salt-minion'
 		'etc/conf.d/salt-syncdic'
@@ -385,7 +385,7 @@ package_salt-openrc() {
 
 package_mpd-openrc(){
 	pkgdesc="OpenRC fuse init script"
-	depends=('openrc-core' 'mpd')
+	depends=('openrc' 'mpd')
 	install=mpd.install
 
 	_inst_initd 'mpd'
@@ -393,7 +393,7 @@ package_mpd-openrc(){
 
 package_hdparm-openrc() {
 	pkgdesc="OpenRC hdparm init script"
-	depends=('openrc-core' 'hdparm')
+	depends=('openrc' 'hdparm')
 	backup=('etc/conf.d/hdparm')
 	install=hdparm.install
 
@@ -411,7 +411,7 @@ package_thermald-openrc() {
 
 package_xe-guest-utilities-openrc() {
 	pkgdesc="OpenRC xe-guest-utilities init script"
-	depends=('openrc-core' 'xe-guest-utilities')
+	depends=('openrc' 'xe-guest-utilities')
 	install=xe-guest-utilities.install
 
 	_inst_initd 'xe-daemon'
@@ -419,7 +419,7 @@ package_xe-guest-utilities-openrc() {
 
 package_virtualbox-guest-utils-openrc() {
 	pkgdesc="OpenRC virtualbox-guest-utils init script"
-	depends=('openrc-core' 'virtualbox-guest-utils')
+	depends=('openrc' 'virtualbox-guest-utils')
 	install=virtualbox-guest-additions.install
 
 	_inst_initd 'vboxservice'
@@ -431,7 +431,7 @@ package_virtualbox-guest-utils-openrc() {
 
 package_zfs-openrc() {
 	pkgdesc="OpenRC zfs init script"
-	depends=('openrc-core' 'zfs-utils')
+	depends=('openrc' 'zfs-utils')
 	install=zfs.install
 
 	_inst_initd 'zfs'
@@ -439,7 +439,7 @@ package_zfs-openrc() {
 
 package_clamav-openrc() {
 	pkgdesc="OpenRC clamav init script"
-	depends=('openrc-core' 'clamav')
+	depends=('openrc' 'clamav')
 	backup=('etc/conf.d/clamd')
 	install=clamav.install
 
@@ -449,7 +449,7 @@ package_clamav-openrc() {
 
 package_networkmanager-openrc() {
 	pkgdesc="OpenRC networkmanager init script"
-	depends=('openrc-core' 'networkmanager-consolekit')
+	depends=('openrc' 'networkmanager-consolekit')
 	backup=('etc/conf.d/NetworkManager')
 	install=networkmanager.install
 

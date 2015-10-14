@@ -3,11 +3,10 @@
 # Contributor: Ivailo Monev <xakepa10@gmail.com>
 
 _udev_ver=220
-_src_uri='http://dev.gentoo.org/~blueness/eudev'
 
 pkgname=eudev
-pkgver=3.1.4
-pkgrel=1
+pkgver=3.1.5
+pkgrel=2
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/eudev/"
@@ -22,10 +21,10 @@ provides=("udev=${_udev_ver}"
 conflicts=('libudev.so')
 backup=('etc/udev/udev.conf')
 options=(!makeflags !libtool)
-source=("https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz"
+source=("$pkgname-$pkgver::https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz"
 	'initcpio_hooks'
 	'initcpio_install')
-sha256sums=('68a945d15bb644603133b9402383d4bd45b148ed63e60aff200407ed2221b84b'
+sha256sums=('ce9d5fa91e3a42c7eb95512ca0fa2a631e89833053066bb6cdf42046b2a88553'
             '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
             '77dd1fd318b4456409aceb077f060b87944defb07cf39d29ad1968dc6f361875')
 

@@ -12,7 +12,7 @@ arch=(any)
 url="http://roy.marples.name/projects/openresolv"
 license=('custom:BSD')
 backup=(etc/resolvconf.conf)
-depends=(bash openrc-core)
+depends=(bash openrc)
 provides=(openresolv)
 conflicts=(openresolv)
 source=("http://roy.marples.name/downloads/openresolv/${_pkgname}-${pkgver}.tar.bz2"
@@ -26,7 +26,7 @@ prepare() {
   patch -Np1 -i ../fs33801.patch
   # For openrc path
   patch -Np1 -i ../openrc-path.patch
-  sed -n '2,25{s:^# \?::;p}' resolvconf.in >LICENSE 
+  sed -n '2,25{s:^# \?::;p}' resolvconf.in >LICENSE
 }
 
 build() {

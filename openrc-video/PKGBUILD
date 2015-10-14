@@ -44,7 +44,7 @@ _inst_confd(){
 
 package_nvidia-utils-openrc() {
 	pkgdesc="OpenRC nvidia-smi init script"
-	depends=('openrc-core' 'nvidia-utils')
+	depends=('openrc' 'nvidia-utils')
 	install=nvidia-utils.install
 
 	_inst_initd 'nvidia-smi'
@@ -68,7 +68,7 @@ package_catalyst-utils-openrc() {
 
 package_virtualgl-openrc() {
 	pkgdesc="OpenRC virtualgl init script"
-	depends=('openrc-core' 'virtualgl')
+	depends=('openrc' 'virtualgl')
 	install=virtualgl.install
 	backup=('etc/conf.d/vgl')
 

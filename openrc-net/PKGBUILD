@@ -222,7 +222,7 @@ _inst_confd(){
 
 package_apache-openrc() {
 	pkgdesc="OpenRC apache init script"
-	depends=('openrc-core' 'apache')
+	depends=('openrc' 'apache')
 	backup=('etc/conf.d/httpd')
 	install=apache.install
 
@@ -248,7 +248,7 @@ package_apache-openrc() {
 
 package_autofs-openrc() {
 	pkgdesc="OpenRC autofs init script"
-	depends=('openrc-core' 'autofs')
+	depends=('openrc' 'autofs')
 	install=autofs.install
 
 	_inst_initd 'autofs'
@@ -259,7 +259,7 @@ package_autofs-openrc() {
 
 package_bind-openrc() {
 	pkgdesc="OpenRC bind init script"
-	depends=('openrc-core' 'bind')
+	depends=('openrc' 'bind')
 	backup=('etc/conf.d/named')
 	install=bind.install
 
@@ -273,7 +273,7 @@ package_bind-openrc() {
 
 package_cyrus-sasl-openrc() {
 	pkgdesc="OpenRC cyrus-sasl init script"
-	depends=('openrc-core' 'cyrus-sasl')
+	depends=('openrc' 'cyrus-sasl')
 	install=cyrus-sasl.install
 
 	_inst_initd 'saslauthd'
@@ -284,7 +284,7 @@ package_cyrus-sasl-openrc() {
 
 package_dhcp-openrc() {
 	pkgdesc="OpenRC dhcp init script"
-	depends=('openrc-core' 'dhcp')
+	depends=('openrc' 'dhcp')
 	optdepends=('openldap-openrc: openldap initscript'
 			'bind-openrc: bind initscript')
 	backup=('etc/conf.d/dhcpd'
@@ -312,7 +312,7 @@ package_dhcp-openrc() {
 
 package_hostapd-openrc() {
 	pkgdesc="OpenRC hostapd init script"
-	depends=('openrc-core' 'hostapd')
+	depends=('openrc' 'hostapd')
 	backup=('etc/conf.d/hostapd')
 	install=hostapd.install
 
@@ -325,7 +325,7 @@ package_hostapd-openrc() {
 
 package_iptables-openrc() {
 	pkgdesc="OpenRC iptables init script"
-	depends=('openrc-core' 'iptables')
+	depends=('openrc' 'iptables')
 	backup=('etc/conf.d/iptables'
 		'etc/conf.d/ip6tables')
 	install=iptables.install
@@ -346,7 +346,7 @@ package_iptables-openrc() {
 
 package_krb5-openrc() {
 	pkgdesc="OpenRC krb5 init script"
-	depends=('openrc-core' 'krb5')
+	depends=('openrc' 'krb5')
 	install=krb5.install
 
 	_inst_initd 'krb5kadmind'
@@ -363,7 +363,7 @@ package_krb5-openrc() {
 
 package_lighttpd-openrc() {
 	pkgdesc="OpenRC lighttpd init script"
-	depends=('openrc-core' 'lighttpd')
+	depends=('openrc' 'lighttpd')
 	backup=('etc/conf.d/lighttpd')
 	install=lighttpd.install
 
@@ -377,7 +377,7 @@ package_lighttpd-openrc() {
 
 package_rpcbind-openrc() {
 	pkgdesc="OpenRC rpcbind init script"
-	depends=('openrc-core' 'rpcbind')
+	depends=('openrc' 'rpcbind')
 	#backup=('etc/conf.d/rpcbind')
 	install=rpcbind.install
 
@@ -418,7 +418,7 @@ package_nfs-utils-openrc() {
 
 package_openntpd-openrc() {
 	pkgdesc="OpenRC openntpd init script"
-	depends=('openrc-core' 'openntpd')
+	depends=('openrc' 'openntpd')
 	groups=('openrc-net')
 	provides=('openrc-timed')
 	conflicts=('ntp'
@@ -440,7 +440,7 @@ package_openntpd-openrc() {
 
 package_openldap-openrc() {
 	pkgdesc="OpenRC openldap init script"
-	depends=('openrc-core' 'openldap')
+	depends=('openrc' 'openldap')
 	backup=('etc/conf.d/slapd')
 	install=openldap.install
 
@@ -454,7 +454,7 @@ package_openldap-openrc() {
 
 package_openslp-openrc() {
 	pkgdesc="OpenRC openslp init script"
-	depends=('openrc-core' 'openslp')
+	depends=('openrc' 'openslp')
 	install=openslp.install
 
 	_inst_initd 'slpd'
@@ -465,7 +465,7 @@ package_openslp-openrc() {
 
 package_openssh-openrc() {
 	pkgdesc="OpenRC openssh init script"
-	depends=('openrc-core' 'openssh')
+	depends=('openrc' 'openssh')
 	optdepends=('bind-openrc: bind initscript')
 	backup=('etc/conf.d/sshd')
 	install=openssh.install
@@ -482,7 +482,7 @@ package_openssh-openrc() {
 
 package_openvpn-openrc() {
 	pkgdesc="OpenRC openvpn init script"
-	depends=('openrc-core' 'openvpn')
+	depends=('openrc' 'openvpn')
 	backup=('etc/conf.d/openvpn')
 	install=openvpn.install
 
@@ -495,7 +495,7 @@ package_openvpn-openrc() {
 
 package_polipo-openrc() {
 	pkgdesc="OpenRC polipo init script"
-	depends=('openrc-core' 'polipo')
+	depends=('openrc' 'polipo')
 	install=polipo.install
 
 	_inst_initd 'polipo'
@@ -506,7 +506,7 @@ package_polipo-openrc() {
 
 package_postfix-openrc() {
 	pkgdesc="OpenRC postfix init script"
-	depends=('openrc-core' 'postfix')
+	depends=('openrc' 'postfix')
 	optdepends=('bind-openrc: bind initscript'
 		'ypbind-openrc: ypbind initscript'
 		'cyrus-sasl-openrc: cyrus-sasl initscript')
@@ -520,7 +520,7 @@ package_postfix-openrc() {
 
 package_privoxy-openrc() {
 	pkgdesc="OpenRC privoxy init script"
-	depends=('openrc-core' 'privoxy')
+	depends=('openrc' 'privoxy')
 	install=privoxy.install
 
 	_inst_initd 'privoxy'
@@ -550,7 +550,7 @@ package_quota-tools-openrc() {
 
 package_rsync-openrc() {
 	pkgdesc="OpenRC rsync init script"
-	depends=('openrc-core' 'rsync')
+	depends=('openrc' 'rsync')
 	backup=('etc/conf.d/rsyncd')
 	install=rsync.install
 
@@ -563,7 +563,7 @@ package_rsync-openrc() {
 
 package_samba-openrc() {
 	pkgdesc="OpenRC samba init script"
-	depends=('openrc-core' 'samba')
+	depends=('openrc' 'samba')
 	backup=('etc/conf.d/smb')
 	install=samba.install
 
@@ -582,7 +582,7 @@ package_samba-openrc() {
 
 package_squid-openrc() {
 	pkgdesc="OpenRC squid init script"
-	depends=('openrc-core' 'squid')
+	depends=('openrc' 'squid')
 	optdepends=('bind-openrc: bind initscript')
 	backup=('etc/conf.d/squid')
 	install=squid.install
@@ -598,7 +598,7 @@ package_squid-openrc() {
 
 package_transmission-openrc() {
 	pkgdesc="OpenRC transmission init script"
-	depends=('openrc-core' 'transmission-cli')
+	depends=('openrc' 'transmission-cli')
 	backup=('etc/conf.d/transmission-daemon')
 	install=transmission.install
 
@@ -608,7 +608,7 @@ package_transmission-openrc() {
 
 package_ufw-openrc() {
 	pkgdesc="OpenRC ufw init script"
-	depends=('openrc-core' 'ufw')
+	depends=('openrc' 'ufw')
 	backup=('etc/conf.d/ufw')
 	install=ufw.install
 
@@ -622,7 +622,7 @@ package_ufw-openrc() {
 
 package_vsftpd-openrc() {
 	pkgdesc="OpenRC vsftpd init script"
-	depends=('openrc-core' 'vsftpd')
+	depends=('openrc' 'vsftpd')
 	optdepends=('bind-openrc: bind initscript')
 	install=vsftpd.install
 
@@ -641,7 +641,7 @@ package_vsftpd-openrc() {
 
 package_xinetd-openrc() {
 	pkgdesc="OpenRC xinetd init script"
-	depends=('openrc-core' 'xinetd')
+	depends=('openrc' 'xinetd')
 	backup=('etc/conf.d/xinetd')
 	install=xinetd.install
 
@@ -668,7 +668,7 @@ package_ypbind-mt-openrc() {
 
 package_ypserv-openrc() {
 	pkgdesc="OpenRC ypserv init script"
-	depends=('openrc-core' 'ypserv')
+	depends=('openrc' 'ypserv')
 	backup=('etc/conf.d/rpc.yppasswdd'
 		'etc/conf.d/rpc.ypxfrd'
 		'etc/conf.d/ypserv')
@@ -691,7 +691,7 @@ package_ypserv-openrc() {
 
 package_tor-openrc() {
 	pkgdesc="OpenRC tor init script"
-	depends=('openrc-core' 'tor')
+	depends=('openrc' 'tor')
 	backup=('etc/conf.d/tor')
 	install=tor.install
 
@@ -701,7 +701,7 @@ package_tor-openrc() {
 
 package_wicd-openrc() {
 	pkgdesc="OpenRC wicd script"
-	depends=('openrc-core' 'wicd')
+	depends=('openrc' 'wicd')
 	install=wicd.install
 
 	_inst_initd 'wicd'
@@ -709,7 +709,7 @@ package_wicd-openrc() {
 
 package_syncthing-openrc() {
 	pkgdesc="OpenRC syncthing init script"
-	depends=('openrc-core' 'syncthing')
+	depends=('openrc' 'syncthing')
 	backup=('etc/conf.d/syncthing')
 	install=syncthing.install
 
@@ -719,7 +719,7 @@ package_syncthing-openrc() {
 
 package_nginx-openrc() {
 	pkgdesc="OpenRC nginx init script"
-	depends=('openrc-core' 'nginx')
+	depends=('openrc' 'nginx')
 	install=nginx.install
 
 	_inst_initd 'nginx'
@@ -730,7 +730,7 @@ package_nginx-openrc() {
 
 package_vnstat-openrc() {
 	pkgdesc="OpenRC vnstat init script"
-	depends=('openrc-core' 'vnstat')
+	depends=('openrc' 'vnstat')
 	backup=('etc/conf.d/vnstatd')
 	install=vnstat.install
 

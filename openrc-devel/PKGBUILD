@@ -58,7 +58,7 @@ _inst_confd(){
 
 package_git-openrc() {
 	pkgdesc="OpenRC git-daemon init script"
-	depends=('git' 'openrc-core')
+	depends=('git' 'openrc')
 	backup=('etc/conf.d/git-daemon')
 	install=git.install
 
@@ -70,7 +70,7 @@ package_git-openrc() {
 
 package_mysql-openrc() {
 	pkgdesc="OpenRC mysql init script"
-	depends=('mysql' 'openrc-core')
+	depends=('mysql' 'openrc')
 	optdepends=('bind-openrc: bind initscript')
 	backup=('etc/conf.d/mysql')
 	install=mysql.install
@@ -83,7 +83,7 @@ package_mysql-openrc() {
 
 package_php-fpm-openrc() {
 	pkgdesc="OpenRC php-fpm init script"
-	depends=('php-fpm' 'openrc-core')
+	depends=('php-fpm' 'openrc')
 	optdepends=('apache-openrc: apache initscript'
 			'lighttp-openrc: lighttp initscript'
 			'nginx-openrc: nginx initscript')
@@ -101,7 +101,7 @@ package_php-fpm-openrc() {
 
 package_postgresql-openrc() {
 	pkgdesc="OpenRC postgresql init script"
-	depends=('postgresql' 'openrc-core')
+	depends=('postgresql' 'openrc')
 	backup=('etc/conf.d/postgresql')
 	install=postgresql.install
 
@@ -115,7 +115,7 @@ package_postgresql-openrc() {
 
 package_subversion-openrc() {
 	pkgdesc="OpenRC svnserve init script"
-	depends=('subversion' 'openrc-core')
+	depends=('subversion' 'openrc')
 	backup=('etc/conf.d/svn')
 	install=subversion.install
 
