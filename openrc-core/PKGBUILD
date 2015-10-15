@@ -7,12 +7,12 @@ _rc_uri="${_src_uri}/OpenRC/openrc/archive"
 _net_uri="${_src_uri}/gentoo/netifrc/archive"
 _func_uri="${_src_uri}/gentoo/gentoo-functions/archive"
 
-_rc_ver=0.18.2
+_rc_ver=0.18.3
 _net_ver=0.3.1
 _func_ver=0.10
 
 pkgver=${_rc_ver}
-pkgrel=2
+pkgrel=1
 pkgbase=openrc-core
 pkgname=('openrc' 'netifrc')
 arch=('i686' 'x86_64')
@@ -22,10 +22,9 @@ source=("openrc-${_rc_ver}.tar.gz::${_rc_uri}/${_rc_ver}.tar.gz"
 	"netifrc-${_net_ver}.tar.gz::${_net_uri}/${_net_ver}.tar.gz"
 	"gentoo-functions-${_func_ver}.tar.gz::${_func_uri}/${_func_ver}.tar.gz"
 	"openrc.logrotate"
-# 	'kmod-static-nodes'
 	'LICENSE')
 # 	'use-optional-modules-load-d.patch')
-sha256sums=('89ef0e4c7edc38091ccc6bd70cacc6b306343ced0f52bfc060296566b5e2ce83'
+sha256sums=('e8e0bbefd8b40284a167af5c5071bd2eff6304988b3fd935bd6834c62cfa2339'
             '8ae41223cdc735eee8303e93959b31b6aeae6f1a08661ef5baa6373dd86419c7'
             '709c8b22f404001a512e47a7a4d3192070b3e150fb9d0f943de09736d665b0db'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
@@ -80,7 +79,7 @@ build(){
 
 package_openrc() {
         pkgver=${_rc_ver}
-#         pkgrel=1
+        pkgrel=1
         pkgdesc="Gentoo's universal init system"
         depends=('inetutils' 'psmisc' 'sysvinit')
         optdepends=('netifrc: Network Interface Management Scripts'
@@ -109,20 +108,15 @@ package_openrc() {
 
 	install -d ${pkgdir}/usr/lib/rc/cache
 
-	# kmod-static-nodes
-# 	cd "${srcdir}/${pkgname}-${pkgver}"
-# 	install -Dm755 "${srcdir}/kmod-static-nodes" "${pkgdir}/etc/init.d/kmod-static-nodes"
-# 	ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
-
 	install -Dm644 ${srcdir}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
 }
 
 package_netifrc() {
         pkgver=${_net_ver}
-#         pkgrel=2
+        pkgrel=3
         groups=('openrc-base')
         pkgdesc="Gentoo Network Interface Management Scripts"
-        depends=('openrc' 'udev-openrc')
+        depends=('udev-openrc')
         install=${pkgname}.install
         backup=('etc/conf.d/net')
 
