@@ -1,0 +1,71 @@
+# Maintainer: artoo <artoo@manjaro.org>
+# Contributor: williamh <williamh@gentoo.org>
+
+_src_uri="https://github.com"
+
+_net_uri="${_src_uri}/gentoo/netifrc/archive"
+_func_uri="${_src_uri}/gentoo/gentoo-functions/archive"
+
+_func_ver=0.10
+
+pkgname=netifrc
+pkgver=0.3.1
+pkgrel=5
+arch=('i686' 'x86_64')
+url="http://www.gentoo.org/proj/en/base/openrc/"
+license=('BSD2')
+groups=('openrc-base')
+depends=('udev-openrc')
+install=${pkgname}.install
+backup=('etc/conf.d/net')
+source=("netifrc-${pkgver}.tar.gz::${_net_uri}/${pkgver}.tar.gz"
+	"gentoo-functions-${_func_ver}.tar.gz::${_func_uri}/${_func_ver}.tar.gz"
+	'LICENSE')
+sha256sums=('8ae41223cdc735eee8303e93959b31b6aeae6f1a08661ef5baa6373dd86419c7'
+            '709c8b22f404001a512e47a7a4d3192070b3e150fb9d0f943de09736d665b0db'
+            '28875cc6cb52e93657b96cf1bf0cc3b91891cdcbbc3196007c8cd93c6e22078f')
+
+_net_args=(SYSCONFDIR=/etc)
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    _net_args+=(BRANDING="$NAME")
+    _id=$ID
+else
+    _net_args+=(BRANDING='Unknown Linux')
+    _id=manjaro
+fi
+_net_args+=(PREFIX=/usr)
+_net_args+=(SBINDIR=/usr/bin)
+_net_args=( "${_base_args[@]}" )
+_net_args+=(LIBEXECDIR=/usr/lib/netifrc)
+
+_func_args+=(ROOTPREFIX=/usr)
+_func_args+=(ROOTSBINDIR=/usr/bin)
+_func_args+=(ROOTLIBEXECDIR=/usr/lib/$_id)
+
+build(){
+	# make netifrc
+	cd "${srcdir}/netifrc-${pkgver}"
+	make "${_net_args[@]}"
+	cd ${srcdir}/gentoo-functions-${_func_ver}
+	make "${_func_args[@]}"
+}
+
+package() {
+        cd "${srcdir}/${pkgname}-${pkgver}"
+        make DESTDIR="${pkgdir}" "${_net_args[@]}" install
+        install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
+
+        install -d "${pkgdir}/etc/runlevels//boot"
+        sed -e 's|#!/usr/bin/runscript|#!/usr/bin/openrc-run|' \
+            -i "${pkgdir}/etc/init.d/net.lo"
+        ln -sf "/etc/init.d/net.lo" "${pkgdir}/etc/runlevels/boot/net.lo"
+
+        cd ${srcdir}/gentoo-functions-${_func_ver}
+        make DESTDIR="${pkgdir}" "${_func_args[@]}" install
+
+        sed -e "s|/lib/gentoo/functions.sh|/usr/lib/$_id/functions.sh|g" \
+            -i "${pkgdir}/usr/lib/${pkgname}/sh/functions.sh"
+
+        install -Dm644 ${srcdir}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
+}

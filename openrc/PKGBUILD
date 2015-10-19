@@ -1,0 +1,80 @@
+# Maintainer: artoo <artoo@manjaro.org>
+# Contributor: williamh <williamh@gentoo.org>
+
+_rc_uri="https://github.com/OpenRC/openrc/archive"
+
+pkgname=openrc
+pkgver=0.18.3
+pkgrel=1
+pkgdesc="Gentoo's universal init system"
+arch=('i686' 'x86_64')
+url="http://www.gentoo.org/proj/en/base/openrc/"
+license=('BSD2')
+depends=('inetutils' 'psmisc' 'sysvinit')
+optdepends=('netifrc: Network Interface Management Scripts'
+            'networkmanager-openrc: NetworkManager'
+            'connman-openrc: connman')
+conflicts=('systemd-sysvcompat' 'openrc-core')
+replaces=('openrc-core')
+install=${pkgname}.install
+backup=('etc/rc.conf'
+        'etc/conf.d/consolefont'
+        'etc/conf.d/keymaps'
+        'etc/conf.d/hostname'
+        'etc/conf.d/modules'
+        'etc/conf.d/hwclock'
+        'etc/inittab')
+source=("openrc-${pkgver}.tar.gz::${_rc_uri}/${pkgver}.tar.gz"
+	"openrc.logrotate"
+	'LICENSE')
+# 	'use-optional-modules-load-d.patch')
+sha256sums=('e8e0bbefd8b40284a167af5c5071bd2eff6304988b3fd935bd6834c62cfa2339'
+            '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
+            '28875cc6cb52e93657b96cf1bf0cc3b91891cdcbbc3196007c8cd93c6e22078f')
+
+_rc_args=(SYSCONFDIR=/etc)
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    _rc_args+=(BRANDING="$NAME")
+    _id=$ID
+else
+    _rc_args+=(BRANDING='Unknown Linux')
+    _id=manjaro
+fi
+_rc_args+=(PREFIX=/usr)
+_rc_args+=(SBINDIR=/usr/bin)
+_rc_args+=(LIBEXECDIR=/usr/lib/rc)
+_rc_args+=(MKSELINUX=no)
+_rc_args+=(MKPAM=pam)
+_rc_args+=(MKTERMCAP=ncurses)
+_rc_args+=(MKNET=no)
+
+
+prepare(){
+	cd "${srcdir}/openrc-${pkgver}"
+	sed -e "s|/sbin|/usr/bin|g" -i support/sysvinit/inittab
+	#[[ $_id == 'manjaro' ]] && patch -Np1 -i ${srcdir}/use-optional-modules-load-d.patch
+}
+
+build(){
+	# make openrc
+	cd "${srcdir}/openrc-${pkgver}"
+	make "${_rc_args[@]}"
+}
+
+package() {
+
+	cd "${srcdir}/${pkgname}-${pkgver}"
+	make DESTDIR="${pkgdir}" "${_rc_args[@]}" install
+
+	install -m644 "${srcdir}/${pkgname}-${pkgver}/support/sysvinit/inittab" "${pkgdir}/etc/inittab"
+	install -Dm644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgname}"
+
+	sed -e 's/#unicode="NO"/unicode="YES"/' \
+	    -e 's/#rc_logger="YES"/rc_logger="YES"/' \
+	    -i "${pkgdir}/etc/rc.conf"
+
+	install -d ${pkgdir}/usr/lib/rc/cache
+
+	install -Dm644 ${srcdir}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
+}
