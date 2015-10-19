@@ -10,7 +10,8 @@ _func_ver=0.10
 
 pkgname=netifrc
 pkgver=0.3.1
-pkgrel=5
+pkgrel=6
+pkgdesc="Gentoo Network Interface Management Scripts"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD2')
@@ -18,7 +19,7 @@ groups=('openrc-base')
 depends=('udev-openrc')
 install=${pkgname}.install
 backup=('etc/conf.d/net')
-source=("netifrc-${pkgver}.tar.gz::${_net_uri}/${pkgver}.tar.gz"
+source=("${pkgname}-${pkgver}.tar.gz::${_net_uri}/${pkgver}.tar.gz"
 	"gentoo-functions-${_func_ver}.tar.gz::${_func_uri}/${_func_ver}.tar.gz"
 	'LICENSE')
 sha256sums=('8ae41223cdc735eee8303e93959b31b6aeae6f1a08661ef5baa6373dd86419c7'
@@ -36,8 +37,7 @@ else
 fi
 _net_args+=(PREFIX=/usr)
 _net_args+=(SBINDIR=/usr/bin)
-_net_args=( "${_base_args[@]}" )
-_net_args+=(LIBEXECDIR=/usr/lib/netifrc)
+_net_args+=(LIBEXECDIR=/usr/lib/${pkgname})
 
 _func_args+=(ROOTPREFIX=/usr)
 _func_args+=(ROOTSBINDIR=/usr/bin)
@@ -45,7 +45,7 @@ _func_args+=(ROOTLIBEXECDIR=/usr/lib/$_id)
 
 build(){
 	# make netifrc
-	cd "${srcdir}/netifrc-${pkgver}"
+	cd "${srcdir}/${pkgname}-${pkgver}"
 	make "${_net_args[@]}"
 	cd ${srcdir}/gentoo-functions-${_func_ver}
 	make "${_func_args[@]}"
