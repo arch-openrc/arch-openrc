@@ -209,8 +209,8 @@ _inst_initd(){
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
             -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
-		-e 's|/var/run|/run|g' \
-		-i ${pkgdir}/etc/init.d/$1
+            -e 's|/var/run|/run|g' \
+            -i ${pkgdir}/etc/init.d/$1
 }
 
 _inst_confd(){
@@ -227,20 +227,20 @@ package_apache-openrc() {
 	install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
 
 	sed -e "${_shebang}" \
-		-e 's|/usr/sbin/apache2|/usr/bin/apachectl|' \
-		-e 's|/etc/apache2/httpd.conf|/etc/httpd/conf/httpd.conf|' \
-		-e 's/! test -f/test -f/' \
-		-e 's|/usr/lib/apache2|/usr/lib/httpd|' \
-		-e 's|apache2.pid|httpd/httpd.pid|' \
-		-e 's|apache2 >/dev/null|httpd >/dev/null|' \
-		-e 's|/run/apache_ssl_mutex|/run/httpd|' \
-		-i "${pkgdir}/etc/init.d/httpd"
+            -e 's|/usr/sbin/apache2|/usr/bin/apachectl|' \
+            -e 's|/etc/apache2/httpd.conf|/etc/httpd/conf/httpd.conf|' \
+            -e 's/! test -f/test -f/' \
+            -e 's|/usr/lib/apache2|/usr/lib/httpd|' \
+            -e 's|apache2.pid|httpd/httpd.pid|' \
+            -e 's|apache2 >/dev/null|httpd >/dev/null|' \
+            -e 's|/run/apache_ssl_mutex|/run/httpd|' \
+            -i "${pkgdir}/etc/init.d/httpd"
 
 	sed -e 's|/etc/apache2/httpd.conf|/etc/httpd/conf/httpd.conf|' \
-		-e 's|/usr/lib/apache2|/usr/lib/httpd|' \
-		-e 's|apache2.pid|httpd/httpd.pid|' \
-		-e 's|apache2|httpd|g' \
-		-i "${pkgdir}/etc/conf.d/httpd"
+            -e 's|/usr/lib/apache2|/usr/lib/httpd|' \
+            -e 's|apache2.pid|httpd/httpd.pid|' \
+            -e 's|apache2|httpd|g' \
+            -i "${pkgdir}/etc/conf.d/httpd"
 }
 
 package_autofs-openrc() {
@@ -251,7 +251,7 @@ package_autofs-openrc() {
 	_inst_initd 'autofs'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/autofs"
+            -i "${pkgdir}/etc/init.d/autofs"
 }
 
 package_bind-openrc() {
@@ -264,8 +264,8 @@ package_bind-openrc() {
 	_inst_initd 'named'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-e 's|/etc/bind/named.conf|/etc/named.conf|g' \
-		-i "${pkgdir}/etc/init.d/named"
+            -e 's|/etc/bind/named.conf|/etc/named.conf|g' \
+            -i "${pkgdir}/etc/init.d/named"
 }
 
 package_cyrus-sasl-openrc() {
@@ -276,7 +276,7 @@ package_cyrus-sasl-openrc() {
 	_inst_initd 'saslauthd'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/saslauthd"
+            -i "${pkgdir}/etc/init.d/saslauthd"
 }
 
 package_dhcp-openrc() {
@@ -300,9 +300,9 @@ package_dhcp-openrc() {
 	install -Dm755 "${srcdir}/dhcrelay.initd" "${pkgdir}/etc/init.d/dhcrelay6"
 
 	for f in ${pkgdir}/etc/init.d/*;do
-		sed -e 's|/usr/sbin|/usr/bin|g' \
-			-e 's|#@slapd@|ldap slapd|' \
-			-i $f
+            sed -e 's|/usr/sbin|/usr/bin|g' \
+                -e 's|#@slapd@|ldap slapd|' \
+                -i $f
 	done
 }
 
@@ -315,8 +315,7 @@ package_hostapd-openrc() {
 	_inst_confd 'hostapd'
 	_inst_initd 'hostapd'
 
-	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/hostapd"
+	sed -e 's|/usr/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/hostapd"
 }
 
 package_iptables-openrc() {
@@ -335,8 +334,7 @@ package_iptables-openrc() {
 	install -Dm755 "${srcdir}/iptables.initd" "${pkgdir}/etc/init.d/ip6tables"
 
 	for f in ${pkgdir}/etc/init.d/*;do
-		sed -e 's|/sbin|/usr/bin|g' \
-			-i $f
+            sed -e 's|/sbin|/usr/bin|g' -i $f
 	done
 }
 
@@ -350,10 +348,10 @@ package_krb5-openrc() {
         done
 
 	for f in ${pkgdir}/etc/init.d/*;do
-		sed -e 's|/usr/sbin|/usr/bin|g' \
-			-e 's|mit-krb5kdc|krb5kdc|g' \
-			-e 's|mit-krb5kadmind|krb5kadmind|g' \
-			-i $f
+            sed -e 's|/usr/sbin|/usr/bin|g' \
+                -e 's|mit-krb5kdc|krb5kdc|g' \
+                -e 's|mit-krb5kadmind|krb5kadmind|g' \
+                -i $f
 	done
 }
 
@@ -367,8 +365,8 @@ package_lighttpd-openrc() {
 	_inst_initd 'lighttpd'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-e 's/lighttpd:lighttpd/http:http/' \
-		-i "${pkgdir}/etc/init.d/lighttpd"
+            -e 's/lighttpd:lighttpd/http:http/' \
+            -i "${pkgdir}/etc/init.d/lighttpd"
 }
 
 package_rpcbind-openrc() {
@@ -380,8 +378,8 @@ package_rpcbind-openrc() {
 	_inst_initd 'rpcbind'
 
 	sed -e 's|/sbin|/usr/bin|g' \
-		-e 's|RPCBIND_OPTS|RPCBIND_ARGS|' \
-		-i "${pkgdir}/etc/init.d/rpcbind"
+            -e 's|RPCBIND_OPTS|RPCBIND_ARGS|' \
+            -i "${pkgdir}/etc/init.d/rpcbind"
 }
 
 package_nfs-utils-openrc() {
@@ -404,8 +402,7 @@ package_nfs-utils-openrc() {
         done
 
 	for f in ${pkgdir}/etc/init.d/*;do
-		sed -e 's|/usr/sbin|/usr/bin|g' \
-			-i $f
+            sed -e 's|/usr/sbin|/usr/bin|g' -i $f
 	done
 }
 
@@ -424,7 +421,7 @@ package_openntpd-openrc() {
 	_inst_initd 'ntpd'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/ntpd"
+            -i "${pkgdir}/etc/init.d/ntpd"
 }
 
 package_openldap-openrc() {
@@ -437,8 +434,8 @@ package_openldap-openrc() {
 	_inst_initd 'slapd'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-e 's|/usr/lib/openldap/slapd|/usr/lib/slapd|g' \
-		-i "${pkgdir}/etc/init.d/slapd"
+            -e 's|/usr/lib/openldap/slapd|/usr/lib/slapd|g' \
+            -i "${pkgdir}/etc/init.d/slapd"
 }
 
 package_openslp-openrc() {
@@ -449,7 +446,7 @@ package_openslp-openrc() {
 	_inst_initd 'slpd'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/slpd"
+            -i "${pkgdir}/etc/init.d/slpd"
 }
 
 package_openssh-openrc() {
@@ -463,10 +460,10 @@ package_openssh-openrc() {
 	_inst_initd 'sshd'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/conf.d/sshd"
+            -i "${pkgdir}/etc/conf.d/sshd"
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/sshd"
+            -i "${pkgdir}/etc/init.d/sshd"
 }
 
 package_openvpn-openrc() {
@@ -479,7 +476,7 @@ package_openvpn-openrc() {
 	_inst_initd 'openvpn'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/openvpn"
+            -i "${pkgdir}/etc/init.d/openvpn"
 }
 
 package_polipo-openrc() {
@@ -490,7 +487,7 @@ package_polipo-openrc() {
 	_inst_initd 'polipo'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/polipo"
+            -i "${pkgdir}/etc/init.d/polipo"
 }
 
 package_postfix-openrc() {
@@ -504,7 +501,7 @@ package_postfix-openrc() {
 	_inst_initd 'postfix'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/postfix"
+            -i "${pkgdir}/etc/init.d/postfix"
 }
 
 package_privoxy-openrc() {
@@ -515,9 +512,9 @@ package_privoxy-openrc() {
 	_inst_initd 'privoxy'
 
 	sed -e "${_shebang}" \
-		-e 's|/usr/sbin|/usr/bin|g' \
-		-e "${_runpath}" \
-		-i "${pkgdir}/etc/init.d/privoxy"
+            -e 's|/usr/sbin|/usr/bin|g' \
+            -e "${_runpath}" \
+            -i "${pkgdir}/etc/init.d/privoxy"
 }
 
 package_quota-tools-openrc() {
@@ -532,8 +529,7 @@ package_quota-tools-openrc() {
 	_inst_initd 'rpc.rquotad'
 
 	for f in ${pkgdir}/etc/init.d/*;do
-		sed -e 's|/usr/sbin|/usr/bin|g' \
-			-i $f
+            sed -e 's|/usr/sbin|/usr/bin|g' -i $f
 	done
 }
 
@@ -547,7 +543,7 @@ package_rsync-openrc() {
 	_inst_initd 'rsyncd'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/rsyncd"
+            -i "${pkgdir}/etc/init.d/rsyncd"
 }
 
 package_samba-openrc() {
@@ -560,13 +556,13 @@ package_samba-openrc() {
 	_inst_initd 'smb'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-e 's/="samba"/="smb"/' \
-		-i "${pkgdir}/etc/conf.d/smb"
+            -e 's/="samba"/="smb"/' \
+            -i "${pkgdir}/etc/conf.d/smb"
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-e 's/##samba/##smb/' \
-		-e 's|"samba"|"smb"|' \
-		-i "${pkgdir}/etc/init.d/smb"
+            -e 's/##samba/##smb/' \
+            -e 's|"samba"|"smb"|' \
+            -i "${pkgdir}/etc/init.d/smb"
 }
 
 package_squid-openrc() {
@@ -580,9 +576,9 @@ package_squid-openrc() {
 	_inst_initd 'squid'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-e 's|chown squid|chown proxy|' \
-		-e 's|squid:squid|proxy:proxy|' \
-		-i "${pkgdir}/etc/init.d/squid"
+            -e 's|chown squid|chown proxy|' \
+            -e 's|squid:squid|proxy:proxy|' \
+            -i "${pkgdir}/etc/init.d/squid"
 }
 
 package_transmission-openrc() {
@@ -605,8 +601,8 @@ package_ufw-openrc() {
 	_inst_initd 'ufw'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-e 's|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g' \
-		-i "${pkgdir}/etc/init.d/ufw"
+            -e 's|/usr/share/ufw/ufw-init-functions|/usr/lib/ufw/ufw-init-functions|g' \
+            -i "${pkgdir}/etc/init.d/ufw"
 }
 
 package_vsftpd-openrc() {
@@ -620,12 +616,12 @@ package_vsftpd-openrc() {
 	install -Dm755 "${srcdir}/vsftpd-checkconfig.sh" "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-e 's|/usr/libexec/|/usr/lib/|g' \
-		-e 's|/etc/vsftpd/|/etc/|g' \
-		-i "${pkgdir}/etc/init.d/vsftpd"
+            -e 's|/usr/libexec/|/usr/lib/|g' \
+            -e 's|/etc/vsftpd/|/etc/|g' \
+            -i "${pkgdir}/etc/init.d/vsftpd"
 
 	sed -e 's|/etc/vsftpd/|/etc/|g' \
-		-i "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
+            -i "${pkgdir}/usr/lib/vsftpd-checkconfig.sh"
 }
 
 package_xinetd-openrc() {
@@ -638,7 +634,7 @@ package_xinetd-openrc() {
 	_inst_initd 'xinetd'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/xinetd"
+            -i "${pkgdir}/etc/init.d/xinetd"
 }
 
 package_ypbind-mt-openrc() {
@@ -652,7 +648,7 @@ package_ypbind-mt-openrc() {
 	_inst_initd 'ypbind'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/ypbind"
+            -i "${pkgdir}/etc/init.d/ypbind"
 }
 
 package_ypserv-openrc() {
@@ -669,8 +665,7 @@ package_ypserv-openrc() {
         done
 
 	for f in ${pkgdir}/etc/init.d/*;do
-		sed -e 's|/usr/sbin|/usr/bin|g' \
-			-i $f
+            sed -e 's|/usr/sbin|/usr/bin|g' -i $f
 	done
 }
 
@@ -710,7 +705,7 @@ package_nginx-openrc() {
 	_inst_initd 'nginx'
 
 	sed -e 's|/usr/sbin|/usr/bin|g' \
-		-i "${pkgdir}/etc/init.d/nginx"
+            -i "${pkgdir}/etc/init.d/nginx"
 }
 
 package_vnstat-openrc() {
