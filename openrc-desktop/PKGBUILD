@@ -13,7 +13,7 @@ pkgname=('acpid-openrc'
         'bluez-openrc'
         'wpa_supplicant-openrc')
 
-pkgver=20151015
+pkgver=20151020
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -72,10 +72,10 @@ _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
-		-e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
-		-e 's|/var/run|/run|g' \
-		-e 's|/usr/sbin|/usr/bin|g' \
-		-i ${pkgdir}/etc/init.d/$1
+            -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
+            -e 's|/var/run|/run|g' \
+            -e 's|/usr/sbin|/usr/bin|g' \
+            -i ${pkgdir}/etc/init.d/$1
 }
 
 _inst_confd(){
@@ -123,7 +123,7 @@ package_cgmanager-openrc() {
 
 package_consolekit-openrc() {
 	pkgdesc="OpenRC consolekit init script"
-	depends=('consolekit' 'dbus-openrc' 'cgmanager-openrc')
+	depends=('consolekit' 'dbus-openrc' 'cgmanager-openrc' 'udev-openrc')
 	install=consolekit.install
 
 	_inst_initd 'consolekit'
@@ -131,9 +131,9 @@ package_consolekit-openrc() {
 
 package_displaymanager-openrc() {
 	pkgdesc="OpenRC dm init script"
-	depends=('openrc' 'xorg-server' 'xorg-xinit')
+	depends=('openrc' 'xorg-server' 'xorg-xinit' 'udev-openrc')
 	optdepends=('consolekit-openrc: consolekit initscript'
-			'dbus-openrc: dbus initscript')
+                    'dbus-openrc: dbus initscript')
 	backup=('etc/conf.d/xdm')
 	install=displaymanager.install
 
@@ -144,8 +144,8 @@ package_displaymanager-openrc() {
 	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
 
     sed -e 's|/etc/profile.env|/etc/profile|g' \
-		-e 's|{ROOTPATH}|{PATH}|g' \
-		-i "${pkgdir}/etc/init.d/xdm"
+        -e 's|{ROOTPATH}|{PATH}|g' \
+        -i "${pkgdir}/etc/init.d/xdm"
 }
 
 package_gpm-openrc() {
@@ -169,9 +169,8 @@ package_bluez-openrc() {
 	_inst_initd 'rfcomm'
 	_inst_initd 'bluetooth'
 
-	sed -e 's|/usr/sbin|/usr/lib/bluetooth|g' \
-		-e 's/libexec/lib/' \
-		-i "${pkgdir}/etc/init.d/bluetooth"
+	sed -e 's|/usr/libexec|/usr/lib|g' \
+            -i "${pkgdir}/etc/init.d/bluetooth"
 }
 
 package_wpa_supplicant-openrc() {
@@ -187,9 +186,9 @@ package_wpa_supplicant-openrc() {
 	install -Dm755 "${srcdir}/wpa_cli.sh" "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
 
 	if [[ -f /etc/os-release ]];then
-		. /etc/os-release
-		sed -e "s|gentoo-release|${ID}-release|" -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
+            . /etc/os-release
+            sed -e "s|gentoo-release|${ID}-release|" -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
 	else
-		sed -e 's|gentoo-release|arch-release|' -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
+            sed -e 's|gentoo-release|arch-release|' -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
 	fi
 }

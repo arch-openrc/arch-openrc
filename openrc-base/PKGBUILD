@@ -15,7 +15,7 @@ pkgname=('cronie-openrc'
         'mdadm-openrc'
         'udev-openrc')
         #'dbus-openrc')
-pkgver=20151014
+pkgver=20151020
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -122,7 +122,7 @@ package_dhcpcd-openrc() {
 
 package_device-mapper-openrc() {
 	pkgdesc="OpenRC device-mapper init script"
-	depends=('openrc' 'device-mapper')
+	depends=('openrc' 'device-mapper' 'udev-openrc')
 	backup=('etc/conf.d/device-mapper')
 	install=device-mapper.install
 
