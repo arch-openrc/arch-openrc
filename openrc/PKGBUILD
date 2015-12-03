@@ -6,8 +6,8 @@ _rc_uri="https://github.com/OpenRC/openrc/archive"
 _use_mld_patch=false
 
 pkgname=openrc
-pkgver=0.18.3
-pkgrel=2
+pkgver=0.18.4
+pkgrel=1
 pkgdesc="Gentoo's universal init system"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -29,16 +29,12 @@ backup=('etc/rc.conf'
 source=("${pkgname}-${pkgver}.tar.gz::${_rc_uri}/${pkgver}.tar.gz"
 	"${pkgname}.logrotate"
 	'LICENSE')
-sha256sums=('e8e0bbefd8b40284a167af5c5071bd2eff6304988b3fd935bd6834c62cfa2339'
+sha256sums=('99a4f7f7b6812f121ddd32936b6637f17e28e8ca727d590dbfdf4fb7aaba52a7'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
             '28875cc6cb52e93657b96cf1bf0cc3b91891cdcbbc3196007c8cd93c6e22078f')
 
 if ${_use_mld_patch};then
 	source=( "${source[@]}" 'use-optional-modules-load-d.patch' )
-	sha256sums=('e8e0bbefd8b40284a167af5c5071bd2eff6304988b3fd935bd6834c62cfa2339'
-            '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
-            '28875cc6cb52e93657b96cf1bf0cc3b91891cdcbbc3196007c8cd93c6e22078f'
-            '54e0cfb59b83ad42ec85486b99b7fed52ccbc8f98f0f113668eacf48a24a2d03')
 fi
 
 if [ -f /etc/os-release ]; then
