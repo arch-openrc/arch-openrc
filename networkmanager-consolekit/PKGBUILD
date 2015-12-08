@@ -11,8 +11,8 @@
 
 pkgname=networkmanager-consolekit
 _pkgname=NetworkManager
-pkgver=1.0.6
-pkgrel=1
+pkgver=1.0.8
+pkgrel=2
 _pppver=2.4.7
 pkgdesc="NetworkManager with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
@@ -28,7 +28,8 @@ optdepends=('dnsmasq: connection sharing'
 			'modemmanager: cellular network support')
 makedepends=('intltool' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc' "ppp=$_pppver"
              'modemmanager' 'dbus-glib' 'iproute2' 'libnl' 'nss' 'polkit' 'wpa_supplicant' 'libsoup'
-             'udev' 'libgudev' 'libmm-glib' 'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala')
+             'udev' 'libgudev' 'libmm-glib' 'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala' 'perl-yaml'
+             'python2-gobject')
 provides=("networkmanager=$pkgver")
 conflicts=('networkmanager')
 backup=('etc/NetworkManager/NetworkManager.conf')
@@ -39,7 +40,7 @@ source=("http://ftp.gnome.org/pub/gnome/sources/$_pkgname/${pkgver:0:3}/$_pkgnam
         '01-org.freedesktop.ModemManager1.rules'
         '01-org.freedesktop.NetworkManager.settings.modify.system.rules'
         '50-org.freedesktop.NetworkManager.rules')
-sha256sums=('38ea002403e3b884ffa9aae25aea431d2a8420f81f4919761c83fb92648254bd'
+sha256sums=('8bb128950f8a79ff881afadb46dd55e16f952390cf7cb4e06063431e5144937f'
             '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
             '759db295ddae7a6dc6b29211fc0ec08695f875584d456dd146d3679e2c33e2e3'
             '17b5e3ead960a0d2c3cea3f1549d1e83ada9600f174ab9a96f083abe6d8f962d'
@@ -80,9 +81,11 @@ build() {
 		--enable-more-warnings=no \
 		--disable-wimax \
 		--enable-modify-system \
-		--enable-doc
+		--enable-doc \
+		--enable-gtk-doc
 
 	make
+
 }
 
 package() {
@@ -99,9 +102,12 @@ package() {
 	rm -rf "$pkgdir/usr/lib/pkgconfig"
 	rm -r "${pkgdir}/var/run"
 
-	install -dm 700 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
+	install -dm 750 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
 	install -m 644 ${srcdir}/01-org.freedesktop.ModemManager1.rules $pkgdir/usr/share/polkit-1/rules.d/
 	install -m 644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/usr/share/polkit-1/rules.d/
 
 	install -m 644 ${srcdir}/50-org.freedesktop.NetworkManager.rules $pkgdir/usr/share/polkit-1/rules.d/
+
+	#chown root:102 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
+	#chmod 750 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
 }
