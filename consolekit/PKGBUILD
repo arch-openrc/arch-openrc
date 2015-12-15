@@ -4,14 +4,14 @@ _pkgname=ConsoleKit2
 
 pkgname=consolekit
 pkgver=1.0.0
-pkgrel=3
+pkgrel=4
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="https://github.com/ConsoleKit2/ConsoleKit2"
 license=('GPL')
 depends=('dbus' 'glib2' 'libx11' 'polkit' 'udev' 'zlib')
 optdepends=('consolekit-openrc: consolekit openrc initscript'
-			'cgmanager-openrc: cgmanager openrc initscript')
+	'cgmanager-openrc: cgmanager openrc initscript')
 makedepends=('xmlto' 'docbook-xsl' 'cgmanager')
 options=('libtool')
 source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
@@ -58,7 +58,7 @@ package() {
 
 	rm -rf "${pkgdir}"/run
 
-	install -dm 700 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
+	install -dm 750 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
 	install -m 644 ${srcdir}/75-consolekit.rules $pkgdir/usr/share/polkit-1/rules.d/75-consolekit.rules
 
 	install -dm755 $pkgdir/etc/pam.d/

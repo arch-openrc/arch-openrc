@@ -7,7 +7,7 @@ _pkgname=polkit
 
 pkgname=polkit-consolekit
 pkgver=0.113
-pkgrel=3
+pkgrel=4
 pkgdesc="PolyciKit with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('LGPL')
@@ -42,5 +42,5 @@ package() {
 	make DESTDIR="$pkgdir" install
 
 	chown root:102 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
-	#chmod 750 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
+	chmod 750 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
 }
