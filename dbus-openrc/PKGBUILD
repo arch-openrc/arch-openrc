@@ -6,7 +6,7 @@ _pkgname=dbus
 _gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master/sys-apps/dbus/files"
 
 pkgname=dbus-openrc
-pkgver=1.10.4
+pkgver=1.10.6
 pkgrel=1
 pkgdesc="Freedesktop.org message bus system"
 url="http://www.freedesktop.org/Software/dbus"
@@ -25,7 +25,7 @@ install=dbus.install
 source=("http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz" #{,.asc}
         "dbus.initd::${_gentoo_uri}/dbus.initd"
 	'30-dbus.sh')
-sha256sums=('ad7dcad73ad9b0ff55819985d354eacfffe07e2eb8c763e155efc21d6001084b'
+sha256sums=('b5fefa08a77edd76cd64d872db949eebc02cf6f3f8be82e4bbc641742af5d35f'
             '31281696ad3920da14fbb03d983131361665567c2d06001dbf829dc159d48375'
             'dc1ce6d38674bad7a48ad1911576f8bbb3819f1019126fb1ef7c3cfad16bb02a')
 
