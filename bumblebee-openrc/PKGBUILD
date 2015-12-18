@@ -7,7 +7,7 @@ _gentoo_uri=http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86
 
 pkgname=bumblebee-openrc
 pkgver=3.2.1
-pkgrel=2
+pkgrel=3
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 provides=('bumblebee')
@@ -62,7 +62,6 @@ build() {
         CONF_DRIVER_MODULE_NVIDIA=nvidia \
         CONF_LDPATH_NVIDIA=/usr/lib/nvidia:/usr/lib32/nvidia \
         CONF_MODPATH_NVIDIA=/usr/lib/nvidia/xorg/,/usr/lib/xorg/modules \
-        CONF_GID=users \
         --prefix=/usr \
         --sbindir=/usr/bin \
         --with-udev-rules=/usr/lib/udev/rules.d/ \
@@ -83,5 +82,5 @@ package() {
     mv -v "${pkgdir}/etc/bash_completion.d/bumblebee" "${pkgdir}/etc/bash_completion.d/optirun"
 
     # Adjust ServerGroup to users
-    sed -i "/#/!s|ServerGroup[ ]*=.*|ServerGroup=users|g" "${pkgdir}/etc/bumblebee/bumblebee.conf"
+   # sed -i "/#/!s|ServerGroup[ ]*=.*|ServerGroup=users|g" "${pkgdir}/etc/bumblebee/bumblebee.conf"
 }
