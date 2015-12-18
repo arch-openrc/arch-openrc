@@ -7,7 +7,7 @@ _gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master/sys-apps/dbu
 
 pkgname=dbus-openrc
 pkgver=1.10.6
-pkgrel=1
+pkgrel=2
 pkgdesc="Freedesktop.org message bus system"
 url="http://www.freedesktop.org/Software/dbus"
 arch=('i686' 'x86_64')
@@ -23,10 +23,10 @@ conflicts=('dbus-core' 'dbus'
 #replaces=('dbus-core' 'dbus')
 install=dbus.install
 source=("http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz" #{,.asc}
-        "dbus.initd::${_gentoo_uri}/dbus.initd"
+        "dbus.initd::${_gentoo_uri}/dbus.initd-r1"
 	'30-dbus.sh')
 sha256sums=('b5fefa08a77edd76cd64d872db949eebc02cf6f3f8be82e4bbc641742af5d35f'
-            '31281696ad3920da14fbb03d983131361665567c2d06001dbf829dc159d48375'
+            '7c1429585cd08f57d420b87bebb89c1fccf963414a0d591021df85c8372f5cab'
             'dc1ce6d38674bad7a48ad1911576f8bbb3819f1019126fb1ef7c3cfad16bb02a')
 
 build() {
@@ -46,7 +46,7 @@ build() {
         --disable-tests \
         --disable-asserts \
         --disable-systemd \
-        --enable-user-session
+        --disable-user-session
 
     make
 }
