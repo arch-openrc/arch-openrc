@@ -1,4 +1,4 @@
-_svc="calmd"
+_svc="clamd"
 _rlvl="default"
 
 post_install() {
