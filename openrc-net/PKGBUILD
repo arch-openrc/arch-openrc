@@ -41,7 +41,7 @@ pkgname=('autofs-openrc'
         'syncthing-openrc'
         'nginx-openrc'
         'vnstat-openrc')
-pkgver=20151015
+pkgver=20151228
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
