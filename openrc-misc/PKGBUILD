@@ -28,8 +28,9 @@ pkgname=('cpupower-openrc'
         'networkmanager-openrc'
         'boinc-openrc'
         'at-openrc'
-        'libvirt-openrc')
-pkgver=20151015
+       # 'libvirt-openrc'
+        'pulseaudio-openrc')
+pkgver=20151229
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -93,11 +94,16 @@ source=("fcron.initd::${_gentoo_uri}/sys-process/fcron/files/fcron.init.3"
         "boinc.initd::${_gentoo_uri}/sci-misc/boinc/files/boinc.init"
         "atd.confd::${_gentoo_uri}/sys-process/at/files/atd.confd"
         "atd.initd::${_gentoo_uri}/sys-process/at/files/atd.rc8"
-        "libvirtd.confd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.confd-r4"
-        "libvirtd.initd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.init-r14"
-        "virtlockd.initd::${_gentoo_uri}/app-emulation/libvirt/files/virtlockd.init-r1"
+#         "libvirtd.confd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.confd-r5"
+#         "libvirtd.initd::${_gentoo_uri}/app-emulation/libvirt/files/libvirtd.init-r15"
+#         "virtlockd.initd::${_gentoo_uri}/app-emulation/libvirt/files/virtlockd.init-r1"
+#         ${_gentoo_uri}/app-emulation/libvirt/files/virtlogd.init-r1
+#         ${_gentoo_uri}/app-emulation/libvirt/files/libvirt-guests.init-r1
+#         ${_gentoo_uri}/app-emulation/libvirt/files/libvirt-guests.confd
         "zfs.initd"
-        "thermald.initd")
+        "thermald.initd"
+        "pulseaudio.confd::${_gentoo_uri}/media-sound/pulseaudio/files/pulseaudio.conf.d"
+        "pulseaudio.initd::${_gentoo_uri}/media-sound/pulseaudio/files/pulseaudio.init.d-5")
 sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '99724a799a7bd56e07e8e01adda6e6de184d6455876fab6aa21ee104976621ba'
@@ -118,10 +124,10 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'b12a6a9c52d2ac1088b678882ba1781b6784178fe29970f4a54b2aa596c60c66'
             '706467898d0b644c0fe1d216a4b3b9b82ed55b0cbe6aec2c2adbb4e9004145d9'
             '95297bb6113c18620184f0facd8e22155b51e4fe4c6008deff6c8c374d919574'
-            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
+            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
             'c7dc517cdb5ee10e2a07ccea15ec47ba0b7aff8ac1469204c8d7faf71bcae2c5'
             '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
-            '686dd335f1828be670d8e39ba2134e90ed4827c08c485ed7685e5bb032737dcb'
+            '178206e50769b1023aef6aa10aa958dcb9db664ffc600652fc7e843ce6576d7a'
             'fef15f3781988c57b57f974202754bdbe075e15b3dbdc2555fae39b4d68efe27'
             'b4854f6afc567f4a5259de267675a36fdb0f54c5911eba6b39d9b5a9888050ca'
             '4705b68372090ee7db69da1ad35131551ed1ba99032db2486ff6c31d2170ce6b'
@@ -153,11 +159,10 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'd15f25a8e53e1d94abd1f30eda1e49be497ebbfcd167facc40b7f46128e01d5c'
             'f7d5a1d313041ffba2bba3db704976fb9ad8083964eaccaf0767124402e0810e'
             '44da98a003d5657e69436c9617e568eb9b15715c8f673d1fef79df25caad2c3c'
-            'c2ca5d9a2d4ed433e91bd215c2ca678109cc981072897a497955e36760dc3b9f'
-            'ed8514d347d3a8a0b243cfc25a85dedb1e595f1e29e874bcadd14ef5f5d03e58'
-            '3d61a6a2b25b15999720a9218e76cec64aceebaf281fbb9ed2f042e5a2bdbf71'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
-            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
+            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
+            '06a4c3effeb3d30df6d384f7405a5c3297a04d7f1db17b511a77702007c95c95'
+            'eab592643ae66ad9ce2fe11f3279d42fdfbe3a9fca3fc5c3008699e76a0a884b')
 
 pkgver() {
 	date +%Y%m%d
@@ -213,7 +218,7 @@ package_connman-openrc() {
 package_cups-openrc() {
 	pkgdesc="OpenRC cups init script"
 	depends=('cups' 'dbus-openrc')
-	optdepends=('avahi-openrc: avahi initscripts')
+	optdepends=('avahi-openrc: avahi initscript')
 	install=cups.install
 
 	_inst_initd 'cupsd'
@@ -443,7 +448,7 @@ package_networkmanager-openrc() {
 
 package_boinc-openrc() {
 	pkgdesc="OpenRC boinc init script"
-	depends=('boinc')
+	depends=('openrc' 'boinc')
 	backup=('etc/conf.d/boinc')
 	install=boinc.install
 
@@ -453,7 +458,7 @@ package_boinc-openrc() {
 
 package_at-openrc() {
 	pkgdesc="OpenRC at init script"
-	depends=('at')
+	depends=('openrc' 'at')
 	backup=('etc/conf.d/atd')
 	install=at.install
 
@@ -464,13 +469,25 @@ package_at-openrc() {
 		-i "${pkgdir}/etc/conf.d/atd"
 }
 
-package_libvirt-openrc() {
-	pkgdesc="OpenRC libvirt init script"
-	depends=('libvirt')
-	backup=('etc/conf.d/libvirtd')
-	install=libvirt.install
+# package_libvirt-openrc() {
+# 	pkgdesc="OpenRC libvirt init script"
+# 	depends=('openrc' 'libvirt')
+# 	backup=('etc/conf.d/libvirtd')
+# 	install=libvirt.install
+#
+# 	_inst_confd 'libvirtd'
+# 	_inst_initd 'libvirtd'
+# 	_inst_initd 'virtlockd'
+# }
 
-	_inst_confd 'libvirtd'
-	_inst_initd 'libvirtd'
-	_inst_initd 'virtlockd'
+package_pulseaudio-openrc() {
+	pkgdesc="OpenRC pulseaudio init script"
+	depends=('openrc' 'pulseaudio')
+	optdepends=('alsa-utils-openrc: alsa-utils initscript'
+		'consolekit-openrc: pulseaudio initscript')
+	backup=('etc/conf.d/pulseaudio')
+	install=pulseaudio.install
+
+	_inst_confd 'pulseaudio'
+	_inst_initd 'pulseaudio'
 }
