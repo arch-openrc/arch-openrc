@@ -40,8 +40,9 @@ pkgname=('autofs-openrc'
         'wicd-openrc'
         'syncthing-openrc'
         'nginx-openrc'
-        'vnstat-openrc')
-pkgver=20151228
+        'vnstat-openrc'
+        'snort-openrc')
+pkgver=20151230
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -123,7 +124,9 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "vnstatd.initd::${_gentoo_uri}/net-analyzer/vnstat/files/vnstatd.initd-r1"
         "wicd.initd"
         "syncthing.confd"
-        "syncthing.initd")
+        "syncthing.initd"
+        "snort.confd::${_gentoo_uri}/net-analyzer/snort/files/snort.confd.2"
+        "snort.initd::${_gentoo_uri}/net-analyzer/snort/files/snort.rc12")
 sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '7837345357a7c0162f2bd7aada22329c89b516a85af227a5d3d81afd1000a969'
@@ -198,7 +201,9 @@ sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             '3c9a1c10c3554a544c8075303e37a4aca7a9e742be37b83d27db17fb28ab869a'
             '66b2b53b077ddc2d5eb1d81faa99fa0f4f0db01520900ba948001e539bfe02d8'
             'eb4a4315916fe3f8688c1da5bb5c249a1f402e61617452288d5b0668078c955c'
-            '63708b1a7b61ae791df64bb4cefa01dc12236f96bb67fe6d0b2c513e11c81f3e')
+            '63708b1a7b61ae791df64bb4cefa01dc12236f96bb67fe6d0b2c513e11c81f3e'
+            '337378f098e0cd59fb5c28a26b5b74b32168cf48596064469e6a5ba04fe3a36f'
+            '0a2a82a022e16f21d2c3c873ed75be9fd2931fd37292203c23ee4462ab2eecb4')
 
 pkgver() {
 	date +%Y%m%d
@@ -716,4 +721,16 @@ package_vnstat-openrc() {
 
 	_inst_confd 'vnstatd'
 	_inst_initd 'vnstatd'
+}
+
+package_snort-openrc() {
+	pkgdesc="OpenRC snort init script"
+	depends=('openrc' 'snort')
+	optdepends=('mysql-openrc: mysql initscript'
+		'postgresql-openrc: postgresql initscript')
+	backup=('etc/conf.d/snort')
+	install=snort.install
+
+	_inst_confd 'snort'
+	_inst_initd 'snort'
 }
