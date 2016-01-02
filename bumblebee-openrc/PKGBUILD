@@ -7,7 +7,7 @@ _gentoo_uri=http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86
 
 pkgname=bumblebee-openrc
 pkgver=3.2.1
-pkgrel=3
+pkgrel=4
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 provides=('bumblebee')
@@ -30,11 +30,20 @@ backup=('etc/bumblebee/bumblebee.conf'
         'etc/bumblebee/xorg.conf.nvidia'
         'etc/conf.d/bumblebee')
 source=("http://www.bumblebee-project.org/${_pkgname}-${pkgver}.tar.gz"
-		'bumblebee-3.2.1-modprobe.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/1ada79fe5916961fc4e4917f8c63bb184908d986.patch'
-		"bumblebee.confd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.confd"
-		"bumblebee.initd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.initd")
+	'bumblebee-3.2.1-modprobe.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/1ada79fe5916961fc4e4917f8c63bb184908d986.patch'
+
+source=("http://www.bumblebee-project.org/${pkgname}-${pkgver}.tar.gz"
+        "0001-bb_nvidia_modeset-detection_bug699_01.patch::https://github.com/arafey/Bumblebee/commit/5636b24fa86a005a5d2e30bd794516db13ccba56.patch"
+        "0002-bb_nvidia_modeset-detection_bug699_02.patch::https://github.com/arafey/Bumblebee/commit/09d537e8e5313cd0f2c7bf6620ca70454de8a04a.patch"
+        "0003-bb_nvidia_umv_detection_bug699.patch::https://github.com/arafey/Bumblebee/commit/dbbf20a38aa2bffb10c4e8af583b34dff6bfe721.patch"
+        "0004-bb_hexadicimal_bug573.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b.patch")
+	"bumblebee.confd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.confd"
+	"bumblebee.initd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.initd")
 sha256sums=('1018703b07e2f607a4641249d69478ce076ae5a1e9dd6cff5694d394fa7ee30e'
-            'faca07b50f0a3ea3fdba74cc72e0e0504a237324698ccb7033c0586d38dc3875'
+            'aff3528d17a77ff19b4e0a7a10682b8351456f11795f71ef62b315e774fb408a'
+            '70ad9b3d8e0d70a504110651c6f5f3a1b1d3c4c44eeb0fd49a4463e99124a47b'
+            '16fd522f412125b3c9b5709d78584744c70cb627e8baf8cd6025a71d278f79a6'
+            '0b7c1f4bb2e27d131c6c21fd7006d075584917ac4259bd9899e6eca99efc0ece'
             '9e0287f542cff0fd3452a0c3d6d427a3404706c93ac9a00f4d99fe52ed596d75'
             '8dd0ea64c084a6e4daac3b8da043ff16d87ec2ba44c63e9965a2e8c9382dc639')
 
@@ -51,8 +60,29 @@ _inst_confd(){
 }
 
 prepare() {
-    cd "${srcdir}/${_pkgname}-${pkgver}"
-    patch -p1 -i "${srcdir}/bumblebee-3.2.1-modprobe.patch"
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    ###############################################################################################################################
+    # Issue #699                                                                                                                  #
+    #-----------------------------------------------------------------------------------------------------------------------------#
+    # Dirty fix for issue #699 version improved This should fix issue #699 without causing any problems for non-affected users.   #
+    # It should correctly detect if nvidia and nvidia_modeset are loaded, unload nvidia_modeset using modprobe -r nvidia_modeset  #
+    # (this also unloads nvidia), and log errors (as before). If it doesn't detect nvidia_modeset but detects "driver",           #
+    # then it will unload the detected driver just like before, except it does so using modprobe -r "driver" for consistency.     #
+    # https://github.com/Bumblebee-Project/Bumblebee/issues/699                                                                   #
+    # https://github.com/arafey/Bumblebee/commit/5636b24fa86a005a5d2e30bd794516db13ccba56                                         #
+    # https://github.com/arafey/Bumblebee/commit/09d537e8e5313cd0f2c7bf6620ca70454de8a04a                                         #
+    # https://github.com/arafey/Bumblebee/commit/dbbf20a38aa2bffb10c4e8af583b34dff6bfe721                                         #
+    ###############################################################################################################################
+    # Issue #573                                                                                                                  #
+    #-----------------------------------------------------------------------------------------------------------------------------#
+    # Fix devices with a bus larger than 9 (GH-573)                                                                               #
+    # The `-isolateDevice` option accepts a PCI ID in decimal format, not hex.                                                    #
+    # https://github.com/Bumblebee-Project/Bumblebee/issues/573                                                                   #
+    # https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b                              #
+    ###############################################################################################################################
+    for p in $(ls ${srcdir}/00{01,02,03,04}*.patch); do
+    patch -Np1 -i "$p"
+    done
 }
 
 build() {
