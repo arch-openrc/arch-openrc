@@ -37,8 +37,8 @@ source=("http://www.bumblebee-project.org/${pkgname}-${pkgver}.tar.gz"
         "0002-bb_nvidia_modeset-detection_bug699_02.patch::https://github.com/arafey/Bumblebee/commit/09d537e8e5313cd0f2c7bf6620ca70454de8a04a.patch"
         "0003-bb_nvidia_umv_detection_bug699.patch::https://github.com/arafey/Bumblebee/commit/dbbf20a38aa2bffb10c4e8af583b34dff6bfe721.patch"
         "0004-bb_hexadicimal_bug573.patch::https://github.com/Bumblebee-Project/Bumblebee/commit/2073f8537412aa47755eb6f3f22a114403e5285b.patch")
-	"bumblebee.confd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.confd"
-	"bumblebee.initd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.initd")
+        "bumblebee.confd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.confd"
+        "bumblebee.initd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.initd")
 sha256sums=('1018703b07e2f607a4641249d69478ce076ae5a1e9dd6cff5694d394fa7ee30e'
             'aff3528d17a77ff19b4e0a7a10682b8351456f11795f71ef62b315e774fb408a'
             '70ad9b3d8e0d70a504110651c6f5f3a1b1d3c4c44eeb0fd49a4463e99124a47b'
@@ -60,7 +60,7 @@ _inst_confd(){
 }
 
 prepare() {
-    cd "${srcdir}/${pkgname}-${pkgver}"
+    cd "${srcdir}/${_pkgname}-${pkgver}"
     ###############################################################################################################################
     # Issue #699                                                                                                                  #
     #-----------------------------------------------------------------------------------------------------------------------------#
