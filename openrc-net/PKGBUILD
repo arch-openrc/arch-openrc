@@ -41,8 +41,9 @@ pkgname=('autofs-openrc'
         'syncthing-openrc'
         'nginx-openrc'
         'vnstat-openrc'
-        'snort-openrc')
-pkgver=20151230
+        'snort-openrc'
+        'unbound-openrc')
+pkgver=20160105
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -126,7 +127,9 @@ source=("${_dev_uri}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "syncthing.confd"
         "syncthing.initd"
         "snort.confd::${_gentoo_uri}/net-analyzer/snort/files/snort.confd.2"
-        "snort.initd::${_gentoo_uri}/net-analyzer/snort/files/snort.rc12")
+        "snort.initd::${_gentoo_uri}/net-analyzer/snort/files/snort.rc12"
+        "unbound.confd::${_gentoo_uri}/net-dns/unbound/files/unbound.confd"
+        "unbound.initd::${_gentoo_uri}/net-dns/unbound/files/unbound.initd")
 sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '7837345357a7c0162f2bd7aada22329c89b516a85af227a5d3d81afd1000a969'
@@ -203,7 +206,9 @@ sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             'eb4a4315916fe3f8688c1da5bb5c249a1f402e61617452288d5b0668078c955c'
             '63708b1a7b61ae791df64bb4cefa01dc12236f96bb67fe6d0b2c513e11c81f3e'
             '337378f098e0cd59fb5c28a26b5b74b32168cf48596064469e6a5ba04fe3a36f'
-            '0a2a82a022e16f21d2c3c873ed75be9fd2931fd37292203c23ee4462ab2eecb4')
+            '0a2a82a022e16f21d2c3c873ed75be9fd2931fd37292203c23ee4462ab2eecb4'
+            '7da812ef83f8f8b9351363525ab6bebd5348faed76d0ae424dcbd7cb6a830dfd'
+            '49d23cf94027f0e3ccb5fbc7fb7f1b609972a4abe1ec14fd595495c90d2c325c')
 
 pkgver() {
 	date +%Y%m%d
@@ -733,4 +738,14 @@ package_snort-openrc() {
 
 	_inst_confd 'snort'
 	_inst_initd 'snort'
+}
+
+package_unbound-openrc() {
+	pkgdesc="OpenRC unbound init script"
+	depends=('openrc' 'unbound')
+	backup=('etc/conf.d/unbound')
+	install=unbound.install
+
+	_inst_confd 'unbound'
+	_inst_initd 'unbound'
 }
