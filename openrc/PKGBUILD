@@ -45,7 +45,6 @@ _args+=(MKSELINUX=no)
 _args+=(MKPAM=pam)
 _args+=(MKTERMCAP=ncurses)
 _args+=(MKNET=no)
-_args+=(MKTOOLS=no)
 
 prepare(){
 	cd "${srcdir}/${pkgname}-${pkgver}"
