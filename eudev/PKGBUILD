@@ -6,7 +6,7 @@ _udev_ver=220
 
 pkgname=eudev
 pkgver=3.1.5
-pkgrel=2
+pkgrel=3
 pkgdesc="The userspace dev tools (udev) forked by Gentoo"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/eudev/"
@@ -14,7 +14,6 @@ license=('GPL')
 depends=('glib2' 'kbd' 'kmod' 'hwids' 'util-linux')
 makedepends=('gobject-introspection' 'gperf' 'gtk-doc' 'intltool')
 optdepends=('eudev-systemdcompat: makes packages compiled with systemd features run'
-	    'upower-pm-utils: pm-utils support'
 	    'udev-openrc: udev starup scripts for openrc')
 provides=("udev=${_udev_ver}"
 	"libudev=${_udev_ver}"
