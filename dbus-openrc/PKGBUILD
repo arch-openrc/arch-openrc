@@ -3,7 +3,7 @@
 # Contributor: Link Dupont <link@subpop.net>
 
 _pkgname=dbus
-_gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master/sys-apps/dbus/files"
+_url="https://raw.githubusercontent.com/gentoo/gentoo/master/sys-apps/dbus/files"
 
 pkgname=dbus-openrc
 pkgver=1.10.6
@@ -23,7 +23,7 @@ conflicts=('dbus-core' 'dbus'
 #replaces=('dbus-core' 'dbus')
 install=dbus.install
 source=("http://dbus.freedesktop.org/releases/dbus/dbus-$pkgver.tar.gz" #{,.asc}
-        "dbus.initd::${_gentoo_uri}/dbus.initd-r1"
+        "dbus.initd::${_url}/dbus.initd-r1"
 	'30-dbus.sh')
 sha256sums=('b5fefa08a77edd76cd64d872db949eebc02cf6f3f8be82e4bbc641742af5d35f'
             '7c1429585cd08f57d420b87bebb89c1fccf963414a0d591021df85c8372f5cab'

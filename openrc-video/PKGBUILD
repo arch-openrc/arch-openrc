@@ -1,6 +1,6 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
-_gentoo_uri="https://raw.githubusercontent.com/gentoo/gentoo/master"
+_url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
 pkgbase=openrc-video
 pkgname=('nvidia-utils-openrc'
@@ -13,13 +13,13 @@ arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL')
 groups=('openrc-video')
-source=("nvidia-smi.initd::${_gentoo_uri}/x11-drivers/nvidia-drivers/files/nvidia-smi.init"
-        "atieventsd.initd::${_gentoo_uri}/x11-drivers/ati-drivers/files/atieventsd.init"
-        "vgl.confd::${_gentoo_uri}/x11-misc/virtualgl/files/vgl.confd-r1"
-        "vgl.initd::${_gentoo_uri}/x11-misc/virtualgl/files/vgl.initd-r2"
-        "${_gentoo_uri}/x11-misc/virtualgl/files/vgl-helper.sh")
-# 	"bumblebee.confd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.confd"
-# 	"bumblebee.initd::${_gentoo_uri}/x11-misc/bumblebee/files/bumblebee.initd")
+source=("nvidia-smi.initd::${_url}/x11-drivers/nvidia-drivers/files/nvidia-smi.init"
+        "atieventsd.initd::${_url}/x11-drivers/ati-drivers/files/atieventsd.init"
+        "vgl.confd::${_url}/x11-misc/virtualgl/files/vgl.confd-r1"
+        "vgl.initd::${_url}/x11-misc/virtualgl/files/vgl.initd-r2"
+        "${_url}/x11-misc/virtualgl/files/vgl-helper.sh")
+# 	"bumblebee.confd::${_url}/x11-misc/bumblebee/files/bumblebee.confd"
+# 	"bumblebee.initd::${_url}/x11-misc/bumblebee/files/bumblebee.initd")
 sha256sums=('706ae49d4a61d400b6cb1cd942a98a7764e617ccb3256b3ab7d92e22b1421605'
             '585857e5655b23805043edb988d98ebf0327cd2f6b2589497c97ed9c4dcfa70b'
             '500957c2736f761e763f75e9c3a09bb4f53bcde8a3cd38dd5ec6b34777737fd2'

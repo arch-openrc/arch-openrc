@@ -4,10 +4,6 @@
 # Contributor: Tom Gundersen <teg@jklm.no>
 
 _spkgrel=1
-# _y=2015
-# _m=08
-# _d=24
-# _url=http://seblu.net/a/arm/$_y/$_m/$_d/core/os
 _repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
@@ -47,18 +43,6 @@ elif [ "$CARCH" = "x86_64" ]; then
                 '6ca54cb2320dac3173bff9234c5b108ed05b7d97c1a17b6a111a33133ffca789'
                 'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
 fi
-
-# if [ "$CARCH" = "i686" ]; then
-#     source=("$_url/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
-# 			"$_url/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
-# 	sha256sums=('5dd169b36e126702d683a2b81efcc80a830fea622dc83380dbec94513876a586'
-# 				'f9f3d59c9fa2ed6474216feca2fc36fcb231aa8ca07f69d6a4f4f10db84399ab')
-# elif [ "$CARCH" = "x86_64" ]; then
-#     source=("$_url/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
-# 			"$_url/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
-# 	sha256sums=('f9f3d59c9fa2ed6474216feca2fc36fcb231aa8ca07f69d6a4f4f10db84399ab'
-# 				'f9f3d59c9fa2ed6474216feca2fc36fcb231aa8ca07f69d6a4f4f10db84399ab')
-# fi
 
 prepare() {
 	#clean libsystemd

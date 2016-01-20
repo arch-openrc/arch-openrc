@@ -1,10 +1,10 @@
 # Maintainer: artoo <artoo@manjaro.org>
 # Contributor: williamh <williamh@gentoo.org>
 
-_src_uri="https://github.com"
+_url="https://github.com"
 
-_net_uri="${_src_uri}/gentoo/netifrc/archive"
-_func_uri="${_src_uri}/gentoo/gentoo-functions/archive"
+_net_url="${_url}/gentoo/netifrc/archive"
+_func_url="${_url}/gentoo/gentoo-functions/archive"
 
 _func_ver=0.10
 
@@ -20,8 +20,8 @@ depends=('udev-openrc')
 conflicts=('systemd-sysvcompat')
 install=${pkgname}.install
 backup=('etc/conf.d/net')
-source=("${pkgname}-${pkgver}.tar.gz::${_net_uri}/${pkgver}.tar.gz"
-	"gentoo-functions-${_func_ver}.tar.gz::${_func_uri}/${_func_ver}.tar.gz"
+source=("${pkgname}-${pkgver}.tar.gz::${_net_url}/${pkgver}.tar.gz"
+	"gentoo-functions-${_func_ver}.tar.gz::${_func_url}/${_func_ver}.tar.gz"
 	'LICENSE')
 sha256sums=('8ae41223cdc735eee8303e93959b31b6aeae6f1a08661ef5baa6373dd86419c7'
             '709c8b22f404001a512e47a7a4d3192070b3e150fb9d0f943de09736d665b0db'
