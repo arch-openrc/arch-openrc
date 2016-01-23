@@ -29,8 +29,9 @@ pkgname=('cpupower-openrc'
         'boinc-openrc'
         'at-openrc'
        # 'libvirt-openrc'
-        'pulseaudio-openrc')
-pkgver=20151229
+        'pulseaudio-openrc'
+        'brltty-openrc')
+pkgver=20160123
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -103,7 +104,8 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "zfs.initd"
         "thermald.initd"
         "pulseaudio.confd::${_url}/media-sound/pulseaudio/files/pulseaudio.conf.d"
-        "pulseaudio.initd::${_url}/media-sound/pulseaudio/files/pulseaudio.init.d-5")
+        "pulseaudio.initd::${_url}/media-sound/pulseaudio/files/pulseaudio.init.d-5"
+        "brltty.initd::${_url}/app-accessibility/brltty/files/brltty.rc")
 sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
             '99724a799a7bd56e07e8e01adda6e6de184d6455876fab6aa21ee104976621ba'
@@ -124,10 +126,10 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'b12a6a9c52d2ac1088b678882ba1781b6784178fe29970f4a54b2aa596c60c66'
             '706467898d0b644c0fe1d216a4b3b9b82ed55b0cbe6aec2c2adbb4e9004145d9'
             '95297bb6113c18620184f0facd8e22155b51e4fe4c6008deff6c8c374d919574'
-            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
+            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
             'c7dc517cdb5ee10e2a07ccea15ec47ba0b7aff8ac1469204c8d7faf71bcae2c5'
             '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
-            '178206e50769b1023aef6aa10aa958dcb9db664ffc600652fc7e843ce6576d7a'
+            '686dd335f1828be670d8e39ba2134e90ed4827c08c485ed7685e5bb032737dcb'
             'fef15f3781988c57b57f974202754bdbe075e15b3dbdc2555fae39b4d68efe27'
             'b4854f6afc567f4a5259de267675a36fdb0f54c5911eba6b39d9b5a9888050ca'
             '4705b68372090ee7db69da1ad35131551ed1ba99032db2486ff6c31d2170ce6b'
@@ -162,7 +164,8 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
             '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
             '06a4c3effeb3d30df6d384f7405a5c3297a04d7f1db17b511a77702007c95c95'
-            'eab592643ae66ad9ce2fe11f3279d42fdfbe3a9fca3fc5c3008699e76a0a884b')
+            'eab592643ae66ad9ce2fe11f3279d42fdfbe3a9fca3fc5c3008699e76a0a884b'
+            '89cfca974c3b997c4f13df5835cffb75e2bb92932e8c8163bfce700da9f533a3')
 
 pkgver() {
 	date +%Y%m%d
@@ -465,7 +468,7 @@ package_at-openrc() {
 	_inst_confd 'atd'
 	_inst_initd 'atd'
 
-	sed -e "${_runpath}" \
+	sed -e 's|/var/run|/run|g' \
 		-i "${pkgdir}/etc/conf.d/atd"
 }
 
@@ -490,4 +493,15 @@ package_pulseaudio-openrc() {
 
 	_inst_confd 'pulseaudio'
 	_inst_initd 'pulseaudio'
+}
+
+package_brltty-openrc() {
+	pkgdesc="OpenRC brltty init script"
+	depends=('openrc' 'brltty')
+	install=brltty.install
+
+	_inst_initd 'brltty'
+
+	sed -e 's|/bin/brltty|/usr/bin/brltty|' \
+		-i "${pkgdir}/etc/init.d/brltty"
 }
