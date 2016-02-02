@@ -22,23 +22,24 @@ sha256sums=('26dee7e59859b5cbd5ec26b0050ef31c32b43be304e4042119819ab9779c26bd'
             '4cbe522c84956d13d751856b8c66f2beca210c9ec65712e261bfe2bf94fb0da5')
 
 prepare() {
-  mkdir -p build
-  cd ${_pkgname}-${pkgver}
-  patch -p1 -i ${srcdir}/${_pkgname}-consolekit.patch
+	mkdir -p build
+	cd ${_pkgname}-${pkgver}
+	patch -p1 -i ${srcdir}/${_pkgname}-consolekit.patch
 }
 
 build() {
-  cd build
-  cmake ../${_pkgname}-${pkgver} \
-        -DCMAKE_INSTALL_PREFIX=/usr \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib/sddm \
-        -DDBUS_CONFIG_FILENAME=org.freedesktop.sddm.conf \
-        -DBUILD_MAN_PAGES=ON
-  make
+	cd build
+	cmake ../${_pkgname}-${pkgver} \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_LIBEXECDIR=/usr/lib/sddm \
+		-DDBUS_CONFIG_FILENAME=org.freedesktop.sddm.conf \
+		-DBUILD_MAN_PAGES=ON
+	make
 }
 
 package() {
-  cd build
-  make DESTDIR="${pkgdir}" install
+	cd build
+	make DESTDIR="${pkgdir}" install
+	sed -e 's|pam_systemd.so|pam_ck_connector.so nox11|' -i ${pkgdir}/etc/pam.d/sddm-greeter
 }
