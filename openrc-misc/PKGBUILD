@@ -29,7 +29,7 @@ pkgname=('cpupower-openrc'
         'boinc-openrc'
         'at-openrc'
        # 'libvirt-openrc'
-        'pulseaudio-openrc'
+       # 'pulseaudio-openrc'
         'brltty-openrc')
 pkgver=20160123
 pkgrel=1
@@ -103,8 +103,8 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
 #         ${_url}/app-emulation/libvirt/files/libvirt-guests.confd
         "zfs.initd"
         "thermald.initd"
-        "pulseaudio.confd::${_url}/media-sound/pulseaudio/files/pulseaudio.conf.d"
-        "pulseaudio.initd::${_url}/media-sound/pulseaudio/files/pulseaudio.init.d-5"
+       # "pulseaudio.confd::${_url}/media-sound/pulseaudio/files/pulseaudio.conf.d"
+       # "pulseaudio.initd::${_url}/media-sound/pulseaudio/files/pulseaudio.init.d-5"
         "brltty.initd::${_url}/app-accessibility/brltty/files/brltty.rc")
 sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
@@ -483,17 +483,17 @@ package_at-openrc() {
 # 	_inst_initd 'virtlockd'
 # }
 
-package_pulseaudio-openrc() {
-	pkgdesc="OpenRC pulseaudio init script"
-	depends=('openrc' 'pulseaudio')
-	optdepends=('alsa-utils-openrc: alsa-utils initscript'
-		'consolekit-openrc: pulseaudio initscript')
-	backup=('etc/conf.d/pulseaudio')
-	install=pulseaudio.install
-
-	_inst_confd 'pulseaudio'
-	_inst_initd 'pulseaudio'
-}
+# package_pulseaudio-openrc() {
+# 	pkgdesc="OpenRC pulseaudio init script"
+# 	depends=('openrc' 'pulseaudio')
+# 	optdepends=('alsa-utils-openrc: alsa-utils initscript'
+# 		'consolekit-openrc: pulseaudio initscript')
+# 	backup=('etc/conf.d/pulseaudio')
+# 	install=pulseaudio.install
+#
+# 	_inst_confd 'pulseaudio'
+# 	_inst_initd 'pulseaudio'
+# }
 
 package_brltty-openrc() {
 	pkgdesc="OpenRC brltty init script"
