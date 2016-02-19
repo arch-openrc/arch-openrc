@@ -8,13 +8,12 @@ pkgname=('git-openrc'
         'postgresql-openrc'
         'subversion-openrc')
        # 'php-fpm-openrc')
-pkgver=20151228
+pkgver=20160219
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-groups=('openrc-devel')
 conflicts=('systemd-sysvcompat')
 source=("git-daemon.confd::${_url}/dev-vcs/git/files/git-daemon.confd"
         "git-daemon.initd::${_url}/dev-vcs/git/files/git-daemon-r1.initd"

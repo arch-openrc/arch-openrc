@@ -12,8 +12,9 @@ pkg
 *.SRCINFO
 *.AURINFO
 .kateproject.d
-.tar.bz2
-.log.1
-.initd
-.confd
-.sh
+*.tar.bz2
+*.log.1
+*.initd
+*.confd
+*.sh
+10-openrc-status

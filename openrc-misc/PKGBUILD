@@ -31,17 +31,16 @@ pkgname=('cpupower-openrc'
        # 'libvirt-openrc'
        # 'pulseaudio-openrc'
         'brltty-openrc')
-pkgver=20160123
+pkgver=20160219
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-groups=('openrc-misc')
 conflicts=('systemd-sysvcompat')
 source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
-        "rsyslog.confd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.confd"
-        "rsyslog.initd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.initd"
+        "rsyslog.confd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.confd-r1"
+        "rsyslog.initd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.initd-r1"
         "saned.confd::${_url}/media-gfx/sane-backends/files/saned.confd"
         "saned.initd::${_url}/media-gfx/sane-backends/files/saned.initd"
         "fuse.initd::${_url}/sys-fs/fuse/files/fuse.init"
@@ -107,8 +106,8 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
        # "pulseaudio.initd::${_url}/media-sound/pulseaudio/files/pulseaudio.init.d-5"
         "brltty.initd::${_url}/app-accessibility/brltty/files/brltty.rc")
 sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
-            'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
-            '99724a799a7bd56e07e8e01adda6e6de184d6455876fab6aa21ee104976621ba'
+            '0be3575df8010523de6b37e98c417192e8ec481292ca9fb47c8d2211795e03a6'
+            '9aa3b65bfc3f8cf2320a5bea7cc53a2ad744d8b5f42d8e3d0d2b30131a27af15'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
             '246507934c6b13b79aa4e00c58bdf8b067f9848b7f564ba962995f84b71b7f79'
             '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
@@ -163,8 +162,6 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '44da98a003d5657e69436c9617e568eb9b15715c8f673d1fef79df25caad2c3c'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
             '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
-            '06a4c3effeb3d30df6d384f7405a5c3297a04d7f1db17b511a77702007c95c95'
-            'eab592643ae66ad9ce2fe11f3279d42fdfbe3a9fca3fc5c3008699e76a0a884b'
             '89cfca974c3b997c4f13df5835cffb75e2bb92932e8c8163bfce700da9f533a3')
 
 pkgver() {
@@ -234,7 +231,6 @@ package_cups-openrc() {
 package_fcron-openrc() {
 	pkgdesc="OpenRC fcron init script"
 	depends=('openrc' 'fcron')
-	groups=('openrc-misc')
 	provides=('openrc-cron')
 	conflicts=('cronie'
 		'cronie-openrc'

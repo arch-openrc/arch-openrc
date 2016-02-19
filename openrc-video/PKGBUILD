@@ -7,12 +7,11 @@ pkgname=('nvidia-utils-openrc'
         'catalyst-utils-openrc'
         'virtualgl-openrc')
         #'bumblebee-openrc')
-pkgver=20151014
+pkgver=20160219
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL')
-groups=('openrc-video')
 source=("nvidia-smi.initd::${_url}/x11-drivers/nvidia-drivers/files/nvidia-smi.init"
         "atieventsd.initd::${_url}/x11-drivers/ati-drivers/files/atieventsd.init"
         "vgl.confd::${_url}/x11-misc/virtualgl/files/vgl.confd-r1"
@@ -83,7 +82,6 @@ package_virtualgl-openrc() {
 # package_bumblebee-openrc() {
 # 	pkgdesc="OpenRC bumblebee init script"
 # 	depends=('virtualgl-openrc' 'bumblebee')
-# 	groups=('openrc-video' 'openrc-mobile')
 # 	install=bumblebee.install
 # 	backup=('etc/conf.d/bumblebee')
 #
