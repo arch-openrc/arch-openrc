@@ -27,6 +27,8 @@ source=("$pkgname-$pkgver.tar.gz::https://github.com/gentoo/eudev/archive/v${pkg
 sha256sums=('ce9d5fa91e3a42c7eb95512ca0fa2a631e89833053066bb6cdf42046b2a88553'
             '892ce43218e0a458981bbce451252c8987dc398e60b8de288e7542b8f2409c13'
             '77dd1fd318b4456409aceb077f060b87944defb07cf39d29ad1968dc6f361875')
+            
+groups=('base-openrc')
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"

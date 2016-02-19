@@ -12,7 +12,6 @@ pkgdesc="Freedesktop.org message bus system"
 url="http://www.freedesktop.org/Software/dbus"
 arch=('i686' 'x86_64')
 license=('GPL' 'custom')
-groups=('openrc-base' 'openrc-desktop')
 depends=('expat' "libdbus=${pkgver}" 'openrc')
 makedepends=('libx11' 'xmlto' 'docbook-xsl' 'udev')
 optdepends=('libx11: dbus-launch support'

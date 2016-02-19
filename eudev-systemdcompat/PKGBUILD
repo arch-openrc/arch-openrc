@@ -3,25 +3,21 @@
 # Contributor: Dave Reisner <dreisner@archlinux.org>
 # Contributor: Tom Gundersen <teg@jklm.no>
 
-_spkgrel=3
+_spkgrel=2
 _repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
-pkgver=228
+pkgver=229
 pkgrel=1
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
 license=('GPL2')
-#groups=('eudev-base')
+groups=('base-openrc')
 url="http://www.freedesktop.org/wiki/Software/systemd"
 provides=("libsystemd=${pkgver}"
             "systemd=${pkgver}"
             "systemd-tools=${pkgver}"
-            'libsystemd.so'
-            'libsystemd-daemon.so'
-            'libsystemd-id128.so'
-            'libsystemd-journal.so'
-            'libsystemd-login.so')
+            'libsystemd.so')
 depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev' 'lz4')
 conflicts=('systemd'
             'systemd-tools'
@@ -32,14 +28,14 @@ replaces=('openrc-systemdcompat')
 if [ "$CARCH" = "i686" ]; then
     source=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
             "$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
-sha256sums=('6309a05c8eb250908918648d76c1c8635f5328d0e400ad8380499b9f203df313'
-            '6780c6fb7c3c46af734f4ea3c9b7a25102f7003937413835d51592ff0ddd9504')
+sha256sums=('9b82605a3028eac865e4cef19ee9571e0806413c54c50a3d219be644f7ee036a'
+            '2bff0d24c27a878d32fc3d7fa05b892943d91c8aba0959006e70a2c6593c1313')
 elif [ "$CARCH" = "x86_64" ]; then
     source=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
             "$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
             "gummibootx64.efi")
-sha256sums=('71fe8955cbd5e32ab628af0f2a20dab0e93be5834934818120424dade0288b00'
-            '35f377f39aaf9ff641d32ea4304ab2bb7fff2d6d70e275b5cd003c4707b5c660'
+sha256sums=('14eb26b56623500467760702a035a8fecea4512ca88aa512d5e4cf7be0144b27'
+            '619b8b91b40e39f783995682dd41b35b375c3cc0dca4220be3f72712bc230e51'
             'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
 fi
 
