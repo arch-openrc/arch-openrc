@@ -14,6 +14,7 @@ depends=('psmisc' 'sysvinit')
 optdepends=('netifrc: Network Interface Management Scripts'
             'networkmanager-openrc: NetworkManager'
             'connman-openrc: connman')
+makedepends=('lsb-release')
 conflicts=('systemd-sysvcompat' 'openrc-core')
 replaces=('openrc-core')
 install=${pkgname}.install
@@ -31,9 +32,9 @@ sha256sums=('162018f2cba6d8df74daeca40522ce716370d67f19b8592d4beaa2df5435cee3'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
             '54e0cfb59b83ad42ec85486b99b7fed52ccbc8f98f0f113668eacf48a24a2d03')
 
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-    _args=(BRANDING="$NAME")
+if [ -f /etc/lsb-release ]; then
+    . /etc/lsb-release
+    _args=(BRANDING="$DISTRIB_DESCRIPTION")
 else
     _args=(BRANDING='Unknown Linux')
 fi
