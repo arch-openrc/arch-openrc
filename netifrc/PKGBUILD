@@ -15,7 +15,6 @@ pkgdesc="Gentoo Network Interface Management Scripts"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD2')
-groups=('openrc-base')
 depends=('udev-openrc')
 conflicts=('systemd-sysvcompat')
 install=${pkgname}.install
