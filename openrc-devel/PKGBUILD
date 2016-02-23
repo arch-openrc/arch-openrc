@@ -6,9 +6,10 @@ pkgbase=openrc-devel
 pkgname=('git-openrc'
         'mysql-openrc'
         'postgresql-openrc'
-        'subversion-openrc')
+        'subversion-openrc'
+        'distcc-openrc')
        # 'php-fpm-openrc')
-pkgver=20160219
+pkgver=20160222
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -22,7 +23,9 @@ source=("git-daemon.confd::${_url}/dev-vcs/git/files/git-daemon.confd"
         "svn.confd::${_url}/dev-vcs/subversion/files/svnserve.confd"
         "svn.initd::${_url}/dev-vcs/subversion/files/svnserve.initd3"
         "postgresql.confd::${_url}/dev-db/postgresql/files/postgresql.confd"
-        "postgresql.initd::${_url}/dev-db/postgresql/files/postgresql.init-9.3")
+        "postgresql.initd::${_url}/dev-db/postgresql/files/postgresql.init-9.3"
+        "distccd.confd::${_url}/sys-devel/distcc/files/3.2/conf"
+        "distccd.initd::${_url}/sys-devel/distcc/files/3.2/init")
        # "php-fpm.initd::${_url}/dev-lang/php/files/php-fpm-r4.init")
 sha256sums=('4703ba2372c661fb674a29fea7f64983f8b1b3136d971663509249655bca6e21'
             '069878aba8d7c7f229b6049f679d1f93873bdada1107b77fc9a9b2bd8be94516'
@@ -31,7 +34,9 @@ sha256sums=('4703ba2372c661fb674a29fea7f64983f8b1b3136d971663509249655bca6e21'
             '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
             '9e0eabfd8f07e0c77c4addf21b963b254c84432dd1983083b7da79216f4df80f'
             '57c1ad0b14e8458024c713dd8cc2390023b95c27ba4cbd637333b1020f11f398'
-            'fd3d3cd1913969edf51a98189cdb9b166eef52c9ea984ae467c6036194c0aef1')
+            'fd3d3cd1913969edf51a98189cdb9b166eef52c9ea984ae467c6036194c0aef1'
+            '253cfaa5b53fe4943a9db83e76ff6d6e8855665f69c2f7beca124af3ec63c88a'
+            '9751beb31cc41b04414b654ae7d5e0da3a766b24744d206c33a4d594cb340db2')
            # '37e34461babfb5881169f9729fbdde7d4aba533f123e2c480fe25ac3b863d3e7')
 
 pkgver() {
@@ -129,4 +134,16 @@ package_subversion-openrc() {
 		-e 's|/run/svnserve.pid|/run/svnserve/svnserve.pid|g' \
 		-e 's/--make-pidfile//' \
 		-i "${pkgdir}/etc/init.d/svn"
+}
+
+package_distcc-openrc() {
+	pkgdesc="OpenRC distcc init script"
+	depends=('distcc' 'openrc')
+	backup=('etc/conf.d/distccd')
+	install=distcc.install
+
+	_inst_confd 'distccd'
+	_inst_initd 'distccd'
+
+	sed -e 's|/var/run|/run|' -i ${pkgdir}/etc/conf.d/distccd
 }
