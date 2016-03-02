@@ -5,7 +5,7 @@ _url="https://github.com/OpenRC/openrc/archive"
 
 pkgname=openrc
 pkgver=0.20.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Gentoo's universal init system"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -37,7 +37,7 @@ groups=('base-openrc')
 if [ -f /etc/lsb-release ]; then
     . /etc/lsb-release
     _args=(BRANDING="$DISTRIB_DESCRIPTION")
-elif [ -f /etc/os-reelease ]; then
+elif [ -f /etc/os-release ]; then
     . /etc/os-release
     _args=(BRANDING="$NAME")
 else
