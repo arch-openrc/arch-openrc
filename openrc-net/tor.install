@@ -2,7 +2,7 @@ _svc="tor"
 _rlvl="default"
 
 post_install() {
-	echo "	==> /etc/tor/torrc needs these adjustments:
+	echo "	==> /etc/tor/torrc needs these adjustments:"
 	echo "	User tor"
 	echo "	PIDFile /run/tor/tor.pid"
 	echo "	Log notice syslog"
