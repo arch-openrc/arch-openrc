@@ -43,7 +43,7 @@ pkgname=('autofs-openrc'
         'vnstat-openrc'
         'snort-openrc'
         'unbound-openrc')
-pkgver=20160105
+pkgver=20160302
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -132,7 +132,7 @@ source=("${_dev_url}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "unbound.initd::${_url}/net-dns/unbound/files/unbound.initd")
 sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
-            '7837345357a7c0162f2bd7aada22329c89b516a85af227a5d3d81afd1000a969'
+            '5360b7a5536bcb0955fd93f4b77fadd599436f106876be0d79b1fdd75db029d3'
             'bb6e6867eec37bd194f3f9417bf31515a08d630d47f1ce713ad773f4551244e0'
             'e8a413e9102948b336f60041fc3cade33125faf56d8319ee65d9f3c63199a8e7'
             'a157630c3bdc9565cca8240ee1e6539fc9cbc1e4642c40e0965e3609d1021bac'
@@ -183,7 +183,7 @@ sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
             '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda'
             'd3781bc445f12fbef6e7af35492c5d33c0478592ed36d948d7c151856423545e'
             'e401e2cf7c0180a170d3dc3e91d7e98002bae7b013df72813b7bcf89b864fb3a'
-            '21f4ad781b144281e4c06a9680d318dceb54e5c7233a075e729131bf7424d544'
+            '919c98958fc9c4252c9bf8ac41762fa2668da0228bffe63618789042b624a553'
             '79f6c6ed4875f00fe702f69e9a6180a032d5a47f3e58e892e6ba0e2746b6fec8'
             '89e037afb9ba55689dca1f257c25202b04fab407aba57e8fbbe793b836320b8e'
             '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
