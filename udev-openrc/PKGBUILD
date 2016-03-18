@@ -1,0 +1,51 @@
+# Maintainer: artoo <artoo@manjaro.org>
+
+_url="https://raw.githubusercontent.com/gentoo/gentoo/master"
+
+pkgname=udev-openrc
+pkgver=30
+pkgrel=3
+pkgdesc="OpenRC udev startup scripts"
+arch=('any')
+url="https://github.com/manjaro/packages-openrc"
+license=('GPL2')
+groups=('openrc-base' 'openrc-desktop')
+depends=('openrc' 'udev')
+conflicts=('systemd-sysvcompat')
+source=("http://dev.gentoo.org/~williamh/dist/udev-init-scripts-${pkgver}.tar.gz"
+	"kmod-static-nodes.initd::${_url}/sys-apps/kmod/files/kmod-static-nodes-r1")
+sha256sums=('4de998d68e28f8ce4c1d4c9955aec0fa4cfe84673cbf3bfe1be71a1e9918693f'
+            'b9452437b06aae67e19e2cade37e89398ab5a7162318e15d1ed083606b1fe7e0')
+
+_inst_initd(){
+	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
+            -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
+            -e 's|/var/run|/run|g' \
+            -i ${pkgdir}/etc/init.d/$1
+}
+
+_inst_confd(){
+	install -Dm755 ${srcdir}/$1.confd ${pkgdir}/etc/conf.d/$1
+}
+
+package(){
+        cd "${srcdir}/udev-init-scripts-${pkgver}"
+	make DESTDIR="${pkgdir}" install
+	for f in ${pkgdir}/etc/init.d/*;do
+		sed -e "s|#!/sbin/openrc-run|#!/usr/bin/openrc-run|" \
+                    -e "s|#!/sbin/runscript|#!/usr/bin/openrc-run|" \
+			-e "s|/bin/udevadm|/usr/bin/udevadm|g" \
+			-e "s|/sbin/udevd|/usr/bin/udevd|g" \
+			-i "$f"
+	done
+	install -d "${pkgdir}/etc/runlevels/sysinit"
+	ln -sf "/etc/init.d/udev" "${pkgdir}/etc/runlevels/sysinit/udev"
+	ln -sf "/etc/init.d/udev-trigger" "${pkgdir}/etc/runlevels/sysinit/udev-trigger"
+
+	# kmod-static-nodes
+	_inst_initd 'kmod-static-nodes'
+
+	ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
+}
