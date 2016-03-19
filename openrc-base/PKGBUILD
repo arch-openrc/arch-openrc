@@ -2,8 +2,6 @@
 
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
-_uscript_ver=30
-
 pkgbase=openrc-base
 pkgname=('cronie-openrc'
         'cryptsetup-openrc'
@@ -13,9 +11,8 @@ pkgname=('cronie-openrc'
         'inetutils-openrc'
         'lvm2-openrc'
         'mdadm-openrc'
-        'udev-openrc')
-        #'dbus-openrc')
-pkgver=20160219
+        'dbus-openrc')
+pkgver=20160318
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -40,9 +37,7 @@ source=("cronie.initd::${_url}/sys-process/cronie/files/cronie-1.3-initd"
 		"dhcpcd.initd::${_url}/net-misc/dhcpcd/files/dhcpcd.initd"
 		'ftpd.confd'
 		'ftpd.initd'
-		"http://dev.gentoo.org/~williamh/dist/udev-init-scripts-${_uscript_ver}.tar.gz"
-		"kmod-static-nodes.initd::${_url}/sys-apps/kmod/files/kmod-static-nodes-r1")
-		#"dbus.initd::${_url}/sys-apps/dbus/files/dbus.initd")
+		"dbus.initd::${_url}/sys-apps/dbus/files/dbus.initd")
 sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
             '3d933a54abe62a547294b83208dbf5d7615d9c7f380d6504c91fff3620530803'
             'd0a55d31c713bbddf7d05634018623586e69d43281bc5019b5b821a745f9a57f'
@@ -61,8 +56,7 @@ sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
             '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
             '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
             '7f46e5e9ac9f204fb1564560c506a5bb4cede8823b89e3f1844e4f8be258e9ef'
-            '4de998d68e28f8ce4c1d4c9955aec0fa4cfe84673cbf3bfe1be71a1e9918693f'
-            'b9452437b06aae67e19e2cade37e89398ab5a7162318e15d1ed083606b1fe7e0')
+            '4491c09942d72fd464bc1da286c4f5a237ec8debfbaba83c6fbf4a46d46fe51e')
 
 pkgver() {
 	date +%Y%m%d
@@ -96,16 +90,16 @@ package_cronie-openrc() {
 	sed -e 's|/usr/sbin|/usr/bin|g' -i ${pkgdir}/etc/init.d/cronie
 }
 
-# package_dbus-openrc() {
-#     pkgdesc="OpenRC dbus init script"
-#     groups=('openrc-base' 'openrc-desktop')
-#     depends=('openrc' 'dbus')
-#     install=dbus.install
-#
-#     _inst_initd 'dbus'
-#
-#     sed -e 's|dbus.pid|dbus/pid|g' -i "${pkgdir}/etc/init.d/dbus"
-# }
+package_dbus-openrc() {
+    pkgdesc="OpenRC dbus init script"
+    groups=('openrc-base' 'openrc-desktop')
+    depends=('openrc' 'dbus')
+    install=dbus.install
+
+    _inst_initd 'dbus'
+
+    sed -e 's|dbus.pid|dbus/pid|g' -i "${pkgdir}/etc/init.d/dbus"
+}
 
 package_dhcpcd-openrc() {
 	pkgdesc="OpenRC dhcpcd init script"
@@ -193,30 +187,4 @@ package_mdadm-openrc() {
             _inst_confd $f
             _inst_initd $f
         done
-}
-
-package_udev-openrc(){
-        pkgver=${_uscript_ver}
-        pkgrel=3
-        pkgdesc="udev startup scripts for openrc"
-        groups=('base-openrc')
-        depends=('openrc' 'udev')
-
-        cd "${srcdir}/udev-init-scripts-${_uscript_ver}"
-	make DESTDIR="${pkgdir}" install
-	for f in ${pkgdir}/etc/init.d/*;do
-		sed -e "s|#!/sbin/openrc-run|#!/usr/bin/openrc-run|" \
-                    -e "s|#!/sbin/runscript|#!/usr/bin/openrc-run|" \
-			-e "s|/bin/udevadm|/usr/bin/udevadm|g" \
-			-e "s|/sbin/udevd|/usr/bin/udevd|g" \
-			-i "$f"
-	done
-	install -d "${pkgdir}/etc/runlevels/sysinit"
-	ln -sf "/etc/init.d/udev" "${pkgdir}/etc/runlevels/sysinit/udev"
-	ln -sf "/etc/init.d/udev-trigger" "${pkgdir}/etc/runlevels/sysinit/udev-trigger"
-
-	# kmod-static-nodes
-	_inst_initd 'kmod-static-nodes'
-
-	ln -sf "/etc/init.d/kmod-static-nodes" "${pkgdir}/etc/runlevels/sysinit/kmod-static-nodes"
 }

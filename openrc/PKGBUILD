@@ -4,8 +4,8 @@
 _url="https://github.com/OpenRC/openrc/archive"
 
 pkgname=openrc
-pkgver=0.20.4
-pkgrel=2
+pkgver=0.20.5
+pkgrel=1
 pkgdesc="Gentoo's universal init system"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -28,7 +28,7 @@ backup=('etc/rc.conf'
 source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz"
 	"${pkgname}.logrotate"
 	'use-optional-modules-load-d.patch')
-sha256sums=('162018f2cba6d8df74daeca40522ce716370d67f19b8592d4beaa2df5435cee3'
+sha256sums=('3929193306f6033547331f65bcddb01c23edc770f725cc4750a252574b66aef4'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
             '54e0cfb59b83ad42ec85486b99b7fed52ccbc8f98f0f113668eacf48a24a2d03')
 
@@ -77,5 +77,5 @@ package() {
 
 	install -d ${pkgdir}/usr/lib/rc/cache
 
-	install -Dm644 ${srcdir}//${pkgname}-${pkgver}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
+	install -Dm644 ${srcdir}/${pkgname}-${pkgver}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
 }
