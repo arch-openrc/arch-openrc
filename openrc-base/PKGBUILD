@@ -12,7 +12,7 @@ pkgname=('cronie-openrc'
         'lvm2-openrc'
         'mdadm-openrc'
         'dbus-openrc')
-pkgver=20160318
+pkgver=20160319
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -56,7 +56,7 @@ sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
             '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
             '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
             '7f46e5e9ac9f204fb1564560c506a5bb4cede8823b89e3f1844e4f8be258e9ef'
-            '4491c09942d72fd464bc1da286c4f5a237ec8debfbaba83c6fbf4a46d46fe51e')
+            '31281696ad3920da14fbb03d983131361665567c2d06001dbf829dc159d48375')
 
 pkgver() {
 	date +%Y%m%d

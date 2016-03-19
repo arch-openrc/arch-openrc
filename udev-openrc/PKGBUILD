@@ -5,7 +5,7 @@ _pkgname=udev-init-scripts
 
 pkgname=udev-openrc
 pkgver=30
-pkgrel=3
+pkgrel=4
 pkgdesc="OpenRC udev startup scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
