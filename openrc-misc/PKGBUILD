@@ -28,10 +28,9 @@ pkgname=('cpupower-openrc'
         'networkmanager-openrc'
         'boinc-openrc'
         'at-openrc'
-       # 'libvirt-openrc'
-       # 'pulseaudio-openrc'
+        'libvirt-openrc'
         'brltty-openrc')
-pkgver=20160123
+pkgver=20160320
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -40,8 +39,8 @@ license=('GPL2')
 groups=('openrc-misc')
 conflicts=('systemd-sysvcompat')
 source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
-        "rsyslog.confd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.confd"
-        "rsyslog.initd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.initd"
+        "rsyslog.confd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.confd-r1"
+        "rsyslog.initd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.initd-r1"
         "saned.confd::${_url}/media-gfx/sane-backends/files/saned.confd"
         "saned.initd::${_url}/media-gfx/sane-backends/files/saned.initd"
         "fuse.initd::${_url}/sys-fs/fuse/files/fuse.init"
@@ -95,9 +94,12 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "boinc.initd::${_url}/sci-misc/boinc/files/boinc.init"
         "atd.confd::${_url}/sys-process/at/files/atd.confd"
         "atd.initd::${_url}/sys-process/at/files/atd.rc8"
-#         "libvirtd.confd::${_url}/app-emulation/libvirt/files/libvirtd.confd-r5"
-#         "libvirtd.initd::${_url}/app-emulation/libvirt/files/libvirtd.init-r15"
-#         "virtlockd.initd::${_url}/app-emulation/libvirt/files/virtlockd.init-r1"
+        "libvirtd.confd::${_url}/app-emulation/libvirt/files/libvirtd.confd-r5"
+        "libvirtd.initd::${_url}/app-emulation/libvirt/files/libvirtd.init-r16"
+        "virtlockd.initd::${_url}/app-emulation/libvirt/files/virtlockd.init-r1"
+        "virtlogd.initd::${_url}/app-emulation/libvirt/files/virtlogd.init-r1"
+        "libvirt-guests.confd::${_url}/app-emulation/libvirt/files/libvirt-guests.confd"
+        "libvirt-guests.initd::${_url}/app-emulation/libvirt/files/libvirt-guests.init-r2"
 #         ${_url}/app-emulation/libvirt/files/virtlogd.init-r1
 #         ${_url}/app-emulation/libvirt/files/libvirt-guests.init-r1
 #         ${_url}/app-emulation/libvirt/files/libvirt-guests.confd
@@ -107,8 +109,8 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
        # "pulseaudio.initd::${_url}/media-sound/pulseaudio/files/pulseaudio.init.d-5"
         "brltty.initd::${_url}/app-accessibility/brltty/files/brltty.rc")
 sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
-            'f0b15a0334f6177a6cf23cb9b169302c75745dc30857f24a7d11892feb6b1ee4'
-            '99724a799a7bd56e07e8e01adda6e6de184d6455876fab6aa21ee104976621ba'
+            '0be3575df8010523de6b37e98c417192e8ec481292ca9fb47c8d2211795e03a6'
+            '9aa3b65bfc3f8cf2320a5bea7cc53a2ad744d8b5f42d8e3d0d2b30131a27af15'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
             '246507934c6b13b79aa4e00c58bdf8b067f9848b7f564ba962995f84b71b7f79'
             '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
@@ -161,10 +163,14 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'd15f25a8e53e1d94abd1f30eda1e49be497ebbfcd167facc40b7f46128e01d5c'
             'f7d5a1d313041ffba2bba3db704976fb9ad8083964eaccaf0767124402e0810e'
             '44da98a003d5657e69436c9617e568eb9b15715c8f673d1fef79df25caad2c3c'
+            '4f7fba7e64533868119c0f3355aa22932e163b208397323dc2cd96daadcc4079'
+            'be31213406358f1512e457676d6148330fec163570db0ccfdb70eabb71957cc6'
+            '3d61a6a2b25b15999720a9218e76cec64aceebaf281fbb9ed2f042e5a2bdbf71'
+            'd668ecf7445f742918a65ac3af2b9fdc4ad49a3a84c1fe8ce76728f4a9bf3f99'
+            'd5f85bb8c1d2010347f23badc422e98046b97a0066254739b5829fce07837d63'
+            '3947c236b97909802900bf1436501885e246cc0474aa9f41d72d7568b153b2a0'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
             '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
-            '06a4c3effeb3d30df6d384f7405a5c3297a04d7f1db17b511a77702007c95c95'
-            'eab592643ae66ad9ce2fe11f3279d42fdfbe3a9fca3fc5c3008699e76a0a884b'
             '89cfca974c3b997c4f13df5835cffb75e2bb92932e8c8163bfce700da9f533a3')
 
 pkgver() {
@@ -472,28 +478,26 @@ package_at-openrc() {
 		-i "${pkgdir}/etc/conf.d/atd"
 }
 
-# package_libvirt-openrc() {
-# 	pkgdesc="OpenRC libvirt init script"
-# 	depends=('openrc' 'libvirt')
-# 	backup=('etc/conf.d/libvirtd')
-# 	install=libvirt.install
-#
-# 	_inst_confd 'libvirtd'
-# 	_inst_initd 'libvirtd'
-# 	_inst_initd 'virtlockd'
-# }
+package_libvirt-openrc() {
+	pkgdesc="OpenRC libvirt init script"
+	depends=('openrc' 'libvirt')
+	backup=('etc/conf.d/libvirtd')
+	install=libvirt.install
 
-# package_pulseaudio-openrc() {
-# 	pkgdesc="OpenRC pulseaudio init script"
-# 	depends=('openrc' 'pulseaudio')
-# 	optdepends=('alsa-utils-openrc: alsa-utils initscript'
-# 		'consolekit-openrc: pulseaudio initscript')
-# 	backup=('etc/conf.d/pulseaudio')
-# 	install=pulseaudio.install
-#
-# 	_inst_confd 'pulseaudio'
-# 	_inst_initd 'pulseaudio'
-# }
+	_inst_confd 'libvirtd'
+	_inst_initd 'libvirtd'
+	_inst_initd 'virtlockd'
+	_inst_initd 'virtlogd'
+
+	_inst_confd 'libvirt-guests'
+	_inst_initd 'libvirt-guests'
+
+	sed -e "s/USE_FLAG_FIREWALLD/need firewalld/" \
+		-e "s/USE_FLAG_AVAHI/use avahi-daemon/" \
+		-e "s/USE_FLAG_ISCSI/use iscsid/" \
+		-e "s/USE_FLAG_RBD/use ceph/" \
+		-i "${pkgdir}/etc/init.d/libvirtd"
+}
 
 package_brltty-openrc() {
 	pkgdesc="OpenRC brltty init script"
