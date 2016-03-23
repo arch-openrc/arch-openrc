@@ -44,7 +44,7 @@ pkgname=('autofs-openrc'
         'snort-openrc'
         'unbound-openrc')
 pkgver=20160323
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -235,7 +235,7 @@ package_apache-openrc() {
 	install -Dm644 "${srcdir}/gentoo-apache-${_apver}/init/apache2.confd" "${pkgdir}/etc/conf.d/httpd"
 	install -Dm755 "${srcdir}/gentoo-apache-${_apver}/init/apache2.initd" "${pkgdir}/etc/init.d/httpd"
 
-	sed -e "${_shebang}" \
+	sed -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
             -e 's|/usr/sbin/apache2|/usr/bin/apachectl|' \
             -e 's|/etc/apache2/httpd.conf|/etc/httpd/conf/httpd.conf|' \
             -e 's/! test -f/test -f/' \
