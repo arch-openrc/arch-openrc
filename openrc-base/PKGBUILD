@@ -12,7 +12,7 @@ pkgname=('cronie-openrc'
         'lvm2-openrc'
         'mdadm-openrc'
         'dbus-openrc')
-pkgver=20160319
+pkgver=20160322
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -27,17 +27,17 @@ source=("cronie.initd::${_url}/sys-process/cronie/files/cronie-1.3-initd"
 		"device-mapper.initd::${_url}/sys-fs/lvm2/files/device-mapper.rc-2.02.105-r2"
 		"dmeventd.initd::${_url}/sys-fs/lvm2/files/dmeventd.initd-2.02.67-r1"
 		"lvm.confd::${_url}/sys-fs/lvm2/files/lvm.confd-2.02.28-r2"
-		"lvm.initd::${_url}/sys-fs/lvm2/files/lvm.rc-2.02.105-r2"
+		"lvm.initd::${_url}/sys-fs/lvm2/files/lvm.rc-2.02.116-r6"
 		"lvm-monitoring.initd::${_url}/sys-fs/lvm2/files/lvm-monitoring.initd-2.02.105-r2"
-		"lvmetad.initd::${_url}/sys-fs/lvm2/files/lvmetad.initd-2.02.105-r2"
+		"lvmetad.initd::${_url}/sys-fs/lvm2/files/lvmetad.initd-2.02.116-r3"
 		"mdadm.confd::${_url}/sys-fs/mdadm/files/mdadm.confd"
 		"mdadm.initd::${_url}/sys-fs/mdadm/files/mdadm.rc"
 		"mdraid.confd::${_url}/sys-fs/mdadm/files/mdraid.confd"
 		"mdraid.initd::${_url}/sys-fs/mdadm/files/mdraid.rc"
 		"dhcpcd.initd::${_url}/net-misc/dhcpcd/files/dhcpcd.initd"
+		"dbus.initd::${_url}/sys-apps/dbus/files/dbus.initd-r1"
 		'ftpd.confd'
-		'ftpd.initd'
-		"dbus.initd::${_url}/sys-apps/dbus/files/dbus.initd")
+		'ftpd.initd')
 sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
             '3d933a54abe62a547294b83208dbf5d7615d9c7f380d6504c91fff3620530803'
             'd0a55d31c713bbddf7d05634018623586e69d43281bc5019b5b821a745f9a57f'
@@ -46,17 +46,17 @@ sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
             'eb5c194b5e70a6fef95d5b1064771e37384d0972494a500fc22c3265eb9064e4'
             '63e45f4a86c9c0be27d455999289f0dd62d912c04f12a38e3fa0257fafe293fb'
             '28370c089c39c248d7ded0960b8d8a9256bada44d44c22ce3cec87d512ef6844'
-            '53aaa87749be5cc89942e2485ea76491e3f2ca98de4f9a392fac4cd88c87f548'
+            'fcf5e443867dd99a8cdf5694db2766fb868c961aed3e847426f48c3df3726485'
             '258b913654312e39ab8db4aa43584cbeee8d654621f357810e6dac744312fb62'
-            '84fe3d786652a0d73f3626923feffa1fcb0a0b0054260cb5f73b0485d99fa168'
+            'de33b4f782849d0a965b6106d280e457bbe63484320a884e7046240a056de142'
             'ec55674955af7a31da51b8b72b599e8519809287dad796a9b16155bcba471b79'
             'b686fbc31b85a9dbf2f8569ce9158858e7f96a0ee02b21f68c36cb38eedbf927'
             'b489ced10391d4295bb8ca29e128b0d4217c290f1b4e37b05f5a9275048d289d'
             '9681b6bc6358dd80f6add0a115faa0113afa2be1784de4e07dbf31c460ac4252'
             '72b42c9939fda3fb56666813513029ed36194c1708bddce06bcb3e131e547492'
+            '4491c09942d72fd464bc1da286c4f5a237ec8debfbaba83c6fbf4a46d46fe51e'
             '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
-            '7f46e5e9ac9f204fb1564560c506a5bb4cede8823b89e3f1844e4f8be258e9ef'
-            '31281696ad3920da14fbb03d983131361665567c2d06001dbf829dc159d48375')
+            '7f46e5e9ac9f204fb1564560c506a5bb4cede8823b89e3f1844e4f8be258e9ef')
 
 pkgver() {
 	date +%Y%m%d
