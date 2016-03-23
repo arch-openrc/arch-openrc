@@ -1,7 +1,7 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
-_apver=2.4.10-r1
-_aprel=20140731
+_apver=2.4.18-r1
+_aprel=20160303
 
 _dev_url="http://dev.gentoo.org/~polynomial-c/dist/apache"
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
@@ -43,7 +43,7 @@ pkgname=('autofs-openrc'
         'vnstat-openrc'
         'snort-openrc'
         'unbound-openrc')
-pkgver=20160302
+pkgver=20160323
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -130,7 +130,7 @@ source=("${_dev_url}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "snort.initd::${_url}/net-analyzer/snort/files/snort.rc12"
         "unbound.confd::${_url}/net-dns/unbound/files/unbound.confd"
         "unbound.initd::${_url}/net-dns/unbound/files/unbound.initd")
-sha256sums=('8e093a18582c3a20283ed1c09de9acc6832a80b1d5a02962599db0535d38af19'
+sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             '3cf1ab72446cb9417de916e4cd732f2056fb74d2c6f03da6741b7bae8c415448'
             '5360b7a5536bcb0955fd93f4b77fadd599436f106876be0d79b1fdd75db029d3'
             'bb6e6867eec37bd194f3f9417bf31515a08d630d47f1ce713ad773f4551244e0'
