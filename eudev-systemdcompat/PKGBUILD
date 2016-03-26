@@ -7,7 +7,7 @@ _spkgrel=3
 _repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
-pkgver=228
+pkgver=229
 pkgrel=1
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
@@ -29,19 +29,19 @@ conflicts=('systemd'
             'openrc-systemdcompat')
 replaces=('openrc-systemdcompat')
 
-if [ "$CARCH" = "i686" ]; then
-    source=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
-            "$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
-sha256sums=('6309a05c8eb250908918648d76c1c8635f5328d0e400ad8380499b9f203df313'
-            '6780c6fb7c3c46af734f4ea3c9b7a25102f7003937413835d51592ff0ddd9504')
-elif [ "$CARCH" = "x86_64" ]; then
-    source=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
-            "$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
-            "gummibootx64.efi")
-sha256sums=('71fe8955cbd5e32ab628af0f2a20dab0e93be5834934818120424dade0288b00'
-            '35f377f39aaf9ff641d32ea4304ab2bb7fff2d6d70e275b5cd003c4707b5c660'
-            'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
-fi
+source_i686=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
+		"$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
+sha256sums_i686=('3d8916501b23a37cabc75b238d0314f20627f8da6a685420e8a8c619d82a7a10'
+                 '6795477a2a56c192eb63f152ab75e6c52ffa3a20ac83376366086a5b1924bb77')
+
+source_x86_64=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
+		"$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
+		"gummibootx64.efi")
+sha256sums_x86_64=('27c5c5c9cef7ba9826b3e9f57a649c3ff2d432a75cfbf8f4ce60a68a8e71bf54'
+                   '7e6a495e57eb0e2efe4404562192edbb4fc86e74949ffa7f20e53b3beae60fd6'
+                   'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
+
+
 
 prepare() {
 	#clean libsystemd
