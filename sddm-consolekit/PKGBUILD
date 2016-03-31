@@ -5,7 +5,7 @@ _pkgname=sddm
 
 pkgname=sddm-consolekit
 pkgver=0.13.0
-pkgrel=1
+pkgrel=2
 pkgdesc='QML based X11 display manager'
 arch=('i686' 'x86_64')
 url='http://github.com/sddm/sddm'
@@ -13,18 +13,24 @@ license=('GPL')
 depends=('qt5-declarative')
 makedepends=('cmake' 'python-docutils' 'qt5-tools')
 install="${_pkgname}.install"
-backup=('usr/share/sddm/scripts/Xsetup')
+backup=('usr/share/sddm/scripts/Xsetup'
+	'etc/sddm.conf')
 conflicts=('display-manager' 'sddm')
 provides=('display-manager' 'sddm')
 source=("${_pkgname}-${pkgver}.tar.gz::https://github.com/${_pkgname}/${_pkgname}/archive/v${pkgver}.tar.gz"
-        "${_pkgname}-consolekit.patch")
+        "${_pkgname}-consolekit.patch"
+        "${_pkgname}-pam_kwallet.patch"
+        'sddm.conf')
 sha256sums=('26dee7e59859b5cbd5ec26b0050ef31c32b43be304e4042119819ab9779c26bd'
-            '4cbe522c84956d13d751856b8c66f2beca210c9ec65712e261bfe2bf94fb0da5')
+            '4cbe522c84956d13d751856b8c66f2beca210c9ec65712e261bfe2bf94fb0da5'
+            'dc46a0132cf0ea722a69cff45ed1ded3c93ade008e22fc90d1b797ca85ed535a'
+            'ffcb9885cb41da54a97f62c2538975fbb9dc80c2b58326d479a87ea0f56f02cf')
 
 prepare() {
 	mkdir -p build
 	cd ${_pkgname}-${pkgver}
 	patch -p1 -i ${srcdir}/${_pkgname}-consolekit.patch
+	patch -p1 -i ${srcdir}/${_pkgname}-pam_kwallet.patch
 }
 
 build() {
@@ -41,5 +47,6 @@ build() {
 package() {
 	cd build
 	make DESTDIR="${pkgdir}" install
-	sed -e 's|pam_systemd.so|pam_ck_connector.so nox11|' -i ${pkgdir}/etc/pam.d/sddm-greeter
+# 	sed -e 's|pam_systemd.so|pam_ck_connector.so nox11|' -i ${pkgdir}/etc/pam.d/sddm-greeter
+	install -m 755 ${srcdir}/sddm.conf ${pkgdir}/etc
 }

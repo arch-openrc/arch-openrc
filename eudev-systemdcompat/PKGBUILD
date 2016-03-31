@@ -25,19 +25,19 @@ conflicts=('systemd'
             'openrc-systemdcompat')
 replaces=('openrc-systemdcompat')
 
-if [ "$CARCH" = "i686" ]; then
-    source=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
-            "$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
-sha256sums=('9b82605a3028eac865e4cef19ee9571e0806413c54c50a3d219be644f7ee036a'
-            '2bff0d24c27a878d32fc3d7fa05b892943d91c8aba0959006e70a2c6593c1313')
-elif [ "$CARCH" = "x86_64" ]; then
-    source=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
-            "$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
-            "gummibootx64.efi")
-sha256sums=('14eb26b56623500467760702a035a8fecea4512ca88aa512d5e4cf7be0144b27'
-            '619b8b91b40e39f783995682dd41b35b375c3cc0dca4220be3f72712bc230e51'
-            'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
-fi
+source_i686=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
+		"$_repo/i686/systemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
+sha256sums_i686=('3d8916501b23a37cabc75b238d0314f20627f8da6a685420e8a8c619d82a7a10'
+                 '6795477a2a56c192eb63f152ab75e6c52ffa3a20ac83376366086a5b1924bb77')
+
+source_x86_64=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
+		"$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
+		"gummibootx64.efi")
+sha256sums_x86_64=('27c5c5c9cef7ba9826b3e9f57a649c3ff2d432a75cfbf8f4ce60a68a8e71bf54'
+                   '7e6a495e57eb0e2efe4404562192edbb4fc86e74949ffa7f20e53b3beae60fd6'
+                   'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
+
+
 
 prepare() {
 	#clean libsystemd
