@@ -1,0 +1,16 @@
+# Maintainer: artoo <artoo@manjaro.org>
+
+pkgname=nmodemmanager-pk-rules
+pkgver=1.0
+pkgrel=1
+pkgdesc="ModemManager polkit rule for non-systemd systems"
+arch=('any')
+license=('GPL')
+url="https://github.com/manjaro/packages-openrc"
+depends=('modemmanager')
+source=('01-org.freedesktop.ModemManager1.rules')
+
+package() {
+	install -dm 750 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
+	install -m 644 ${srcdir}/01-org.freedesktop.ModemManager1.rules $pkgdir/usr/share/polkit-1/rules.d/
+}
