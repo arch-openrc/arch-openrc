@@ -11,9 +11,10 @@ pkgname=('acpid-openrc'
         'displaymanager-openrc'
         'gpm-openrc'
         'bluez-openrc'
+	'networkmanager-openrc'
         'wpa_supplicant-openrc')
 
-pkgver=20151020
+pkgver=20160402
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -22,7 +23,7 @@ license=('GPL2')
 groups=('openrc-desktop')
 conflicts=('systemd-sysvcompat')
 source=("acpid.confd::${_url}/sys-power/acpid/files/acpid-2.0.16-conf.d"
-        "acpid.initd::${_url}/sys-power/acpid/files/acpid-2.0.16-init.d"
+        "acpid.initd::${_url}/sys-power/acpid/files/acpid-2.0.26-init.d"
         "alsasound.confd::${_url}/media-sound/alsa-utils/files/alsasound.confd-r4"
         "alsasound.initd::${_url}/media-sound/alsa-utils/files/alsasound.initd-r6"
         "consolekit.initd::${_url}/sys-auth/consolekit/files/consolekit-1.0.0.initd"
@@ -38,14 +39,17 @@ source=("acpid.confd::${_url}/sys-power/acpid/files/acpid-2.0.16-conf.d"
         "wpa_supplicant.confd::${_url}/net-wireless/wpa_supplicant/files/wpa_supplicant-conf.d"
         "wpa_supplicant.initd::${_url}/net-wireless/wpa_supplicant/files/wpa_supplicant-init.d"
         "${_url}/net-wireless/wpa_supplicant/files/wpa_cli.sh"
-        'avahi-daemon.initd'
-        'avahi-dnsconfd.initd'
         "cgproxy.initd::${_url}/app-admin/cgmanager/files/cgproxy.initd-r1"
-        "cgmanager.initd::${_url}/app-admin/cgmanager/files/cgmanager.initd-r1")
+        "cgmanager.initd::${_url}/app-admin/cgmanager/files/cgmanager.initd-r1"
+        "NetworkManager.confd::${_url}/net-misc/networkmanager/files/conf.d.NetworkManager"
+        "NetworkManager.initd::${_url}/net-misc/networkmanager/files/init.d.NetworkManager"
+        "10-openrc-status::${_url}/net-misc/networkmanager/files/10-openrc-status-r4"
+        'avahi-daemon.initd'
+        'avahi-dnsconfd.initd')
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
-            'c2e7afd61146f24dd4abc29a77474cb2172b6b608a7754cfa64b18a490d0d816'
+            '9b8785324a5e259f10ec5aff20ef3d977621a9c1dad49751dbc7b83243cac67f'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
-            '1c8e25bbd5ab3c6c64c47ab094f7bd3dbf7f787007cbaf8404e5815862f23e97'
+            '38d2541fe00c181ff840a83927d7c37ada6a14eaac1d030aecc565ce4c6e4398'
             '5775f1225141d09c01dfaed17b7476486bb49383b0209245851f879fc7e2d68c'
             '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
             '19992228827ae635f3ef08c1b08889afedfa563efa50bc2fb7db211caa8d1510'
@@ -59,10 +63,13 @@ sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '61ec59007f66ac5bacc0aa095d1f2ccbc977a687038e161a463d1727223d5a90'
             '62a3655ea88b3dfff5243666a4e90d3f0eef6370a7889affb849e178ba4a82b0'
             'fb3483d4e54d3b48b993e117e45338977a5782373520e15d51cd9cd9417eec03'
-            '876788303553fe773e64917f76f0208f5e8adf7b91d4af24aa9d6a68a147d646'
-            'e128576d72981e402ff106bb481108ab6d5ba941ab1b0f5f53e96a7831fc1d15'
             '5e676e1bd76f73a1fd48f706030b8cc0bea5cb36c439dd02f213092ca985cd9e'
-            '625c8b2f507076eac0108e75547239508d147bcc669372fc3991bb42b17608e1')
+            '625c8b2f507076eac0108e75547239508d147bcc669372fc3991bb42b17608e1'
+            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
+            '5ec8eb35558a8a473a0cb50ff8536364894c516e57f684c0a1319cc5d8018c6c'
+            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
+            '876788303553fe773e64917f76f0208f5e8adf7b91d4af24aa9d6a68a147d646'
+            'e128576d72981e402ff106bb481108ab6d5ba941ab1b0f5f53e96a7831fc1d15')
 
 pkgver() {
 	date +%Y%m%d
@@ -143,9 +150,9 @@ package_displaymanager-openrc() {
 
 	install -Dm755 "${srcdir}/startDM.sh" "${pkgdir}/etc/X11/startDM.sh"
 
-    sed -e 's|/etc/profile.env|/etc/profile|g' \
-        -e 's|{ROOTPATH}|{PATH}|g' \
-        -i "${pkgdir}/etc/init.d/xdm"
+	sed -e 's|/etc/profile.env|/etc/profile|g' \
+		-e 's|{ROOTPATH}|{PATH}|g' \
+		-i "${pkgdir}/etc/init.d/xdm"
 }
 
 package_gpm-openrc() {
@@ -156,6 +163,23 @@ package_gpm-openrc() {
 
 	_inst_confd 'gpm'
 	_inst_initd 'gpm'
+}
+
+package_networkmanager-openrc() {
+	pkgdesc="OpenRC networkmanager init script"
+	depends=('openrc' 'networkmanager-consolekit')
+	groups=('openrc-desktop' 'openrc-mobile')
+	backup=('etc/conf.d/NetworkManager')
+	install=networkmanager.install
+
+	_inst_confd 'NetworkManager'
+	_inst_initd 'NetworkManager'
+
+	install -Dm755 "${srcdir}/10-openrc-status" "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
+
+	sed -e 's|@EPREFIX@/sbin|/usr/bin|' \
+		-e 's|@EPREFIX@/usr/sbin|/usr/bin|' \
+		-i "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
 }
 
 package_bluez-openrc() {
