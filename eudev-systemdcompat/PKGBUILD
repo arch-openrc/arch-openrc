@@ -17,11 +17,7 @@ url="http://www.freedesktop.org/wiki/Software/systemd"
 provides=("libsystemd=${pkgver}"
             "systemd=${pkgver}"
             "systemd-tools=${pkgver}"
-            'libsystemd.so'
-            'libsystemd-daemon.so'
-            'libsystemd-id128.so'
-            'libsystemd-journal.so'
-            'libsystemd-login.so')
+            'libsystemd.so')
 depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev' 'lz4')
 conflicts=('systemd'
             'systemd-tools'
