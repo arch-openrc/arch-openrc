@@ -166,7 +166,6 @@ package_gpm-openrc() {
 package_networkmanager-openrc() {
 	pkgdesc="OpenRC networkmanager init script"
 	depends=('openrc' 'networkmanager-consolekit')
-	groups=('openrc-desktop' 'openrc-mobile')
 	backup=('etc/conf.d/NetworkManager')
 	install=networkmanager.install
 

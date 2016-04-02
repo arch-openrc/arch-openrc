@@ -5,7 +5,6 @@ pkgver=20160402
 pkgrel=1
 pkgdesc="ModemManager polkit rule for non-systemd systems"
 arch=('any')
-groups=('openrc-desktop' 'openrc-mobile')
 license=('GPL')
 url="https://github.com/manjaro/packages-openrc"
 depends=('modemmanager')
