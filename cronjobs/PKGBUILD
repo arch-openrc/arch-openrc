@@ -2,10 +2,11 @@
 # Contributor: williamh <williamh@gentoo.org>
 
 pkgname=cronjobs
-pkgver=20160302
+pkgver=20160402
 pkgrel=1
 pkgdesc="System cron jobs"
 arch=('any')
+groups=('openrc-base')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL')
 depends=('cron')

@@ -25,7 +25,6 @@ pkgname=('cpupower-openrc'
         'virtualbox-guest-utils-openrc'
         'zfs-openrc'
         'clamav-openrc'
-        'networkmanager-openrc'
         'boinc-openrc'
         'at-openrc'
         'libvirt-openrc'
@@ -86,9 +85,6 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "vboxservice.initd::${_url}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
         "clamd.confd::${_url}/app-antivirus/clamav/files/clamd.conf-r1"
         "clamd.initd::${_url}/app-antivirus/clamav/files/clamd.initd-r6"
-        "NetworkManager.confd::${_url}/net-misc/networkmanager/files/conf.d.NetworkManager"
-        "NetworkManager.initd::${_url}/net-misc/networkmanager/files/init.d.NetworkManager"
-        "10-openrc-status::${_url}/net-misc/networkmanager/files/10-openrc-status-r4"
         "boinc.confd::${_url}/sci-misc/boinc/files/boinc.conf"
         "boinc.initd::${_url}/sci-misc/boinc/files/boinc.init"
         "atd.confd::${_url}/sys-process/at/files/atd.confd"
@@ -99,14 +95,9 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "virtlogd.initd::${_url}/app-emulation/libvirt/files/virtlogd.init-r1"
         "libvirt-guests.confd::${_url}/app-emulation/libvirt/files/libvirt-guests.confd"
         "libvirt-guests.initd::${_url}/app-emulation/libvirt/files/libvirt-guests.init-r2"
-#         ${_url}/app-emulation/libvirt/files/virtlogd.init-r1
-#         ${_url}/app-emulation/libvirt/files/libvirt-guests.init-r1
-#         ${_url}/app-emulation/libvirt/files/libvirt-guests.confd
+        "brltty.initd::${_url}/app-accessibility/brltty/files/brltty.rc"
         "zfs.initd"
-        "thermald.initd"
-       # "pulseaudio.confd::${_url}/media-sound/pulseaudio/files/pulseaudio.conf.d"
-       # "pulseaudio.initd::${_url}/media-sound/pulseaudio/files/pulseaudio.init.d-5"
-        "brltty.initd::${_url}/app-accessibility/brltty/files/brltty.rc")
+        "thermald.initd")
 sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '0be3575df8010523de6b37e98c417192e8ec481292ca9fb47c8d2211795e03a6'
             '9aa3b65bfc3f8cf2320a5bea7cc53a2ad744d8b5f42d8e3d0d2b30131a27af15'
@@ -155,9 +146,6 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '88786cbe47f3d7ae787c03b07f2712e03fb183701fbafda2565df25772acfe08'
             '28ebd47810b0568fc7692218867d6804a1df70290681462f5555e230ca817732'
             '4a39006f886fd7db6cde1182ba65b10cd3f5f9fd4500d926aa26b30d55ab9db5'
-            '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
-            '5ec8eb35558a8a473a0cb50ff8536364894c516e57f684c0a1319cc5d8018c6c'
-            'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
             '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9'
             'd15f25a8e53e1d94abd1f30eda1e49be497ebbfcd167facc40b7f46128e01d5c'
             'f7d5a1d313041ffba2bba3db704976fb9ad8083964eaccaf0767124402e0810e'
@@ -168,9 +156,9 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'd668ecf7445f742918a65ac3af2b9fdc4ad49a3a84c1fe8ce76728f4a9bf3f99'
             'd5f85bb8c1d2010347f23badc422e98046b97a0066254739b5829fce07837d63'
             '3947c236b97909802900bf1436501885e246cc0474aa9f41d72d7568b153b2a0'
+            '89cfca974c3b997c4f13df5835cffb75e2bb92932e8c8163bfce700da9f533a3'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
-            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4'
-            '89cfca974c3b997c4f13df5835cffb75e2bb92932e8c8163bfce700da9f533a3')
+            '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
 
 pkgver() {
 	date +%Y%m%d
@@ -435,22 +423,6 @@ package_clamav-openrc() {
 
 	_inst_confd 'clamd'
 	_inst_initd 'clamd'
-}
-
-package_networkmanager-openrc() {
-	pkgdesc="OpenRC networkmanager init script"
-	depends=('openrc' 'networkmanager-consolekit')
-	backup=('etc/conf.d/NetworkManager')
-	install=networkmanager.install
-
-	_inst_confd 'NetworkManager'
-	_inst_initd 'NetworkManager'
-
-	install -Dm755 "${srcdir}/10-openrc-status" "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
-
-	sed -e 's|@EPREFIX@/sbin|/usr/bin|' \
-		-e 's|@EPREFIX@/usr/sbin|/usr/bin|' \
-		-i "${pkgdir}/etc/NetworkManager/dispatcher.d/10-openrc-status"
 }
 
 package_boinc-openrc() {

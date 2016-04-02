@@ -4,25 +4,24 @@ _pkgname=ConsoleKit2
 
 pkgname=consolekit
 pkgver=1.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="https://github.com/ConsoleKit2/ConsoleKit2"
 license=('GPL')
 depends=('dbus' 'glib2' 'libx11' 'polkit' 'udev' 'zlib')
-optdepends=('consolekit-openrc: consolekit openrc initscript'
+optdepends=('pm-utils: Suspend and hibernate power management'
+	'consolekit-openrc: consolekit openrc initscript'
 	'cgmanager-openrc: cgmanager openrc initscript')
 makedepends=('xmlto' 'docbook-xsl' 'cgmanager')
 options=('!libtool')
 source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 		'consolekit.tmpfiles.conf'
-		'75-consolekit.rules'
-		'consolekit.pamd'
+		'75-org.freedesktop.consolekit.rules'
 		'pam-foreground-compat.ck')
 sha256sums=('a40d92358aca9f627a224dca674090e310423b00ed63fc06482997611661b69b'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
-            'c5159d9fe8fdd52ad0d6a84af7ba00bac09edaae965896ab0d099a4df1c5ea6b'
-            'f7b88e87f447e2d37c12886f57d932c385f19a8fef238e0f1de7a1746d8be69e'
+            'cd0f1da6aafbc2ef5adcedd73514dec9d75f979cce8daf75e296d6731d66f7ea'
             'ad9b8d7c92e73c5cff7a883724992008b6a0382b2466fd5f69720f112c1eb0f9')
 
 prepare(){
@@ -61,10 +60,7 @@ package() {
 	rm -rf "${pkgdir}"/run
 
 	install -dm 750 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
-	install -m 644 ${srcdir}/75-consolekit.rules $pkgdir/usr/share/polkit-1/rules.d/75-consolekit.rules
-
-	install -dm755 $pkgdir/etc/pam.d/
-	install -Dm755 ${srcdir}/consolekit.pamd $pkgdir/etc/pam.d/consolekit
+	install -m 644 ${srcdir}/75-org.freedesktop.consolekit.rules $pkgdir/usr/share/polkit-1/rules.d/
 
 	install $srcdir/pam-foreground-compat.ck $pkgdir/usr/lib/ConsoleKit/run-session.d
 }
