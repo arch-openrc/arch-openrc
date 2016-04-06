@@ -7,11 +7,12 @@ pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
 license=('GPL')
-depends=('dbus' 'polkit')
-makedepends=('libcap' 'libudev' 'intltool' 'libtool' 'gperf' 'gtk-doc')
+groups=('openrc-desktop')
+depends=('dbus' 'polkit' 'libudev.so')
+makedepends=('libcap' 'intltool' 'libtool' 'gperf' 'gtk-doc')
 options=('!libtool')
 install=elogind.install
-source=("$pkgname-${pkgver}.tar.gz::https://github.com/andywingo/elogind/archive/v${pkgver}.tar.gz"
+source=("$pkgname-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
 	'elogind-docs.patch'
 	'elogind-lrt.patch')
 sha256sums=('80241494f5c794e8501ccf570ac805275ace368755780f38a18762fd06243f95'
