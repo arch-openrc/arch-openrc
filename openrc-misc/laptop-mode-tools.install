@@ -1,4 +1,4 @@
-_svc="saned"
+_svc="laptop_mode"
 _rlvl="default"
 
 post_install() {
