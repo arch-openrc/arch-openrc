@@ -8,8 +8,9 @@ arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
 license=('GPL')
 depends=('dbus' 'polkit')
-makedepends=('libcap' 'libudev' 'intltool' 'libtool' 'gperf')
+makedepends=('libcap' 'libudev' 'intltool' 'libtool' 'gperf' 'gtk-doc')
 options=('!libtool')
+install=elogind.install
 source=("$pkgname-${pkgver}.tar.gz::https://github.com/andywingo/elogind/archive/v${pkgver}.tar.gz"
 	'elogind-docs.patch'
 	'elogind-lrt.patch')
@@ -21,9 +22,9 @@ prepare() {
 	cd $srcdir/$pkgname-$pkgver
 	patch -Np 1 -i $srcdir/elogind-docs.patch
 	patch -Np 1 -i $srcdir/elogind-lrt.patch
-	sed -i -e "s|/bin/false|/usr/lib/elogind/elogind|" src/login/org.freedesktop.login1.service
+	sed -e "s|/bin/false|/usr/lib/elogind/elogind|" \
+		-i src/login/org.freedesktop.login1.service
 	autoreconf -vim
-
 }
 
 build() {
@@ -32,8 +33,7 @@ build() {
 	./configure \
 		--sysconfdir=/etc \
 		--prefix=/usr \
-		--libexecdir=/usr/lib/elogind \
-		--localstatedir=/var
+		--libexecdir=/usr/lib
 
 	make
 }
