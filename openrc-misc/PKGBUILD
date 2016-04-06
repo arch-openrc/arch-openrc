@@ -486,7 +486,6 @@ package_brltty-openrc() {
 package_laptop-mode-tools-openrc() {
 	pkgdesc="OpenRC laptop-mode init script"
 	depends=('openrc' 'laptop-mode-tools')
-	groups=('openrc-misc' 'openrc-mobile')
 	install=laptop-mode-tools.install
 
 	_inst_initd 'laptop_mode'
