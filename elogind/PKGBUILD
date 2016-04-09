@@ -7,7 +7,6 @@ pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
 license=('GPL')
-groups=('openrc-desktop')
 depends=('dbus' 'polkit' 'libudev.so')
 makedepends=('libcap' 'intltool' 'libtool' 'gperf' 'gtk-doc')
 options=('!libtool')
