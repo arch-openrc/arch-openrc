@@ -4,7 +4,7 @@ _pkgname=ConsoleKit2
 
 pkgname=consolekit
 pkgver=1.1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="https://github.com/ConsoleKit2/ConsoleKit2"
@@ -16,16 +16,25 @@ optdepends=('pm-utils: Suspend and hibernate power management'
 makedepends=('xmlto' 'docbook-xsl' 'cgmanager')
 options=('!libtool')
 source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
-		'consolekit.tmpfiles.conf'
-		'75-org.freedesktop.consolekit.rules'
-		'pam-foreground-compat.ck')
+	'consolekit.tmpfiles.conf'
+	'75-org.freedesktop.consolekit.rules'
+	'pam-foreground-compat.ck'
+	"root-rundir-restrictions-disable.patch::https://github.com/EricKoegel/ConsoleKit2/commit/664d2fdbd966764836b1f4da2dbc5750c7f01f0f.patch"
+	"cpuaccount-fallback.patch::https://github.com/EricKoegel/ConsoleKit2/commit/162c0480fe9d2de4471a0e074d2224abaed61e3b.patch")
+
+
 sha256sums=('a40d92358aca9f627a224dca674090e310423b00ed63fc06482997611661b69b'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
             '9f356df83bcebe10c3c8e9d232c3e59aff49b83b980b61f9b97a5b4e0fa3ba3d'
-            'ad9b8d7c92e73c5cff7a883724992008b6a0382b2466fd5f69720f112c1eb0f9')
+            'ad9b8d7c92e73c5cff7a883724992008b6a0382b2466fd5f69720f112c1eb0f9'
+            '147edb176e7cbcfc55bf2663e0230027e7d9a19946555288c182a4d2a95a8b42'
+            '942c93b975ae91cb6abe5d2f5e39e0c6bcf74bbd09f80b59bdffd651929d1a0c')
 
 prepare(){
 	cd $srcdir/$_pkgname-$pkgver
+
+	patch -Np1 -i $srcdir/root-rundir-restrictions-disable.patch
+	patch -Np1 -i $srcdir/cpuaccount-fallback.patch
 }
 
 build(){
