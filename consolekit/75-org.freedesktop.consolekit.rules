@@ -9,11 +9,3 @@ polkit.addRule(function(action, subject) {
 		return polkit.Result.YES;
 	}
 });
-
-polkit.addRule(function(action, subject) {
-    if (action.id == "org.freedesktop.upower.suspend" ||
-	action.id == "org.freedesktop.upower.hibernate")
-    {
-        return polkit.Result.YES;
-    }
-});
