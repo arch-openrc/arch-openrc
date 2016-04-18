@@ -3,11 +3,11 @@
 # Maintainer: Philip Mueller <philm@manjaro.org>
 
 _pkgname=bumblebee
-_url=http://sources.gentoo.org/cgi-bin/viewvc.cgi/gentoo-x86
+_url=https://raw.githubusercontent.com/gentoo/gentoo/master
 
 pkgname=bumblebee-openrc
 pkgver=3.2.1
-pkgrel=5
+pkgrel=8
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 provides=('bumblebee')
@@ -36,13 +36,14 @@ source=("http://www.bumblebee-project.org/${_pkgname}-${pkgver}.tar.gz"
 sha256sums=('1018703b07e2f607a4641249d69478ce076ae5a1e9dd6cff5694d394fa7ee30e'
             '0b7c1f4bb2e27d131c6c21fd7006d075584917ac4259bd9899e6eca99efc0ece'
             '9e0287f542cff0fd3452a0c3d6d427a3404706c93ac9a00f4d99fe52ed596d75'
-            '8dd0ea64c084a6e4daac3b8da043ff16d87ec2ba44c63e9965a2e8c9382dc639')
+            'c1123d391820597cc449839b0254045923bb463e4be605e29bc4b8a06771c6e4')
 
 _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
+		-e 's|/usr/sbin|/usr/bin|g' \
 		-i ${pkgdir}/etc/init.d/$1
 }
 
@@ -60,7 +61,8 @@ build() {
 		--prefix=/usr \
 		--sbindir=/usr/bin \
 		--with-udev-rules=/usr/lib/udev/rules.d/ \
-		--sysconfdir=/etc
+		--sysconfdir=/etc \
+		--with-pidfile
 
 	make
 }
@@ -70,14 +72,9 @@ package() {
 
 	make install DESTDIR="$pkgdir"
 
-	mkdir -p "${pkgdir}/usr/lib/modprobe.d/"
-	echo "blacklist nvidia" > "${pkgdir}/usr/lib/modprobe.d/bumblebee.conf"
-
 	_inst_confd 'bumblebee'
 	_inst_initd 'bumblebee'
 
 	# Make bash_completion work
 	mv -v "${pkgdir}/etc/bash_completion.d/bumblebee" "${pkgdir}/etc/bash_completion.d/optirun"
-
-	echo "blacklist nouveau" >> "${pkgdir}/usr/lib/modprobe.d/bumblebee.conf"
 }
