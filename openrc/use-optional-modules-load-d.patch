@@ -1,5 +1,6 @@
---- ../conf.d/modules.orig	2015-07-06 01:50:49.893895158 +0200
-+++ ../conf.d/modules	2015-07-06 01:27:49.000000000 +0200
+diff -aur openrc-0.20.5.orig/conf.d/modules openrc-0.20.5/conf.d/modules
+--- openrc-0.20.5.orig/conf.d/modules	2016-04-20 10:54:37.686042847 -0700
++++ openrc-0.20.5/conf.d/modules	2016-04-20 10:56:27.900232387 -0700
 @@ -1,6 +1,11 @@
  # You can define a list modules for a specific kernel version,
  # a released kernel version, a main kernel version or just a list.
@@ -12,39 +13,65 @@
  #modules_2_6_23_gentoo_r5="ieee1394 ohci1394"
  #modules_2_6_23="tun ieee1394"
  #modules_2_6="tun"
-
---- ../init.d/modules.in.orig	2015-06-19 16:55:37.000000000 +0200
-+++ ../init.d/modules.in	2015-07-06 01:30:29.154313412 +0200
-@@ -16,6 +16,35 @@
+diff -aur openrc-0.20.5.orig/init.d/modules.in openrc-0.20.5/init.d/modules.in
+--- openrc-0.20.5.orig/init.d/modules.in	2016-04-20 10:54:37.689376105 -0700
++++ openrc-0.20.5/init.d/modules.in	2016-04-20 10:55:41.671271452 -0700
+@@ -23,6 +23,61 @@
  	# support compiled in ...
  	[ ! -f /proc/modules ] && return 0
-
-+	if ${use_modules_load_d};then
+ 
++	if yesno "${use_modules_load_d:-false}";then
 +		local conf_s=/etc/modules-load.d
 +		einfo "using ${conf_s}"
-+		local conf_rc=/etc/conf.d/modules
-+		mv ${conf_rc} ${conf_rc}.lastboot
-+		touch ${conf_rc}
-+		echo "use_modules_load_d=${use_modules_load_d}" >> ${conf_rc}
-+		if [[ -d ${conf_s} ]] && [[ -f ${conf_s}/mhwd-gpu.conf ]]; then
-+			local mods=() mhwd=() fn= kv=
++
++		local mhwd=
++		if [ -f "${conf_s}/mwhd-gpu.conf" ];then
 +			for m in $(cat ${conf_s}/mhwd-gpu.conf | sed '/^.*#/d'); do
-+				mhwd+=("$m")
++				mhwd="$mhwd $m"
 +			done
++		fi
++
++		if [ -d "${conf_s}" ]; then
++			local mods= fn= kv= gmods= kv_cache=
++
 +			for f in $(ls ${conf_s}/*.conf); do
-+				if [[ $fn != mhwd-gpu ]];then
-+					fn=${f##*/}
-+					fn=${fn%%.conf}
-+					kv=${fn//-*}
-+					kv=${kv##linux}
-+					for m in $(cat $f | sed '/^.*#/d'); do
-+						mods+=("$m")
-+					done
-+					[[ $fn == linux${kv}-* ]] && echo 'modules_'${kv:0:1}'_'${kv:1:2}'="'${mods[@]} ${mhwd[@]}'"' >> ${conf_rc}
-+					echo '' >> ${conf_rc}
-+					mods=()
++				fn="$( expr "$(basename "$f")" : '\(.*\).conf' )"
++
++				if [ "$fn" != mhwd-gpu ];then
++					kv="$(expr "$fn" : 'linux\([0-9]\+\)-')"
++					echo "$fn || $kv"
++
++					if expr "$fn" : "linux${kv}-.*" > /dev/null; then
++						for m in $(cat $f | sed '/^.*#/d'); do
++							mods="$mods $m"
++						done
++
++						local kv_major="$(expr "$kv" : "\([0-9]\)" )"
++						local kv_minor="$(expr "$kv" : "[0-9]\([0-9]\)" )"
++
++						local kvr_k="${kv_major}_${kv_minor}"
++
++						if expr \( "${kv_cache}" : "${kvr_k}" \) = 0; then
++							kv_cache="${kv_cache} ${kvr_k}"
++						fi
++
++						eval local "_cache_${kvr_k}=\"\${_cache_${kvr_k}} ${mods}\""
++						mods=
++					else
++						for m in $(cat $f | sed '/^.*#/d'); do
++							gmods="$gmods $m"
++						done
++					fi
 +				fi
 +			done
++
++			for kv_key in $(echo "${kv_cache}"|tr ' ' '\n'); do
++				kv_val="$(eval "echo \"\${_cache_${kv_key}}"\")"
++				eval "modules_${kv_key}=\"${kv_val} ${mhwd} ${gmods}\""
++				unset "_cache_${kv_key}"
++			done
++
++			eval "modules=\"${mhwd} ${gmods}\""
 +		fi
 +	fi
 +

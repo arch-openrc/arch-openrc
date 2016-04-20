@@ -30,7 +30,7 @@ source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz"
 	'use-optional-modules-load-d.patch')
 sha256sums=('3929193306f6033547331f65bcddb01c23edc770f725cc4750a252574b66aef4'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
-            '54e0cfb59b83ad42ec85486b99b7fed52ccbc8f98f0f113668eacf48a24a2d03')
+            'b8b750c863199e9c039e874c3c79c72d468f35442750156dfbdf503a27977cf3')
 
 if [ -f /etc/lsb-release ]; then
     . /etc/lsb-release
