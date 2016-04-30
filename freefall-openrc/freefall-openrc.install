@@ -1,4 +1,4 @@
-_svc="hpfall"
+_svc="freefall"
 _rlvl="default"
 
 post_install() {
