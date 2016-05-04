@@ -30,7 +30,7 @@ pkgname=('cpupower-openrc'
         'libvirt-openrc'
         'brltty-openrc'
         'laptop-mode-tools-openrc')
-pkgver=20160406
+pkgver=20160504
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -46,8 +46,8 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "fuse.initd::${_url}/sys-fs/fuse/files/fuse.init"
         "metalog.confd::${_url}/app-admin/metalog/files/metalog.confd"
         "metalog.initd::${_url}/app-admin/metalog/files/metalog.initd"
-        "syslog-ng.confd::${_url}/app-admin/syslog-ng/files/3.6/syslog-ng.confd"
-        "syslog-ng.initd::${_url}/app-admin/syslog-ng/files/3.6/syslog-ng.rc6"
+        "syslog-ng.confd::${_url}/app-admin/syslog-ng/files/3.7/syslog-ng.confd"
+        "syslog-ng.initd::${_url}/app-admin/syslog-ng/files/3.7/syslog-ng.rc6"
         "lircd.confd::${_url}/app-misc/lirc/files/lircd.conf.4"
         "irexec.confd::${_url}/app-misc/lirc/files/irexec-confd"
         "lircd.initd::${_url}/app-misc/lirc/files/lircd-0.8.6-r2"
@@ -65,7 +65,7 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "ntpd.initd::${_url}/net-misc/ntp/files/ntpd.rc-r1"
         "ntp-client.initd::${_url}/net-misc/ntp/files/ntp-client.rc"
         "sntp.initd::${_url}/net-misc/ntp/files/sntp.rc"
-        "cupsd.initd::${_url}/net-print/cups/files/cupsd.init.d-r1"
+        "cupsd.initd::${_url}/net-print/cups/files/cupsd.init.d-r2"
         "connman.confd::${_url}/net-misc/connman/files/connman.confd"
         "connman.initd::${_url}/net-misc/connman/files/connman.initd2"
         "haveged.confd::${_url}/sys-apps/haveged/files/haveged-conf.d"
@@ -81,8 +81,8 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "mpd.initd::${_url}/media-sound/mpd/files/mpd2.init"
         "hdparm.confd::${_url}/sys-apps/hdparm/files/hdparm-conf.d.3"
         "hdparm.initd::${_url}/sys-apps/hdparm/files/hdparm-init-8"
-        "bitlbee.confd::${_url}/net-im/bitlbee/files/bitlbee.confd"
-        "bitlbee.initd::${_url}/net-im/bitlbee/files/bitlbee.initd"
+        "bitlbee.confd::${_url}/net-im/bitlbee/files/bitlbee.confd-r1"
+        "bitlbee.initd::${_url}/net-im/bitlbee/files/bitlbee.initd-r1"
         "xe-daemon.initd::${_url}/app-emulation/xe-guest-utilities/files/xe-daemon.initd"
         "vboxservice.initd::${_url}/app-emulation/virtualbox-guest-additions/files/virtualbox-guest-additions-8.initd"
         "clamd.confd::${_url}/app-antivirus/clamav/files/clamd.conf-r1"
@@ -105,7 +105,7 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '0be3575df8010523de6b37e98c417192e8ec481292ca9fb47c8d2211795e03a6'
             '9aa3b65bfc3f8cf2320a5bea7cc53a2ad744d8b5f42d8e3d0d2b30131a27af15'
             '197e44ba1f438a18f5f7d9f5858feb19c1ece4286d82a5e63caf9be5b964aa76'
-            '246507934c6b13b79aa4e00c58bdf8b067f9848b7f564ba962995f84b71b7f79'
+            'bd336c156be06e3aa45b3185a26ba80232dfc0511fc99317cf2ef29af7347f34'
             '22a22c914d2a4f0fb5fc8495f4b7efcd1819efde548c9033ca612c181cd29eda'
             'ddefb75e696ba13581e9cccf6dbe70e744793613070c01ad9505b059ae6f2317'
             'f42f3c3d01b47fd7c1e1906d652fef009fd5e769c82fe523e367839a6d76c81d'
@@ -113,9 +113,9 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '1a4613e1662773be5ea375cea7a36bdee124041b041329d18a55af2addcbdf4a'
             'd36ff77fa193a065d25e373723e03f1a9471205151b82c73a6574cce4f095962'
             'c404ad3b624004cab25bd3a89593cdeb0abbc25771d6e52caf2f37cb4f7b2b79'
-            'f14287c35d59065ad3c9e5075b1cc05d16f4911949cea58ac4e14f429f5c376e'
-            '9ceab9fcd186726ee45332baac07047dbed96b567ac987353e6d5ff2edc5512c'
-            'c1cca5fbdb98e4a93802b841fd7293773af2724c48021eb1758eb144a1cc4332'
+            '2647b25b7516031e66ac252edafbaca2f2d6934473a6e15fdcc2a462ba0cb2ae'
+            'c5fcf54620ae2c003fe6ea04ab624c3607c6b9b6f65c971c34fbb7293681d030'
+            'aee017bea6c79a419ad40e55a4cc3ffbeacafe330d931b0dd8bfb4c6cb7c6183'
             '9ab6f022d2b2948660decf5e383984e6ddb9e9e5e6e2761c3031378ddd87e947'
             '64ccc4a582ec2c5d646708b61ab0edaf0e416f40a6fd71a298c68a6757f95f4d'
             'b12a6a9c52d2ac1088b678882ba1781b6784178fe29970f4a54b2aa596c60c66'
@@ -124,10 +124,10 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
             'c7dc517cdb5ee10e2a07ccea15ec47ba0b7aff8ac1469204c8d7faf71bcae2c5'
             '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
-            '686dd335f1828be670d8e39ba2134e90ed4827c08c485ed7685e5bb032737dcb'
+            '56dffdfa0d347ef667cb08a26ce68b1d445f71031ae1df3309ff3219f10307a9'
             'fef15f3781988c57b57f974202754bdbe075e15b3dbdc2555fae39b4d68efe27'
-            'b4854f6afc567f4a5259de267675a36fdb0f54c5911eba6b39d9b5a9888050ca'
-            '4705b68372090ee7db69da1ad35131551ed1ba99032db2486ff6c31d2170ce6b'
+            '0f516f1f35afec9a7aeff1fe311d529b6907c3accaa476f982e0f93f7c932d61'
+            '811da0e9b25d33af3e7f5f54765840e834fb55eb96d3654083991233ca294e81'
             '767a160c1b3392f0a12d3908a937548a2f604a9a121e744c309ee6f478420b02'
             '5782142ff80a6c41435edab5f67c2b12bc2e7f30f39eb2ac45fb198daf39c113'
             'a34c6fac6cdb544653029be77298bb72345d10c70824412384e32efb73098d01'
@@ -143,16 +143,16 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '7e45869759ef042e1bc24ab53d3bf7eda1b129eb308cc358105876199acbce9b'
             '37c95ff723fa578e9039613d09dbf790d99113a318c065422986c744519214e9'
             'f06714b70d9c14f9e55cb21c12a79d9bd9e9c04647751eaf2fdf57381fd7de62'
-            '105afc0382fc5adc03ed644dba4e78817015a55432349f259a286ac3c1b06628'
-            'dee868721ae822b42b99454e4ec07a70db3e36712672905c23820ed8f65890c6'
+            'cab8b8cb8709f27a5fa9f1cfce4b58db24f5cd38b8e6badb91dac0809e6ca8de'
+            '49df330796b2c1a57b2d838365822fe5d184e1215bdce5cc4d2a75837b6f3c5b'
             '24728f20907958c340e11d90bb8c0b69b968a1c68a2ed07bf7f04b8f04f96bc2'
-            '88786cbe47f3d7ae787c03b07f2712e03fb183701fbafda2565df25772acfe08'
+            '4687bb248a3a7475fa845628f9bc6b12770eb5079f6f061ef8620219ac504ac4'
             '28ebd47810b0568fc7692218867d6804a1df70290681462f5555e230ca817732'
             '4a39006f886fd7db6cde1182ba65b10cd3f5f9fd4500d926aa26b30d55ab9db5'
             '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9'
-            'd15f25a8e53e1d94abd1f30eda1e49be497ebbfcd167facc40b7f46128e01d5c'
+            'b8aaa48c0cfbcc5cfa8954d0af767c2c25ed5af0c8f63e633b3ef2a6fc3e38f1'
             'f7d5a1d313041ffba2bba3db704976fb9ad8083964eaccaf0767124402e0810e'
-            '44da98a003d5657e69436c9617e568eb9b15715c8f673d1fef79df25caad2c3c'
+            '4fe9dad976dac73b58db52984411ce8b54b7b4b8abc20b89730453c91251ee8c'
             '4f7fba7e64533868119c0f3355aa22932e163b208397323dc2cd96daadcc4079'
             'be31213406358f1512e457676d6148330fec163570db0ccfdb70eabb71957cc6'
             '3d61a6a2b25b15999720a9218e76cec64aceebaf281fbb9ed2f042e5a2bdbf71'

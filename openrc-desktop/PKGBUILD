@@ -14,7 +14,7 @@ pkgname=('acpid-openrc'
 	'networkmanager-openrc'
         'wpa_supplicant-openrc')
 
-pkgver=20160402
+pkgver=20160504
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -50,7 +50,7 @@ sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '9b8785324a5e259f10ec5aff20ef3d977621a9c1dad49751dbc7b83243cac67f'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             '38d2541fe00c181ff840a83927d7c37ada6a14eaac1d030aecc565ce4c6e4398'
-            '5775f1225141d09c01dfaed17b7476486bb49383b0209245851f879fc7e2d68c'
+            'e4787d99bdda938d67e9dea2148df1e19e12d2679b2f6910728dfbf0a4f6b18e'
             '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
             '19992228827ae635f3ef08c1b08889afedfa563efa50bc2fb7db211caa8d1510'
             'f88aadaea4a0d39bfac4e5bee60c316e0dbe6443d34b1f4629bf2324394883f7'

@@ -7,7 +7,7 @@ pkgname=('nvidia-utils-openrc'
         'catalyst-utils-openrc'
         'virtualgl-openrc')
         #'bumblebee-openrc')
-pkgver=20151014
+pkgver=20160504
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -15,15 +15,15 @@ license=('GPL')
 groups=('openrc-video')
 source=("nvidia-smi.initd::${_url}/x11-drivers/nvidia-drivers/files/nvidia-smi.init"
         "atieventsd.initd::${_url}/x11-drivers/ati-drivers/files/atieventsd.init"
-        "vgl.confd::${_url}/x11-misc/virtualgl/files/vgl.confd-r1"
-        "vgl.initd::${_url}/x11-misc/virtualgl/files/vgl.initd-r2"
+        "vgl.confd::${_url}/x11-misc/virtualgl/files/vgl.confd-r2"
+        "vgl.initd::${_url}/x11-misc/virtualgl/files/vgl.initd-r3"
         "${_url}/x11-misc/virtualgl/files/vgl-helper.sh")
 # 	"bumblebee.confd::${_url}/x11-misc/bumblebee/files/bumblebee.confd"
 # 	"bumblebee.initd::${_url}/x11-misc/bumblebee/files/bumblebee.initd")
 sha256sums=('706ae49d4a61d400b6cb1cd942a98a7764e617ccb3256b3ab7d92e22b1421605'
             '585857e5655b23805043edb988d98ebf0327cd2f6b2589497c97ed9c4dcfa70b'
-            '500957c2736f761e763f75e9c3a09bb4f53bcde8a3cd38dd5ec6b34777737fd2'
-            '34aef928ef3d90d007f28b7e54b31d534c0cd01bdce7f76ceb904e83005ce008'
+            '5356391cec2e297f2fafa370f42be225ad4238ac61182b90720a3d914261a80f'
+            '10b96f3440732a83fc2f4c120b3b8193b903a555f33ebb4670c741c07d46932c'
             '438c928840fbfb9274604296b8178e7f97b42a3428d115e1de6e609ea3146497')
 
 pkgver() {

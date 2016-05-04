@@ -43,8 +43,8 @@ pkgname=('autofs-openrc'
         'vnstat-openrc'
         'snort-openrc'
         'unbound-openrc')
-pkgver=20160323
-pkgrel=2
+pkgver=20160504
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -65,9 +65,9 @@ source=("${_dev_url}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "iptables.confd::${_url}/net-firewall/iptables/files/iptables-1.4.13.confd"
         "ip6tables.confd::${_url}/net-firewall/iptables/files/ip6tables-1.4.13.confd"
         "iptables.initd::${_url}/net-firewall/iptables/files/iptables-1.4.13-r1.init"
-        "krb5kadmind.initd::${_url}/app-crypt/mit-krb5/files/mit-krb5kadmind.initd-r1"
-        "krb5kdc.initd::${_url}/app-crypt/mit-krb5/files/mit-krb5kdc.initd-r1"
-        "krb5kpropd.initd::${_url}/app-crypt/mit-krb5/files/mit-krb5kpropd.initd-r1"
+        "krb5kadmind.initd::${_url}/app-crypt/mit-krb5/files/mit-krb5kadmind.initd-r2"
+        "krb5kdc.initd::${_url}/app-crypt/mit-krb5/files/mit-krb5kdc.initd-r2"
+        "krb5kpropd.initd::${_url}/app-crypt/mit-krb5/files/mit-krb5kpropd.initd-r2"
         "lighttpd.confd::${_url}/www-servers/lighttpd/files/lighttpd.confd"
         "lighttpd.initd::${_url}/www-servers/lighttpd/files/lighttpd.initd"
         "nfs.confd::${_url}/net-fs/nfs-utils/files/nfs.confd"
@@ -80,25 +80,26 @@ source=("${_dev_url}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "rpc.svcgssd.initd::${_url}/net-fs/nfs-utils/files/rpc.svcgssd.initd"
         "rpc.statd.initd::${_url}/net-fs/nfs-utils/files/rpc.statd.initd"
         "slapd.confd::${_url}/net-nds/openldap/files/slapd-confd-2.4.28-r1"
-        "slapd.initd::${_url}/net-nds/openldap/files/slapd-initd-2.4.28-r1"
+        "slapd.initd::${_url}/net-nds/openldap/files/slapd-initd-2.4.40-r2"
         "slpd.initd::${_url}/net-libs/openslp/files/slpd-init"
         "sshd.confd::${_url}/net-misc/openssh/files/sshd.confd"
         "sshd.initd::${_url}/net-misc/openssh/files/sshd.rc6.4"
-        "polipo.initd::${_url}/net-proxy/polipo/files/polipo.initd-2"
+        "polipo.initd::${_url}/net-proxy/polipo/files/polipo.initd-5"
         "postfix.initd::${_url}/mail-mta/postfix/files/postfix.rc6.2.7"
-        "privoxy.initd::${_url}/net-proxy/privoxy/files/privoxy.initd"
+        "privoxy.initd::${_url}/net-proxy/privoxy/files/privoxy.initd-3"
         "quota.confd::${_url}/sys-fs/quota/files/quota.confd"
         "quota.initd::${_url}/sys-fs/quota/files/quota.rc7"
         "rpc.rquotad.initd::${_url}/sys-fs/quota/files/rpc.rquotad.initd"
+#         "rpcbind.confd::${_url}/net-nds/rpcbind/files/rpcbind.confd"
         "rpcbind.initd::${_url}/net-nds/rpcbind/files/rpcbind.initd"
         "rsyncd.confd::${_url}/net-misc/rsync/files/rsyncd.conf.d"
         "rsyncd.initd::${_url}/net-misc/rsync/files/rsyncd.init.d-r1"
-        "smb.confd::${_url}/net-fs/samba/files/4.3/samba4.confd"
-        "smb.initd::${_url}/net-fs/samba/files/4.3/samba4.initd-r1"
+        "smb.confd::${_url}/net-fs/samba/files/4.4/samba4.confd"
+        "smb.initd::${_url}/net-fs/samba/files/4.4/samba4.initd-r1"
         "squid.confd::${_url}/net-proxy/squid/files/squid.confd-r1"
         "squid.initd::${_url}/net-proxy/squid/files/squid.initd-r4"
         "transmission-daemon.confd::${_url}/net-p2p/transmission/files/transmission-daemon.confd.4"
-        "transmission-daemon.initd::${_url}/net-p2p/transmission/files/transmission-daemon.initd.9"
+        "transmission-daemon.initd::${_url}/net-p2p/transmission/files/transmission-daemon.initd.10"
         "ufw.confd::${_url}/net-firewall/ufw/files/ufw.confd"
         "ufw.initd::${_url}/net-firewall/ufw/files/ufw-2.initd"
         "${_url}/net-ftp/vsftpd/files/vsftpd-checkconfig.sh"
@@ -120,7 +121,7 @@ source=("${_dev_url}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "ntpd.initd::${_url}/net-misc/openntpd/files/openntpd.init.d-20080406-r6"
         "tor.confd::${_url}/net-misc/tor/files/tor.confd"
         "tor.initd::${_url}/net-misc/tor/files/tor.initd-r7"
-        "nginx.initd::${_url}/www-servers/nginx/files/nginx.initd-r2"
+        "nginx.initd::${_url}/www-servers/nginx/files/nginx.initd-r3"
         "vnstatd.confd::${_url}/net-analyzer/vnstat/files/vnstatd.confd"
         "vnstatd.initd::${_url}/net-analyzer/vnstat/files/vnstatd.initd-r1"
         "wicd.initd"
@@ -144,9 +145,9 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             '7e2341211ca14997b7a8a1f930f94db855291af597c568f680f80031c20d45b6'
             '2938fe4206514d9868047bd8f888a699fa2097ca69edab176453436d4259abaa'
             'e8f75993729bc559b82cde4d978bcd3b5527069ea94190a3bea2da12a2e907d6'
-            '3e55c79f19aaa6ef6b64a621c03dbb2eac3ad923916dc803f4c1bfe48ce89fbb'
-            '709309dea043aa306c2fcf0960e0993a6db540c220de64cf92d6b85f1cca23c5'
-            'c374ea05d7e9f15e10c8f9dbd0cad6548e0f92aef7de33e5dbc27222e9407e7b'
+            '30babdd907aee27183ea904e84d2a6fdd3d1fb1bc814a67297cb6ded96fa577f'
+            '3627e48af13173b46f391bb67d038035e2ed371a45e2c9d3439a942261610a33'
+            '26649023e2dea5fd98c71f7573b4511d78cc9a2a37858e9cd6d0896f327812b1'
             '0be7c9c04ce508cbefb3e913951d83c5ed7f0e01fe5aebcf3a5071f30ef3dbc2'
             '7a2bf39cc899982f995f3e8999829e9d14fc99d7fc8b17829c5a980cfebbe48a'
             'c652a4fe8a43dc68a818345db2b3acc560663b5b6c969324d4f23afb0fb96a94'
@@ -159,13 +160,13 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             'a989b37f49fa1b3e06641b1499132d67f48413dd455b6a69c1e0226cfd5a75b3'
             'b6a609b1cae4b2839f6441ebd6f1c7b12f6501b4973e83d4efa7fd5a82964d9a'
             '5bca003ec3b67c7c78519aede1d82002579006ccfecce8f87b559df719f82e92'
-            'a1ba689f7820dce3ab7951daeb56bc35929d1c6de7401855f5af09f2ff9cbe8a'
+            'd10a54a5bca847569df213ef2dfc35f7e5e60fcfe191c4fa934db655b6f9ae1c'
             'aaf2359927ebf370be1d7f55caf3d3c6ca98e1480f618a94012cd5fe3bbc1251'
             '29c6d57ac3ec6018cadc6ba6cd9b90c9ed46e20049b970fdcc68ee2481a2ee41'
             'b577e0ac07558205e2229b32bf52ab52d050acda3748708d9a36dc4365a3a725'
-            'de3c57cc90307317fd0e926376ac46bff252fa212c5886d462a01684fe04b7d1'
+            '2d958f82650c94f51b50cc782092e66b6de87d89e72535cccbda3b3ce2735009'
             '5db1a4f8d6ed083d5c8b40073e11595bd6863d05b19257fa08029783af3a70ba'
-            'b431dc0f7b352f8bd5151de72e648d240bb090c4eb742efd535edacf4686e49a'
+            '5a60bd2ee4c336f115dd6651a9ec7429e18404c6888df42bac5bc086ce7a1497'
             '00d1dfb3b893db5d6a213a4edda622c7d64dcafa40b3019f15e070c164286632'
             'f01a6d0fe823046fbeb9f3a8426e50291a15e4eab4aee27ad50a963a05bfaa4e'
             'd411eeaccd8fe5347192e777f8781a8d1df8faa354e32b0e170f1f3ecd158f1c'
@@ -173,11 +174,11 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             'de758791b16b89a648c01867af7f51bc9bd44e40cbe868e439b753ff5d9572e5'
             '5725dbb5c7ca7ea324393e33eaeac67cd83aaee3daf1d92b24fa215bf3637633'
             '53755809cc27fdbaf98752cd3da45b5c2bda62dd46fcc37570c6e237f7954ffa'
-            '5d93618a7fb34eabfe4825c525066c976fc69c4caae8229751df36a0cec7ebd1'
+            '44b53a5d5f516cb944a308613579b3e8e2716651961274b0b01afc70feede342'
             'fb3ca6be7ecd0fa89773c7052262a35cfdebd75afa03246e5bcd778ab0eda4c7'
             'c5acaeb20f4ecfc2938f730a546bf881062d38ac26aafea814c674692f8241bb'
-            '249689688aad23d0d27ccdd08a0907fd85058d6a52ccd3467f756b07f5d059ee'
-            'ab1c267f3e3687ba0f5dfadd5ffa9edc6971ab0090fc47256e99fd1eb1da702a'
+            '9065bcf729309aebd48ae2214a461d162924462fb2db51f33aed40dd0c3b4f25'
+            '235cb7a7b35904f96274e8c5f8fa9d2d43a182cc32a46e396c9f9b6f0cb7c59e'
             '069aa7382b40aecebf26ef53f3f4c49890314e0357925c84b3c15f1d0b913be0'
             '4f737f370c26a8f90bd6dfe4248633b873655fcc259265536733517aeae09bc0'
             '2de7c7c1edfe3ae0480e22d988a564db3bb873050929ebb6e8361d7a1288ddda'
@@ -185,21 +186,21 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             'e401e2cf7c0180a170d3dc3e91d7e98002bae7b013df72813b7bcf89b864fb3a'
             '919c98958fc9c4252c9bf8ac41762fa2668da0228bffe63618789042b624a553'
             '79f6c6ed4875f00fe702f69e9a6180a032d5a47f3e58e892e6ba0e2746b6fec8'
-            '89e037afb9ba55689dca1f257c25202b04fab407aba57e8fbbe793b836320b8e'
+            '9bcd0cc1f5e608a4c07249255a07bd56821ef497fe8346f24333b9860c70078e'
             '4edd475ca95d31cfcea20a8e6268024f8128423bc7ae67edb535e6811c64668e'
             'e46afe737bfc57aa31be1a441615fcc112e1ebf41d631c1929e00b81baca119d'
             'bd1f245a362f85319e83965e8b825e66e686a4a0bf185ab8ec51fd335bc873c2'
-            '327be09f73ca4c94b187d1410f67de611f5e8884bc709773b1f17e1fa35c66f7'
-            '3916085012db954ca32cc078e099b5f82188081d380b96bd1eae2a3ad28df6fd'
-            '2e5fb12639d091c114a403492bf64197af5923d90762780ac805215bd031d900'
+            '418effe818346c36b31248efb4d980ffd9da1d9b7ca8f1ddedbf2063252a4c94'
+            '561455a86edfb6192d9ab2d75e54b6619f7210d66ebc9e722659047b2e06e6c3'
+            '9570463181566cdab38f584760de293afb7bd4dbf5031c9aeaa30eca9a209ccb'
             '01501cd6f30e88cee91288f7af1899e3fcd36350c8d7124ba4142b48ce072ba5'
             '330149a83684ddabe413d134d4c8efad4c88b18c2ab67165014deff5f7fffad2'
             'd1b1f8a00935d77521bceb62535350444df3470fa45f4d33c3934051a1bb595b'
-            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
-            '178206e50769b1023aef6aa10aa958dcb9db664ffc600652fc7e843ce6576d7a'
+            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
+            '56dffdfa0d347ef667cb08a26ce68b1d445f71031ae1df3309ff3219f10307a9'
             '41d780f291847e19f632428bbf27c3f289414afd237546d2974da1b75384c25c'
             'ec562474b776caa350596aca376ca2cf1a1624c5765616a2d54f9ecf4240bf1c'
-            'be2b1b26637d4d1963e1b1f1da25c4fdefdb30d9ed31cf26f0fa63ff8a084c07'
+            'e3c43e96291e7479497670465df7f6b85ce4fbaec999694bb23eacde9002713e'
             '2cd5b91f86bc26aca85166a50de89faaccbf1ea8f219efb48b50b7ed0f3fe377'
             '3c9a1c10c3554a544c8075303e37a4aca7a9e742be37b83d27db17fb28ab869a'
             '66b2b53b077ddc2d5eb1d81faa99fa0f4f0db01520900ba948001e539bfe02d8'
@@ -382,9 +383,10 @@ package_lighttpd-openrc() {
 package_rpcbind-openrc() {
 	pkgdesc="OpenRC rpcbind init script"
 	depends=('openrc' 'rpcbind')
-	#backup=('etc/conf.d/rpcbind')
+# 	backup=('etc/conf.d/rpcbind')
 	install=rpcbind.install
 
+# 	_inst_confd 'rpcbind'
 	_inst_initd 'rpcbind'
 
 	sed -e 's|/sbin|/usr/bin|g' \
