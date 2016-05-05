@@ -9,7 +9,7 @@ pkgname=('git-openrc'
         'subversion-openrc'
         'distcc-openrc')
        # 'php-fpm-openrc')
-pkgver=20160222
+pkgver=20160504
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -28,7 +28,7 @@ source=("git-daemon.confd::${_url}/dev-vcs/git/files/git-daemon.confd"
         "distccd.initd::${_url}/sys-devel/distcc/files/3.2/init")
        # "php-fpm.initd::${_url}/dev-lang/php/files/php-fpm-r4.init")
 sha256sums=('4703ba2372c661fb674a29fea7f64983f8b1b3136d971663509249655bca6e21'
-            '069878aba8d7c7f229b6049f679d1f93873bdada1107b77fc9a9b2bd8be94516'
+            'efa30f5db5b837ed9febd09af29f3740a9d479d098d5c3f8e4dcf334e01f77a3'
             '6f8720ccbb241b08e5f9abb4be0899f55c857f6308ac82c7f12417ee2c02c1a5'
             '9fbee10105b6be9dd128a11cc9ed67f85ba92fac8f3640628e6cd6356824511b'
             '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
@@ -37,7 +37,6 @@ sha256sums=('4703ba2372c661fb674a29fea7f64983f8b1b3136d971663509249655bca6e21'
             'fd3d3cd1913969edf51a98189cdb9b166eef52c9ea984ae467c6036194c0aef1'
             '253cfaa5b53fe4943a9db83e76ff6d6e8855665f69c2f7beca124af3ec63c88a'
             '9751beb31cc41b04414b654ae7d5e0da3a766b24744d206c33a4d594cb340db2')
-           # '37e34461babfb5881169f9729fbdde7d4aba533f123e2c480fe25ac3b863d3e7')
 
 pkgver() {
 	date +%Y%m%d

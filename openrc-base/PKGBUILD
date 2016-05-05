@@ -12,7 +12,7 @@ pkgname=('cronie-openrc'
         'lvm2-openrc'
         'mdadm-openrc'
         'dbus-openrc')
-pkgver=20160322
+pkgver=20160504
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -38,7 +38,7 @@ source=("cronie.initd::${_url}/sys-process/cronie/files/cronie-1.3-initd"
 		"dbus.initd::${_url}/sys-apps/dbus/files/dbus.initd-r1"
 		'ftpd.confd'
 		'ftpd.initd')
-sha256sums=('316753fd55bcc196aaee034f14a25f2324545749bf7bdd44fd3762d11ab18d05'
+sha256sums=('a0dc91cb6aecafc4e5999829ae90a87217e5aa946aa4e3d3a3d3549a71a8ecf1'
             '3d933a54abe62a547294b83208dbf5d7615d9c7f380d6504c91fff3620530803'
             'd0a55d31c713bbddf7d05634018623586e69d43281bc5019b5b821a745f9a57f'
             '7da9311c50f432d425549288288e0952d50e08644a06af6b8e2f886039f682fe'
