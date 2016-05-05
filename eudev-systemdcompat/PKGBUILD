@@ -3,7 +3,7 @@
 # Contributor: Dave Reisner <dreisner@archlinux.org>
 # Contributor: Tom Gundersen <teg@jklm.no>
 
-_spkgrel=2
+_spkgrel=3
 _repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
@@ -12,7 +12,7 @@ pkgrel=1
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
 license=('GPL2')
-groups=('base-openrc')
+groups=('base' 'base-openrc')
 url="http://www.freedesktop.org/wiki/Software/systemd"
 provides=("libsystemd=${pkgver}"
             "systemd=${pkgver}"

@@ -1,0 +1,9 @@
+post_install() {
+	_cmd="pacman-key -r 97BEEEC2"
+	_cmd="pacman-key --lsign 97BEEEC2"
+	echo "OpenRC pacman key added."
+	echo '' >> /etc/pacman.conf
+	echo '[arch-openrc]' >> /etc/pacman.conf
+	echo 'Server = http://downloads.sourceforge.net/project/archopenrc/$repo/$arch' >> /etc/pacman.conf
+	echo "OpenRC repo added."
+}

@@ -10,9 +10,8 @@ pkgdesc="OpenRC udev startup scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-groups=('openrc-base' 'openrc-desktop')
+groups=('base' 'openrc-base')
 depends=('openrc' 'udev')
-conflicts=('systemd-sysvcompat')
 source=("${_url}/${_pkgname}-${pkgver}.tar.gz"
 	"kmod-static-nodes.initd")
 sha256sums=('4de998d68e28f8ce4c1d4c9955aec0fa4cfe84673cbf3bfe1be71a1e9918693f'
