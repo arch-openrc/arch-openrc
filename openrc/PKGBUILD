@@ -45,7 +45,7 @@ if [ -f /etc/os-release ]; then
 	_args+=(BRANDING="${NAME}")
 elif [ -f /etc/lsb-release ]; then
 	. /etc/lsb-release
-	_args=(BRANDING="$DISTRIB_DESCRIPTION")
+	_args+=(BRANDING="$DISTRIB_DESCRIPTION")
 else
 	_args+=(BRANDING='Unknown Linux')
 fi
