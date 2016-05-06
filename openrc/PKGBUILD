@@ -14,7 +14,7 @@ depends=('psmisc' 'sysvinit')
 optdepends=('netifrc: Network Interface Management Scripts'
             'networkmanager-openrc: NetworkManager'
             'connman-openrc: connman')
-conflicts=('systemd-sysvcompat' 'openrc-core')
+conflicts=('openrc-core')
 replaces=('openrc-core')
 install=${pkgname}.install
 backup=('etc/rc.conf'
