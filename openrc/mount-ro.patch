@@ -1,0 +1,11 @@
+diff -aur openrc-0.20.5.orig/init.d/mount-ro.in openrc-0.20.5/init.d/mount-ro.in
+--- openrc-0.20.5.orig/init.d/mount-ro.in	2016-02-15 12:00:01.000000000 -0300
++++ openrc-0.20.5/init.d/mount-ro.in	2016-05-07 18:50:52.920004132 -0300
+@@ -23,6 +23,7 @@
+ 
+ 	# Flush all pending disk writes now
+ 	sync
++	telinit u
+ 
+ 	ebegin "Remounting remaining filesystems read-only"
+ 	# We need the do_unmount function
