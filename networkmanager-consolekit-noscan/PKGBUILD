@@ -37,14 +37,12 @@ backup=('etc/NetworkManager/NetworkManager.conf')
 install=networkmanager.install
 source=("http://ftp.gnome.org/pub/gnome/sources/$_pkgname/${pkgver:0:3}/$_pkgname-$pkgver.tar.xz"
         'disable_set_hostname.patch'
-	'dhcpv6-mixed.patch'
         'disable_wifi_scan_when_connected.patch'
         'NetworkManager.conf'
         '01-org.freedesktop.NetworkManager.settings.modify.system.rules'
         '50-org.freedesktop.NetworkManager.rules')
 sha256sums=('e947cf30fa3d19dce88e6f6af51f06dc282b7db7996f946aaa37b03526ef2a80'
             '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
-            'f7771790485f24d788fe35f5922ad044a29c6d89b34458d9e99938503b2a3b39'
             '3dfabdccd97074c948c924ece87935576e64675bdfef478e800a6da882861c2d'
             '759db295ddae7a6dc6b29211fc0ec08695f875584d456dd146d3679e2c33e2e3'
             '4b815f43de58379e68653d890f529485aec4d2f83f11d050b08b31489d2267c2'
@@ -57,9 +55,6 @@ prepare() {
   cd $_pkgname-$pkgver
 
   patch -Np1 -i ../disable_set_hostname.patch
-
-    # https://bugs.archlinux.org/task/49081
-  patch -Np1 -i ../dhcpv6-mixed.patch
 
   # disable wifi scans when connected
   patch -Np1 -i ../disable_wifi_scan_when_connected.patch
