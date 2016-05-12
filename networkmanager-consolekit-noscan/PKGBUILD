@@ -12,8 +12,8 @@
 
 pkgname=networkmanager-consolekit-noscan
 _pkgname=NetworkManager
-pkgver=1.2.0
-pkgrel=2
+pkgver=1.2.2
+pkgrel=1
 _pppver=2.4.7
 pkgdesc="NetworkManager with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
@@ -41,7 +41,7 @@ source=("http://ftp.gnome.org/pub/gnome/sources/$_pkgname/${pkgver:0:3}/$_pkgnam
         'NetworkManager.conf'
         '01-org.freedesktop.NetworkManager.settings.modify.system.rules'
         '50-org.freedesktop.NetworkManager.rules')
-sha256sums=('e947cf30fa3d19dce88e6f6af51f06dc282b7db7996f946aaa37b03526ef2a80'
+sha256sums=('41d8082e027f58bb5fa4181f93742606ab99c659794a18e2823eff22df0eecd9'
             '25056837ea92e559f09563ed817e3e0cd9333be861b8914e45f62ceaae2e0460'
             '3dfabdccd97074c948c924ece87935576e64675bdfef478e800a6da882861c2d'
             '759db295ddae7a6dc6b29211fc0ec08695f875584d456dd146d3679e2c33e2e3'
