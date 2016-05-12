@@ -13,7 +13,7 @@
 pkgname=networkmanager-consolekit-noscan
 _pkgname=NetworkManager
 pkgver=1.2.0
-pkgrel=1
+pkgrel=2
 _pppver=2.4.7
 pkgdesc="NetworkManager with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
