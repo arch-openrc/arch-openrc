@@ -20,7 +20,6 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-conflicts=('systemd-sysvcompat')
 source=("acpid.confd::${_url}/sys-power/acpid/files/acpid-2.0.16-conf.d"
         "acpid.initd::${_url}/sys-power/acpid/files/acpid-2.0.26-init.d"
         "alsasound.confd::${_url}/media-sound/alsa-utils/files/alsasound.confd-r4"

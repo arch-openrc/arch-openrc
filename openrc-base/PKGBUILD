@@ -79,8 +79,7 @@ package_cronie-openrc() {
 	depends=('openrc' 'cronie')
 	provides=('openrc-cron')
 	conflicts=('fcron'
-                    'fcron-openrc'
-                    'systemd-sysvcompat')
+                    'fcron-openrc')
 	backup=('etc/init.d/cronie')
 	install=cronie.install
 

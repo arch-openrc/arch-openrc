@@ -36,7 +36,6 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-conflicts=('systemd-sysvcompat')
 source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "rsyslog.confd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.confd-r1"
         "rsyslog.initd::${_url}/app-admin/rsyslog/files/8-stable/rsyslog.initd-r1"

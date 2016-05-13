@@ -15,7 +15,6 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-conflicts=('systemd-sysvcompat')
 source=("git-daemon.confd::${_url}/dev-vcs/git/files/git-daemon.confd"
         "git-daemon.initd::${_url}/dev-vcs/git/files/git-daemon-r1.initd"
         "mysql.confd::${_url}/dev-db/mysql-init-scripts/files/conf.d-2.0"

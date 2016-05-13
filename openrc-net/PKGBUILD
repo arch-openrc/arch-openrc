@@ -49,7 +49,6 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-conflicts=('systemd-sysvcompat')
 source=("${_dev_url}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "named.confd::${_url}/net-dns/bind/files/named.confd-r7"
         "named.initd::${_url}/net-dns/bind/files/named.init-r13"
