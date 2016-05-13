@@ -18,7 +18,6 @@ pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-conflicts=('systemd-sysvcompat')
 source=("cronie.initd::${_url}/sys-process/cronie/files/cronie-1.3-initd"
 		"dmcrypt.confd::${_url}/sys-fs/cryptsetup/files/1.6.7-dmcrypt.confd"
 		"dmcrypt.initd::${_url}/sys-fs/cryptsetup/files/1.6.7-dmcrypt.rc"
