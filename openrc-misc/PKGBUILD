@@ -30,7 +30,7 @@ pkgname=('cpupower-openrc'
         'libvirt-openrc'
         'brltty-openrc'
         'laptop-mode-tools-openrc')
-pkgver=20160504
+pkgver=20160513
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -119,10 +119,10 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'b12a6a9c52d2ac1088b678882ba1781b6784178fe29970f4a54b2aa596c60c66'
             '706467898d0b644c0fe1d216a4b3b9b82ed55b0cbe6aec2c2adbb4e9004145d9'
             '95297bb6113c18620184f0facd8e22155b51e4fe4c6008deff6c8c374d919574'
-            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
+            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
             'c7dc517cdb5ee10e2a07ccea15ec47ba0b7aff8ac1469204c8d7faf71bcae2c5'
             '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
-            '56dffdfa0d347ef667cb08a26ce68b1d445f71031ae1df3309ff3219f10307a9'
+            '178206e50769b1023aef6aa10aa958dcb9db664ffc600652fc7e843ce6576d7a'
             'fef15f3781988c57b57f974202754bdbe075e15b3dbdc2555fae39b4d68efe27'
             '0f516f1f35afec9a7aeff1fe311d529b6907c3accaa476f982e0f93f7c932d61'
             '811da0e9b25d33af3e7f5f54765840e834fb55eb96d3654083991233ca294e81'
@@ -148,7 +148,7 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             '28ebd47810b0568fc7692218867d6804a1df70290681462f5555e230ca817732'
             '4a39006f886fd7db6cde1182ba65b10cd3f5f9fd4500d926aa26b30d55ab9db5'
             '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9'
-            'b8aaa48c0cfbcc5cfa8954d0af767c2c25ed5af0c8f63e633b3ef2a6fc3e38f1'
+            '25d10ff17fbac474d1605e6073e04dff3691957cff2ba808d676aa3a146a63fc'
             'f7d5a1d313041ffba2bba3db704976fb9ad8083964eaccaf0767124402e0810e'
             '4fe9dad976dac73b58db52984411ce8b54b7b4b8abc20b89730453c91251ee8c'
             '4f7fba7e64533868119c0f3355aa22932e163b208397323dc2cd96daadcc4079'
@@ -157,7 +157,7 @@ sha256sums=('4102ff09ba022994e37922634f937ef5f59acf6736e45c729de930f0da95c30d'
             'd668ecf7445f742918a65ac3af2b9fdc4ad49a3a84c1fe8ce76728f4a9bf3f99'
             'd5f85bb8c1d2010347f23badc422e98046b97a0066254739b5829fce07837d63'
             '3947c236b97909802900bf1436501885e246cc0474aa9f41d72d7568b153b2a0'
-            '89cfca974c3b997c4f13df5835cffb75e2bb92932e8c8163bfce700da9f533a3'
+            'df59d6b7b884207c09a098188b8418944581c47ed19a1fac9725f847e4281e7f'
             'bb4feaca8af203fb52ed195d6b768b4ff7792aaf77effd01eea453604cffbec9'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
             '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
@@ -231,8 +231,7 @@ package_fcron-openrc() {
 	depends=('openrc' 'fcron')
 	provides=('openrc-cron')
 	conflicts=('cronie'
-		'cronie-openrc'
-		'systemd-sysvcompat')
+		'cronie-openrc')
 	install=fcron.install
 
 	_inst_initd 'fcron'
@@ -247,8 +246,7 @@ package_ntp-openrc() {
 	optdepends=('bind-openrc: bind initscript')
 	provides=('openrc-timed')
 	conflicts=('openntpd'
-                'openntpd-openrc'
-                'systemd-sysvcompat')
+                'openntpd-openrc')
 	backup=('etc/conf.d/ntpd'
 		'etc/conf.d/ntp-client'
 		'etc/init.d/sntp')
