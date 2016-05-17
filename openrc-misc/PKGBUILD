@@ -30,7 +30,7 @@ pkgname=('cpupower-openrc'
         'libvirt-openrc'
         'brltty-openrc'
         'laptop-mode-tools-openrc')
-pkgver=20160513
+pkgver=20160516
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

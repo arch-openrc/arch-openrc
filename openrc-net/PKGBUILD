@@ -43,7 +43,7 @@ pkgname=('autofs-openrc'
         'vnstat-openrc'
         'snort-openrc'
         'unbound-openrc')
-pkgver=20160513
+pkgver=20160516
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
