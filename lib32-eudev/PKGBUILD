@@ -17,7 +17,7 @@ provides=("lib32-udev=${_udevver}" "lib32-systemd=${_udevver}")
 conflicts=('lib32-systemd' 'libudev.so')
 options=(!makeflags !libtool)
 source=("${url}/${_pkgname}-${pkgver}.tar.gz")
-sha256sums=('ce9d5fa91e3a42c7eb95512ca0fa2a631e89833053066bb6cdf42046b2a88553')
+sha256sums=('f75885a430cd50fe4b31732f808ba7f9b2adf0f26b53b8ba2957b0c1d84b6f2a')
 
 build() {
 
@@ -26,7 +26,6 @@ build() {
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 
     cd "${srcdir}/${_pkgname}-${pkgver}"
-    ./autogen.sh
     ./configure \
 	--prefix=/usr \
         --with-rootprefix=/usr \
