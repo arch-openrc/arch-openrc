@@ -2,7 +2,7 @@
 
 pkgname=elogind
 pkgver=219.12
-pkgrel=1
+pkgrel=2
 pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
@@ -11,6 +11,7 @@ depends=('dbus' 'polkit' 'libudev.so')
 makedepends=('libcap' 'intltool' 'libtool' 'gperf' 'gtk-doc')
 options=('!libtool')
 install=elogind.install
+backup=('etc/elogind/logind.conf')
 source=("$pkgname-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
 	'elogind-docs.patch'
 	'elogind-lrt.patch')
