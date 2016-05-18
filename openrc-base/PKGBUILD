@@ -12,7 +12,7 @@ pkgname=('cronie-openrc'
         'lvm2-openrc'
         'mdadm-openrc'
         'dbus-openrc')
-pkgver=20160516
+pkgver=20160517
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -90,7 +90,6 @@ package_cronie-openrc() {
 
 package_dbus-openrc() {
     pkgdesc="OpenRC dbus init script"
-    groups=('openrc-base' 'openrc-desktop')
     depends=('openrc' 'dbus')
     install=dbus.install
 
