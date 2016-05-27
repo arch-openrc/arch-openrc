@@ -5,7 +5,7 @@ _url="https://github.com/OpenRC/openrc/archive"
 
 pkgname=openrc
 pkgver=0.21
-pkgrel=0.1
+pkgrel=1
 pkgdesc="Gentoo's universal init system"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -33,7 +33,7 @@ source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz"
 sha256sums=('65e83e8b5c2f4316a827e49f4c3da7d98cf02f62b37d6a15d636bb8b9cf5a6e4'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
             'b8b750c863199e9c039e874c3c79c72d468f35442750156dfbdf503a27977cf3'
-            '74b4990148b9fc04c2cb621370c9dcc569acbd29d86bc223394381c2e0881eb7'
+            '50bb30157a1669a32cb42b11737ad14a199844cb4469f80bdff6a2d5cde4c544'
             'cbb4d00262a55a508114cb31e3903350be2cff748a4fb5e120dc745292e3987e')
 
 _args=(SYSCONFDIR=/etc)
