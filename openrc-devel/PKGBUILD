@@ -9,7 +9,7 @@ pkgname=('git-openrc'
         'subversion-openrc'
         'distcc-openrc')
        # 'php-fpm-openrc')
-pkgver=20160504
+pkgver=20160528
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -59,7 +59,6 @@ package_git-openrc() {
 	pkgdesc="OpenRC git-daemon init script"
 	depends=('git' 'openrc')
 	backup=('etc/conf.d/git-daemon')
-	install=git.install
 
 	_inst_confd 'git-daemon'
 	_inst_initd 'git-daemon'
@@ -120,7 +119,6 @@ package_subversion-openrc() {
 	pkgdesc="OpenRC svnserve init script"
 	depends=('subversion' 'openrc')
 	backup=('etc/conf.d/svn')
-	install=subversion.install
 
 	_inst_confd 'svn'
 	_inst_initd 'svn'
@@ -138,7 +136,6 @@ package_distcc-openrc() {
 	pkgdesc="OpenRC distcc init script"
 	depends=('distcc' 'openrc')
 	backup=('etc/conf.d/distccd')
-	install=distcc.install
 
 	_inst_confd 'distccd'
 	_inst_initd 'distccd'
