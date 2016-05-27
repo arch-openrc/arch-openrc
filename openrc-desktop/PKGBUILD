@@ -14,7 +14,7 @@ pkgname=('acpid-openrc'
 	'networkmanager-openrc'
         'wpa_supplicant-openrc')
 
-pkgver=20160504
+pkgver=20160528
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -93,7 +93,6 @@ package_acpid-openrc() {
 	pkgdesc="OpenRC acpid init script"
 	depends=('openrc' 'acpid')
 	backup=('etc/conf.d/acpid')
-	install=acpid.install
 
 	_inst_confd 'acpid'
 	_inst_initd 'acpid'
@@ -103,7 +102,6 @@ package_alsa-utils-openrc() {
 	pkgdesc="OpenRC alsa-utils init script"
 	depends=('openrc' 'alsa-utils')
 	backup=('etc/conf.d/alsasound')
-	install=alsa-utils.install
 
 	_inst_confd 'alsasound'
 	_inst_initd 'alsasound'
@@ -112,7 +110,6 @@ package_alsa-utils-openrc() {
 package_avahi-openrc() {
 	pkgdesc="OpenRC avahi init script"
 	depends=('avahi' 'dbus-openrc')
-	install=avahi.install
 
 	_inst_initd 'avahi-daemon'
 	_inst_initd 'avahi-dnsconfd'
@@ -122,7 +119,6 @@ package_cgmanager-openrc() {
 	pkgdesc="OpenRC cgmanager init script"
 	groups=('openrc-desktop')
 	depends=('openrc' 'cgmanager')
-	install=cgmanager.install
 
 	_inst_initd 'cgproxy'
 	_inst_initd 'cgmanager'
@@ -131,7 +127,6 @@ package_cgmanager-openrc() {
 package_consolekit-openrc() {
 	pkgdesc="OpenRC consolekit init script"
 	depends=('consolekit' 'dbus-openrc' 'cgmanager-openrc' 'udev-openrc')
-	install=consolekit.install
 
 	_inst_initd 'consolekit'
 }
@@ -159,7 +154,6 @@ package_gpm-openrc() {
 	pkgdesc="OpenRC gpm init script"
 	depends=('openrc' 'gpm')
 	backup=('etc/conf.d/gpm')
-	install=gpm.install
 
 	_inst_confd 'gpm'
 	_inst_initd 'gpm'
@@ -170,7 +164,6 @@ package_networkmanager-openrc() {
 	depends=('openrc' 'networkmanager-consolekit')
 	groups=('openrc-desktop' 'openrc-mobile')
 	backup=('etc/conf.d/NetworkManager')
-	install=networkmanager.install
 
 	_inst_confd 'NetworkManager'
 	_inst_initd 'NetworkManager'
@@ -187,7 +180,6 @@ package_bluez-openrc() {
 	groups=('openrc-mobile')
 	depends=('bluez' 'dbus-openrc')
 	backup=('etc/conf.d/rfcomm')
-	install=bluez.install
 
 	_inst_confd 'rfcomm'
 	_inst_initd 'rfcomm'
@@ -202,7 +194,6 @@ package_wpa_supplicant-openrc() {
 	groups=('openrc-mobile')
 	depends=('openrc' 'wpa_supplicant')
 	backup=('etc/conf.d/wpa_supplicant')
-	install=wpa_supplicant.install
 
 	_inst_confd 'wpa_supplicant'
 	_inst_initd 'wpa_supplicant'

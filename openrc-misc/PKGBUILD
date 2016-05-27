@@ -30,7 +30,7 @@ pkgname=('cpupower-openrc'
         'libvirt-openrc'
         'brltty-openrc'
         'laptop-mode-tools-openrc')
-pkgver=20160504
+pkgver=20160528
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -186,7 +186,6 @@ package_bitlbee-openrc() {
 	pkgdesc="OpenRC bitlbee init script"
 	depends=('openrc' 'bitlbee')
 	backup=('etc/conf.d/bitlbee')
-	install=bitlbee.install
 
 	_inst_confd 'bitlbee'
 	_inst_initd 'bitlbee'
@@ -199,7 +198,6 @@ package_cpupower-openrc() {
 	pkgdesc="OpenRC cpupower init script"
 	depends=('openrc' 'cpupower')
 	backup=('etc/conf.d/cpupower')
-	install=cpupower.install
 
 	_inst_confd 'cpupower'
 	_inst_initd 'cpupower'
@@ -209,7 +207,6 @@ package_connman-openrc() {
 	pkgdesc="OpenRC connman init script"
 	depends=('openrc' 'connman')
 	backup=('etc/conf.d/connman')
-	install=connman.install
 
 	_inst_confd 'connman'
 	_inst_initd 'connman'
@@ -219,7 +216,6 @@ package_cups-openrc() {
 	pkgdesc="OpenRC cups init script"
 	depends=('cups' 'dbus-openrc')
 	optdepends=('avahi-openrc: avahi initscript')
-	install=cups.install
 
 	_inst_initd 'cupsd'
 
@@ -236,7 +232,6 @@ package_fcron-openrc() {
 	conflicts=('cronie'
 		'cronie-openrc'
 		'systemd-sysvcompat')
-	install=fcron.install
 
 	_inst_initd 'fcron'
 
@@ -255,7 +250,6 @@ package_ntp-openrc() {
 	backup=('etc/conf.d/ntpd'
 		'etc/conf.d/ntp-client'
 		'etc/init.d/sntp')
-	install=ntp.install
 
         for f in ntpd ntp-client sntp;do
             _inst_confd $f
@@ -267,7 +261,6 @@ package_rsyslog-openrc() {
 	pkgdesc="OpenRC rsyslog init script"
 	depends=('openrc' 'rsyslog')
 	backup=('etc/conf.d/rsyslog')
-	install=rsyslog.install
 
 	_inst_confd 'rsyslog'
 	_inst_initd 'rsyslog'
@@ -277,7 +270,6 @@ package_sane-openrc() {
 	pkgdesc="OpenRC sane init script"
 	depends=('openrc' 'sane')
 	backup=('etc/conf.d/saned')
-	install=sane.install
 
 	_inst_confd 'saned'
 	_inst_initd 'saned'
@@ -289,7 +281,6 @@ package_sane-openrc() {
 package_fuse-openrc(){
 	pkgdesc="OpenRC fuse init script"
 	depends=('openrc' 'fuse')
-	install=fuse.install
 
 	_inst_initd 'fuse'
 }
@@ -298,7 +289,6 @@ package_metalog-openrc() {
 	pkgdesc="OpenRC metalog init script"
 	depends=('openrc' 'metalog')
 	backup=('etc/conf.d/metalog')
-	install=metalog.install
 
 	_inst_confd 'metalog'
 	_inst_initd 'metalog'
@@ -308,7 +298,6 @@ package_syslog-ng-openrc() {
 	pkgdesc="OpenRC syslog-ng init script"
 	depends=('openrc' 'syslog-ng')
 	backup=('etc/conf.d/syslog-ng')
-	install=syslog-ng.install
 
 	_inst_confd 'syslog-ng'
 	_inst_initd 'syslog-ng'
@@ -318,7 +307,6 @@ package_lm_sensors-openrc() {
 	pkgdesc="OpenRC lm_sensors init script"
 	depends=('openrc' 'lm_sensors')
 	#backup=('etc/conf.d/sensord')
-	install=lm_sensors.install
 
 	_inst_initd 'sensord'
 	_inst_initd 'fancontrol'
@@ -330,7 +318,6 @@ package_lirc-utils-openrc() {
 	depends=('openrc' 'lirc-utils')
 	backup=('etc/conf.d/lircd'
 		'etc/conf.d/irexec')
-	install=lirc-utils.install
 
 
 	for f in lircd irexec;do
@@ -345,7 +332,6 @@ package_haveged-openrc() {
 	pkgdesc="OpenRC haveged init script"
 	depends=('openrc' 'haveged')
 	backup=('etc/conf.d/haveged')
-	install=haveged.install
 
 	_inst_confd 'haveged'
 	_inst_initd 'haveged'
@@ -358,7 +344,6 @@ package_salt-openrc() {
 		'etc/conf.d/salt-minion'
 		'etc/conf.d/salt-syncdic'
 		'etc/conf.d/salt-api')
-	install=salt.install
 
         for f in salt-master salt-minion salt-syncdic salt-api;do
             _inst_confd $f
@@ -369,7 +354,6 @@ package_salt-openrc() {
 package_mpd-openrc(){
 	pkgdesc="OpenRC fuse init script"
 	depends=('openrc' 'mpd')
-	install=mpd.install
 
 	_inst_initd 'mpd'
 }
@@ -378,7 +362,6 @@ package_hdparm-openrc() {
 	pkgdesc="OpenRC hdparm init script"
 	depends=('openrc' 'hdparm')
 	backup=('etc/conf.d/hdparm')
-	install=hdparm.install
 
 	_inst_confd 'hdparm'
 	_inst_initd 'hdparm'
@@ -387,7 +370,6 @@ package_hdparm-openrc() {
 package_thermald-openrc() {
 	pkgdesc="OpenRC thermald init script"
 	depends=('dbus-openrc' 'thermald')
-	install=thermald.install
 
 	_inst_initd 'thermald'
 }
@@ -395,7 +377,6 @@ package_thermald-openrc() {
 package_xe-guest-utilities-openrc() {
 	pkgdesc="OpenRC xe-guest-utilities init script"
 	depends=('openrc' 'xe-guest-utilities')
-	install=xe-guest-utilities.install
 
 	_inst_initd 'xe-daemon'
 }
@@ -403,7 +384,6 @@ package_xe-guest-utilities-openrc() {
 package_virtualbox-guest-utils-openrc() {
 	pkgdesc="OpenRC virtualbox-guest-utils init script"
 	depends=('openrc' 'virtualbox-guest-utils')
-	install=virtualbox-guest-additions.install
 
 	_inst_initd 'vboxservice'
 
@@ -415,7 +395,6 @@ package_virtualbox-guest-utils-openrc() {
 package_zfs-openrc() {
 	pkgdesc="OpenRC zfs init script"
 	depends=('openrc' 'zfs-utils')
-	install=zfs.install
 
 	_inst_initd 'zfs'
 }
@@ -424,7 +403,6 @@ package_clamav-openrc() {
 	pkgdesc="OpenRC clamav init script"
 	depends=('openrc' 'clamav')
 	backup=('etc/conf.d/clamd')
-	install=clamav.install
 
 	_inst_confd 'clamd'
 	_inst_initd 'clamd'
@@ -434,7 +412,6 @@ package_boinc-openrc() {
 	pkgdesc="OpenRC boinc init script"
 	depends=('openrc' 'boinc')
 	backup=('etc/conf.d/boinc')
-	install=boinc.install
 
 	_inst_confd 'boinc'
 	_inst_initd 'boinc'
@@ -444,7 +421,6 @@ package_at-openrc() {
 	pkgdesc="OpenRC at init script"
 	depends=('openrc' 'at')
 	backup=('etc/conf.d/atd')
-	install=at.install
 
 	_inst_confd 'atd'
 	_inst_initd 'atd'
@@ -457,7 +433,6 @@ package_libvirt-openrc() {
 	pkgdesc="OpenRC libvirt init script"
 	depends=('openrc' 'libvirt')
 	backup=('etc/conf.d/libvirtd')
-	install=libvirt.install
 
 	_inst_confd 'libvirtd'
 	_inst_initd 'libvirtd'
@@ -477,7 +452,6 @@ package_libvirt-openrc() {
 package_brltty-openrc() {
 	pkgdesc="OpenRC brltty init script"
 	depends=('openrc' 'brltty')
-	install=brltty.install
 
 	_inst_initd 'brltty'
 
@@ -489,7 +463,6 @@ package_laptop-mode-tools-openrc() {
 	pkgdesc="OpenRC laptop-mode init script"
 	depends=('openrc' 'laptop-mode-tools')
 	groups=('openrc-misc' 'openrc-mobile')
-	install=laptop-mode-tools.install
 
 	_inst_initd 'laptop_mode'
 }

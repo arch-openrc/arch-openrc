@@ -7,7 +7,7 @@ pkgname=('nvidia-utils-openrc'
         'catalyst-utils-openrc'
         'virtualgl-openrc')
         #'bumblebee-openrc')
-pkgver=20160504
+pkgver=20160528
 pkgrel=1
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -46,7 +46,6 @@ _inst_confd(){
 package_nvidia-utils-openrc() {
 	pkgdesc="OpenRC nvidia-smi init script"
 	depends=('openrc' 'nvidia-utils')
-	install=nvidia-utils.install
 
 	_inst_initd 'nvidia-smi'
 
@@ -56,7 +55,6 @@ package_nvidia-utils-openrc() {
 package_catalyst-utils-openrc() {
 	pkgdesc="OpenRC atieventsd init script"
 	depends=('catalyst-utils' 'acpid-openrc')
-	install=catalyst-utils.install
 	backup=('etc/conf.d/atieventsd')
 
 	_inst_initd 'atieventsd'
