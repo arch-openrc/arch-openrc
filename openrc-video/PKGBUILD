@@ -19,10 +19,10 @@ source=("nvidia-smi.initd::${_url}/x11-drivers/nvidia-drivers/files/nvidia-smi.i
         "${_url}/x11-misc/virtualgl/files/vgl-helper.sh")
 # 	"bumblebee.confd::${_url}/x11-misc/bumblebee/files/bumblebee.confd"
 # 	"bumblebee.initd::${_url}/x11-misc/bumblebee/files/bumblebee.initd")
-sha256sums=('706ae49d4a61d400b6cb1cd942a98a7764e617ccb3256b3ab7d92e22b1421605'
-            '585857e5655b23805043edb988d98ebf0327cd2f6b2589497c97ed9c4dcfa70b'
+sha256sums=('1f1481ae98a506a7d249e87654aab9d3975b6a88b9abe7b58ebbd337babbc47c'
+            '60a22c86152e8e2765fd82838d282f17901ec56462e50e855c1939b8a36d917b'
             '5356391cec2e297f2fafa370f42be225ad4238ac61182b90720a3d914261a80f'
-            '10b96f3440732a83fc2f4c120b3b8193b903a555f33ebb4670c741c07d46932c'
+            '09ce3a70aea80f71a7fdfd46421f93d44f302abe0a709bf9cfd459485649acd1'
             '438c928840fbfb9274604296b8178e7f97b42a3428d115e1de6e609ea3146497')
 
 pkgver() {
