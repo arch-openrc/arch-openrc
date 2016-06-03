@@ -2,7 +2,6 @@
 
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
-pkgbase=openrc-desktop
 pkgname=('acpid-openrc'
         'alsa-utils-openrc'
         'avahi-openrc'
@@ -11,7 +10,7 @@ pkgname=('acpid-openrc'
         'displaymanager-openrc'
         'gpm-openrc'
         'bluez-openrc'
-	'networkmanager-openrc'
+		'networkmanager-openrc'
         'wpa_supplicant-openrc')
 
 pkgver=20160528

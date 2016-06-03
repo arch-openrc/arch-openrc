@@ -2,7 +2,6 @@
 
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
-pkgbase=openrc-base
 pkgname=('cronie-openrc'
         'cryptsetup-openrc'
         'dhcpcd-openrc'

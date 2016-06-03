@@ -6,7 +6,6 @@ _aprel=20160303
 _dev_url="http://dev.gentoo.org/~polynomial-c/dist/apache"
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
-pkgbase=openrc-net
 pkgname=('autofs-openrc'
         'apache-openrc'
         'bind-openrc'

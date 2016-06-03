@@ -2,7 +2,6 @@
 
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
-pkgbase=openrc-misc
 pkgname=('cpupower-openrc'
         'connman-openrc'
         'fcron-openrc'

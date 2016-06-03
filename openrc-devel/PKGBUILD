@@ -2,7 +2,6 @@
 
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
-pkgbase=openrc-devel
 pkgname=('git-openrc'
         'mysql-openrc'
         'postgresql-openrc'
