@@ -14,7 +14,7 @@ pkgname=('acpid-openrc'
 	'networkmanager-openrc'
         'wpa_supplicant-openrc')
 
-pkgver=20160528
+pkgver=20160608
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -45,31 +45,33 @@ source=("acpid.confd::${_url}/sys-power/acpid/files/acpid-2.0.16-conf.d"
         "NetworkManager.initd::${_url}/net-misc/networkmanager/files/init.d.NetworkManager"
         "10-openrc-status::${_url}/net-misc/networkmanager/files/10-openrc-status-r4"
         'avahi-daemon.initd'
-        'avahi-dnsconfd.initd')
+        'avahi-dnsconfd.initd'
+        'xdg-user-dirs')
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '9b8785324a5e259f10ec5aff20ef3d977621a9c1dad49751dbc7b83243cac67f'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
             '38d2541fe00c181ff840a83927d7c37ada6a14eaac1d030aecc565ce4c6e4398'
             'e4787d99bdda938d67e9dea2148df1e19e12d2679b2f6910728dfbf0a4f6b18e'
             '9d26b72bb28611a60a6b9f942b8d8cfe47b59f926be89af9709b5912668344d8'
-            '19992228827ae635f3ef08c1b08889afedfa563efa50bc2fb7db211caa8d1510'
-            'f88aadaea4a0d39bfac4e5bee60c316e0dbe6443d34b1f4629bf2324394883f7'
+            '89728c129014a9ddcd0607da207be91d7b40f22541db51e0e8d22b8d110c40f5'
+            '5985efb5e707b1817b4452410068a322a4db2a00ee0f84e41f3b35b31b9b4dd5'
             'da3efeaa0e5becefbbd5fe82e89a76a1efa1969b9afc1b5bd0abf83a93fc0bee'
             '73e7483fdc4b12ab4225a4cb13bbe7da71b07b9e69b17e3a6a4c63cb5e2287c8'
-            'a342f0d17362b193e4aca3b9f947c6248f2da410707fc8e81f85ef98dc816411'
+            '4a82dd5b8c1c04a70c477d9a376268a4fbbda097799bb70d7fabb937bdb09a14'
             '672498957049fd301f9c9c1dc9fa49430e5e6d3c3f1f3cdce80df3af7d425d08'
-            'a95d6806952513826ad04f663b39e44f755f06beab7727c4e170249670d6f448'
-            '1319d3e70468e68025d54956edd92bca89bed04546614d4714fb5016b2900456'
+            'b789ffce96adc743fc6811cabcb7b8d10b8224d05a6fe465ba6ddbba017c7018'
+            'd19ac0371fc1aab6ad9002476fdd239584ee4fe7e3d25f9fe68826262b708999'
             '61ec59007f66ac5bacc0aa095d1f2ccbc977a687038e161a463d1727223d5a90'
-            '62a3655ea88b3dfff5243666a4e90d3f0eef6370a7889affb849e178ba4a82b0'
+            '98985142371d39ea6294d757e85a3d3fc9fc21718063afbf81869e1d2ca648a7'
             'fb3483d4e54d3b48b993e117e45338977a5782373520e15d51cd9cd9417eec03'
             '5e676e1bd76f73a1fd48f706030b8cc0bea5cb36c439dd02f213092ca985cd9e'
             '625c8b2f507076eac0108e75547239508d147bcc669372fc3991bb42b17608e1'
             '4594573f01fe5e04b6dde4525796acf909158591bdcefd662ec23fe0d1c3e1bd'
-            '5ec8eb35558a8a473a0cb50ff8536364894c516e57f684c0a1319cc5d8018c6c'
+            '1af8436d6e917708ef310498c57272229e3f149cc7305281fb647c1e03fb952c'
             'f8ed424818b866a0bf882c569f4484e8b1485ce7ac8c472f060fd877f2dcfe65'
             '876788303553fe773e64917f76f0208f5e8adf7b91d4af24aa9d6a68a147d646'
-            'e128576d72981e402ff106bb481108ab6d5ba941ab1b0f5f53e96a7831fc1d15')
+            'e128576d72981e402ff106bb481108ab6d5ba941ab1b0f5f53e96a7831fc1d15'
+            'f0f27de23d849b2fa4ebf59e448b5a843b577d14dc2c1070e228999091fa7f5e')
 
 pkgver() {
 	date +%Y%m%d
@@ -148,6 +150,8 @@ package_displaymanager-openrc() {
 	sed -e 's|/etc/profile.env|/etc/profile|g' \
 		-e 's|{ROOTPATH}|{PATH}|g' \
 		-i "${pkgdir}/etc/init.d/xdm"
+
+	install -D ${srcdir}/xdg-user-dirs "$pkgdir/etc/X11/xinit/xinitrc.d/xdg-user-dirs"
 }
 
 package_gpm-openrc() {
