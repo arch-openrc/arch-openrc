@@ -6,7 +6,7 @@ _pkgname=eudev
 
 pkgname=lib32-eudev
 pkgdesc="The userspace dev tools (udev) forked by Gentoo (32-bit)"
-pkgver=3.1.5
+pkgver=3.2
 pkgrel=1
 arch=('x86_64')
 url="http://dev.gentoo.org/~blueness/eudev"
@@ -17,7 +17,7 @@ provides=("lib32-udev=${_udevver}" "lib32-systemd=${_udevver}")
 conflicts=('lib32-systemd' 'libudev.so')
 options=(!makeflags !libtool)
 source=("${url}/${_pkgname}-${pkgver}.tar.gz")
-sha256sums=('ce9d5fa91e3a42c7eb95512ca0fa2a631e89833053066bb6cdf42046b2a88553')
+sha256sums=('d84a5f7942393a009afc6af0bf31e98841147a0521b91ffbed161dccac303c25')
 
 build() {
 
@@ -26,7 +26,6 @@ build() {
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 
     cd "${srcdir}/${_pkgname}-${pkgver}"
-    ./autogen.sh
     ./configure \
 	--prefix=/usr \
         --with-rootprefix=/usr \
