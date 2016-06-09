@@ -11,7 +11,7 @@ pkgname=('cronie-openrc'
         'lvm2-openrc'
         'mdadm-openrc'
         'dbus-openrc')
-pkgver=20160528
+pkgver=20160608
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
