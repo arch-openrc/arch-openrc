@@ -1,12 +1,13 @@
 pkgname=openrc-repo
-pkgver=1.0
+pkgver=1.1
 pkgrel=1
 pkgdesc="OpenRC repo initialization"
 arch=('any')
 url="https://github.com/cromerc/packages-openrc"
 license=('GPL2')
 groups=('base' 'base-openrc')
-depends=('openrc')
-source=('openrc-repo.install')
-sha256sums=('440aa078e06c02ee692331a1a40071f5a91ca1b291040fa134a9a5876ab671fb')
+depends=('openrc' 'openrc-mirrorlist')
+conflicts=('nosystemd-repo')
+replaces=('nosystemd-repo')
 install=${pkgname}.install
+

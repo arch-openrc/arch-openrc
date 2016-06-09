@@ -1,0 +1,19 @@
+# Maintainer: Chris Cromer <chris@cromer.cl>
+
+pkgname=openrc-mirrorlist
+pkgver=20160609
+pkgrel=1
+pkgdesc="Arch Linux OpenRC mirror list for use by pacman"
+arch=('any')
+url="https://github.com/cromerc/packages-openrc"
+license=('GPL')
+backup=(etc/pacman.d/mirrorlist-openrc)
+source=(mirrorlist-openrc)
+
+package() {
+  mkdir -p $pkgdir/etc/pacman.d
+  install -m644 $srcdir/mirrorlist-openrc $pkgdir/etc/pacman.d/
+}
+
+md5sums=('5e5dd100ae99903c590f8985a46e69b5')
+sha256sums=('60bf8c2e7b5b67d32217fad77a0d1c33edaff38b6cd8368b1e4b6d9b7d72965c')

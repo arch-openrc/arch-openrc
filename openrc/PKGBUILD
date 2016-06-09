@@ -5,12 +5,12 @@ _url="https://github.com/OpenRC/openrc/archive"
 
 pkgname=openrc
 pkgver=0.21
-pkgrel=1
+pkgrel=2
 pkgdesc="Gentoo's universal init system"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
 license=('BSD2')
-depends=('psmisc' 'sysvinit')
+depends=('psmisc' 'sysvinit' 'openrc-keyring' 'openrc-repo')
 optdepends=('netifrc: Network Interface Management Scripts'
             'networkmanager-openrc: NetworkManager'
             'connman-openrc: connman')

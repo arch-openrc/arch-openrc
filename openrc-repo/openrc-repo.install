@@ -1,9 +1,25 @@
 post_install() {
-	_cmd="pacman-key -r 97BEEEC2"
-	_cmd="pacman-key --lsign 97BEEEC2"
-	echo "OpenRC pacman key added."
 	echo '' >> /etc/pacman.conf
 	echo '[arch-openrc]' >> /etc/pacman.conf
-	echo 'Server = http://downloads.sourceforge.net/project/archopenrc/$repo/$arch' >> /etc/pacman.conf
+	echo 'Include = /etc/pacman.d/mirrorlist-openrc' >> /etc/pacman.conf
 	echo "OpenRC repo added."
+	echo '' >> /etc/pacman.conf
+	echo '[arch-nosystemd]' >> /etc/pacman.conf
+	echo 'Include = /etc/pacman.d/mirrorlist-openrc' >> /etc/pacman.conf
+	echo "Nosystemd repo added."
+}
+
+post_upgrade() {
+	if [ "$(vercmp $2 1.1-1)" -lt 0 ]; then
+		echo "Removed old repos"
+		sed -i '/\[arch-openrc\]/Q' /etc/pacman.conf
+	fi
+	echo '' >> /etc/pacman.conf
+	echo '[arch-openrc]' >> /etc/pacman.conf
+	echo 'Include = /etc/pacman.d/mirrorlist-openrc' >> /etc/pacman.conf
+	echo "OpenRC repo added."
+	echo '' >> /etc/pacman.conf
+	echo '[arch-nosystemd]' >> /etc/pacman.conf
+	echo 'Include = /etc/pacman.d/mirrorlist-openrc' >> /etc/pacman.conf
+	echo "Nosystemd repo added."
 }

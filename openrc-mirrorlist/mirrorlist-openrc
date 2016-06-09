@@ -1,0 +1,8 @@
+##
+## Arch Linux OpenRC repository mirrorlist
+## Generated on 2016-06-09
+##
+
+Server = http://downloads.sourceforge.net/project/archopenrc/$repo/$arch
+Server = http://archbang.org/archopenrc/$repo/$arch
+Server = ftp://ftp.heanet.ie/mirrors/sourceforge/a/ar/archopenrc/$repo/$arch
