@@ -15,5 +15,5 @@ package() {
   install -m644 $srcdir/mirrorlist-openrc $pkgdir/etc/pacman.d/
 }
 
-md5sums=('5e5dd100ae99903c590f8985a46e69b5')
-sha256sums=('60bf8c2e7b5b67d32217fad77a0d1c33edaff38b6cd8368b1e4b6d9b7d72965c')
+md5sums=('1d69aa0a1e217d8dde9eca0abc22f2b4')
+sha256sums=('e4ce07b1ccfb471fd9bf4f93ae7999eff921b7385a37e8e961d21d16bc9a514c')
