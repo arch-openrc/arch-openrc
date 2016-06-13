@@ -1,7 +1,7 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
 pkgname=elogind
-pkgver=219.12
+pkgver=219.14
 pkgrel=1
 pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
@@ -10,17 +10,20 @@ license=('GPL')
 groups=('openrc-desktop')
 depends=('dbus' 'polkit' 'libudev.so')
 makedepends=('libcap' 'intltool' 'libtool' 'gperf' 'gtk-doc')
+conflicts=('systemd' 'systemd-sysvcompat')
 options=('!libtool')
 install=elogind.install
-source=("$pkgname-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
+_commit=6d224ff665195f47c942599b21e0d959bc07ca8f
+source=("$pkgname-${pkgver}.tar.gz::${url}/archive/${_commit}.tar.gz"
+	#"$pkgname-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
 	'elogind-docs.patch'
 	'elogind-lrt.patch')
-sha256sums=('80241494f5c794e8501ccf570ac805275ace368755780f38a18762fd06243f95'
+sha256sums=('52be61c26bcac7a34b91b6de997b403822c0626dad258ecf146018977b0c034f'
             'cafea7a13159dee700902e3837aab015d9521dfe122840faf2d909b5dc02229e'
             'a9227ed4e97117ab5751de38c19813560a12f51379ccd882a89e7ef9842659ac')
 
 prepare() {
-	cd $srcdir/$pkgname-$pkgver
+	cd $srcdir/$pkgname-${_commit} #$pkgver
 	patch -Np 1 -i $srcdir/elogind-docs.patch
 	patch -Np 1 -i $srcdir/elogind-lrt.patch
 	sed -e "s|/bin/false|/usr/lib/elogind/elogind|" \
@@ -29,7 +32,7 @@ prepare() {
 }
 
 build() {
-	cd $srcdir/${pkgname}-${pkgver}
+	cd $srcdir/${pkgname}-${_commit} #${pkgver}
 	intltoolize
 	./configure \
 		--sysconfdir=/etc \
@@ -40,6 +43,6 @@ build() {
 }
 
 package() {
-	cd $srcdir/${pkgname}-${pkgver}
+	cd $srcdir/${pkgname}-${_commit} #${pkgver}
 	make DESTDIR="${pkgdir}" install
 }
