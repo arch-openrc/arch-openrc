@@ -9,7 +9,6 @@ url="https://github.com/wingo/elogind"
 license=('GPL')
 depends=('dbus' 'polkit' 'libudev.so')
 makedepends=('libcap' 'intltool' 'libtool' 'gperf' 'gtk-doc')
-conflicts=('systemd' 'systemd-sysvcompat')
 options=('!libtool')
 install=elogind.install
 backup=('etc/elogind/logind.conf')
