@@ -15,6 +15,7 @@ license=('GPL2')
 groups=('base' 'base-openrc')
 url="http://www.freedesktop.org/wiki/Software/systemd"
 provides=("libsystemd=${pkgver}"
+			"systemd"
             "systemd-tools=${pkgver}"
             'libsystemd.so')
 depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev' 'lz4')

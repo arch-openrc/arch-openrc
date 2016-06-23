@@ -2,12 +2,11 @@
 
 pkgname=elogind
 pkgver=219.12
-pkgrel=1
+pkgrel=2
 pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
 license=('GPL')
-provides=("systemd=${pkgver%.*}")
 depends=('dbus' 'polkit' 'libudev.so')
 makedepends=('libcap' 'intltool' 'libtool' 'gperf' 'gtk-doc')
 options=('!libtool')
