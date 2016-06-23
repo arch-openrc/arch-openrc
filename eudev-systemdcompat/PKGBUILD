@@ -3,24 +3,22 @@
 # Contributor: Dave Reisner <dreisner@archlinux.org>
 # Contributor: Tom Gundersen <teg@jklm.no>
 
-_spkgrel=3
+_spkgrel=4
 _repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
 pkgver=230
-pkgrel=1
+pkgrel=2
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
 license=('GPL2')
 groups=('base' 'base-openrc')
 url="http://www.freedesktop.org/wiki/Software/systemd"
 provides=("libsystemd=${pkgver}"
-            "systemd=${pkgver}"
             "systemd-tools=${pkgver}"
             'libsystemd.so')
 depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev' 'lz4')
-conflicts=('systemd'
-            'systemd-tools'
+conflicts=('systemd-tools'
             'libsystemd'
             'openrc-systemdcompat')
 replaces=('openrc-systemdcompat')
@@ -30,10 +28,10 @@ source_i686=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"
 source_x86_64=("$_repo/x86_64/libsystemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
 		"$_repo/x86_64/systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz"
 		"gummibootx64.efi")
-sha256sums_i686=('37e6a6b143d798d861e3d4e5d74de395891b22e9ee6524f733236619ebcc9aa6'
-                 '28b0ed0983161578dc1c1fa82c106832ad245473eb974656cde56de438c12e75')
-sha256sums_x86_64=('daa5b194905e81f2aa7e6f803782ac0b556148dffb8fcd60364664d62c2f3ae9'
-                   '9a008a5f105bc62740b1f19381da80e4c6d17ca5a23be09e963daf8090a42a6b'
+sha256sums_i686=('3c18836df48ec67edeebd774337c13b62ed6e2bb11be62908fd0294e1c9a9d85'
+                 '67fe9efb4c9eb18398bc40a663000bbf8688706c247eaf3e012da093790715ef')
+sha256sums_x86_64=('7d6d96c6d35a0507f5a3e31001524e74b12e3c3825be0f13d6d4eb9c1cb7b8a4'
+                   '2547f64fb0ad1fb31f7289d9239b5a52605ba987a9e70aab9e4640f67e6e46de'
                    'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
 
 
