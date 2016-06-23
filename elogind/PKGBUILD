@@ -1,8 +1,8 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
 pkgname=elogind
-pkgver=219.14
-pkgrel=2
+pkgver=219.12
+pkgrel=1
 pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
@@ -15,31 +15,28 @@ conflicts=('systemd' 'systemd-sysvcompat')
 options=('!libtool')
 install=elogind.install
 _commit=6d224ff665195f47c942599b21e0d959bc07ca8f
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${_commit}.tar.gz"
-	#"${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
+	#"${pkgname}-${pkgver}.tar.gz::${url}/archive/${_commit}.tar.gz"
 	'elogind-docs.patch'
 	'elogind-lrt.patch'
 	"use-pk.patch::https://github.com/kensington/elogind/commit/1ca40c077cd9a08f96a559ba51e8dba230298c4d.patch")
-sha256sums=('52be61c26bcac7a34b91b6de997b403822c0626dad258ecf146018977b0c034f'
-            'cafea7a13159dee700902e3837aab015d9521dfe122840faf2d909b5dc02229e'
-            'a9227ed4e97117ab5751de38c19813560a12f51379ccd882a89e7ef9842659ac'
-            'cef5dda99a51a42bc36d1a946d5a21a830bf0f44ed3f447542ec57c1424e0053')
+
 
 prepare() {
-	cd ${srcdir}/${pkgname}-${_commit} #$pkgver
+	cd ${srcdir}/${pkgname}-${pkgver} #${_commit}
 	patch -Np 1 -i ${srcdir}/elogind-docs.patch
 	patch -Np 1 -i ${srcdir}/elogind-lrt.patch
 	patch -Np 1 -i ${srcdir}/use-pk.patch
 
 	local cmd='/bin/bash -c "[[ ! -d /run/systemd ]] && mkdir /run/systemd";/usr/lib/elogind/elogind'
 
-	sed -e "s|/bin/false|${cmd}|" \
+	sed -e "s|/bin/false|/usr/lib/elogind/elogind|" \
 		-i src/login/org.freedesktop.login1.service
 	autoreconf -vim
 }
 
 build() {
-	cd ${srcdir}/${pkgname}-${_commit} #${pkgver}
+	cd ${srcdir}/${pkgname}-${pkgver} #${_commit}
 	intltoolize
 	./configure \
 		--sysconfdir=/etc \
@@ -50,6 +47,10 @@ build() {
 }
 
 package() {
-	cd ${srcdir}/${pkgname}-${_commit} #${pkgver}
+	cd ${srcdir}/${pkgname}-${pkgver} #${_commit}
 	make DESTDIR="${pkgdir}" install
 }
+sha256sums=('80241494f5c794e8501ccf570ac805275ace368755780f38a18762fd06243f95'
+            'cafea7a13159dee700902e3837aab015d9521dfe122840faf2d909b5dc02229e'
+            'a9227ed4e97117ab5751de38c19813560a12f51379ccd882a89e7ef9842659ac'
+            'cef5dda99a51a42bc36d1a946d5a21a830bf0f44ed3f447542ec57c1424e0053')
