@@ -14,7 +14,7 @@ makedepends=('libcap' 'intltool' 'libtool' 'gperf' 'gtk-doc')
 conflicts=('systemd' 'systemd-sysvcompat')
 options=('!libtool')
 install=elogind.install
-_commit=6d224ff665195f47c942599b21e0d959bc07ca8f
+# _commit=6d224ff665195f47c942599b21e0d959bc07ca8f
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
 	#"${pkgname}-${pkgver}.tar.gz::${url}/archive/${_commit}.tar.gz"
 	'elogind-docs.patch'
@@ -28,9 +28,9 @@ prepare() {
 	patch -Np 1 -i ${srcdir}/elogind-lrt.patch
 	patch -Np 1 -i ${srcdir}/use-pk.patch
 
-	local cmd='/bin/bash -c "[[ ! -d /run/systemd ]] && mkdir /run/systemd";/usr/lib/elogind/elogind'
+	local cmd='/bin/bash -c "[[ ! -d /run/systemd ]] && mkdir /run/systemd;/usr/lib/elogind/elogind"'
 
-	sed -e "s|/bin/false|/usr/lib/elogind/elogind|" \
+	sed -e "s|/bin/false|${cmd}|" \
 		-i src/login/org.freedesktop.login1.service
 	autoreconf -vim
 }
