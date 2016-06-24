@@ -1,6 +1,6 @@
 post_install() {
-	echo "Add to /etc/pam.d/sddm-greeter"
-	echo "session	optional pam_elogind.so"
+	echo "	==> To use elogind, replace your pam_systemd.so in your pam config with:"
+	echo 'session	optional pam_elogind.so'
 }
 
 post_upgrade() {

@@ -14,13 +14,9 @@ arch=('i686' 'x86_64')
 license=('GPL2')
 #groups=('eudev-base')
 url="http://www.freedesktop.org/wiki/Software/systemd"
-provides=("libsystemd=${pkgver}"
-            "systemd-tools=${pkgver}"
-            'libsystemd.so')
+provides=("systemd=${pkgver}" "libsystemd=${pkgver}" "systemd-tools=${pkgver}" 'libsystemd.so')
 depends=('glib2' 'glibc' 'libgcrypt' 'xz' 'eudev' 'lz4')
-conflicts=('systemd-tools'
-            'libsystemd'
-            'openrc-systemdcompat')
+conflicts=('systemd-tools' 'systemd' 'libsystemd' 'openrc-systemdcompat')
 replaces=('openrc-systemdcompat')
 
 source_i686=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz"

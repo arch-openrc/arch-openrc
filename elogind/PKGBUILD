@@ -7,11 +7,11 @@ pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
 license=('GPL')
-groups=('openrc-desktop')
-provides=("systemd=${pkgver%.*}")
+# groups=('openrc-desktop')
+# provides=("systemd=${pkgver%.*}")
 depends=('dbus' 'polkit' 'libudev.so')
 makedepends=('libcap' 'intltool' 'libtool' 'gperf' 'gtk-doc')
-conflicts=('systemd' 'systemd-sysvcompat')
+conflicts=('systemd-sysvcompat')
 options=('!libtool')
 install=elogind.install
 # _commit=6d224ff665195f47c942599b21e0d959bc07ca8f
@@ -20,7 +20,10 @@ source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
 	'elogind-docs.patch'
 	'elogind-lrt.patch'
 	"use-pk.patch::https://github.com/kensington/elogind/commit/1ca40c077cd9a08f96a559ba51e8dba230298c4d.patch")
-
+sha256sums=('80241494f5c794e8501ccf570ac805275ace368755780f38a18762fd06243f95'
+            'cafea7a13159dee700902e3837aab015d9521dfe122840faf2d909b5dc02229e'
+            'a9227ed4e97117ab5751de38c19813560a12f51379ccd882a89e7ef9842659ac'
+            'cef5dda99a51a42bc36d1a946d5a21a830bf0f44ed3f447542ec57c1424e0053')
 
 prepare() {
 	cd ${srcdir}/${pkgname}-${pkgver} #${_commit}
@@ -28,10 +31,11 @@ prepare() {
 	patch -Np 1 -i ${srcdir}/elogind-lrt.patch
 	patch -Np 1 -i ${srcdir}/use-pk.patch
 
-	local cmd='/bin/bash -c "[[ ! -d /run/systemd ]] && mkdir /run/systemd;/usr/lib/elogind/elogind"'
+	local cmd='/bin/bash -c "if [ ! -d /run/systemd ];then mkdir /run/systemd;fi;/usr/lib/elogind/elogind"'
 
 	sed -e "s|/bin/false|${cmd}|" \
 		-i src/login/org.freedesktop.login1.service
+
 	autoreconf -vim
 }
 
@@ -50,7 +54,3 @@ package() {
 	cd ${srcdir}/${pkgname}-${pkgver} #${_commit}
 	make DESTDIR="${pkgdir}" install
 }
-sha256sums=('80241494f5c794e8501ccf570ac805275ace368755780f38a18762fd06243f95'
-            'cafea7a13159dee700902e3837aab015d9521dfe122840faf2d909b5dc02229e'
-            'a9227ed4e97117ab5751de38c19813560a12f51379ccd882a89e7ef9842659ac'
-            'cef5dda99a51a42bc36d1a946d5a21a830bf0f44ed3f447542ec57c1424e0053')
