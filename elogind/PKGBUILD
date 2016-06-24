@@ -31,9 +31,9 @@ prepare() {
 	patch -Np 1 -i ${srcdir}/elogind-lrt.patch
 	patch -Np 1 -i ${srcdir}/use-pk.patch
 
-	local cmd='/bin/bash -c "if [ ! -d /run/systemd ];then mkdir /run/systemd;fi;/usr/lib/elogind/elogind"'
+	local cmd='/bin/bash -c "[[ -d /run/systemd ]] || mkdir /run/systemd;/usr/lib/elogind/elogind"'
 
-	sed -e "s|/bin/false|${cmd}|" \
+	sed -e "s#/bin/false#${cmd}#" \
 		-i src/login/org.freedesktop.login1.service
 
 	autoreconf -vim
