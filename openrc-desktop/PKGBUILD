@@ -3,47 +3,47 @@
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
 pkgname=('acpid-openrc'
-        'alsa-utils-openrc'
-        'avahi-openrc'
-        'cgmanager-openrc'
-        'consolekit-openrc'
-        'displaymanager-openrc'
-        'gpm-openrc'
-        'bluez-openrc'
+		'alsa-utils-openrc'
+		'avahi-openrc'
+		'cgmanager-openrc'
+		'consolekit-openrc'
+		'displaymanager-openrc'
+		'gpm-openrc'
+		'bluez-openrc'
 		'networkmanager-openrc'
-        'wpa_supplicant-openrc')
+		'wpa_supplicant-openrc')
 
-pkgver=20160608
+pkgver=20160623
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
 source=("acpid.confd::${_url}/sys-power/acpid/files/acpid-2.0.16-conf.d"
-        "acpid.initd::${_url}/sys-power/acpid/files/acpid-2.0.26-init.d"
-        "alsasound.confd::${_url}/media-sound/alsa-utils/files/alsasound.confd-r4"
-        "alsasound.initd::${_url}/media-sound/alsa-utils/files/alsasound.initd-r6"
-        "consolekit.initd::${_url}/sys-auth/consolekit/files/consolekit-1.0.0.initd"
-        "xdm.confd::${_url}/x11-base/xorg-server/files/xdm.confd-4"
-        "xdm.initd::${_url}/x11-base/xorg-server/files/xdm.initd-11"
-        "xdm-setup.initd::${_url}/x11-base/xorg-server/files/xdm-setup.initd-1"
-        "${_url}/x11-apps/xinit/files/startDM.sh"
-        "gpm.confd::${_url}/sys-libs/gpm/files/gpm.conf.d"
-        "gpm.initd::${_url}/sys-libs/gpm/files/gpm.rc6-2"
-        "rfcomm.confd::${_url}/net-wireless/bluez/files/rfcomm-conf.d"
-        "rfcomm.initd::${_url}/net-wireless/bluez/files/rfcomm-init.d-r2"
-        "bluetooth.initd::${_url}/net-wireless/bluez/files/bluetooth-init.d-r3"
-        "wpa_supplicant.confd::${_url}/net-wireless/wpa_supplicant/files/wpa_supplicant-conf.d"
-        "wpa_supplicant.initd::${_url}/net-wireless/wpa_supplicant/files/wpa_supplicant-init.d"
-        "${_url}/net-wireless/wpa_supplicant/files/wpa_cli.sh"
-        "cgproxy.initd::${_url}/app-admin/cgmanager/files/cgproxy.initd-r1"
-        "cgmanager.initd::${_url}/app-admin/cgmanager/files/cgmanager.initd-r1"
-        "NetworkManager.confd::${_url}/net-misc/networkmanager/files/conf.d.NetworkManager"
-        "NetworkManager.initd::${_url}/net-misc/networkmanager/files/init.d.NetworkManager"
-        "10-openrc-status::${_url}/net-misc/networkmanager/files/10-openrc-status-r4"
-        'avahi-daemon.initd'
-        'avahi-dnsconfd.initd'
-        'xdg-user-dirs')
+		"acpid.initd::${_url}/sys-power/acpid/files/acpid-2.0.26-init.d"
+		"alsasound.confd::${_url}/media-sound/alsa-utils/files/alsasound.confd-r4"
+		"alsasound.initd::${_url}/media-sound/alsa-utils/files/alsasound.initd-r6"
+		"consolekit.initd::${_url}/sys-auth/consolekit/files/consolekit-1.0.0.initd"
+		"xdm.confd::${_url}/x11-base/xorg-server/files/xdm.confd-4"
+		"xdm.initd::${_url}/x11-base/xorg-server/files/xdm.initd-11"
+		"xdm-setup.initd::${_url}/x11-base/xorg-server/files/xdm-setup.initd-1"
+		"${_url}/x11-apps/xinit/files/startDM.sh"
+		"gpm.confd::${_url}/sys-libs/gpm/files/gpm.conf.d"
+		"gpm.initd::${_url}/sys-libs/gpm/files/gpm.rc6-2"
+		"rfcomm.confd::${_url}/net-wireless/bluez/files/rfcomm-conf.d"
+		"rfcomm.initd::${_url}/net-wireless/bluez/files/rfcomm-init.d-r2"
+		"bluetooth.initd::${_url}/net-wireless/bluez/files/bluetooth-init.d-r3"
+		"wpa_supplicant.confd::${_url}/net-wireless/wpa_supplicant/files/wpa_supplicant-conf.d"
+		"wpa_supplicant.initd::${_url}/net-wireless/wpa_supplicant/files/wpa_supplicant-init.d"
+		"${_url}/net-wireless/wpa_supplicant/files/wpa_cli.sh"
+		"cgproxy.initd::${_url}/app-admin/cgmanager/files/cgproxy.initd-r1"
+		"cgmanager.initd::${_url}/app-admin/cgmanager/files/cgmanager.initd-r1"
+		"NetworkManager.confd::${_url}/net-misc/networkmanager/files/conf.d.NetworkManager"
+		"NetworkManager.initd::${_url}/net-misc/networkmanager/files/init.d.NetworkManager"
+		"10-openrc-status::${_url}/net-misc/networkmanager/files/10-openrc-status-r4"
+		'avahi-daemon.initd'
+		'avahi-dnsconfd.initd'
+		'xdg-user-dirs')
 sha256sums=('3755d4eb8bb64a1304e5defedb949305ac550565da36fe4f94d5f31beee821ba'
             '9b8785324a5e259f10ec5aff20ef3d977621a9c1dad49751dbc7b83243cac67f'
             'd1c55400b701a72dcb8bb85e016b5013fa3eb6a2766ffc20dae278d0ee4c1a43'
@@ -78,10 +78,10 @@ _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
-            -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
-            -e 's|/var/run|/run|g' \
-            -e 's|/usr/sbin|/usr/bin|g' \
-            -i ${pkgdir}/etc/init.d/$1
+		-e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
+		-e 's|/var/run|/run|g' \
+		-e 's|/usr/sbin|/usr/bin|g' \
+		-i ${pkgdir}/etc/init.d/$1
 }
 
 _inst_confd(){
@@ -198,9 +198,9 @@ package_wpa_supplicant-openrc() {
 	install -Dm755 "${srcdir}/wpa_cli.sh" "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
 
 	if [[ -f /etc/os-release ]];then
-            . /etc/os-release
-            sed -e "s|gentoo-release|${ID}-release|" -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
+		. /etc/os-release
+		sed -e "s|gentoo-release|${ID}-release|" -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
 	else
-            sed -e 's|gentoo-release|arch-release|' -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
+		sed -e 's|gentoo-release|arch-release|' -i "${pkgdir}/etc/wpa_supplicant/wpa_cli.sh"
 	fi
 }
