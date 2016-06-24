@@ -8,7 +8,7 @@ _repo=http://mirror.netcologne.de/archlinux/core/os
 
 pkgname=eudev-systemdcompat
 pkgver=230
-pkgrel=3
+pkgrel=4
 pkgdesc="systemd client libraries without udev; systemd compatibility package"
 arch=('i686' 'x86_64')
 license=('GPL2')

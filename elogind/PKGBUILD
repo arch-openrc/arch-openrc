@@ -2,7 +2,7 @@
 
 pkgname=elogind
 pkgver=219.12
-pkgrel=2
+pkgrel=3
 pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
