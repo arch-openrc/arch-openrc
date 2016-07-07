@@ -1,7 +1,7 @@
 # Maintainer: Chris Cromer <chris@cromer.cl>
 
 pkgname=docker-openrc-git
-pkgver=1.12.0.dev.25452.9ba5e0f
+pkgver=1.12.0.dev.25566.656c66d
 pkgrel=1
 pkgdesc='Pack, ship and run any application as a lightweight container.'
 arch=('i686' 'x86_64')
