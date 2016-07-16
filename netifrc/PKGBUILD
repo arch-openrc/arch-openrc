@@ -3,14 +3,15 @@
 
 _url="https://github.com"
 
-_net_url="${_url}/gentoo/netifrc/archive"
+#_net_url="${_url}/gentoo/netifrc/archive"
+_net_url='http://dev.gentoo.org/~robbat2/distfiles'
 _func_url="${_url}/gentoo/gentoo-functions/archive"
 
 _func_ver=0.10
 
 pkgname=netifrc
-pkgver=0.3.1
-pkgrel=8
+pkgver=0.4.0
+pkgrel=1
 pkgdesc="Gentoo Network Interface Management Scripts"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -18,18 +19,18 @@ license=('BSD2')
 depends=('udev-openrc')
 install=${pkgname}.install
 backup=('etc/conf.d/net')
-source=("${pkgname}-${pkgver}.tar.gz::${_net_url}/${pkgver}.tar.gz"
-	"gentoo-functions-${_func_ver}.tar.gz::${_func_url}/${_func_ver}.tar.gz"
-	'LICENSE')
-sha256sums=('8ae41223cdc735eee8303e93959b31b6aeae6f1a08661ef5baa6373dd86419c7'
-            '709c8b22f404001a512e47a7a4d3192070b3e150fb9d0f943de09736d665b0db'
-            '28875cc6cb52e93657b96cf1bf0cc3b91891cdcbbc3196007c8cd93c6e22078f')
+# source=("${pkgname}-${pkgver}.tar.gz::${_net_url}/${pkgver}.tar.gz"
+# 	"gentoo-functions-${_func_ver}.tar.gz::${_func_url}/${_func_ver}.tar.gz")
+source=("${_net_url}/${pkgname}-${pkgver}.tar.bz2"
+	"gentoo-functions-${_func_ver}.tar.gz::${_func_url}/${_func_ver}.tar.gz")
+sha256sums=('cc5c10d567530f64ca8c4fb8dcfc8218d102144f83393e1db769a5a5374c00df'
+            '709c8b22f404001a512e47a7a4d3192070b3e150fb9d0f943de09736d665b0db')
 
 if [ -f /etc/os-release ]; then
     . /etc/os-release
     _id=$ID
 else
-    _id=manjaro
+    _id=arch
 fi
 _net_args=(SYSCONFDIR=/etc)
 _net_args+=(PREFIX=/usr)
@@ -53,16 +54,14 @@ package() {
         make DESTDIR="${pkgdir}" "${_net_args[@]}" install
         install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
 
-        install -d "${pkgdir}/etc/runlevels//boot"
-        sed -e 's|#!/usr/bin/runscript|#!/usr/bin/openrc-run|' \
-            -i "${pkgdir}/etc/init.d/net.lo"
+        install -d "${pkgdir}/etc/runlevels/boot"
         ln -sf "/etc/init.d/net.lo" "${pkgdir}/etc/runlevels/boot/net.lo"
 
         cd ${srcdir}/gentoo-functions-${_func_ver}
         make DESTDIR="${pkgdir}" "${_func_args[@]}" install
 
         sed -e "s|/lib/gentoo/functions.sh|/usr/lib/$_id/functions.sh|g" \
-            -i "${pkgdir}/usr/lib/${pkgname}/sh/functions.sh"
+		-i "${pkgdir}/usr/lib/${pkgname}/sh/functions.sh"
 
-        install -Dm644 ${srcdir}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
+        install -Dm644 ${srcdir}/${pkgname}-${pkgver}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
 }
