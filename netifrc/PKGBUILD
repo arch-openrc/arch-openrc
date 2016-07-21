@@ -3,15 +3,14 @@
 
 _url="https://github.com"
 
-#_net_url="${_url}/gentoo/netifrc/archive"
-_net_url='http://dev.gentoo.org/~robbat2/distfiles'
+_net_url="${_url}/gentoo/netifrc/archive"
 _func_url="${_url}/gentoo/gentoo-functions/archive"
 
 _func_ver=0.10
 
 pkgname=netifrc
 pkgver=0.4.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Gentoo Network Interface Management Scripts"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -19,11 +18,9 @@ license=('BSD2')
 depends=('udev-openrc')
 install=${pkgname}.install
 backup=('etc/conf.d/net')
-# source=("${pkgname}-${pkgver}.tar.gz::${_net_url}/${pkgver}.tar.gz"
-# 	"gentoo-functions-${_func_ver}.tar.gz::${_func_url}/${_func_ver}.tar.gz")
-source=("${_net_url}/${pkgname}-${pkgver}.tar.bz2"
+source=("${pkgname}-${pkgver}.tar.gz::${_net_url}/${pkgver}.tar.gz"
 	"gentoo-functions-${_func_ver}.tar.gz::${_func_url}/${_func_ver}.tar.gz")
-sha256sums=('cc5c10d567530f64ca8c4fb8dcfc8218d102144f83393e1db769a5a5374c00df'
+sha256sums=('0d690b39fe38acd59844d760771ef5a79b69cdd17e60a349dc8b495b3e1b40c0'
             '709c8b22f404001a512e47a7a4d3192070b3e150fb9d0f943de09736d665b0db')
 
 if [ -f /etc/os-release ]; then

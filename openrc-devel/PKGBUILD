@@ -2,13 +2,14 @@
 
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
-pkgname=('git-openrc'
-        'mysql-openrc'
-        'postgresql-openrc'
-        'subversion-openrc'
-        'distcc-openrc')
+pkgname=('jenkins-openrc'
+	'git-openrc'
+	'mysql-openrc'
+	'postgresql-openrc'
+	'subversion-openrc'
+	'distcc-openrc')
        # 'php-fpm-openrc')
-pkgver=20160528
+pkgver=20160721
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -23,18 +24,23 @@ source=("git-daemon.confd::${_url}/dev-vcs/git/files/git-daemon.confd"
         "postgresql.confd::${_url}/dev-db/postgresql/files/postgresql.confd"
         "postgresql.initd::${_url}/dev-db/postgresql/files/postgresql.init-9.3"
         "distccd.confd::${_url}/sys-devel/distcc/files/3.2/conf"
-        "distccd.initd::${_url}/sys-devel/distcc/files/3.2/init")
-       # "php-fpm.initd::${_url}/dev-lang/php/files/php-fpm-r4.init")
+        "distccd.initd::${_url}/sys-devel/distcc/files/3.2/init"
+	'jenkins.initd'
+	"jenkins.logrotate")
+# 	"php-fpm.initd::${_url}/dev-lang/php/files/php-fpm-r4.init")
+
 sha256sums=('4703ba2372c661fb674a29fea7f64983f8b1b3136d971663509249655bca6e21'
             'efa30f5db5b837ed9febd09af29f3740a9d479d098d5c3f8e4dcf334e01f77a3'
             '6f8720ccbb241b08e5f9abb4be0899f55c857f6308ac82c7f12417ee2c02c1a5'
-            '7dba4a45d1c4d609576b9fe06fd5c8097941fa46da58242b9775eccdb608baa4'
+            '3588c6286af12ba15b472e6707e8c21c4bafea402d3d091105aa29be28b0f8be'
             '45f2dc1a718aed885559e71d98112e670c92bd6b4f19c5cf593eced6cd2bbd97'
             '06dbad411ed4c0db67685143822a095549e85e54a5166c8e568b219e88c9839e'
             '57c1ad0b14e8458024c713dd8cc2390023b95c27ba4cbd637333b1020f11f398'
             'ae547732e2e1fd1adac40bd30fd79b83a5ba3bb1de4a553b8d0f09500cb2d082'
             '253cfaa5b53fe4943a9db83e76ff6d6e8855665f69c2f7beca124af3ec63c88a'
-            '92a4931b0241b2ddb9d7771f14c880802bdff9c44fadb2c6671387e08cea0c7c')
+            '92a4931b0241b2ddb9d7771f14c880802bdff9c44fadb2c6671387e08cea0c7c'
+            '7ef50b386bef359224dffb964387f651aa02cd610c3f73d585fa3ae78e9becee'
+            '03dcaccbb0d398c2b600be0752ffc68d20c877b58a10026b7c59b0bd40c0e5bf')
 
 pkgver() {
 	date +%Y%m%d
@@ -77,24 +83,6 @@ package_mysql-openrc() {
 
 	sed -e 's|/sbin/mysqld|/bin/mysqld|g' -i "${pkgdir}/etc/init.d/mysql"
 }
-
-# package_php-fpm-openrc() {
-# 	pkgdesc="OpenRC php-fpm init script"
-# 	depends=('php-fpm' 'openrc')
-# 	optdepends=('apache-openrc: apache initscript'
-# 			'lighttp-openrc: lighttp initscript'
-# 			'nginx-openrc: nginx initscript')
-# 	install=php-fpm.install
-#
-# 	_inst_initd 'php-fpm'
-#
-# 	sed -e 's|/lib/${PHPSLOT}||g' \
-# 		-e 's|/etc/php/fpm-${PHPSLOT}|/etc/php|' \
-# 		-e 's|/run/php-fpm-${PHPSLOT}|/run/php-fpm|' \
-# 		-e 's|PHPSLOT=${SVCNAME#php-fpm-}||' \
-# 		-e 's|^.*${PHPSLOT}.*||' \
-# 		-i "${pkgdir}/etc/init.d/php-fpm"
-# }
 
 package_postgresql-openrc() {
 	pkgdesc="OpenRC postgresql init script"
@@ -141,3 +129,30 @@ package_distcc-openrc() {
 
 	sed -e 's|/var/run|/run|' -i ${pkgdir}/etc/conf.d/distccd
 }
+
+package_jenkins-openrc() {
+	pkgdesc="OpenRC jenkins init script"
+	depends=('jenkins' 'openrc')
+
+	_inst_initd 'jenkins'
+
+	install -Dm644 "${srcdir}/jenkins.logrotate" "${pkgdir}/etc/logrotate.d/jenkins"
+}
+
+# package_php-fpm-openrc() {
+# 	pkgdesc="OpenRC php-fpm init script"
+# 	depends=('php-fpm' 'openrc')
+# 	optdepends=('apache-openrc: apache initscript'
+# 			'lighttp-openrc: lighttp initscript'
+# 			'nginx-openrc: nginx initscript')
+# 	install=php-fpm.install
+#
+# 	_inst_initd 'php-fpm'
+#
+# 	sed -e 's|/lib/${PHPSLOT}||g' \
+# 		-e 's|/etc/php/fpm-${PHPSLOT}|/etc/php|' \
+# 		-e 's|/run/php-fpm-${PHPSLOT}|/run/php-fpm|' \
+# 		-e 's|PHPSLOT=${SVCNAME#php-fpm-}||' \
+# 		-e 's|^.*${PHPSLOT}.*||' \
+# 		-i "${pkgdir}/etc/init.d/php-fpm"
+# }
