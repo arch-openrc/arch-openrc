@@ -2,6 +2,7 @@
 
 
 JENKINS_PIDFILE=/run/jenkins.pid
+ARGS="$JAVA_ARGS $JAVA_OPTS -jar $JENKINS_WAR $JENKINS_WEBROOT $JENKINS_PORT $JENKINS_AJPPORT $JENKINS_OPTS"
 
 depend() {
     need net
@@ -26,7 +27,7 @@ start() {
     start-stop-daemon --start --quiet --background \
         --make-pidfile --pidfile $JENKINS_PIDFILE \
         --user ${JENKINS_USER} \
-        --exec "${JAVA}" -- $JAVA_ARGS $JAVA_OPTS -jar $JENKINS_WAR $JENKINS_WEBROOT $JENKINS_PORT $JENKINS_AJPPORT $JENKINS_OPTS
+        --exec "${JAVA}" -- ${ARGS}
     eend $?
 }
 
