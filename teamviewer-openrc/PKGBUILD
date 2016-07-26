@@ -27,7 +27,7 @@ _inst_confd(){
 	install -Dm755 teamviewer.conf ${pkgdir}/etc/conf.d/teamviewer
 }
 
-package_freefall-openrc() {
+package_teamviewer-openrc() {
 	pkgdesc="OpenRC scripts for teamviewer."
 	depends=('teamviewer' 'openrc')
 	backup=('etc/conf.d/teamviewer')

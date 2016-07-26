@@ -1,4 +1,4 @@
-_svc="freefall"
+_svc="teamviewer"
 _rlvl="default"
 
 post_install() {
