@@ -12,7 +12,7 @@ backup=('etc/conf.d/teamviewer')
 url="https://github.com/cromerc/arch-openrc"
 license=("GPL2")
 source=("teamviewer.init" "teamviewer.conf")
-sha256sums=('51468a7439fb1fb1ec27ce8ce0819246faf4fd209dfc08f8bb1bee78569c0b23'
+sha256sums=('dd1fa7d8d1513ce5a908dfa514cbe59ccf0d840714de14ce8297dfb49f752e3f'
             '5cd8485974ef1c62be8fbe4d92f31a03b616e1a3e46c11bcadef7bdb2c169d8a')
 
 _inst_initd(){
