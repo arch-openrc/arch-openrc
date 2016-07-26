@@ -3,7 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-command=/opt/teamviewer@TVV@/tv_bin/teamviewerd
+command=/opt/teamviewer/tv_bin/teamviewerd
 command_args=-d
 description="daemon for TeamViewer"
 pidfile=/var/run/teamviewerd.pid
@@ -17,7 +17,7 @@ passwd() {
 	fi
 
 	ebegin "Attempting to change password."
-	/opt/teamviewer@TVV@/tv_bin/teamviewerd --passwd "${PASSWD}"
+	/opt/teamviewer/tv_bin/teamviewerd --passwd "${PASSWD}"
 	retr=$?
 	case $retr in
 		0)	einfo "Password successfully set." ;;
