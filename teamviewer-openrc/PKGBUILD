@@ -1,0 +1,38 @@
+# Maintainer: Chris Cromer <chris@cromer.cl>
+
+pkgname=teamviewer-openrc
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="OpenRC scripts for teamviewer."
+arch=('any')
+provides=('teamviewer-openrc')
+pkgname=('teamviewer-openrc')
+depends=('teamviewer' 'openrc')
+backup=('etc/conf.d/teamviewer')
+url="https://github.com/cromerc/arch-openrc"
+license=("GPL2")
+source=("teamviewer.initd" "teamviewer.confd")
+sha256sums=('65dced0f1f866947143b05e6c8452e415eabe6c4293b0cac6ca78c4b4ab923c5'
+            '3ed6f497dbb8f6b8a65f369b74d04a826a1b0463b344ce5d1b2000d97f4d5471')
+
+_inst_initd(){
+	install -Dm755 teamviewer.initd ${pkgdir}/etc/init.d/teamviewer
+
+	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
+		-e 's|/var/run|/run|g' \
+		-i ${pkgdir}/etc/init.d/$1
+}
+
+_inst_confd(){
+	install -Dm755 teamviewer.confd ${pkgdir}/etc/conf.d/teamviewer
+}
+
+package_freefall-openrc() {
+	pkgdesc="OpenRC scripts for teamviewer."
+	depends=('teamviewer' 'openrc')
+	backup=('etc/conf.d/teamviewer')
+	install=teamviewer-openrc.install
+
+	_inst_confd 'teamviewer'
+	_inst_initd 'teamviewer'
+}
