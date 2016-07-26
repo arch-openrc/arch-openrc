@@ -1,7 +1,7 @@
 # Maintainer: Chris Cromer <chris@cromer.cl>
 
 pkgname=teamviewer-openrc
-pkgver=1.0.0
+pkgver=1.0
 pkgrel=1
 pkgdesc="OpenRC scripts for teamviewer."
 arch=('any')
@@ -16,7 +16,7 @@ sha256sums=('51468a7439fb1fb1ec27ce8ce0819246faf4fd209dfc08f8bb1bee78569c0b23'
             '5cd8485974ef1c62be8fbe4d92f31a03b616e1a3e46c11bcadef7bdb2c169d8a')
 
 _inst_initd(){
-	install -Dm755 teamviewer.initd ${pkgdir}/etc/init.d/teamviewer
+	install -Dm755 teamviewer.init ${pkgdir}/etc/init.d/teamviewer
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
@@ -24,7 +24,7 @@ _inst_initd(){
 }
 
 _inst_confd(){
-	install -Dm755 teamviewer.confd ${pkgdir}/etc/conf.d/teamviewer
+	install -Dm755 teamviewer.conf ${pkgdir}/etc/conf.d/teamviewer
 }
 
 package_freefall-openrc() {
