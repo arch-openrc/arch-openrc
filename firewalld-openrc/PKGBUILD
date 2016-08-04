@@ -26,6 +26,5 @@ package_firewalld-openrc() {
 	depends=('firewalld' 'openrc')
 	install=firewalld-openrc.install
 
-	_inst_confd 'firewalld'
 	_inst_initd 'firewalld'
 }
