@@ -2,7 +2,7 @@
 
 pkgname=teamviewer-openrc
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC scripts for teamviewer."
 arch=('any')
 provides=('teamviewer-openrc')
@@ -19,7 +19,9 @@ _inst_initd(){
 	install -Dm755 teamviewer.init ${pkgdir}/etc/init.d/teamviewer
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
+        -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
+		-e 's|/usr/sbin|/usr/bin|g' \
 		-i ${pkgdir}/etc/init.d/$1
 }
 
