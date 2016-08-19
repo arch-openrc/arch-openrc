@@ -7,7 +7,7 @@ _url=https://raw.githubusercontent.com/gentoo/gentoo/master
 
 pkgname=bumblebee-openrc
 pkgver=3.2.1
-pkgrel=9
+pkgrel=10
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 provides=('bumblebee')
@@ -56,6 +56,7 @@ _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
 	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
+        -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
 		-e 's|/usr/sbin|/usr/bin|g' \
 		-i ${pkgdir}/etc/init.d/$1
