@@ -55,8 +55,7 @@ sha256sums=('1018703b07e2f607a4641249d69478ce076ae5a1e9dd6cff5694d394fa7ee30e'
 _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
-        -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
+	sed -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
 		-e 's|/usr/sbin|/usr/bin|g' \
 		-i ${pkgdir}/etc/init.d/$1
