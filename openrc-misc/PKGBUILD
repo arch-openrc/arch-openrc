@@ -28,7 +28,6 @@ pkgname=('cpupower-openrc'
         'boinc-openrc'
         'at-openrc'
         'libvirt-openrc'
-        'brltty-openrc'
         'laptop-mode-tools-openrc')
 pkgver=20160528
 pkgrel=1
@@ -97,7 +96,6 @@ source=("fcron.initd::${_url}/sys-process/fcron/files/fcron.init.3"
         "virtlogd.initd::${_url}/app-emulation/libvirt/files/virtlogd.init-r1"
         "libvirt-guests.confd::${_url}/app-emulation/libvirt/files/libvirt-guests.confd"
         "libvirt-guests.initd::${_url}/app-emulation/libvirt/files/libvirt-guests.init-r2"
-        "brltty.initd::${_url}/app-accessibility/brltty/files/brltty.rc"
         "laptop_mode.initd::${_url}/app-laptop/laptop-mode-tools/files/laptop_mode.init-1.4"
         "zfs.initd"
         "thermald.initd")
@@ -159,7 +157,6 @@ sha256sums=('c067d2a58609b53e5bc6f8397683604de893bd1aeb3d33e788250662187fda6e'
             '51c030d7ba9a9dad1f927020592d7aef2dc2cd4abf38bd4ca97eee60943c7901'
             'd5f85bb8c1d2010347f23badc422e98046b97a0066254739b5829fce07837d63'
             'f78ced5ebe644522c6ce102b3f6bcf932686243a50629559f988548c570cad3a'
-            'df59d6b7b884207c09a098188b8418944581c47ed19a1fac9725f847e4281e7f'
             'e76c20f84134d03068770c7521720b2b409a44892052bf1ebf54395eb24a6f27'
             '7321272190ea9846ab7e19b034649c1cd711d4f94a6bdcaaaec2f683bb822e7d'
             '4bbb4e610d2d6bb22d83aa2980dca052a23b90fa6985c8245601b716dec986f4')
@@ -447,16 +444,6 @@ package_libvirt-openrc() {
 		-e "s/USE_FLAG_ISCSI/use iscsid/" \
 		-e "s/USE_FLAG_RBD/use ceph/" \
 		-i "${pkgdir}/etc/init.d/libvirtd"
-}
-
-package_brltty-openrc() {
-	pkgdesc="OpenRC brltty init script"
-	depends=('openrc' 'brltty')
-
-	_inst_initd 'brltty'
-
-	sed -e 's|/bin/brltty|/usr/bin/brltty|' \
-		-i "${pkgdir}/etc/init.d/brltty"
 }
 
 package_laptop-mode-tools-openrc() {
