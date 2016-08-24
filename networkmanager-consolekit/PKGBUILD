@@ -9,8 +9,8 @@
 _pppver=2.4.7
 
 pkgname=networkmanager-consolekit
-pkgver=1.2.2
-pkgrel=2
+pkgver=1.2.4
+pkgrel=1
 pkgdesc="Network Management daemon"
 arch=('i686' 'x86_64')
 license=('GPL2' 'LGPL2.1')
@@ -19,7 +19,7 @@ provides=('networkmanager')
 conflicts=('networkmanager')
 makedepends=('intltool' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc'
              "ppp=$_pppver" 'modemmanager' 'dbus-glib' 'iproute2' 'nss' 'polkit-consolekit'
-             'wpa_supplicant' 'libsoup' 'systemd' 'libgudev' 'libmm-glib' 'rp-pppoe'
+             'wpa_supplicant' 'libsoup' 'udev' 'libgudev' 'libmm-glib' 'rp-pppoe'
              'libnewt' 'libndp' 'libteam' 'vala' 'perl-yaml' 'python-gobject')
 checkdepends=('libx11' 'python-dbus')
 depends=('libnm-glib' 'iproute2' 'polkit-consolekit' 'wpa_supplicant' 'libsoup' 'libmm-glib'
@@ -36,7 +36,7 @@ source=("https://download.gnome.org/sources/NetworkManager/${pkgver:0:3}/Network
         'NetworkManager.conf'
         '01-org.freedesktop.NetworkManager.settings.modify.system.rules'
         '50-org.freedesktop.NetworkManager.rules')
-sha256sums=('41d8082e027f58bb5fa4181f93742606ab99c659794a18e2823eff22df0eecd9'
+sha256sums=('19bfb7306dd472d010443a8027d91f9fd50fe6e0c5aa4ea8083845de0fa38faa'
             '452e4f77c1de92b1e08f6f58674a6c52a2b2d65b7deb0ba436e9afa91ee15103'
             '4b815f43de58379e68653d890f529485aec4d2f83f11d050b08b31489d2267c2'
             '02d9f7d836d297d6ddf39482d86a8573b3e41735b408aa2cd6df22048ec5f6c4')
