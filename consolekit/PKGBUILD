@@ -4,7 +4,7 @@ _pkgname=ConsoleKit2
 
 pkgname=consolekit
 pkgver=1.1.0
-pkgrel=11
+pkgrel=9
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
 url="https://github.com/ConsoleKit2/ConsoleKit2"
