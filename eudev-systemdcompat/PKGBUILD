@@ -9,7 +9,7 @@ _repo=http://mirror.netcologne.de/archlinux/core/os
 pkgbasee=eudev-systemdcompat
 pkgname=('eudev-systemd' 'libeudev-systemd')
 pkgver=231
-pkgrel=5
+pkgrel=6
 arch=('i686' 'x86_64')
 license=('GPL2')
 url="http://www.freedesktop.org/wiki/Software/systemd"
@@ -33,10 +33,10 @@ package_eudev-systemd() {
 
 	install -d "$pkgdir"/usr/{bin,lib/systemd}
 	for f in usr/bin/{systemd-tmpfiles,systemd-sysusers};do
-		install -D $f "$pkgdir"/usr/bin
+		mv -v $f "$pkgdir"/usr/bin
 	done
 	for f in usr/lib/systemd/libsystemd-shared*.so*;do
-		install $f $pkgdir/usr/lib/systemd
+		mv -v $f $pkgdir/usr/lib/systemd
 	done
 }
 
@@ -49,7 +49,7 @@ package_libeudev-systemd() {
 
 	install -d $pkgdir/usr/lib/systemd/boot/efi
 	for f in usr/lib/libsystemd*.so*;do
-		install $f $pkgdir/usr/lib
+		mv -v $f $pkgdir/usr/lib
 	done
 
 	if [[ $CARCH == 'x86_64' ]];then
