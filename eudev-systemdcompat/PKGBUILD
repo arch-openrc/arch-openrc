@@ -9,7 +9,7 @@ _repo=http://mirror.netcologne.de/archlinux/core/os
 pkgbasee=eudev-systemdcompat
 pkgname=('eudev-systemd' 'libeudev-systemd')
 pkgver=231
-pkgrel=4
+pkgrel=5
 arch=('i686' 'x86_64')
 license=('GPL2')
 url="http://www.freedesktop.org/wiki/Software/systemd"
@@ -24,22 +24,6 @@ sha256sums_x86_64=('a53e9c88112c2852b11410cdcd5365ce57e66b408a4a23195070c8fe4ab5
                    '5efc276863a80fe9fea8bbe7f3e2a33792f9ec6be5e5db21c55c028e889ac18d'
                    'e0c6a40c74dc3a597dda977cb44bdf21759b8869e152d898d35664b8d3675fd3')
 
-
-prepare() {
-	#clean libsystemd
-	rm usr/lib/libudev*.so*
-
-	# clean systemd
-	rm -r {etc,var,usr/{include,share}}
-	rm usr/lib/libnss*
-	for d in usr/lib/*;do
-            [[ -d $d ]] && rm -r $d
-	done
-	for f in usr/bin/*;do
-		[[ $f != 'usr/bin/systemd-tmpfiles' && $f != 'usr/bin/systemd-sysusers' ]] && rm $f
-	done
-}
-
 package_eudev-systemd() {
 	pkgdesc="systemd-sysuser and systemd-tmpfiles binary; systemd compatibility package"
 	provides=("systemd=${pkgver}" "systemd-tools=${pkgver}")
@@ -47,8 +31,13 @@ package_eudev-systemd() {
 	conflicts=('systemd-tools' 'systemd' 'eudev-systemdcompat')
 	replaces=('eudev-systemdcompat')
 
-	install -d $pkgdir/usr/bin
-	mv -v $srcdir/usr/bin/* "$pkgdir/usr/bin"
+	install -d "$pkgdir"/usr/{bin,lib/systemd}
+	for f in usr/bin/{systemd-tmpfiles,systemd-sysusers};do
+		install -D $f "$pkgdir"/usr/bin
+	done
+	for f in usr/lib/systemd/libsystemd-shared*.so*;do
+		install $f $pkgdir/usr/lib/systemd
+	done
 }
 
 package_libeudev-systemd() {
@@ -58,9 +47,12 @@ package_libeudev-systemd() {
 	conflicts=('libsystemd' 'eudev-systemdcompat')
 	replaces=('eudev-systemdcompat')
 
-	install -d $pkgdir/usr/lib
-	mv -v $srcdir/usr/lib/* "$pkgdir/usr/lib"
+	install -d $pkgdir/usr/lib/systemd/boot/efi
+	for f in usr/lib/libsystemd*.so*;do
+		install $f $pkgdir/usr/lib
+	done
+
 	if [[ $CARCH == 'x86_64' ]];then
-            install -D $srcdir/gummibootx64.efi $pkgdir/usr/lib/systemd/boot/efi/systemd-bootx64.efi
+		install $srcdir/gummibootx64.efi $pkgdir/usr/lib/systemd/boot/efi/systemd-bootx64.efi
 	fi
 }
