@@ -9,7 +9,7 @@ _pkgname=dbus
 
 pkgname=dbus-openrc
 pkgver=1.10.10
-pkgrel=4
+pkgrel=5
 pkgdesc="Freedesktop.org message bus system"
 url="https://wiki.freedesktop.org/www/Software/dbus/"
 arch=("i686" "x86_64")
@@ -18,7 +18,6 @@ provides=("libdbus" "dbus")
 depends=("libeudev" "expat")
 makedepends=("eudev" "xmlto" "docbook-xsl" "python" "yelp-tools" "doxygen" 'libx11')
 conflicts=("libdbus" "dbus")
-replaces=("libdbus")
 source=("https://dbus.freedesktop.org/releases/$_pkgname/$_pkgname-$pkgver.tar.gz"
         "dbus.initd::${_url}/sys-apps/dbus/files/dbus.initd-r1")
 sha256sums=('9d8f1d069ab4d1a0255d7b400ea3bcef4430c42e729b1012abb2890e3f739a43'
