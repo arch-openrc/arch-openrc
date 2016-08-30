@@ -1,6 +1,6 @@
-# $Id$
-# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
-# Maintainer: Jan de Groot <jgc@archlinxu.org>
+# Maintainer: artoo <artoo@manjaro.org>
+# Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+# Contributor: Jan de Groot <jgc@archlinxu.org>
 # Contributor: Wael Nasreddine <gandalf@siemens-mobiles.org>
 # Contributor: Tor Krill <tor@krill.nu>
 # Contributor: Will Rea <sillywilly@gmail.com>
@@ -9,7 +9,7 @@
 _pppver=2.4.7
 
 pkgname=networkmanager-consolekit
-pkgver=1.2.4
+pkgver=1.4.0
 pkgrel=1
 pkgdesc="Network Management daemon"
 arch=('i686' 'x86_64')
@@ -18,25 +18,24 @@ url="http://www.gnome.org/projects/NetworkManager/"
 provides=('networkmanager')
 conflicts=('networkmanager')
 makedepends=('intltool' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc'
-             "ppp=$_pppver" 'modemmanager' 'dbus-glib' 'iproute2' 'nss' 'polkit-consolekit'
-             'wpa_supplicant' 'libsoup' 'udev' 'libgudev' 'libmm-glib' 'rp-pppoe'
-             'libnewt' 'libndp' 'libteam' 'vala' 'perl-yaml' 'python-gobject')
-checkdepends=('libx11' 'python-dbus')
-depends=('libnm-glib' 'iproute2' 'polkit-consolekit' 'wpa_supplicant' 'libsoup' 'libmm-glib'
-           'libnewt' 'libndp' 'libteam' 'consolekit')
+			"ppp=$_pppver" 'modemmanager' 'dbus-glib' 'iproute2' 'nss'
+			 'polkit-consolekit' 'wpa_supplicant' 'libsoup' 'eudev-systemd' 'libgudev' 'libmm-glib'
+			 'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala' 'perl-yaml' 'python-gobject')
+checkdepends=('libx11' 'python-dbus' 'eudev-systemd')
+depends=('libnm-glib' 'iproute2' 'polkit-consolekit' 'wpa_supplicant' 'libsoup' 'libmm-glib' 'libnewt' 'libndp' 'libteam' 'consolekit' 'eudev')
 optdepends=('dnsmasq: connection sharing'
-	'bluez: Bluetooth support'
-	'openresolv: resolvconf support'
-	'ppp: dialup connection support'
-	'rp-pppoe: ADSL support'
-	'dhclient: External DHCP client'
-	'modemmanager: cellular network support')
+			'bluez: Bluetooth support'
+			'openresolv: resolvconf support'
+			'ppp: dialup connection support'
+			'rp-pppoe: ADSL support'
+			'dhclient: External DHCP client'
+			'modemmanager: cellular network support')
 backup=('etc/NetworkManager/NetworkManager.conf')
 source=("https://download.gnome.org/sources/NetworkManager/${pkgver:0:3}/NetworkManager-$pkgver.tar.xz"
         'NetworkManager.conf'
         '01-org.freedesktop.NetworkManager.settings.modify.system.rules'
         '50-org.freedesktop.NetworkManager.rules')
-sha256sums=('19bfb7306dd472d010443a8027d91f9fd50fe6e0c5aa4ea8083845de0fa38faa'
+sha256sums=('c4d5e075998a291074501602a5068a7e54d9e0f2658aba079d58145d65be531d'
             '452e4f77c1de92b1e08f6f58674a6c52a2b2d65b7deb0ba436e9afa91ee15103'
             '4b815f43de58379e68653d890f529485aec4d2f83f11d050b08b31489d2267c2'
             '02d9f7d836d297d6ddf39482d86a8573b3e41735b408aa2cd6df22048ec5f6c4')
@@ -96,8 +95,8 @@ package() {
 	make DESTDIR="$pkgdir" -C vapi uninstall
 
 	# Some stuff to move is left over
-	mv "$pkgdir/usr/include" ..
-	mv "$pkgdir/usr/lib/pkgconfig" ..
+	rm -r "$pkgdir/usr/include"
+	rm -r "$pkgdir/usr/lib/pkgconfig"
 
 	install -m644 ../NetworkManager.conf "$pkgdir/etc/NetworkManager/"
 	install -m755 -d "$pkgdir/etc/NetworkManager/dnsmasq.d"
