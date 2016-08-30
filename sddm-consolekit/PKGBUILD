@@ -4,14 +4,14 @@
 _pkgname=sddm
 
 pkgname=sddm-consolekit
-pkgver=0.13.0
-pkgrel=2
+pkgver=0.14.0
+pkgrel=1
 pkgdesc='QML based X11 display manager'
 arch=('i686' 'x86_64')
 url='http://github.com/sddm/sddm'
 license=('GPL')
-depends=('qt5-declarative')
-makedepends=('cmake' 'python-docutils' 'qt5-tools')
+depends=('qt5-declarative' 'dbus-openrc' 'eudev-systemd' 'consolekit')
+makedepends=('extra-cmake-modules' 'python-docutils' 'qt5-tools')
 install="${_pkgname}.install"
 backup=('usr/share/sddm/scripts/Xsetup'
 	'etc/sddm.conf')
@@ -21,8 +21,8 @@ source=("${_pkgname}-${pkgver}.tar.gz::https://github.com/${_pkgname}/${_pkgname
         "${_pkgname}-consolekit.patch"
         "${_pkgname}-pam_kwallet.patch"
         'sddm.conf')
-sha256sums=('26dee7e59859b5cbd5ec26b0050ef31c32b43be304e4042119819ab9779c26bd'
-            '4cbe522c84956d13d751856b8c66f2beca210c9ec65712e261bfe2bf94fb0da5'
+sha256sums=('a551551a6ba324e9c384c89bc63e871de65fea3740eadbea2d63df86045f8205'
+            'a998f8a2594cd1e81f402605f01075477a017269b0ac93a22f5faa7d355d18e0'
             'dc46a0132cf0ea722a69cff45ed1ded3c93ade008e22fc90d1b797ca85ed535a'
             'ffcb9885cb41da54a97f62c2538975fbb9dc80c2b58326d479a87ea0f56f02cf')
 
