@@ -2,16 +2,14 @@
 
 _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
-pkgbase=openrc-accessible
 pkgname=('brltty-openrc'
         'espeakup-openrc')
-pkgver=20160823
+pkgver=20160829
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL2')
-groups=('openrc-accessible')
 conflicts=('systemd-sysvcompat')
 source=("brltty.initd::${_url}/app-accessibility/brltty/files/brltty.rc"
         "espeakup.confd::${_url}/app-accessibility/espeakup/files/espeakup.confd"
