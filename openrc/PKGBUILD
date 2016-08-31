@@ -4,7 +4,7 @@
 _url="https://github.com/OpenRC/openrc/archive"
 
 pkgname=openrc
-pkgver=0.21.4
+pkgver=0.21.7
 pkgrel=1
 pkgdesc="Gentoo's universal init system"
 arch=('i686' 'x86_64')
@@ -28,13 +28,11 @@ backup=('etc/rc.conf'
 groups=('base' 'base-openrc')
 source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz"
 	"${pkgname}.logrotate"
-	'use-optional-modules-load-d.patch'
 	'mount-ro.patch'
 	'openrc-install.hook'
 	'openrc-remove.hook')
-sha256sums=('a9d68762d996caefb64995e6679d58e3df6421d297117a5ae0cd5267df727f29'
+sha256sums=('522409fb65f4c751e7d01faec54a9446501837abc9e6ee1bea868cb88e4bd603'
             '0b44210db9770588bd491cd6c0ac9412d99124c6be4c9d3f7d31ec8746072f5c'
-            'b8b750c863199e9c039e874c3c79c72d468f35442750156dfbdf503a27977cf3'
             '9f0f81136b4e8646b69eda395994e21f53475c5542248b019fa5004f60c7ec78'
             '1d4d31a7275660e7b23778e6fceb0714cab8ed2793b04aa004b01d8e7bcd43bd'
             'cbb4d00262a55a508114cb31e3903350be2cff748a4fb5e120dc745292e3987e')
@@ -61,7 +59,6 @@ prepare(){
 	cd "${srcdir}/${pkgname}-${pkgver}"
 	sed -e "s|/sbin|/usr/bin|g" -i support/sysvinit/inittab
 	sed -i 's:0444:0644:' mk/sys.mk
-	patch -Np1 -i ${srcdir}/use-optional-modules-load-d.patch
 	patch -Np1 -i ${srcdir}/mount-ro.patch
 }
 
