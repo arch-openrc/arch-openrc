@@ -9,7 +9,7 @@
 _pppver=2.4.7
 
 pkgname=networkmanager-consolekit
-pkgver=1.4.1dev+9+ga3fd485
+pkgver=1.4.1dev+15+g0d23ffd
 pkgrel=1
 pkgdesc="Network Management daemon"
 arch=('i686' 'x86_64')
@@ -32,7 +32,7 @@ optdepends=('dnsmasq: connection sharing'
 			'modemmanager: cellular network support')
 backup=('etc/NetworkManager/NetworkManager.conf')
 
-_commit=a3fd48545cf186a7e33aa9df8c3dd2bc016b350d
+_commit=0d23ffdb6bb2cd3b1e68b8744a737050d443b234
 # "https://download.gnome.org/sources/NetworkManager/${pkgver:0:3}/NetworkManager-$pkgver.tar.xz"
 source=("git://anongit.freedesktop.org/NetworkManager/NetworkManager#commit=$_commit"
         'NetworkManager.conf'
