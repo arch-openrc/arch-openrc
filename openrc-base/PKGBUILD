@@ -9,9 +9,9 @@ pkgname=('cronie-openrc'
         'glibc-openrc'
         'inetutils-openrc'
         'lvm2-openrc'
-        'mdadm-openrc')
-#         'dbus-openrc')
-pkgver=20160608
+        'mdadm-openrc'
+        'dbus-openrc')
+pkgver=20160907
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -33,7 +33,7 @@ source=("cronie.initd::${_url}/sys-process/cronie/files/cronie-1.3-initd"
 		"mdraid.confd::${_url}/sys-fs/mdadm/files/mdraid.confd"
 		"mdraid.initd::${_url}/sys-fs/mdadm/files/mdraid.rc"
 		"dhcpcd.initd::${_url}/net-misc/dhcpcd/files/dhcpcd.initd"
-# 		"dbus.initd::${_url}/sys-apps/dbus/files/dbus.initd-r1"
+		"dbus.initd::${_url}/sys-apps/dbus/files/dbus.initd-r1"
 		'ftpd.confd'
 		'ftpd.initd')
 sha256sums=('a0dc91cb6aecafc4e5999829ae90a87217e5aa946aa4e3d3a3d3549a71a8ecf1'
@@ -52,6 +52,7 @@ sha256sums=('a0dc91cb6aecafc4e5999829ae90a87217e5aa946aa4e3d3a3d3549a71a8ecf1'
             'b489ced10391d4295bb8ca29e128b0d4217c290f1b4e37b05f5a9275048d289d'
             'c072e70fd46096e3af31f96219a3abc3b7d8d981f61ac90a8dbf554928a3b7e8'
             '6bb9b8b0075e45e63e898ed043f3c5951dc3e95c1fa62d22cc6e0616c792ecd1'
+            '4491c09942d72fd464bc1da286c4f5a237ec8debfbaba83c6fbf4a46d46fe51e'
             '59fe1aa68c43f4958afc397a0d6b35da263a20fcdb457005123a0d64cb1f7477'
             '7f46e5e9ac9f204fb1564560c506a5bb4cede8823b89e3f1844e4f8be258e9ef')
 
@@ -85,14 +86,14 @@ package_cronie-openrc() {
 	sed -e 's|/usr/sbin|/usr/bin|g' -i ${pkgdir}/etc/init.d/cronie
 }
 
-# package_dbus-openrc() {
-#     pkgdesc="OpenRC dbus init script"
-#     depends=('openrc' 'dbus')
-#
-#     _inst_initd 'dbus'
-#
-#     sed -e 's|dbus.pid|dbus/pid|g' -i "${pkgdir}/etc/init.d/dbus"
-# }
+package_dbus-openrc() {
+    pkgdesc="OpenRC dbus init script"
+    depends=('openrc' 'dbus-x11')
+
+    _inst_initd 'dbus'
+
+    sed -e 's|dbus.pid|dbus/pid|g' -i "${pkgdir}/etc/init.d/dbus"
+}
 
 package_dhcpcd-openrc() {
 	pkgdesc="OpenRC dhcpcd init script"
