@@ -12,7 +12,7 @@ pkgname=('cronie-openrc'
         'mdadm-openrc'
         'dbus-openrc')
 pkgver=20160908
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
