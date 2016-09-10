@@ -11,8 +11,8 @@ pkgname=('cronie-openrc'
         'lvm2-openrc'
         'mdadm-openrc'
         'dbus-openrc')
-pkgver=20160908
-pkgrel=2
+pkgver=20160910
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -88,7 +88,7 @@ package_cronie-openrc() {
 
 package_dbus-openrc() {
     pkgdesc="OpenRC dbus init script"
-    depends=('openrc' 'dbus-x11')
+    depends=('openrc' 'dbus-x11-nosystemd')
 
     _inst_initd 'dbus'
 
