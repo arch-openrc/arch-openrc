@@ -42,7 +42,7 @@ pkgname=('autofs-openrc'
         'vnstat-openrc'
         'snort-openrc'
         'unbound-openrc')
-pkgver=20160528
+pkgver=20160915
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -146,7 +146,7 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             '30572eeec9013fbfb6170f2b0bd1016582d2664268e4019fa8e2edd41e52919d'
             'bf8539b70561d9eb495f55141a5295a8c2e8246af4d1990af94e98be952dcdf9'
             '0be7c9c04ce508cbefb3e913951d83c5ed7f0e01fe5aebcf3a5071f30ef3dbc2'
-            '33e47ee7267c4e10c8ef481c738f952377980613599667ee06148975f8b9fb73'
+            'c0f2945eedf7bc559766d3ce872ec36cdb77c3dfd3cb4b68152874bd90ca3f9e'
             'c652a4fe8a43dc68a818345db2b3acc560663b5b6c969324d4f23afb0fb96a94'
             '513e88865d1d97869442d58e4e5d021053aa7df3dccb2a18fcc883895d5d3e4a'
             'e8842fca856eae598fb8fe15ed8d3cef13e61851217be66b8cc4087af8cee8ad'
@@ -193,8 +193,8 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             'd51ac8ad1332d210c0d80aaa5996414c9027b85453f6ff697aad7dbafb243ae3'
             '330149a83684ddabe413d134d4c8efad4c88b18c2ab67165014deff5f7fffad2'
             '89f69bcd627868830c421bc6270f08a1c3edf1a1e5fbdedf33c7a7d530bdfccf'
-            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
-            '56dffdfa0d347ef667cb08a26ce68b1d445f71031ae1df3309ff3219f10307a9'
+            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
+            '78bb5035f326d5aab112b9a367b3ebe742786f9a347584154c4debedf0577ce1'
             '41d780f291847e19f632428bbf27c3f289414afd237546d2974da1b75384c25c'
             'e776f92cdbccd1c662c754dbee98e4165ded4a94ed915cc8d3b4fa40e289de6e'
             'e3c43e96291e7479497670465df7f6b85ce4fbaec999694bb23eacde9002713e'
