@@ -4,7 +4,7 @@ _url="https://raw.githubusercontent.com/gentoo/gentoo/master"
 
 pkgname=('brltty-openrc'
         'espeakup-openrc')
-pkgver=20160829
+pkgver=20160915
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
