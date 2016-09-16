@@ -1,6 +1,6 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
-_url="https://raw.githubusercontent.com/gentoo/gentoo/master"
+_url="https://gitweb.gentoo.org/repo/gentoo.git/plain"
 
 pkgname=('cpupower-openrc'
         'connman-openrc'
@@ -29,7 +29,7 @@ pkgname=('cpupower-openrc'
         'libvirt-openrc'
         'laptop-mode-tools-openrc')
 pkgver=20160915
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -116,10 +116,10 @@ sha256sums=('c067d2a58609b53e5bc6f8397683604de893bd1aeb3d33e788250662187fda6e'
             'b273a293d405be78a28bd580ab93830598c54c95e9258dbd00b51370a9366e5c'
             'd8f9a0e12307a3fd788c9ba859cf9169b45686fd475d588a5b266e05f2ab8f3a'
             'c552aee739b30b74200877183ddadeab7c525b0496cac68a576207984cb9877b'
-            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
+            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
             'c7dc517cdb5ee10e2a07ccea15ec47ba0b7aff8ac1469204c8d7faf71bcae2c5'
             '97282007801cb9c0e3b431e2930dec3bb8ce8869f63f7e02d903846e96734684'
-            '56dffdfa0d347ef667cb08a26ce68b1d445f71031ae1df3309ff3219f10307a9'
+            '78bb5035f326d5aab112b9a367b3ebe742786f9a347584154c4debedf0577ce1'
             'aebe701f1479a8dfe6b4b21b3ad4641f64fdc3c4ef5deafeb9adfea10d1649e9'
             '0f516f1f35afec9a7aeff1fe311d529b6907c3accaa476f982e0f93f7c932d61'
             '811da0e9b25d33af3e7f5f54765840e834fb55eb96d3654083991233ca294e81'

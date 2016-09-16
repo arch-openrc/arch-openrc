@@ -1,13 +1,13 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
-_url="https://raw.githubusercontent.com/gentoo/gentoo/master"
+_url="https://gitweb.gentoo.org/repo/gentoo.git/plain"
 
 pkgname=('nvidia-utils-openrc'
         'catalyst-utils-openrc'
         'virtualgl-openrc')
         #'bumblebee-openrc')
 pkgver=20160915
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
 license=('GPL')

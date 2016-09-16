@@ -3,11 +3,11 @@
 # Maintainer: Philip Mueller <philm@manjaro.org>
 
 _pkgname=bumblebee
-_url=https://raw.githubusercontent.com/gentoo/gentoo/master
+_url=https://gitweb.gentoo.org/repo/gentoo.git/plain
 
 pkgname=bumblebee-openrc
 pkgver=3.2.1
-pkgrel=10
+pkgrel=11
 pkgdesc="NVIDIA Optimus support for Linux through Primus/VirtualGL"
 arch=('i686' 'x86_64')
 provides=('bumblebee')

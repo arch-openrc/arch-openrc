@@ -1,6 +1,6 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
-_url="https://raw.githubusercontent.com/gentoo/gentoo/master"
+_url="https://gitweb.gentoo.org/repo/gentoo.git/plain"
 
 pkgname=('acpid-openrc'
 		'alsa-utils-openrc'
@@ -14,7 +14,7 @@ pkgname=('acpid-openrc'
 		'wpa_supplicant-openrc')
 
 pkgver=20160915
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
