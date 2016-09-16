@@ -2,7 +2,7 @@
 # Contributor: williamh <williamh@gentoo.org>
 
 pkgname=cronjobs
-pkgver=20160402
+pkgver=20160913
 pkgrel=1
 pkgdesc="System cron jobs"
 arch=('any')
