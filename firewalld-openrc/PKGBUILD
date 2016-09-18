@@ -2,10 +2,11 @@
 
 pkgname=firewalld-openrc
 pkgver=1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="OpenRC scripts for firewalld."
 arch=('any')
 provides=('firewalld-openrc')
+conflicts=('iptables-openrc')
 pkgname=('firewalld-openrc')
 depends=('firewalld' 'openrc')
 url="https://github.com/cromerc/arch-openrc"
