@@ -42,8 +42,8 @@ pkgname=('autofs-openrc'
         'vnstat-openrc'
         'snort-openrc'
         'unbound-openrc')
-pkgver=20160916
-pkgrel=2
+pkgver=20160918
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"

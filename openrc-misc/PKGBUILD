@@ -28,8 +28,8 @@ pkgname=('cpupower-openrc'
         'at-openrc'
         'libvirt-openrc'
         'laptop-mode-tools-openrc')
-pkgver=20160915
-pkgrel=2
+pkgver=20160918
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"

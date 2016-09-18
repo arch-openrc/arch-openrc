@@ -13,8 +13,8 @@ pkgname=('acpid-openrc'
 		'networkmanager-openrc'
 		'wpa_supplicant-openrc')
 
-pkgver=20160915
-pkgrel=2
+pkgver=20160918
+pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
