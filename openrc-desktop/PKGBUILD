@@ -13,7 +13,7 @@ pkgname=('acpid-openrc'
 		'networkmanager-openrc'
 		'wpa_supplicant-openrc')
 
-pkgver=20160918
+pkgver=20161008
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -147,7 +147,7 @@ package_displaymanager-openrc() {
 		-e 's|{ROOTPATH}|{PATH}|g' \
 		-i "${pkgdir}/etc/init.d/xdm"
 
-	install -D ${srcdir}/xdg-user-dirs "$pkgdir/etc/X11/xinit/xinitrc.d/xdg-user-dirs"
+	#install -D ${srcdir}/xdg-user-dirs "$pkgdir/etc/X11/xinit/xinitrc.d/xdg-user-dirs"
 }
 
 package_gpm-openrc() {
