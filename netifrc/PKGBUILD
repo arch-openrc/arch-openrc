@@ -9,8 +9,8 @@ _func_url="${_url}/gentoo/gentoo-functions/archive"
 _func_ver=0.10
 
 pkgname=netifrc
-pkgver=0.4.0
-pkgrel=2
+pkgver=0.5.0
+pkgrel=1
 pkgdesc="Gentoo Network Interface Management Scripts"
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/base/openrc/"
@@ -22,7 +22,7 @@ install=${pkgname}.install
 backup=('etc/conf.d/net')
 source=("${pkgname}-${pkgver}.tar.gz::${_net_url}/${pkgver}.tar.gz"
 	"gentoo-functions-${_func_ver}.tar.gz::${_func_url}/${_func_ver}.tar.gz")
-sha256sums=('0d690b39fe38acd59844d760771ef5a79b69cdd17e60a349dc8b495b3e1b40c0'
+sha256sums=('75355d0954b64f63ae5927c1c100bc42795a527821f6bf76c2f477669c3f9b99'
             '709c8b22f404001a512e47a7a4d3192070b3e150fb9d0f943de09736d665b0db')
 
 if [ -f /etc/os-release ]; then
