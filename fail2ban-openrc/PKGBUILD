@@ -1,0 +1,20 @@
+# Maintainer: DonVla <donvla@users.sourceforge.net>
+
+pkgname=fail2ban-openrc
+pkgver=1.0
+pkgrel=1
+pkgdesc="Open rc scripts for fail2ban (drforbin6@gmail.com)"
+#arch=('i686' 'x86_64')
+arch=('any')
+url=""
+license=('GPL')
+depends=('openrc')
+
+package() {
+   mkdir -p ${pkgdir}/etc/init.d
+   mkdir -p ${pkgdir}/etc/conf.d
+   cp ../fail2ban.conf ${pkgdir}/etc/conf.d/fail2ban
+   cp ../fail2ban.init ${pkgdir}/etc/init.d/fail2ban
+}
+
+
