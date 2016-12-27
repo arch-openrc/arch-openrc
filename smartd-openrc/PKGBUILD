@@ -1,9 +1,9 @@
-# Maintainer: DonVla <donvla@users.sourceforge.net>
+# Maintainer: DrForbin <drforbin6@gmail.com>
 
 pkgname=smartd-openrc
 pkgver=1.0
 pkgrel=1
-pkgdesc="Open rc scripts for smartd (drforbin6@gmailcom)"
+pkgdesc="OpenRC scripts for smartd."
 #arch=('i686' 'x86_64')
 arch=('any')
 url=""

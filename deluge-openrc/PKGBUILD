@@ -1,9 +1,9 @@
-# Maintainer: DonVla <donvla@users.sourceforge.net>
+# Maintainer: DrForbin <drforbin6@gmail.com>
 
 pkgname=deluge-openrc
 pkgver=1.0
 pkgrel=1
-pkgdesc="Open rc scripts for deluge (drforbin6@gmail.com)"
+pkgdesc="OpenRC scripts for deluge."
 #arch=('i686' 'x86_64')
 arch=('any')
 url=""
