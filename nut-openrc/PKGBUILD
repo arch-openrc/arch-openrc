@@ -4,11 +4,16 @@ pkgname=nut-openrc
 pkgver=1.0
 pkgrel=1
 pkgdesc="OpenRC scripts for network ups tools."
-#arch=('i686' 'x86_64')
 arch=('any')
 url=""
 license=('GPL')
 depends=('openrc')
+source=('upsd.init'
+		'upsmon.init'
+		'upsdrv.init')
+md5sums=('278186c6762aa3c6b80f4eaa3f9b59df'
+         '38639850cb760279ee02928648bafa23'
+         '281eb407ac7c4d7c91aa2abba732f435')
 
 package() {
    mkdir -p ${pkgdir}/etc/init.d

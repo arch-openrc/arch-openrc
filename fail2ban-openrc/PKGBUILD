@@ -4,11 +4,14 @@ pkgname=fail2ban-openrc
 pkgver=1.0
 pkgrel=1
 pkgdesc="OpenRC scripts for fail2ban."
-#arch=('i686' 'x86_64')
 arch=('any')
 url=""
 license=('GPL')
 depends=('openrc')
+source=('fail2ban.conf'
+		'fail2ban.init')
+md5sums=('1e6a44721798a24dfe9a52015c04ebfb'
+         'aef840a9f4ea96ebbd01ec9e365ee1a8')
 
 package() {
    mkdir -p ${pkgdir}/etc/init.d

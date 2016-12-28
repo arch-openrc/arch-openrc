@@ -4,12 +4,14 @@ pkgname=deluge-openrc
 pkgver=1.0
 pkgrel=1
 pkgdesc="OpenRC scripts for deluge."
-#arch=('i686' 'x86_64')
 arch=('any')
 url=""
 license=('GPL')
 depends=('openrc')
-
+source=('deluged.conf'
+		'deluged.init')
+md5sums=('f7933cc42afd6313b1daf2f75894f82f'
+         '466bd9958daf326ccbdb9f2f785cb5ec')
 
 package() {
    mkdir -p ${pkgdir}/etc/init.d
@@ -17,5 +19,3 @@ package() {
    cp ${srcdir}/deluged.conf ${pkgdir}/etc/conf.d/deluged
    cp ${srcdir}/deluged.init ${pkgdir}/etc/init.d/deluged
 }
-
-
