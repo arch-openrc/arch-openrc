@@ -12,9 +12,9 @@ depends=('openrc')
 
 package() {
    mkdir -p ${pkgdir}/etc/init.d
-   cp ../upsd.init ${pkgdir}/etc/init.d/upsd
-   cp ../upsmon.init ${pkgdir}/etc/init.d/upsmon
-   cp ../upsdrv.init ${pkgdir}/etc/init.d/upsdrv
+   cp ${srcdir}/upsd.init ${pkgdir}/etc/init.d/upsd
+   cp ${srcdir}/upsmon.init ${pkgdir}/etc/init.d/upsmon
+   cp ${srcdir}/upsdrv.init ${pkgdir}/etc/init.d/upsdrv
 }
 
 

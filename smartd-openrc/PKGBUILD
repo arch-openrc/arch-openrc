@@ -13,8 +13,8 @@ depends=('openrc')
 package() {
    mkdir -p ${pkgdir}/etc/init.d
    mkdir -p ${pkgdir}/etc/conf.d
-   cp ../smartd.conf ${pkgdir}/etc/conf.d/smartd
-   cp ../smartd.init ${pkgdir}/etc/init.d/smartd
+   cp ${srcdir}/smartd.conf ${pkgdir}/etc/conf.d/smartd
+   cp ${srcdir}/smartd.init ${pkgdir}/etc/init.d/smartd
 }
 
 
