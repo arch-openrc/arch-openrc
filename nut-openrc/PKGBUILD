@@ -1,0 +1,20 @@
+# Maintainer: DrForbin <drforbin6@gmail.com>
+
+pkgname=nut-openrc
+pkgver=1.0
+pkgrel=1
+pkgdesc="OpenRC scripts for network ups tools."
+#arch=('i686' 'x86_64')
+arch=('any')
+url=""
+license=('GPL')
+depends=('openrc')
+
+package() {
+   mkdir -p ${pkgdir}/etc/init.d
+   cp ../upsd.init ${pkgdir}/etc/init.d/upsd
+   cp ../upsmon.init ${pkgdir}/etc/init.d/upsmon
+   cp ../upsdrv.init ${pkgdir}/etc/init.d/upsdrv
+}
+
+
