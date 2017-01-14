@@ -42,7 +42,7 @@ pkgname=('autofs-openrc'
         'vnstat-openrc'
         'snort-openrc'
         'unbound-openrc')
-pkgver=20160918
+pkgver=20170114
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -117,8 +117,8 @@ source=("${_dev_url}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "ntpd.confd::${_url}/net-misc/openntpd/files/openntpd.conf.d-20080406-r6"
         "ntpd.initd::${_url}/net-misc/openntpd/files/openntpd.init.d-20080406-r6"
         "tor.confd::${_url}/net-misc/tor/files/tor.confd"
-        "tor.initd::${_url}/net-misc/tor/files/tor.initd-r7"
-        "nginx.initd::${_url}/www-servers/nginx/files/nginx.initd-r3"
+        "tor.initd::${_url}/net-misc/tor/files/tor.initd-r8"
+        "nginx.initd::${_url}/www-servers/nginx/files/nginx.initd-r4"
         "vnstatd.confd::${_url}/net-analyzer/vnstat/files/vnstatd.confd"
         "vnstatd.initd::${_url}/net-analyzer/vnstat/files/vnstatd.initd-r1"
         "wicd.initd"
@@ -146,7 +146,7 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             '30572eeec9013fbfb6170f2b0bd1016582d2664268e4019fa8e2edd41e52919d'
             'bf8539b70561d9eb495f55141a5295a8c2e8246af4d1990af94e98be952dcdf9'
             '0be7c9c04ce508cbefb3e913951d83c5ed7f0e01fe5aebcf3a5071f30ef3dbc2'
-            'c0f2945eedf7bc559766d3ce872ec36cdb77c3dfd3cb4b68152874bd90ca3f9e'
+            'f043f1e6c64377e31bb31d31a0015c7cd01dfe21341fe18e76d98940e5e5a4fd'
             'c652a4fe8a43dc68a818345db2b3acc560663b5b6c969324d4f23afb0fb96a94'
             '513e88865d1d97869442d58e4e5d021053aa7df3dccb2a18fcc883895d5d3e4a'
             'e8842fca856eae598fb8fe15ed8d3cef13e61851217be66b8cc4087af8cee8ad'
@@ -196,8 +196,8 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
             '56dffdfa0d347ef667cb08a26ce68b1d445f71031ae1df3309ff3219f10307a9'
             '41d780f291847e19f632428bbf27c3f289414afd237546d2974da1b75384c25c'
-            'e776f92cdbccd1c662c754dbee98e4165ded4a94ed915cc8d3b4fa40e289de6e'
-            'e3c43e96291e7479497670465df7f6b85ce4fbaec999694bb23eacde9002713e'
+            '611fc2e680040fbf968e5a97cff54f84a87ea77478d35a7716d4df15e5b62601'
+            'cda26c97abc74a130ae26b629c84d006b114129ad230f2d1579e9254ce61b366'
             '2cd5b91f86bc26aca85166a50de89faaccbf1ea8f219efb48b50b7ed0f3fe377'
             '635cff59ca8597b8f0b907ce04f93a253a2b8d6d9aae997d6e527e31f36397e6'
             '66b2b53b077ddc2d5eb1d81faa99fa0f4f0db01520900ba948001e539bfe02d8'

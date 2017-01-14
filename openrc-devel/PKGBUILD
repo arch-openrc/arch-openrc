@@ -9,7 +9,7 @@ pkgname=('jenkins-openrc'
 	'subversion-openrc'
 	'distcc-openrc')
        # 'php-fpm-openrc')
-pkgver=20160918
+pkgver=20170114
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')

@@ -28,7 +28,7 @@ pkgname=('cpupower-openrc'
         'at-openrc'
         'libvirt-openrc'
         'laptop-mode-tools-openrc')
-pkgver=20160918
+pkgver=20170114
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -144,8 +144,8 @@ sha256sums=('c067d2a58609b53e5bc6f8397683604de893bd1aeb3d33e788250662187fda6e'
             '4687bb248a3a7475fa845628f9bc6b12770eb5079f6f061ef8620219ac504ac4'
             '28ebd47810b0568fc7692218867d6804a1df70290681462f5555e230ca817732'
             '443bdf8bab0014e4f60001c14350f609d94bc4a11d6319ed55a3c596f96f9a92'
-            '286f5f11e54a73b41ebf1e35aae1db4c2c3e249a3bfce755ced84c8c1b361cc9'
-            '25d10ff17fbac474d1605e6073e04dff3691957cff2ba808d676aa3a146a63fc'
+            'ed42b285adc35b8d2d5e5aeac934e63e36e67e99036978d05e48deccaf3042b8'
+            '6505092594ca469adf36191b2f47ef6089c67269a76a43434382d50b95323728'
             '64bd280926400d03b92ceeaf89982c52f299c2df39d8e01247678107d958574e'
             '4fe9dad976dac73b58db52984411ce8b54b7b4b8abc20b89730453c91251ee8c'
             '4f7fba7e64533868119c0f3355aa22932e163b208397323dc2cd96daadcc4079'

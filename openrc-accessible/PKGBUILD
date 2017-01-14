@@ -4,7 +4,7 @@ _url="https://gitweb.gentoo.org/repo/gentoo.git/plain"
 
 pkgname=('brltty-openrc'
         'espeakup-openrc')
-pkgver=20160918
+pkgver=20170114
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
