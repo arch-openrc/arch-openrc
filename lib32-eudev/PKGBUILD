@@ -1,19 +1,19 @@
 # Maintainer: artoo <artoo@manjaro.org>
 
-_udevver=220
+_udevver=232
 _pkgname=eudev
 
 pkgname=lib32-eudev
 pkgdesc="The userspace dev tools (udev) forked by Gentoo (32-bit)"
 pkgver=3.2
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url="http://www.gentoo.org/proj/en/eudev/"
 license=('GPL')
 depends=('lib32-glib2' 'lib32-glibc' 'libeudev-systemd')
 makedepends=('gcc-multilib' 'lib32-util-linux' 'gobject-introspection' 'gperf' 'python2' 'gtk-doc' 'lib32-kmod')
 provides=("lib32-udev=${_udevver}" "lib32-systemd=${_udevver}")
-conflicts=('lib32-systemd' 'libudev.so')
+conflicts=('lib32-systemd')
 options=(!makeflags !libtool)
 source=("$pkgname-$pkgver.tar.gz::https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz")
 sha256sums=('37829d37f4beb7e358ca33abc1ad0907d87f917ce157777aeaeebeacae24efdc')
@@ -42,10 +42,12 @@ build() {
 package() {
     cd "${srcdir}/${_pkgname}-${pkgver}"
     #make DESTDIR="${pkgdir}" install
-    make DESTDIR="${pkgdir}" -C src/shared uninstall
+    #make DESTDIR="${pkgdir}" -C src/shared uninstall
     make DESTDIR="${pkgdir}" -C src/libudev install
     #make DESTDIR="${pkgdir}" -C src/gudev install
     make DESTDIR="${pkgdir}" -C src/shared uninstall
+
+    rm -rf ${pkgdir}/usr/include
 
     #rm -rf "${pkgdir}"/etc
     #rm -rf "${pkgdir}"/usr/{bin,include,lib,share}
