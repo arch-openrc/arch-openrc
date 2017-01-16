@@ -1,26 +1,27 @@
 # Maintainer: Chris Cromer <chris@cromer.cl>
 
-_spkgrel=7
-_repo=http://mirror.netcologne.de/archlinux/core/os
+_spkgrel=1
+_repo=http://mirror.netcologne.de/archlinux/multilib/os
 
 pkgname='lib32-eudev-systemd'
 pkgver=232
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 license=('GPL2')
 url="http://www.freedesktop.org/wiki/Software/systemd"
-source=("$_repo/i686/libsystemd-$pkgver-${_spkgrel}-i686.pkg.tar.xz")
-md5sums=('70432c280dc7ffe332c95620f652e006')
+source=("$_repo/x86_64/lib32-systemd-$pkgver-${_spkgrel}-x86_64.pkg.tar.xz")
+md5sums=('0b9d3e1046d39719f6c084c29e534100')
 
 package() {
     pkgdesc="32bit systemd client libraries without udev; systemd compatibility package"
     depends=('eudev-systemd' 'lib32-eudev')
 
-    install -d $pkgdir/usr/lib32
-    for f in usr/lib/libsystemd*.so*;do
+    install -d $pkgdir/usr/lib32/pkgconfig
+    for f in usr/lib32/libsystemd*.so*;do
         mv -v $f $pkgdir/usr/lib32
     done
-    for f in usr/lib/libnss*.so*;do
+    for f in usr/lib32/libnss*.so*;do
         mv -v $f $pkgdir/usr/lib32
     done
+    mv -v usr/lib32/pkgconfig/libsystemd.pc $pkgdir/usr/lib32/pkgconfig/libsystemd.pc
 }
