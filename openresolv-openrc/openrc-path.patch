@@ -1,0 +1,16 @@
+diff -Naur openresolv-3.8.1/resolvconf.in openresolv-3.8.1-openrc/resolvconf.in
+--- openresolv-3.8.1/resolvconf.in	2016-05-19 06:36:35.000000000 -0400
++++ openresolv-3.8.1-openrc/resolvconf.in	2017-01-16 21:08:12.376695713 -0300
+@@ -280,10 +280,10 @@
+ 		RESTARTCMD="if /usr/bin/systemctl --quiet is-active \$1.service; then
+ 	/usr/bin/systemctl restart \$1.service;
+ fi"
+-	elif [ -x /sbin/rc-service -a \
++	elif [ -x /usr/bin/rc-service -a \
+ 	    -s /libexec/rc/init.d/softlevel -o -s /run/openrc/softlevel ]
+ 	then
+-		RESTARTCMD="/sbin/rc-service -i \$1 -- -Ds restart"
++		RESTARTCMD="/usr/bin/rc-service -i \$1 -- -Ds restart"
+ 	elif [ -x /usr/sbin/invoke-rc.d ]; then
+ 		RCDIR=/etc/init.d
+ 		RESTARTCMD="if /usr/sbin/invoke-rc.d --quiet \$1 status 1>/dev/null 2>&1; then
