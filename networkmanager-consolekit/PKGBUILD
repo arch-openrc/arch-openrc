@@ -9,7 +9,7 @@
 _pppver=2.4.7
 
 pkgname=networkmanager-consolekit
-pkgver=1.4.4
+pkgver=1.6.0
 pkgrel=1
 pkgdesc="Network Management daemon"
 arch=('i686' 'x86_64')
@@ -39,7 +39,7 @@ source=("https://download.gnome.org/sources/NetworkManager/${pkgver:0:3}/Network
         'NetworkManager.conf'
         '01-org.freedesktop.NetworkManager.settings.modify.system.rules'
         '50-org.freedesktop.NetworkManager.rules')
-sha256sums=('829378f318cc008d138a23ca6a9191928ce75344e7e47a2f2c35f4ac82133309'
+sha256sums=('eabc8b03770411248d5301c52f6e12ba732f22b6c330c804335f2033cbde4339'
             '452e4f77c1de92b1e08f6f58674a6c52a2b2d65b7deb0ba436e9afa91ee15103'
             '4b815f43de58379e68653d890f529485aec4d2f83f11d050b08b31489d2267c2'
             '02d9f7d836d297d6ddf39482d86a8573b3e41735b408aa2cd6df22048ec5f6c4')
@@ -98,10 +98,13 @@ check() {
 package() {
 	cd NetworkManager-$pkgver
 	make DESTDIR="$pkgdir" install
-	make DESTDIR="$pkgdir" -C libnm uninstall
-	make DESTDIR="$pkgdir" -C libnm-glib uninstall
-	make DESTDIR="$pkgdir" -C libnm-util uninstall
-	make DESTDIR="$pkgdir" -C vapi uninstall
+
+	# remove conflicting files from libnm, etc
+	rm ${pkgdir}/usr/lib/libnm*
+	rm ${pkgdir}/usr/share/vala/vapi/libnm*
+	rm -rf ${pkgdir}/usr/lib/girepository-1.0/*
+	rm -rf ${pkgdir}/usr/share/gir-1.0
+	rm -rf ${pkgdir}/usr/share/gtk-doc
 
 	# Some stuff to move is left over
 	rm -r "$pkgdir/usr/include"
@@ -111,8 +114,6 @@ package() {
 	install -m755 -d "$pkgdir/etc/NetworkManager/dnsmasq.d"
 
 	rm -r "$pkgdir/var/run"
-	rmdir -p --ignore-fail-on-non-empty \
-	"$pkgdir"/usr/{share/{vala/vapi,gir-1.0},lib/girepository-1.0}
 
     	install -dm 750 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
 
