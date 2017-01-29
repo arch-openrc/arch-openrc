@@ -7,12 +7,12 @@ _pkgname=polkit
 
 pkgname=polkit-consolekit
 pkgver=0.113
-pkgrel=5
+pkgrel=6
 pkgdesc="PolyciKit with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('LGPL')
 url="http://www.freedesktop.org/wiki/Software/polkit"
-depends=('glib2' 'pam' 'expat' 'js17')
+depends=('glib2' 'pam' 'expat' 'js185')
 makedepends=('intltool' 'gtk-doc' 'gobject-introspection')
 provides=("polkit=$pkgver")
 conflicts=('polkit')
@@ -22,30 +22,30 @@ source=("http://www.freedesktop.org/software/polkit/releases/$_pkgname-$pkgver.t
 sha256sums=('e1c095093c654951f78f8618d427faf91cf62abdefed98de40ff65eca6413c81')
 
 build() {
-	cd "$srcdir"/$_pkgname-$pkgver
+    cd "$srcdir"/$_pkgname-$pkgver
 
-	./configure \
-		--prefix=/usr \
-		--sysconfdir=/etc \
-		--sbindir=/usr/bin \
-		--localstatedir=/var \
-		--libexecdir=/usr/lib/polkit-1 \
-		--enable-libsystemd-login=no \
-		--disable-static \
-		--enable-gtk-doc \
-                --with-os-type=gentoo
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --sbindir=/usr/bin \
+        --localstatedir=/var \
+        --libexecdir=/usr/lib/polkit-1 \
+        --enable-libsystemd-login=no \
+        --disable-static \
+        --enable-gtk-doc \
+        --with-os-type=gentoo
 	make
 }
 
 check() {
-  cd $_pkgname-$pkgver
-  make -k check || :
+    cd $_pkgname-$pkgver
+    make -k check || :
 }
 
 package() {
-	cd "$srcdir"/$_pkgname-$pkgver
-	make DESTDIR="$pkgdir" install
+    cd "$srcdir"/$_pkgname-$pkgver
+    make DESTDIR="$pkgdir" install
 
-	chown root:102 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
-	chmod 750 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
+    chown root:102 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
+    chmod 750 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
 }
