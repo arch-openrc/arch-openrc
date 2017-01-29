@@ -9,7 +9,7 @@
 _pppver=2.4.7
 
 pkgname=networkmanager-consolekit
-pkgver=1.4.4
+pkgver=1.6.0
 pkgrel=1
 pkgdesc="Network Management daemon"
 arch=('i686' 'x86_64')
@@ -18,28 +18,26 @@ url="http://www.gnome.org/projects/NetworkManager/"
 provides=('networkmanager')
 conflicts=('networkmanager')
 makedepends=('intltool' 'dhclient' 'iptables' 'gobject-introspection' 'gtk-doc'
-			"ppp=$_pppver" 'modemmanager' 'dbus-glib' 'iproute2' 'nss'
-			 'polkit-consolekit' 'wpa_supplicant' 'libsoup' 'eudev-systemd' 'libgudev' 'libmm-glib'
-			 'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala' 'perl-yaml' 'python-gobject')
+            "ppp=$_pppver" 'modemmanager' 'dbus-glib' 'iproute2' 'nss'
+            'polkit-consolekit' 'wpa_supplicant' 'libsoup' 'eudev-systemd' 'libgudev' 'libmm-glib'
+            'rp-pppoe' 'libnewt' 'libndp' 'libteam' 'vala' 'perl-yaml' 'python-gobject' 'git' 'vala'
+            'jansson' 'bluez-libs' 'glib2-docs')
 checkdepends=('libx11' 'python-dbus' 'eudev-systemd')
 depends=('libnm-glib' 'iproute2' 'polkit-consolekit' 'wpa_supplicant' 'libsoup' 'libmm-glib' 'libnewt' 'libndp' 'libteam' 'consolekit' 'eudev')
 optdepends=('dnsmasq: connection sharing'
-			'bluez: Bluetooth support'
-			'openresolv: resolvconf support'
-			'ppp: dialup connection support'
-			'rp-pppoe: ADSL support'
-			'dhclient: External DHCP client'
-			'modemmanager: cellular network support')
+            'bluez: Bluetooth support'
+            'openresolv: resolvconf support'
+            'ppp: dialup connection support'
+            'rp-pppoe: ADSL support'
+            'dhclient: External DHCP client'
+            'modemmanager: cellular network support')
 backup=('etc/NetworkManager/NetworkManager.conf')
-
-# _commit=c87b89bf8f7d0e45df08e84503eb16f5ef2ce3c6
-# "git://anongit.freedesktop.org/NetworkManager/NetworkManager#commit=$_commit"
 
 source=("https://download.gnome.org/sources/NetworkManager/${pkgver:0:3}/NetworkManager-$pkgver.tar.xz"
         'NetworkManager.conf'
         '01-org.freedesktop.NetworkManager.settings.modify.system.rules'
         '50-org.freedesktop.NetworkManager.rules')
-sha256sums=('829378f318cc008d138a23ca6a9191928ce75344e7e47a2f2c35f4ac82133309'
+sha256sums=('eabc8b03770411248d5301c52f6e12ba732f22b6c330c804335f2033cbde4339'
             '452e4f77c1de92b1e08f6f58674a6c52a2b2d65b7deb0ba436e9afa91ee15103'
             '4b815f43de58379e68653d890f529485aec4d2f83f11d050b08b31489d2267c2'
             '02d9f7d836d297d6ddf39482d86a8573b3e41735b408aa2cd6df22048ec5f6c4')
@@ -58,36 +56,70 @@ prepare() {
 }
 
 build() {
-	cd NetworkManager-$pkgver
-	./configure --prefix=/usr \
-		--sysconfdir=/etc \
-		--localstatedir=/var \
-		--sbindir=/usr/bin \
-		--libexecdir=/usr/lib/networkmanager \
-		--with-crypto=nss \
-		--with-dhclient=/usr/bin/dhclient \
-		--without-dhcpcd \
-		--with-dnsmasq=/usr/bin/dnsmasq \
-		--with-iptables=/usr/bin/iptables \
-		--with-systemdsystemunitdir=/usr/lib/systemd/system \
-		--with-udev-dir=/usr/lib/udev \
-		--with-resolvconf=/usr/bin/resolvconf \
-		--with-pppd=/usr/bin/pppd \
-		--with-pppd-plugin-dir=/usr/lib/pppd/$_pppver \
-		--with-pppoe=/usr/bin/pppoe \
-		--with-kernel-firmware-dir=/usr/lib/firmware \
-		--with-session-tracking=ck \
-		--with-modem-manager-1 \
-		--disable-static \
-		--enable-more-warnings=no \
-		--disable-wimax \
-		--enable-modify-system \
-		--enable-doc \
-		--enable-gtk-doc
+    cd NetworkManager-$pkgver
+    ./configure --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    runstatedir=/run \
+    --sbindir=/usr/bin \
+    --libexecdir=/usr/lib/NetworkManager \
+    --disable-ifcfg-rh \
+    --disable-ifcfg-suse \
+    --disable-ifnet \
+    --disable-ifupdown \
+    --disable-lto \
+    --disable-more-warnings \
+    --disable-static \
+    --enable-bluez5-dun \
+    --enable-concheck \
+    --enable-config-plugin-ibft \
+    --enable-gtk-doc \
+    --enable-introspection \
+    --enable-json-validation \
+    --enable-ld-gc \
+    --enable-modify-system \
+    --enable-polkit \
+    --enable-polkit-agent \
+    --enable-teamdctl \
+    --enable-wifi \
+    --with-config-dhcp-default=dhclient \
+    --with-config-dns-rc-manager-default=resolvconf \
+    --with-config-logging-backend-default=journal \
+    --with-config-plugins-default=keyfile,ibft \
+    --with-crypto=nss \
+    --with-dbus-sys-dir=/usr/share/dbus-1/system.d \
+    --with-dhclient=/usr/bin/dhclient \
+    --with-dist-version="$pkgver-$pkgrel, Manjaro Linux" \
+    --with-dnsmasq=/usr/bin/dnsmasq \
+    --with-dnssec-trigger=/usr/lib/dnssec-trigger \
+    --with-hostname-persist=default \
+    --with-iptables=/usr/bin/iptables \
+    --with-kernel-firmware-dir=/usr/lib/firmware \
+    --with-libnm-glib \
+    --with-libsoup \
+    --with-modem-manager-1 \
+    --with-nmcli \
+    --with-nmtui \
+    --with-pppd-plugin-dir=/usr/lib/pppd/$_pppver \
+    --with-pppd=/usr/bin/pppd \
+    --with-resolvconf=/usr/bin/resolvconf \
+    --with-session-tracking=ck \
+    --with-suspend-resume=consolekit \
+    --with-system-ca-path=/etc/ssl/certs \
+    --without-systemd-journal \
+    --without-systemd-logind \
+    --with-udev-dir=/usr/lib/udev \
+    --with-wext \
+    --with-consolekit \
+    --without-dhcpcd \
+    --without-libaudit \
+    --without-netconfig \
+    --without-ofono \
+    --without-selinux
 
-	sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0 /g' -e 's/    if test "$export_dynamic" = yes && test -n "$export_dynamic_flag_spec"; then/      func_append compile_command " -Wl,-O1,--as-needed"\n      func_append finalize_command " -Wl,-O1,--as-needed"\n\0/' libtool
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 
-	make
+    make
 }
 
 check() {
@@ -96,28 +128,28 @@ check() {
 }
 
 package() {
-	cd NetworkManager-$pkgver
-	make DESTDIR="$pkgdir" install
-	make DESTDIR="$pkgdir" -C libnm uninstall
-	make DESTDIR="$pkgdir" -C libnm-glib uninstall
-	make DESTDIR="$pkgdir" -C libnm-util uninstall
-	make DESTDIR="$pkgdir" -C vapi uninstall
+    cd NetworkManager-$pkgver
+    make DESTDIR="$pkgdir" install
 
-	# Some stuff to move is left over
-	rm -r "$pkgdir/usr/include"
-	rm -r "$pkgdir/usr/lib/pkgconfig"
+    # remove conflicting files from libnm, etc
+    rm ${pkgdir}/usr/lib/libnm*
+    rm ${pkgdir}/usr/share/vala/vapi/libnm*
+    rm -rf ${pkgdir}/usr/lib/girepository-1.0/*
+    rm -rf ${pkgdir}/usr/share/gir-1.0
+    rm -rf ${pkgdir}/usr/share/gtk-doc
 
-	install -m644 ../NetworkManager.conf "$pkgdir/etc/NetworkManager/"
-	install -m755 -d "$pkgdir/etc/NetworkManager/dnsmasq.d"
+    # Some stuff to move is left over
+    rm -r "$pkgdir/usr/include"
+    rm -r "$pkgdir/usr/lib/pkgconfig"
 
-	rm -r "$pkgdir/var/run"
-	rmdir -p --ignore-fail-on-non-empty \
-	"$pkgdir"/usr/{share/{vala/vapi,gir-1.0},lib/girepository-1.0}
+    install -m644 ../NetworkManager.conf "$pkgdir/etc/NetworkManager/"
+    install -m755 -d "$pkgdir/etc/NetworkManager/dnsmasq.d"
 
-    	install -dm 750 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
+    #rm -r "$pkgdir/var/run"
 
-	install -m 644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/usr/share/polkit-1/rules.d/
+    install -dm 750 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
 
-	install -m 644 ${srcdir}/50-org.freedesktop.NetworkManager.rules $pkgdir/usr/share/polkit-1/rules.d/
+    install -m 644 ${srcdir}/01-org.freedesktop.NetworkManager.settings.modify.system.rules $pkgdir/usr/share/polkit-1/rules.d/
 
+    install -m 644 ${srcdir}/50-org.freedesktop.NetworkManager.rules $pkgdir/usr/share/polkit-1/rules.d/
 }
