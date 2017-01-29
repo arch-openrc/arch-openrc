@@ -58,64 +58,64 @@ prepare() {
 build() {
     cd NetworkManager-$pkgver
     ./configure --prefix=/usr \
-    --sysconfdir=/etc \
-    --localstatedir=/var \
-    runstatedir=/run \
-    --sbindir=/usr/bin \
-    --libexecdir=/usr/lib/NetworkManager \
-    --disable-ifcfg-rh \
-    --disable-ifcfg-suse \
-    --disable-ifnet \
-    --disable-ifupdown \
-    --disable-lto \
-    --disable-more-warnings \
-    --disable-static \
-    --enable-bluez5-dun \
-    --enable-concheck \
-    --enable-config-plugin-ibft \
-    --enable-gtk-doc \
-    --enable-introspection \
-    --enable-json-validation \
-    --enable-ld-gc \
-    --enable-modify-system \
-    --enable-polkit \
-    --enable-polkit-agent \
-    --enable-teamdctl \
-    --enable-wifi \
-    --with-config-dhcp-default=dhclient \
-    --with-config-dns-rc-manager-default=resolvconf \
-    --with-config-logging-backend-default=journal \
-    --with-config-plugins-default=keyfile,ibft \
-    --with-crypto=nss \
-    --with-dbus-sys-dir=/usr/share/dbus-1/system.d \
-    --with-dhclient=/usr/bin/dhclient \
-    --with-dist-version="$pkgver-$pkgrel, Manjaro Linux" \
-    --with-dnsmasq=/usr/bin/dnsmasq \
-    --with-dnssec-trigger=/usr/lib/dnssec-trigger \
-    --with-hostname-persist=default \
-    --with-iptables=/usr/bin/iptables \
-    --with-kernel-firmware-dir=/usr/lib/firmware \
-    --with-libnm-glib \
-    --with-libsoup \
-    --with-modem-manager-1 \
-    --with-nmcli \
-    --with-nmtui \
-    --with-pppd-plugin-dir=/usr/lib/pppd/$_pppver \
-    --with-pppd=/usr/bin/pppd \
-    --with-resolvconf=/usr/bin/resolvconf \
-    --with-session-tracking=ck \
-    --with-suspend-resume=consolekit \
-    --with-system-ca-path=/etc/ssl/certs \
-    --without-systemd-journal \
-    --without-systemd-logind \
-    --with-udev-dir=/usr/lib/udev \
-    --with-wext \
-    --with-consolekit \
-    --without-dhcpcd \
-    --without-libaudit \
-    --without-netconfig \
-    --without-ofono \
-    --without-selinux
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        runstatedir=/run \
+        --sbindir=/usr/bin \
+        --libexecdir=/usr/lib/NetworkManager \
+        --disable-ifcfg-rh \
+        --disable-ifcfg-suse \
+        --disable-ifnet \
+        --disable-ifupdown \
+        --disable-lto \
+        --disable-more-warnings \
+        --disable-static \
+        --enable-bluez5-dun \
+        --enable-concheck \
+        --enable-config-plugin-ibft \
+        --enable-gtk-doc \
+        --enable-introspection \
+        --enable-json-validation \
+        --enable-ld-gc \
+        --enable-modify-system \
+        --enable-polkit \
+        --enable-polkit-agent \
+        --enable-teamdctl \
+        --enable-wifi \
+        --with-config-dhcp-default=dhclient \
+        --with-config-dns-rc-manager-default=resolvconf \
+        --with-config-logging-backend-default=journal \
+        --with-config-plugins-default=keyfile,ibft \
+        --with-crypto=nss \
+        --with-dbus-sys-dir=/usr/share/dbus-1/system.d \
+        --with-dhclient=/usr/bin/dhclient \
+        --with-dist-version="$pkgver-$pkgrel, Manjaro Linux" \
+        --with-dnsmasq=/usr/bin/dnsmasq \
+        --with-dnssec-trigger=/usr/lib/dnssec-trigger \
+        --with-hostname-persist=default \
+        --with-iptables=/usr/bin/iptables \
+        --with-kernel-firmware-dir=/usr/lib/firmware \
+        --with-libnm-glib \
+        --with-libsoup \
+        --with-modem-manager-1 \
+        --with-nmcli \
+        --with-nmtui \
+        --with-pppd-plugin-dir=/usr/lib/pppd/$_pppver \
+        --with-pppd=/usr/bin/pppd \
+        --with-resolvconf=/usr/bin/resolvconf \
+        --with-session-tracking=ck \
+        --with-suspend-resume=consolekit \
+        --with-system-ca-path=/etc/ssl/certs \
+        --without-systemd-journal \
+        --without-systemd-logind \
+        --with-udev-dir=/usr/lib/udev \
+        --with-wext \
+        --with-consolekit \
+        --without-dhcpcd \
+        --without-libaudit \
+        --without-netconfig \
+        --without-ofono \
+        --without-selinux
 
     sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 
@@ -123,8 +123,8 @@ build() {
 }
 
 check() {
-	cd NetworkManager-$pkgver
-	make -k check
+    cd NetworkManager-$pkgver
+    make -k check
 }
 
 package() {
@@ -144,8 +144,6 @@ package() {
 
     install -m644 ../NetworkManager.conf "$pkgdir/etc/NetworkManager/"
     install -m755 -d "$pkgdir/etc/NetworkManager/dnsmasq.d"
-
-    #rm -r "$pkgdir/var/run"
 
     install -dm 750 -o polkitd "${pkgdir}"/usr/share/polkit-1/rules.d
 
