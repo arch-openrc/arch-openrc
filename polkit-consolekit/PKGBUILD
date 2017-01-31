@@ -22,30 +22,30 @@ source=("http://www.freedesktop.org/software/polkit/releases/$_pkgname-$pkgver.t
 sha256sums=('e1c095093c654951f78f8618d427faf91cf62abdefed98de40ff65eca6413c81')
 
 build() {
-	cd "$srcdir"/$_pkgname-$pkgver
+    cd "$srcdir"/$_pkgname-$pkgver
 
-	./configure \
-		--prefix=/usr \
-		--sysconfdir=/etc \
-		--sbindir=/usr/bin \
-		--localstatedir=/var \
-		--libexecdir=/usr/lib/polkit-1 \
-		--enable-libsystemd-login=no \
-		--disable-static \
-		--enable-gtk-doc \
-                --with-os-type=gentoo
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --sbindir=/usr/bin \
+        --localstatedir=/var \
+        --libexecdir=/usr/lib/polkit-1 \
+        --enable-libsystemd-login=no \
+        --disable-static \
+        --enable-gtk-doc \
+        --with-os-type=gentoo
 	make
 }
 
 check() {
-  cd $_pkgname-$pkgver
-  make -k check || :
+    cd $_pkgname-$pkgver
+    make -k check || :
 }
 
 package() {
-	cd "$srcdir"/$_pkgname-$pkgver
-	make DESTDIR="$pkgdir" install
+    cd "$srcdir"/$_pkgname-$pkgver
+    make DESTDIR="$pkgdir" install
 
-	chown root:102 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
-	chmod 750 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
+    chown root:102 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
+    chmod 750 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
 }
