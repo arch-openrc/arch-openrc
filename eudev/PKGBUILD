@@ -7,7 +7,7 @@ _udev_ver=220
 pkgbase=eudev
 pkgname=( 'eudev' 'libeudev')
 pkgver=3.2.1
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://www.gentoo.org/proj/en/eudev/"
 license=('GPL')
@@ -23,8 +23,11 @@ sha256sums=('88f530c1540750e6daa91b5eaeebf88e761e6f0c86515c1c28eedfd871f027c6'
             '846e9ddbb95c8394ba7efe75107cc1308426921bc042f5d6b48fa4c2dcbac151')
 
 prepare(){
-	cd "${srcdir}/${pkgbase}-${pkgver}"
-	sed -e 's/GROUP="dialout"/GROUP="uucp"/' -i rules/*.rules
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    sed -e 's/GROUP="dialout"/GROUP="uucp"/' \
+        -e 's/GROUP="cdrom"/GROUP="optical"/' \
+        -e 's/GROUP="tape"/GROUP="storage"/' \
+        -i rules/*.rules
 }
 
 build() {
