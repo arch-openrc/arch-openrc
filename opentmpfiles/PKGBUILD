@@ -1,0 +1,21 @@
+# Maintainer: artoo <artoo@manjaro.org>
+# Contributor: williamh <williamh@gentoo.org>
+
+_url="https://github.com/OpenRC/opentmpfiles/archive"
+
+pkgname=opentmpfiles
+pkgver=0.1
+pkgrel=1
+pkgdesc="A standalone utility for handling systemd-style tmpfiles.d settings"
+arch=('any')
+url="http://www.gentoo.org/proj/en/base/openrc/"
+license=('BSD2')
+#depends=('openrc')
+#backup=()
+source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz")
+sha256sums=('0c7a52d6394dcbe78dd5b4f8fba6fcc66b207389b9a9b85e61a0ab8e9e375bb7')
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make bindir="/usr/bin" DESTDIR="${pkgdir}" install
+}
