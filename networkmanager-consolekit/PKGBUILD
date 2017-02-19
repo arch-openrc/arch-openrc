@@ -56,8 +56,6 @@ prepare() {
 
   cd NetworkManager
   NOCONFIGURE=1 ./autogen.sh
-
-  patch -Np1 -i ${srcdir}/1.6.0-floating.patch
 }
 
 pkgver() {
