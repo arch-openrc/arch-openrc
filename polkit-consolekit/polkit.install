@@ -1,18 +1,31 @@
 post_install() {
-  getent group polkitd >/dev/null || groupadd -g 102 polkitd
-  getent passwd polkitd >/dev/null || useradd -c 'Policy Kit Daemon' -u 102 -g polkitd -G proc -d '/' -s /usr/bin/nologin polkitd
-  passwd -l polkitd &>/dev/null
+    if ! getent group polkitd >/dev/null; then
+        groupadd -g 102 polkitd
+    fi
+    if ! getent passwd polkitd >/dev/null; then
+        useradd -c 'Policy Kit Daemon' -u 102 -g polkitd -G proc -d '/' -s /usr/bin/nologin polkitd
+    fi
+    passwd -l polkitd &>/dev/null
 }
 
 post_upgrade() {
-  post_install
+    post_install
 
-  if (( $(vercmp $2 0.113-4) < 0 )); then
-    usermod -aG proc -s /usr/bin/nologin polkitd
-  fi
+    if (( $(vercmp $2 0.113-4) < 0 )); then
+        usermod -aG proc -s /usr/bin/nologin polkitd
+    fi
 
-  if (( $(vercmp $2 0.113-6) < 0 )); then
-    chown root:102 /{etc,usr/share}/polkit-1/rules.d
-    chmod 750      /{etc,usr/share}/polkit-1/rules.d
-  fi
+    if (( $(vercmp $2 0.113-6) < 0 )); then
+        chown root:102 /{etc,usr/share}/polkit-1/rules.d
+        chmod 750      /{etc,usr/share}/polkit-1/rules.d
+    fi
+}
+
+post_remove() {
+    if getent passwd polkitd >/dev/null; then
+        userdel polkitd
+    fi
+    if getent group polkitd >/dev/null; then
+        groupdel polkitd
+    fi
 }
