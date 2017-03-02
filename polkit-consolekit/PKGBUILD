@@ -7,12 +7,12 @@ _pkgname=polkit
 
 pkgname=polkit-consolekit
 pkgver=0.113+29+g3272a98
-pkgrel=1
+pkgrel=4
 pkgdesc="PolyciKit with ConsoleKit support for non-systemd systems"
 arch=('i686' 'x86_64')
 license=('LGPL')
 url="http://www.freedesktop.org/wiki/Software/polkit"
-depends=('glib2' 'pam' 'expat' 'js')
+depends=('glib2' 'pam' 'expat' 'js' 'udev')
 makedepends=('intltool' 'gtk-doc' 'gobject-introspection' 'git' 'autoconf-archive')
 provides=("polkit=$pkgver")
 conflicts=('polkit')
@@ -24,17 +24,17 @@ source=("git+https://anongit.freedesktop.org/git/polkit#commit=$_commit")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd $_pkgname
-  git describe --tags | sed 's/-/+/g'
+    cd $_pkgname
+    git describe --tags | sed 's/-/+/g'
 }
 
 prepare() {
-  cd $_pkgname
-  NOCONFIGURE=1 ./autogen.sh
+    cd $_pkgname
+    NOCONFIGURE=1 ./autogen.sh
 }
 
 build() {
-    cd "$srcdir"/$_pkgname #-$pkgver
+    cd $_pkgname #-$pkgver
 
     ./configure \
         --prefix=/usr \
@@ -45,7 +45,7 @@ build() {
         --enable-libsystemd-login=no \
         --disable-static \
         --enable-gtk-doc \
-        --with-os-type=gentoo
+        --with-os-type=redhat
     sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 	make
 }
@@ -56,7 +56,7 @@ check() {
 }
 
 package() {
-    cd "$srcdir"/$_pkgname #-$pkgver
+    cd $_pkgname #-$pkgver
     make DESTDIR="$pkgdir" install
 
     chown root:102 "$pkgdir"/{etc,usr/share}/polkit-1/rules.d
