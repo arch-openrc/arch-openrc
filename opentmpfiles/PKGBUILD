@@ -4,7 +4,7 @@
 _url="https://github.com/OpenRC/opentmpfiles/archive"
 
 pkgname=opentmpfiles
-pkgver=0.1
+pkgver=0.1.3
 pkgrel=1
 pkgdesc="A standalone utility for handling systemd-style tmpfiles.d settings"
 arch=('any')
@@ -13,7 +13,7 @@ license=('BSD2')
 #depends=('openrc')
 #backup=()
 source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz")
-sha256sums=('0c7a52d6394dcbe78dd5b4f8fba6fcc66b207389b9a9b85e61a0ab8e9e375bb7')
+sha256sums=('1fdd4587c62d815296fb4162002cf001e3ed7aae8727d9b4360f527169e6b3be')
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
