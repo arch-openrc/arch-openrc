@@ -50,7 +50,7 @@ sha256sums=('1018703b07e2f607a4641249d69478ce076ae5a1e9dd6cff5694d394fa7ee30e'
             'cbe3e1717bc80146b87d8f2ab1158ee9e094ea5bb2ca9a4a8c09c24b086a7792'
             '1c3d4f5d40245a23a5f1cb1f2f6bd4274ff3c5b3749f76a09255191328ae3193'
             '9e0287f542cff0fd3452a0c3d6d427a3404706c93ac9a00f4d99fe52ed596d75'
-            'd463b291ec10a40c526fbb6bdfd689865400237cf1e6385edd180a2c9caffcce')
+            '5c67465ca9a2d4dc6fd35a7827d82ea6d72b13a8e93373e9055970fc71754b18')
 
 _inst_initd(){
 	install -Dm755 ${srcdir}/$1.initd ${pkgdir}/etc/init.d/$1
