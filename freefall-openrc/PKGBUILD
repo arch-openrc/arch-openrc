@@ -2,7 +2,7 @@
 
 pkgname=freefall-openrc
 pkgver=1.0
-pkgrel=2
+pkgrel=4
 pkgdesc="Disk protection for HP/Dell machines."
 arch=('any')
 provides=('freefall-openrc')
@@ -19,8 +19,7 @@ sha256sums=('65dced0f1f866947143b05e6c8452e415eabe6c4293b0cac6ca78c4b4ab923c5'
 _inst_initd(){
 	install -Dm755 freefall.initd ${pkgdir}/etc/init.d/freefall
 
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
-        -e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
+	sed -e 's|#!/sbin/runscript|#!/sbin/openrc-run|' \
 		-e 's|/var/run|/run|g' \
 		-e 's|/usr/sbin|/usr/bin|g' \
 		-i ${pkgdir}/etc/init.d/$1

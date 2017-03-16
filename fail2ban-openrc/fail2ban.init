@@ -1,4 +1,4 @@
-#!/usr/bin/openrc-run
+#!/sbin/openrc-run
 # This file is part of Fail2Ban.
 #
 # Fail2Ban is free software; you can redistribute it and/or modify
@@ -35,7 +35,7 @@ start() {
 	# bug 347477
 	rm -f /var/run/fail2ban/fail2ban.sock || return 1
 	start-stop-daemon --start --exec ${FAIL2BAN} start\
-	--background --make-pidfile --pidfile /var/run/fail2ban/fail2ban.pid 
+	--background --make-pidfile --pidfile /var/run/fail2ban/fail2ban.pid
 	eend $? "Failed to start fail2ban"
 }
 

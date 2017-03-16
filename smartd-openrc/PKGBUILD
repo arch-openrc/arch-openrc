@@ -2,7 +2,7 @@
 
 pkgname=smartd-openrc
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC scripts for smartd."
 arch=('any')
 url=""
@@ -11,7 +11,7 @@ depends=('openrc')
 source=('smartd.conf'
 		'smartd.init')
 md5sums=('28c1b80c41dac52d433961dcfb4f70e0'
-         '2b387fba00c4cbe6586ec0f94b758f0b')
+         '0153a608b8deb7e77a402f607860981e')
 
 package() {
    mkdir -p ${pkgdir}/etc/init.d

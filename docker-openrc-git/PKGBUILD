@@ -2,7 +2,7 @@
 
 pkgname=docker-openrc-git
 pkgver=1.12.0.dev.25566.656c66d
-pkgrel=1
+pkgrel=2
 pkgdesc='Pack, ship and run any application as a lightweight container.'
 arch=('i686' 'x86_64')
 url="https://github.com/docker/docker"
@@ -60,8 +60,7 @@ package() {
 	install -Dm755 "contrib/init/openrc/docker.initd" "$pkgdir/etc/init.d/docker"
 
 	# Fix to work with openrc on arch linux
-	sed -e 's|#!/sbin/runscript|#!/usr/bin/openrc-run|' \
-	-e 's|#!/sbin/openrc-run|#!/usr/bin/openrc-run|' \
+	sed -e 's|#!/sbin/runscript|#!/sbin/openrc-run|' \
 	-e 's|/var/run|/run|g' \
 	-i ${pkgdir}/etc/init.d/docker
 

@@ -2,7 +2,7 @@
 
 pkgname=elogind
 pkgver=219.14
-pkgrel=2
+pkgrel=3
 pkgdesc="The systemd project's logind, extracted to a standalone package"
 arch=('i686' 'x86_64')
 url="https://github.com/wingo/elogind"
@@ -33,7 +33,7 @@ sha256sums=('9dc150071a3f4c1ad1c989a7a143c2d41a2d571c643b92090e36a5d0396193c9'
             '5e7dfcf695c15a02d8151541c50e26c9e3140f5626d95bbec366aada5ce095d5'
             'cef5dda99a51a42bc36d1a946d5a21a830bf0f44ed3f447542ec57c1424e0053'
             '344db76bf8aadfba4363c63aacd93c945a647bd5e425d756cbfd9cb4453afc66'
-            '3e3ca3d384b9ced34360e697b2a6102b173731c8cf4f91e2901df68b33d73d44')
+            '2e9232b8b7c5fc4fe2cae8621795caa46dcffd3bcd94dd1a166e663449707b4e')
 
 prepare() {
     cd ${srcdir}/${pkgname}-${pkgver}

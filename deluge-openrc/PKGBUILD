@@ -2,7 +2,7 @@
 
 pkgname=deluge-openrc
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="OpenRC scripts for deluge."
 arch=('any')
 url=""
@@ -11,7 +11,7 @@ depends=('openrc')
 source=('deluged.conf'
 		'deluged.init')
 md5sums=('f7933cc42afd6313b1daf2f75894f82f'
-         '466bd9958daf326ccbdb9f2f785cb5ec')
+         'a0c1f5abce98429a329ddd7e5f91baeb')
 
 package() {
    mkdir -p ${pkgdir}/etc/init.d
