@@ -112,12 +112,12 @@ source=("${_dev_url}/gentoo-apache-${_apver}-${_aprel}.tar.bz2"
         "rpc.yppasswdd.initd::${_url}/net-nds/ypserv/files/rpc.yppasswdd-r1"
         "rpc.ypxfrd.initd::${_url}/net-nds/ypserv/files/rpc.ypxfrd-2.23"
         "autofs.initd::${_url}/net-fs/autofs/files/autofs5.initd"
-        "openvpn.confd::${_url}/net-misc/openvpn/files/openvpn-2.1.conf"
-        "openvpn.initd::${_url}/net-misc/openvpn/files/openvpn-2.1.init"
+        "openvpn.confd::${_url}/net-vpn/openvpn/files/openvpn-2.1.conf"
+        "openvpn.initd::${_url}/net-vpn/openvpn/files/openvpn-2.1.init"
         "ntpd.confd::${_url}/net-misc/openntpd/files/openntpd.conf.d-20080406-r6"
         "ntpd.initd::${_url}/net-misc/openntpd/files/openntpd.init.d-20080406-r6"
-        "tor.confd::${_url}/net-misc/tor/files/tor.confd"
-        "tor.initd::${_url}/net-misc/tor/files/tor.initd-r8"
+        "tor.confd::${_url}/net-vpn/tor/files/tor.confd"
+        "tor.initd::${_url}/net-vpn/tor/files/tor.initd-r8"
         "nginx.initd::${_url}/www-servers/nginx/files/nginx.initd-r4"
         "vnstatd.confd::${_url}/net-analyzer/vnstat/files/vnstatd.confd"
         "vnstatd.initd::${_url}/net-analyzer/vnstat/files/vnstatd.initd-r1"
@@ -193,8 +193,8 @@ sha256sums=('d81e32d876594b48a7ff6d9123bf776c5bea5453eddd2fe40f4a9b79c11537aa'
             '5ee23ee05da536fb67456c034e757841b27bc8528d93d2bc835e7427fe77d05e'
             '330149a83684ddabe413d134d4c8efad4c88b18c2ab67165014deff5f7fffad2'
             '89f69bcd627868830c421bc6270f08a1c3edf1a1e5fbdedf33c7a7d530bdfccf'
-            '40803821f498267f6567436eedc18201b5ae4b5390d6872fb15a94200c2ac06f'
-            'cdccb5f0009d1498be90a3f423158d7a3c603a1398f8993ae6fb828224a7cdaa'
+            '91fb1497b3a6ef0bb3a3d5baefdff801d8ff1cba27aaf742303415550814a09b'
+            'e3ddd2620be927f66e9fb325ad3dbe89e7845b5a30de09fbe25fad2d13df641b'
             '41d780f291847e19f632428bbf27c3f289414afd237546d2974da1b75384c25c'
             'b637006715ab1cb0b321dc9e703b1dcaf61878c13134669eabebe4b422da96d3'
             'a28354a71c1d9d9f681835a1afe73ca538aca81c4a28d0166b66344854cca235'
