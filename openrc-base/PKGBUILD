@@ -11,7 +11,7 @@ pkgname=('cronie-openrc'
         'lvm2-openrc'
         'mdadm-openrc'
         'dbus-openrc')
-pkgver=20170316
+pkgver=20170317
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -99,8 +99,6 @@ package_dhcpcd-openrc() {
 	depends=('openrc' 'dhcpcd')
 
 	_inst_initd 'dhcpcd'
-
-	sed -e 's|/sbin|/usr/bin|g' -i "${pkgdir}/etc/init.d/dhcpcd"
 }
 
 package_device-mapper-openrc() {
@@ -111,10 +109,6 @@ package_device-mapper-openrc() {
 	_inst_confd 'device-mapper'
 	_inst_initd 'device-mapper'
 	_inst_initd 'dmeventd'
-
-	for f in ${pkgdir}/etc/init.d/*; do
-		sed -e 's|/sbin|/usr/bin|g' -i $f
-	done
 }
 
 package_cryptsetup-openrc() {
@@ -157,10 +151,6 @@ package_lvm2-openrc() {
 	_inst_initd 'lvm'
 	_inst_initd 'lvm-monitoring'
 	_inst_initd 'lvmetad'
-
-	for f in ${pkgdir}/etc/init.d/*; do
-		sed -e 's|/sbin|/usr/bin|g' -i $f
-	done
 }
 
 package_mdadm-openrc() {
