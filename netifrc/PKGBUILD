@@ -30,12 +30,9 @@ else
     _id=arch
 fi
 _net_args=(SYSCONFDIR=/etc)
-_net_args+=(PREFIX=/usr)
-_net_args+=(SBINDIR=/usr/bin)
 _net_args+=(LIBEXECDIR=/usr/lib/${pkgname})
 
 _func_args+=(ROOTPREFIX=/usr)
-_func_args+=(ROOTSBINDIR=/usr/bin)
 _func_args+=(ROOTLIBEXECDIR=/usr/lib/$_id)
 
 build(){
@@ -48,6 +45,10 @@ build(){
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
+
+	mkdir -pv "${pkgdir}/usr/bin"
+	ln -sv "${pkgdir}/usr/bin" "${pkgdir}/usr/sbin"
+
     make DESTDIR="${pkgdir}" "${_net_args[@]}" install
     install -Dm 644 "${srcdir}/${pkgname}-${pkgver}/doc/net.example" "${pkgdir}/etc/conf.d/net"
 
@@ -61,4 +62,6 @@ package() {
         -i "${pkgdir}/usr/lib/${pkgname}/sh/functions.sh"
 
     install -Dm644 ${srcdir}/${pkgname}-${pkgver}/LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
+
+    rm "${pkgdir}/usr/sbin"
 }

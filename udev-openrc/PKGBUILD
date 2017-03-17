@@ -5,7 +5,7 @@ _pkgname=udev-init-scripts
 
 pkgname=udev-openrc
 pkgver=32
-pkgrel=2
+pkgrel=3
 pkgdesc="OpenRC udev startup scripts"
 arch=('any')
 url="https://github.com/manjaro/packages-openrc"
@@ -15,7 +15,7 @@ depends=('openrc' 'udev')
 source=("${_url}/${_pkgname}-${pkgver}.tar.gz"
         "kmod-static-nodes.initd")
 sha256sums=('d5ae437291ae140194f67fec2c9a6ceeda39708433840e7b4b0361cc5ae53eaa'
-            '3ecbe7761b92a123a5a3d395ec3d9e090b0dfba7910a5987b4a2298c20a7e571')
+            '2cf6eda7e4c4593c286feba0cbc278b8cc463debaa48e10326180b0ab54fd5dd')
 
 package(){
     cd "${srcdir}/${_pkgname}-${pkgver}"
