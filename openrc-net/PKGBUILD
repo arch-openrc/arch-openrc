@@ -42,7 +42,7 @@ pkgname=('autofs-openrc'
         'vnstat-openrc'
         'snort-openrc'
         'unbound-openrc')
-pkgver=20170316
+pkgver=20170317
 pkgrel=1
 pkgdesc="OpenRC init scripts"
 arch=('any')
@@ -333,9 +333,9 @@ package_iptables-openrc() {
 
 	install -Dm755 "${srcdir}/iptables.initd" "${pkgdir}/etc/init.d/ip6tables"
 
-	for f in ${pkgdir}/etc/init.d/*;do
-            sed -e 's|/sbin|/usr/bin|g' -i $f
-	done
+	#for f in ${pkgdir}/etc/init.d/*;do
+    #        sed -e 's|/sbin|/usr/bin|g' -i $f
+	#done
 }
 
 package_krb5-openrc() {
@@ -376,8 +376,7 @@ package_rpcbind-openrc() {
 # 	_inst_confd 'rpcbind'
 	_inst_initd 'rpcbind'
 
-	sed -e 's|/sbin|/usr/bin|g' \
-            -e 's|RPCBIND_OPTS|RPCBIND_ARGS|' \
+	sed -e 's|RPCBIND_OPTS|RPCBIND_ARGS|' \
             -i "${pkgdir}/etc/init.d/rpcbind"
 }
 
