@@ -1,7 +1,7 @@
 # Maintainer: Chris Cromer <chris@cromer.cl>
 
 pkgname=openrc-mirrorlist
-pkgver=20170316
+pkgver=20170320
 pkgrel=1
 pkgdesc="Arch Linux OpenRC mirror list for use by pacman"
 arch=('any')
@@ -15,5 +15,5 @@ package() {
   install -m644 $srcdir/mirrorlist-openrc $pkgdir/etc/pacman.d/
 }
 
-md5sums=('d09d1129faae7677cc4394d9ffb0f372')
-sha256sums=('4a6878c1b442c955145f1d2699227e957984f807c9c6a99c6c2f7f334bb29c11')
+md5sums=('0a8629299e9ef5ee4738a63ec71dde2a')
+sha256sums=('825e8c98ba552f1c17c52e00d3e0c5d8ea1820bcf7bd22335aab50d59d26bad4')
