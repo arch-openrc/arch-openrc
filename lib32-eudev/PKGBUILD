@@ -5,8 +5,8 @@ _pkgname=eudev
 
 pkgname=lib32-eudev
 pkgdesc="The userspace dev tools (udev) forked by Gentoo (32-bit)"
-pkgver=3.2
-pkgrel=3
+pkgver=3.2.2
+pkgrel=1
 arch=('x86_64')
 url="http://www.gentoo.org/proj/en/eudev/"
 license=('GPL')
@@ -16,7 +16,7 @@ provides=("lib32-udev=${_udevver}" "lib32-systemd=${_udevver}")
 conflicts=('lib32-systemd')
 options=(!makeflags !libtool)
 source=("$pkgname-$pkgver.tar.gz::https://github.com/gentoo/eudev/archive/v${pkgver}.tar.gz")
-sha256sums=('37829d37f4beb7e358ca33abc1ad0907d87f917ce157777aeaeebeacae24efdc')
+sha256sums=('80628191448886846ab9cc0e2af6782358a0afb81d5b4f8cd9d982d2626cca31')
 
 build() {
 
