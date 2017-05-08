@@ -3,7 +3,7 @@
 _pkgname=ConsoleKit2
 
 pkgname=consolekit
-pkgver=1.1.0
+pkgver=1.1.1
 pkgrel=11
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
@@ -23,7 +23,7 @@ source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 	"ck-remove-dir.patch::${url}/commit/8f1794996638dc3829cb1d2562a5601d055e0b91.patch"
 	"selinux-support.patch::${url}/commit/588ac16db5123eea593ab90786c18d0c4c1cd3d3.patch")
 
-sha256sums=('a40d92358aca9f627a224dca674090e310423b00ed63fc06482997611661b69b'
+sha256sums=('795b2cfb766bdffb9187ef7f8beb8d8298e4c38df4a69377115297a0dee3b0d0'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
             '9f356df83bcebe10c3c8e9d232c3e59aff49b83b980b61f9b97a5b4e0fa3ba3d'
             'ad9b8d7c92e73c5cff7a883724992008b6a0382b2466fd5f69720f112c1eb0f9'
