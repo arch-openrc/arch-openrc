@@ -1,0 +1,18 @@
+# Maintainer: Chris Cromer <chris@cromer.cl>
+
+pkgname=archiso-openrc
+pkgver=1
+pkgrel=1
+pkgdesc='Tools for creating Arch-OpenRC live and install iso images'
+arch=('any')
+license=('GPL')
+url='https://github.com/arch-openrc/archiso-openrc'
+depends=('archiso')
+source=("https://sourceforge.net/projects/archopenrc/files/arch-openrc/archiso-openrc/${pkgname}-${pkgver}.tar.gz"{,.sig})
+sha256sums=('3d0a7091d679c6ca22de1d8ce4ad53e691f4510b8845b2bc3591def8eed3f05e'
+            'SKIP')
+validpgpkeys=('A55C3F1BA61CAA63036D82BAFA91071797BEEEC2') # cromer
+
+package() {
+    make -C "${pkgname}-${pkgver}" DESTDIR="${pkgdir}" install
+}
