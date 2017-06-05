@@ -3,7 +3,7 @@
 _pkgname=ConsoleKit2
 
 pkgname=consolekit
-pkgver=1.1.1
+pkgver=1.1.2
 pkgrel=1
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=('i686' 'x86_64')
@@ -20,7 +20,7 @@ source=("$url/releases/download/$pkgver/$_pkgname-$pkgver.tar.bz2"
 	'75-org.freedesktop.consolekit.rules'
 	'pam-foreground-compat.ck')
 
-sha256sums=('795b2cfb766bdffb9187ef7f8beb8d8298e4c38df4a69377115297a0dee3b0d0'
+sha256sums=('f4b26b45edf7416ed76052b8f85ea05b7b560c744edee8042575667528bc1f24'
             '778552dc12b3c235bde200e476d4262da0c135f3f6f8b3e975a87881d1f154d1'
             '9f356df83bcebe10c3c8e9d232c3e59aff49b83b980b61f9b97a5b4e0fa3ba3d'
             'ad9b8d7c92e73c5cff7a883724992008b6a0382b2466fd5f69720f112c1eb0f9')
