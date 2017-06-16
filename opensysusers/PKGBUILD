@@ -12,7 +12,7 @@ license=('BSD2')
 #depends=('openrc')
 #backup=()
 source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz")
-sha256sums=('1fdd4587c62d815296fb4162002cf001e3ed7aae8727d9b4360f527169e6b3be')
+sha256sums=('545cb91c69507803df576fe017e675da0e4ffccbbb582381be0536eb641fd228')
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
