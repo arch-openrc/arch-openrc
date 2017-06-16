@@ -1,0 +1,20 @@
+# Maintainer: Chris Cromer <chris@cromer.cl>
+
+_url="https://github.com/arch-openrc/opensysusers/archive"
+
+pkgname=opensysusers
+pkgver=0.1
+pkgrel=1
+pkgdesc="A standalone utility for handling systemd-style sysusers.d users and groups"
+arch=('any')
+url="https://github.com/arch-openrc/opensysusers"
+license=('BSD2')
+#depends=('openrc')
+#backup=()
+source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz")
+sha256sums=('1fdd4587c62d815296fb4162002cf001e3ed7aae8727d9b4360f527169e6b3be')
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make bindir="/usr/bin" DESTDIR="${pkgdir}" install
+}
