@@ -4,17 +4,18 @@ _url="https://github.com/arch-openrc/opensysusers/archive"
 
 pkgname=opensysusers
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="A standalone utility for handling systemd-style sysusers.d users and groups"
 arch=('any')
 url="https://github.com/arch-openrc/opensysusers"
 license=('BSD2')
-#depends=('openrc')
-#backup=()
+depends=('shadow')
+optdepends=('openrc: for updates via service manager')
 source=("${pkgname}-${pkgver}.tar.gz::${_url}/${pkgver}.tar.gz")
 sha256sums=('545cb91c69507803df576fe017e675da0e4ffccbbb582381be0536eb641fd228')
 
 package() {
     cd "${srcdir}/${pkgname}-${pkgver}"
     make bindir="/usr/bin" DESTDIR="${pkgdir}" install
+	install -vDm0755 openrc/opensysusers.initd "${pkgdir}"/etc/openrc/init.d/opensysusers
 }
