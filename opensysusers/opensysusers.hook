@@ -10,4 +10,3 @@ Target = run/sysusers.d/*/
 Description = Updating system users and groups
 When = PostTransaction
 Exec = /usr/bin/sysusers
-NeedsTargets
