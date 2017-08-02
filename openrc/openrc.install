@@ -1,10 +1,37 @@
 pre_install() {
-	echo "	==> You can boot up systemd any time if systemd is used for udev."
-	echo "	==> Add 'init=/usr/lib/systemd/systemd' to kernel command line."
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo "	==> The arch-openrc project has stopped being maintained."
+	echo "	==> A new project has taken its place, a systemd-free fork of Arch."
+	echo "	==> Read http://systemd-free.org/news.php for information and instructions."
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
 }
 
 post_install() {
-        echo "	==> Install one of the optional depends for network support!"
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo "	==> The arch-openrc project has stopped being maintained."
+	echo "	==> A new project has taken its place, a systemd-free fork of Arch."
+	echo "	==> Read http://systemd-free.org/news.php for information and instructions."
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
+	echo " "
 }
 
 post_upgrade() {
